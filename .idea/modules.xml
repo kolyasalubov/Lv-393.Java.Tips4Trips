@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="ProjectModuleManager">
-    <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/Lv-393.Java.Tips4Trips.iml" filepath="$PROJECT_DIR$/.idea/Lv-393.Java.Tips4Trips.iml" />
-      <module fileurl="file://$PROJECT_DIR$/server/Tips4Trips.iml" filepath="$PROJECT_DIR$/server/Tips4Trips.iml" />
-    </modules>
-  </component>
-</project>
