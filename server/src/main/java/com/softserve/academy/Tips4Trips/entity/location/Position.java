@@ -1,4 +1,4 @@
-package com.softserve.academy.model.location;
+package com.softserve.academy.Tips4Trips.entity.location;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;

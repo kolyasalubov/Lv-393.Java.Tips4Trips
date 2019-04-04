@@ -1,4 +1,4 @@
-package com.softserve.academy.model.location;
+package com.softserve.academy.Tips4Trips.entity.location;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -8,8 +8,8 @@ import java.io.Serializable;
 import java.util.List;
 
 @Entity
-@Table(name = "city")
-public class City implements Serializable {
+@Table(name = "country")
+public class Country implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -23,21 +23,21 @@ public class City implements Serializable {
     private Position position;
 
     @ManyToOne
-    @JoinColumn(name = "country_id", nullable = false)
-    private Country country;
+    @JoinColumn(name="planet_id", nullable=false)
+    private Planet planet;
 
-    @OneToMany(mappedBy = "city")
-    private List<Place> listOfPlaces;
+    @OneToMany(mappedBy="country")
+    private List<City> listOfCities;
 
-    public City() {}
+    public Country() {}
 
-    public City(@Size(max = 35) @NotBlank String name,
-                @NotNull Position position, Country country,
-                List<Place> listOfPlaces) {
+    public Country(@Size(max = 35) @NotBlank String name,
+                   @NotNull Position position, Planet planet,
+                   List<City> listOfCities) {
         this.name = name;
         this.position = position;
-        this.country = country;
-        this.listOfPlaces = listOfPlaces;
+        this.planet = planet;
+        this.listOfCities = listOfCities;
     }
 
     public Long getId() {
@@ -60,19 +60,19 @@ public class City implements Serializable {
         this.position = position;
     }
 
-    public Country getCountry() {
-        return country;
+    public Planet getPlanet() {
+        return planet;
     }
 
-    public void setCountry(Country country) {
-        this.country = country;
+    public void setPlanet(Planet planet) {
+        this.planet = planet;
     }
 
-    public List<Place> getListOfPlaces() {
-        return listOfPlaces;
+    public List<City> getListOfCities() {
+        return listOfCities;
     }
 
-    public void setListOfPlaces(List<Place> listOfPlaces) {
-        this.listOfPlaces = listOfPlaces;
+    public void setListOfCities(List<City> listOfCities) {
+        this.listOfCities = listOfCities;
     }
 }
