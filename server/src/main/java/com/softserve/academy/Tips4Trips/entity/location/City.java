@@ -7,6 +7,8 @@ import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.List;
 
+import com.softserve.academy.Tips4Trips.entity.place.Place;
+
 @Entity
 @Table(name = "city")
 public class City implements Serializable {
