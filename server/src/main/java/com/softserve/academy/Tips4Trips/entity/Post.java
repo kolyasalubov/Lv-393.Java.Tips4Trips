@@ -1,42 +1,41 @@
 package com.softserve.academy.Tips4Trips.entity;
 
-import com.softserve.academy.Tips4Trips.entity.place.Place;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 @Entity
-@Table(name = "route")
-public class Route {
+@Table(name = "post")
+public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private Long id;
 
     @NotNull
-    @Column(name = "name", length = 100)
+    @Column(name = "name")
     private String name;
 
-    @Column(name = "photo_path", length = 500)
+    @Column(name = "photo_path")
     private String photoPath;
+
+    @NotNull
+    @Column(name = "creation_date")
+    @Temporal(value = TemporalType.DATE)
+    private Date creationDate;
+
+    @NotNull
+    @Column(name = "content", length = 20)
+    private String content;
 
     @NotNull
     @Column(name = "author")
     private Account author;
 
     @NotNull
-    @Column(name = "creation_date", nullable = false)
-    @Temporal(value = TemporalType.DATE)
-    private Date creationDate;
+    @Column(name = "route")
+    private Route route;
 
-    @NotNull
-    @Column(name = "list_of_places")
-    private List<Place> listOfPlaces = new ArrayList<>();
-
-    public Route() {
+    public Post() {
     }
 
     public Long getId() {
@@ -63,14 +62,6 @@ public class Route {
         this.photoPath = photoPath;
     }
 
-    public Account getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(Account author) {
-        this.author = author;
-    }
-
     public Date getCreationDate() {
         return creationDate;
     }
@@ -79,11 +70,27 @@ public class Route {
         this.creationDate = creationDate;
     }
 
-    public List<Place> getListOfPlaces() {
-        return listOfPlaces;
+    public String getContent() {
+        return content;
     }
 
-    public void setListOfPlaces(List<Place> listOfPlaces) {
-        this.listOfPlaces = listOfPlaces;
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public Account getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(Account author) {
+        this.author = author;
+    }
+
+    public Route getRoute() {
+        return route;
+    }
+
+    public void setRoute(Route route) {
+        this.route = route;
     }
 }
