@@ -1,5 +1,7 @@
 package com.softserve.academy.Tips4Trips.entity.place;
 
+import com.softserve.academy.Tips4Trips.entity.Position;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
