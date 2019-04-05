@@ -31,7 +31,7 @@ public class FindGroup {
     private Date startDate;
 
     @NotNull
-    @Column(name = "route")
+    @Column(name = "creator")
     private Account creator;
 
     @NotNull
