@@ -30,5 +30,5 @@ HELP.md
 #resources
 resources
 
-*/target
+*/target/
 *.properties
