@@ -12,6 +12,9 @@ public class Sale {
     @Column(name = "id")
     private Long id;
 
+    @Column(name = "name", nullable = false, length = 50)
+    private String name;
+
     @NotNull
     @Column(name = "photo_path", length = 500, nullable = false)
     private String photoPath;

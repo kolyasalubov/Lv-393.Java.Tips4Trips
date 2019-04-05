@@ -39,7 +39,10 @@ public class Account {
     @OneToMany(mappedBy = "author")
     private List<Post> post;
 
-    @OneToMany(mappedBy = "id")
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "accounts_subscribers",
+        joinColumns = {@JoinColumn(name = "account_id", referencedColumnName = "id")},
+        inverseJoinColumns = {@JoinColumn(name = "subscriber_id", referencedColumnName = "id")})
     private List<Account> subscribers;
 
     @OneToMany(mappedBy = "account")
