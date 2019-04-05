@@ -3,6 +3,7 @@ package com.softserve.academy.Tips4Trips.entity;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "post")
@@ -12,28 +13,36 @@ public class Post {
     private Long id;
 
     @NotNull
-    @Column(name = "name")
+    @Column(name = "name",nullable = false)
     private String name;
 
     @Column(name = "photo_path")
     private String photoPath;
 
     @NotNull
-    @Column(name = "creation_date")
+    @Column(name = "creation_date",nullable = false)
     @Temporal(value = TemporalType.DATE)
     private Date creationDate;
 
     @NotNull
-    @Column(name = "content", length = 20)
+    @Column(name = "content", nullable = false)
     private String content;
 
     @NotNull
-    @Column(name = "author")
+    @ManyToOne
+    @JoinColumn(name = "account_id",referencedColumnName = "id")
     private Account author;
 
     @NotNull
-    @Column(name = "route")
+    @ManyToOne
+    @JoinColumn(name = "route_id", referencedColumnName = "id")
     private Route route;
+
+    @OneToMany(mappedBy = "likedBy")
+    private List<Like> likes;
+
+    @OneToMany(mappedBy = "likedBy")
+    private List<Comment> comments;
 
     public Post() {
     }
@@ -92,5 +101,21 @@ public class Post {
 
     public void setRoute(Route route) {
         this.route = route;
+    }
+
+    public List<Like> getLikes() {
+        return likes;
+    }
+
+    public void setLikes(List<Like> likes) {
+        this.likes = likes;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
 }

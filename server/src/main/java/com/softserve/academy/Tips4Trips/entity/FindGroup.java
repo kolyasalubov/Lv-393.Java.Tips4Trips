@@ -13,31 +13,39 @@ public class FindGroup {
     private Long id;
 
     @NotNull
-    @Column(name = "name")
+    @Column(name = "name",nullable = false)
     private String name;
 
     @NotNull
-    @Column(name = "description")
+    @Column(name = "description",nullable = false)
     private String description;
 
     @NotNull
-    @Column(name = "creation_date")
+    @Column(name = "creation_date",nullable = false)
     @Temporal(value = TemporalType.DATE)
     private Date creationDate;
 
     @NotNull
-    @Column(name = "start_date")
+    @Column(name = "start_date",nullable = false)
     @Temporal(value = TemporalType.DATE)
     private Date startDate;
 
     @NotNull
-    @Column(name = "creator")
+    @ManyToOne
+    @JoinColumn(name = "creator_id",referencedColumnName = "id",nullable = false)
     private Account creator;
 
     @NotNull
-    @Column(name = "route")
+    @ManyToOne
+    @JoinColumn(name = "author_id",referencedColumnName = "id",nullable = false)
     private Route route;
 
+    @ManyToMany
+    @JoinTable( name="subscriber_group",
+            joinColumns=
+            @JoinColumn(name="subscriber_id", referencedColumnName="id"),
+            inverseJoinColumns=
+            @JoinColumn(name="group_id", referencedColumnName="id") )
     private List<Account> subscribers;
 
     public FindGroup() {
