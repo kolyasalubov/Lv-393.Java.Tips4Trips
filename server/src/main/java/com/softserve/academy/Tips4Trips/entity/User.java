@@ -4,7 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -12,14 +12,15 @@ public class User {
     private Long id;
 
     @NotNull
-    @Column(name = "login", unique = true, length = 50)
+    @Column(name = "login", unique = true, length = 50, nullable = false)
     private String login;
 
     @NotNull
-    @Column(name = "password", length = 50)
+    @Column(name = "password", length = 64, nullable = false)
     private String password;
 
-    @Column(name = "account")
+    @ManyToOne
+    @JoinColumn(name = "account_id", referencedColumnName = "id", nullable = false)
     private Account account;
 
     public User() {

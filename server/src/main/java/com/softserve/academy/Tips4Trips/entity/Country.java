@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.util.List;
 
 @Entity
-@Table(name = "country")
+@Table(name = "countries")
 public class Country implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,17 +16,21 @@ public class Country implements Serializable {
 
     @Size(max = 35)
     @NotBlank
+    @Column(nullable = false, length = 35)
     private String name;
 
     @Embedded
     @NotNull
+    @Column(nullable = false)
     private Position position;
 
     @ManyToOne
-    @JoinColumn(name="planet_id", nullable=false)
+    @JoinColumn(name="planet_id", referencedColumnName = "id",
+            nullable=false)
     private Planet planet;
 
-    @OneToMany(mappedBy="country")
+    @OneToMany(mappedBy="country", cascade = CascadeType.ALL,
+            orphanRemoval = true)
     private List<City> listOfCities;
 
     public Country() {}

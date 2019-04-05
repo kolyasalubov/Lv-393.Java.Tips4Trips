@@ -1,22 +1,21 @@
 package com.softserve.academy.Tips4Trips.entity;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "like")
+@Table(name = "adores")
 public class Like {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
-    @NotNull
-    @Column(name = "liked_by")
+    @ManyToOne
+    @JoinColumn(name = "liked_by", referencedColumnName = "id" ,nullable = false)
     private Account likedBy;
 
-    @NotNull
-    @Column(name = "post")
+    @ManyToOne
+    @JoinColumn(name = "post_id", referencedColumnName = "id" ,nullable = false)
     private Post post;
 
     public Like() {

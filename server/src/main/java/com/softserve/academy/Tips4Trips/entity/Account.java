@@ -6,39 +6,47 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "account")
+@Table(name = "accounts")
 public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotNull
-    @Column(name = "first_name", length = 20)
+    @Column(name = "first_name", length = 25, nullable = false)
     private String firstName;
 
     @NotNull
-    @Column(name = "last_name", length = 20)
+    @Column(name = "last_name", length = 25, nullable = false)
     private String lastName;
 
     @NotNull
-    @Column(name = "phone_number", length = 20, unique = true)
+    @Column(name = "phone_number", length = 12, nullable = false, unique = true)
     private String phoneNumber;
 
     @Column(name = "registration_date")
     @Temporal(value = TemporalType.DATE)
     private Date registrationDate;
 
-    @Column(name = "about", length = 20)
+    @Column(name = "about", length = 254)
     private String about;
 
     @NotNull
-    @Column(name = "role")
+    @Column(name = "role", nullable = false)
     @Enumerated(EnumType.STRING)
     private Role role;
 
+    @OneToMany(mappedBy = "author")
     private List<Post> post;
 
+    @OneToMany(mappedBy = "id")
     private List<Account> subscribers;
+
+    @OneToMany(mappedBy = "account")
+    private List<User> users;
+
+    @OneToMany(mappedBy = "creator")
+    private List<Sale> sales;
 
     public Account() {
     }
@@ -114,4 +122,21 @@ public class Account {
     public void setSubscribers(List<Account> subscribers) {
         this.subscribers = subscribers;
     }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
+
+    public List<Sale> getSales() {
+        return sales;
+    }
+
+    public void setSales(List<Sale> sales) {
+        this.sales = sales;
+    }
+
 }

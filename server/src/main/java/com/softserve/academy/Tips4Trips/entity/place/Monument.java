@@ -9,16 +9,11 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "monument")
+@Table(name = "monuments")
 public class Monument extends Place{
 
     public Monument() {
         super();
     }
 
-    public Monument(@Size(max = 35) @NotBlank String name, String description,
-                    @Size(max = 60) @NotBlank String address,
-                    @NotNull Position position, @Size(max = 60) String photoPath) {
-        super(name, description, address, position, photoPath);
-    }
 }
