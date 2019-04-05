@@ -8,11 +8,11 @@ import java.io.Serializable;
 @Embeddable
 public class Position implements Serializable {
 
-    @Column(name="coordinate_x")
+    @Column(name="coordinate_x", nullable = false)
     @NotNull
     private Double coordinateX;
 
-    @Column(name="coordinate_y")
+    @Column(name="coordinate_y", nullable = false)
     @NotNull
     private Double coordinateY;
 

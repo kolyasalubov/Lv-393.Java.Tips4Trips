@@ -15,9 +15,11 @@ public class Planet implements Serializable {
 
     @Size(max = 30)
     @NotBlank
+    @Column(nullable = false, length = 30)
     private String name;
 
-    @OneToMany(mappedBy="planet")
+    @OneToMany(mappedBy="planet", cascade = CascadeType.ALL,
+            orphanRemoval = true)
     private List<Country> listOfCountries;
 
     public Planet(){}
