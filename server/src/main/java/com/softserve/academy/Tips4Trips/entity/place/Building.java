@@ -1,4 +1,4 @@
-package com.softserve.academy.Tips4Trips.entity.place;
+package package com.softserve.academy.Tips4Trips.entity.place;
 
 import com.softserve.academy.Tips4Trips.entity.Position;
 
@@ -15,20 +15,24 @@ import java.util.List;
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Building extends Place {
 
-    @Column(name = "working_day", columnDefinition = "smallint")
     @Enumerated
     @ElementCollection(targetClass = DayOfWeek.class)
+    @NotNull
+    @Column(name = "working_day", columnDefinition = "smallint",
+            nullable = false)
     private List<DayOfWeek> workingDays;
 
     @Size(max = 30)
+    @Column(length = 30)
     private String webSite;
 
     @Size(max = 15)
+    @Column(length = 15)
     private String telephone;
 
     @Enumerated
     @NotNull
-    @Column(columnDefinition = "smallint")
+    @Column(columnDefinition = "smallint", nullable = false)
     private TypeOfBuilding type;
 
     @Column(name = "opening_time")

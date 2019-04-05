@@ -18,17 +18,21 @@ public class City implements Serializable {
 
     @Size(max = 35)
     @NotBlank
+    @Column(nullable = false, length = 35)
     private String name;
 
     @Embedded
     @NotNull
+    @Column(nullable = false)
     private Position position;
 
     @ManyToOne
-    @JoinColumn(name = "country_id", nullable = false)
+    @JoinColumn(name = "country_id", referencedColumnName = "id",
+            nullable = false)
     private Country country;
 
-    @OneToMany(mappedBy = "city")
+    @OneToMany(mappedBy = "city", cascade = CascadeType.ALL,
+            orphanRemoval = true)
     private List<Place> listOfPlaces;
 
     public City() {}

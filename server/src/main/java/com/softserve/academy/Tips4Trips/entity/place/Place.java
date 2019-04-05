@@ -1,4 +1,5 @@
-package com.softserve.academy.Tips4Trips.entity.place;
+package package com.softserve.academy.Tips4Trips.entity.place;
+
 
 import com.softserve.academy.Tips4Trips.entity.Position;
 
@@ -7,7 +8,6 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
-import java.util.List;
 
 @Entity
 @Table(name = "place")
@@ -19,19 +19,23 @@ public abstract class Place implements Serializable {
 
     @Size(max = 35)
     @NotBlank
+    @Column(nullable = false, length = 35)
     private String name;
 
     private String description;
 
     @Size(max = 60)
     @NotBlank
+    @Column(nullable = false, length = 60)
     private String address;
 
     @Embedded
     @NotNull
+    @Column(nullable = false)
     private Position position;
 
     @Size(max = 60)
+    @Column(name="photo_path", nullable = false, length = 60)
     private String photoPath;
 
     public Place() {}

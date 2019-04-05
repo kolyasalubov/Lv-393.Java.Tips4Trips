@@ -1,4 +1,4 @@
-package com.softserve.academy.Tips4Trips.entity.place;
+package package com.softserve.academy.Tips4Trips.entity.place;
 
 import com.softserve.academy.Tips4Trips.entity.Position;
 
