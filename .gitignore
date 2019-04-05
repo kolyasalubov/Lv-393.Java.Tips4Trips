@@ -29,3 +29,6 @@ HELP.md
 .vscode/
 #resources
 resources
+
+*/target
+*.properties
