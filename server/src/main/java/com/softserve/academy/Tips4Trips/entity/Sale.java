@@ -5,7 +5,7 @@ import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
-@Table(name = "sale")
+@Table(name = "sales")
 public class Sale {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,25 +13,25 @@ public class Sale {
     private Long id;
 
     @NotNull
-    @Column(name = "photo_path", length = 500)
+    @Column(name = "photo_path", length = 500, nullable = false)
     private String photoPath;
 
-    @NotNull
-    @Column(name = "creator")
+    @ManyToOne
+    @JoinColumn(name = "creator_id", referencedColumnName = "id", nullable = false)
     private Account creator;
 
     @NotNull
-    @Column(name = "creation_date")
+    @Column(name = "creation_date", nullable = false)
     @Temporal(value = TemporalType.DATE)
     private Date creationDate;
 
     @NotNull
     @Enumerated(EnumType.STRING)
-    @Column(name = "type_of_sale_post")
+    @Column(name = "type_of_sale_post", nullable = false)
     private TypeOfSalePost typeOfSalePost;
 
     @NotNull
-    @Column(name = "price")
+    @Column(name = "price", nullable = false)
     private float price;
 
     public Sale() {

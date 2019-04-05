@@ -1,6 +1,6 @@
-package package com.softserve.academy.Tips4Trips.entity.place;
+package com.softserve.academy.Tips4Trips.entity.place;
 
-
+import com.softserve.academy.Tips4Trips.entity.City;
 import com.softserve.academy.Tips4Trips.entity.Position;
 
 import javax.persistence.*;
@@ -10,11 +10,13 @@ import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "place")
+@Table(name = "places")
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Place implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "key_generator")
+    @TableGenerator(table = "place_keys", pkColumnName = "key_name",
+            valueColumnName = "key_value", name = "key_generator")
     private Long id;
 
     @Size(max = 35)
@@ -35,19 +37,35 @@ public abstract class Place implements Serializable {
     private Position position;
 
     @Size(max = 60)
-    @Column(name="photo_path", nullable = false, length = 60)
+    @Column(nullable = false, length = 60)
     private String photoPath;
 
-    public Place() {}
+    @ManyToOne
+    @JoinColumn(name = "city_id", referencedColumnName = "id",
+            nullable = false)
+    private City city;
+
+    public Place() {
+    }
 
     public Place(@Size(max = 35) @NotBlank String name, String description,
                  @Size(max = 60) @NotBlank String address,
-                 @NotNull Position position, @Size(max = 60) String photoPath) {
+                 @NotNull Position position, @Size(max = 60) String photoPath,
+                 City city) {
         this.name = name;
         this.description = description;
         this.address = address;
         this.position = position;
         this.photoPath = photoPath;
+        this.city = city;
+    }
+
+    public City getCity() {
+        return city;
+    }
+
+    public void setCity(City city) {
+        this.city = city;
     }
 
     public Long getId() {

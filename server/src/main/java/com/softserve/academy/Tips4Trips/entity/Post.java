@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "post")
+@Table(name = "posts")
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,10 +38,10 @@ public class Post {
     @JoinColumn(name = "route_id", referencedColumnName = "id")
     private Route route;
 
-    @OneToMany(mappedBy = "likedBy")
+    @OneToMany(mappedBy = "post")
     private List<Like> likes;
 
-    @OneToMany(mappedBy = "likedBy")
+    @OneToMany(mappedBy = "post")
     private List<Comment> comments;
 
     public Post() {
@@ -103,13 +103,13 @@ public class Post {
         this.route = route;
     }
 
-    public List<Like> getLikes() {
-        return likes;
-    }
-
-    public void setLikes(List<Like> likes) {
-        this.likes = likes;
-    }
+//    public List<Like> getLikes() {
+//        return likes;
+//    }
+//
+//    public void setLikes(List<Like> likes) {
+//        this.likes = likes;
+//    }
 
     public List<Comment> getComments() {
         return comments;

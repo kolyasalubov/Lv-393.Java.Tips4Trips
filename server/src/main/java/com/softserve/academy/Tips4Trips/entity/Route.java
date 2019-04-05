@@ -9,7 +9,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "route")
+@Table(name = "routes")
 public class Route {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,14 +17,14 @@ public class Route {
     private Long id;
 
     @NotNull
-    @Column(name = "name", length = 100)
+    @Column(name = "name", length = 100, nullable = false)
     private String name;
 
-    @Column(name = "photo_path", length = 500)
+    @Column(name = "photo_path", length = 500, nullable = false)
     private String photoPath;
 
-    @NotNull
-    @Column(name = "author")
+    @ManyToOne
+    @JoinColumn(name = "author_id", referencedColumnName = "id", nullable = false)
     private Account author;
 
     @NotNull
@@ -32,9 +32,9 @@ public class Route {
     @Temporal(value = TemporalType.DATE)
     private Date creationDate;
 
-    @NotNull
-    @Column(name = "list_of_places")
-    private List<Place> listOfPlaces = new ArrayList<>();
+    @OneToMany
+    @JoinColumn(name = "place_id", referencedColumnName = "id", nullable = false)
+    private List<Place> listOfPlaces;
 
     public Route() {
     }

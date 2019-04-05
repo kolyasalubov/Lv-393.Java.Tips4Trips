@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "find_group")
+@Table(name = "find_groups")
 public class FindGroup {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,7 +37,7 @@ public class FindGroup {
 
     @NotNull
     @ManyToOne
-    @JoinColumn(name = "author_id",referencedColumnName = "id",nullable = false)
+    @JoinColumn(name = "route_id",referencedColumnName = "id",nullable = false)
     private Route route;
 
     @ManyToMany

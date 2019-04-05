@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "account")
+@Table(name = "accounts")
 public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -45,14 +45,8 @@ public class Account {
     @OneToMany(mappedBy = "account")
     private List<User> users;
 
-    @OneToMany(mappedBy = "writtenBy")
+    @OneToMany(mappedBy = "creator")
     private List<Sale> sales;
-
-    @OneToMany(mappedBy = "likedBy")
-    private List<Like> likes;
-
-    @OneToMany(mappedBy = "likedBy")
-    private List<Comment> comments;
 
     public Account() {
     }
@@ -145,19 +139,4 @@ public class Account {
         this.sales = sales;
     }
 
-    public List<Like> getLikes() {
-        return likes;
-    }
-
-    public void setLikes(List<Like> likes) {
-        this.likes = likes;
-    }
-
-    public List<Comment> getComments() {
-        return comments;
-    }
-
-    public void setComments(List<Comment> comments) {
-        this.comments = comments;
-    }
 }
