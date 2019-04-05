@@ -2,19 +2,19 @@ package com.softserve.academy.Tips4Trips.dto;
 
 public class UserDto {
 
-    private Long id;
+    private long id;
 
     private String login;
 
     private String password;
 
-    private Long accountId;
+    private long accountId;
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -34,11 +34,11 @@ public class UserDto {
         this.password = password;
     }
 
-    public Long getAccountId() {
+    public long getAccountId() {
         return accountId;
     }
 
-    public void setAccountId(Long accountId) {
+    public void setAccountId(long accountId) {
         this.accountId = accountId;
     }
 }

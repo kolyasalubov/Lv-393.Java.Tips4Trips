@@ -5,20 +5,18 @@ import com.softserve.academy.Tips4Trips.dto.converter.UserConverter;
 import com.softserve.academy.Tips4Trips.entity.User;
 import com.softserve.academy.Tips4Trips.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @CrossOrigin
 @RequestMapping("/users")
 public class UserController {
 
-    UserService userService;
-    UserConverter userConverter;
+    private UserService userService;
+    private UserConverter userConverter;
 
     @Autowired
     public UserController(UserService userService, UserConverter userConverter) {
@@ -27,7 +25,19 @@ public class UserController {
     }
 
     @GetMapping("/all")
-    List<UserDto> getAll() {
+    public List<UserDto> getAll() {
         return userConverter.convert(userService.findAll());
     }
+
+    @GetMapping("/{id}")
+    public UserDto getById(@PathVariable long id) {
+        Optional<User> user = userService.findById(id);
+        return (user.isPresent()) ? userConverter.convert(user.get()) : null;
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public void deleteById(@PathVariable long id) {
+        userService.findById(id).ifPresent(userService::delete);
+    }
+
 }
