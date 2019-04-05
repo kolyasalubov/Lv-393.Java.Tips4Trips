@@ -33,7 +33,7 @@ public abstract class Place implements Serializable {
     private Position position;
 
     @Size(max = 60)
-    @Column(nullable = false, length = 60)
+    @Column(name="photo_path", nullable = false, length = 60)
     private String photoPath;
 
     public Place() {}
