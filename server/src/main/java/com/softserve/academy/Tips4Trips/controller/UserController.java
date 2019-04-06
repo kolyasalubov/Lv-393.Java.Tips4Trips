@@ -1,6 +1,6 @@
 package com.softserve.academy.Tips4Trips.controller;
 
-import com.softserve.academy.Tips4Trips.dto.UserDto;
+import com.softserve.academy.Tips4Trips.dto.UserDTO;
 import com.softserve.academy.Tips4Trips.dto.converter.UserConverter;
 import com.softserve.academy.Tips4Trips.entity.User;
 import com.softserve.academy.Tips4Trips.service.UserService;
@@ -27,13 +27,13 @@ public class UserController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<UserDto>> getAll() {
+    public ResponseEntity<List<UserDTO>> getAll() {
         return new ResponseEntity<>(userConverter
                 .convert(userService.findAll()), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<UserDto> getById(@PathVariable long id) {
+    public ResponseEntity<UserDTO> getById(@PathVariable long id) {
         Optional<User> user = userService.findById(id);
         return user.map(u -> new ResponseEntity<>(userConverter.
                 convert(u), HttpStatus.OK))

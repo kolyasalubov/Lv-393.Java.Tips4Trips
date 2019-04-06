@@ -1,15 +1,15 @@
 package com.softserve.academy.Tips4Trips.dto.converter;
 
-import com.softserve.academy.Tips4Trips.dto.UserDto;
+import com.softserve.academy.Tips4Trips.dto.UserDTO;
 import com.softserve.academy.Tips4Trips.entity.User;
 import org.springframework.stereotype.Component;
 
 @Component
-public class UserConverter implements Converter<User, UserDto> {
+public class UserConverter implements Converter<User, UserDTO> {
 
     @Override
-    public UserDto apply(User user) {
-        UserDto userDto = new UserDto();
+    public UserDTO apply(User user) {
+        UserDTO userDto = new UserDTO();
         userDto.setId(user.getId());
         userDto.setAccountId(user.getAccount().getId());
         userDto.setLogin(user.getLogin());
