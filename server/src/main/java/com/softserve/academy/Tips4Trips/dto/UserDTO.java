@@ -1,6 +1,6 @@
 package com.softserve.academy.Tips4Trips.dto;
 
-public class UserDto {
+public class UserDTO {
 
     private long id;
 
