@@ -24,6 +24,10 @@ public class Account {
     @Column(name = "phone_number", length = 12, nullable = false, unique = true)
     private String phoneNumber;
 
+    @NotNull
+    @Column(name = "email", length = 50, nullable = false, unique = true)
+    private String email;
+
     @Column(name = "registration_date")
     @Temporal(value = TemporalType.DATE)
     private Date registrationDate;
@@ -39,7 +43,10 @@ public class Account {
     @OneToMany(mappedBy = "author")
     private List<Post> post;
 
-    @OneToMany(mappedBy = "id")
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "accounts_subscribers",
+        joinColumns = {@JoinColumn(name = "account_id", referencedColumnName = "id")},
+        inverseJoinColumns = {@JoinColumn(name = "subscriber_id", referencedColumnName = "id")})
     private List<Account> subscribers;
 
     @OneToMany(mappedBy = "account")
@@ -81,6 +88,14 @@ public class Account {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public Date getRegistrationDate() {

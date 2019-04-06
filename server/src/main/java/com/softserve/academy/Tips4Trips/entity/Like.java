@@ -3,7 +3,7 @@ package com.softserve.academy.Tips4Trips.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "adores")
+@Table(name = "likes")
 public class Like {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
