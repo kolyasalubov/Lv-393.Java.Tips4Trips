@@ -26,6 +26,7 @@ public class Post {
 
     @NotNull
     @Column(name = "content", nullable = false)
+    @Lob
     private String content;
 
     @NotNull
@@ -33,15 +34,14 @@ public class Post {
     @JoinColumn(name = "account_id",referencedColumnName = "id")
     private Account author;
 
-    @NotNull
     @ManyToOne
     @JoinColumn(name = "route_id", referencedColumnName = "id")
     private Route route;
 
-    @OneToMany(mappedBy = "post")
+    @OneToMany(mappedBy = "post", cascade = CascadeType.REMOVE)
     private List<Like> likes;
 
-    @OneToMany(mappedBy = "post")
+    @OneToMany(mappedBy = "post", cascade = CascadeType.REMOVE)
     private List<Comment> comments;
 
     public Post() {
@@ -103,13 +103,13 @@ public class Post {
         this.route = route;
     }
 
-//    public List<Like> getLikes() {
-//        return likes;
-//    }
-//
-//    public void setLikes(List<Like> likes) {
-//        this.likes = likes;
-//    }
+    public List<Like> getLikes() {
+        return likes;
+    }
+
+    public void setLikes(List<Like> likes) {
+        this.likes = likes;
+    }
 
     public List<Comment> getComments() {
         return comments;

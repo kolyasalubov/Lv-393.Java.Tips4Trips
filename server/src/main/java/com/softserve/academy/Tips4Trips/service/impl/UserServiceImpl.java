@@ -1,6 +1,7 @@
 package com.softserve.academy.Tips4Trips.service.impl;
 
 import com.softserve.academy.Tips4Trips.dto.UserDTO;
+import com.softserve.academy.Tips4Trips.dto.converter.reverse.ReverseUserConverter;
 import com.softserve.academy.Tips4Trips.entity.Account;
 import com.softserve.academy.Tips4Trips.entity.User;
 import com.softserve.academy.Tips4Trips.repository.UserRepository;
@@ -17,11 +18,14 @@ public class UserServiceImpl extends ServiceImpl<User, Long, UserRepository>
         implements UserService {
 
     private AccountService accountService;
+    private ReverseUserConverter reverseUserConverter;
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository, AccountService accountService) {
+    public UserServiceImpl(UserRepository userRepository, AccountService accountService,
+                           ReverseUserConverter reverseUserConverter) {
         super(userRepository);
         this.accountService = accountService;
+        this.reverseUserConverter = reverseUserConverter;
     }
 
     @Override
@@ -46,17 +50,14 @@ public class UserServiceImpl extends ServiceImpl<User, Long, UserRepository>
 
     @Override
     public User createUser(UserDTO userDTO) {
-        User user = new User();
-        user.setLogin(userDTO.getLogin());
-        user.setPassword(userDTO.getPassword());
-        Optional<Account> account = accountService.findByEmail(userDTO.getEmail());
-        account.ifPresent(user::setAccount);
+        User user = reverseUserConverter.convert(userDTO);
         return repository.save(user);
     }
 
     @Override
     public User update(UserDTO userDTO) {
-        User user = findByLogin(userDTO.getLogin()).get();
+        User user = findById(userDTO.getId()).get();
+        user.setLogin(userDTO.getLogin());
         user.setPassword(userDTO.getPassword());
         return repository.save(user);
     }
