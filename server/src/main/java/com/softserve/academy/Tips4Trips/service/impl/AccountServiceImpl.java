@@ -14,4 +14,5 @@ public class AccountServiceImpl extends ServiceImpl<Account, Long, AccountReposi
 
     @Autowired
     public AccountServiceImpl(AccountRepository repository){super(repository);}
+
 }

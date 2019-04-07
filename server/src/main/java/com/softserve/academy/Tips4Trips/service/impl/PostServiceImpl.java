@@ -6,7 +6,6 @@ import com.softserve.academy.Tips4Trips.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
     @Service
     public class PostServiceImpl extends ServiceImpl<Post, Long, PostRepository>
             implements PostService {

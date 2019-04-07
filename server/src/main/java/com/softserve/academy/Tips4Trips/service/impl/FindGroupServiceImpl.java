@@ -14,4 +14,5 @@ public class FindGroupServiceImpl extends ServiceImpl<FindGroup, Long, FindGroup
 
     @Autowired
     public FindGroupServiceImpl(FindGroupRepository repository){super(repository);}
+
 }
