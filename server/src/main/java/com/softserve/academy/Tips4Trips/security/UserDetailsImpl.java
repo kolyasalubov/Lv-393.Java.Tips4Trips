@@ -14,9 +14,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 
-import static com.softserve.academy.Tips4Trips.entity.Role.ADMIN;
-
-public class CustomUserDetails implements UserDetails {
+public class UserDetailsImpl implements UserDetails {
     private Long id;
 
     @JsonIgnore
@@ -27,15 +25,15 @@ public class CustomUserDetails implements UserDetails {
 
     private Collection<? extends GrantedAuthority> authorities;
 
-    public CustomUserDetails(Long id, String login, String password,
-                             Collection<? extends GrantedAuthority> authorities) {
+    public UserDetailsImpl(Long id, String login, String password,
+                           Collection<? extends GrantedAuthority> authorities) {
         this.id = id;
         this.login = login;
         this.password = password;
         this.authorities = authorities;
     }
 
-    public static CustomUserDetails create(User user, Role role) {
+    public static UserDetailsImpl create(User user, Role role) {
         List<GrantedAuthority> authorities =new ArrayList<>();
 
         switch(role) {
@@ -56,7 +54,7 @@ public class CustomUserDetails implements UserDetails {
 
         }
 
-        return new CustomUserDetails(
+        return new UserDetailsImpl(
                 user.getId(),
                 user.getLogin(),
                 user.getPassword(),
@@ -107,7 +105,7 @@ public class CustomUserDetails implements UserDetails {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        CustomUserDetails that = (CustomUserDetails) o;
+        UserDetailsImpl that = (UserDetailsImpl) o;
         return Objects.equals(id, that.id);
     }
 
