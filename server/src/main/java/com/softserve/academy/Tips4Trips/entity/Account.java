@@ -21,7 +21,7 @@ public class Account {
     private String lastName;
 
     @NotNull
-    @Column(name = "phone_number", length = 12, nullable = false, unique = true)
+    @Column(name = "phone_number", length = 12, unique = true)
     private String phoneNumber;
 
     @NotNull
@@ -49,7 +49,7 @@ public class Account {
         inverseJoinColumns = {@JoinColumn(name = "subscriber_id", referencedColumnName = "id")})
     private List<Account> subscribers;
 
-    @OneToMany(mappedBy = "account")
+    @OneToMany(mappedBy = "account", cascade = CascadeType.REMOVE)
     private List<User> users;
 
     @OneToMany(mappedBy = "creator")

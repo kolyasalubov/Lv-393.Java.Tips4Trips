@@ -8,7 +8,7 @@ public class UserDTO {
 
     private String password;
 
-    private long accountId;
+    private String email;
 
     public long getId() {
         return id;
@@ -34,11 +34,11 @@ public class UserDTO {
         this.password = password;
     }
 
-    public long getAccountId() {
-        return accountId;
+    public String getEmail() {
+        return email;
     }
 
-    public void setAccountId(long accountId) {
-        this.accountId = accountId;
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
