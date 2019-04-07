@@ -30,6 +30,11 @@ public class UserServiceImpl extends ServiceImpl<User, Long, UserRepository>
     }
 
     @Override
+    public Optional<User> findById(Long id) {
+        return repository.findById(id);
+    }
+
+    @Override
     public List<User> findByAccount(Account account) {
         return repository.findByAccount(account);
     }

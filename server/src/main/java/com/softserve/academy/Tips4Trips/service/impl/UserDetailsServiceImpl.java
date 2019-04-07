@@ -6,6 +6,8 @@ import com.softserve.academy.Tips4Trips.repository.AccountRepository;
 import com.softserve.academy.Tips4Trips.repository.UserRepository;
 import com.softserve.academy.Tips4Trips.security.UserDetailsImpl;
 
+import com.softserve.academy.Tips4Trips.service.AccountService;
+import com.softserve.academy.Tips4Trips.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AccountStatusException;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,24 +19,24 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.security.auth.login.AccountNotFoundException;
 
 @Service
-public class CustomUserDetailsService implements UserDetailsService {
+public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
-    UserRepository userRepository;
+    UserService userService;
     @Autowired
-    AccountRepository accountRepository;
+    AccountService accountService;
 
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String login)
             throws UsernameNotFoundException {
-        User user = userRepository.findByLogin(login)
+        User user = userService.findByLogin(login)
                 .orElseThrow(() ->
                         new UsernameNotFoundException("User with login '"
                                 + login + "' not found.")
                 );
 
-        Account account = accountRepository.findByUser(user)
+        Account account = accountService.findByUser(user)
                 .orElseThrow(() ->
                     new UsernameNotFoundException(
                             "User with login '" + login + "' not found.",
@@ -48,13 +50,13 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Transactional
     public UserDetails loadUserById(Long id) {
-        User user = userRepository.findById(id).orElseThrow(
+        User user = userService.findById(id).orElseThrow(
                 () -> new UsernameNotFoundException(
                         "User with id '" + id + "' not found."
                 )
         );
 
-        Account account = accountRepository.findByUser(user)
+        Account account = accountService.findByUser(user)
                 .orElseThrow(() ->
                         new UsernameNotFoundException(
                                 "User with id '" + id + "not found.",

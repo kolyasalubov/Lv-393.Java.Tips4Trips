@@ -11,6 +11,8 @@ import java.util.Optional;
 public interface UserService extends Service<User, Long, UserRepository> {
     Optional<User> findByLogin(String login);
 
+    Optional<User> findById(Long id);
+
     List<User> findByAccount(Account account);
 
     boolean loginExists(String login);
