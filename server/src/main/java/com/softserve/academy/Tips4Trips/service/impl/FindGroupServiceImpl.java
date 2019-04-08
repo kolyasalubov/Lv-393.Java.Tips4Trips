@@ -27,8 +27,8 @@ public class FindGroupServiceImpl extends ServiceImpl<FindGroup, Long, FindGroup
 
 
     @Override
-    public List<FindGroup> findByAuthor(Account author) {
-        return repository.findByAuthor(author);
+    public List<FindGroup> findByCreator(Account author) {
+        return repository.findByCreator(author);
     }
 
     @Override

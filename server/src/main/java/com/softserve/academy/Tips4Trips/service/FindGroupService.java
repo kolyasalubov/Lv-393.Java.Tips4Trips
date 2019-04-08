@@ -11,7 +11,7 @@ import java.util.List;
 public interface FindGroupService extends Service<FindGroup, Long, FindGroupRepository> {
     List<FindGroup> searchByName(String name);
 
-    List<FindGroup> findByAuthor(Account author);
+    List<FindGroup> findByCreator(Account author);
 
     List<FindGroup> findByRoute(Route route);
 

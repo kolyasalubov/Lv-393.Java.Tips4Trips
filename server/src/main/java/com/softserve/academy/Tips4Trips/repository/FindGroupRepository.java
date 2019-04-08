@@ -12,7 +12,7 @@ import java.util.List;
 public interface FindGroupRepository extends JpaRepository<FindGroup, Long> {
     List<FindGroup> findByNameContainingIgnoreCase(String name);
 
-    List<FindGroup> findByAuthor(Account author);
+    List<FindGroup> findByCreator(Account creator);
 
     List<FindGroup> findByRoute(Route route);
 }
