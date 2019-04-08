@@ -7,5 +7,9 @@ import javax.persistence.Table;
 public enum Role {
     ADMIN,
     USER,
-    MODERATOR
+    MODERATOR;
+
+    public String getStatus() {
+        return this.name();
+    }
 }
