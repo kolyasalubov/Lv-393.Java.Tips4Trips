@@ -32,8 +32,10 @@ public class Route {
     @Temporal(value = TemporalType.DATE)
     private Date creationDate;
 
-    @OneToMany
-    @JoinColumn(name = "place_id", referencedColumnName = "id", nullable = false)
+    @ManyToMany
+    @JoinTable(name = "routes_places",
+            joinColumns = {@JoinColumn(name = "route_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "place_id", referencedColumnName = "id")})
     private List<Place> listOfPlaces;
 
     public Route() {
