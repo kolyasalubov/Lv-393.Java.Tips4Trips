@@ -29,5 +29,4 @@ public class ReverseUserConverter implements Converter<UserDTO, User> {
         account.ifPresent(user::setAccount);
         return user;
     }
-
 }
