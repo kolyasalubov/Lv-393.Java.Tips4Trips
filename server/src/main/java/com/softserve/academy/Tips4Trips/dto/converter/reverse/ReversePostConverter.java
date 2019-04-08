@@ -23,7 +23,7 @@ public class ReversePostConverter implements Converter<PostDTO, Post> {
     @Override
     public Post apply(PostDTO postDTO) {
         Post post = new Post();
-        post.setAuthor(accountService.findById(postDTO.getId()).get());
+        post.setAuthor(accountService.findById(postDTO.getAuthorId()).get());
         post.setName(postDTO.getName());
         post.setCreationDate(postDTO.getCreationDate());
         post.setPhotoPath(postDTO.getPhotoPath());

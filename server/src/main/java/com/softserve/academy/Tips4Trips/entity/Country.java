@@ -24,11 +24,6 @@ public class Country implements Serializable {
     @Column(nullable = false)
     private Position position;
 
-    @ManyToOne
-    @JoinColumn(name="planet_id", referencedColumnName = "id",
-            nullable=false)
-    private Planet planet;
-
     @OneToMany(mappedBy="country", cascade = CascadeType.ALL,
             orphanRemoval = true)
     private List<City> listOfCities;
@@ -36,11 +31,10 @@ public class Country implements Serializable {
     public Country() {}
 
     public Country(@Size(max = 35) @NotBlank String name,
-                   @NotNull Position position, Planet planet,
+                   @NotNull Position position,
                    List<City> listOfCities) {
         this.name = name;
         this.position = position;
-        this.planet = planet;
         this.listOfCities = listOfCities;
     }
 
@@ -62,14 +56,6 @@ public class Country implements Serializable {
 
     public void setPosition(Position position) {
         this.position = position;
-    }
-
-    public Planet getPlanet() {
-        return planet;
-    }
-
-    public void setPlanet(Planet planet) {
-        this.planet = planet;
     }
 
     public List<City> getListOfCities() {
