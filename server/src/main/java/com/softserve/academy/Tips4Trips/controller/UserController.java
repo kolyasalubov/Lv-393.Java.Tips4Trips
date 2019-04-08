@@ -37,16 +37,16 @@ public class UserController {
     @GetMapping("/{id}")
     public ResponseEntity<UserDTO> getById(@PathVariable Long id) {
         Optional<User> user = userService.findById(id);
-        return user.map(u -> new ResponseEntity<>(userConverter.
-                convert(u), HttpStatus.OK))
+        return user.map(u -> new ResponseEntity<>(userConverter
+                .convert(u), HttpStatus.OK))
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @GetMapping("/login/{login}")
     public ResponseEntity<UserDTO> getByLogin(@PathVariable String login) {
         Optional<User> user = userService.findByLogin(login);
-        return user.map(u -> new ResponseEntity<>(userConverter.
-                convert(u), HttpStatus.OK))
+        return user.map(u -> new ResponseEntity<>(userConverter
+                .convert(u), HttpStatus.OK))
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 

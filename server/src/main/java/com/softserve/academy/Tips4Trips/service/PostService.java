@@ -17,4 +17,6 @@ public interface PostService extends Service<Post, Long, PostRepository> {
     List<Post> findByRoute(Route route);
 
     Post createPost(PostDTO postDTO);
+
+    Post update(PostDTO postDTO);
 }

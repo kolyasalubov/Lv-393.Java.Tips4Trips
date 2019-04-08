@@ -51,6 +51,18 @@ public class PostServiceImpl extends ServiceImpl<Post, Long, PostRepository>
         Post post = reversePostConverter.convert(postDTO);
         return repository.save(post);
     }
+
+    @Override
+    public Post update(PostDTO postDTO) {
+        Post post = findById(postDTO.getId()).get();
+        post.setContent(postDTO.getContent());
+        post.setName(postDTO.getName());
+        post.setPhotoPath(postDTO.getPhotoPath());
+        if (postDTO.getRouteId() != null) {
+            routeService.findById(postDTO.getRouteId()).ifPresent(post::setRoute);
+        }
+        return repository.save(post);
+    }
 }
 
 
