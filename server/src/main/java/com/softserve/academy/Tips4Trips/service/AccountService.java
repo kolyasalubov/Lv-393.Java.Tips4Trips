@@ -12,4 +12,6 @@ public interface AccountService extends Service<Account, Long, AccountRepository
 
     Account createAccount(AccountDTO accountDTO);
 
+    Account update(AccountDTO accountDTO);
+
 }
