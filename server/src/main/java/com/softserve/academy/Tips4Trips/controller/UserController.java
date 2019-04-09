@@ -57,13 +57,13 @@ public class UserController {
 
     @PostMapping("/create")
     public ResponseEntity<UserDTO> createUser(@RequestBody UserDTO userDTO) {
-        User user = userService.createUser(userDTO);
+        User user = userService.createUser(userConverter.convertFromDTO(userDTO));
         return new ResponseEntity<>(userConverter.convertToDTO(user), HttpStatus.CREATED);
     }
 
     @PutMapping("/update")
     public ResponseEntity<UserDTO> updateUser(@RequestBody UserDTO userDTO) {
-        User user = userService.update(userDTO);
+        User user = userService.update(userConverter.convertFromDTO(userDTO));
         return new ResponseEntity<>(userConverter.convertToDTO(user), HttpStatus.ACCEPTED);
     }
 

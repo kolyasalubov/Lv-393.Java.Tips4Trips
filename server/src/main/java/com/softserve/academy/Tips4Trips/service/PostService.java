@@ -47,19 +47,11 @@ public class PostService {
         return repository.findByRoute(route);
     }
 
-    public Post createPost(PostDTO postDTO) {
-        Post post = postConverter.convertFromDTO(postDTO);
+    public Post createPost(Post post) {
         return repository.save(post);
     }
 
-    public Post update(PostDTO postDTO) {
-        Post post = repository.findById(postDTO.getId()).get();
-        post.setContent(postDTO.getContent());
-        post.setName(postDTO.getName());
-        post.setPhotoPath(postDTO.getPhotoPath());
-        if (postDTO.getRouteId() != null) {
-            routeService.findById(postDTO.getRouteId()).ifPresent(post::setRoute);
-        }
+    public Post update(Post post) {
         return repository.save(post);
     }
 

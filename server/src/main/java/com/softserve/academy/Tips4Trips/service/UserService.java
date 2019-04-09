@@ -54,15 +54,11 @@ public class UserService {
         repository.findById(id).ifPresent(repository::delete);
     }
 
-    public User createUser(UserDTO userDTO) {
-        User user = userConverter.convertFromDTO(userDTO);
+    public User createUser(User user) {
         return repository.save(user);
     }
 
-    public User update(UserDTO userDTO) {
-        User user = repository.findById(userDTO.getId()).get();
-        user.setLogin(userDTO.getLogin());
-        user.setPassword(userDTO.getPassword());
+    public User update(User user) {
         return repository.save(user);
     }
 }

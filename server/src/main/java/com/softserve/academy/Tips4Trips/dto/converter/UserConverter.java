@@ -3,7 +3,7 @@ package com.softserve.academy.Tips4Trips.dto.converter;
 import com.softserve.academy.Tips4Trips.dto.UserDTO;
 import com.softserve.academy.Tips4Trips.entity.Account;
 import com.softserve.academy.Tips4Trips.entity.User;
-import com.softserve.academy.Tips4Trips.service.AccountService;
+import com.softserve.academy.Tips4Trips.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -12,11 +12,11 @@ import java.util.Optional;
 @Component
 public class UserConverter implements Converter<User, UserDTO> {
 
-    AccountService accountService;
+    AccountRepository accountRepository;
 
     @Autowired
-    public UserConverter(AccountService accountService) {
-        this.accountService = accountService;
+    public UserConverter(AccountRepository accountRepository) {
+        this.accountRepository = accountRepository;
     }
 
     @Override
@@ -32,9 +32,10 @@ public class UserConverter implements Converter<User, UserDTO> {
     @Override
     public User convertFromDTO(UserDTO userDTO) {
         User user = new User();
+        user.setId(userDTO.getId());
         user.setLogin(userDTO.getLogin());
         user.setPassword(userDTO.getPassword());
-        Optional<Account> account = accountService.findByEmail(userDTO.getEmail());
+        Optional<Account> account = accountRepository.findByEmail(userDTO.getEmail());
         account.ifPresent(user::setAccount);
         return user;
     }

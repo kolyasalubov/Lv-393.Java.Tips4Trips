@@ -52,14 +52,14 @@ public class PostController {
     @PutMapping("/update")
     public ResponseEntity<PostDTO> update(@RequestBody PostDTO postDTO) {
 
-        Post post = postService.update(postDTO);
+        Post post = postService.update(postConverter.convertFromDTO(postDTO));
         return new ResponseEntity<>(postConverter
                 .convertToDTO(post), HttpStatus.ACCEPTED);
     }
 
     @PostMapping("/create")
     public ResponseEntity<PostDTO> createPost(@RequestBody PostDTO postDTO) {
-        Post post = postService.createPost(postDTO);
+        Post post = postService.createPost(postConverter.convertFromDTO(postDTO));
         return new ResponseEntity<>(postConverter
                 .convertToDTO(post), HttpStatus.CREATED);
     }
