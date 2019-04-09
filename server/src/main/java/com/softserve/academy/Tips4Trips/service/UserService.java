@@ -56,7 +56,7 @@ public class UserService {
 
 
     public User createUser(UserDTO userDTO) {
-        User user = userConverter.convertFromDTO(userDTO);
+        User user = userConverter.convertToEntity(userDTO);
         return repository.save(user);
     }
 

@@ -42,7 +42,7 @@ public class PostService {
     }
 
     public Post createPost(PostDTO postDTO) {
-        Post post = postConverter.convertFromDTO(postDTO);
+        Post post = postConverter.convertToEntity(postDTO);
         return repository.save(post);
     }
 

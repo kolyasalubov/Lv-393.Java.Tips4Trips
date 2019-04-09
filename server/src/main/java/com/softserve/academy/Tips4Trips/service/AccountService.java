@@ -33,7 +33,7 @@ public class AccountService  {
 
 
     public Account createAccount(AccountDTO accountDTO) {
-        Account account = accountConverter.convertFromDTO(accountDTO);
+        Account account = accountConverter.convertToEntity(accountDTO);
         return repository.save(account);
     }
 

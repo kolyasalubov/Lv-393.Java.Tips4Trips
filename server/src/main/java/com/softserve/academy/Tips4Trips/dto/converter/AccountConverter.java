@@ -23,7 +23,7 @@ public class AccountConverter implements Converter<Account, AccountDTO> {
     }
 
     @Override
-    public Account convertFromDTO(AccountDTO accountDTO) {
+    public Account convertToEntity(AccountDTO accountDTO) {
         Account account = new Account();
         account.setFirstName(accountDTO.getFirstName());
         account.setLastName(accountDTO.getLastName());

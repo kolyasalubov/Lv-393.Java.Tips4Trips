@@ -2,6 +2,8 @@ package com.softserve.academy.Tips4Trips.dto.converter;
 
 import com.softserve.academy.Tips4Trips.dto.PostDTO;
 import com.softserve.academy.Tips4Trips.entity.Post;
+import com.softserve.academy.Tips4Trips.service.AccountService;
+import com.softserve.academy.Tips4Trips.service.RouteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -18,7 +20,7 @@ public class PostConverter implements Converter<Post, PostDTO> {
     }
 
     @Override
-    public Post convertFromDTO(PostDTO postDTO) {
+    public Post convertToEntity(PostDTO postDTO) {
         Post post = new Post();
         post.setAuthor(accountService.findById(postDTO.getAuthorId()).get());
         post.setName(postDTO.getName());

@@ -49,7 +49,7 @@ public class FindGroupConverter implements Converter<FindGroup, FindGroupDTO> {
     }
 
     @Override
-    public FindGroup convertFromDTO(FindGroupDTO findGroupDTO) {
+    public FindGroup convertToEntity(FindGroupDTO findGroupDTO) {
         FindGroup findGroup = new FindGroup();
         findGroup.setId(findGroupDTO.getId());
         findGroup.setName(findGroupDTO.getName());
@@ -64,7 +64,7 @@ public class FindGroupConverter implements Converter<FindGroup, FindGroupDTO> {
         route.ifPresent(findGroup::setRoute);
 
         findGroup.setSubscribers(findGroupDTO.getSubscribers().stream()
-                .map(accountDTO -> accountConverter.convertFromDTO(accountDTO))
+                .map(accountDTO -> accountConverter.convertToEntity(accountDTO))
                 .collect(Collectors.toList())
         );
         return findGroup;
