@@ -70,5 +70,5 @@ public class FindGroupConverter implements Converter<FindGroup, FindGroupDTO> {
         return findGroup;
     }
 
-  
+
 }
