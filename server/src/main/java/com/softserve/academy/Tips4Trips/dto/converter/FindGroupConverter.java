@@ -1,24 +1,33 @@
 package com.softserve.academy.Tips4Trips.dto.converter;
 
 import com.softserve.academy.Tips4Trips.dto.FindGroupDTO;
+import com.softserve.academy.Tips4Trips.entity.Account;
 import com.softserve.academy.Tips4Trips.entity.FindGroup;
+import com.softserve.academy.Tips4Trips.entity.Route;
+import com.softserve.academy.Tips4Trips.service.AccountService;
+import com.softserve.academy.Tips4Trips.service.RouteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Component
 public class FindGroupConverter implements Converter<FindGroup, FindGroupDTO> {
 
     AccountConverter accountConverter;
+    AccountService accountService;
+    RouteService routeService;
 
     @Autowired
-    public FindGroupConverter(AccountConverter accountConverter) {
+    public FindGroupConverter(AccountConverter accountConverter, AccountService accountService, RouteService routeService) {
         this.accountConverter = accountConverter;
+        this.accountService = accountService;
+        this.routeService = routeService;
     }
 
     @Override
-    public FindGroupDTO apply(FindGroup findGroup) {
+    public FindGroupDTO convertToDTO(FindGroup findGroup) {
         FindGroupDTO findGroupDTO = new FindGroupDTO();
         findGroupDTO.setId(findGroup.getId());
         findGroupDTO.setName(findGroup.getName());
@@ -33,9 +42,33 @@ public class FindGroupConverter implements Converter<FindGroup, FindGroupDTO> {
 
         findGroupDTO.setSubscribers(
                 findGroup.getSubscribers().stream()
-                        .map(account -> accountConverter.apply(account))
+                        .map(account -> accountConverter.convertToDTO(account))
                         .collect(Collectors.toList()));
 
         return findGroupDTO;
     }
+
+    @Override
+    public FindGroup convertFromDTO(FindGroupDTO findGroupDTO) {
+        FindGroup findGroup = new FindGroup();
+        findGroup.setId(findGroupDTO.getId());
+        findGroup.setName(findGroupDTO.getName());
+        findGroup.setDescription(findGroupDTO.getDescription());
+        findGroup.setCreationDate(findGroupDTO.getCreationDate());
+        findGroup.setStartDate(findGroupDTO.getStartDate());
+
+        Optional<Account> account = accountService.findById(findGroupDTO.getAuthorId());
+        account.ifPresent(findGroup::setCreator);
+
+        Optional<Route> route = routeService.findById(findGroupDTO.getRouteId());
+        route.ifPresent(findGroup::setRoute);
+
+        findGroup.setSubscribers(findGroupDTO.getSubscribers().stream()
+                .map(accountDTO -> accountConverter.convertFromDTO(accountDTO))
+                .collect(Collectors.toList())
+        );
+        return findGroup;
+    }
+
+
 }

@@ -1,7 +1,7 @@
 package com.softserve.academy.Tips4Trips.service;
 
 import com.softserve.academy.Tips4Trips.dto.AccountDTO;
-import com.softserve.academy.Tips4Trips.dto.converter.reverse.ReverseAccountConverter;
+import com.softserve.academy.Tips4Trips.dto.converter.AccountConverter;
 import com.softserve.academy.Tips4Trips.entity.Account;
 import com.softserve.academy.Tips4Trips.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,33 +10,36 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class AccountService extends ServiceImpl<Account, Long, AccountRepository>
-        implements AccountService {
+public class AccountService  {
 
-    ReverseAccountConverter reverseAccountConverter;
+   private AccountConverter accountConverter;
+   private AccountRepository repository;
 
     @Autowired
-    public AccountService(AccountRepository repository, ReverseAccountConverter reverseAccountConverter) {
-        super(repository);
-        this.reverseAccountConverter = reverseAccountConverter;
-
+    public AccountService( AccountConverter accountConverter, AccountRepository repository) {
+        this.accountConverter = accountConverter;
+        this.repository = repository;
     }
 
-    @Override
+
+    public Optional<Account> findById(Long id) {
+        return repository.findById(id);
+    }
+
+
     public Optional<Account> findByEmail(String email) {
         return repository.findByEmail(email);
     }
 
-    @Override
+
     public Account createAccount(AccountDTO accountDTO) {
-        Account account = reverseAccountConverter.convert(accountDTO);
+        Account account = accountConverter.convertFromDTO(accountDTO);
         return repository.save(account);
     }
 
-    @Override
-    public Account update(AccountDTO accountDTO) {
 
-        Account account = findById(accountDTO.getId()).get();
+    public Account update(AccountDTO accountDTO) {
+        Account account = repository.findById(accountDTO.getId()).get();
         account.setFirstName(accountDTO.getFirstName());
         account.setLastName(accountDTO.getLastName());
         account.setPhoneNumber(accountDTO.getPhoneNumber());

@@ -3,6 +3,7 @@ package com.softserve.academy.Tips4Trips.dto.converter;
 import com.softserve.academy.Tips4Trips.dto.UserDTO;
 import com.softserve.academy.Tips4Trips.entity.Account;
 import com.softserve.academy.Tips4Trips.entity.User;
+import com.softserve.academy.Tips4Trips.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
