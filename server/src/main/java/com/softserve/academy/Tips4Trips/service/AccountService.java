@@ -10,17 +10,16 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class AccountService  {
+public class AccountService {
 
-   private AccountConverter accountConverter;
-   private AccountRepository repository;
+    private AccountConverter accountConverter;
+    private AccountRepository repository;
 
     @Autowired
-    public AccountService( AccountConverter accountConverter, AccountRepository repository) {
+    public AccountService(AccountConverter accountConverter, AccountRepository repository) {
         this.accountConverter = accountConverter;
         this.repository = repository;
     }
-
 
     public Optional<Account> findById(Long id) {
         return repository.findById(id);
@@ -44,6 +43,6 @@ public class AccountService  {
         account.setLastName(accountDTO.getLastName());
         account.setPhoneNumber(accountDTO.getPhoneNumber());
         account.setAbout(accountDTO.getAbout());
-            return repository.save(account);
-        }
+        return repository.save(account);
     }
+}
