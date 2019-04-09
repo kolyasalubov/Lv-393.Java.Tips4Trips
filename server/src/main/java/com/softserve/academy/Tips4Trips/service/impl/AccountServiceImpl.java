@@ -33,4 +33,15 @@ public class AccountServiceImpl extends ServiceImpl<Account, Long, AccountReposi
         Account account = reverseAccountConverter.convert(accountDTO);
         return repository.save(account);
     }
-}
+
+    @Override
+    public Account update(AccountDTO accountDTO) {
+
+        Account account = findById(accountDTO.getId()).get();
+        account.setFirstName(accountDTO.getFirstName());
+        account.setLastName(accountDTO.getLastName());
+        account.setPhoneNumber(accountDTO.getPhoneNumber());
+        account.setAbout(accountDTO.getAbout());
+            return repository.save(account);
+        }
+    }
