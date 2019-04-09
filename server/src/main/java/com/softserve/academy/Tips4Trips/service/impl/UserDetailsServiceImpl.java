@@ -5,9 +5,9 @@ import com.softserve.academy.Tips4Trips.entity.User;
 import com.softserve.academy.Tips4Trips.repository.AccountRepository;
 import com.softserve.academy.Tips4Trips.repository.UserRepository;
 import com.softserve.academy.Tips4Trips.security.UserDetailsImpl;
-
-import com.softserve.academy.Tips4Trips.service.AccountService;
 import com.softserve.academy.Tips4Trips.service.UserService;
+import com.softserve.academy.Tips4Trips.service.AccountService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AccountStatusException;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -23,6 +23,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
     UserService userService;
+
     @Autowired
     AccountService accountService;
 
@@ -45,6 +46,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                             )
                     )
                 );
+
         return UserDetailsImpl.create(user, account.getRole());
     }
 

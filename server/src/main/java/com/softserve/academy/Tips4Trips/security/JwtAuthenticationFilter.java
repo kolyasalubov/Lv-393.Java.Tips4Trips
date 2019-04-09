@@ -3,7 +3,9 @@ package com.softserve.academy.Tips4Trips.security;
 import com.softserve.academy.Tips4Trips.service.impl.UserDetailsServiceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
@@ -31,9 +33,21 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                                     FilterChain filterChain)
                                         throws ServletException, IOException {
         try {
-            String jwt = getJwtFromRequest(request);
 
-            if (StringUtils.hasText(jwt) && tokenProvider.validateToken(jwt)) {
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            if (auth == null) {
+                filterChain.doFilter(request, response);
+                return;
+            }
+
+            String jwt = getJwtFromRequest(request);
+            if (!StringUtils.hasText(jwt)) {
+                response.sendError(HttpServletResponse.SC_UNAUTHORIZED,
+                        "No authentication token found!");
+                return;
+            }
+
+            if (tokenProvider.validateToken(jwt)) {
                 Long userId = tokenProvider.getUserIdFromJWT(jwt);
 
                 UserDetails userDetails = customUserDetailsService
@@ -48,11 +62,17 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
                 SecurityContextHolder.getContext()
                         .setAuthentication(authentication);
+            } else {
+                response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
+                        "Authentication token not valid!");
+                return;
             }
 
         } catch (Exception ex) {
-            System.out.println("Could not set user authentication in "
-                    +  "security context: " + ex);
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
+                    "Could not set user authentication in "
+                    +  "security context while checking authentication token");
+            ex.printStackTrace();
         }
 
         filterChain.doFilter(request, response);

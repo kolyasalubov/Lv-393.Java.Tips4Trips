@@ -35,7 +35,6 @@ public class UserDetailsImpl implements UserDetails {
 
     public static UserDetailsImpl create(User user, Role role) {
         List<GrantedAuthority> authorities =new ArrayList<>();
-
         switch(role) {
             case ADMIN:
                 authorities.add(new SimpleGrantedAuthority(
