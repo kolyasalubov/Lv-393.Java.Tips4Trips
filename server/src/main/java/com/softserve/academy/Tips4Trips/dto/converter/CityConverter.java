@@ -10,30 +10,42 @@ import java.util.stream.Collectors;
 @Component
 public class CityConverter implements Converter<City, CityDTO> {
     private PositionConverter positionConverter;
-//    private CountryConverter countryConverter;
     private PlaceConverter placeConverter;
 
     @Autowired
     public CityConverter(PositionConverter positionConverter,
-//                         CountryConverter countryConverter,
                          PlaceConverter placeConverter) {
         this.positionConverter = positionConverter;
-//        this.countryConverter = countryConverter;
         this.placeConverter = placeConverter;
     }
 
+
     @Override
-    public CityDTO apply(City city) {
+    public CityDTO convertToDTO(City city) {
         CityDTO cityDTO = new CityDTO();
         cityDTO.setId(city.getId());
         cityDTO.setName(city.getName());
-        cityDTO.setPosition(positionConverter.apply(city.getPosition()));
-//        cityDTO.setCountry(countryConverter.apply(city.getCountry()));
+        cityDTO.setPosition(positionConverter.convertToDTO(city.getPosition()));
         cityDTO.setListOfPlaces(city.getListOfPlaces().stream()
-                .map(place -> placeConverter.apply(place))
+                .map(place -> placeConverter.convertToDTO(place))
                 .collect(Collectors.toList())
         );
         return cityDTO;
+    }
+
+    @Override
+    public City convertFromDTO(CityDTO cityDTO) {
+        City city = new City();
+        city.setId(cityDTO.getId());
+        city.setName(cityDTO.getName());
+        city.setPosition(positionConverter.convertFromDTO(cityDTO.getPosition()));
+        if (cityDTO.getListOfPlaces() != null && !cityDTO.getListOfPlaces().isEmpty()) {
+            city.setListOfPlaces(cityDTO.getListOfPlaces().stream()
+                    .map(placeDTO -> placeConverter.convertFromDTO(placeDTO))
+                    .collect(Collectors.toList())
+            );
+        }
+        return city;
     }
 
 }

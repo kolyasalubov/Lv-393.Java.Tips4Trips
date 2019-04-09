@@ -1,28 +1,32 @@
 package com.softserve.academy.Tips4Trips.service;
 
 import com.softserve.academy.Tips4Trips.dto.CountryDTO;
-import com.softserve.academy.Tips4Trips.dto.converter.reverse.ReverseCountryConverter;
+import com.softserve.academy.Tips4Trips.dto.converter.CountryConverter;
 import com.softserve.academy.Tips4Trips.entity.Country;
 import com.softserve.academy.Tips4Trips.repository.CountryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service
-public class CountryService extends ServiceImpl<Country, Long, CountryRepository>
-        implements CountryService {
+import java.util.List;
 
-    ReverseCountryConverter reverseCountryConverter;
+@Service
+public class CountryService {
+    CountryRepository countryRepository;
+    CountryConverter countryConverter;
 
     @Autowired
     public CountryService(CountryRepository countryRepository,
-                          ReverseCountryConverter reverseCountryConverter) {
-        super(countryRepository);
-        this.reverseCountryConverter = reverseCountryConverter;
+                          CountryConverter countryConverter) {
+        this.countryRepository = countryRepository;
+        this.countryConverter = countryConverter;
     }
 
-    @Override
     public Country createCountry(CountryDTO countryDTO) {
-        Country country = reverseCountryConverter.convert(countryDTO);
-        return repository.save(country);
+        Country country = countryConverter.convertFromDTO(countryDTO);
+        return countryRepository.save(country);
+    }
+
+    public List<Country> findAll() {
+        return countryRepository.findAll();
     }
 }

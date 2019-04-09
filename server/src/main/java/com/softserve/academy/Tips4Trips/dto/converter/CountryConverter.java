@@ -21,19 +21,35 @@ public class CountryConverter implements Converter<Country, CountryDTO> {
     }
 
     @Override
-    public CountryDTO apply(Country country) {
+    public CountryDTO convertToDTO(Country country) {
         CountryDTO countryDTO = new CountryDTO();
         countryDTO.setId(country.getId());
         countryDTO.setName(country.getName());
         if (country.getPosition() != null) {
-            countryDTO.setPosition(positionConverter.apply(country.getPosition()));
+            countryDTO.setPosition(positionConverter.convertToDTO(country.getPosition()));
         }
         if (country.getListOfCities() != null && !country.getListOfCities().isEmpty()) {
             countryDTO.setListOfCities(country.getListOfCities().stream()
-                    .map(city -> cityConverter.apply(city))
+                    .map(city -> cityConverter.convertToDTO(city))
                     .collect(Collectors.toList())
             );
         }
         return countryDTO;
+    }
+
+    @Override
+    public Country convertFromDTO(CountryDTO countryDTO) {
+        Country country = new Country();
+        country.setName(countryDTO.getName());
+        if (countryDTO.getPosition() != null) {
+            country.setPosition(positionConverter.convertFromDTO(countryDTO.getPosition()));
+        }
+        if (countryDTO.getListOfCities() != null && !countryDTO.getListOfCities().isEmpty()) {
+            country.setListOfCities(countryDTO.getListOfCities().stream()
+                    .map(cityDTO -> cityConverter.convertFromDTO(cityDTO))
+                    .collect(Collectors.toList())
+            );
+        }
+        return country;
     }
 }

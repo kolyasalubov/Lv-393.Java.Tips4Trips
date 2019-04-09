@@ -1,27 +1,33 @@
 package com.softserve.academy.Tips4Trips.service;
 
 import com.softserve.academy.Tips4Trips.dto.CityDTO;
-import com.softserve.academy.Tips4Trips.dto.converter.reverse.ReverseCityConverter;
+import com.softserve.academy.Tips4Trips.dto.converter.CityConverter;
 import com.softserve.academy.Tips4Trips.entity.City;
 import com.softserve.academy.Tips4Trips.repository.CityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service
-public class CityService extends ServiceImpl<City, Long, CityRepository> implements CityService {
+import java.util.List;
 
-    ReverseCityConverter reverseCityConverter;
+@Service
+public class CityService {
+
+    CityRepository cityRepository;
+    CityConverter cityConverter;
 
     @Autowired
     public CityService(CityRepository cityRepository,
-                       ReverseCityConverter reverseCityConverter) {
-        super(cityRepository);
-        this.reverseCityConverter = reverseCityConverter;
+                       CityConverter cityConverter) {
+        this.cityRepository = cityRepository;
+        this.cityConverter = cityConverter;
     }
 
-    @Override
     public City createCity(CityDTO cityDTO) {
-        City city = reverseCityConverter.convert(cityDTO);
-        return repository.save(city);
+        City city = cityConverter.convertFromDTO(cityDTO);
+        return cityRepository.save(city);
+    }
+
+    public List<City> findAll() {
+        return cityRepository.findAll();
     }
 }
