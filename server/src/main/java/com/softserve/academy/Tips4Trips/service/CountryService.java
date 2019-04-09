@@ -22,7 +22,7 @@ public class CountryService {
     }
 
     public Country createCountry(CountryDTO countryDTO) {
-        Country country = countryConverter.convertFromDTO(countryDTO);
+        Country country = countryConverter.convertToEntity(countryDTO);
         return countryRepository.save(country);
     }
 

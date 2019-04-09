@@ -16,7 +16,7 @@ public class PositionConverter implements Converter<Position, PositionDTO> {
     }
 
     @Override
-    public Position convertFromDTO(PositionDTO positionDTO) {
+    public Position convertToEntity(PositionDTO positionDTO) {
         Position position = new Position();
         position.setCoordinateX(positionDTO.getCoordinateX());
         position.setCoordinateY(positionDTO.getCoordinateY());

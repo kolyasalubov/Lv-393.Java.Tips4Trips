@@ -14,7 +14,7 @@ public class PlaceConverter implements Converter<Place, PlaceDTO> {
     }
 
     @Override
-    public Place convertFromDTO(PlaceDTO placeDTO) {
+    public Place convertToEntity(PlaceDTO placeDTO) {
         return null;
     }
 }

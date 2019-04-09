@@ -34,14 +34,14 @@ public class CityConverter implements Converter<City, CityDTO> {
     }
 
     @Override
-    public City convertFromDTO(CityDTO cityDTO) {
+    public City convertToEntity(CityDTO cityDTO) {
         City city = new City();
         city.setId(cityDTO.getId());
         city.setName(cityDTO.getName());
-        city.setPosition(positionConverter.convertFromDTO(cityDTO.getPosition()));
+        city.setPosition(positionConverter.convertToEntity(cityDTO.getPosition()));
         if (cityDTO.getListOfPlaces() != null && !cityDTO.getListOfPlaces().isEmpty()) {
             city.setListOfPlaces(cityDTO.getListOfPlaces().stream()
-                    .map(placeDTO -> placeConverter.convertFromDTO(placeDTO))
+                    .map(placeDTO -> placeConverter.convertToEntity(placeDTO))
                     .collect(Collectors.toList())
             );
         }

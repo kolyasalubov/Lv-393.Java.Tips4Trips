@@ -23,7 +23,7 @@ public class CityService {
     }
 
     public City createCity(CityDTO cityDTO) {
-        City city = cityConverter.convertFromDTO(cityDTO);
+        City city = cityConverter.convertToEntity(cityDTO);
         return cityRepository.save(city);
     }
 

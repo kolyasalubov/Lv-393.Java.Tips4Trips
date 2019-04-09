@@ -38,15 +38,15 @@ public class CountryConverter implements Converter<Country, CountryDTO> {
     }
 
     @Override
-    public Country convertFromDTO(CountryDTO countryDTO) {
+    public Country convertToEntity(CountryDTO countryDTO) {
         Country country = new Country();
         country.setName(countryDTO.getName());
         if (countryDTO.getPosition() != null) {
-            country.setPosition(positionConverter.convertFromDTO(countryDTO.getPosition()));
+            country.setPosition(positionConverter.convertToEntity(countryDTO.getPosition()));
         }
         if (countryDTO.getListOfCities() != null && !countryDTO.getListOfCities().isEmpty()) {
             country.setListOfCities(countryDTO.getListOfCities().stream()
-                    .map(cityDTO -> cityConverter.convertFromDTO(cityDTO))
+                    .map(cityDTO -> cityConverter.convertToEntity(cityDTO))
                     .collect(Collectors.toList())
             );
         }
