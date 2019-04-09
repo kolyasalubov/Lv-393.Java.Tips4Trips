@@ -3,6 +3,7 @@ package com.softserve.academy.Tips4Trips.dto.converter;
 import com.softserve.academy.Tips4Trips.dto.PostDTO;
 import com.softserve.academy.Tips4Trips.entity.Post;
 import com.softserve.academy.Tips4Trips.repository.AccountRepository;
+import com.softserve.academy.Tips4Trips.repository.PostRepository;
 import com.softserve.academy.Tips4Trips.repository.RouteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -12,17 +13,22 @@ public class PostConverter implements Converter<Post, PostDTO> {
 
     AccountRepository accountRepository;
     RouteRepository routeRepository;
+    PostRepository postRepository;
 
     @Autowired
-    public PostConverter(AccountRepository accountRepository, RouteRepository routeRepository) {
+    public PostConverter(AccountRepository accountRepository,
+                         RouteRepository routeRepository,
+                         PostRepository postRepository) {
         this.accountRepository = accountRepository;
         this.routeRepository = routeRepository;
+        this.postRepository = postRepository;
     }
 
     @Override
     public Post convertToEntity(PostDTO postDTO) {
-        Post post = new Post();
-        post.setId(postDTO.getId());
+        long id = (postDTO.getId() != null) ? postDTO.getId() : 0;
+        Post post = postRepository.findById(id)
+                .orElseGet(Post::new);
         post.setAuthor(accountRepository.findById(postDTO.getAuthorId()).get());
         post.setName(postDTO.getName());
         post.setCreationDate(postDTO.getCreationDate());
