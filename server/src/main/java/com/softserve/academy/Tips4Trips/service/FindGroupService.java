@@ -9,33 +9,39 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
-public class FindGroupService extends ServiceImpl<FindGroup, Long, FindGroupRepository>
-        implements FindGroupService {
+public class FindGroupService {
+
+    FindGroupRepository repository;
 
     @Autowired
     public FindGroupService(FindGroupRepository repository) {
-        super(repository);
+        this.repository = repository;
     }
 
-    @Override
     public List<FindGroup> searchByName(String name) {
         return repository.findByNameContainingIgnoreCase(name);
     }
 
-
-    @Override
     public List<FindGroup> findByCreator(Account author) {
         return repository.findByCreator(author);
     }
 
-    @Override
+    public Optional<FindGroup> findById(Long id) {
+        return repository.findById(id);
+    }
+
+    public void delete(FindGroup findGroup) {
+        repository.delete(findGroup);
+    }
+
     public List<FindGroup> findByRoute(Route route) {
         return repository.findByRoute(route);
     }
 
-    @Override
+
     public FindGroup createFindGroup(FindGroupDTO postDTO) {
         return null;
     }
