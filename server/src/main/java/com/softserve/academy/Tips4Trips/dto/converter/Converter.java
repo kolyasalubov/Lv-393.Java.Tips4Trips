@@ -8,13 +8,13 @@ public interface Converter<ENTITY, DTO> {
 
     DTO convertToDTO(final ENTITY entity);
 
-    ENTITY convertFromDTO(final DTO dto);
+    ENTITY convertToEntity(final DTO dto);
 
 
-    default List<ENTITY> convertFromDTO(final List<DTO> dtos) {
+    default List<ENTITY> convertToEntity(final List<DTO> dtos) {
         List<ENTITY> entities = new ArrayList<>();
         if (dtos != null) {
-            entities = dtos.stream().map(this::convertFromDTO).collect(Collectors.toList());
+            entities = dtos.stream().map(this::convertToEntity).collect(Collectors.toList());
         }
         return entities;
     }

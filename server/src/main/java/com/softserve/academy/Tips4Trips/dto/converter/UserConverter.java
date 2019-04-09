@@ -30,7 +30,7 @@ public class UserConverter implements Converter<User, UserDTO> {
     }
 
     @Override
-    public User convertFromDTO(UserDTO userDTO) {
+    public User convertToEntity(UserDTO userDTO) {
         User user = new User();
         user.setId(userDTO.getId());
         user.setLogin(userDTO.getLogin());

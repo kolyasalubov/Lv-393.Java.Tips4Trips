@@ -5,14 +5,12 @@ import com.softserve.academy.Tips4Trips.dto.PostDTO;
 import com.softserve.academy.Tips4Trips.entity.Post;
 import com.softserve.academy.Tips4Trips.service.AccountService;
 import com.softserve.academy.Tips4Trips.service.PostService;
-import org.hibernate.HibernateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @CrossOrigin
@@ -52,14 +50,14 @@ public class PostController {
     @PutMapping("/update")
     public ResponseEntity<PostDTO> update(@RequestBody PostDTO postDTO) {
 
-        Post post = postService.update(postConverter.convertFromDTO(postDTO));
+        Post post = postService.update(postConverter.convertToEntity(postDTO));
         return new ResponseEntity<>(postConverter
                 .convertToDTO(post), HttpStatus.ACCEPTED);
     }
 
     @PostMapping("/create")
     public ResponseEntity<PostDTO> createPost(@RequestBody PostDTO postDTO) {
-        Post post = postService.createPost(postConverter.convertFromDTO(postDTO));
+        Post post = postService.createPost(postConverter.convertToEntity(postDTO));
         return new ResponseEntity<>(postConverter
                 .convertToDTO(post), HttpStatus.CREATED);
     }
