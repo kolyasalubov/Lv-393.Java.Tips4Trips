@@ -20,7 +20,7 @@ public class PostConverter implements Converter<Post, PostDTO> {
     }
 
     @Override
-    public Post convertFromDTO(PostDTO postDTO) {
+    public Post convertToEntity(PostDTO postDTO) {
         Post post = new Post();
         post.setId(postDTO.getId());
         post.setAuthor(accountRepository.findById(postDTO.getAuthorId()).get());
