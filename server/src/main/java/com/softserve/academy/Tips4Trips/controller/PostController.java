@@ -34,21 +34,21 @@ public class PostController {
     @GetMapping("/all")
     public ResponseEntity<List<PostDTO>> getAll() {
         return new ResponseEntity<>(postConverter
-                .convert(postService.findAll()), HttpStatus.OK);
+                .convertToDTO(postService.findAll()), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<PostDTO> getById(@PathVariable Long id) {
         Optional<Post> post = postService.findById(id);
         return post.map(p -> new ResponseEntity<>(postConverter
-                .convert(p), HttpStatus.OK))
+                .convertToDTO(p), HttpStatus.OK))
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @GetMapping("/author/{authorId}")
     public ResponseEntity<List<PostDTO>> getByAuthor(@PathVariable Long authorId) {
         return new ResponseEntity<>(postConverter
-                .convert(postService.findByAuthor(accountService.findById(authorId).get())), HttpStatus.OK);
+                .convertToDTO(postService.findByAuthor(accountService.findById(authorId).get())), HttpStatus.OK);
     }
 
     @PutMapping("/update")
@@ -56,7 +56,7 @@ public class PostController {
         try {
             Post post = postService.update(postDTO);
             return new ResponseEntity<>(postConverter
-                    .convert(post), HttpStatus.ACCEPTED);
+                    .convertToDTO(post), HttpStatus.ACCEPTED);
         } catch (HibernateException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -67,7 +67,7 @@ public class PostController {
         try {
             Post post = postService.createPost(postDTO);
             return new ResponseEntity<>(postConverter
-                    .convert(post), HttpStatus.CREATED);
+                    .convertToDTO(post), HttpStatus.CREATED);
         } catch (HibernateException e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }

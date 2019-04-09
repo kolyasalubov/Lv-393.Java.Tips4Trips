@@ -2,7 +2,6 @@ package com.softserve.academy.Tips4Trips.controller;
 
 import com.softserve.academy.Tips4Trips.dto.UserDTO;
 import com.softserve.academy.Tips4Trips.dto.converter.UserConverter;
-import com.softserve.academy.Tips4Trips.entity.Account;
 import com.softserve.academy.Tips4Trips.entity.User;
 import com.softserve.academy.Tips4Trips.service.UserService;
 import org.hibernate.HibernateException;
@@ -31,14 +30,14 @@ public class UserController {
     @GetMapping("/all")
     public ResponseEntity<List<UserDTO>> getAll() {
         return new ResponseEntity<>(userConverter
-                .convert(userService.findAll()), HttpStatus.OK);
+                .convertToDTO(userService.findAll()), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<UserDTO> getById(@PathVariable Long id) {
         Optional<User> user = userService.findById(id);
         return user.map(u -> new ResponseEntity<>(userConverter
-                .convert(u), HttpStatus.OK))
+                .convertToDTO(u), HttpStatus.OK))
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
@@ -46,7 +45,7 @@ public class UserController {
     public ResponseEntity<UserDTO> getByLogin(@PathVariable String login) {
         Optional<User> user = userService.findByLogin(login);
         return user.map(u -> new ResponseEntity<>(userConverter
-                .convert(u), HttpStatus.OK))
+                .convertToDTO(u), HttpStatus.OK))
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
@@ -59,7 +58,7 @@ public class UserController {
     public ResponseEntity<UserDTO> createUser(@RequestBody UserDTO userDTO) {
         try {
             User user = userService.createUser(userDTO);
-            return new ResponseEntity<>(userConverter.convert(user), HttpStatus.CREATED);
+            return new ResponseEntity<>(userConverter.convertToDTO(user), HttpStatus.CREATED);
         } catch (HibernateException e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
@@ -69,7 +68,7 @@ public class UserController {
     public ResponseEntity<UserDTO> updateUser(@RequestBody UserDTO userDTO) {
         try {
             User user = userService.update(userDTO);
-            return new ResponseEntity<>(userConverter.convert(user), HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(userConverter.convertToDTO(user), HttpStatus.ACCEPTED);
         } catch (HibernateException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
