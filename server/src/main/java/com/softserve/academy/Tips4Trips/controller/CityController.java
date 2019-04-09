@@ -1,13 +1,8 @@
 package com.softserve.academy.Tips4Trips.controller;
 
 import com.softserve.academy.Tips4Trips.dto.CityDTO;
-import com.softserve.academy.Tips4Trips.dto.CountryDTO;
-import com.softserve.academy.Tips4Trips.dto.PostDTO;
 import com.softserve.academy.Tips4Trips.dto.converter.CityConverter;
 import com.softserve.academy.Tips4Trips.entity.City;
-import com.softserve.academy.Tips4Trips.entity.Country;
-import com.softserve.academy.Tips4Trips.entity.Post;
-import com.softserve.academy.Tips4Trips.service.CityService;
 import org.hibernate.HibernateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

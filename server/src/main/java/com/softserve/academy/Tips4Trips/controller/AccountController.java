@@ -4,7 +4,6 @@ package com.softserve.academy.Tips4Trips.controller;
 import com.softserve.academy.Tips4Trips.dto.AccountDTO;
 import com.softserve.academy.Tips4Trips.dto.converter.AccountConverter;
 import com.softserve.academy.Tips4Trips.entity.Account;
-import com.softserve.academy.Tips4Trips.service.AccountService;
 import org.hibernate.HibernateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

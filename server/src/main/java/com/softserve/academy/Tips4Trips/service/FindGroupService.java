@@ -5,15 +5,38 @@ import com.softserve.academy.Tips4Trips.entity.Account;
 import com.softserve.academy.Tips4Trips.entity.FindGroup;
 import com.softserve.academy.Tips4Trips.entity.Route;
 import com.softserve.academy.Tips4Trips.repository.FindGroupRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-public interface FindGroupService extends Service<FindGroup, Long, FindGroupRepository> {
-    List<FindGroup> searchByName(String name);
+@Service
+public class FindGroupService extends ServiceImpl<FindGroup, Long, FindGroupRepository>
+        implements FindGroupService {
 
-    List<FindGroup> findByCreator(Account author);
+    @Autowired
+    public FindGroupService(FindGroupRepository repository) {
+        super(repository);
+    }
 
-    List<FindGroup> findByRoute(Route route);
+    @Override
+    public List<FindGroup> searchByName(String name) {
+        return repository.findByNameContainingIgnoreCase(name);
+    }
 
-    FindGroup createFindGroup(FindGroupDTO postDTO);
+
+    @Override
+    public List<FindGroup> findByCreator(Account author) {
+        return repository.findByCreator(author);
+    }
+
+    @Override
+    public List<FindGroup> findByRoute(Route route) {
+        return repository.findByRoute(route);
+    }
+
+    @Override
+    public FindGroup createFindGroup(FindGroupDTO postDTO) {
+        return null;
+    }
 }

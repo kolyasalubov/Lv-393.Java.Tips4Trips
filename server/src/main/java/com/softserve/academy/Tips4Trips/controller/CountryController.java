@@ -1,13 +1,8 @@
 package com.softserve.academy.Tips4Trips.controller;
 
 import com.softserve.academy.Tips4Trips.dto.CountryDTO;
-import com.softserve.academy.Tips4Trips.dto.PostDTO;
-import com.softserve.academy.Tips4Trips.dto.UserDTO;
 import com.softserve.academy.Tips4Trips.dto.converter.CountryConverter;
 import com.softserve.academy.Tips4Trips.entity.Country;
-import com.softserve.academy.Tips4Trips.entity.Post;
-import com.softserve.academy.Tips4Trips.entity.User;
-import com.softserve.academy.Tips4Trips.service.CountryService;
 import org.hibernate.HibernateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @CrossOrigin

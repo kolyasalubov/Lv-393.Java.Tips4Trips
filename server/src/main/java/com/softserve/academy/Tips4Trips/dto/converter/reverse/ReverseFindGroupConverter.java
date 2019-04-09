@@ -5,9 +5,6 @@ import com.softserve.academy.Tips4Trips.dto.converter.Converter;
 import com.softserve.academy.Tips4Trips.entity.Account;
 import com.softserve.academy.Tips4Trips.entity.FindGroup;
 import com.softserve.academy.Tips4Trips.entity.Route;
-import com.softserve.academy.Tips4Trips.service.AccountService;
-import com.softserve.academy.Tips4Trips.service.FindGroupService;
-import com.softserve.academy.Tips4Trips.service.RouteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

@@ -6,7 +6,7 @@ import com.softserve.academy.Tips4Trips.entity.Account;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ReverseAccountConverter  implements Converter<AccountDTO, Account> {
+public class ReverseAccountConverter implements Converter<AccountDTO, Account> {
 
 
     @Override
