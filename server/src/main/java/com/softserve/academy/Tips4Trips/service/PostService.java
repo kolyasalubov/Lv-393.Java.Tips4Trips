@@ -5,6 +5,7 @@ import com.softserve.academy.Tips4Trips.dto.converter.PostConverter;
 import com.softserve.academy.Tips4Trips.entity.Account;
 import com.softserve.academy.Tips4Trips.entity.Post;
 import com.softserve.academy.Tips4Trips.entity.Route;
+import com.softserve.academy.Tips4Trips.repository.AccountRepository;
 import com.softserve.academy.Tips4Trips.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,18 +16,23 @@ import java.util.Optional;
 @Service
 public class PostService {
 
-    AccountService accountService;
+    AccountRepository accountRepository;
     RouteService routeService;
     PostConverter postConverter;
     PostRepository repository;
 
     @Autowired
-    public PostService(AccountService accountService, RouteService routeService,
+    public PostService(AccountRepository accountRepository, RouteService routeService,
                        PostConverter postConverter, PostRepository repository) {
-        this.accountService = accountService;
+        this.accountRepository = accountRepository;
         this.routeService = routeService;
         this.postConverter = postConverter;
         this.repository = repository;
+    }
+
+    public List<Post> getByAuthorId(Long authorId) {
+        Account account = accountRepository.findById(authorId).get();
+        return repository.findByAuthor(account);
     }
 
     public List<Post> searchByName(String name) {
@@ -61,12 +67,12 @@ public class PostService {
         return repository.findAll();
     }
 
-    public Optional<Post> findById(Long id) {
-        return repository.findById(id);
+    public Post findById(Long id) {
+        return repository.findById(id).get();
     }
 
-    public void delete(Post post) {
-        repository.delete(post);
+    public void deleteById(Long id) {
+        repository.findById(id).ifPresent(repository::delete);
     }
 }
 

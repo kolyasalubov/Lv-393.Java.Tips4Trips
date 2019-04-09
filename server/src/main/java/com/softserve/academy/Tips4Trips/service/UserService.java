@@ -26,8 +26,8 @@ public class UserService {
         this.repository = repository;
     }
 
-    public Optional<User> findByLogin(String login) {
-        return repository.findByLogin(login);
+    public User findByLogin(String login) {
+        return repository.findByLogin(login).get();
     }
 
     public List<User> findByAccount(Account account) {
@@ -46,14 +46,13 @@ public class UserService {
         return repository.findAll();
     }
 
-    public Optional<User> findById(Long id) {
-        return repository.findById(id);
+    public User findById(Long id) {
+        return repository.findById(id).get();
     }
 
-    public void delete(User user) {
-        repository.delete(user);
+    public void deleteById(Long id) {
+        repository.findById(id).ifPresent(repository::delete);
     }
-
 
     public User createUser(UserDTO userDTO) {
         User user = userConverter.convertFromDTO(userDTO);

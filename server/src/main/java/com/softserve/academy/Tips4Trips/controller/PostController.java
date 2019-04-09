@@ -39,43 +39,34 @@ public class PostController {
 
     @GetMapping("/{id}")
     public ResponseEntity<PostDTO> getById(@PathVariable Long id) {
-        Optional<Post> post = postService.findById(id);
-        return post.map(p -> new ResponseEntity<>(postConverter
-                .convertToDTO(p), HttpStatus.OK))
-                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+        return new ResponseEntity<>(postConverter
+                .convertToDTO(postService.findById(id)), HttpStatus.OK);
     }
 
     @GetMapping("/author/{authorId}")
     public ResponseEntity<List<PostDTO>> getByAuthor(@PathVariable Long authorId) {
         return new ResponseEntity<>(postConverter
-                .convertToDTO(postService.findByAuthor(accountService.findById(authorId).get())), HttpStatus.OK);
+                .convertToDTO(postService.getByAuthorId(authorId)), HttpStatus.OK);
     }
 
     @PutMapping("/update")
     public ResponseEntity<PostDTO> update(@RequestBody PostDTO postDTO) {
-        try {
-            Post post = postService.update(postDTO);
-            return new ResponseEntity<>(postConverter
-                    .convertToDTO(post), HttpStatus.ACCEPTED);
-        } catch (HibernateException e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+
+        Post post = postService.update(postDTO);
+        return new ResponseEntity<>(postConverter
+                .convertToDTO(post), HttpStatus.ACCEPTED);
     }
 
     @PostMapping("/create")
     public ResponseEntity<PostDTO> createPost(@RequestBody PostDTO postDTO) {
-        try {
-            Post post = postService.createPost(postDTO);
-            return new ResponseEntity<>(postConverter
-                    .convertToDTO(post), HttpStatus.CREATED);
-        } catch (HibernateException e) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
+        Post post = postService.createPost(postDTO);
+        return new ResponseEntity<>(postConverter
+                .convertToDTO(post), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/delete/{id}")
     public void deleteById(@PathVariable Long id) {
-        postService.findById(id).ifPresent(postService::delete);
+        postService.deleteById(id);
     }
 
 }
