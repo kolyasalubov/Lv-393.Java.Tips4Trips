@@ -9,7 +9,7 @@ public class PlaceDTO {
     private String address;
     private Position position;
     private String photoPath;
-    private Long city;
+    private Long cityId;
 
     public Long getId() {
         return id;
@@ -59,11 +59,11 @@ public class PlaceDTO {
         this.photoPath = photoPath;
     }
 
-    public Long getCity() {
-        return city;
+    public Long getCityId() {
+        return cityId;
     }
 
-    public void setCity(Long city) {
-        this.city = city;
+    public void setCityId(Long cityId) {
+        this.cityId = cityId;
     }
 }
