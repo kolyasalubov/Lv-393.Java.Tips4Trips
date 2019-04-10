@@ -19,7 +19,6 @@ public class LikeService {
     }
 
     public Like createLike(Like like) {
-
         return repository.save(like);
     }
 

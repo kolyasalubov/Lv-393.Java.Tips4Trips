@@ -17,11 +17,11 @@ public class CommentService {
         return repository.findByPost(post).get();
     }
 
-    Comment createComment(Comment comment) {
+    public Comment createComment(Comment comment) {
         return repository.save(comment);
     }
 
-    void deleteComment(Comment comment) {
+    public void deleteComment(Comment comment) {
         repository.delete(comment);
     }
 
