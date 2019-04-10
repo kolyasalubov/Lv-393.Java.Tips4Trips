@@ -1,5 +1,6 @@
-package com.softserve.academy.Tips4Trips.security;
+package com.softserve.academy.Tips4Trips.security.configuration;
 
+import com.softserve.academy.Tips4Trips.security.AuthenticationConstant;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import org.springframework.security.web.authentication.logout.SimpleUrlLogoutSuccessHandler;

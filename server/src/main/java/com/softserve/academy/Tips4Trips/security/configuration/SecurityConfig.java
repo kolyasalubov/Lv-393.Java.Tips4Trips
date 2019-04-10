@@ -1,9 +1,7 @@
 package com.softserve.academy.Tips4Trips.security.configuration;
 
 
-import com.softserve.academy.Tips4Trips.security.JwtAuthenticationEntryPoint;
 import com.softserve.academy.Tips4Trips.security.JwtAuthenticationFilter;
-import com.softserve.academy.Tips4Trips.security.LogoutSuccessHandlerImpl;
 import com.softserve.academy.Tips4Trips.service.UserDetailsServiceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;

@@ -31,44 +31,41 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Transactional
     public UserDetails loadUserByUsername(String login)
             throws UsernameNotFoundException {
-        User user = userService.findByLogin(login)
-                .orElseThrow(() ->
-                        new UsernameNotFoundException("User with login '"
-                                + login + "' not found.")
-                );
-
-        Account account = accountService.findByUser(user)
-                .orElseThrow(() ->
-                    new UsernameNotFoundException(
-                            "User with login '" + login + "' not found.",
-                            new AccountNotFoundException(
-                                    "Account for user '" + login + "' not found."
-                            )
+        User user = userService.findByLogin(login);
+        if (user == null) {
+             throw new UsernameNotFoundException("User with login '"
+                     + login + "' not found.");
+        }
+        Account account = accountService.findByUser(user);
+        if (user == null) {
+            throw new UsernameNotFoundException(
+                    "User with login '" + login + "' not found.",
+                    new AccountNotFoundException(
+                            "Account for user '" + login + "' not found."
                     )
-                );
-
+            );
+        }
         return UserDetailsImpl.create(user, account.getRole());
     }
 
     @Transactional
     public UserDetails loadUserById(Long id) {
-        User user = userService.findById(id).orElseThrow(
-                () -> new UsernameNotFoundException(
-                        "User with id '" + id + "' not found."
-                )
-        );
+        User user = userService.findById(id);
+        if (user == null) {
+            throw new UsernameNotFoundException(
+                    "User with id '" + id + "' not found."
+            );
+        }
 
-        Account account = accountService.findByUser(user)
-                .orElseThrow(() ->
-                        new UsernameNotFoundException(
-                                "User with id '" + id + "not found.",
-                                new AccountNotFoundException(
-                                        "Account with user id '" + id
-                                                + "' not found."
-                                )
-                        )
-                );
-
+        Account account = accountService.findByUser(user);
+        if (user == null) {
+            throw new UsernameNotFoundException(
+                    "User with id '" + id+ "' not found.",
+                    new AccountNotFoundException(
+                            "Account for user '" + id + "' not found."
+                    )
+            );
+        }
         return UserDetailsImpl.create(user, account.getRole());
     }
 }

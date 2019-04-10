@@ -3,9 +3,10 @@ package com.softserve.academy.Tips4Trips.controller;
 import com.softserve.academy.Tips4Trips.dto.AccountDTO;
 import com.softserve.academy.Tips4Trips.dto.UserAccountDTO;
 import com.softserve.academy.Tips4Trips.dto.UserDTO;
-import com.softserve.academy.Tips4Trips.dto.converter.reverse.ReverseAccountConverter;
-import com.softserve.academy.Tips4Trips.dto.converter.reverse.ReverseUserConverter;
+import com.softserve.academy.Tips4Trips.dto.converter.AccountConverter;
+import com.softserve.academy.Tips4Trips.dto.converter.UserConverter;
 import com.softserve.academy.Tips4Trips.entity.Account;
+import com.softserve.academy.Tips4Trips.entity.User;
 import com.softserve.academy.Tips4Trips.security.AuthenticationConstant;
 import com.softserve.academy.Tips4Trips.service.AccountService;
 import com.softserve.academy.Tips4Trips.service.UserService;
@@ -35,15 +36,16 @@ public class AuthenticationTestController {
     AccountService accountService;
 
     @Autowired
-    ReverseUserConverter userConverter;
+    UserConverter userConverter;
 
     @Autowired
-    ReverseAccountConverter accountConverter;
+    AccountConverter accountConverter;
 
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody
                                                           UserDTO userDto) {
-        String token = authenticationService.login(userDto);
+        User user = userConverter.convertToEntity(userDto);
+        String token = authenticationService.login(user);
         HttpHeaders responseHeaders = new HttpHeaders();
         responseHeaders.set(AuthenticationConstant
                 .AUTHENTICATION_TOKEN_HEADER, token);
@@ -58,11 +60,13 @@ public class AuthenticationTestController {
     public ResponseEntity<?> registerUser(
             @Valid @RequestBody UserAccountDTO userAccountDTO)
             throws Exception {
+
         UserDTO userDTO = userAccountDTO.getUserDto();
         AccountDTO accountDTO = userAccountDTO.getAccountDTO();
-        Account account =
-        User user = userConverter.apply(userDTO);
-        String token = authenticationService.register(userAccountDTO);
+        Account account = accountConverter.convertToEntity(accountDTO);
+        User user = userConverter.convertToEntity(userDTO);
+
+        String token = authenticationService.register(user, account);
         HttpHeaders responseHeaders = new HttpHeaders();
         responseHeaders.set(AuthenticationConstant
                 .AUTHENTICATION_TOKEN_HEADER, token);

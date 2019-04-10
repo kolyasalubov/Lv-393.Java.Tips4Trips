@@ -1,16 +1,9 @@
 package com.softserve.academy.Tips4Trips.service;
 
-import com.softserve.academy.Tips4Trips.dto.AccountDTO;
-import com.softserve.academy.Tips4Trips.dto.UserAccountDTO;
-import com.softserve.academy.Tips4Trips.dto.UserDTO;
-import com.softserve.academy.Tips4Trips.dto.converter.reverse.ReverseAccountConverter;
-import com.softserve.academy.Tips4Trips.dto.converter.reverse.ReverseUserConverter;
 import com.softserve.academy.Tips4Trips.entity.Account;
 import com.softserve.academy.Tips4Trips.entity.Role;
 import com.softserve.academy.Tips4Trips.entity.User;
 import com.softserve.academy.Tips4Trips.security.JwtTokenProvider;
-import com.softserve.academy.Tips4Trips.service.AccountService;
-import com.softserve.academy.Tips4Trips.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -28,48 +21,43 @@ public class AuthenticationServiceImpl {
     private JwtTokenProvider tokenProvider;
     private AccountService accountService;
     private UserService userService;
-    private ReverseAccountConverter reverseAccountConverter;
-    private ReverseUserConverter reverseUserConverter;
 
     @Autowired
     public AuthenticationServiceImpl(AuthenticationManager authenticationManager,
                                      JwtTokenProvider tokenProvider,
                                      AccountService accountService,
-                                     UserService userService,
-                                     ReverseAccountConverter reverseAccountConverter,
-                                     ReverseUserConverter reverseUserConverter) {
+                                     UserService userService) {
         this.authenticationManager = authenticationManager;
         this.tokenProvider = tokenProvider;
         this.accountService = accountService;
         this.userService = userService;
-        this.reverseAccountConverter = reverseAccountConverter;
-        this.reverseUserConverter = reverseUserConverter;
     }
 
-    public String login(UserDTO userDto) {
-        return authenticate(userDto.getLogin(), userDto.getPassword());
+    public String login(User user) {
+        return authenticate(user.getLogin(), user.getPassword());
     }
 
-    public String register(UserAccountDTO userAccountDto) throws Exception {
+    public String register(User user, Account account) throws Exception {
         try {
-            AccountDTO accountDto = userAccountDto.getAccountDTO();
-            UserDTO userDto = userAccountDto.getUserDto();
 
-            Optional<Account> account = accountService
-                    .findByEmail(accountDto.getEmail());
-            if (account.isPresent()) {
+            Account oldAccount = accountService
+                    .findByEmail(account.getEmail());
+            if (oldAccount != null) {
                 throw new Exception("User e-mail already in use!");
             }
 
-            Optional<User> user = userService
-                    .findByLogin(userDto.getLogin());
-            if (user.isPresent()) {
+            User oldUser = userService
+                    .findByLogin(user.getLogin());
+            if (oldUser != null) {
                 throw new Exception("User login already in use!");
             }
 
-            Account newAccount = createAccount(accountDto);
-            createUser(userDto, newAccount);
-            return authenticate(userDto.getLogin(), userDto.getPassword());
+            account.setRole(Role.USER);
+            accountService.createAccount(account);
+            user.setAccount(account);
+            userService.createUser(user);
+
+            return authenticate(user.getLogin(), user.getPassword());
         } catch (Exception e) {
             e.printStackTrace();
             throw e;
@@ -94,19 +82,5 @@ public class AuthenticationServiceImpl {
         String jwt = tokenProvider.generateToken(authentication);
 
         return "Bearer " + jwt;
-    }
-
-    private Account createAccount(AccountDTO accountDto) {
-        accountDto.setRole(Role.USER);
-        Account account = reverseAccountConverter
-                .apply(accountDto);
-        accountService.save(account);
-        return account;
-    }
-
-    private void createUser(UserDTO userDto, Account account) {
-        User user = reverseUserConverter.apply(userDto);
-        user.setAccount(account);
-        userService.save(user);
     }
 }

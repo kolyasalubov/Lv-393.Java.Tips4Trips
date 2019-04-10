@@ -1,4 +1,4 @@
-package com.softserve.academy.Tips4Trips.security;
+package com.softserve.academy.Tips4Trips.security.configuration;
 
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
