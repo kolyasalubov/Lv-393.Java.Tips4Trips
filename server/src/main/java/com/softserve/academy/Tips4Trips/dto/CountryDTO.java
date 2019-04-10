@@ -1,8 +1,5 @@
 package com.softserve.academy.Tips4Trips.dto;
 
-import com.softserve.academy.Tips4Trips.entity.City;
-import com.softserve.academy.Tips4Trips.entity.Position;
-
 import java.util.List;
 
 public class CountryDTO {

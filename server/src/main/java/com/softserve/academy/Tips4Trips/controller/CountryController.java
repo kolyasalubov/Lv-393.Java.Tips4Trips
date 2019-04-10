@@ -1,7 +1,9 @@
 package com.softserve.academy.Tips4Trips.controller;
 
+import com.softserve.academy.Tips4Trips.dto.CityDTO;
 import com.softserve.academy.Tips4Trips.dto.CountryDTO;
 import com.softserve.academy.Tips4Trips.dto.converter.CountryConverter;
+import com.softserve.academy.Tips4Trips.entity.City;
 import com.softserve.academy.Tips4Trips.entity.Country;
 import com.softserve.academy.Tips4Trips.service.CountryService;
 import org.hibernate.HibernateException;
@@ -40,6 +42,24 @@ public class CountryController {
         } catch (HibernateException e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<CountryDTO> getById(@PathVariable Long id) {
+        return new ResponseEntity<>(countryConverter
+                .convertToDTO(countryService.findById(id)), HttpStatus.OK);
+    }
+
+    @PutMapping("/update")
+    public ResponseEntity<CountryDTO> update(@RequestBody CountryDTO countryDTO) {
+        Country country = countryService.update(countryConverter.convertToEntity(countryDTO));
+        return new ResponseEntity<>(countryConverter
+                .convertToDTO(country), HttpStatus.ACCEPTED);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public void deleteById(@PathVariable Long id) {
+        countryService.deleteById(id);
     }
 
 }

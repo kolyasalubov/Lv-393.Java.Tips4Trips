@@ -30,4 +30,19 @@ public class CityService {
     public List<City> findAll() {
         return cityRepository.findAll();
     }
+
+    public void deleteById(Long id) {
+        cityRepository.findById(id).ifPresent(cityRepository::delete);
+    }
+
+    public City update(City city) {
+        if (city.getId() == null) {
+            throw new IllegalArgumentException();
+        }
+        return cityRepository.save(city);
+    }
+
+    public City findById(Long id) {
+        return cityRepository.findById(id).get();
+    }
 }

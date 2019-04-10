@@ -1,8 +1,10 @@
 package com.softserve.academy.Tips4Trips.controller;
 
 import com.softserve.academy.Tips4Trips.dto.CityDTO;
+import com.softserve.academy.Tips4Trips.dto.PostDTO;
 import com.softserve.academy.Tips4Trips.dto.converter.CityConverter;
 import com.softserve.academy.Tips4Trips.entity.City;
+import com.softserve.academy.Tips4Trips.entity.blog.Post;
 import com.softserve.academy.Tips4Trips.service.CityService;
 import org.hibernate.HibernateException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +41,24 @@ public class CityController {
         } catch (HibernateException e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<CityDTO> getById(@PathVariable Long id) {
+        return new ResponseEntity<>(cityConverter
+                .convertToDTO(cityService.findById(id)), HttpStatus.OK);
+    }
+
+    @PutMapping("/update")
+    public ResponseEntity<CityDTO> update(@RequestBody CityDTO cityDTO) {
+        City city = cityService.update(cityConverter.convertToEntity(cityDTO));
+        return new ResponseEntity<>(cityConverter
+                .convertToDTO(city), HttpStatus.ACCEPTED);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public void deleteById(@PathVariable Long id) {
+        cityService.deleteById(id);
     }
 
 }

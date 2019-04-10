@@ -30,6 +30,10 @@ public class Country implements Serializable {
 
     public Country() {}
 
+    public Country(Long id) {
+        this.id = id;
+    }
+
     public Country(@Size(max = 35) @NotBlank String name,
                    @NotNull Position position,
                    List<City> listOfCities) {
