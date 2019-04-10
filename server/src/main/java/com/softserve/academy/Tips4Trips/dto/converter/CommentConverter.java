@@ -4,19 +4,19 @@ import com.softserve.academy.Tips4Trips.dto.CommentDTO;
 import com.softserve.academy.Tips4Trips.entity.Account;
 import com.softserve.academy.Tips4Trips.entity.Comment;
 import com.softserve.academy.Tips4Trips.entity.Post;
-import com.softserve.academy.Tips4Trips.service.AccountService;
+import com.softserve.academy.Tips4Trips.repository.AccountRepository;
 import com.softserve.academy.Tips4Trips.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class CommentConverter implements Converter<Comment, CommentDTO> {
-    private AccountService accountService;
+    private AccountRepository accountRepository;
     private PostService postService;
 
     @Autowired
-    public CommentConverter(AccountService accountService, PostService postService) {
-        this.accountService = accountService;
+    public CommentConverter(AccountRepository accountRepository, PostService postService) {
+        this.accountRepository = accountRepository;
         this.postService = postService;
     }
 
@@ -35,7 +35,7 @@ public class CommentConverter implements Converter<Comment, CommentDTO> {
     public Comment convertToEntity(CommentDTO commentDTO) {
         Comment comment = new Comment();
         comment.setId(commentDTO.getId());
-        Account account = accountService.findById(commentDTO.getAccountId());
+        Account account = accountRepository.findById(commentDTO.getAccountId()).get();
         comment.setCommentedBy(account);
         Post post = postService.findById(commentDTO.getPostId());
         comment.setPost(post);

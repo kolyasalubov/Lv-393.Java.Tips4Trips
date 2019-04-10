@@ -38,7 +38,7 @@ public class RouteConverter implements Converter<Route, RouteDTO> {
         long id = (routeDTO.getId() != null) ? routeDTO.getId() : 0;
         Route route = routeRepository.findById(id)
                 .orElseGet(Route::new);
-        route.setCreationDate(route.getCreationDate());
+        route.setCreationDate(routeDTO.getCreationDate());
         route.setName(routeDTO.getName());
         route.setPhotoPath(routeDTO.getPhotoPath());
         accountRepository.findById(routeDTO.getAuthorId())

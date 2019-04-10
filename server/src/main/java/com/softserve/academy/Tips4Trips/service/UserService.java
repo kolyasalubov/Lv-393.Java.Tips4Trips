@@ -55,10 +55,14 @@ public class UserService {
     }
 
     public User createUser(User user) {
+        user.setId(0L);
         return repository.save(user);
     }
 
     public User update(User user) {
+        if (user.getId() == null) {
+            throw new IllegalArgumentException();
+        }
         return repository.save(user);
     }
 }

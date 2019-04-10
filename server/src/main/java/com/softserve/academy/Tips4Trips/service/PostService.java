@@ -16,10 +16,10 @@ import java.util.Optional;
 @Service
 public class PostService {
 
-    AccountRepository accountRepository;
-    RouteService routeService;
-    PostConverter postConverter;
-    PostRepository repository;
+    private AccountRepository accountRepository;
+    private RouteService routeService;
+    private PostConverter postConverter;
+    private PostRepository repository;
 
     @Autowired
     public PostService(AccountRepository accountRepository, RouteService routeService,
@@ -39,19 +39,15 @@ public class PostService {
         return repository.findByNameContainingIgnoreCase(name);
     }
 
-    public List<Post> findByAuthor(Account author) {
-        return repository.findByAuthor(author);
-    }
-
-    public List<Post> findByRoute(Route route) {
-        return repository.findByRoute(route);
-    }
-
     public Post createPost(Post post) {
+        post.setId(0L);
         return repository.save(post);
     }
 
     public Post update(Post post) {
+        if (post.getId() == null) {
+            throw new IllegalArgumentException();
+        }
         return repository.save(post);
     }
 
