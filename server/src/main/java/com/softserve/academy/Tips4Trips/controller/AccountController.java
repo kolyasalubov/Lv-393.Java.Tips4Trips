@@ -29,31 +29,22 @@ public class AccountController {
 
     @GetMapping("/{id}")
     public ResponseEntity<AccountDTO> getById(@PathVariable long id) {
-        Optional<Account> account = accountService.findById(id);
-        return account.map(u -> new ResponseEntity<>(accountConverter.convertToDTO(u)
-                , HttpStatus.OK))
-                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+        return new ResponseEntity<>(accountConverter
+                .convertToDTO(accountService.findById(id)), HttpStatus.OK);
     }
 
 
     @PostMapping("/create")
     public ResponseEntity<AccountDTO> createAccount(@RequestBody AccountDTO accountDTO){
-        try {
-            Account account = accountService.createAccount(accountDTO);
-            return new ResponseEntity<>(accountConverter.convertToDTO(account), HttpStatus.CREATED);
-        } catch (HibernateException e) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
+        Account account = accountService.createAccount(accountConverter.convertToEntity(accountDTO));
+        return new ResponseEntity<>(accountConverter.convertToDTO(account), HttpStatus.CREATED);
     }
 
     @PutMapping("/update")
-    public ResponseEntity<AccountDTO> updateUser(@RequestBody AccountDTO accountDTO) {
-        try {
-            Account account = accountService.update(accountDTO);
-            return new ResponseEntity<>(accountConverter.convertToDTO(account), HttpStatus.ACCEPTED);
-        } catch (HibernateException e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+    public ResponseEntity<AccountDTO> updateAccount(@RequestBody AccountDTO accountDTO) {
+        Account account = accountService.update(accountConverter.convertToEntity(accountDTO));
+        return new ResponseEntity<>(accountConverter.convertToDTO(account), HttpStatus.ACCEPTED);
+
     }
 
 
