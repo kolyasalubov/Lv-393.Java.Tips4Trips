@@ -5,7 +5,6 @@ import com.softserve.academy.Tips4Trips.dto.converter.PostConverter;
 import com.softserve.academy.Tips4Trips.entity.Account;
 import com.softserve.academy.Tips4Trips.entity.Post;
 import com.softserve.academy.Tips4Trips.entity.Route;
-import com.softserve.academy.Tips4Trips.repository.AccountRepository;
 import com.softserve.academy.Tips4Trips.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,29 +15,32 @@ import java.util.Optional;
 @Service
 public class PostService {
 
+<<<<<<< HEAD
     private AccountRepository accountRepository;
     private RouteService routeService;
     private PostConverter postConverter;
     private PostRepository repository;
+=======
+    AccountService accountService;
+    RouteService routeService;
+    PostConverter postConverter;
+    PostRepository repository;
+>>>>>>> 34dacc720e840960dbb65139bd53b58671477958
 
     @Autowired
-    public PostService(AccountRepository accountRepository, RouteService routeService,
+    public PostService(AccountService accountService, RouteService routeService,
                        PostConverter postConverter, PostRepository repository) {
-        this.accountRepository = accountRepository;
+        this.accountService = accountService;
         this.routeService = routeService;
         this.postConverter = postConverter;
         this.repository = repository;
-    }
-
-    public List<Post> getByAuthorId(Long authorId) {
-        Account account = accountRepository.findById(authorId).get();
-        return repository.findByAuthor(account);
     }
 
     public List<Post> searchByName(String name) {
         return repository.findByNameContainingIgnoreCase(name);
     }
 
+<<<<<<< HEAD
     public Post createPost(Post post) {
         post.setId(0L);
         return repository.save(post);
@@ -47,6 +49,28 @@ public class PostService {
     public Post update(Post post) {
         if (post.getId() == null) {
             throw new IllegalArgumentException();
+=======
+    public List<Post> findByAuthor(Account author) {
+        return repository.findByAuthor(author);
+    }
+
+    public List<Post> findByRoute(Route route) {
+        return repository.findByRoute(route);
+    }
+
+    public Post createPost(PostDTO postDTO) {
+        Post post = postConverter.convertToEntity(postDTO);
+        return repository.save(post);
+    }
+
+    public Post update(PostDTO postDTO) {
+        Post post = repository.findById(postDTO.getId()).get();
+        post.setContent(postDTO.getContent());
+        post.setName(postDTO.getName());
+        post.setPhotoPath(postDTO.getPhotoPath());
+        if (postDTO.getRouteId() != null) {
+            routeService.findById(postDTO.getRouteId()).ifPresent(post::setRoute);
+>>>>>>> 34dacc720e840960dbb65139bd53b58671477958
         }
         return repository.save(post);
     }
@@ -55,12 +79,12 @@ public class PostService {
         return repository.findAll();
     }
 
-    public Post findById(Long id) {
-        return repository.findById(id).get();
+    public Optional<Post> findById(Long id) {
+        return repository.findById(id);
     }
 
-    public void deleteById(Long id) {
-        repository.findById(id).ifPresent(repository::delete);
+    public void delete(Post post) {
+        repository.delete(post);
     }
 }
 

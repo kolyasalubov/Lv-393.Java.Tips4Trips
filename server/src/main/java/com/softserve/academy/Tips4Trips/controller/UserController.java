@@ -33,41 +33,58 @@ public class UserController {
 
     @GetMapping("/{id}")
     public ResponseEntity<UserDTO> getById(@PathVariable Long id) {
-        return new ResponseEntity<>(userConverter
-                .convertToDTO(userService.findById(id)), HttpStatus.OK);
+        Optional<User> user = userService.findById(id);
+        return user.map(u -> new ResponseEntity<>(userConverter
+                .convertToDTO(u), HttpStatus.OK))
+                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @GetMapping("/login/{login}")
     public ResponseEntity<UserDTO> getByLogin(@PathVariable String login) {
-        return new ResponseEntity<>(userConverter
-                .convertToDTO(userService.findByLogin(login)), HttpStatus.OK);
+        Optional<User> user = userService.findByLogin(login);
+        return user.map(u -> new ResponseEntity<>(userConverter
+                .convertToDTO(u), HttpStatus.OK))
+                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @GetMapping("/exists/login/{login}")
-    public ResponseEntity<Boolean> loginExists(@PathVariable String login) {
-        return new ResponseEntity<>(userService.loginExists(login), HttpStatus.OK);
-    }
-
-    @GetMapping("/exists/email/{email}")
-    public ResponseEntity<Boolean> emailExists(@PathVariable String email) {
-        return new ResponseEntity<>(userService.emailExists(email), HttpStatus.OK);
+    public boolean loginExists(@PathVariable String login) {
+        return userService.loginExists(login);
     }
 
     @PostMapping("/create")
     public ResponseEntity<UserDTO> createUser(@RequestBody UserDTO userDTO) {
+<<<<<<< HEAD
         User user = userService.createUser(userConverter.convertToEntity(userDTO));
         return new ResponseEntity<>(userConverter.convertToDTO(user), HttpStatus.CREATED);
+=======
+        try {
+            User user = userService.createUser(userDTO);
+            return new ResponseEntity<>(userConverter.convertToDTO(user), HttpStatus.CREATED);
+        } catch (HibernateException e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+>>>>>>> 34dacc720e840960dbb65139bd53b58671477958
     }
 
     @PutMapping("/update")
     public ResponseEntity<UserDTO> updateUser(@RequestBody UserDTO userDTO) {
+<<<<<<< HEAD
         User user = userService.update(userConverter.convertToEntity(userDTO));
         return new ResponseEntity<>(userConverter.convertToDTO(user), HttpStatus.ACCEPTED);
+=======
+        try {
+            User user = userService.update(userDTO);
+            return new ResponseEntity<>(userConverter.convertToDTO(user), HttpStatus.ACCEPTED);
+        } catch (HibernateException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+>>>>>>> 34dacc720e840960dbb65139bd53b58671477958
     }
 
     @DeleteMapping("/delete/{id}")
     public void deleteById(@PathVariable Long id) {
-        userService.deleteById(id);
+        userService.findById(id).ifPresent(userService::delete);
     }
 
 }

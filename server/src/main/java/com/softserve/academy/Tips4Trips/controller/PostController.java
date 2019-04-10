@@ -37,33 +37,55 @@ public class PostController {
 
     @GetMapping("/{id}")
     public ResponseEntity<PostDTO> getById(@PathVariable Long id) {
-        return new ResponseEntity<>(postConverter
-                .convertToDTO(postService.findById(id)), HttpStatus.OK);
+        Optional<Post> post = postService.findById(id);
+        return post.map(p -> new ResponseEntity<>(postConverter
+                .convertToDTO(p), HttpStatus.OK))
+                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @GetMapping("/author/{authorId}")
     public ResponseEntity<List<PostDTO>> getByAuthor(@PathVariable Long authorId) {
         return new ResponseEntity<>(postConverter
-                .convertToDTO(postService.getByAuthorId(authorId)), HttpStatus.OK);
+                .convertToDTO(postService.findByAuthor(accountService.findById(authorId).get())), HttpStatus.OK);
     }
 
     @PutMapping("/update")
     public ResponseEntity<PostDTO> update(@RequestBody PostDTO postDTO) {
+<<<<<<< HEAD
         Post post = postService.update(postConverter.convertToEntity(postDTO));
         return new ResponseEntity<>(postConverter
                 .convertToDTO(post), HttpStatus.ACCEPTED);
+=======
+        try {
+            Post post = postService.update(postDTO);
+            return new ResponseEntity<>(postConverter
+                    .convertToDTO(post), HttpStatus.ACCEPTED);
+        } catch (HibernateException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+>>>>>>> 34dacc720e840960dbb65139bd53b58671477958
     }
 
     @PostMapping("/create")
     public ResponseEntity<PostDTO> createPost(@RequestBody PostDTO postDTO) {
+<<<<<<< HEAD
         Post post = postService.createPost(postConverter.convertToEntity(postDTO));
         return new ResponseEntity<>(postConverter
                 .convertToDTO(post), HttpStatus.CREATED);
+=======
+        try {
+            Post post = postService.createPost(postDTO);
+            return new ResponseEntity<>(postConverter
+                    .convertToDTO(post), HttpStatus.CREATED);
+        } catch (HibernateException e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+>>>>>>> 34dacc720e840960dbb65139bd53b58671477958
     }
 
     @DeleteMapping("/delete/{id}")
     public void deleteById(@PathVariable Long id) {
-        postService.deleteById(id);
+        postService.findById(id).ifPresent(postService::delete);
     }
 
 }

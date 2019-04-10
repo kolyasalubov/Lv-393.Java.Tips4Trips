@@ -2,7 +2,7 @@ package com.softserve.academy.Tips4Trips.dto;
 
 public class UserDTO {
 
-    private Long id;
+    private long id;
 
     private String login;
 
@@ -10,11 +10,11 @@ public class UserDTO {
 
     private String email;
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
