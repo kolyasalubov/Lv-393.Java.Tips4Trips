@@ -1,6 +1,5 @@
 package com.softserve.academy.Tips4Trips.dto;
 
-import com.softserve.academy.Tips4Trips.entity.City;
 import com.softserve.academy.Tips4Trips.entity.Position;
 
 import java.util.List;
@@ -9,13 +8,13 @@ public class CountryDTO {
 
     private Long id;
     private String name;
-    private PositionDTO position;
+    private Position position;
     private List<CityDTO> listOfCities;
 
     public CountryDTO() {
     }
 
-    public CountryDTO(Long id, String name, PositionDTO position, List<CityDTO> listOfCities) {
+    public CountryDTO(Long id, String name, Position position, List<CityDTO> listOfCities) {
         this.id = id;
         this.name = name;
         this.position = position;
@@ -38,11 +37,11 @@ public class CountryDTO {
         this.name = name;
     }
 
-    public PositionDTO getPosition() {
+    public Position getPosition() {
         return position;
     }
 
-    public void setPosition(PositionDTO position) {
+    public void setPosition(Position position) {
         this.position = position;
     }
 
