@@ -1,0 +1,32 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet author="minato7878" id="1554715219701-accounts-01">
+        <insert tableName="accounts">
+            <column name="about" value="MyAccount"/>
+            <column name="email" value="danylo.matviykiv@gmail.com"/>
+            <column name="first_name" value="Danylo"/>
+            <column name="last_name" value="Matviykiv"/>
+            <column name="phone_number" value="0931239982"/>
+            <column name="registration_date" valueDate="2019-04-10"/>
+            <column name="role" value="ADMIN"/>
+        </insert>
+        <rollback>
+            delete from accounts where id=1
+        </rollback>
+    </changeSet>
+
+    <changeSet author="minato7878" id="1554715219701-users-01">
+        <insert tableName="users">
+            <column name="login" value="minato7878"/>
+            <column name="password" value="123"/>
+            <column name="account_id" value="1"/>
+        </insert>
+        <rollback>
+            delete from accounts where id=1
+        </rollback>
+    </changeSet>
+</databaseChangeLog>

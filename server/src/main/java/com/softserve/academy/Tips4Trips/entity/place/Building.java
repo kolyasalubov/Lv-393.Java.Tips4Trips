@@ -1,9 +1,8 @@
 package com.softserve.academy.Tips4Trips.entity.place;
 
-import com.softserve.academy.Tips4Trips.entity.Position;
+import com.softserve.academy.Tips4Trips.entity.enums.TypeOfBuilding;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.DayOfWeek;

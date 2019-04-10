@@ -2,7 +2,7 @@ package com.softserve.academy.Tips4Trips.controller;
 
 import com.softserve.academy.Tips4Trips.dto.converter.PostConverter;
 import com.softserve.academy.Tips4Trips.dto.PostDTO;
-import com.softserve.academy.Tips4Trips.entity.Post;
+import com.softserve.academy.Tips4Trips.entity.blog.Post;
 import com.softserve.academy.Tips4Trips.service.AccountService;
 import com.softserve.academy.Tips4Trips.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;

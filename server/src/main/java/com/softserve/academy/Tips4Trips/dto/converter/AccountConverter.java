@@ -1,7 +1,7 @@
 package com.softserve.academy.Tips4Trips.dto.converter;
 
 import com.softserve.academy.Tips4Trips.dto.AccountDTO;
-import com.softserve.academy.Tips4Trips.entity.Account;
+import com.softserve.academy.Tips4Trips.entity.administration.Account;
 import org.springframework.stereotype.Component;
 
 @Component

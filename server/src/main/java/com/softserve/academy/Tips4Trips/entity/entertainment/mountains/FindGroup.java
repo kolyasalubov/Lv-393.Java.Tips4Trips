@@ -1,4 +1,7 @@
-package com.softserve.academy.Tips4Trips.entity;
+package com.softserve.academy.Tips4Trips.entity.entertainment.mountains;
+
+import com.softserve.academy.Tips4Trips.entity.administration.Account;
+import com.softserve.academy.Tips4Trips.entity.Route;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;

@@ -1,7 +1,7 @@
 package com.softserve.academy.Tips4Trips.dto.converter;
 
 import com.softserve.academy.Tips4Trips.dto.PostDTO;
-import com.softserve.academy.Tips4Trips.entity.Post;
+import com.softserve.academy.Tips4Trips.entity.blog.Post;
 import com.softserve.academy.Tips4Trips.repository.AccountRepository;
 import com.softserve.academy.Tips4Trips.repository.PostRepository;
 import com.softserve.academy.Tips4Trips.repository.RouteRepository;
