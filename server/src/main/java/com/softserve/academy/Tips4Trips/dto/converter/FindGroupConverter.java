@@ -56,10 +56,7 @@ public class FindGroupConverter implements Converter<FindGroup, FindGroupDTO> {
         findGroup.setDescription(findGroupDTO.getDescription());
         findGroup.setCreationDate(findGroupDTO.getCreationDate());
         findGroup.setStartDate(findGroupDTO.getStartDate());
-
-        Optional<Account> account = accountService.findById(findGroupDTO.getAuthorId());
-        account.ifPresent(findGroup::setCreator);
-
+        findGroup.setCreator(accountService.findById(findGroupDTO.getAuthorId()));
         Optional<Route> route = routeRepository.findById(findGroupDTO.getRouteId());
         route.ifPresent(findGroup::setRoute);
 

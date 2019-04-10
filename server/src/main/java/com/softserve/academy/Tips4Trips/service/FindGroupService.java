@@ -29,8 +29,8 @@ public class FindGroupService {
         return repository.findByCreator(author);
     }
 
-    public Optional<FindGroup> findById(Long id) {
-        return repository.findById(id);
+    public FindGroup findById(Long id) {
+        return repository.findById(id).get();
     }
 
     public void delete(FindGroup findGroup) {
@@ -42,7 +42,11 @@ public class FindGroupService {
     }
 
 
-    public FindGroup createFindGroup(FindGroupDTO postDTO) {
-        return null;
+    public void deleteById(Long id) {
+        repository.findById(id).ifPresent(repository::delete);
+    }
+
+    public FindGroup createFindGroup(FindGroup findGroup) {
+        return repository.save(findGroup);
     }
 }

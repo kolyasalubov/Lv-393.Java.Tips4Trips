@@ -28,28 +28,22 @@ public class AccountService {
         this.repository = repository;
     }
 
-    public Optional<Account> findById(Long id) {
-        return repository.findById(id);
+    public Account findById(Long id) {
+        return repository.findById(id).get();
     }
 
 
-    public Optional<Account> findByEmail(String email) {
-        return repository.findByEmail(email);
+    public Account findByEmail(String email) {
+        return repository.findByEmail(email).get();
     }
 
 
-    public Account createAccount(AccountDTO accountDTO) {
-        Account account = accountConverter.convertToEntity(accountDTO);
+    public Account createAccount(Account account) {
         return repository.save(account);
     }
 
 
-    public Account update(AccountDTO accountDTO) {
-        Account account = repository.findById(accountDTO.getId()).get();
-        account.setFirstName(accountDTO.getFirstName());
-        account.setLastName(accountDTO.getLastName());
-        account.setPhoneNumber(accountDTO.getPhoneNumber());
-        account.setAbout(accountDTO.getAbout());
+    public Account update(Account account) {
         return repository.save(account);
     }
 >>>>>>> 3ebe6b3ebe2c8d9d2652d6f3f31fbeb22b4c5820
