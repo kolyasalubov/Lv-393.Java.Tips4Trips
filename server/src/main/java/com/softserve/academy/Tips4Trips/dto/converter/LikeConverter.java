@@ -34,7 +34,7 @@ public class LikeConverter implements Converter<Like, LikeDTO> {
     public Like convertToEntity(LikeDTO likeDTO) {
         Like like = new Like();
         like.setId(likeDTO.getId());
-        Account account = accountService.findById(likeDTO.getAccountId());
+        Account account = accountService.findById(likeDTO.getAccountId()).get();
         like.setLikedBy(account);
         Post post = postService.findById(likeDTO.getPostId());
         like.setPost(post);

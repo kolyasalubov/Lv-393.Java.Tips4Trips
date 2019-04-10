@@ -35,7 +35,7 @@ public class CommentConverter implements Converter<Comment, CommentDTO> {
     public Comment convertToEntity(CommentDTO commentDTO) {
         Comment comment = new Comment();
         comment.setId(commentDTO.getId());
-        Account account = accountService.findById(commentDTO.getAccountId());
+        Account account = accountService.findById(commentDTO.getAccountId()).get();
         comment.setCommentedBy(account);
         Post post = postService.findById(commentDTO.getPostId());
         comment.setPost(post);
