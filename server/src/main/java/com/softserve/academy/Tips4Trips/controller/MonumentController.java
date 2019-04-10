@@ -5,10 +5,11 @@ import com.softserve.academy.Tips4Trips.dto.converter.MonumentConverter;
 import com.softserve.academy.Tips4Trips.entity.place.Monument;
 import com.softserve.academy.Tips4Trips.service.MonumentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @CrossOrigin
@@ -24,9 +25,25 @@ public class MonumentController {
         this.monumentService = monumentService;
     }
 
+    @GetMapping("/all")
+    public ResponseEntity<List<MonumentDTO>> getAll(){
+        return new ResponseEntity<>(monumentConverter
+                .convertToDTO(monumentService.findAll()), HttpStatus.OK);
+    }
+
     @PostMapping("/create")
-    public Monument createMonument(MonumentDTO monumentDTO) {
+    public Monument createMonument(@RequestBody MonumentDTO monumentDTO) {
         Monument monument = monumentConverter.convertToEntity(monumentDTO);
         return monumentService.createMonument(monument);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<MonumentDTO> getById(@PathVariable Long id) {
+        return new ResponseEntity<>(monumentConverter.convertToDTO(monumentService.findById(id)), HttpStatus.OK);
+    }
+
+    @PostMapping("/update")
+    public ResponseEntity<Monument> update(@RequestBody MonumentDTO monumentDTO) {
+        return new ResponseEntity<>(monumentService.update(monumentConverter.convertToEntity(monumentDTO)), HttpStatus.OK);
     }
 }

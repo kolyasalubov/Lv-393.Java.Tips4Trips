@@ -17,9 +17,9 @@ import java.util.List;
 @RequestMapping("/posts")
 public class PostController {
 
-    PostService postService;
-    PostConverter postConverter;
-    AccountService accountService;
+    private PostService postService;
+    private PostConverter postConverter;
+    private AccountService accountService;
 
     @Autowired
     public PostController(PostService postService, PostConverter postConverter,
@@ -49,7 +49,6 @@ public class PostController {
 
     @PutMapping("/update")
     public ResponseEntity<PostDTO> update(@RequestBody PostDTO postDTO) {
-
         Post post = postService.update(postConverter.convertToEntity(postDTO));
         return new ResponseEntity<>(postConverter
                 .convertToDTO(post), HttpStatus.ACCEPTED);

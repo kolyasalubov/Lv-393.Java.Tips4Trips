@@ -4,8 +4,8 @@ import com.softserve.academy.Tips4Trips.dto.FindGroupDTO;
 import com.softserve.academy.Tips4Trips.entity.Account;
 import com.softserve.academy.Tips4Trips.entity.FindGroup;
 import com.softserve.academy.Tips4Trips.entity.Route;
+import com.softserve.academy.Tips4Trips.repository.RouteRepository;
 import com.softserve.academy.Tips4Trips.service.AccountService;
-import com.softserve.academy.Tips4Trips.service.RouteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -17,13 +17,13 @@ public class FindGroupConverter implements Converter<FindGroup, FindGroupDTO> {
 
     AccountConverter accountConverter;
     AccountService accountService;
-    RouteService routeService;
+    RouteRepository routeRepository;
 
     @Autowired
-    public FindGroupConverter(AccountConverter accountConverter, AccountService accountService, RouteService routeService) {
+    public FindGroupConverter(AccountConverter accountConverter, AccountService accountService, RouteRepository routeRepository) {
         this.accountConverter = accountConverter;
         this.accountService = accountService;
-        this.routeService = routeService;
+        this.routeRepository = routeRepository;
     }
 
     @Override
@@ -56,11 +56,8 @@ public class FindGroupConverter implements Converter<FindGroup, FindGroupDTO> {
         findGroup.setDescription(findGroupDTO.getDescription());
         findGroup.setCreationDate(findGroupDTO.getCreationDate());
         findGroup.setStartDate(findGroupDTO.getStartDate());
-
-        Optional<Account> account = accountService.findById(findGroupDTO.getAuthorId());
-        account.ifPresent(findGroup::setCreator);
-
-        Optional<Route> route = routeService.findById(findGroupDTO.getRouteId());
+        findGroup.setCreator(accountService.findById(findGroupDTO.getAuthorId()));
+        Optional<Route> route = routeRepository.findById(findGroupDTO.getRouteId());
         route.ifPresent(findGroup::setRoute);
 
         findGroup.setSubscribers(findGroupDTO.getSubscribers().stream()

@@ -4,7 +4,6 @@ import com.softserve.academy.Tips4Trips.dto.FindGroupDTO;
 import com.softserve.academy.Tips4Trips.dto.converter.FindGroupConverter;
 import com.softserve.academy.Tips4Trips.entity.FindGroup;
 import com.softserve.academy.Tips4Trips.service.FindGroupService;
-import org.hibernate.HibernateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,18 +26,14 @@ public class FindGroupController {
 
     @PostMapping("/create")
     public ResponseEntity<FindGroupDTO> createPost(@RequestBody FindGroupDTO findGroupDTO) {
-        try {
-            FindGroup findGroup = findGroupService.createFindGroup(findGroupDTO);
-            return new ResponseEntity<>(findGroupConverter
-                    .convertToDTO(findGroup), HttpStatus.CREATED);
-        } catch (HibernateException e) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
+        FindGroup findGroup = findGroupService.createFindGroup(findGroupConverter.convertToEntity(findGroupDTO));
+        return new ResponseEntity<>(findGroupConverter.convertToDTO(findGroup), HttpStatus.CREATED);
+
     }
 
     @DeleteMapping("/delete/{id}")
     public void deleteById(@PathVariable Long id) {
-        findGroupService.findById(id).ifPresent(findGroupService::delete);
+        findGroupService.deleteById(id);
     }
 
 

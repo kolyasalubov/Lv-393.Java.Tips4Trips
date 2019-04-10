@@ -25,7 +25,7 @@ public class MonumentConverter implements Converter<Monument, MonumentDTO> {
         monumentDTO.setAddress(monument.getAddress());
         monumentDTO.setPosition(monument.getPosition());
         monumentDTO.setPhotoPath(monument.getPhotoPath());
-        monumentDTO.setCity(monument.getCity().getId());
+        monumentDTO.setCityId(monument.getCity().getId());
 
         return monumentDTO;
     }
@@ -38,9 +38,6 @@ public class MonumentConverter implements Converter<Monument, MonumentDTO> {
         monument.setAddress(monumentDTO.getAddress());
         monument.setPosition(monumentDTO.getPosition());
         monument.setPhotoPath(monumentDTO.getPhotoPath());
-        if (monumentDTO.getId() != null) {
-            monument.setId(monumentService.findById(monumentDTO.getId()).get().getId());
-        }
         return monument;
     }
 
