@@ -1,22 +1,21 @@
 package com.softserve.academy.Tips4Trips.controller;
 
+import com.softserve.academy.Tips4Trips.dto.AccountDTO;
+import com.softserve.academy.Tips4Trips.dto.UserAccountDTO;
 import com.softserve.academy.Tips4Trips.dto.UserDTO;
+import com.softserve.academy.Tips4Trips.dto.converter.reverse.ReverseAccountConverter;
+import com.softserve.academy.Tips4Trips.dto.converter.reverse.ReverseUserConverter;
 import com.softserve.academy.Tips4Trips.entity.Account;
 import com.softserve.academy.Tips4Trips.entity.User;
-import com.softserve.academy.Tips4Trips.repository.AccountRepository;
-import com.softserve.academy.Tips4Trips.repository.UserRepository;
-import com.softserve.academy.Tips4Trips.security.JwtTokenProvider;
+import com.softserve.academy.Tips4Trips.security.AuthenticationConstant;
+import com.softserve.academy.Tips4Trips.service.AccountService;
+import com.softserve.academy.Tips4Trips.service.UserService;
+import com.softserve.academy.Tips4Trips.service.impl.AuthenticationServiceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,59 +25,52 @@ import javax.validation.Valid;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/auth")
+@RequestMapping("/authentication")
 public class AuthenticationTestController {
 
     @Autowired
-    AuthenticationManager authenticationManager;
+    AuthenticationServiceImpl authenticationService;
 
     @Autowired
-    UserRepository userRepository;
+    UserService userService;
 
     @Autowired
-    AccountRepository accountRepository;
+    AccountService accountService;
 
     @Autowired
-    PasswordEncoder passwordEncoder;
+    ReverseUserConverter userConverter;
 
     @Autowired
-    JwtTokenProvider tokenProvider;
+    ReverseAccountConverter accountConverter;
 
     @PostMapping("/signin")
-    public ResponseEntity<?> authenticateUser(@Valid @RequestBody UserDTO userDto) {
-        UsernamePasswordAuthenticationToken token =
-                new UsernamePasswordAuthenticationToken(
-                        userDto.getLogin(),
-                        userDto.getPassword()
-                );
-        
-        Authentication authentication = null;
-        authentication = authenticationManager.authenticate(token);
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-        String jwt = tokenProvider.generateToken(authentication);
+    public ResponseEntity<?> authenticateUser(@Valid @RequestBody
+                                                          UserDTO userDto) {
+        String token = authenticationService.login(userDto);
         HttpHeaders responseHeaders = new HttpHeaders();
-        responseHeaders.set("Security",
-                "Bearer " + jwt);
+        responseHeaders.set(AuthenticationConstant
+                .AUTHENTICATION_TOKEN_HEADER, token);
+        //this should only add headers and redirect,
+        // but we don't have a page for redirection
         return ResponseEntity.ok()
                 .headers(responseHeaders)
-                .body(jwt);
+                .body(token);
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<?> registerUser(@Valid @RequestBody UserDTO userDto) {
-
-        Optional<Account> account = accountRepository.findById((long) 1);
-
-        Account newAccount = account.get();
-
-        User user = new User();
-        user.setLogin(userDto.getLogin());
-        user.setPassword(userDto.getPassword());
-        user.setAccount(newAccount);
-
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        userRepository.save(user);
-
-        return  ResponseEntity.ok("YaY!");
+    public ResponseEntity<?> registerUser(
+            @Valid @RequestBody UserAccountDTO userAccountDTO)
+            throws Exception {
+        UserDTO userDTO = userAccountDTO.getUserDto();
+        AccountDTO accountDTO = userAccountDTO.getAccountDTO();
+        Account account = 
+        User user = userConverter.apply(userDTO);
+        String token = authenticationService.register(userAccountDTO);
+        HttpHeaders responseHeaders = new HttpHeaders();
+        responseHeaders.set(AuthenticationConstant
+                .AUTHENTICATION_TOKEN_HEADER, token);
+        return ResponseEntity.ok()
+                .headers(responseHeaders)
+                .body(token);
     }
 }

@@ -1,9 +1,9 @@
 package com.softserve.academy.Tips4Trips.security;
 
+import com.softserve.academy.Tips4Trips.service.impl.AuthenticationServiceImpl;
 import com.softserve.academy.Tips4Trips.service.impl.UserDetailsServiceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -34,36 +34,22 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                                         throws ServletException, IOException {
         try {
 
-            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-            if (auth == null) {
+            String jwt = getJwtFromRequest(request);
+
+            if (!StringUtils.hasText(jwt)) {
+
+                String newToken = refreshToken();
+                if (StringUtils.hasText(newToken)) {
+                    response.setHeader("Authentication", newToken);
+                }
                 filterChain.doFilter(request, response);
                 return;
-            }
 
-            String jwt = getJwtFromRequest(request);
-            if (!StringUtils.hasText(jwt)) {
-                response.sendError(HttpServletResponse.SC_UNAUTHORIZED,
-                        "No authentication token found!");
-                return;
-            }
-
-            if (tokenProvider.validateToken(jwt)) {
-                Long userId = tokenProvider.getUserIdFromJWT(jwt);
-
-                UserDetails userDetails = customUserDetailsService
-                        .loadUserById(userId);
-                UsernamePasswordAuthenticationToken authentication =
-                        new UsernamePasswordAuthenticationToken(userDetails,
-                                null, userDetails.getAuthorities()
-                        );
-                authentication.setDetails(new WebAuthenticationDetailsSource()
-                        .buildDetails(request)
-                );
-
-                SecurityContextHolder.getContext()
-                        .setAuthentication(authentication);
+            } else if (tokenProvider.validateToken(jwt)) {
+                refreshSession(request, jwt);
             } else {
-                response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
+                response.sendError(HttpServletResponse
+                        .SC_INTERNAL_SERVER_ERROR,
                         "Authentication token not valid!");
                 return;
             }
@@ -83,8 +69,37 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         if (StringUtils.hasText(bearerToken)
                 && bearerToken.startsWith("Bearer ")) {
-            return bearerToken.substring(7, bearerToken.length());
+            String token = bearerToken.substring(7, bearerToken.length());
+            return token.equals("Invalid") ? null : token;
         }
         return null;
+    }
+
+    private String refreshToken() {
+        Authentication authentication = SecurityContextHolder
+                .getContext().getAuthentication();
+
+        if (authentication != null && authentication.isAuthenticated()) {
+            String newToken = tokenProvider.generateToken(authentication);
+            return "Bearer " + newToken;
+        }
+        return null;
+    }
+
+    private void refreshSession(HttpServletRequest request, String jwt) {
+        Long userId = tokenProvider.getUserIdFromJWT(jwt);
+
+        UserDetails userDetails = customUserDetailsService
+                .loadUserById(userId);
+        UsernamePasswordAuthenticationToken authentication =
+                new UsernamePasswordAuthenticationToken(userDetails,
+                        null, userDetails.getAuthorities()
+                );
+        authentication.setDetails(new WebAuthenticationDetailsSource()
+                .buildDetails(request)
+        );
+
+        SecurityContextHolder.getContext()
+                .setAuthentication(authentication);
     }
 }

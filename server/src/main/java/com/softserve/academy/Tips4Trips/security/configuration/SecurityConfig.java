@@ -3,6 +3,7 @@ package com.softserve.academy.Tips4Trips.security.configuration;
 
 import com.softserve.academy.Tips4Trips.security.JwtAuthenticationEntryPoint;
 import com.softserve.academy.Tips4Trips.security.JwtAuthenticationFilter;
+import com.softserve.academy.Tips4Trips.security.LogoutSuccessHandlerImpl;
 import com.softserve.academy.Tips4Trips.service.impl.UserDetailsServiceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import org.springframework.security.web.authentication.www.BasicAuthenticationEntryPoint;
 
 @Configuration
@@ -38,17 +40,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private JwtAuthenticationEntryPoint unauthorizedHandler;
 
     @Bean
+    public LogoutSuccessHandlerImpl logoutHandler() {
+        return new LogoutSuccessHandlerImpl();
+    }
+
+    @Bean
     public JwtAuthenticationFilter jwtAuthenticationFilter() {
         return new JwtAuthenticationFilter();
     }
 
-    @Bean
+   /* @Bean
     public AuthenticationEntryPoint authenticationEntryPoint(){
         BasicAuthenticationEntryPoint entryPoint =
                 new BasicAuthenticationEntryPoint();
         entryPoint.setRealmName("REALM");
         return entryPoint;
-    }
+    }*/
 
     @Override
     public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
@@ -72,16 +79,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .csrf().disable()
-                .httpBasic().authenticationEntryPoint(authenticationEntryPoint())
+                .httpBasic().authenticationEntryPoint(unauthorizedHandler)
                 .and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/api/auth/signin")
-                .permitAll()
                 .anyRequest()
-                .permitAll();
+                .permitAll()
+                .and()
+                .logout()
+                .logoutUrl("/authentication/logout")
+                .logoutSuccessHandler(logoutHandler())
+                .invalidateHttpSession(true)
+                .deleteCookies("JSESSIONID");
 
         http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
 
