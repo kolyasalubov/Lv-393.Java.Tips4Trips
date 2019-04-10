@@ -96,9 +96,7 @@
             <column name="coordinate_y" type="DOUBLE">
                 <constraints nullable="false"/>
             </column>
-            <column name="planet_id" type="BIGINT">
-                <constraints nullable="false"/>
-            </column>
+
         </createTable>
     </changeSet>
     <changeSet author="User (generated)" id="1554717331048-7">
@@ -212,16 +210,6 @@
                 <constraints nullable="false"/>
             </column>
             <column name="key_value" type="BIGINT"/>
-        </createTable>
-    </changeSet>
-    <changeSet author="User (generated)" id="1554717331048-12">
-        <createTable tableName="planets">
-            <column autoIncrement="true" name="id" type="BIGINT">
-                <constraints primaryKey="true"/>
-            </column>
-            <column name="name" type="VARCHAR(30)">
-                <constraints nullable="false"/>
-            </column>
         </createTable>
     </changeSet>
     <changeSet author="User (generated)" id="1554717331048-13">
@@ -425,9 +413,7 @@
         </createIndex>
     </changeSet>
     <changeSet author="User (generated)" id="1554717331048-36">
-        <createIndex indexName="FKejktyt0u8ku3ke47o4ywjplb3" tableName="countries">
-            <column name="planet_id"/>
-        </createIndex>
+
     </changeSet>
     <changeSet author="User (generated)" id="1554717331048-37">
         <createIndex indexName="FKf9l8slr2hdv6us03g5fkn5tcd" tableName="posts">
@@ -518,9 +504,6 @@
     </changeSet>
     <changeSet author="User (generated)" id="1554717331048-58">
         <addForeignKeyConstraint baseColumnNames="subscriber_id" baseTableName="accounts_subscribers" constraintName="FKddl7747epwheh9umkc38f5688" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="accounts"/>
-    </changeSet>
-    <changeSet author="User (generated)" id="1554717331048-59">
-        <addForeignKeyConstraint baseColumnNames="planet_id" baseTableName="countries" constraintName="FKejktyt0u8ku3ke47o4ywjplb3" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="planets"/>
     </changeSet>
     <changeSet author="User (generated)" id="1554717331048-60">
         <addForeignKeyConstraint baseColumnNames="account_id" baseTableName="posts" constraintName="FKf9l8slr2hdv6us03g5fkn5tcd" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="accounts"/>
