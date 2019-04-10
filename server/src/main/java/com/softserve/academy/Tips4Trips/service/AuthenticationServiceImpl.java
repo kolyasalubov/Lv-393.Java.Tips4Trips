@@ -1,8 +1,8 @@
 package com.softserve.academy.Tips4Trips.service;
 
-import com.softserve.academy.Tips4Trips.entity.Account;
-import com.softserve.academy.Tips4Trips.entity.Role;
-import com.softserve.academy.Tips4Trips.entity.User;
+import com.softserve.academy.Tips4Trips.entity.administration.Account;
+import com.softserve.academy.Tips4Trips.entity.enums.Role;
+import com.softserve.academy.Tips4Trips.entity.administration.User;
 import com.softserve.academy.Tips4Trips.security.JwtTokenProvider;
 
 import org.springframework.beans.factory.annotation.Autowired;
