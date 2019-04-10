@@ -21,8 +21,17 @@ public class RestaurantService {
         this.cityRepository = cityRepository;
     }
 
-    public Optional<Restaurant> findById(Long id) {
-        return repository.findById(id);
+    public List<Restaurant> findAll() {
+        return repository.findAll();
+    }
+
+    public Restaurant findById(Long id) {
+        Optional<Restaurant> monument = repository.findById(id);
+        if (monument.isPresent()) {
+            return monument.get();
+        } else {
+            return null;
+        }
     }
 
     public List<Restaurant> findByName(String name) {
@@ -36,5 +45,13 @@ public class RestaurantService {
         } else {
             return null;
         }
+    }
+
+    public Restaurant createRestaurant(Restaurant restaurant) {
+        return repository.save(restaurant);
+    }
+
+    public Restaurant update(Restaurant restaurant) {
+        return repository.save(restaurant);
     }
 }
