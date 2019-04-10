@@ -1,4 +1,4 @@
-package com.softserve.academy.Tips4Trips.entity;
+package com.softserve.academy.Tips4Trips.entity.administration;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;

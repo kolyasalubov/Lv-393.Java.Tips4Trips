@@ -1,17 +1,14 @@
 package com.softserve.academy.Tips4Trips.service;
 
-import com.softserve.academy.Tips4Trips.dto.PostDTO;
 import com.softserve.academy.Tips4Trips.dto.converter.PostConverter;
-import com.softserve.academy.Tips4Trips.entity.Account;
-import com.softserve.academy.Tips4Trips.entity.Post;
-import com.softserve.academy.Tips4Trips.entity.Route;
+import com.softserve.academy.Tips4Trips.entity.administration.Account;
+import com.softserve.academy.Tips4Trips.entity.blog.Post;
 import com.softserve.academy.Tips4Trips.repository.AccountRepository;
 import com.softserve.academy.Tips4Trips.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class PostService {

@@ -1,6 +1,6 @@
 package com.softserve.academy.Tips4Trips.dto;
 
-import com.softserve.academy.Tips4Trips.entity.Role;
+import com.softserve.academy.Tips4Trips.entity.enums.Role;
 
 import java.util.Date;
 

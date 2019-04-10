@@ -1,4 +1,4 @@
-package com.softserve.academy.Tips4Trips.entity.place;
+package com.softserve.academy.Tips4Trips.entity.enums;
 
 public enum TypeOfBuilding {
     FOOD, HOUSING, ENTERTAINMENT, PLACE_OF_INTEREST;

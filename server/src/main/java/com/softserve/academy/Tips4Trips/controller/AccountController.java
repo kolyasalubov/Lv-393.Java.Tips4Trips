@@ -3,15 +3,12 @@ package com.softserve.academy.Tips4Trips.controller;
 
 import com.softserve.academy.Tips4Trips.dto.AccountDTO;
 import com.softserve.academy.Tips4Trips.dto.converter.AccountConverter;
-import com.softserve.academy.Tips4Trips.entity.Account;
+import com.softserve.academy.Tips4Trips.entity.administration.Account;
 import com.softserve.academy.Tips4Trips.service.AccountService;
-import org.hibernate.HibernateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Optional;
 
 @RestController
 @CrossOrigin
@@ -46,7 +43,4 @@ public class AccountController {
         return new ResponseEntity<>(accountConverter.convertToDTO(account), HttpStatus.ACCEPTED);
 
     }
-
-
-
 }

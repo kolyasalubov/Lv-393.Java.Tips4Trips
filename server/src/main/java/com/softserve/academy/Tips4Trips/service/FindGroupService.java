@@ -1,15 +1,13 @@
 package com.softserve.academy.Tips4Trips.service;
 
-import com.softserve.academy.Tips4Trips.dto.FindGroupDTO;
-import com.softserve.academy.Tips4Trips.entity.Account;
-import com.softserve.academy.Tips4Trips.entity.FindGroup;
+import com.softserve.academy.Tips4Trips.entity.administration.Account;
+import com.softserve.academy.Tips4Trips.entity.entertainment.mountains.FindGroup;
 import com.softserve.academy.Tips4Trips.entity.Route;
 import com.softserve.academy.Tips4Trips.repository.FindGroupRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class FindGroupService {

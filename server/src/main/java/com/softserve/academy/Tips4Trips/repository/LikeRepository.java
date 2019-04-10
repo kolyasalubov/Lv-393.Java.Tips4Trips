@@ -1,8 +1,8 @@
 package com.softserve.academy.Tips4Trips.repository;
 
-import com.softserve.academy.Tips4Trips.entity.Account;
-import com.softserve.academy.Tips4Trips.entity.Like;
-import com.softserve.academy.Tips4Trips.entity.Post;
+import com.softserve.academy.Tips4Trips.entity.administration.Account;
+import com.softserve.academy.Tips4Trips.entity.blog.Like;
+import com.softserve.academy.Tips4Trips.entity.blog.Post;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,4 +1,4 @@
-package com.softserve.academy.Tips4Trips.entity;
+package com.softserve.academy.Tips4Trips.entity.enums;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;

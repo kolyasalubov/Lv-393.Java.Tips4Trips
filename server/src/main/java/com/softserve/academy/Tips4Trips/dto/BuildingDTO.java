@@ -1,6 +1,6 @@
 package com.softserve.academy.Tips4Trips.dto;
 
-import com.softserve.academy.Tips4Trips.entity.place.TypeOfBuilding;
+import com.softserve.academy.Tips4Trips.entity.enums.TypeOfBuilding;
 
 import java.time.DayOfWeek;
 import java.util.Date;

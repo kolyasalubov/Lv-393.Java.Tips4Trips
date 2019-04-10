@@ -1,9 +1,9 @@
 package com.softserve.academy.Tips4Trips.dto.converter;
 
 import com.softserve.academy.Tips4Trips.dto.LikeDTO;
-import com.softserve.academy.Tips4Trips.entity.Account;
-import com.softserve.academy.Tips4Trips.entity.Like;
-import com.softserve.academy.Tips4Trips.entity.Post;
+import com.softserve.academy.Tips4Trips.entity.administration.Account;
+import com.softserve.academy.Tips4Trips.entity.blog.Like;
+import com.softserve.academy.Tips4Trips.entity.blog.Post;
 import com.softserve.academy.Tips4Trips.repository.AccountRepository;
 import com.softserve.academy.Tips4Trips.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,10 +1,10 @@
 package com.softserve.academy.Tips4Trips.entity;
 
+import com.softserve.academy.Tips4Trips.entity.administration.Account;
 import com.softserve.academy.Tips4Trips.entity.place.Place;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 

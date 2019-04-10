@@ -1,28 +1,24 @@
 package com.softserve.academy.Tips4Trips.service;
 
-import com.softserve.academy.Tips4Trips.dto.UserDTO;
 import com.softserve.academy.Tips4Trips.dto.converter.UserConverter;
-import com.softserve.academy.Tips4Trips.entity.Account;
-import com.softserve.academy.Tips4Trips.entity.User;
+import com.softserve.academy.Tips4Trips.entity.administration.Account;
+import com.softserve.academy.Tips4Trips.entity.administration.User;
 import com.softserve.academy.Tips4Trips.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UserService {
 
     private AccountService accountService;
-    private UserConverter userConverter;
     private UserRepository repository;
 
     @Autowired
     public UserService(AccountService accountService, UserConverter userConverter,
                        UserRepository repository) {
         this.accountService = accountService;
-        this.userConverter = userConverter;
         this.repository = repository;
     }
 

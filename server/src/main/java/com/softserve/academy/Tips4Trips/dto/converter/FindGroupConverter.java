@@ -1,8 +1,7 @@
 package com.softserve.academy.Tips4Trips.dto.converter;
 
 import com.softserve.academy.Tips4Trips.dto.FindGroupDTO;
-import com.softserve.academy.Tips4Trips.entity.Account;
-import com.softserve.academy.Tips4Trips.entity.FindGroup;
+import com.softserve.academy.Tips4Trips.entity.entertainment.mountains.FindGroup;
 import com.softserve.academy.Tips4Trips.entity.Route;
 import com.softserve.academy.Tips4Trips.repository.RouteRepository;
 import com.softserve.academy.Tips4Trips.service.AccountService;
