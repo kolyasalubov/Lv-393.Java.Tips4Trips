@@ -6,23 +6,20 @@ import com.softserve.academy.Tips4Trips.dto.UserDTO;
 import com.softserve.academy.Tips4Trips.dto.converter.reverse.ReverseAccountConverter;
 import com.softserve.academy.Tips4Trips.dto.converter.reverse.ReverseUserConverter;
 import com.softserve.academy.Tips4Trips.entity.Account;
-import com.softserve.academy.Tips4Trips.entity.User;
 import com.softserve.academy.Tips4Trips.security.AuthenticationConstant;
 import com.softserve.academy.Tips4Trips.service.AccountService;
 import com.softserve.academy.Tips4Trips.service.UserService;
-import com.softserve.academy.Tips4Trips.service.impl.AuthenticationServiceImpl;
+import com.softserve.academy.Tips4Trips.service.AuthenticationServiceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/authentication")
@@ -63,7 +60,7 @@ public class AuthenticationTestController {
             throws Exception {
         UserDTO userDTO = userAccountDTO.getUserDto();
         AccountDTO accountDTO = userAccountDTO.getAccountDTO();
-        Account account = 
+        Account account =
         User user = userConverter.apply(userDTO);
         String token = authenticationService.register(userAccountDTO);
         HttpHeaders responseHeaders = new HttpHeaders();

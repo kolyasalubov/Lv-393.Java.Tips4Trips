@@ -1,22 +1,67 @@
 package com.softserve.academy.Tips4Trips.service;
 
 import com.softserve.academy.Tips4Trips.dto.PostDTO;
+import com.softserve.academy.Tips4Trips.dto.converter.PostConverter;
 import com.softserve.academy.Tips4Trips.entity.Account;
 import com.softserve.academy.Tips4Trips.entity.Post;
 import com.softserve.academy.Tips4Trips.entity.Route;
+import com.softserve.academy.Tips4Trips.repository.AccountRepository;
 import com.softserve.academy.Tips4Trips.repository.PostRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
-public interface PostService extends Service<Post, Long, PostRepository> {
+@Service
+public class PostService {
 
-    List<Post> searchByName(String name);
+    private AccountRepository accountRepository;
+    private RouteService routeService;
+    private PostConverter postConverter;
+    private PostRepository repository;
 
-    List<Post> findByAuthor(Account author);
+    @Autowired
+    public PostService(AccountRepository accountRepository, RouteService routeService,
+                       PostConverter postConverter, PostRepository repository) {
+        this.accountRepository = accountRepository;
+        this.routeService = routeService;
+        this.postConverter = postConverter;
+        this.repository = repository;
+    }
 
-    List<Post> findByRoute(Route route);
+    public List<Post> getByAuthorId(Long authorId) {
+        Account account = accountRepository.findById(authorId).get();
+        return repository.findByAuthor(account);
+    }
 
-    Post createPost(PostDTO postDTO);
+    public List<Post> searchByName(String name) {
+        return repository.findByNameContainingIgnoreCase(name);
+    }
 
-    Post update(PostDTO postDTO);
+    public Post createPost(Post post) {
+        post.setId(0L);
+        return repository.save(post);
+    }
+
+    public Post update(Post post) {
+        if (post.getId() == null) {
+            throw new IllegalArgumentException();
+        }
+        return repository.save(post);
+    }
+
+    public List<Post> findAll() {
+        return repository.findAll();
+    }
+
+    public Post findById(Long id) {
+        return repository.findById(id).get();
+    }
+
+    public void deleteById(Long id) {
+        repository.findById(id).ifPresent(repository::delete);
+    }
 }
+
+

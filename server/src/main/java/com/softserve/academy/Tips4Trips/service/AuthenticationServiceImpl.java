@@ -1,4 +1,4 @@
-package com.softserve.academy.Tips4Trips.service.impl;
+package com.softserve.academy.Tips4Trips.service;
 
 import com.softserve.academy.Tips4Trips.dto.AccountDTO;
 import com.softserve.academy.Tips4Trips.dto.UserAccountDTO;

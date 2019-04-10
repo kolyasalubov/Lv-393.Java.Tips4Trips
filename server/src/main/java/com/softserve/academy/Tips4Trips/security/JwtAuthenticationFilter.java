@@ -1,7 +1,6 @@
 package com.softserve.academy.Tips4Trips.security;
 
-import com.softserve.academy.Tips4Trips.service.impl.AuthenticationServiceImpl;
-import com.softserve.academy.Tips4Trips.service.impl.UserDetailsServiceImpl;
+import com.softserve.academy.Tips4Trips.service.UserDetailsServiceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
