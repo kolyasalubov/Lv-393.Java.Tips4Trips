@@ -1,28 +1,24 @@
 package com.softserve.academy.Tips4Trips.service;
 
-import com.softserve.academy.Tips4Trips.dto.UserDTO;
 import com.softserve.academy.Tips4Trips.dto.converter.UserConverter;
-import com.softserve.academy.Tips4Trips.entity.Account;
-import com.softserve.academy.Tips4Trips.entity.User;
+import com.softserve.academy.Tips4Trips.entity.administration.Account;
+import com.softserve.academy.Tips4Trips.entity.administration.User;
 import com.softserve.academy.Tips4Trips.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UserService {
 
     private AccountService accountService;
-    private UserConverter userConverter;
     private UserRepository repository;
 
     @Autowired
     public UserService(AccountService accountService, UserConverter userConverter,
                        UserRepository repository) {
         this.accountService = accountService;
-        this.userConverter = userConverter;
         this.repository = repository;
     }
 
@@ -54,7 +50,6 @@ public class UserService {
         repository.delete(user);
     }
 
-<<<<<<< HEAD
     public User createUser(User user) {
         user.setId(0L);
         return repository.save(user);
@@ -64,7 +59,6 @@ public class UserService {
         if (user.getId() == null) {
             throw new IllegalArgumentException();
         }
-=======
 
     public User createUser(UserDTO userDTO) {
         User user = userConverter.convertToEntity(userDTO);
@@ -75,7 +69,6 @@ public class UserService {
         User user = repository.findById(userDTO.getId()).get();
         user.setLogin(userDTO.getLogin());
         user.setPassword(userDTO.getPassword());
->>>>>>> 34dacc720e840960dbb65139bd53b58671477958
         return repository.save(user);
     }
 }

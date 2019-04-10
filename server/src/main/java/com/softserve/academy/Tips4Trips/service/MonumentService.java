@@ -1,7 +1,9 @@
 package com.softserve.academy.Tips4Trips.service;
 
 import com.softserve.academy.Tips4Trips.dto.MonumentDTO;
+import com.softserve.academy.Tips4Trips.entity.City;
 import com.softserve.academy.Tips4Trips.entity.place.Monument;
+import com.softserve.academy.Tips4Trips.repository.CityRepository;
 import com.softserve.academy.Tips4Trips.repository.MonumentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,35 +15,46 @@ import java.util.Optional;
 public class MonumentService {
 
     private MonumentRepository repository;
+    private CityRepository cityRepository;
 
     @Autowired
-    public MonumentService(MonumentRepository repository){
+    public MonumentService(MonumentRepository repository, CityRepository cityRepository){
         this.repository = repository;
+        this.cityRepository = cityRepository;
     }
 
-    public Optional<Monument> findById(Long id) {
-        return repository.findById(id);
+    public Monument findById(Long id) {
+        Optional<Monument> monument = repository.findById(id);
+        if (monument.isPresent()) {
+            return monument.get();
+        } else {
+            return null;
+        }
     }
 
     public List<Monument> findByName(String name) {
         return repository.findByName(name);
     }
 
-    public List<Monument> findByCityAndName(String city, String name) {
-        return repository.findByCityAndName(city, name);
+    public List<Monument> findByCity(String name) {
+        Optional<City> city = cityRepository.findByName(name);
+        if (city.isPresent()) {
+            return repository.findByCity(city.get());
+        } else {
+            return null;
+        }
     }
 
     public Monument createMonument(Monument monument) {
         return repository.save(monument);
     }
 
-    public Monument update(MonumentDTO monumentDTO) {
-        Monument monument = repository.findById(monumentDTO.getId()).get();
-        monument.setName(monumentDTO.getName());
-        monument.setDescription(monumentDTO.getDescription());
-        monument.setAddress(monumentDTO.getAddress());
-        monument.setPosition(monumentDTO.getPosition());
-        monument.setPhotoPath(monumentDTO.getPhotoPath());
+    public List<Monument> findAll() {
+        return repository.findAll();
+    }
+
+
+    public Monument update(Monument monument) {
         return repository.save(monument);
     }
 }

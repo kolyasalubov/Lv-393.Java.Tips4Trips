@@ -1,10 +1,8 @@
 package com.softserve.academy.Tips4Trips.security;
 
-
-import com.softserve.academy.Tips4Trips.entity.Role;
-import com.softserve.academy.Tips4Trips.entity.User;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.softserve.academy.Tips4Trips.entity.administration.User;
+import com.softserve.academy.Tips4Trips.entity.enums.Role;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

@@ -1,4 +1,8 @@
-package com.softserve.academy.Tips4Trips.entity;
+package com.softserve.academy.Tips4Trips.entity.administration;
+
+import com.softserve.academy.Tips4Trips.entity.blog.Post;
+import com.softserve.academy.Tips4Trips.entity.entertainment.mountains.Sale;
+import com.softserve.academy.Tips4Trips.entity.enums.Role;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;

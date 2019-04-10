@@ -2,7 +2,7 @@ package com.softserve.academy.Tips4Trips.controller;
 
 import com.softserve.academy.Tips4Trips.dto.FindGroupDTO;
 import com.softserve.academy.Tips4Trips.dto.converter.FindGroupConverter;
-import com.softserve.academy.Tips4Trips.entity.FindGroup;
+import com.softserve.academy.Tips4Trips.entity.entertainment.mountains.FindGroup;
 import com.softserve.academy.Tips4Trips.service.FindGroupService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

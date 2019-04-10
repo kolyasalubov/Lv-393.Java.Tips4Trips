@@ -1,15 +1,9 @@
 package com.softserve.academy.Tips4Trips.service;
 
-import com.softserve.academy.Tips4Trips.entity.Account;
-import com.softserve.academy.Tips4Trips.entity.User;
-import com.softserve.academy.Tips4Trips.repository.AccountRepository;
-import com.softserve.academy.Tips4Trips.repository.UserRepository;
+import com.softserve.academy.Tips4Trips.entity.administration.Account;
 import com.softserve.academy.Tips4Trips.security.UserDetailsImpl;
-import com.softserve.academy.Tips4Trips.service.UserService;
-import com.softserve.academy.Tips4Trips.service.AccountService;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AccountStatusException;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
