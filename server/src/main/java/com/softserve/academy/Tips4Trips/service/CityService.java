@@ -1,7 +1,5 @@
 package com.softserve.academy.Tips4Trips.service;
 
-import com.softserve.academy.Tips4Trips.dto.CityDTO;
-import com.softserve.academy.Tips4Trips.dto.converter.CityConverter;
 import com.softserve.academy.Tips4Trips.entity.City;
 import com.softserve.academy.Tips4Trips.repository.CityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,17 +11,13 @@ import java.util.List;
 public class CityService {
 
     CityRepository cityRepository;
-    CityConverter cityConverter;
 
     @Autowired
-    public CityService(CityRepository cityRepository,
-                       CityConverter cityConverter) {
+    public CityService(CityRepository cityRepository) {
         this.cityRepository = cityRepository;
-        this.cityConverter = cityConverter;
     }
 
-    public City createCity(CityDTO cityDTO) {
-        City city = cityConverter.convertToEntity(cityDTO);
+    public City createCity(City city) {
         return cityRepository.save(city);
     }
 

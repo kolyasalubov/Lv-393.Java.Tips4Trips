@@ -1,6 +1,5 @@
 package com.softserve.academy.Tips4Trips.service;
 
-import com.softserve.academy.Tips4Trips.dto.MonumentDTO;
 import com.softserve.academy.Tips4Trips.entity.City;
 import com.softserve.academy.Tips4Trips.entity.place.Monument;
 import com.softserve.academy.Tips4Trips.repository.CityRepository;
@@ -25,11 +24,7 @@ public class MonumentService {
 
     public Monument findById(Long id) {
         Optional<Monument> monument = repository.findById(id);
-        if (monument.isPresent()) {
-            return monument.get();
-        } else {
-            return null;
-        }
+        return monument.orElse(null);
     }
 
     public List<Monument> findByName(String name) {
@@ -38,11 +33,7 @@ public class MonumentService {
 
     public List<Monument> findByCity(String name) {
         Optional<City> city = cityRepository.findByName(name);
-        if (city.isPresent()) {
-            return repository.findByCity(city.get());
-        } else {
-            return null;
-        }
+        return city.map(value -> repository.findByCity(value)).orElse(null);
     }
 
     public Monument createMonument(Monument monument) {
