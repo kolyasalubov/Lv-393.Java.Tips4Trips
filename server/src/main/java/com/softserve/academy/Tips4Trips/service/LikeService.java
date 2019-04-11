@@ -18,8 +18,7 @@ public class LikeService {
         return repository.findByLikedByAndPost(account, post).get();
     }
 
-    Like createLike(Like like) {
-
+    public Like createLike(Like like) {
         return repository.save(like);
     }
 
