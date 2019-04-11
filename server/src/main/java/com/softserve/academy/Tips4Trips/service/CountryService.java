@@ -1,8 +1,5 @@
 package com.softserve.academy.Tips4Trips.service;
 
-import com.softserve.academy.Tips4Trips.dto.CountryDTO;
-import com.softserve.academy.Tips4Trips.dto.converter.CountryConverter;
-import com.softserve.academy.Tips4Trips.entity.City;
 import com.softserve.academy.Tips4Trips.entity.Country;
 import com.softserve.academy.Tips4Trips.repository.CountryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,17 +10,13 @@ import java.util.List;
 @Service
 public class CountryService {
     CountryRepository countryRepository;
-    CountryConverter countryConverter;
 
     @Autowired
-    public CountryService(CountryRepository countryRepository,
-                          CountryConverter countryConverter) {
+    public CountryService(CountryRepository countryRepository) {
         this.countryRepository = countryRepository;
-        this.countryConverter = countryConverter;
     }
 
-    public Country createCountry(CountryDTO countryDTO) {
-        Country country = countryConverter.convertToEntity(countryDTO);
+    public Country createCountry(Country country) {
         return countryRepository.save(country);
     }
 
