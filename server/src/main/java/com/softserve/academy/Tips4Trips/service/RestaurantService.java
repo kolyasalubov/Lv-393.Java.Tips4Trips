@@ -27,11 +27,7 @@ public class RestaurantService {
 
     public Restaurant findById(Long id) {
         Optional<Restaurant> monument = repository.findById(id);
-        if (monument.isPresent()) {
-            return monument.get();
-        } else {
-            return null;
-        }
+        return monument.orElse(null);
     }
 
     public List<Restaurant> findByName(String name) {
