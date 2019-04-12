@@ -87,10 +87,11 @@ public class PostConverter implements Converter<Post, PostDetailsDTO> {
                 ? content.substring(0, MAX_DESCRIPTION_LENGTH) : content;
         postInfoDTO.setDescription(description + "...");
         postInfoDTO.setCreationDate(post.getCreationDate());
-        postInfoDTO.setSelf(ControllerLinkBuilder.linkTo(
-                ControllerLinkBuilder.methodOn(PostController.class)
-                        .getById(post.getId())
-        ).withSelfRel().getHref());
+        postInfoDTO.setSelf(ControllerLinkBuilder
+                .linkTo(ControllerLinkBuilder
+                        .methodOn(PostController.class)
+                        .getById(post.getId()))
+                .withSelfRel().getHref());
         Account author = post.getAuthor();
         postInfoDTO.setAuthorInfo(accountConverter
                 .convertToInfoDTO(author));

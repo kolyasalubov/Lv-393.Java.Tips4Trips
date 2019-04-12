@@ -25,9 +25,9 @@ public class PostService {
     }
 
     public List<Post> getByAuthorId(Long authorId) {
-        Optional<Account> account = accountRepository.findById(authorId);
-        if (account.isPresent()) {
-            return repository.findByAuthor(account.get());
+        Optional<Account> author = accountRepository.findById(authorId);
+        if (author.isPresent()) {
+            return repository.findByAuthor(author.get());
         } else {
             throw new NoSuchElementException("Author not found!");
         }
