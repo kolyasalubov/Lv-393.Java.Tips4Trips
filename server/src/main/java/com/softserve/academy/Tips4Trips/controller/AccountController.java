@@ -43,4 +43,10 @@ public class AccountController {
         return new ResponseEntity<>(accountConverter.convertToDTO(account), HttpStatus.ACCEPTED);
 
     }
+
+    @GetMapping("/exists/email/{email}")
+    public ResponseEntity<Boolean> emailExists(@PathVariable String email) {
+        return new ResponseEntity<>(accountService.emailExists(email), HttpStatus.OK);
+    }
+
 }

@@ -15,8 +15,7 @@ import java.io.Serializable;
 public abstract class Place implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "key_generator")
-    @TableGenerator(table = "place_keys", pkColumnName = "key_name",
-            valueColumnName = "key_value", name = "key_generator")
+
     private Long id;
 
     @Size(max = 35)

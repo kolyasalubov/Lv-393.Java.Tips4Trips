@@ -24,6 +24,13 @@ public class FindGroupController {
     }
 
 
+    @GetMapping("/{id}")
+    public ResponseEntity<FindGroupDTO> getById(@PathVariable long id) {
+        return new ResponseEntity<>(findGroupConverter
+                .convertToDTO(findGroupService.findById(id)), HttpStatus.OK);
+    }
+
+
     @PostMapping("/create")
     public ResponseEntity<FindGroupDTO> createPost(@RequestBody FindGroupDTO findGroupDTO) {
         FindGroup findGroup = findGroupService.createFindGroup(findGroupConverter.convertToEntity(findGroupDTO));

@@ -31,9 +31,9 @@ public class RestaurantController {
     }
 
     @PostMapping("/create")
-    public Restaurant createRestaurant(@RequestBody RestaurantDTO restaurantDTO) {
+    public ResponseEntity<RestaurantDTO> createRestaurant(@RequestBody RestaurantDTO restaurantDTO) {
         Restaurant restaurant = restaurantConverter.convertToEntity(restaurantDTO);
-        return restaurantService.createRestaurant(restaurant);
+        return new ResponseEntity<>(restaurantConverter.convertToDTO(restaurantService.createRestaurant(restaurant)), HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")

@@ -5,6 +5,7 @@ import com.softserve.academy.Tips4Trips.entity.entertainment.mountains.FindGroup
 import com.softserve.academy.Tips4Trips.entity.Route;
 import com.softserve.academy.Tips4Trips.repository.RouteRepository;
 import com.softserve.academy.Tips4Trips.service.AccountService;
+import com.softserve.academy.Tips4Trips.service.RouteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -16,13 +17,14 @@ public class FindGroupConverter implements Converter<FindGroup, FindGroupDTO> {
 
     AccountConverter accountConverter;
     AccountService accountService;
-    RouteRepository routeRepository;
+    RouteService routeService;
+
 
     @Autowired
-    public FindGroupConverter(AccountConverter accountConverter, AccountService accountService, RouteRepository routeRepository) {
+    public FindGroupConverter(AccountConverter accountConverter, AccountService accountService, RouteService routeService) {
         this.accountConverter = accountConverter;
         this.accountService = accountService;
-        this.routeRepository = routeRepository;
+        this.routeService = routeService;
     }
 
     @Override
@@ -56,9 +58,7 @@ public class FindGroupConverter implements Converter<FindGroup, FindGroupDTO> {
         findGroup.setCreationDate(findGroupDTO.getCreationDate());
         findGroup.setStartDate(findGroupDTO.getStartDate());
         findGroup.setCreator(accountService.findById(findGroupDTO.getAuthorId()));
-        Optional<Route> route = routeRepository.findById(findGroupDTO.getRouteId());
-        route.ifPresent(findGroup::setRoute);
-
+        findGroup.setRoute( routeService.findById(findGroupDTO.getRouteId()));
         findGroup.setSubscribers(findGroupDTO.getSubscribers().stream()
                 .map(accountDTO -> accountConverter.convertToEntity(accountDTO))
                 .collect(Collectors.toList())
