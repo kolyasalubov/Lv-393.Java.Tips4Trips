@@ -1,16 +1,12 @@
 package com.softserve.academy.Tips4Trips.controller;
 
 
-import com.softserve.academy.Tips4Trips.dto.AccountDTO;
 import com.softserve.academy.Tips4Trips.dto.LikeDTO;
-import com.softserve.academy.Tips4Trips.dto.PostDTO;
 import com.softserve.academy.Tips4Trips.dto.converter.AccountConverter;
 import com.softserve.academy.Tips4Trips.dto.converter.LikeConverter;
 import com.softserve.academy.Tips4Trips.dto.converter.PostConverter;
 import com.softserve.academy.Tips4Trips.entity.blog.Like;
-import com.softserve.academy.Tips4Trips.service.AccountService;
 import com.softserve.academy.Tips4Trips.service.LikeService;
-import com.softserve.academy.Tips4Trips.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -38,21 +34,17 @@ public class LikeController {
         return count;
     }*/
 
-    //???
-    @GetMapping("/find")
-    public ResponseEntity<LikeDTO> findByAccountAndPost(@RequestBody AccountDTO accountDTO, PostDTO postDTO) {
-        Like like = likeService.findByAccountAndPost(accountConverter.convertToEntity(accountDTO),postConverter.convertToEntity(postDTO));
-        return new ResponseEntity<>(likeConverter.convertToDTO(like), HttpStatus.OK);
-    }
-// ???
+
+    // ???
     @PostMapping("/create")
     public ResponseEntity<LikeDTO> createLike(@RequestBody LikeDTO likeDTO) {
+        System.out.println(likeDTO.toString());
         Like like = likeService.createLike(likeConverter.convertToEntity(likeDTO));
         return new ResponseEntity<>(likeConverter.convertToDTO(like), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/delete/{id}")
-    public void deleteLike(@PathVariable Like like) { //like?
-        likeService.deleteLike(like);
+    public void deleteLike(@PathVariable Long id) { //like?
+        likeService.deleteLike(id);
     }
 }
