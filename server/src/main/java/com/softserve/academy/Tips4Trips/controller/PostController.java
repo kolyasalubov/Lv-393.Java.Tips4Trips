@@ -2,6 +2,7 @@ package com.softserve.academy.Tips4Trips.controller;
 
 import com.softserve.academy.Tips4Trips.dto.details.PostDetailsDTO;
 import com.softserve.academy.Tips4Trips.dto.converter.PostConverter;
+import com.softserve.academy.Tips4Trips.dto.info.PostInfoDTO;
 import com.softserve.academy.Tips4Trips.entity.blog.Post;
 import com.softserve.academy.Tips4Trips.service.AccountService;
 import com.softserve.academy.Tips4Trips.service.PostService;
@@ -19,20 +20,18 @@ public class PostController {
 
     private PostService postService;
     private PostConverter postConverter;
-    private AccountService accountService;
 
     @Autowired
-    public PostController(PostService postService, PostConverter postConverter,
-                          AccountService accountService) {
+    public PostController(PostService postService,
+                          PostConverter postConverter) {
         this.postService = postService;
         this.postConverter = postConverter;
-        this.accountService = accountService;
     }
 
     @GetMapping
-    public ResponseEntity<List<PostDetailsDTO>> getAll() {
+    public ResponseEntity<List<PostInfoDTO>> getAll() {
         return new ResponseEntity<>(postConverter
-                .convertToDTO(postService.findAll()), HttpStatus.OK);
+                .convertToInfoDTO(postService.findAll()), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
@@ -42,9 +41,9 @@ public class PostController {
     }
 
     @GetMapping("/author/{authorId}")
-    public ResponseEntity<List<PostDetailsDTO>> getByAuthor(@PathVariable Long authorId) {
+    public ResponseEntity<List<PostInfoDTO>> getByAuthor(@PathVariable Long authorId) {
         return new ResponseEntity<>(postConverter
-                .convertToDTO(postService.getByAuthorId(authorId)), HttpStatus.OK);
+                .convertToInfoDTO(postService.getByAuthorId(authorId)), HttpStatus.OK);
     }
 
     @PutMapping("/update")
