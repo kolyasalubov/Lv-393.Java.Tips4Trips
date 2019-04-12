@@ -30,9 +30,9 @@ public class HotelController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<HotelDTO> createHotel(@RequestBody HotelDTO hotelDTO) {
+    public Hotel createHotel(@RequestBody HotelDTO hotelDTO) {
         Hotel hotel = hotelConverter.convertToEntity(hotelDTO);
-        return new ResponseEntity<>(hotelConverter.convertToDTO(hotelService.createHotel(hotel)), HttpStatus.CREATED);
+        return hotelService.createHotel(hotel);
     }
 
     @GetMapping("/{id}")
