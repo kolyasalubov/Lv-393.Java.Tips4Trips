@@ -10,6 +10,8 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -21,6 +23,7 @@ public class AuthenticationServiceImpl {
     private JwtTokenProvider tokenProvider;
     private AccountService accountService;
     private UserService userService;
+    private PasswordEncoder passwordEncoder;
 
     @Autowired
     public AuthenticationServiceImpl(AuthenticationManager authenticationManager,
@@ -31,13 +34,15 @@ public class AuthenticationServiceImpl {
         this.tokenProvider = tokenProvider;
         this.accountService = accountService;
         this.userService = userService;
+        this.passwordEncoder = new BCryptPasswordEncoder();
     }
 
     public String login(User user) {
         return authenticate(user.getLogin(), user.getPassword());
     }
 
-    public String register(User user, Account account) throws Exception {
+    public String register(User user, Account account)
+            throws Exception {
         try {
 
             Account oldAccount = accountService
@@ -55,9 +60,12 @@ public class AuthenticationServiceImpl {
             account.setRole(Role.USER);
             accountService.createAccount(account);
             user.setAccount(account);
+            user.setPassword(passwordEncoder
+                    .encode(user.getPassword()));
             userService.createUser(user);
 
-            return authenticate(user.getLogin(), user.getPassword());
+            return authenticate(user.getLogin(),
+                    user.getPassword());
         } catch (Exception e) {
             e.printStackTrace();
             throw e;
