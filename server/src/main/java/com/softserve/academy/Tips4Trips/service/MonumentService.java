@@ -46,6 +46,13 @@ public class MonumentService {
 
 
     public Monument update(Monument monument) {
-        return repository.save(monument);
+        Monument monumentToUpdate = repository.getOne(monument.getId());
+        monumentToUpdate.setName(monument.getName());
+        monumentToUpdate.setDescription(monument.getDescription());
+        monumentToUpdate.setAddress(monument.getAddress());
+        monumentToUpdate.setPosition(monument.getPosition());
+        monumentToUpdate.setPhotoPath(monument.getPhotoPath());
+        monumentToUpdate.setCity(monument.getCity());
+        return repository.save(monumentToUpdate);
     }
 }

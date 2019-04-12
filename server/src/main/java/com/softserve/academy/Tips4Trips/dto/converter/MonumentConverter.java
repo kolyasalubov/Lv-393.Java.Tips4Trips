@@ -42,7 +42,7 @@ public class MonumentConverter implements Converter<Monument, MonumentDTO> {
         monument.setAddress(monumentDTO.getAddress());
         monument.setPosition(monumentDTO.getPosition());
         monument.setPhotoPath(monumentDTO.getPhotoPath());
-        monument.setCity(cityService.findById(monumentDTO.getId()));
+        monument.setCity(cityService.findById(monumentDTO.getCityId()));
         return monument;
     }
 

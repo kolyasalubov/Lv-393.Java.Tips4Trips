@@ -1,7 +1,7 @@
 package com.softserve.academy.Tips4Trips.controller;
 
 import com.softserve.academy.Tips4Trips.dto.CommentDTO;
-import com.softserve.academy.Tips4Trips.dto.PostDTO;
+import com.softserve.academy.Tips4Trips.dto.details.PostDetailsDTO;
 import com.softserve.academy.Tips4Trips.dto.converter.CommentConverter;
 import com.softserve.academy.Tips4Trips.dto.converter.PostConverter;
 import com.softserve.academy.Tips4Trips.entity.blog.Comment;
@@ -25,14 +25,14 @@ public class CommentController {
         this.commentService = commentService;
     }
 
-/*    public long countByPost(@RequestBody PostDTO postDTO) {
-        long count = commentService.countByPost(postConverter.convertToEntity(postDTO));
+/*    public long countByPost(@RequestBody PostDTO postDetailsDTO) {
+        long count = commentService.countByPost(postConverter.convertToEntity(postDetailsDTO));
         return count;
     }*/
     //???
     @GetMapping("/find")
-    public ResponseEntity<CommentDTO> findByPost(@RequestBody PostDTO postDTO) {
-        Comment comment = commentService.findByPost(postConverter.convertToEntity(postDTO));
+    public ResponseEntity<CommentDTO> findByPost(@RequestBody PostDetailsDTO postDetailsDTO) {
+        Comment comment = commentService.findByPost(postConverter.convertToEntity(postDetailsDTO));
         return new ResponseEntity<>(commentConverter.convertToDTO(comment), HttpStatus.OK);
     }
     @PostMapping("/create")

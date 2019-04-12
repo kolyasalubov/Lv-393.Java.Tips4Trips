@@ -32,9 +32,9 @@ public class MonumentController {
     }
 
     @PostMapping("/create")
-    public Monument createMonument(@RequestBody MonumentDTO monumentDTO) {
+    public ResponseEntity<MonumentDTO> createMonument(@RequestBody MonumentDTO monumentDTO) {
         Monument monument = monumentConverter.convertToEntity(monumentDTO);
-        return monumentService.createMonument(monument);
+        return new ResponseEntity<>(monumentConverter.convertToDTO(monumentService.createMonument(monument)), HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")
@@ -43,7 +43,7 @@ public class MonumentController {
     }
 
     @PostMapping("/update")
-    public ResponseEntity<Monument> update(@RequestBody MonumentDTO monumentDTO) {
-        return new ResponseEntity<>(monumentService.update(monumentConverter.convertToEntity(monumentDTO)), HttpStatus.OK);
+    public ResponseEntity<MonumentDTO> update(@RequestBody MonumentDTO monumentDTO) {
+        return new ResponseEntity<>(monumentConverter.convertToDTO(monumentService.update(monumentConverter.convertToEntity(monumentDTO))), HttpStatus.OK);
     }
 }
