@@ -27,6 +27,10 @@ public class AccountService {
         return repository.findByEmail(email).get();
     }
 
+    public boolean emailExists(String email) {
+        return repository.existsByEmail(email);
+    }
+
 
     public Account createAccount(Account account) {
         return repository.save(account);
