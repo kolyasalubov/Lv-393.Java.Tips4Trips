@@ -1,5 +1,8 @@
 package com.softserve.academy.Tips4Trips.dto;
 
+import com.softserve.academy.Tips4Trips.dto.details.AccountDetailsDTO;
+import com.softserve.academy.Tips4Trips.dto.info.AccountInfoDTO;
+
 import java.util.Date;
 import java.util.List;
 
@@ -19,7 +22,7 @@ public class FindGroupDTO {
 
     private Long routeId;
 
-    private List<AccountDTO> subscribers;
+    private List<AccountDetailsDTO> subscribers;
 
 
     public Long getId() {
@@ -78,11 +81,11 @@ public class FindGroupDTO {
         this.routeId = routeId;
     }
 
-    public List<AccountDTO> getSubscribers() {
+    public List<AccountDetailsDTO> getSubscribers() {
         return subscribers;
     }
 
-    public void setSubscribers(List<AccountDTO> subscribers) {
+    public void setSubscribers(List<AccountDetailsDTO> subscribers) {
         this.subscribers = subscribers;
     }
 

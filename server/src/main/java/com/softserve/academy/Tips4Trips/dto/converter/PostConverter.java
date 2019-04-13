@@ -7,31 +7,34 @@ import com.softserve.academy.Tips4Trips.entity.Route;
 import com.softserve.academy.Tips4Trips.entity.administration.Account;
 import com.softserve.academy.Tips4Trips.entity.blog.Post;
 import com.softserve.academy.Tips4Trips.repository.AccountRepository;
-import com.softserve.academy.Tips4Trips.repository.PostRepository;
 import com.softserve.academy.Tips4Trips.repository.RouteRepository;
+import com.softserve.academy.Tips4Trips.service.AccountService;
+import com.softserve.academy.Tips4Trips.service.LikeService;
+import com.softserve.academy.Tips4Trips.service.RouteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.mvc.ControllerLinkBuilder;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Component
 public class PostConverter implements Converter<Post, PostDetailsDTO> {
 
-    private AccountRepository accountRepository;
-    private RouteRepository routeRepository;
-    private PostRepository postRepository;
+    private AccountService accountService;
+    private RouteService routeService;
     private RouteConverter routeConverter;
     private AccountConverter accountConverter;
     private final int MAX_DESCRIPTION_LENGTH = 100;
 
     @Autowired
-    public PostConverter(AccountRepository accountRepository,
-                         RouteRepository routeRepository,
-                         PostRepository postRepository,
+    public PostConverter(AccountService accountService,
+                         RouteService routeService,
                          RouteConverter routeConverter,
                          AccountConverter accountConverter) {
-        this.accountRepository = accountRepository;
-        this.routeRepository = routeRepository;
-        this.postRepository = postRepository;
+        this.accountService = accountService;
+        this.routeService = routeService;
         this.routeConverter = routeConverter;
         this.accountConverter = accountConverter;
     }
@@ -44,11 +47,11 @@ public class PostConverter implements Converter<Post, PostDetailsDTO> {
         post.setContent(postDetailsDTO.getContent());
         post.setPhotoPath(postDetailsDTO.getPhotoPath());
         post.setCreationDate(postDetailsDTO.getCreationDate());
-        Account author = accountRepository.findById(
-                postDetailsDTO.getAuthorInfo().getId()).get();
+        Account author = accountService.findById(
+                postDetailsDTO.getAuthorInfo().getId());
         post.setAuthor(author);
-        Route route = routeRepository.findById(
-                postDetailsDTO.getRouteInfo().getId()).get();
+        Route route = routeService.findById(
+                postDetailsDTO.getRouteInfo().getId());
         post.setRoute(route);
         return post;
     }
@@ -62,6 +65,7 @@ public class PostConverter implements Converter<Post, PostDetailsDTO> {
         Route route = post.getRoute();
         postDetailsDTO.setRouteInfo(routeConverter
                 .convertToInfoDTO(route));
+        postDetailsDTO.setLikes("Here will be link to accounts who liked this post");
         return postDetailsDTO;
     }
 
@@ -69,18 +73,28 @@ public class PostConverter implements Converter<Post, PostDetailsDTO> {
         return toInfoDTO(new PostInfoDTO(), post);
     }
 
+    public List<PostInfoDTO> convertToInfoDTO(final List<Post> posts) {
+        List<PostInfoDTO> dtos = new ArrayList<>();
+        if (posts != null) {
+            dtos = posts.stream().map(this::convertToInfoDTO).collect(Collectors.toList());
+        }
+        return dtos;
+    }
+
     private PostInfoDTO toInfoDTO(PostInfoDTO postInfoDTO, Post post) {
         postInfoDTO.setId(post.getId());
+        postInfoDTO.setCountOfLikes(post.getLikes().size());
         postInfoDTO.setName(post.getName());
         String content = post.getContent();
         String description = content.length() > MAX_DESCRIPTION_LENGTH
                 ? content.substring(0, MAX_DESCRIPTION_LENGTH) : content;
-        postInfoDTO.setDescription(content);
+        postInfoDTO.setDescription(description + "...");
         postInfoDTO.setCreationDate(post.getCreationDate());
-        postInfoDTO.setSelf(ControllerLinkBuilder.linkTo(
-                ControllerLinkBuilder.methodOn(PostController.class)
-                        .getById(post.getId())
-        ).withSelfRel().getHref());
+        postInfoDTO.setSelf(ControllerLinkBuilder
+                .linkTo(ControllerLinkBuilder
+                        .methodOn(PostController.class)
+                        .getById(post.getId()))
+                .withSelfRel().getHref());
         Account author = post.getAuthor();
         postInfoDTO.setAuthorInfo(accountConverter
                 .convertToInfoDTO(author));
