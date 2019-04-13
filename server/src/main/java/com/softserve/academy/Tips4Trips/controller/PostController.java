@@ -1,7 +1,7 @@
 package com.softserve.academy.Tips4Trips.controller;
 
+import com.softserve.academy.Tips4Trips.dto.details.PostDetailsDTO;
 import com.softserve.academy.Tips4Trips.dto.converter.PostConverter;
-import com.softserve.academy.Tips4Trips.dto.PostDTO;
 import com.softserve.academy.Tips4Trips.entity.blog.Post;
 import com.softserve.academy.Tips4Trips.service.AccountService;
 import com.softserve.academy.Tips4Trips.service.PostService;
@@ -29,34 +29,34 @@ public class PostController {
         this.accountService = accountService;
     }
 
-    @GetMapping("/all")
-    public ResponseEntity<List<PostDTO>> getAll() {
+    @GetMapping
+    public ResponseEntity<List<PostDetailsDTO>> getAll() {
         return new ResponseEntity<>(postConverter
                 .convertToDTO(postService.findAll()), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<PostDTO> getById(@PathVariable Long id) {
+    public ResponseEntity<PostDetailsDTO> getById(@PathVariable Long id) {
         return new ResponseEntity<>(postConverter
                 .convertToDTO(postService.findById(id)), HttpStatus.OK);
     }
 
     @GetMapping("/author/{authorId}")
-    public ResponseEntity<List<PostDTO>> getByAuthor(@PathVariable Long authorId) {
+    public ResponseEntity<List<PostDetailsDTO>> getByAuthor(@PathVariable Long authorId) {
         return new ResponseEntity<>(postConverter
                 .convertToDTO(postService.getByAuthorId(authorId)), HttpStatus.OK);
     }
 
     @PutMapping("/update")
-    public ResponseEntity<PostDTO> update(@RequestBody PostDTO postDTO) {
-        Post post = postService.update(postConverter.convertToEntity(postDTO));
+    public ResponseEntity<PostDetailsDTO> update(@RequestBody PostDetailsDTO postDetailsDTO) {
+        Post post = postService.update(postConverter.convertToEntity(postDetailsDTO));
         return new ResponseEntity<>(postConverter
                 .convertToDTO(post), HttpStatus.ACCEPTED);
     }
 
     @PostMapping("/create")
-    public ResponseEntity<PostDTO> createPost(@RequestBody PostDTO postDTO) {
-        Post post = postService.createPost(postConverter.convertToEntity(postDTO));
+    public ResponseEntity<PostDetailsDTO> createPost(@RequestBody PostDetailsDTO postDetailsDTO) {
+        Post post = postService.createPost(postConverter.convertToEntity(postDetailsDTO));
         return new ResponseEntity<>(postConverter
                 .convertToDTO(post), HttpStatus.CREATED);
     }

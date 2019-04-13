@@ -25,6 +25,7 @@ public class CommentService {
         return repository.findByPostId(id);
     }
 
+
     public Comment createComment(Comment comment) {
         return repository.save(comment);
     }
