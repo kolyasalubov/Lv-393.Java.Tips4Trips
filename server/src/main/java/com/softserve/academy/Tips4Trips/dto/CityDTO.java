@@ -14,7 +14,7 @@ public class CityDTO {
 
     public CityDTO() {
     }
-
+    
     public CityDTO(Long id, String name, Position position, Long countryId, List<PlaceDetailsDTO> listOfPlaces) {
         this.id = id;
         this.name = name;
