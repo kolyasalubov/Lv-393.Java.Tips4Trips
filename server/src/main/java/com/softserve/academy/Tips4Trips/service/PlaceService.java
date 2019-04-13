@@ -1,10 +1,12 @@
 package com.softserve.academy.Tips4Trips.service;
 
+import com.softserve.academy.Tips4Trips.entity.City;
 import com.softserve.academy.Tips4Trips.entity.place.Place;
 import com.softserve.academy.Tips4Trips.repository.PlaceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
@@ -25,5 +27,9 @@ public class PlaceService {
         } else {
             throw new NoSuchElementException();
         }
+    }
+
+    public List<Place> findByCity(City city) {
+        return repository.findByCity(city);
     }
 }

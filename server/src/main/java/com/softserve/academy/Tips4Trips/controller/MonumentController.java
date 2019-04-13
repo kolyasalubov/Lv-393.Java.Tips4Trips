@@ -16,7 +16,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/monuments")
+@RequestMapping("/countries/{countryId}/cities/{cityId}/places/monuments")
 public class MonumentController {
 
     private MonumentConverter monumentConverter;

@@ -15,7 +15,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/restaurants")
+@RequestMapping("/countries/{countryId}/cities/{cityId}/places/restaurants")
 public class RestaurantController {
 
     private RestaurantService restaurantService;

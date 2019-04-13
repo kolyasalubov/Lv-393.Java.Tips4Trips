@@ -25,7 +25,7 @@ public class CountryController {
         this.countryService = countryService;
     }
 
-    @GetMapping("/all")
+    @GetMapping
     public ResponseEntity<List<CountryDTO>> getAll() {
         return new ResponseEntity<>(countryConverter.convertToDTO(countryService.findAll()), HttpStatus.OK);
     }
@@ -36,9 +36,9 @@ public class CountryController {
         return new ResponseEntity<>(countryConverter.convertToDTO(countryService.createCountry(country)), HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<CountryDTO> getById(@PathVariable Long id) {
-        return new ResponseEntity<>(countryConverter.convertToDTO(countryService.findById(id)), HttpStatus.OK);
+    @GetMapping("/{countryId}")
+    public ResponseEntity<CountryDTO> getById(@PathVariable Long countryId) {
+        return new ResponseEntity<>(countryConverter.convertToDTO(countryService.findById(countryId)), HttpStatus.OK);
     }
 
     @PutMapping("/update")
@@ -47,9 +47,9 @@ public class CountryController {
         return new ResponseEntity<>(countryConverter.convertToDTO(countryService.update(country)), HttpStatus.OK);
     }
 
-    @DeleteMapping("/delete/{id}")
-    public void deleteById(@PathVariable Long id) {
-        countryService.deleteById(id);
+    @DeleteMapping("/delete/{countryId}")
+    public void deleteById(@PathVariable Long countryId) {
+        countryService.deleteById(countryId);
     }
 
 }

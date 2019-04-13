@@ -15,7 +15,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/hotels")
+@RequestMapping("/countries/{countryId}/cities/{cityId}/places/hotels")
 public class HotelController {
     private HotelService hotelService;
     private HotelConverter hotelConverter;
