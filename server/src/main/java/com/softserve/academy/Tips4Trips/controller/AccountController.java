@@ -1,14 +1,18 @@
 package com.softserve.academy.Tips4Trips.controller;
 
 
-import com.softserve.academy.Tips4Trips.dto.AccountDTO;
+
 import com.softserve.academy.Tips4Trips.dto.converter.AccountConverter;
+import com.softserve.academy.Tips4Trips.dto.details.AccountDetailsDTO;
+import com.softserve.academy.Tips4Trips.dto.info.AccountInfoDTO;
 import com.softserve.academy.Tips4Trips.entity.administration.Account;
 import com.softserve.academy.Tips4Trips.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @CrossOrigin
@@ -24,21 +28,28 @@ public class AccountController {
         this.accountConverter = accountConverter;
     }
 
+    @GetMapping
+    public ResponseEntity<List<AccountInfoDTO>> getAll() {
+        return new ResponseEntity<>(accountConverter.convertToInfoDTO(accountService
+                .findAll()), HttpStatus.OK);
+    }
+
+
     @GetMapping("/{id}")
-    public ResponseEntity<AccountDTO> getById(@PathVariable long id) {
+    public ResponseEntity<AccountDetailsDTO> getById(@PathVariable Long id) {
         return new ResponseEntity<>(accountConverter
                 .convertToDTO(accountService.findById(id)), HttpStatus.OK);
     }
 
 
     @PostMapping("/create")
-    public ResponseEntity<AccountDTO> createAccount(@RequestBody AccountDTO accountDTO){
+    public ResponseEntity<AccountDetailsDTO> createAccount(@RequestBody AccountDetailsDTO accountDTO){
         Account account = accountService.createAccount(accountConverter.convertToEntity(accountDTO));
         return new ResponseEntity<>(accountConverter.convertToDTO(account), HttpStatus.CREATED);
     }
 
     @PutMapping("/update")
-    public ResponseEntity<AccountDTO> updateAccount(@RequestBody AccountDTO accountDTO) {
+    public ResponseEntity<AccountDetailsDTO> updateAccount(@RequestBody AccountDetailsDTO accountDTO) {
         Account account = accountService.update(accountConverter.convertToEntity(accountDTO));
         return new ResponseEntity<>(accountConverter.convertToDTO(account), HttpStatus.ACCEPTED);
 

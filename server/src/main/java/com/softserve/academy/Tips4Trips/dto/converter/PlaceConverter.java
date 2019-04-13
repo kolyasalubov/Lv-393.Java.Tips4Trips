@@ -1,20 +1,54 @@
 package com.softserve.academy.Tips4Trips.dto.converter;
 
+import com.softserve.academy.Tips4Trips.controller.RestaurantController;
 import com.softserve.academy.Tips4Trips.dto.PlaceDTO;
+import com.softserve.academy.Tips4Trips.dto.info.PlaceInfoDTO;
 import com.softserve.academy.Tips4Trips.entity.place.Place;
+import org.springframework.hateoas.mvc.ControllerLinkBuilder;
 import org.springframework.stereotype.Component;
 
-@Component
-public class PlaceConverter implements Converter<Place, PlaceDTO> {
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
+@Component
+public class PlaceConverter implements Converter<Place, PlaceInfoDTO> {
+
+    private final int MAX_DESCRIPTION_LENGTH = 100;
 
     @Override
-    public PlaceDTO convertToDTO(Place place) {
-        return null;
+    public PlaceInfoDTO convertToDTO(Place place) {
+        return toInfoDTO(new PlaceInfoDTO(), place);
     }
 
     @Override
-    public Place convertToEntity(PlaceDTO placeDTO) {
+    public Place convertToEntity(PlaceInfoDTO placeInfoDTO) {
         return null;
+    }
+
+    public PlaceInfoDTO convertToInfoDTO(Place place) {
+        return toInfoDTO(new PlaceInfoDTO(), place);
+    }
+
+    public List<PlaceInfoDTO> convertToInfoDTO(final List<? extends Place> places) {
+        List<PlaceInfoDTO> dtos = new ArrayList<>();
+        if (places != null) {
+            dtos = places.stream().map(this::convertToInfoDTO).collect(Collectors.toList());
+        }
+        return dtos;
+    }
+
+    private PlaceInfoDTO toInfoDTO(PlaceInfoDTO placeInfoDTO, Place place) {
+        placeInfoDTO.setId(place.getId());
+        placeInfoDTO.setName(place.getName());
+        String content = place.getDescription();
+        String description = content.length() > MAX_DESCRIPTION_LENGTH
+                ? content.substring(0, MAX_DESCRIPTION_LENGTH) : content;
+        placeInfoDTO.setDescription(description);
+        placeInfoDTO.setSelf(ControllerLinkBuilder.linkTo(
+                ControllerLinkBuilder.methodOn(RestaurantController.class)
+                        .getById(place.getId())
+        ).withSelfRel().getHref());
+        return placeInfoDTO;
     }
 }

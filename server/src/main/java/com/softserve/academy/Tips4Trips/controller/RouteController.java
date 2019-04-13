@@ -36,8 +36,8 @@ public class RouteController {
 
     @GetMapping("/{id}")
     public ResponseEntity<RouteDetailsDTO> getById(@PathVariable Long id) {
-        return new ResponseEntity<>(routeConverter.convertToDTO(routeService
-                .findById(id)), HttpStatus.OK);
+        return new ResponseEntity<>(routeConverter.
+                convertToDTO(routeService.findById(id)), HttpStatus.OK);
     }
 
     @GetMapping("/author/{id}")
