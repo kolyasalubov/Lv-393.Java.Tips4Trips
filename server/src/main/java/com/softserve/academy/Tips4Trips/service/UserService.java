@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -16,14 +17,16 @@ public class UserService {
     private UserRepository repository;
 
     @Autowired
-    public UserService(AccountService accountService, UserConverter userConverter,
+    public UserService(AccountService accountService,
+                       UserConverter userConverter,
                        UserRepository repository) {
         this.accountService = accountService;
         this.repository = repository;
     }
 
     public User findByLogin(String login) {
-        return repository.findByLogin(login).get();
+        Optional<User> user = repository.findByLogin(login);
+        return user.isPresent() ? user.get() : null;
     }
 
     public List<User> findByAccount(Account account) {

@@ -9,6 +9,7 @@ import com.softserve.academy.Tips4Trips.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -35,6 +36,8 @@ public class CommentController {
         Comment comment = commentService.findByPost(postConverter.convertToEntity(postDetailsDTO));
         return new ResponseEntity<>(commentConverter.convertToDTO(comment), HttpStatus.OK);
     }
+
+    @PreAuthorize("hasRole('ROLE_USER')")
     @PostMapping("/create")
     public ResponseEntity<CommentDTO> createComment(@RequestBody CommentDTO commentDTO) {
         Comment comment = commentService.createComment(commentConverter.convertToEntity(commentDTO));
