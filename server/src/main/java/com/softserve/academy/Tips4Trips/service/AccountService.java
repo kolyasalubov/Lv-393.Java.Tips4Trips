@@ -62,4 +62,8 @@ public class AccountService {
         return repository.save(account);
 
     }
+
+    boolean existsByPhoneNumber(String number) {
+        return repository.existsByPhoneNumber(number);
+    }
 }
