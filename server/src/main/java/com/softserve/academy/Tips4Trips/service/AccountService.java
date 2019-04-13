@@ -8,6 +8,8 @@ import com.softserve.academy.Tips4Trips.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -22,14 +24,29 @@ public class AccountService {
         this.repository = repository;
     }
 
+    public List<Account> findAll() {
+        return repository.findAll();
+    }
+
     public Account findById(Long id) {
-        return repository.findById(id).get();
+        Optional<Account> account = repository.findById(id);
+        if (account.isPresent()) {
+            return account.get();
+        } else {
+            throw new NoSuchElementException();
+        }
     }
 
 
     public Account findByEmail(String email) {
+
         Optional<Account> account = repository.findByEmail(email);
-        return account.isPresent() ? account.get() : null;
+        if(account.isPresent()){
+            return account.get();
+        }else {
+            throw  new NoSuchElementException();
+        }
+
     }
 
     public boolean emailExists(String email) {
@@ -42,12 +59,14 @@ public class AccountService {
 
 
     public Account createAccount(Account account) {
+        account.setId(-1L);
         return repository.save(account);
     }
 
 
     public Account update(Account account) {
         return repository.save(account);
+
     }
 
     public Account findByUser(User user) {
