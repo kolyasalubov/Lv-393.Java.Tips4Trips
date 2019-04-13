@@ -7,6 +7,7 @@ public class PostDetailsDTO extends PostInfoDTO {
     private String photoPath;
     private String content;
     private RouteInfoDTO routeInfo;
+    private String likes;
 
     public String getPhotoPath() {
         return photoPath;
@@ -30,5 +31,13 @@ public class PostDetailsDTO extends PostInfoDTO {
 
     public void setRouteInfo(RouteInfoDTO routeInfo) {
         this.routeInfo = routeInfo;
+    }
+
+    public String getLikes() {
+        return likes;
+    }
+
+    public void setLikes(String likes) {
+        this.likes = likes;
     }
 }
