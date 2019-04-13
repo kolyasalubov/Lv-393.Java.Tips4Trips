@@ -1,10 +1,10 @@
 package com.softserve.academy.Tips4Trips.controller;
 
-import com.softserve.academy.Tips4Trips.dto.AccountDTO;
 import com.softserve.academy.Tips4Trips.dto.UserAccountDTO;
 import com.softserve.academy.Tips4Trips.dto.UserDTO;
 import com.softserve.academy.Tips4Trips.dto.converter.AccountConverter;
 import com.softserve.academy.Tips4Trips.dto.converter.UserConverter;
+import com.softserve.academy.Tips4Trips.dto.details.AccountDetailsDTO;
 import com.softserve.academy.Tips4Trips.entity.administration.Account;
 import com.softserve.academy.Tips4Trips.entity.administration.User;
 import com.softserve.academy.Tips4Trips.security.AuthenticationConstant;
@@ -14,8 +14,10 @@ import com.softserve.academy.Tips4Trips.service.AuthenticationServiceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -69,7 +71,7 @@ public class AuthenticationTestController {
                 throws Exception {
 
         UserDTO userDTO = userAccountDTO.getUser();
-        AccountDTO accountDTO = userAccountDTO.getAccount();
+        AccountDetailsDTO accountDTO = userAccountDTO.getAccount();
         Account account = accountConverter.convertToEntity(accountDTO);
         User user = userConverter.convertToEntity(userDTO);
 

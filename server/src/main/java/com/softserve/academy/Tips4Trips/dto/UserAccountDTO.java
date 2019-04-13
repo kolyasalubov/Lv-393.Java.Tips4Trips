@@ -1,8 +1,10 @@
 package com.softserve.academy.Tips4Trips.dto;
 
+import com.softserve.academy.Tips4Trips.dto.details.AccountDetailsDTO;
+
 public class UserAccountDTO {
     UserDTO user;
-    AccountDTO account;
+    AccountDetailsDTO account;
 
     public UserDTO getUser() {
         return user;
@@ -12,11 +14,11 @@ public class UserAccountDTO {
         this.user = user;
     }
 
-    public AccountDTO getAccount() {
+    public AccountDetailsDTO getAccount() {
         return account;
     }
 
-    public void setAccount(AccountDTO account) {
+    public void setAccount(AccountDetailsDTO account) {
         this.account = account;
     }
 }
