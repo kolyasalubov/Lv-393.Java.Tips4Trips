@@ -5,6 +5,9 @@ import com.softserve.academy.Tips4Trips.exception.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.web.HttpMediaTypeNotSupportedException;
+import org.springframework.web.HttpRequestMethodNotSupportedException;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
@@ -58,5 +61,29 @@ public class CustomResponseEntityExceptionHandler
                 exception.getMessage(), request.getDescription(false));
         return new ResponseEntity<>(errorDetails,
                 HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @ExceptionHandler(value = {MethodArgumentNotValidException.class})
+    public final ResponseEntity<ExceptionDTO> handleMethodArgumentNotValidException(
+            Exception exception, WebRequest request) {
+        ExceptionDTO errorDetails = new ExceptionDTO(new Date(),
+                exception.getMessage(), request.getDescription(false));
+        return new ResponseEntity<>(errorDetails, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(value = {HttpRequestMethodNotSupportedException.class})
+    public final ResponseEntity<ExceptionDTO> handleHttpRequestMethodNotSupportedException(
+            Exception exception, WebRequest request) {
+        ExceptionDTO errorDetails = new ExceptionDTO(new Date(),
+                exception.getMessage(), request.getDescription(false));
+        return new ResponseEntity<>(errorDetails, HttpStatus.METHOD_NOT_ALLOWED);
+    }
+
+    @ExceptionHandler(value = {HttpMediaTypeNotSupportedException.class})
+    public final ResponseEntity<ExceptionDTO> handleHttpMediaTypeNotSupportedException(
+            Exception exception, WebRequest request) {
+        ExceptionDTO errorDetails = new ExceptionDTO(new Date(),
+                exception.getMessage(), request.getDescription(false));
+        return new ResponseEntity<>(errorDetails, HttpStatus.UNSUPPORTED_MEDIA_TYPE);
     }
 }

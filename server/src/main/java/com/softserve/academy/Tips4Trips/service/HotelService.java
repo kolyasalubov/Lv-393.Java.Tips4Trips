@@ -27,7 +27,11 @@ public class HotelService {
 
     public Hotel findById(Long id) {
         Optional<Hotel> hotel = repository.findById(id);
-        return hotel.orElse(null);
+        if (hotel.isPresent()) {
+            return hotel.get();
+        } else {
+            return null;
+        }
     }
 
     public List<Hotel> findByName(String name) {
@@ -36,7 +40,11 @@ public class HotelService {
 
     public List<Hotel> findByCity(String name){
         Optional<City> city = cityRepository.findByName(name);
-        return city.map(city1 -> repository.findByCity(city1)).orElse(null);
+        if (city.isPresent()) {
+            return repository.findByCity(city.get());
+        } else {
+            return null;
+        }
     }
 
     public Hotel createHotel(Hotel hotel) {

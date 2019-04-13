@@ -40,6 +40,11 @@ public class FindGroupService {
     }
 
 
+    public List<FindGroup> findAll() {
+        return repository.findAll();
+    }
+
+
     public void deleteById(Long id) {
         repository.findById(id).ifPresent(repository::delete);
     }

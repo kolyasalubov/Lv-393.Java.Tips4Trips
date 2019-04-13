@@ -3,6 +3,7 @@ package com.softserve.academy.Tips4Trips.controller;
 import com.softserve.academy.Tips4Trips.dto.details.CommentDetailsDTO;
 import com.softserve.academy.Tips4Trips.dto.converter.CommentConverter;
 import com.softserve.academy.Tips4Trips.dto.converter.PostConverter;
+import com.softserve.academy.Tips4Trips.dto.details.PostDetailsDTO;
 import com.softserve.academy.Tips4Trips.entity.blog.Comment;
 import com.softserve.academy.Tips4Trips.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,8 +33,8 @@ public class CommentController {
     public ResponseEntity<List<CommentDetailsDTO>> findByPostId(@PathVariable Long id) {
         return new ResponseEntity<>(commentConverter.convertToDTO(commentService.findByPostId(id)), HttpStatus.OK);
     }
-/*    public long countByPost(@RequestBody PostDetailsDTO postDetailsDTO) {
-        long count = commentService.countByPost(postConverter.convertToEntity(postDetailsDTO));
+/*    public long countByPost(@PathVariable Long id) {
+        long count = commentService.countByPostId(id);
         return count;
     }*/
 

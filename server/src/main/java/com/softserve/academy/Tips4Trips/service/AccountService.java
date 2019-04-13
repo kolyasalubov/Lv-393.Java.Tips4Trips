@@ -47,10 +47,6 @@ public class AccountService {
 
     }
 
-    public boolean emailExists(String email) {
-        return repository.existsByEmail(email);
-    }
-
 
     public Account createAccount(Account account) {
         account.setId(-1L);
