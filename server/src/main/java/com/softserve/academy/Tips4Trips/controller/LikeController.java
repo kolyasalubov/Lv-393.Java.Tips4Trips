@@ -3,7 +3,9 @@ package com.softserve.academy.Tips4Trips.controller;
 
 import com.softserve.academy.Tips4Trips.dto.AccountDTO;
 import com.softserve.academy.Tips4Trips.dto.LikeDTO;
+
 import com.softserve.academy.Tips4Trips.dto.details.AccountDetailsDTO;
+
 import com.softserve.academy.Tips4Trips.dto.details.PostDetailsDTO;
 import com.softserve.academy.Tips4Trips.dto.converter.AccountConverter;
 import com.softserve.academy.Tips4Trips.dto.converter.LikeConverter;
@@ -32,10 +34,11 @@ public class LikeController {
         this.likeService = likeService;
     }
 
-/*    public long countComment(@RequestBody PostDTO postDTO) {
-        long count = likeService.countByPost(postConverter.convertToEntity(postDTO));
+    public long countLikes(@PathVariable Long id) {
+        long count = likeService.countByPostId(id);
         return count;
-    }*/
+    }
+
 
     //???
     @GetMapping("/find")
@@ -45,15 +48,17 @@ public class LikeController {
         return new ResponseEntity<>(likeConverter.convertToDTO(like), HttpStatus.OK);
     }
 
+
     // ???
     @PostMapping("/create")
     public ResponseEntity<LikeDTO> createLike(@RequestBody LikeDTO likeDTO) {
+        System.out.println(likeDTO.toString());
         Like like = likeService.createLike(likeConverter.convertToEntity(likeDTO));
         return new ResponseEntity<>(likeConverter.convertToDTO(like), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/delete/{id}")
-    public void deleteLike(@PathVariable Like like) { //like?
-        likeService.deleteLike(like);
+    public void deleteLike(@PathVariable Long id) { //like?
+        likeService.deleteLike(id);
     }
 }

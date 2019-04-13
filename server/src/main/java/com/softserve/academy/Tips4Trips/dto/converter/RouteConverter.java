@@ -80,7 +80,7 @@ public class RouteConverter implements Converter<Route, RouteDetailsDTO> {
         routeInfoDTO.setName(route.getName());
         routeInfoDTO.setCreationDate(route.getCreationDate());
         AccountInfoDTO authorInfo = accountConverter
-                .convertToInfoDTO(new AccountInfoDTO(),route.getAuthor());
+                .convertToInfoDTO(route.getAuthor());
         routeInfoDTO.setAuthorInfo(authorInfo);
         routeInfoDTO.setSelf(ControllerLinkBuilder
                 .linkTo(ControllerLinkBuilder
