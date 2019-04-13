@@ -45,5 +45,4 @@ public class CustomResponseEntityExceptionHandler
         return new ResponseEntity<>(errorDetails, HttpStatus.BAD_REQUEST);
     }
 
-    private
 }

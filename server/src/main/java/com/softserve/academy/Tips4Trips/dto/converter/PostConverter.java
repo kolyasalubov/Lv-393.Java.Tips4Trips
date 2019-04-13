@@ -9,6 +9,7 @@ import com.softserve.academy.Tips4Trips.entity.blog.Post;
 import com.softserve.academy.Tips4Trips.repository.AccountRepository;
 import com.softserve.academy.Tips4Trips.repository.RouteRepository;
 import com.softserve.academy.Tips4Trips.service.AccountService;
+import com.softserve.academy.Tips4Trips.service.LikeService;
 import com.softserve.academy.Tips4Trips.service.RouteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.mvc.ControllerLinkBuilder;
@@ -64,6 +65,7 @@ public class PostConverter implements Converter<Post, PostDetailsDTO> {
         Route route = post.getRoute();
         postDetailsDTO.setRouteInfo(routeConverter
                 .convertToInfoDTO(route));
+        postDetailsDTO.setLikes("Here will be link to accounts who liked this post");
         return postDetailsDTO;
     }
 
@@ -81,6 +83,7 @@ public class PostConverter implements Converter<Post, PostDetailsDTO> {
 
     private PostInfoDTO toInfoDTO(PostInfoDTO postInfoDTO, Post post) {
         postInfoDTO.setId(post.getId());
+        postInfoDTO.setCountOfLikes(post.getLikes().size());
         postInfoDTO.setName(post.getName());
         String content = post.getContent();
         String description = content.length() > MAX_DESCRIPTION_LENGTH
