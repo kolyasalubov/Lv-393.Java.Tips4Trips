@@ -1,9 +1,8 @@
 package com.softserve.academy.Tips4Trips.controller;
 
-import com.softserve.academy.Tips4Trips.dto.CommentDTO;
+import com.softserve.academy.Tips4Trips.dto.details.CommentDetailsDTO;
 import com.softserve.academy.Tips4Trips.dto.converter.CommentConverter;
 import com.softserve.academy.Tips4Trips.dto.converter.PostConverter;
-import com.softserve.academy.Tips4Trips.dto.details.PostDetailsDTO;
 import com.softserve.academy.Tips4Trips.entity.blog.Comment;
 import com.softserve.academy.Tips4Trips.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +29,7 @@ public class CommentController {
 
 
     @GetMapping("/all/{id}")
-    public ResponseEntity<List<CommentDTO>> findByPostId(@PathVariable Long id) {
+    public ResponseEntity<List<CommentDetailsDTO>> findByPostId(@PathVariable Long id) {
         return new ResponseEntity<>(commentConverter.convertToDTO(commentService.findByPostId(id)), HttpStatus.OK);
     }
 /*    public long countByPost(@RequestBody PostDetailsDTO postDetailsDTO) {
@@ -40,8 +39,8 @@ public class CommentController {
 
 
         @PostMapping("/create")
-        public ResponseEntity<CommentDTO> createComment (@RequestBody CommentDTO commentDTO){
-            Comment comment = commentService.createComment(commentConverter.convertToEntity(commentDTO));
+        public ResponseEntity<CommentDetailsDTO> createComment (@RequestBody CommentDetailsDTO commentDetailsDTO){
+            Comment comment = commentService.createComment(commentConverter.convertToEntity(commentDetailsDTO));
             return new ResponseEntity<>(commentConverter.convertToDTO(comment), HttpStatus.CREATED);
         }
 
