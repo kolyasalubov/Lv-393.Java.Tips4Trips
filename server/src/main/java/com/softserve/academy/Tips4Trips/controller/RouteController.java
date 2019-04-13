@@ -2,6 +2,8 @@ package com.softserve.academy.Tips4Trips.controller;
 
 import com.softserve.academy.Tips4Trips.dto.RouteDTO;
 import com.softserve.academy.Tips4Trips.dto.converter.RouteConverter;
+import com.softserve.academy.Tips4Trips.dto.details.RouteDetailsDTO;
+import com.softserve.academy.Tips4Trips.dto.info.RouteInfoDTO;
 import com.softserve.academy.Tips4Trips.entity.Route;
 import com.softserve.academy.Tips4Trips.service.RouteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,34 +28,34 @@ public class RouteController {
         this.routeConverter = routeConverter;
     }
 
-    @GetMapping("/all")
-    public ResponseEntity<List<RouteDTO>> getAll() {
-        return new ResponseEntity<>(routeConverter.convertToDTO(routeService
+    @GetMapping
+    public ResponseEntity<List<RouteInfoDTO>> getAll() {
+        return new ResponseEntity<>(routeConverter.convertToInfoDTO(routeService
                 .findAll()), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<RouteDTO> getById(@PathVariable Long id) {
+    public ResponseEntity<RouteDetailsDTO> getById(@PathVariable Long id) {
         return new ResponseEntity<>(routeConverter.convertToDTO(routeService
                 .findById(id)), HttpStatus.OK);
     }
 
     @GetMapping("/author/{id}")
-    public ResponseEntity<List<RouteDTO>> getByAuthor(@PathVariable Long id) {
-        return new ResponseEntity<>(routeConverter.convertToDTO(routeService
+    public ResponseEntity<List<RouteInfoDTO>> getByAuthor(@PathVariable Long id) {
+        return new ResponseEntity<>(routeConverter.convertToInfoDTO(routeService
                 .getByAuthorId(id)), HttpStatus.OK);
     }
 
     @PostMapping("/create")
-    public ResponseEntity<RouteDTO> createRoute(@RequestBody RouteDTO routeDTO) {
-        Route route = routeService.createRoute(routeConverter.convertToEntity(routeDTO));
+    public ResponseEntity<RouteDetailsDTO> createRoute(@RequestBody RouteDetailsDTO routeDetailsDTO) {
+        Route route = routeService.createRoute(routeConverter.convertToEntity(routeDetailsDTO));
         return new ResponseEntity<>(routeConverter
                 .convertToDTO(route), HttpStatus.CREATED);
     }
 
     @PutMapping("/update")
-    public ResponseEntity<RouteDTO> update(@RequestBody RouteDTO routeDTO) {
-        Route route = routeService.update(routeConverter.convertToEntity(routeDTO));
+    public ResponseEntity<RouteDetailsDTO> update(@RequestBody RouteDetailsDTO routeDetailsDTO) {
+        Route route = routeService.update(routeConverter.convertToEntity(routeDetailsDTO));
         return new ResponseEntity<>(routeConverter
                 .convertToDTO(route), HttpStatus.ACCEPTED);
     }
