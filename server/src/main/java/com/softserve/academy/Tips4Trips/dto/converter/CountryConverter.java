@@ -1,8 +1,10 @@
 package com.softserve.academy.Tips4Trips.dto.converter;
 
+import com.softserve.academy.Tips4Trips.controller.CountryController;
 import com.softserve.academy.Tips4Trips.dto.CountryDTO;
 import com.softserve.academy.Tips4Trips.entity.Country;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.mvc.ControllerLinkBuilder;
 import org.springframework.stereotype.Component;
 
 import java.util.stream.Collectors;
@@ -23,6 +25,10 @@ public class CountryConverter implements Converter<Country, CountryDTO> {
         countryDTO.setId(country.getId());
         countryDTO.setName(country.getName());
         countryDTO.setPosition(country.getPosition());
+        countryDTO.setSelf(ControllerLinkBuilder.linkTo(
+                ControllerLinkBuilder.methodOn(CountryController.class)
+                        .getById(country.getId())
+        ).withSelfRel().getHref());
         if (country.getListOfCities() != null && !country.getListOfCities().isEmpty()) {
             countryDTO.setListOfCities(country.getListOfCities().stream()
                     .map(city -> cityConverter.convertToDTO(city))
