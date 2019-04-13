@@ -7,8 +7,10 @@ import com.softserve.academy.Tips4Trips.repository.LikeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class LikeService {
@@ -20,7 +22,7 @@ public class LikeService {
         this.repository = repository;
     }
 
-    public long countByPostId(Long id ) {
+    public long countByPostId(Long id) {
         return repository.countByPostId(id);
     }
 
@@ -33,12 +35,21 @@ public class LikeService {
         }
     }
 
-    public Like createLike(Like like) {
+    public List<Account> findAccounts(Post post) {
+        List<Like> likes = repository.findByPost(post);
+        return likes.stream().map(Like::getLikedBy).collect(Collectors.toList());
+    }
+
+    public Like createLike(Account account, Post post) {
+        Like like = new Like();
+        like.setLikedBy(account);
+        like.setPost(post);
         return repository.save(like);
     }
 
-    public void deleteLike(Long id) {
-        repository.findById(id).ifPresent(repository::delete);
+    public void deleteLike(Post post, Account account) {
+        repository.findByLikedByAndPost(account, post)
+                .ifPresent(repository::delete);
     }
 
 }
