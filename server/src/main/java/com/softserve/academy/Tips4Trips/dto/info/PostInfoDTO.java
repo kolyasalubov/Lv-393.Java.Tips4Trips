@@ -11,6 +11,7 @@ public class PostInfoDTO {
     private Date creationDate;
     private String description;
     private AccountInfoDTO authorInfo;
+    private long countOfLikes;
     private String self;
 
     public Long getId() {
@@ -19,6 +20,14 @@ public class PostInfoDTO {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public long getCountOfLikes() {
+        return countOfLikes;
+    }
+
+    public void setCountOfLikes(long countOfLikes) {
+        this.countOfLikes = countOfLikes;
     }
 
     public String getName() {
