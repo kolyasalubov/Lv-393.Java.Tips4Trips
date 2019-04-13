@@ -10,6 +10,7 @@ public class CountryDTO {
     private String name;
     private Position position;
     private List<CityDTO> listOfCities;
+    private String self;
 
     public CountryDTO() {
     }
@@ -51,5 +52,13 @@ public class CountryDTO {
 
     public void setListOfCities(List<CityDTO> listOfCities) {
         this.listOfCities = listOfCities;
+    }
+
+    public void setSelf(String self) {
+        this.self = self;
+    }
+
+    public String getSelf() {
+        return self;
     }
 }

@@ -12,10 +12,11 @@ public class CityDTO {
     private Position position;
     private Long countryId;
     private List<PlaceInfoDTO> listOfPlaces;
+    private String self;
 
     public CityDTO() {
     }
-    
+
     public CityDTO(Long id, String name, Position position, Long countryId, List<PlaceInfoDTO> listOfPlaces) {
         this.id = id;
         this.name = name;
@@ -62,5 +63,13 @@ public class CityDTO {
 
     public void setListOfPlaces(List<PlaceInfoDTO> listOfPlaces) {
         this.listOfPlaces = listOfPlaces;
+    }
+
+    public void setSelf(String self) {
+        this.self = self;
+    }
+
+    public String getSelf() {
+        return self;
     }
 }
