@@ -1,9 +1,8 @@
 package com.softserve.academy.Tips4Trips.controller;
 
-import com.softserve.academy.Tips4Trips.dto.details.CommentDetailsDTO;
 import com.softserve.academy.Tips4Trips.dto.converter.CommentConverter;
 import com.softserve.academy.Tips4Trips.dto.converter.PostConverter;
-import com.softserve.academy.Tips4Trips.dto.details.PostDetailsDTO;
+import com.softserve.academy.Tips4Trips.dto.details.CommentDetailsDTO;
 import com.softserve.academy.Tips4Trips.entity.blog.Comment;
 import com.softserve.academy.Tips4Trips.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
