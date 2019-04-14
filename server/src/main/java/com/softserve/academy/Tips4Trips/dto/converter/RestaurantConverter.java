@@ -40,6 +40,7 @@ public class RestaurantConverter implements Converter<Restaurant, RestaurantDeta
         restaurant.setWorkingDays(restaurantDetailsDTO.getWorkingDays());
         restaurant.setWebSite(restaurantDetailsDTO.getWebSite());
         restaurant.setType(restaurantDetailsDTO.getType());
+        restaurant.setTelephone(restaurantDetailsDTO.getTelephone());
         restaurant.setOpeningTime(restaurantDetailsDTO.getOpeningTime());
         restaurant.setClosingTime(restaurantDetailsDTO.getClosingTime());
         restaurant.setAverageBill(restaurantDetailsDTO.getAverageBill());
