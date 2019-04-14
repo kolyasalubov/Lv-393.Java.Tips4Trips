@@ -33,10 +33,10 @@ public class HotelConverter implements Converter<Hotel, HotelDetailsDTO> {
         HotelDetailsDTO hotelDetailsDTO = new HotelDetailsDTO();
         hotelDetailsDTO.setId(hotel.getId());
         hotelDetailsDTO.setName(hotel.getName());
-        String content = hotel.getDescription();
-        String description = content.length() > MAX_DESCRIPTION_LENGTH
-                ? content.substring(0, MAX_DESCRIPTION_LENGTH) : content;
-        hotelDetailsDTO.setDescription(description);
+        String description = hotel.getDescription();
+        String shortedDescription = description.length() > MAX_DESCRIPTION_LENGTH
+                ? description.substring(0, MAX_DESCRIPTION_LENGTH) : description;
+        hotelDetailsDTO.setDescription(shortedDescription);
         hotelDetailsDTO.setSelf(ControllerLinkBuilder.linkTo(
                 ControllerLinkBuilder.methodOn(RestaurantController.class)
                         .getById(hotel.getId())

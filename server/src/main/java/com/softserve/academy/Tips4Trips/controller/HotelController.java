@@ -36,13 +36,13 @@ public class HotelController {
 
 
     @GetMapping("/all")
-    public ResponseEntity<List<PlaceInfoDTO>> getAll(){
+    public ResponseEntity<List<PlaceInfoDTO>> getAll(@PathVariable Long countryId,@PathVariable Long cityId){
         return new ResponseEntity<>(placeConverter.
                 convertToInfoDTO(hotelService.findAll()), HttpStatus.OK);
     }
 
     @PostMapping("/create")
-    public ResponseEntity<HotelDetailsDTO> createRestaurant(@RequestBody HotelDetailsDTO hotelDetailsDTO) {
+    public ResponseEntity<HotelDetailsDTO> createRestaurant(@PathVariable Long countryId,@PathVariable Long cityId,@RequestBody HotelDetailsDTO hotelDetailsDTO) {
         Hotel hotel = hotelConverter.convertToEntity(hotelDetailsDTO);
         return new ResponseEntity<>(hotelConverter.convertToDTO(hotelService.createHotel(hotel)), HttpStatus.CREATED);
     }
@@ -54,7 +54,7 @@ public class HotelController {
     }
 
     @PostMapping("/update")
-    public ResponseEntity<HotelDetailsDTO> update(@RequestBody HotelDetailsDTO hotelDetailsDTO) {
+    public ResponseEntity<HotelDetailsDTO> update(@PathVariable Long countryId,@PathVariable Long cityId,@RequestBody HotelDetailsDTO hotelDetailsDTO) {
         return new ResponseEntity<>(hotelConverter.convertToDTO(hotelService.update(hotelConverter.convertToEntity(hotelDetailsDTO))), HttpStatus.OK);
     }
 }
