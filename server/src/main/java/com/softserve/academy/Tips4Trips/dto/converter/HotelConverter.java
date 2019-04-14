@@ -39,7 +39,7 @@ public class HotelConverter implements Converter<Hotel, HotelDetailsDTO> {
         hotelDetailsDTO.setDescription(shortedDescription);
         hotelDetailsDTO.setSelf(ControllerLinkBuilder.linkTo(
                 ControllerLinkBuilder.methodOn(RestaurantController.class)
-                        .getById(hotel.getId())
+                        .getById(hotel.getCity().getCountry().getId(), hotel.getCity().getId(), hotel.getId())
         ).withSelfRel().getHref().replace("{countryId}", hotel.getCity().getCountry().getId().toString())
                 .replace("{cityId}", hotel.getCity().getId().toString()));
         hotelDetailsDTO.setAddress(hotel.getAddress());

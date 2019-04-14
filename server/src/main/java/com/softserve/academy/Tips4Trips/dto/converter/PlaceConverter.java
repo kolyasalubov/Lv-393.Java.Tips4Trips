@@ -47,7 +47,7 @@ public class PlaceConverter implements Converter<Place,  PlaceInfoDTO> {
         placeInfoDTO.setDescription(description);
         placeInfoDTO.setSelf(ControllerLinkBuilder.linkTo(
                 ControllerLinkBuilder.methodOn(RestaurantController.class)
-                        .getById(place.getId())
+                        .getById(place.getCity().getCountry().getId(), place.getCity().getId(), place.getId())
         ).withSelfRel().getHref().replace("{countryId}", place.getCity().getCountry().getId().toString())
                 .replace("{cityId}", place.getCity().getId().toString()));
         return placeInfoDTO;
