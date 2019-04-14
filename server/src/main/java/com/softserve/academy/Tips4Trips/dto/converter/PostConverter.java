@@ -89,7 +89,8 @@ public class PostConverter implements Converter<Post, PostDetailsDTO> {
 
     private PostInfoDTO toInfoDTO(PostInfoDTO postInfoDTO, Post post) {
         postInfoDTO.setId(post.getId());
-        postInfoDTO.setCountOfLikes(post.getLikes().size());
+        postInfoDTO.setCountOfLikes(post.getLikes() != null
+                ? post.getLikes().size() : 0);
         postInfoDTO.setName(post.getName());
         String content = post.getContent();
         String description = content.length() > MAX_DESCRIPTION_LENGTH
