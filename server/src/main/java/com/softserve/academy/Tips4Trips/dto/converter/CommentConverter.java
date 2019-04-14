@@ -25,18 +25,16 @@ public class CommentConverter implements Converter<Comment, CommentDetailsDTO> {
     private final int MAX_TEXT_LENGTH = 100;
 
     @Autowired
-    public CommentConverter(PostService postService, AccountService accountService) {
+    public CommentConverter(PostService postService, AccountService accountService, AccountConverter accountConverter) {
         this.postService = postService;
         this.accountService = accountService;
+        this.accountConverter = accountConverter;
     }
+
 
     @Override
     public CommentDetailsDTO convertToDTO(Comment comment) {
-        CommentDetailsDTO commentDetailsDTO = new CommentDetailsDTO();
-        commentDetailsDTO.setId(comment.getId());
-        Account account = comment.getCommentedBy();
-        commentDetailsDTO.setAccountInfo(accountConverter.convertToInfoDTO(account));
-        commentDetailsDTO.setCreationDate(comment.getCreationDate());
+        CommentDetailsDTO commentDetailsDTO = (CommentDetailsDTO)toInfoDTO(new CommentDetailsDTO(),comment);
         commentDetailsDTO.setText(comment.getText());
         return commentDetailsDTO;
     }
@@ -46,9 +44,9 @@ public class CommentConverter implements Converter<Comment, CommentDetailsDTO> {
         Comment comment = new Comment();
         comment.setId(commentDetailsDTO.getId());
 
-        Account account = accountService.findById(commentDetailsDTO.getId());
+        Account account = accountService.findById(commentDetailsDTO.getAccountInfo().getId());
         comment.setCommentedBy(account);
-        Post post = postService.findById(commentDetailsDTO.getId());
+        Post post = postService.findById(commentDetailsDTO.getPostId());
         comment.setPost(post);
         comment.setCreationDate(commentDetailsDTO.getCreationDate());
         comment.setText(commentDetailsDTO.getText());
@@ -72,6 +70,7 @@ public class CommentConverter implements Converter<Comment, CommentDetailsDTO> {
         Account account = comment.getCommentedBy();
         commentInfoDTO.setAccountInfo(accountConverter.convertToInfoDTO(account));
         commentInfoDTO.setCreationDate(comment.getCreationDate());
+        commentInfoDTO.setPostId(comment.getPost().getId());
         String text = comment.getText();
         String shortText = text.length() > MAX_TEXT_LENGTH
                 ? text.substring(0, MAX_TEXT_LENGTH) : text;

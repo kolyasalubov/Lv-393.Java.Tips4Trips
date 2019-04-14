@@ -8,6 +8,7 @@ public class CommentInfoDTO {
     private String shortText;
     private Date creationDate;
     private String self;
+    private Long postId;
 
     public Long getId() {
         return id;
@@ -47,5 +48,13 @@ public class CommentInfoDTO {
 
     public void setSelf(String self) {
         this.self = self;
+    }
+
+    public Long getPostId() {
+        return postId;
+    }
+
+    public void setPostId(Long postId) {
+        this.postId = postId;
     }
 }
