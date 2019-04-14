@@ -42,6 +42,7 @@ public class AccountController {
     }
 
 
+
     @PostMapping("/create")
     public ResponseEntity<AccountDetailsDTO> createAccount(@RequestBody AccountDetailsDTO accountDTO){
         Account account = accountService.createAccount(accountConverter.convertToEntity(accountDTO));

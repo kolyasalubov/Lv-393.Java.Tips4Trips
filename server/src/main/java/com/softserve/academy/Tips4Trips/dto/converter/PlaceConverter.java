@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
-public class PlaceConverter implements Converter<Place, PlaceInfoDTO> {
+public class PlaceConverter implements Converter<Place,  PlaceInfoDTO> {
 
     private final int MAX_DESCRIPTION_LENGTH = 100;
 

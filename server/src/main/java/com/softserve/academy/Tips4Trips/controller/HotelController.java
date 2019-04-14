@@ -45,7 +45,7 @@ public class HotelController {
 
 
     @GetMapping("/{id}")
-    public ResponseEntity<HotelDetailsDTO> getById(@PathVariable Long id) {
+    public ResponseEntity<HotelDetailsDTO> getById(@PathVariable Long countryId,@PathVariable Long cityId,@PathVariable Long id) {
         return new ResponseEntity<>(hotelConverter.convertToDTO(hotelService.findById(id)), HttpStatus.OK);
     }
 
