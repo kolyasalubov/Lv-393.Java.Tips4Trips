@@ -3,6 +3,7 @@ package com.softserve.academy.Tips4Trips.service;
 import com.softserve.academy.Tips4Trips.entity.City;
 import com.softserve.academy.Tips4Trips.entity.place.Place;
 import com.softserve.academy.Tips4Trips.repository.PlaceRepository;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +13,8 @@ import java.util.Optional;
 
 @Service
 public class PlaceService {
+
+    private static final Logger logger = Logger.getLogger(PlaceService.class);
 
     PlaceRepository repository;
 

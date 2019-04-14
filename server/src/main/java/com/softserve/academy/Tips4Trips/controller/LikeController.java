@@ -16,6 +16,7 @@ import com.softserve.academy.Tips4Trips.entity.blog.Like;
 import com.softserve.academy.Tips4Trips.entity.blog.Post;
 import com.softserve.academy.Tips4Trips.service.AccountService;
 import com.softserve.academy.Tips4Trips.service.LikeService;
+import org.apache.log4j.Logger;
 import com.softserve.academy.Tips4Trips.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,6 +30,9 @@ import java.util.List;
 @CrossOrigin
 @RequestMapping("posts/{postId}/likes")
 public class LikeController {
+
+    private static final Logger logger = Logger.getLogger(LikeController.class);
+
     private LikeConverter likeConverter;
     private LikeService likeService;
     private PostService postService;

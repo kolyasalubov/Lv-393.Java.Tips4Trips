@@ -6,6 +6,7 @@ import com.softserve.academy.Tips4Trips.dto.details.RouteDetailsDTO;
 import com.softserve.academy.Tips4Trips.dto.info.RouteInfoDTO;
 import com.softserve.academy.Tips4Trips.entity.Route;
 import com.softserve.academy.Tips4Trips.service.RouteService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +18,8 @@ import java.util.List;
 @CrossOrigin
 @RequestMapping("/routes")
 public class RouteController {
+
+    private static final Logger logger = Logger.getLogger(RouteController.class);
 
     private RouteService routeService;
     private RouteConverter routeConverter;

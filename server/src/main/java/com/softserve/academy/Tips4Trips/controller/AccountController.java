@@ -13,11 +13,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import org.apache.log4j.Logger;
 
 @RestController
 @CrossOrigin
 @RequestMapping("/accounts")
 public class AccountController {
+
+    private static final Logger logger = Logger.getLogger(AccountController.class);
 
     private AccountService accountService;
     private AccountConverter accountConverter;
