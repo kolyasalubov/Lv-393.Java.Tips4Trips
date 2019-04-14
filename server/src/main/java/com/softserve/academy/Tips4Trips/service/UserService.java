@@ -3,12 +3,15 @@ package com.softserve.academy.Tips4Trips.service;
 import com.softserve.academy.Tips4Trips.dto.converter.UserConverter;
 import com.softserve.academy.Tips4Trips.entity.administration.Account;
 import com.softserve.academy.Tips4Trips.entity.administration.User;
+import com.softserve.academy.Tips4Trips.exception.UpdateException;
 import com.softserve.academy.Tips4Trips.repository.UserRepository;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -26,7 +29,12 @@ public class UserService {
     }
 
     public User findByLogin(String login) {
-        return repository.findByLogin(login).get();
+        Optional<User> user = repository.findByLogin(login);
+        if (user.isPresent()) {
+            return user.get();
+        } else {
+            throw new NoSuchElementException();
+        }
     }
 
     public List<User> findByAccount(Account account) {
@@ -46,7 +54,12 @@ public class UserService {
     }
 
     public User findById(Long id) {
-        return repository.findById(id).get();
+        Optional<User> user = repository.findById(id);
+        if (user.isPresent()) {
+            return user.get();
+        } else {
+            throw new NoSuchElementException();
+        }
     }
 
     public void deleteById(Long id) {
@@ -54,14 +67,20 @@ public class UserService {
     }
 
     public User createUser(User user) {
-        user.setId(0L);
+        user.setId(-1L);
         return repository.save(user);
     }
 
-    public User update(User user) {
-        if (user.getId() == null) {
-            throw new IllegalArgumentException();
+    public User update(User user) throws UpdateException {
+        Optional<User> existingUser = repository.findById(user.getId());
+        if (!existingUser.isPresent()) {
+            throw new NoSuchElementException();
+        } else if (loginExists(user.getLogin())) {
+            throw new UpdateException("Login already exists!");
+        } else {
+            existingUser.get().setLogin(user.getLogin());
+            existingUser.get().setPassword(user.getPassword());
         }
-        return repository.save(user);
+        return repository.save(existingUser.get());
     }
 }

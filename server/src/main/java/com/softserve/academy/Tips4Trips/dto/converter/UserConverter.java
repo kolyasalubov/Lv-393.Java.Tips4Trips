@@ -3,8 +3,8 @@ package com.softserve.academy.Tips4Trips.dto.converter;
 import com.softserve.academy.Tips4Trips.dto.UserDTO;
 import com.softserve.academy.Tips4Trips.entity.administration.Account;
 import com.softserve.academy.Tips4Trips.entity.administration.User;
-import com.softserve.academy.Tips4Trips.repository.AccountRepository;
-import com.softserve.academy.Tips4Trips.repository.UserRepository;
+import com.softserve.academy.Tips4Trips.service.AccountService;
+import com.softserve.academy.Tips4Trips.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -13,14 +13,11 @@ import java.util.Optional;
 @Component
 public class UserConverter implements Converter<User, UserDTO> {
 
-    AccountRepository accountRepository;
-    UserRepository userRepository;
+    private AccountService accountService;
 
     @Autowired
-    public UserConverter(AccountRepository accountRepository,
-                         UserRepository userRepository) {
-        this.accountRepository = accountRepository;
-        this.userRepository = userRepository;
+    public UserConverter(AccountService accountService) {
+        this.accountService = accountService;
     }
 
     @Override
@@ -35,13 +32,12 @@ public class UserConverter implements Converter<User, UserDTO> {
 
     @Override
     public User convertToEntity(UserDTO userDTO) {
-        long id = (userDTO.getId() != null) ? userDTO.getId() : 0;
-        User user = userRepository.findById(id)
-                .orElseGet(User::new);
+        User user = new User();
+        user.setId(userDTO.getId());
         user.setLogin(userDTO.getLogin());
         user.setPassword(userDTO.getPassword());
-        Optional<Account> account = accountRepository.findByEmail(userDTO.getEmail());
-        account.ifPresent(user::setAccount);
+        Account account = accountService.findByEmail(userDTO.getEmail());
+        user.setAccount(account);
         return user;
     }
 
