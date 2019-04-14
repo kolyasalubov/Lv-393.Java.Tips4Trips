@@ -4,6 +4,7 @@ import com.softserve.academy.Tips4Trips.entity.City;
 import com.softserve.academy.Tips4Trips.entity.place.Monument;
 import com.softserve.academy.Tips4Trips.repository.CityRepository;
 import com.softserve.academy.Tips4Trips.repository.MonumentRepository;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +13,8 @@ import java.util.Optional;
 
 @Service
 public class MonumentService {
+
+    private static final Logger logger = Logger.getLogger(MonumentService.class);
 
     private MonumentRepository repository;
     private CityRepository cityRepository;

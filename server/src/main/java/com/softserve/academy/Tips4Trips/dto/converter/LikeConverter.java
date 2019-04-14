@@ -5,6 +5,7 @@ import com.softserve.academy.Tips4Trips.entity.administration.Account;
 import com.softserve.academy.Tips4Trips.entity.blog.Like;
 import com.softserve.academy.Tips4Trips.entity.blog.Post;
 import com.softserve.academy.Tips4Trips.repository.AccountRepository;
+import com.softserve.academy.Tips4Trips.service.AccountService;
 import com.softserve.academy.Tips4Trips.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -12,14 +13,15 @@ import org.springframework.stereotype.Component;
 @Component
 public class LikeConverter implements Converter<Like, LikeDTO> {
 
-    private AccountRepository accountRepository;
     private PostService postService;
+    private AccountService accountService;
 
     @Autowired
-    public LikeConverter(AccountRepository accountRepository, PostService postService) {
-        this.accountRepository = accountRepository;
+    public LikeConverter(PostService postService, AccountService accountService) {
         this.postService = postService;
+        this.accountService = accountService;
     }
+
 
     @Override
     public LikeDTO convertToDTO(Like like) {
@@ -34,7 +36,7 @@ public class LikeConverter implements Converter<Like, LikeDTO> {
     public Like convertToEntity(LikeDTO likeDTO) {
         Like like = new Like();
         like.setId(likeDTO.getId());
-        Account account = accountRepository.findById(likeDTO.getAccountId()).get();
+        Account account = accountService.findById(likeDTO.getAccountId());
         like.setLikedBy(account);
         Post post = postService.findById(likeDTO.getPostId());
         like.setPost(post);

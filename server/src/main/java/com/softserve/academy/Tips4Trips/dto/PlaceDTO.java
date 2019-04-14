@@ -1,7 +1,7 @@
 package com.softserve.academy.Tips4Trips.dto;
 
 import com.softserve.academy.Tips4Trips.entity.Position;
-
+//todo delete it
 public class PlaceDTO {
     private Long id;
     private String name;

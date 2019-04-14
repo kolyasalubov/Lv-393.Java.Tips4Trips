@@ -45,18 +45,11 @@ public class AccountConverter implements Converter<Account, AccountDetailsDTO> {
         return account;
     }
 
-    public AccountInfoDTO convertToInfoDTO(AccountInfoDTO accountInfoDTO, Account account) {
-        accountInfoDTO.setId(account.getId());
-        accountInfoDTO.setFirstName(account.getFirstName());
-        accountInfoDTO.setLastName(account.getLastName());
-        accountInfoDTO.setSelf(ControllerLinkBuilder
-                .linkTo(ControllerLinkBuilder
-                        .methodOn(AccountController.class)
-                        .getById(account.getId()))
-                .withSelfRel().getHref());
-        return accountInfoDTO;
-
+    public AccountInfoDTO convertToInfoDTO( Account account) {
+       return toInfoDTO(new AccountInfoDTO(), account);
     }
+
+
 
     public List<AccountInfoDTO> convertToInfoDTO(final List<Account> accounts) {
         List<AccountInfoDTO> dtos = new ArrayList<>();
@@ -67,9 +60,7 @@ public class AccountConverter implements Converter<Account, AccountDetailsDTO> {
     }
 
 
-    public AccountInfoDTO convertToInfoDTO(Account account) {
-        return toInfoDTO(new AccountInfoDTO(), account);
-    }
+
 
     private AccountInfoDTO toInfoDTO(AccountInfoDTO accountInfoDTO, Account account) {
         accountInfoDTO.setId(account.getId());

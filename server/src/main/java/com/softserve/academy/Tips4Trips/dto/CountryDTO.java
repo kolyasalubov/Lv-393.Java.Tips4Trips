@@ -9,16 +9,16 @@ public class CountryDTO {
     private Long id;
     private String name;
     private Position position;
-    private List<CityDTO> listOfCities;
+    private String cities;
 
     public CountryDTO() {
     }
 
-    public CountryDTO(Long id, String name, Position position, List<CityDTO> listOfCities) {
+    public CountryDTO(Long id, String name, Position position, String cities) {
         this.id = id;
         this.name = name;
         this.position = position;
-        this.listOfCities = listOfCities;
+        this.cities = cities;
     }
 
     public Long getId() {
@@ -45,11 +45,11 @@ public class CountryDTO {
         this.position = position;
     }
 
-    public List<CityDTO> getListOfCities() {
-        return listOfCities;
+    public String getCities() {
+        return cities;
     }
 
-    public void setListOfCities(List<CityDTO> listOfCities) {
-        this.listOfCities = listOfCities;
+    public void setCities(String cities) {
+        this.cities = cities;
     }
 }

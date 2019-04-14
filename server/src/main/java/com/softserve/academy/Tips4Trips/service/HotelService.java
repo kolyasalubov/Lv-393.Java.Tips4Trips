@@ -4,6 +4,7 @@ import com.softserve.academy.Tips4Trips.entity.City;
 import com.softserve.academy.Tips4Trips.entity.place.Hotel;
 import com.softserve.academy.Tips4Trips.repository.CityRepository;
 import com.softserve.academy.Tips4Trips.repository.HotelRepository;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +13,9 @@ import java.util.Optional;
 
 @Service
 public class HotelService {
+
+    private static final Logger logger = Logger.getLogger(HotelService.class);
+
     private HotelRepository repository;
     private CityRepository cityRepository;
 
@@ -27,7 +31,11 @@ public class HotelService {
 
     public Hotel findById(Long id) {
         Optional<Hotel> hotel = repository.findById(id);
-        return hotel.orElse(null);
+        if (hotel.isPresent()) {
+            return hotel.get();
+        } else {
+            return null;
+        }
     }
 
     public List<Hotel> findByName(String name) {
@@ -36,7 +44,11 @@ public class HotelService {
 
     public List<Hotel> findByCity(String name){
         Optional<City> city = cityRepository.findByName(name);
-        return city.map(city1 -> repository.findByCity(city1)).orElse(null);
+        if (city.isPresent()) {
+            return repository.findByCity(city.get());
+        } else {
+            return null;
+        }
     }
 
     public Hotel createHotel(Hotel hotel) {

@@ -13,11 +13,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import org.apache.log4j.Logger;
 
 @RestController
 @CrossOrigin
 @RequestMapping("/accounts")
 public class AccountController {
+
+    private static final Logger logger = Logger.getLogger(AccountController.class);
 
     private AccountService accountService;
     private AccountConverter accountConverter;
@@ -42,6 +45,7 @@ public class AccountController {
     }
 
 
+
     @PostMapping("/create")
     public ResponseEntity<AccountDetailsDTO> createAccount(@RequestBody AccountDetailsDTO accountDTO){
         Account account = accountService.createAccount(accountConverter.convertToEntity(accountDTO));
@@ -54,10 +58,4 @@ public class AccountController {
         return new ResponseEntity<>(accountConverter.convertToDTO(account), HttpStatus.ACCEPTED);
 
     }
-
-    @GetMapping("/exists/email/{email}")
-    public ResponseEntity<Boolean> emailExists(@PathVariable String email) {
-        return new ResponseEntity<>(accountService.emailExists(email), HttpStatus.OK);
-    }
-
 }

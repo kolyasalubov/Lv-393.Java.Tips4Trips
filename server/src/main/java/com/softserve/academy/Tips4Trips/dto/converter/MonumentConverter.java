@@ -1,6 +1,6 @@
 package com.softserve.academy.Tips4Trips.dto.converter;
 
-import com.softserve.academy.Tips4Trips.dto.MonumentDTO;
+import com.softserve.academy.Tips4Trips.dto.details.MonumentDetailsDTO;
 import com.softserve.academy.Tips4Trips.entity.place.Monument;
 import com.softserve.academy.Tips4Trips.service.CityService;
 import com.softserve.academy.Tips4Trips.service.MonumentService;
@@ -8,42 +8,51 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class MonumentConverter implements Converter<Monument, MonumentDTO> {
+public class MonumentConverter implements Converter<Monument, MonumentDetailsDTO> {
 
     private MonumentService monumentService;
     private CityService cityService;
+    private CityConverter cityConverter;
+    private final int MAX_DESCRIPTION_LENGTH = 100;
+    private PlaceConverter placeConverter;
 
     @Autowired
-    public MonumentConverter (MonumentService monumentService, CityService cityService) {
+    public MonumentConverter (MonumentService monumentService, CityService cityService, CityConverter cityConverter, PlaceConverter placeConverter) {
         this.monumentService = monumentService;
         this.cityService = cityService;
+        this.cityConverter = cityConverter;
+        this.placeConverter = placeConverter;
     }
 
     @Override
-    public MonumentDTO convertToDTO(Monument monument) {
-        MonumentDTO monumentDTO = new MonumentDTO();
-        monumentDTO.setId(monument.getId());
-        monumentDTO.setName(monument.getName());
-        monumentDTO.setDescription(monument.getDescription());
-        monumentDTO.setAddress(monument.getAddress());
-        monumentDTO.setPosition(monument.getPosition());
-        monumentDTO.setPhotoPath(monument.getPhotoPath());
-        monumentDTO.setCityId(monument.getCity().getId());
-
-        return monumentDTO;
-    }
-
-    @Override
-    public Monument convertToEntity(MonumentDTO monumentDTO) {
+    public Monument convertToEntity(MonumentDetailsDTO monumentDetailsDTO) {
         Monument monument = new Monument();
-        monument.setId(monumentDTO.getId());
-        monument.setName(monumentDTO.getName());
-        monument.setDescription(monumentDTO.getDescription());
-        monument.setAddress(monumentDTO.getAddress());
-        monument.setPosition(monumentDTO.getPosition());
-        monument.setPhotoPath(monumentDTO.getPhotoPath());
-        monument.setCity(cityService.findById(monumentDTO.getCityId()));
+        monument.setId(monumentDetailsDTO.getId());
+        monument.setName(monumentDetailsDTO.getName());
+        monument.setDescription(monumentDetailsDTO.getDescription());
+        monument.setAddress(monumentDetailsDTO.getAddress());
+        monument.setPosition(monumentDetailsDTO.getPosition());
+        monument.setPhotoPath(monumentDetailsDTO.getPhotoPath());
+        monument.setCity(cityConverter.convertToEntity(monumentDetailsDTO.getCityDTO()));
         return monument;
     }
+
+    @Override
+    public MonumentDetailsDTO convertToDTO(Monument monument) {
+        MonumentDetailsDTO monumentDetailsDTO = (MonumentDetailsDTO)
+                placeConverter.convertToInfoDTO(monument);
+
+        monumentDetailsDTO.setId(monument.getId());
+        monumentDetailsDTO.setName(monument.getName());
+
+        monumentDetailsDTO.setDescription(monument.getDescription());
+        monumentDetailsDTO.setAddress(monument.getAddress());
+        monumentDetailsDTO.setPosition(monument.getPosition());
+        monumentDetailsDTO.setPhotoPath(monument.getPhotoPath());
+        monumentDetailsDTO.setCityDTO(cityConverter.convertToDTO(cityService.findById(monument.getCity().getId())));
+
+        return monumentDetailsDTO;
+    }
+
 
 }
