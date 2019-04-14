@@ -42,7 +42,7 @@ public class HotelController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<HotelDetailsDTO> createRestaurant(@PathVariable Long countryId,@PathVariable Long cityId,@RequestBody HotelDetailsDTO hotelDetailsDTO) {
+    public ResponseEntity<HotelDetailsDTO> createHotel(@PathVariable Long countryId,@PathVariable Long cityId,@RequestBody HotelDetailsDTO hotelDetailsDTO) {
         Hotel hotel = hotelConverter.convertToEntity(hotelDetailsDTO);
         return new ResponseEntity<>(hotelConverter.convertToDTO(hotelService.createHotel(hotel)), HttpStatus.CREATED);
     }

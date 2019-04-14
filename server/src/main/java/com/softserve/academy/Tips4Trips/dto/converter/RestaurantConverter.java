@@ -40,6 +40,7 @@ public class RestaurantConverter implements Converter<Restaurant, RestaurantDeta
         restaurant.setWorkingDays(restaurantDetailsDTO.getWorkingDays());
         restaurant.setWebSite(restaurantDetailsDTO.getWebSite());
         restaurant.setType(restaurantDetailsDTO.getType());
+        restaurant.setTelephone(restaurantDetailsDTO.getTelephone());
         restaurant.setOpeningTime(restaurantDetailsDTO.getOpeningTime());
         restaurant.setClosingTime(restaurantDetailsDTO.getClosingTime());
         restaurant.setAverageBill(restaurantDetailsDTO.getAverageBill());
@@ -69,7 +70,7 @@ public class RestaurantConverter implements Converter<Restaurant, RestaurantDeta
         restaurantDetailsDTO.setHasVeganFood(restaurant.getHasVeganFood());
         restaurantDetailsDTO.setSelf(ControllerLinkBuilder.linkTo(
                 ControllerLinkBuilder.methodOn(RestaurantController.class)
-                        .getById(restaurant.getId())
+                        .getById(restaurant.getCity().getCountry().getId(), restaurant.getCity().getId(), restaurant.getId())
         ).withSelfRel().getHref().replace("{countryId}", restaurant.getCity().getCountry().getId().toString())
                 .replace("{cityId}", restaurant.getCity().getId().toString()));
 
