@@ -1,10 +1,12 @@
 package com.softserve.academy.Tips4Trips.dto.converter;
 
+import com.softserve.academy.Tips4Trips.controller.RestaurantController;
 import com.softserve.academy.Tips4Trips.dto.details.MonumentDetailsDTO;
 import com.softserve.academy.Tips4Trips.entity.place.Monument;
 import com.softserve.academy.Tips4Trips.service.CityService;
 import com.softserve.academy.Tips4Trips.service.MonumentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.mvc.ControllerLinkBuilder;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -39,17 +41,20 @@ public class MonumentConverter implements Converter<Monument, MonumentDetailsDTO
 
     @Override
     public MonumentDetailsDTO convertToDTO(Monument monument) {
-        MonumentDetailsDTO monumentDetailsDTO = (MonumentDetailsDTO)
-                placeConverter.convertToInfoDTO(monument);
+        MonumentDetailsDTO monumentDetailsDTO = new MonumentDetailsDTO();
 
         monumentDetailsDTO.setId(monument.getId());
         monumentDetailsDTO.setName(monument.getName());
-
         monumentDetailsDTO.setDescription(monument.getDescription());
         monumentDetailsDTO.setAddress(monument.getAddress());
         monumentDetailsDTO.setPosition(monument.getPosition());
         monumentDetailsDTO.setPhotoPath(monument.getPhotoPath());
         monumentDetailsDTO.setCityDTO(cityConverter.convertToDTO(cityService.findById(monument.getCity().getId())));
+        monumentDetailsDTO.setSelf(ControllerLinkBuilder.linkTo(
+                ControllerLinkBuilder.methodOn(RestaurantController.class)
+                        .getById(monument.getId())
+        ).withSelfRel().getHref().replace("{countryId}", monument.getCity().getCountry().getId().toString())
+                .replace("{cityId}", monument.getCity().getId().toString()));
 
         return monumentDetailsDTO;
     }
