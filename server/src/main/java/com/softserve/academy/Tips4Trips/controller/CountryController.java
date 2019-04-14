@@ -4,6 +4,7 @@ import com.softserve.academy.Tips4Trips.dto.CountryDTO;
 import com.softserve.academy.Tips4Trips.dto.converter.CountryConverter;
 import com.softserve.academy.Tips4Trips.entity.Country;
 import com.softserve.academy.Tips4Trips.service.CountryService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,8 @@ import java.util.List;
 @RequestMapping("/countries")
 public class CountryController {
 
+    private static final Logger logger = Logger.getLogger(CountryController.class);
+
     CountryConverter countryConverter;
     CountryService countryService;
 
@@ -25,7 +28,7 @@ public class CountryController {
         this.countryService = countryService;
     }
 
-    @GetMapping("/all")
+    @GetMapping
     public ResponseEntity<List<CountryDTO>> getAll() {
         return new ResponseEntity<>(countryConverter.convertToDTO(countryService.findAll()), HttpStatus.OK);
     }
@@ -36,9 +39,9 @@ public class CountryController {
         return new ResponseEntity<>(countryConverter.convertToDTO(countryService.createCountry(country)), HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<CountryDTO> getById(@PathVariable Long id) {
-        return new ResponseEntity<>(countryConverter.convertToDTO(countryService.findById(id)), HttpStatus.OK);
+    @GetMapping("/{countryId}")
+    public ResponseEntity<CountryDTO> getById(@PathVariable Long countryId) {
+        return new ResponseEntity<>(countryConverter.convertToDTO(countryService.findById(countryId)), HttpStatus.OK);
     }
 
     @PutMapping("/update")
@@ -47,9 +50,9 @@ public class CountryController {
         return new ResponseEntity<>(countryConverter.convertToDTO(countryService.update(country)), HttpStatus.OK);
     }
 
-    @DeleteMapping("/delete/{id}")
-    public void deleteById(@PathVariable Long id) {
-        countryService.deleteById(id);
+    @DeleteMapping("/delete/{countryId}")
+    public void deleteById(@PathVariable Long countryId) {
+        countryService.deleteById(countryId);
     }
 
 }

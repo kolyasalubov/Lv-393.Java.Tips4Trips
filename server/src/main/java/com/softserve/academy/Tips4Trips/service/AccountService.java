@@ -3,6 +3,7 @@ package com.softserve.academy.Tips4Trips.service;
 import com.softserve.academy.Tips4Trips.dto.converter.AccountConverter;
 import com.softserve.academy.Tips4Trips.entity.administration.Account;
 import com.softserve.academy.Tips4Trips.repository.AccountRepository;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +13,8 @@ import java.util.Optional;
 
 @Service
 public class AccountService {
+
+    private static final Logger logger = Logger.getLogger(AccountService.class);
 
     private AccountConverter accountConverter;
     private AccountRepository repository;

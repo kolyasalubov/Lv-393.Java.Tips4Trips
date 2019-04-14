@@ -11,18 +11,17 @@ public class CityDTO {
     private String name;
     private Position position;
     private Long countryId;
-    private List<PlaceInfoDTO> listOfPlaces;
-    private String self;
+    private String places;
 
     public CityDTO() {
     }
 
-    public CityDTO(Long id, String name, Position position, Long countryId, List<PlaceInfoDTO> listOfPlaces) {
+    public CityDTO(Long id, String name, Position position, Long countryId, String places) {
         this.id = id;
         this.name = name;
         this.position = position;
         this.countryId = countryId;
-        this.listOfPlaces = listOfPlaces;
+        this.places = places;
     }
 
     public Long getId() {
@@ -57,19 +56,11 @@ public class CityDTO {
         this.countryId = countryId;
     }
 
-    public List<PlaceInfoDTO> getListOfPlaces() {
-        return listOfPlaces;
+    public String getPlaces() {
+        return places;
     }
 
-    public void setListOfPlaces(List<PlaceInfoDTO> listOfPlaces) {
-        this.listOfPlaces = listOfPlaces;
-    }
-
-    public void setSelf(String self) {
-        this.self = self;
-    }
-
-    public String getSelf() {
-        return self;
+    public void setPlaces(String places) {
+        this.places = places;
     }
 }

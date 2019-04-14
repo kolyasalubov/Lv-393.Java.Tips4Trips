@@ -6,6 +6,7 @@ import com.softserve.academy.Tips4Trips.dto.details.FindGroupDetailsDTO;
 import com.softserve.academy.Tips4Trips.dto.info.FindGroupInfoDTO;
 import com.softserve.academy.Tips4Trips.entity.entertainment.mountains.FindGroup;
 import com.softserve.academy.Tips4Trips.service.FindGroupService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +18,8 @@ import java.util.List;
 @CrossOrigin
 @RequestMapping("/findgroups")
 public class FindGroupController {
+
+    private static final Logger logger = Logger.getLogger(FindGroupController.class);
 
     private FindGroupService findGroupService;
     private FindGroupConverter findGroupConverter;

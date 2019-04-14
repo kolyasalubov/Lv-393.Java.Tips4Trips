@@ -1,3 +1,4 @@
+/*
 package com.softserve.academy.Tips4Trips.controller.exception;
 
 import com.softserve.academy.Tips4Trips.dto.exception.ExceptionDTO;
@@ -86,4 +87,4 @@ public class CustomResponseEntityExceptionHandler
                 exception.getMessage(), request.getDescription(false));
         return new ResponseEntity<>(errorDetails, HttpStatus.UNSUPPORTED_MEDIA_TYPE);
     }
-}
+}*/

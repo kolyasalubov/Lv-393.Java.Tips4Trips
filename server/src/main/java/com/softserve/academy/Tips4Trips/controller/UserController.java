@@ -4,6 +4,7 @@ import com.softserve.academy.Tips4Trips.dto.UserDTO;
 import com.softserve.academy.Tips4Trips.dto.converter.UserConverter;
 import com.softserve.academy.Tips4Trips.entity.administration.User;
 import com.softserve.academy.Tips4Trips.service.UserService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,8 @@ import java.util.List;
 @CrossOrigin
 @RequestMapping("/users")
 public class UserController {
+
+    private static final Logger logger = Logger.getLogger(UserController.class);
 
     private UserService userService;
     private UserConverter userConverter;

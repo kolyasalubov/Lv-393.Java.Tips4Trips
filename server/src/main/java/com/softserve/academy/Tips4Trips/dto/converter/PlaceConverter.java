@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
-public class PlaceConverter implements Converter<Place, PlaceInfoDTO> {
+public class PlaceConverter implements Converter<Place,  PlaceInfoDTO> {
 
     private final int MAX_DESCRIPTION_LENGTH = 100;
 
@@ -47,8 +47,9 @@ public class PlaceConverter implements Converter<Place, PlaceInfoDTO> {
         placeInfoDTO.setDescription(description);
         placeInfoDTO.setSelf(ControllerLinkBuilder.linkTo(
                 ControllerLinkBuilder.methodOn(RestaurantController.class)
-                        .getById(place.getId())
-        ).withSelfRel().getHref());
+                        .getById(place.getCity().getCountry().getId(), place.getCity().getId(), place.getId())
+        ).withSelfRel().getHref().replace("{countryId}", place.getCity().getCountry().getId().toString())
+                .replace("{cityId}", place.getCity().getId().toString()));
         return placeInfoDTO;
     }
 }

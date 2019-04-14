@@ -1,10 +1,12 @@
 package com.softserve.academy.Tips4Trips.dto.converter;
 
+import com.softserve.academy.Tips4Trips.controller.RestaurantController;
 import com.softserve.academy.Tips4Trips.dto.details.RestaurantDetailsDTO;
 import com.softserve.academy.Tips4Trips.entity.place.Restaurant;
 import com.softserve.academy.Tips4Trips.service.CityService;
 import com.softserve.academy.Tips4Trips.service.RestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.mvc.ControllerLinkBuilder;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -38,6 +40,7 @@ public class RestaurantConverter implements Converter<Restaurant, RestaurantDeta
         restaurant.setWorkingDays(restaurantDetailsDTO.getWorkingDays());
         restaurant.setWebSite(restaurantDetailsDTO.getWebSite());
         restaurant.setType(restaurantDetailsDTO.getType());
+        restaurant.setTelephone(restaurantDetailsDTO.getTelephone());
         restaurant.setOpeningTime(restaurantDetailsDTO.getOpeningTime());
         restaurant.setClosingTime(restaurantDetailsDTO.getClosingTime());
         restaurant.setAverageBill(restaurantDetailsDTO.getAverageBill());
@@ -47,12 +50,10 @@ public class RestaurantConverter implements Converter<Restaurant, RestaurantDeta
 
     @Override
     public RestaurantDetailsDTO convertToDTO(Restaurant restaurant) {
-        RestaurantDetailsDTO restaurantDetailsDTO = (RestaurantDetailsDTO)
-                placeConverter.convertToInfoDTO(restaurant);
+        RestaurantDetailsDTO restaurantDetailsDTO = new RestaurantDetailsDTO();
 
         restaurantDetailsDTO.setId(restaurant.getId());
         restaurantDetailsDTO.setName(restaurant.getName());
-
         restaurantDetailsDTO.setDescription(restaurant.getDescription());
         restaurantDetailsDTO.setAddress(restaurant.getAddress());
         restaurantDetailsDTO.setWorkingDays(restaurant.getWorkingDays());
@@ -67,6 +68,11 @@ public class RestaurantConverter implements Converter<Restaurant, RestaurantDeta
         restaurantDetailsDTO.setCityDTO(cityConverter.convertToDTO(cityService.findById(restaurant.getCity().getId())));
         restaurantDetailsDTO.setAverageBill(restaurant.getAverageBill());
         restaurantDetailsDTO.setHasVeganFood(restaurant.getHasVeganFood());
+        restaurantDetailsDTO.setSelf(ControllerLinkBuilder.linkTo(
+                ControllerLinkBuilder.methodOn(RestaurantController.class)
+                        .getById(restaurant.getCity().getCountry().getId(), restaurant.getCity().getId(), restaurant.getId())
+        ).withSelfRel().getHref().replace("{countryId}", restaurant.getCity().getCountry().getId().toString())
+                .replace("{cityId}", restaurant.getCity().getId().toString()));
 
         return restaurantDetailsDTO;
     }
