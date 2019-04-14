@@ -2,6 +2,7 @@ package com.softserve.academy.Tips4Trips.service;
 
 import com.softserve.academy.Tips4Trips.dto.converter.AccountConverter;
 import com.softserve.academy.Tips4Trips.entity.administration.Account;
+import com.softserve.academy.Tips4Trips.entity.administration.User;
 import com.softserve.academy.Tips4Trips.repository.AccountRepository;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,11 @@ public class AccountService {
         return repository.findAll();
     }
 
+    public Account findByUser(User user) {
+        Optional<Account> account = repository.findByUsersContains(user);
+        return account.isPresent() ? account.get() : null;
+    }
+
     public Account findById(Long id) {
         Optional<Account> account = repository.findById(id);
         if (account.isPresent()) {
@@ -38,6 +44,9 @@ public class AccountService {
         }
     }
 
+    boolean emailExists(String email) {
+        return repository.existsByEmail(email);
+    }
 
     public Account findByEmail(String email) {
 

@@ -6,7 +6,6 @@ import com.softserve.academy.Tips4Trips.entity.administration.User;
 import com.softserve.academy.Tips4Trips.exception.AuthenticationException;
 import com.softserve.academy.Tips4Trips.security.JwtTokenProvider;
 
-import com.softserve.academy.Tips4Trips.security.configuration.SecurityConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -48,13 +47,13 @@ public class AuthenticationServiceImpl {
         try {
 
             if (accountService.emailExists(account.getEmail())) {
-                throw new AuthenticationException("User e-mail already in " +
-                        "use!");
+                throw new AuthenticationException("User e-mail already in "
+                        + "use!");
             }
 
-            if (accountService.phoneNumberExists(account.getPhoneNumber())) {
-                throw new AuthenticationException("User phone number already " +
-                        "in use!");
+            if (accountService.existsByPhoneNumber(account.getPhoneNumber())) {
+                throw new AuthenticationException("User phone number already "
+                        + "in use!");
             }
 
             String login = user.getLogin();
