@@ -4,6 +4,7 @@ import com.softserve.academy.Tips4Trips.entity.City;
 import com.softserve.academy.Tips4Trips.entity.place.Hotel;
 import com.softserve.academy.Tips4Trips.repository.CityRepository;
 import com.softserve.academy.Tips4Trips.repository.HotelRepository;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +13,9 @@ import java.util.Optional;
 
 @Service
 public class HotelService {
+
+    private static final Logger logger = Logger.getLogger(HotelService.class);
+
     private HotelRepository repository;
     private CityRepository cityRepository;
 

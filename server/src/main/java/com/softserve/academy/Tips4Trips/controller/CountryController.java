@@ -4,6 +4,7 @@ import com.softserve.academy.Tips4Trips.dto.CountryDTO;
 import com.softserve.academy.Tips4Trips.dto.converter.CountryConverter;
 import com.softserve.academy.Tips4Trips.entity.Country;
 import com.softserve.academy.Tips4Trips.service.CountryService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,8 @@ import java.util.List;
 @CrossOrigin
 @RequestMapping("/countries")
 public class CountryController {
+
+    private static final Logger logger = Logger.getLogger(CountryController.class);
 
     CountryConverter countryConverter;
     CountryService countryService;

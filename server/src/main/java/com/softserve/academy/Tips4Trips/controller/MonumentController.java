@@ -7,6 +7,7 @@ import com.softserve.academy.Tips4Trips.dto.info.PlaceInfoDTO;
 import com.softserve.academy.Tips4Trips.entity.place.Monument;
 import com.softserve.academy.Tips4Trips.entity.place.Place;
 import com.softserve.academy.Tips4Trips.service.MonumentService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +19,8 @@ import java.util.List;
 @CrossOrigin
 @RequestMapping("/countries/{countryId}/cities/{cityId}/places/monuments")
 public class MonumentController {
+
+    private static final Logger logger = Logger.getLogger(MonumentController.class);
 
     private MonumentConverter monumentConverter;
     private MonumentService monumentService;

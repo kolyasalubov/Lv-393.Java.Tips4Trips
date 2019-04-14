@@ -4,6 +4,7 @@ import com.softserve.academy.Tips4Trips.entity.administration.Account;
 import com.softserve.academy.Tips4Trips.entity.blog.Post;
 import com.softserve.academy.Tips4Trips.repository.AccountRepository;
 import com.softserve.academy.Tips4Trips.repository.PostRepository;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +14,8 @@ import java.util.Optional;
 
 @Service
 public class PostService {
+
+    private static final Logger logger = Logger.getLogger(PostService.class);
 
     private AccountRepository accountRepository;
     private PostRepository repository;

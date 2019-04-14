@@ -6,6 +6,7 @@ import com.softserve.academy.Tips4Trips.dto.converter.PostConverter;
 import com.softserve.academy.Tips4Trips.dto.details.PostDetailsDTO;
 import com.softserve.academy.Tips4Trips.entity.blog.Comment;
 import com.softserve.academy.Tips4Trips.service.CommentService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +18,9 @@ import java.util.List;
 @CrossOrigin
 @RequestMapping("/comment")
 public class CommentController {
+
+    private static final Logger logger = Logger.getLogger(CommentController.class);
+
     CommentConverter commentConverter;
     CommentService commentService;
     PostConverter postConverter;

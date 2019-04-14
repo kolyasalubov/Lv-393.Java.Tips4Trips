@@ -6,6 +6,7 @@ import com.softserve.academy.Tips4Trips.dto.details.HotelDetailsDTO;
 import com.softserve.academy.Tips4Trips.dto.info.PlaceInfoDTO;
 import com.softserve.academy.Tips4Trips.entity.place.Hotel;
 import com.softserve.academy.Tips4Trips.service.HotelService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +18,9 @@ import java.util.List;
 @CrossOrigin
 @RequestMapping("/countries/{countryId}/cities/{cityId}/places/hotels")
 public class HotelController {
+
+    private static final Logger logger = Logger.getLogger(HotelController.class);
+
     private HotelService hotelService;
     private HotelConverter hotelConverter;
     private PlaceConverter placeConverter;

@@ -6,6 +6,7 @@ import com.softserve.academy.Tips4Trips.dto.converter.RestaurantConverter;
 import com.softserve.academy.Tips4Trips.dto.info.PlaceInfoDTO;
 import com.softserve.academy.Tips4Trips.entity.place.Restaurant;
 import com.softserve.academy.Tips4Trips.service.RestaurantService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +18,8 @@ import java.util.List;
 @CrossOrigin
 @RequestMapping("/countries/{countryId}/cities/{cityId}/places/restaurants")
 public class RestaurantController {
+
+    private static final Logger logger = Logger.getLogger(RestaurantController.class);
 
     private RestaurantService restaurantService;
     private RestaurantConverter restaurantConverter;
