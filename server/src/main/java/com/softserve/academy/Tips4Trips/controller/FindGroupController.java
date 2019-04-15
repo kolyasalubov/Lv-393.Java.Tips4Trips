@@ -33,6 +33,7 @@ public class FindGroupController {
 
     @GetMapping
     public ResponseEntity<List<FindGroupInfoDTO>> getAll() {
+        logger.info("find group get all method executing: ");
         return new ResponseEntity<>(findGroupConverter
                 .convertToInfoDTO(findGroupService.findAll()), HttpStatus.OK);
     }
@@ -40,6 +41,7 @@ public class FindGroupController {
 
     @GetMapping("/{id}")
     public ResponseEntity<FindGroupDetailsDTO> getById(@PathVariable Long id) {
+        logger.info("find group get by id method executing: ");
         return new ResponseEntity<>(findGroupConverter
                 .convertToDTO(findGroupService.findById(id)), HttpStatus.OK);
     }
@@ -47,6 +49,7 @@ public class FindGroupController {
 
     @PostMapping("/create")
     public ResponseEntity<FindGroupDetailsDTO> createPost(@RequestBody FindGroupDetailsDTO findGroupDetailsDTO) {
+        logger.info("find group create post method executing: ");
         FindGroup findGroup = findGroupService.createFindGroup(findGroupConverter.convertToEntity(findGroupDetailsDTO));
         return new ResponseEntity<>(findGroupConverter.convertToDTO(findGroup), HttpStatus.CREATED);
 
@@ -54,6 +57,7 @@ public class FindGroupController {
 
     @DeleteMapping("/delete/{id}")
     public void deleteById(@PathVariable Long id) {
+        logger.info("delete by id method executing: ");
         findGroupService.deleteById(id);
     }
 

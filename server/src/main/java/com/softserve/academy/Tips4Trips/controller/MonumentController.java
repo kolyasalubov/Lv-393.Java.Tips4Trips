@@ -38,23 +38,27 @@ public class MonumentController {
 
     @GetMapping("/all")
     public ResponseEntity<List<PlaceInfoDTO>> getAll(@PathVariable Long countryId, @PathVariable Long cityId){
+        logger.info("get all monument method executing: ");
         return new ResponseEntity<>(placeConverter
                 .convertToInfoDTO(monumentService.findByCity(cityService.findById(cityId).getName())), HttpStatus.OK);
     }
 
     @PostMapping("/create")
     public ResponseEntity<MonumentDetailsDTO> createMonument(@PathVariable Long countryId, @PathVariable Long cityId, @RequestBody MonumentDetailsDTO monumentDetailsDTO) {
+        logger.info("create monument method executing: ");
         Monument monument = monumentConverter.convertToEntity(monumentDetailsDTO);
         return new ResponseEntity<>(monumentConverter.convertToDTO(monumentService.createMonument(monument)), HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<MonumentDetailsDTO> getById(@PathVariable Long countryId, @PathVariable Long cityId, @PathVariable Long id) {
+        logger.info("get monument by id method executing: ");
         return new ResponseEntity<>(monumentConverter.convertToDTO(monumentService.findById(id)), HttpStatus.OK);
     }
 
     @PostMapping("/update")
     public ResponseEntity<MonumentDetailsDTO> update(@PathVariable Long countryId, @PathVariable Long cityId, @RequestBody MonumentDetailsDTO monumentDetailsDTO) {
+        logger.info("update monument method executing: ");
         return new ResponseEntity<>(monumentConverter.convertToDTO(monumentService.update(monumentConverter.convertToEntity(monumentDetailsDTO))), HttpStatus.OK);
     }
 }

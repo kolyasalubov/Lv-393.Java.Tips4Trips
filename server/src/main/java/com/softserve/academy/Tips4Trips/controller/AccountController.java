@@ -33,6 +33,7 @@ public class AccountController {
 
     @GetMapping
     public ResponseEntity<List<AccountInfoDTO>> getAll() {
+        logger.info("get all method executing: ");
         return new ResponseEntity<>(accountConverter.convertToInfoDTO(accountService
                 .findAll()), HttpStatus.OK);
     }
@@ -40,6 +41,7 @@ public class AccountController {
 
     @GetMapping("/{id}")
     public ResponseEntity<AccountDetailsDTO> getById(@PathVariable Long id) {
+        logger.info("get by id method executing: ");
         return new ResponseEntity<>(accountConverter
                 .convertToDTO(accountService.findById(id)), HttpStatus.OK);
     }
@@ -48,12 +50,14 @@ public class AccountController {
 
     @PostMapping("/create")
     public ResponseEntity<AccountDetailsDTO> createAccount(@RequestBody AccountDetailsDTO accountDTO){
+        logger.info("create account method executing: ");
         Account account = accountService.createAccount(accountConverter.convertToEntity(accountDTO));
         return new ResponseEntity<>(accountConverter.convertToDTO(account), HttpStatus.CREATED);
     }
 
     @PutMapping("/update")
     public ResponseEntity<AccountDetailsDTO> updateAccount(@RequestBody AccountDetailsDTO accountDTO) {
+        logger.info("update account method executing: ");
         Account account = accountService.update(accountConverter.convertToEntity(accountDTO));
         return new ResponseEntity<>(accountConverter.convertToDTO(account), HttpStatus.ACCEPTED);
 
