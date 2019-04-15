@@ -1,0 +1,16 @@
+.active-cyan-2 input[type=text]:focus:not([readonly]) {
+    border-bottom: 1px solid #4dd0e1;
+
+}
+.active-cyan input[type=text] {
+    border-bottom: 1px solid #4dd0e1;
+
+}
+.active-cyan .fa, .active-cyan-2 .fa {
+    color: #4dd0e1;
+}
+
+.form-control {
+    height: 0px;
+    margin-top: 10px;
+}

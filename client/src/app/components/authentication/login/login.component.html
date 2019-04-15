@@ -1,0 +1,58 @@
+<app-header></app-header>
+<section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('../../../assets/images/bg_2.jpg');"
+         data-stellar-background-ratio="0.5">
+    <div class="overlay" style="background:white;"></div>
+</section>
+
+<app-navbar></app-navbar>
+
+<section class="ftco-section contact-section" style="margin-bottom: 90px;">
+  <div class="container">
+    <div class="row block-9">
+          <h2 style="margin: auto">Login </h2>
+
+          <form class="bg-light p-5 contact-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+              <label for="username">Username:</label>
+              <input type="text" class="form-control" formControlName="username" id="username" autocomplete="off">
+              <div class="error" *ngIf="loginForm.controls['username'].hasError('required') 
+        && loginForm.controls['username'].touched">Username is required</div>
+            </div>
+            <div class="form-group">
+              <label for="pwd">Password:</label>
+              <input type="password" class="form-control" formControlName="password" id="pwd" autocomplete="off">
+              <div class="error" *ngIf="loginForm.controls['password'].hasError('required') 
+        && loginForm.controls['password'].touched">Password is required</div>
+            </div>
+
+            <div class="form-group">
+              <input type="submit" [disabled]="loginForm.invalid" value="Sing in" class="btn btn-primary py-3 px-5"
+                style="width: 100%;">
+              <div *ngIf="invalidLogin" class="error">
+                <div>Invalid credentials.</div>
+              </div>
+            </div>
+            <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+
+            <div class="chekbox-two">
+              <label class="checkbox" style="padding: 15px;">
+                <input type="checkbox" checked="">
+                <span class="checkbox__icon"></span>
+                Remember me
+              </label>
+            </div>
+
+            <div class="container signin">
+              <p>Have not already an account? <a href="sing-up.html">Create account</a>.</p>
+            </div>
+
+            <div class="container" style="background-color:#f1f1f1; padding: 15px;">
+              <span class="psw">Forgot <a href="#">password?</a></span>
+            </div>
+          </form>
+        </div>
+  </div>
+</section>
+
+<app-footer></app-footer>
+<script src="../../../../assets/js/main.js"></script>
