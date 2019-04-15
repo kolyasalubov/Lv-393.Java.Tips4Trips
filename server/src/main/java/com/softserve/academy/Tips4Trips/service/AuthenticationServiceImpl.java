@@ -64,8 +64,8 @@ public class AuthenticationServiceImpl {
 
             account.setRole(Role.USER);
             account.setRegistrationDate(new Date());
-            accountService.createAccount(account);
-            user.setAccount(account);
+            Account newAccount = accountService.createAccount(account);
+            user.setAccount(newAccount);
             user.setPassword(passwordEncoder.encode(password));
             userService.createUser(user);
 
