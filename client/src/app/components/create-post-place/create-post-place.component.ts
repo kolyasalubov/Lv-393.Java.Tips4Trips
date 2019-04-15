@@ -11,5 +11,22 @@ export class CreatePostPlaceComponent implements OnInit {
 
   ngOnInit() {
   }
+  private restaurant = false;
+  private hotel = false;
+  private monument = false;
+
+  createRestaurant() {
+    if (!this.restaurant) {
+      this.restaurant = true;
+    } else {
+      this.restaurant = false;
+    }
+  }
+  createHotel() {
+    this.restaurant = true;
+  }
+  createMonument() {
+    this.restaurant = true;
+  }
 
 }

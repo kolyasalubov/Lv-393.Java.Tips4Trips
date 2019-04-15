@@ -25,10 +25,9 @@ export class AccountComponent implements OnInit {
   }
 
 
-  onSubmit(accountProfile :any) {
-
-  
-      console.log(accountProfile.firstName);
+  onSubmit(accountProfile :Account) {
+      console.log(accountProfile);
+      this.accountService.updateAccount(accountProfile).subscribe(data => console.log(data));
   
   }
 

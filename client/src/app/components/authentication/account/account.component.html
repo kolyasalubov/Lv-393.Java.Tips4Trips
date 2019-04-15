@@ -74,6 +74,7 @@
                                   <td>
                                       <input class="form-control" style="width: 100%;" type="text" placeholder="Enter First Name"
                                              name="firstname"
+                                             [(ngModel)]="accountProfile.firstName"
                                              value={{accountProfile.firstName}}
                                              maxlength="26"></td>
                               </tr>
@@ -85,6 +86,7 @@
                                   <td>
                                       <input class="form-control" style="width: 100%;" type="text" placeholder="Enter Last Name" 
                                             name="lastname"
+                                            [(ngModel)]="accountProfile.lastName"
                                             value={{accountProfile.lastName}}
                                             maxlength="26"></td>
                               </tr>
@@ -95,8 +97,8 @@
                                   <td>
                                       <input class="form-control" style="width: 100%;" type="text" placeholder="Enter Telephone"
                                              name="phone"
+                                             [(ngModel)]="accountProfile.phoneNumber"
                                              value={{accountProfile.phoneNumber}}
-                                          
                                              ></td>
                               </tr>
                               <tr>
@@ -106,6 +108,7 @@
                                   <td>
                                       <input class="form-control" style="width: 100%;" type="email" placeholder="Email" 
                                       name="email"
+                                      [(ngModel)]="accountProfile.email"
                                       value={{accountProfile.email}}
                                       ></td>
                               </tr>
@@ -116,6 +119,7 @@
                                   <td>
                                       <textarea  class="form-control" rows="4" style="width: 100%;" placeholder="About"
                                                 name="about"
+                                                [(ngModel)]="accountProfile.about"
                                                 >{{accountProfile.about}}</textarea>
                                   </td>
                               </tr>

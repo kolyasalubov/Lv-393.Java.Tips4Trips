@@ -10,7 +10,7 @@ import java.util.Date;
 import java.util.List;
 
 public class RestaurantDetailsDTO extends PlaceInfoDTO {
-    private List<DayOfWeek> workingDays;
+    private List<DayOfWeek> workingDays;//TODO in angular
     private String webSite;
     private String telephone;
     private TypeOfBuilding type;

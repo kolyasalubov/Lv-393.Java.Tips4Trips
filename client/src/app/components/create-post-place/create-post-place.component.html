@@ -11,15 +11,12 @@
                 <div class="row blog-entries element-animate">
                     <div class="col-md-12 col-lg-8 main-content" style="padding-left: 0px;">
                       <h1 class="mb-4">Create a new place</h1>
-                      <h2 class="mb-4">Choose category</h2>
-                      <form>
                         <select onChange="window.document.location.href=this.options[this.selectedIndex].value;">
-                          <option disabled>--none--</option>
-                          <option value="login">Restaurant</option>
-                          <option value="sing_up">Hotel</option>
-                          <option value="sing_up">Monument</option>
+                          <option disabled>Choose place to create</option>
+                          <option value="create_place/restaurant">Restaurant</option>
+                          <option value="create_place/hotel">Hotel</option>
+                          <option value="create_place/monument">Monument</option>
                         </select>
-                      </form>
                     </div>
                     <div class="col-md-12 col-lg-4 sidebar">
                     </div>
