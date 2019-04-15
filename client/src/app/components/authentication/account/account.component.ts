@@ -10,20 +10,26 @@ import {Router} from '@angular/router';
 })
 export class AccountComponent implements OnInit {
 
-  accountProfile: Account = new Account(null,null,null,null,null,null, null, null);
+
+  accountProfile: Account = new Account(1,null,null,null,null,null, null, null);
+  // username: String;
+  // cars: Car[];
+  // numberOfCars: Number = null;
+  // today = new Date().toISOString().slice(0, 10)
 
   constructor(private accountService: AccountService,private router: Router) {
   }
 
   ngOnInit() {
 
-    this.accountService.findById(6).subscribe(data => this.accountProfile = data);
+    this.accountService.findById(1).subscribe(data=>this.accountProfile.id); 
+    //.subscribe(data => this.accountProfile = data);
 
      
   }
 
   closeProfile() {
-    this.router.navigate(['/home']);
+    this.router.navigate(['ui/home']);
   }
 
 }
