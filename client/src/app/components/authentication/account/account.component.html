@@ -4,7 +4,6 @@
     <div class="overlay" style="background:white;"></div>
 </section>
 
-<app-navbar></app-navbar>
 
 <section class="ftco-section contact-section" style="margin-bottom: 90px;">
   <div class="container">
@@ -27,10 +26,18 @@
                           <table style="width: 100%;">
                               <tr>
                                   <td><h2>
-                                      Lastname
+                                      First Name
                                   </h2></td>
                                   <td><h4>
-                                      11111111Lastname
+                                  {{accountProfile.firstName}}
+                                  </h4></td>
+                              </tr>
+                              <tr>
+                                  <td><h2>
+                                      Last Name
+                                  </h2></td>
+                                  <td><h4>
+                                      {{accountProfile.lastName}}
                                   </h4></td>
                               </tr>
                               <tr>
@@ -38,15 +45,7 @@
                                       Email
                                   </h2></td>
                                   <td><h4>
-                                      11111111Email
-                                  </h4></td>
-                              </tr>
-                              <tr>
-                                  <td><h2>
-                                      Date of registration
-                                  </h2></td>
-                                  <td><h4>
-                                      11111111Date of registration
+                                    {{accountProfile.email}}
                                   </h4></td>
                               </tr>
                               <tr>
@@ -54,7 +53,7 @@
                                       Telephone
                                   </h2></td>
                                   <td><h4>
-                                      11111111telephone
+                                      {{accountProfile.phoneNumber}}
                                   </h4></td>
                               </tr>
                           
@@ -63,7 +62,7 @@
                                       About
                                   </h2></td>
                                   <td><h4>
-                                      11111111About
+                                    {{accountProfile.about}}
                                   </h4></td>
                               </tr>
                           </table>
@@ -71,19 +70,19 @@
                           <table style="width: 100%;margin-top: 5%;">
                               <tr>
                                   <td><h4>
-                                      New Lastname
+                                      New First Name
                                   </h4></td>
                                   <td>
-                                      <input style="width: 100%;" type="text" placeholder="Enter Password"
+                                      <input style="width: 100%;" type="text" placeholder="Enter First Name"
                                              name="lastname"
                                              maxlength="26"></td>
                               </tr>
                               <tr>
                                   <td><h4>
-                                      New Email
+                                      New Last Name
                                   </h4></td>
                                   <td>
-                                      <input style="width: 100%;" type="text" placeholder="Enter Email" name="email"
+                                      <input style="width: 100%;" type="text" placeholder="Enter Last Name" name="email"
                                              maxlength="26"></td>
                               </tr>
                               <tr>
@@ -96,17 +95,17 @@
                               </tr>
                               <tr>
                                   <td><h4>
-                                      Telephone
+                                      New Email
                                   </h4></td>
                                   <td>
-                                      <input style="width: 100%;" type="tel" placeholder="Telephone" name="tel"></td>
+                                      <input style="width: 100%;" type="tel" placeholder="Email" name="tel"></td>
                               </tr>
                               <tr>
                                   <td><h4>
                                       About
                                   </h4></td>
                                   <td>
-                                      <textarea rows="4" style="width: 100%;" placeholder="Repeat Password"
+                                      <textarea rows="4" style="width: 100%;" placeholder="About"
                                                 name="about"></textarea>
                                   </td>
                               </tr>
