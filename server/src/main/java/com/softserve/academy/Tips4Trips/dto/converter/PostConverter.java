@@ -1,5 +1,6 @@
 package com.softserve.academy.Tips4Trips.dto.converter;
 
+import com.softserve.academy.Tips4Trips.controller.CommentController;
 import com.softserve.academy.Tips4Trips.controller.LikeController;
 import com.softserve.academy.Tips4Trips.controller.PostController;
 import com.softserve.academy.Tips4Trips.dto.details.PostDetailsDTO;
@@ -71,7 +72,11 @@ public class PostConverter implements Converter<Post, PostDetailsDTO> {
                         .methodOn(LikeController.class)
                         .getAccounts(post.getId()))
                 .withRel("likes").getHref());
-        postDetailsDTO.setComments("Here will be link to comments");
+        postDetailsDTO.setComments(ControllerLinkBuilder
+                .linkTo(ControllerLinkBuilder
+                        .methodOn(CommentController.class)
+                        .findByPostId(post.getId()))
+                .withRel("comments").getHref());
         return postDetailsDTO;
     }
 
