@@ -10,7 +10,9 @@ import {Router} from '@angular/router';
 })
 export class AccountComponent implements OnInit {
 
-  accountProfile: Account = new Account(null,null,null,null,null,null, null, null);
+
+
+  accountProfile: Account = new Account(null,null,null,null,null,null,null,null);
 
   constructor(private accountService: AccountService,private router: Router) {
   }
@@ -22,8 +24,19 @@ export class AccountComponent implements OnInit {
      
   }
 
-  closeProfile() {
-    this.router.navigate(['/home']);
+
+  onSubmit(accountProfile :any) {
+
+  
+      console.log(accountProfile.firstName);
+  
   }
+
+
+
+  closeProfile() {
+    this.router.navigate(['home']);
+  }
+
 
 }

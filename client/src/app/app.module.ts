@@ -26,6 +26,8 @@ import { LikeComponent } from './components/blog/like/like.component';
 
 import { SingComponent } from './components/authentication/sing/sing.component';
 import { ListOfUsersComponent } from './components/list-of-users/list-of-users.component';
+import { BlogComponent } from './components/blog/blog/blog.component';
+import { AboutePageComponent } from './components/aboute-page/aboute-page.component';
 
 
 @NgModule({
@@ -47,6 +49,8 @@ import { ListOfUsersComponent } from './components/list-of-users/list-of-users.c
     LikeComponent,
     SingComponent,
     ListOfUsersComponent,
+    BlogComponent,
+    AboutePageComponent,
   ],
   imports: [
     BrowserModule,
