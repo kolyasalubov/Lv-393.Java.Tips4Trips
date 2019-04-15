@@ -10,6 +10,7 @@ import {SingComponent} from "./components/authentication/sing/sing.component";
 import {ListOfUsersComponent} from "./components/list-of-users/list-of-users.component";
 import {BlogComponent} from "./components/blog/blog/blog.component";
 import {AboutePageComponent} from "./components/aboute-page/aboute-page.component";
+import {CreateRestaurantComponent} from "./components/create-post-place/create-restaurant/create-restaurant.component";
 
 
 const routes: Routes = [
@@ -23,7 +24,8 @@ const routes: Routes = [
   { path: 'sing_up', component: SingComponent },
   { path: 'list_of_users', component: ListOfUsersComponent },
   { path: 'blog', component: BlogComponent },
-  { path: 'about', component: AboutePageComponent }
+  { path: 'about', component: AboutePageComponent },
+  { path: 'create_place/restaurant', component: CreateRestaurantComponent }
 
 ];
 

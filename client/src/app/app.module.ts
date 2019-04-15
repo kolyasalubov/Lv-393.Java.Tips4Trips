@@ -25,6 +25,7 @@ import { SingComponent } from './components/authentication/sing/sing.component';
 import { ListOfUsersComponent } from './components/list-of-users/list-of-users.component';
 import { BlogComponent } from './components/blog/blog/blog.component';
 import { AboutePageComponent } from './components/aboute-page/aboute-page.component';
+import { CreateRestaurantComponent } from './components/create-post-place/create-restaurant/create-restaurant.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { AboutePageComponent } from './components/aboute-page/aboute-page.compon
     ListOfUsersComponent,
     BlogComponent,
     AboutePageComponent,
+    CreateRestaurantComponent,
   ],
   imports: [
     BrowserModule,
