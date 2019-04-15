@@ -25,6 +25,8 @@ import { SingComponent } from './components/authentication/sing/sing.component';
 import { ListOfUsersComponent } from './components/list-of-users/list-of-users.component';
 import { BlogComponent } from './components/blog/blog/blog.component';
 import { AboutePageComponent } from './components/aboute-page/aboute-page.component';
+import { SinglePageComponent } from './components/single-page/single-page.component';
+import { CommentComponent } from './components/blog/comment/comment.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +48,8 @@ import { AboutePageComponent } from './components/aboute-page/aboute-page.compon
     ListOfUsersComponent,
     BlogComponent,
     AboutePageComponent,
+    SinglePageComponent,
+    CommentComponent,
   ],
   imports: [
     BrowserModule,
