@@ -33,3 +33,4 @@ updateAccount(myAccount: Account): Observable<Account> {
   return this.http.put<Account>(this.baseUrl + "update", myAccount);
 
 }
+}
