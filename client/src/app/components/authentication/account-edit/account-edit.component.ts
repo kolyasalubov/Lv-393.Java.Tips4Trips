@@ -23,13 +23,13 @@ export class AccountEditComponent implements OnInit {
   onSubmit(accountProfile :Account) {
       console.log(accountProfile);
       this.accountService.updateAccount(accountProfile).subscribe(data => console.log(data));
-  
+      this.router.navigate(['account']);
   }
 
 
 
-  closeProfile() {
-    this.router.navigate(['home']);
+  accountInfo() {
+    this.router.navigate(['account']);
   }
 
 

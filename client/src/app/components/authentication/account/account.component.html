@@ -15,131 +15,63 @@
                     <h1 class="mb-4">Your account</h1>  
                     
 
-                          <div class="col-md-8 col-lg-6 main-content">
-                              <img src="" alt="Image" class="img-fluid mb-5">
+                      
 
-                             
-
-                          </div>
                           <table style="width: 100%;margin-top: 5%;">
+
                               <tr>
-                                  <td><h2>
+                                  <td><h4 >
                                       First Name
-                                  </h2></td>
-                                  <td><h4>
+                                  </h4></td>
+                                  <td><h4   >
+                                      
                                   {{accountProfile.firstName}}
                                   </h4></td>
                               </tr>
+                              
+                        
+
                               <tr>
-                                  <td><h2>
+                                  <td><h4>
                                       Last Name
-                                  </h2></td>
+                                  </h4></td>
                                   <td><h4>
                                       {{accountProfile.lastName}}
                                   </h4></td>
                               </tr>
                               <tr>
-                                  <td><h2>
-                                      Email
-                                  </h2></td>
+                                  <td><h4>
+                                      Email     
+                                  </h4></td>
                                   <td><h4>
                                     {{accountProfile.email}}
                                   </h4></td>
                               </tr>
                               <tr>
-                                  <td><h2>
+                                  <td><h4>
                                       Telephone
-                                  </h2></td>
+                                  </h4></td>
                                   <td><h4>
                                       {{accountProfile.phoneNumber}}
                                   </h4></td>
                               </tr>
                           
                               <tr>
-                                  <td><h2>
-                                      About
-                                  </h2></td>
+                                  <td><h4>
+                                      About       
+                                  </h4></td>
                                   <td><h4>
                                     {{accountProfile.about}}
                                   </h4></td>
                               </tr>
                           </table>
+                          
 
-                          <form  (ngSubmit)="onSubmit(accountProfile)">
-                          <table style="width: 100%;margin-top: 5%;">
-                              <tr>
-                                  <td><h4>
-                                      Edit First Name
-                                  </h4></td>
-                                  <td>
-                                      <input class="form-control" style="width: 100%;" type="text" placeholder="Enter First Name"
-                                             name="firstname"
-                                             [(ngModel)]="accountProfile.firstName"
-                                             value={{accountProfile.firstName}}
-                                             maxlength="26"></td>
-                              </tr>
-                              
-                              <tr>
-                                  <td><h4>
-                                      Edit Last Name
-                                  </h4></td>
-                                  <td>
-                                      <input class="form-control" style="width: 100%;" type="text" placeholder="Enter Last Name" 
-                                            name="lastname"
-                                            [(ngModel)]="accountProfile.lastName"
-                                            value={{accountProfile.lastName}}
-                                            maxlength="26"></td>
-                              </tr>
-                              <tr>
-                                  <td><h4>
-                                      Edit telephone
-                                  </h4></td>
-                                  <td>
-                                      <input class="form-control" style="width: 100%;" type="text" placeholder="Enter Telephone"
-                                             name="phone"
-                                             [(ngModel)]="accountProfile.phoneNumber"
-                                             value={{accountProfile.phoneNumber}}
-                                             ></td>
-                              </tr>
-                              <tr>
-                                  <td><h4>
-                                      Edit Email
-                                  </h4></td>
-                                  <td>
-                                      <input class="form-control" style="width: 100%;" type="email" placeholder="Email" 
-                                      name="email"
-                                      [(ngModel)]="accountProfile.email"
-                                      value={{accountProfile.email}}
-                                      ></td>
-                              </tr>
-                              <tr>
-                                  <td><h4>
-                                      Edit About
-                                  </h4></td>
-                                  <td>
-                                      <textarea  class="form-control" rows="4" style="width: 100%;" placeholder="About"
-                                                name="about"
-                                                [(ngModel)]="accountProfile.about"
-                                                >{{accountProfile.about}}</textarea>
-                                  </td>
-                              </tr>
-                          </table>
-                        
-
-                                 <button type="submit" class="btn btn-primary" >Submit</button>
-                      </form>
-                      <!--<c:if test="${person.role=='MODERATOR'||person.role=='ADMIN'}">-->
-                      <!--<h2>You are <c:out value="${person.role}"/></h2>-->
-                      <!--<a class="category mb-5" href="/createpost" style="padding: 1%; margin-top: 5%;">Create new-->
-                      <!--post</a><br>-->
-                      <!--<c:if test="${person.role=='ADMIN'}">-->
-                      <!--<a class="category mb-5" href="/listofusers" style="padding: 1%; margin-top: 5%;">Change-->
-                      <!--roles</a>-->
-                      <!--</c:if>-->
-                      <!--</c:if>-->
+                                 <button type="submit"(click)="editAccount()" class="btn btn-primary" >Edit</button>
+                     
                   </div>
 
-                  <!-- END main-content -->
+            
 
                   <div class="col-md-12 col-lg-4 sidebar">
                       <div class="sidebar-box search-form-wrap">
@@ -158,9 +90,7 @@
                           border-radius: 2px;">
                               LOGUOT</a>
                       </div>
-                      <!-- END sidebar-box -->
                   </div>
-                  <!-- END sidebar -->
               </div>
 
           </section>
