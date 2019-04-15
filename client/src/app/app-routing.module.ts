@@ -6,15 +6,17 @@ import { AccountComponent } from './components/authentication/account/account.co
 import {CreatePostComponent} from "./components/create-post/create-post.component";
 import {CreatePostPlaceComponent} from "./components/create-post-place/create-post-place.component";
 import {CreatePostRouteComponent} from "./components/create-post-route/create-post-route.component";
+import {SingComponent} from "./components/authentication/sing/sing.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'account', component: AccountComponent },
-  { path: 'create_place', component: CreatePostComponent },
-  { path: 'create_post', component: CreatePostPlaceComponent },
-  { path: 'create_route', component: CreatePostRouteComponent }
+  { path: 'create_place', component: CreatePostPlaceComponent },
+  { path: 'create_post', component: CreatePostComponent },
+  { path: 'create_route', component: CreatePostRouteComponent },
+  { path: 'sing_up', component: SingComponent }
 ];
 
 @NgModule({
