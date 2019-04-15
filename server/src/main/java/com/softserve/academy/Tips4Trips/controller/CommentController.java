@@ -41,16 +41,15 @@ public class CommentController {
         return count;
     }*/
 
-
     @PostMapping("/create")
     public ResponseEntity<CommentDetailsDTO> createComment(@RequestBody CommentDetailsDTO commentDetailsDTO) {
         Comment comment = commentService.createComment(commentConverter.convertToEntity(commentDetailsDTO));
         return new ResponseEntity<>(commentConverter.convertToDTO(comment), HttpStatus.CREATED);
     }
 
-    @DeleteMapping("/delete")
-    public void deleteComment(@PathVariable Long postId) {
-        commentService.deleteComment(postId);
+    @DeleteMapping("/delete/{id}")
+    public void deleteComment(@PathVariable Long id) {
+        commentService.deleteComment(id);
 
     }
 }
