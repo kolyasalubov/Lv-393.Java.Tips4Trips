@@ -21,11 +21,16 @@ import { NewsSubscribeComponent } from './components/home/news-subscribe/news-su
 import { CreatePostComponent } from './components/create-post/create-post.component';
 import { CreatePostPlaceComponent } from './components/create-post-place/create-post-place.component';
 import { CreatePostRouteComponent } from './components/create-post-route/create-post-route.component';
+import { LikeComponent } from './components/blog/like/like.component';
 import { SingComponent } from './components/authentication/sing/sing.component';
 import { ListOfUsersComponent } from './components/list-of-users/list-of-users.component';
 import { BlogComponent } from './components/blog/blog/blog.component';
 import { AboutePageComponent } from './components/aboute-page/aboute-page.component';
 import { CreateRestaurantComponent } from './components/create-post-place/create-restaurant/create-restaurant.component';
+import { CommentComponent } from './components/blog/comment/comment.component';
+import { BigPostComponent } from './components/blog/big-post/big-post.component';
+import { LittlePostComponent } from './components/blog/little-post/little-post.component';
+import { LessPostComponent } from './components/blog/less-post/less-post.component';
 
 @NgModule({
   declarations: [
@@ -43,11 +48,16 @@ import { CreateRestaurantComponent } from './components/create-post-place/create
     CreatePostComponent,
     CreatePostPlaceComponent,
     CreatePostRouteComponent,
+    LikeComponent,
     SingComponent,
     ListOfUsersComponent,
     BlogComponent,
     AboutePageComponent,
     CreateRestaurantComponent,
+    CommentComponent,
+    BigPostComponent,
+    LittlePostComponent,
+    LessPostComponent,
   ],
   imports: [
     BrowserModule,

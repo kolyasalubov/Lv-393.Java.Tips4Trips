@@ -24,11 +24,12 @@ findById(id: number): Observable<Account> {
 }
 
 
-createAccount(account: Account): Observable<ApiResponse> {
-  return this.http.post<ApiResponse>(this.baseUrl, account);
+createAccount(account: Account): Observable<Account> {
+  return this.http.post<Account>(this.baseUrl + "create", account);
 }
 
-update(account: Account): Observable<ApiResponse> {
-  return this.http.put<ApiResponse>(this.baseUrl + account.id, account);
-}
+updateAccount(myAccount: Account): Observable<Account> {
+  console.log(myAccount);
+  return this.http.put<Account>(this.baseUrl + "update", myAccount);
+
 }
