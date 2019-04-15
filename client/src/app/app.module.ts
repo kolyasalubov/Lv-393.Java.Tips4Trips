@@ -21,6 +21,8 @@ import { NewsSubscribeComponent } from './components/home/news-subscribe/news-su
 import { CreatePostComponent } from './components/create-post/create-post.component';
 import { CreatePostPlaceComponent } from './components/create-post-place/create-post-place.component';
 import { CreatePostRouteComponent } from './components/create-post-route/create-post-route.component';
+import { SingComponent } from './components/authentication/sing/sing.component';
+import { ListOfUsersComponent } from './components/list-of-users/list-of-users.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,8 @@ import { CreatePostRouteComponent } from './components/create-post-route/create-
     CreatePostComponent,
     CreatePostPlaceComponent,
     CreatePostRouteComponent,
+    SingComponent,
+    ListOfUsersComponent,
   ],
   imports: [
     BrowserModule,
