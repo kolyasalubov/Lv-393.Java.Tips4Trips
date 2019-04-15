@@ -8,22 +8,20 @@
 <section class="ftco-section contact-section" style="margin-bottom: 90px;">
   <div class="container">
       <div class="row block-9">
-
           <section class="container">
 
               <div class="row blog-entries element-animate">
                   <div class="col-md-12 col-lg-8 main-content" style="padding-left: 0px;">
-                      <form action="" method="post" enctype="multipart/form-data">
-                          <h1 class="mb-4">Your account</h1>
+                    <h1 class="mb-4">Your account</h1>  
+                    
+
                           <div class="col-md-8 col-lg-6 main-content">
                               <img src="" alt="Image" class="img-fluid mb-5">
 
-                              <input class="ion-android-radio-button-off" name="image_uploads" type="file"
-                                     accept=".jpg, .jpeg, .png" style="margin: 5%;margin-left: 0;"><br>
-                              <p>*File have to be less than 5 MB</p>
+                             
 
                           </div>
-                          <table style="width: 100%;">
+                          <table style="width: 100%;margin-top: 5%;">
                               <tr>
                                   <td><h2>
                                       First Name
@@ -67,53 +65,64 @@
                               </tr>
                           </table>
 
+                          <form  (ngSubmit)="onSubmit(accountProfile)">
                           <table style="width: 100%;margin-top: 5%;">
                               <tr>
                                   <td><h4>
-                                      New First Name
+                                      Edit First Name
                                   </h4></td>
                                   <td>
-                                      <input style="width: 100%;" type="text" placeholder="Enter First Name"
-                                             name="lastname"
+                                      <input class="form-control" style="width: 100%;" type="text" placeholder="Enter First Name"
+                                             name="firstname"
+                                             value={{accountProfile.firstName}}
                                              maxlength="26"></td>
                               </tr>
+                              
                               <tr>
                                   <td><h4>
-                                      New Last Name
+                                      Edit Last Name
                                   </h4></td>
                                   <td>
-                                      <input style="width: 100%;" type="text" placeholder="Enter Last Name" name="email"
-                                             maxlength="26"></td>
+                                      <input class="form-control" style="width: 100%;" type="text" placeholder="Enter Last Name" 
+                                            name="lastname"
+                                            value={{accountProfile.lastName}}
+                                            maxlength="26"></td>
                               </tr>
                               <tr>
                                   <td><h4>
-                                      New password
+                                      Edit telephone
                                   </h4></td>
                                   <td>
-                                      <input style="width: 100%;" type="password" placeholder="Repeat Password"
-                                             name="psw"></td>
+                                      <input class="form-control" style="width: 100%;" type="text" placeholder="Enter Telephone"
+                                             name="phone"
+                                             value={{accountProfile.phoneNumber}}
+                                          
+                                             ></td>
                               </tr>
                               <tr>
                                   <td><h4>
-                                      New Email
+                                      Edit Email
                                   </h4></td>
                                   <td>
-                                      <input style="width: 100%;" type="tel" placeholder="Email" name="tel"></td>
+                                      <input class="form-control" style="width: 100%;" type="email" placeholder="Email" 
+                                      name="email"
+                                      value={{accountProfile.email}}
+                                      ></td>
                               </tr>
                               <tr>
                                   <td><h4>
-                                      About
+                                      Edit About
                                   </h4></td>
                                   <td>
-                                      <textarea rows="4" style="width: 100%;" placeholder="About"
-                                                name="about"></textarea>
+                                      <textarea  class="form-control" rows="4" style="width: 100%;" placeholder="About"
+                                                name="about"
+                                                >{{accountProfile.about}}</textarea>
                                   </td>
                               </tr>
                           </table>
-                          <input class="category"
-                                 style="padding: 1%;margin-top: 5%;font-size: 90%;margin-bottom: 30px;"
-                                 type="submit"
-                                 value="Save Changes"><br>
+                        
+
+                                 <button type="submit" class="btn btn-primary" >Submit</button>
                       </form>
                       <!--<c:if test="${person.role=='MODERATOR'||person.role=='ADMIN'}">-->
                       <!--<h2>You are <c:out value="${person.role}"/></h2>-->

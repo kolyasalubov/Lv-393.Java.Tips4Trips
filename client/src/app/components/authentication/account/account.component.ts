@@ -24,6 +24,16 @@ export class AccountComponent implements OnInit {
      
   }
 
+
+  onSubmit(accountProfile :any) {
+
+  
+      console.log(accountProfile.firstName);
+  
+  }
+
+
+
   closeProfile() {
     this.router.navigate(['home']);
   }
