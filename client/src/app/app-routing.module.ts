@@ -5,6 +5,7 @@ import { LoginComponent } from './components/authentication/login/login.componen
 import { AccountComponent } from './components/authentication/account/account.component';
 import {CreatePostComponent} from "./components/create-post/create-post.component";
 import {CreatePostPlaceComponent} from "./components/create-post-place/create-post-place.component";
+import {LikeComponent} from "./components/blog/like/like.component";
 import {CreatePostRouteComponent} from "./components/create-post-route/create-post-route.component";
 import {SingComponent} from "./components/authentication/sing/sing.component";
 import {ListOfUsersComponent} from "./components/list-of-users/list-of-users.component";
@@ -13,10 +14,13 @@ import {AboutePageComponent} from "./components/aboute-page/aboute-page.componen
 import {SinglePageComponent} from "./components/single-page/single-page.component";
 
 
+
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'create-place', component: CreatePostPlaceComponent },
+  { path: 'like', component: LikeComponent },
   { path: 'account', component: AccountComponent },
   { path: 'create_place', component: CreatePostPlaceComponent },
   { path: 'create_post', component: CreatePostComponent },
