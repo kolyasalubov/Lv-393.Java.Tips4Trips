@@ -32,6 +32,7 @@ import { BigPostComponent } from './components/blog/big-post/big-post.component'
 import { LittlePostComponent } from './components/blog/little-post/little-post.component';
 import { LessPostComponent } from './components/blog/less-post/less-post.component';
 import { CreateHotelComponent } from './components/create-post-place/create-hotel/create-hotel.component';
+import { AccountEditComponent } from './components/authentication/account-edit/account-edit.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { CreateHotelComponent } from './components/create-post-place/create-hote
     LittlePostComponent,
     LessPostComponent,
     CreateHotelComponent,
+    AccountEditComponent,
   ],
   imports: [
     BrowserModule,
