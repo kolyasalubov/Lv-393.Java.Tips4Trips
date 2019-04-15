@@ -28,8 +28,10 @@ import { SingComponent } from './components/authentication/sing/sing.component';
 import { ListOfUsersComponent } from './components/list-of-users/list-of-users.component';
 import { BlogComponent } from './components/blog/blog/blog.component';
 import { AboutePageComponent } from './components/aboute-page/aboute-page.component';
-import { SinglePageComponent } from './components/single-page/single-page.component';
 import { CommentComponent } from './components/blog/comment/comment.component';
+import { BigPostComponent } from './components/blog/big-post/big-post.component';
+import { LittlePostComponent } from './components/blog/little-post/little-post.component';
+import { LessPostComponent } from './components/blog/less-post/less-post.component';
 
 
 @NgModule({
@@ -53,8 +55,10 @@ import { CommentComponent } from './components/blog/comment/comment.component';
     ListOfUsersComponent,
     BlogComponent,
     AboutePageComponent,
-    SinglePageComponent,
     CommentComponent,
+    BigPostComponent,
+    LittlePostComponent,
+    LessPostComponent,
   ],
   imports: [
     BrowserModule,

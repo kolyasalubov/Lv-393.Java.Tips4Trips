@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SinglePageComponent } from './single-page.component';
+import { LessPostComponent } from './less-post.component';
 
-describe('SinglePageComponent', () => {
-  let component: SinglePageComponent;
-  let fixture: ComponentFixture<SinglePageComponent>;
+describe('LessPostComponent', () => {
+  let component: LessPostComponent;
+  let fixture: ComponentFixture<LessPostComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SinglePageComponent ]
+      declarations: [ LessPostComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SinglePageComponent);
+    fixture = TestBed.createComponent(LessPostComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

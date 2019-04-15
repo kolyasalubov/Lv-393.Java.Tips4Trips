@@ -11,7 +11,7 @@ import {SingComponent} from "./components/authentication/sing/sing.component";
 import {ListOfUsersComponent} from "./components/list-of-users/list-of-users.component";
 import {BlogComponent} from "./components/blog/blog/blog.component";
 import {AboutePageComponent} from "./components/aboute-page/aboute-page.component";
-import {SinglePageComponent} from "./components/single-page/single-page.component";
+import {BigPostComponent} from "./components/blog/big-post/big-post.component";
 
 
 
@@ -29,7 +29,7 @@ const routes: Routes = [
   { path: 'list_of_users', component: ListOfUsersComponent },
   { path: 'blog', component: BlogComponent },
   { path: 'about', component: AboutePageComponent },
-  { path: 'single_page', component: SinglePageComponent }
+  { path: 'single_page', component: BigPostComponent }
 
 ];
 
