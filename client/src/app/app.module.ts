@@ -31,6 +31,7 @@ import { CommentComponent } from './components/blog/comment/comment.component';
 import { BigPostComponent } from './components/blog/big-post/big-post.component';
 import { LittlePostComponent } from './components/blog/little-post/little-post.component';
 import { LessPostComponent } from './components/blog/less-post/less-post.component';
+import { CreateHotelComponent } from './components/create-post-place/create-hotel/create-hotel.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { LessPostComponent } from './components/blog/less-post/less-post.compone
     BigPostComponent,
     LittlePostComponent,
     LessPostComponent,
+    CreateHotelComponent,
   ],
   imports: [
     BrowserModule,
