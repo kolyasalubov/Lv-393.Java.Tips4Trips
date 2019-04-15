@@ -7,6 +7,7 @@ import {CreatePostComponent} from "./components/create-post/create-post.componen
 import {CreatePostPlaceComponent} from "./components/create-post-place/create-post-place.component";
 import {CreatePostRouteComponent} from "./components/create-post-route/create-post-route.component";
 import {SingComponent} from "./components/authentication/sing/sing.component";
+import {ListOfUsersComponent} from "./components/list-of-users/list-of-users.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -16,7 +17,8 @@ const routes: Routes = [
   { path: 'create_place', component: CreatePostPlaceComponent },
   { path: 'create_post', component: CreatePostComponent },
   { path: 'create_route', component: CreatePostRouteComponent },
-  { path: 'sing_up', component: SingComponent }
+  { path: 'sing_up', component: SingComponent },
+  { path: 'list_of_users', component: ListOfUsersComponent }
 ];
 
 @NgModule({
