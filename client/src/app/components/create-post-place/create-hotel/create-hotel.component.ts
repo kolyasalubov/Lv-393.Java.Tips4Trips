@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { CityService } from '../city.service';
+import {Router} from '@angular/router';
+import { City } from 'src/app/model/city.model';
 
 @Component({
   selector: 'app-create-hotel',
@@ -7,9 +10,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateHotelComponent implements OnInit {
 
-  constructor() { }
+  
+  city: City[] = null;
 
+  constructor(private cityService: CityService,private router: Router) {
+  }
   ngOnInit() {
+
+    this.cityService.getAll().subscribe(data => this.city = data);
+
   }
 
 }

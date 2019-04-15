@@ -127,7 +127,15 @@
                 </tr>
                 <tr>
                   <td><h4>
-                    Has vegan food
+
+
+                    Has vegan food  
+                    <tr *ngFor="let c of city">
+                      <td>{{c.name}}</td>
+                      </tr>
+
+
+
                   </h4></td>
                   <td>
                     <input class="form-control" style="width: 100%;" type="checkbox"

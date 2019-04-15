@@ -12,6 +12,7 @@ import {ListOfUsersComponent} from "./components/list-of-users/list-of-users.com
 import {BlogComponent} from "./components/blog/blog/blog.component";
 import {AboutePageComponent} from "./components/aboute-page/aboute-page.component";
 import {CreateRestaurantComponent} from "./components/create-post-place/create-restaurant/create-restaurant.component";
+import {CreateHotelComponent} from "./components/create-post-place/create-hotel/create-hotel.component";
 import {BigPostComponent} from "./components/blog/big-post/big-post.component";
 
 const routes: Routes = [
@@ -29,6 +30,7 @@ const routes: Routes = [
   { path: 'blog', component: BlogComponent },
   { path: 'about', component: AboutePageComponent },
   { path: 'create_place/restaurant', component: CreateRestaurantComponent },
+  { path: 'create_place/hotel', component: CreateHotelComponent },
   { path: 'single_page', component: BigPostComponent }
 
 ];
