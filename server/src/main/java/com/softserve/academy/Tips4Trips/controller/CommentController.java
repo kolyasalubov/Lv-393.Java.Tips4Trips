@@ -3,6 +3,7 @@ package com.softserve.academy.Tips4Trips.controller;
 import com.softserve.academy.Tips4Trips.dto.converter.CommentConverter;
 import com.softserve.academy.Tips4Trips.dto.converter.PostConverter;
 import com.softserve.academy.Tips4Trips.dto.details.CommentDetailsDTO;
+import com.softserve.academy.Tips4Trips.dto.info.CommentInfoDTO;
 import com.softserve.academy.Tips4Trips.entity.blog.Comment;
 import com.softserve.academy.Tips4Trips.service.CommentService;
 import org.apache.log4j.Logger;
@@ -15,7 +16,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/comment")
+@RequestMapping("posts/{postId}/comments")
 public class CommentController {
 
     private static final Logger logger = Logger.getLogger(CommentController.class);
@@ -31,10 +32,9 @@ public class CommentController {
     }
 
 
-
-    @GetMapping("/all/{id}")
-    public ResponseEntity<List<CommentDetailsDTO>> findByPostId(@PathVariable Long id) {
-        return new ResponseEntity<>(commentConverter.convertToDTO(commentService.findByPostId(id)), HttpStatus.OK);
+    @GetMapping
+    public ResponseEntity<List<CommentInfoDTO>> findByPostId(@PathVariable Long postId) {
+        return new ResponseEntity<>(commentConverter.convertToInfoDTO(commentService.findByPostId(postId)), HttpStatus.OK);
     }
 /*    public long countByPost(@PathVariable Long id) {
         long count = commentService.countByPostId(id);
@@ -42,15 +42,15 @@ public class CommentController {
     }*/
 
 
-        @PostMapping("/create")
-        public ResponseEntity<CommentDetailsDTO> createComment (@RequestBody CommentDetailsDTO commentDetailsDTO){
-            Comment comment = commentService.createComment(commentConverter.convertToEntity(commentDetailsDTO));
-            return new ResponseEntity<>(commentConverter.convertToDTO(comment), HttpStatus.CREATED);
-        }
+    @PostMapping("/create")
+    public ResponseEntity<CommentDetailsDTO> createComment(@RequestBody CommentDetailsDTO commentDetailsDTO) {
+        Comment comment = commentService.createComment(commentConverter.convertToEntity(commentDetailsDTO));
+        return new ResponseEntity<>(commentConverter.convertToDTO(comment), HttpStatus.CREATED);
+    }
 
-        @DeleteMapping("/delete/{id}")
-        public void deleteComment (@PathVariable Long id){
-            commentService.deleteComment(id);
+    @DeleteMapping("/delete")
+    public void deleteComment(@PathVariable Long postId) {
+        commentService.deleteComment(postId);
 
     }
 }
