@@ -35,4 +35,8 @@ public class PlaceService {
     public List<Place> findByCity(City city) {
         return repository.findByCity(city);
     }
+
+    public List<Place> findByName(String name) {
+        return repository.findByNameIgnoreCase(name);
+    }
 }

@@ -15,8 +15,12 @@ export class RouteService {
   findAll(): Observable<RouteInfo[]> {
     return this.http.get<RouteInfo[]>(this.baseUrl);
   }
-  findById(id:number): Observable<Route> {
+  findById(id: number): Observable<Route> {
     return this.http.get<Route>(this.baseUrl + id);
+  }
+  createRoute(route: Route): Observable<Route> {
+    route.authorInfo.id = 1;
+    return this.http.post<Route>(this.baseUrl + "create", route);
   }
 
 }

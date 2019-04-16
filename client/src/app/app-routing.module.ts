@@ -28,7 +28,7 @@ const routes: Routes = [
   { path: 'account_edit', component: AccountEditComponent },
   { path: 'create_place', component: CreatePostPlaceComponent },
   { path: 'create_post', component: CreatePostComponent },
-  { path: 'create_route', component: CreateRouteComponent },
+  { path: 'routes/create', component: CreateRouteComponent },
   { path: 'sing_up', component: SingComponent },
   { path: 'list_of_users', component: ListOfUsersComponent },
   { path: 'blog', component: BlogComponent },
