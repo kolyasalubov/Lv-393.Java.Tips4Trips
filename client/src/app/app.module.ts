@@ -34,7 +34,7 @@ import { CreateHotelComponent } from './components/create-post-place/create-hote
 import { AccountEditComponent } from './components/authentication/account-edit/account-edit.component';
 import { httpInterceptorProviders } from './components/authentication/auth-interceptor';
 import { ListOfRoutesComponent } from './list-of-routes/list-of-routes.component';
-
+import { TripComponent } from './components/trip/trip/trip.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -64,6 +64,7 @@ import { ListOfRoutesComponent } from './list-of-routes/list-of-routes.component
     CreateHotelComponent,
     AccountEditComponent,
     ListOfRoutesComponent,
+    TripComponent,
   ],
   imports: [
     BrowserModule,
