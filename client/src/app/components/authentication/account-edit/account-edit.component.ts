@@ -22,8 +22,8 @@ export class AccountEditComponent implements OnInit {
 
   onSubmit(accountProfile :Account) {
       console.log(accountProfile);
-      this.accountService.updateAccount(accountProfile).subscribe(data => console.log(data));
-      this.router.navigate(['account']);
+      this.accountService.updateAccount(accountProfile).subscribe(data => this.accountProfile = data);
+      this.router.navigate(['home']);
   }
 
 

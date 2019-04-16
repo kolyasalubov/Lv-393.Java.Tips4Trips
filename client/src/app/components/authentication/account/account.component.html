@@ -16,7 +16,7 @@
                         <span class="icon-map-signs"><img src="../../../../assets/images/round_account_circle_black_48dp.png"></span>
                     </div>
                     <h3 class="mb-4">{{accountProfile.firstName}}    {{accountProfile.lastName}}</h3>
-                  
+                    <p>{{accountProfile.registrationDate}}</p>
                 </div>
             </div>
             <div class="col-md-3 d-flex">
@@ -51,20 +51,18 @@
         </div>
       </section>
 
-
 <section class="ftco-section contact-section" style="margin-bottom: 90px;">
   <div class="container">
       <div class="row block-9">
           <section class="container">
-
               <div class="row blog-entries element-animate">
                   <div class="col-md-12 col-lg-8 main-content" style="padding-left: 0px;">
                     <h1 class="mb-4">Your account</h1>  
-                    
+                    <h2>    {{accountProfile.about}}   </h2>
 
                       
 
-                          <table style="width: 100%;margin-top: 5%;">
+                          <!-- <table style="width: 100%;margin-top: 5%;">
 
                               <tr>
                                   <td><h4 >
@@ -114,14 +112,14 @@
                                     {{accountProfile.about}}
                                 </h4></td>
                             </tr>
-                        </table>
+                        </table> -->
                                  <button type="submit"(click)="editAccount()" class="btn btn-primary" >Edit</button>
                      
                   </div>
 
             
 
-                  <div class="col-md-12 col-lg-4 sidebar">
+                  <!-- <div class="col-md-12 col-lg-4 sidebar">
                       <div class="sidebar-box search-form-wrap">
                           <a class="nav-item cta" href="/logout" style="padding: 5%; font-size: 16px;
                           color: #fff;
@@ -138,7 +136,7 @@
                           border-radius: 2px;">
                               LOGUOT</a>
                       </div>
-                  </div>
+                  </div> -->
               </div>
 
           </section>

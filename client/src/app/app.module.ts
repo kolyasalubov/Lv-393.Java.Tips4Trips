@@ -1,8 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
-import {TokenInterceptor} from "./core/interceptor";
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -22,7 +20,7 @@ import { CreatePostComponent } from './components/create-post/create-post.compon
 import { CreatePostPlaceComponent } from './components/create-post-place/create-post-place.component';
 import { CreateRouteComponent } from './components/create-route/create-route.component';
 import { LikeComponent } from './components/blog/like/like.component';
-import { SingComponent } from './components/authentication/sing/sing.component';
+import { SignupComponent } from './components/authentication/signup/signup.component';
 import { ListOfUsersComponent } from './components/list-of-users/list-of-users.component';
 import { BlogComponent } from './components/blog/blog/blog.component';
 import { AboutePageComponent } from './components/aboute-page/aboute-page.component';
@@ -35,7 +33,8 @@ import { CreateHotelComponent } from './components/create-post-place/create-hote
 import { AccountEditComponent } from './components/authentication/account-edit/account-edit.component';
 import { ListOfRoutesComponent } from './components/list-of-routes/list-of-routes.component';
 import { RouteComponent } from './components/route/route.component';
-
+import { httpInterceptorProviders } from './components/authentication/auth-interceptor';
+import { TripComponent } from './components/trip/trip/trip.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,7 +52,7 @@ import { RouteComponent } from './components/route/route.component';
     CreatePostPlaceComponent,
     CreateRouteComponent,
     LikeComponent,
-    SingComponent,
+    SignupComponent,
     ListOfUsersComponent,
     BlogComponent,
     AboutePageComponent,
@@ -66,6 +65,7 @@ import { RouteComponent } from './components/route/route.component';
     AccountEditComponent,
     ListOfRoutesComponent,
     RouteComponent,
+    TripComponent
   ],
   imports: [
     BrowserModule,
@@ -74,9 +74,7 @@ import { RouteComponent } from './components/route/route.component';
     FormsModule, 
     ReactiveFormsModule
   ],
-  providers: [AccountService, {provide: HTTP_INTERCEPTORS,
-    useClass: TokenInterceptor,
-    multi : true}],
+  providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

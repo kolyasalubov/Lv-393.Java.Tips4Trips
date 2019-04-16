@@ -4,5 +4,5 @@ export class User {
     id: number;
     login: string;
     password: string;
-    account: Account
+    account: Account;
 }

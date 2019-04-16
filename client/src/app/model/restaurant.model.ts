@@ -1,5 +1,6 @@
 import {City} from "./city.model";
 import {Position} from "./position.model";
+import {WeekDay} from "@angular/common";
 
 export class Restaurant {
   id: number;

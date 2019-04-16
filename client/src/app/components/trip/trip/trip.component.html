@@ -17,9 +17,29 @@
 <section class="ftco-section bg-light">
   <div class="container">
       <div class="row d-flex" *ngIf="pagePost?.content">
-        <div class="col-md-4 d-flex ftco-animate" *ngFor="let post of pagePost.content"  >
+        <div class="col-md-4 d-flex ftco-animate" *ngFor="let post of tripInfo"  >
             <div class="blog-entry justify-content-end" style="width: 100%;">
-              <app-little-post [post]="post"></app-little-post>
+
+              <!-- <app-little-post [post]="post"></app-little-post> -->
+<!-- 
+              <a href="single_page" class="block-20" style="background-image: url('../../../assets/images/image_1.jpg');">
+              </a>
+              <div class="text mt-3 float-right d-block">
+                <div class="d-flex align-items-center pt-2 mb-4 topp">
+                  <div class="one">
+                    <span class="day">{{post.date}}</span>
+                  </div>
+                  <div class="two">
+                    <span class="yr">{{post.year}}</span>
+                    <span class="mos">{{post.month}}</span>
+                  </div>
+                </div>
+                <h3 class="heading"><a href="single_page">{{post.name}}</a></h3>
+                <p>{{post.description}}</p>
+              </div> -->
+
+
+
             </div>
         </div>
       </div>
@@ -30,7 +50,7 @@
           <ul>
             <li><a href="#">&lt;</a></li>
             <li class="active"><span>1</span></li>
-            <li><a href="#">4</a></li>
+            <li><a href="#">2</a></li>
             <li><a href="#">3</a></li>
             <li><a href="#">4</a></li>
             <li><a href="#">5</a></li>

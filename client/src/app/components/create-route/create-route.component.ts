@@ -4,7 +4,6 @@ import { RouteService } from 'src/app/route.service';
 import { AccountInfo } from 'src/app/model/account-info.model';
 import { PlaceService } from 'src/app/place.service';
 import { Router } from '@angular/router';
-import { validateConfig } from '@angular/router/src/config';
 
 @Component({
   selector: 'app-create-post-route',

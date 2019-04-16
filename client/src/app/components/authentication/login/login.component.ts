@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {Router} from "@angular/router";
-import { UserService } from '../user/user.service';
-import * as $ from 'jquery';
+ 
+import { AuthService } from '../auth.service';
+import { TokenStorageService } from '../token/token-storage.service';
+import { AuthLoginInfo } from './login-info';
 
 @Component({
   selector: 'app-login',
@@ -10,45 +10,47 @@ import * as $ from 'jquery';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
-  loginForm: FormGroup;
-  invalidLogin: boolean = false;
-  constructor(private formBuilder: FormBuilder, private router: Router, private userService: UserService) { }
-
-  onSubmit() {
-    if (this.loginForm.invalid) {
-      return;
-    }
-    const loginPayload = {
-      username: this.loginForm.controls.username.value,
-      password: this.loginForm.controls.password.value
-    }
-    this.userService.login(loginPayload).subscribe(data => {
-      if(data.status === 200) {
-        window.localStorage.setItem('token', data.result.token);
-        this.router.navigate(['account']);
-        alert(loginPayload);
-      }else {
-        this.invalidLogin = true;
-        alert(data.message);
-      }
-    });
-  }
-
+  loginForm: any = {};
+  isLoggedIn = false;
+  isLoginFailed = false;
+  errorMessage = '';
+  roles: string[] = [];
+  private loginInfo: AuthLoginInfo;
+ 
+  constructor(private authService: AuthService, private tokenStorage: TokenStorageService) { }
+ 
   ngOnInit() {
-    window.localStorage.removeItem('token');
-    this.loginForm = this.formBuilder.group({
-      username: ['', Validators.compose([Validators.required])],
-      password: ['', Validators.required]
-    });
 
-    function fullHeight() {
-      $('.js-fullheight').css('height', $(window).height()/2);
-      $(window).resize(function(){
-          $('.js-fullheight').css('height', $(window).height());
-      });
-  };
-  fullHeight();
+  }
+ 
+  onSubmit() {
+ 
+    this.loginInfo = new AuthLoginInfo(
+      this.loginForm.login,
+      this.loginForm.password);
+ 
+this.authService.attemptAuth(this.loginInfo).subscribe(
+      data => {
+        console.log(data);
+        console.log(data.token);
+        this.tokenStorage.saveToken(data.token);
+        this.tokenStorage.saveUsername(data.login);
+        this.tokenStorage.saveAuthorities(data.authorities);
+
+        this.isLoginFailed = false;
+        this.isLoggedIn = true;
+        
+        },
+      error => {
+        console.log(error);
+        this.errorMessage = error.error.message;
+        this.isLoginFailed = true;
+      }
+    );
+  }
+ 
+  reloadPage() {
+    window.location.href='/home';
   }
 
 }
