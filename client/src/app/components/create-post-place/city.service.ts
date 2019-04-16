@@ -17,5 +17,9 @@ getAll(): Observable<City[]> {
   return this.http.get<City[]>(this.baseUrl);
 }
 
+getById(id: number): Observable<City> {
+  return this.http.get<City>(this.baseUrl + id);
+}
+
 
 }
