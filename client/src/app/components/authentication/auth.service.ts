@@ -4,7 +4,7 @@ import {Observable} from 'rxjs';
 
 import {JwtResponse} from './jwt-response';
 import {AuthLoginInfo} from './login/login-info';
-import {SignUpInfo} from './signUp/signup-info';
+import {SignUpInfo} from './signup/signup-info';
 
 
 const httpOptions = {

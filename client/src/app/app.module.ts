@@ -21,7 +21,7 @@ import { CreatePostComponent } from './components/create-post/create-post.compon
 import { CreatePostPlaceComponent } from './components/create-post-place/create-post-place.component';
 import { CreateRouteComponent } from './components/create-route/create-route.component';
 import { LikeComponent } from './components/blog/like/like.component';
-import { SingComponent } from './components/authentication/sing/sing.component';
+import { SignupComponent } from './components/authentication/signup/signup.component';
 import { ListOfUsersComponent } from './components/list-of-users/list-of-users.component';
 import { BlogComponent } from './components/blog/blog/blog.component';
 import { AboutePageComponent } from './components/aboute-page/aboute-page.component';
@@ -51,7 +51,7 @@ import { httpInterceptorProviders } from './components/authentication/auth-inter
     CreatePostPlaceComponent,
     CreateRouteComponent,
     LikeComponent,
-    SingComponent,
+    SignupComponent,
     ListOfUsersComponent,
     BlogComponent,
     AboutePageComponent,

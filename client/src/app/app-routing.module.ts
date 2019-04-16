@@ -7,7 +7,7 @@ import {CreatePostComponent} from "./components/create-post/create-post.componen
 import {CreatePostPlaceComponent} from "./components/create-post-place/create-post-place.component";
 import {LikeComponent} from "./components/blog/like/like.component";
 import {CreateRouteComponent} from "./components/create-route/create-route.component";
-import {SingComponent} from "./components/authentication/sing/sing.component";
+import {SignupComponent} from "./components/authentication/signup/signup.component";
 import {ListOfUsersComponent} from "./components/list-of-users/list-of-users.component";
 import {BlogComponent} from "./components/blog/blog/blog.component";
 import {AboutePageComponent} from "./components/aboute-page/aboute-page.component";
@@ -27,7 +27,7 @@ const routes: Routes = [
   { path: 'create_place', component: CreatePostPlaceComponent },
   { path: 'create_post', component: CreatePostComponent },
   { path: 'create_route', component: CreateRouteComponent },
-  { path: 'sing_up', component: SingComponent },
+  { path: 'sing_up', component: SignupComponent },
   { path: 'list_of_users', component: ListOfUsersComponent },
   { path: 'blog', component: BlogComponent },
   { path: 'about', component: AboutePageComponent },

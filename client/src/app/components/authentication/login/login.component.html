@@ -1,16 +1,11 @@
 <app-header></app-header>
-<section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('../../../assets/images/bg_2.jpg');"
+<section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('../../../assets/images/bg_2.jpg'); padding-bottom: 40%;"
          data-stellar-background-ratio="0.5">
-    <div class="overlay" style="background:white;"></div>
 </section>
-
-<app-navbar></app-navbar>
 
 <section class="ftco-section contact-section" style="margin-bottom: 90px;">
   <div class="container">
     <div class="row block-9">
-          <h2 style="margin: auto">Login </h2>
-
           <form form ="loginForm" (ngSubmit)="onSubmit()" class="text-center border border-light p-5">
             <p class="h3 mb-4">Sign in</p>
             <input type="text" name="login" [(ngModel)]="loginForm.login" class="form-control mb-4" placeholder="Username">
