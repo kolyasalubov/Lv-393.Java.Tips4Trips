@@ -31,6 +31,7 @@ const routes: Routes = [
   { path: 'sing_up', component: SignupComponent },
   { path: 'list_of_users', component: ListOfUsersComponent },
   { path: 'blog', component: BlogComponent },
+  { path: 'blog/:id', component: BlogComponent },
   { path: 'about', component: AboutePageComponent },
   { path: 'create_place/restaurant', component: CreateRestaurantComponent },
   { path: 'create_place/hotel', component: CreateHotelComponent },

@@ -9,5 +9,6 @@ export class PagelittlepostModel {
   size: number ;
   first: boolean ;
   sort: string ;
+  number: number;
   numberOfElements: number ;
 }

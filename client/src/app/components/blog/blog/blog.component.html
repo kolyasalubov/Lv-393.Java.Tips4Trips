@@ -13,32 +13,18 @@
     </div>
   </div>
 </div>
-
 <section class="ftco-section bg-light">
   <div class="container">
-      <div class="row d-flex" *ngIf="pagePost?.content">
-        <div class="col-md-4 d-flex ftco-animate" *ngFor="let post of pagePost.content"  >
-            <div class="blog-entry justify-content-end" style="width: 100%;">
-              <app-little-post [post]="post"></app-little-post>
-            </div>
-        </div>
-      </div>
+    <div class="row d-flex" *ngIf="pagePost?.content">
+      <div class="col-md-4 d-flex ftco-animate" *ngFor="let post of pagePost.content">
+        <div class="blog-entry justify-content-end" style="width: 100%;">
 
-    <div class="row mt-5">
-      <div class="col text-center">
-        <div class="block-27">
-          <ul>
-            <li><a href="#">&lt;</a></li>
-            <li class="active"><span>1</span></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
-            <li><a href="#">&gt;</a></li>
-          </ul>
+          <app-little-post [post]="post"></app-little-post>
         </div>
       </div>
     </div>
+
+    <app-pagination [number]="pagePost.number" [total]="pagePost.totalPages" ></app-pagination>
   </div>
 </section>
 
