@@ -33,6 +33,7 @@ import { LessPostComponent } from './components/blog/less-post/less-post.compone
 import { CreateHotelComponent } from './components/create-post-place/create-hotel/create-hotel.component';
 import { AccountEditComponent } from './components/authentication/account-edit/account-edit.component';
 import { httpInterceptorProviders } from './components/authentication/auth-interceptor';
+import { ListOfRoutesComponent } from './list-of-routes/list-of-routes.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { httpInterceptorProviders } from './components/authentication/auth-inter
     LessPostComponent,
     CreateHotelComponent,
     AccountEditComponent,
+    ListOfRoutesComponent,
   ],
   imports: [
     BrowserModule,
