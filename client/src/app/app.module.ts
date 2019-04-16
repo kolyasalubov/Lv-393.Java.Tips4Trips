@@ -35,6 +35,7 @@ import { ListOfRoutesComponent } from './components/list-of-routes/list-of-route
 import { RouteComponent } from './components/route/route.component';
 import { httpInterceptorProviders } from './components/authentication/auth-interceptor';
 import { TripComponent } from './components/trip/trip/trip.component';
+import { TripInfoComponent } from './components/trip/trip-info/trip-info.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -65,7 +66,8 @@ import { TripComponent } from './components/trip/trip/trip.component';
     AccountEditComponent,
     ListOfRoutesComponent,
     RouteComponent,
-    TripComponent
+    TripComponent,
+    TripInfoComponent,
   ],
   imports: [
     BrowserModule,

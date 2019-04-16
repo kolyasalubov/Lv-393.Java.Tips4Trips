@@ -16,31 +16,28 @@
 
 <section class="ftco-section bg-light">
   <div class="container">
-      <div class="row d-flex" *ngIf="pagePost?.content">
-        <div class="col-md-4 d-flex ftco-animate" *ngFor="let post of tripInfo"  >
+  
+        <div class="col-md-4 d-flex ftco-animate" *ngFor="let trip of findGroupInfoDTO">
             <div class="blog-entry justify-content-end" style="width: 100%;">
 
-              <!-- <app-little-post [post]="post"></app-little-post> -->
-<!-- 
-              <a href="single_page" class="block-20" style="background-image: url('../../../assets/images/image_1.jpg');">
+              <a href= {{trip.self}} class="block-20" style="background-image: url('../../../assets/images/image_1.jpg');">
               </a>
               <div class="text mt-3 float-right d-block">
                 <div class="d-flex align-items-center pt-2 mb-4 topp">
                   <div class="one">
-                    <span class="day">{{post.date}}</span>
+                    <span class="day">{{trip.id}}</span>
                   </div>
                   <div class="two">
-                    <span class="yr">{{post.year}}</span>
-                    <span class="mos">{{post.month}}</span>
+                    <span class="yr">{{trip.name}}</span>
+                    <span class="mos">{{trip.creationDate}}</span>
                   </div>
                 </div>
-                <h3 class="heading"><a href="single_page">{{post.name}}</a></h3>
-                <p>{{post.description}}</p>
-              </div> -->
+                <h3 class="heading"><a href="single_page">{{trip.description}}</a></h3>
+                <p>{{trip.description}}</p>
+              </div> 
 
 
 
-            </div>
         </div>
       </div>
 
