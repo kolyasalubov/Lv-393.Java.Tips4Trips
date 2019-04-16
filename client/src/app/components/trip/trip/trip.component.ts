@@ -9,16 +9,18 @@ import { FindGroupInfoDTO } from 'src/app/model/trip-info';
 })
 export class TripComponent implements OnInit {
 
-  findGroupInfoDTO: FindGroupInfoDTO[] = [new FindGroupInfoDTO(null,null,null,null,null,null)] ;//= [new TripInfo(null,null,null,null,null,null)];
+  findGroupInfoDTO: FindGroupInfoDTO[] = [] ;
 
   constructor(private tripService: TripService,private router: Router) {
   }
 
 
   ngOnInit() {
-    this.tripService.getAll().subscribe(data => {this.findGroupInfoDTO  [0] = data[0];
-        console.log(data);
-    });
+    this.tripService.getAll().subscribe(data => {
+        
+      for (let entry of data) {
+      this.findGroupInfoDTO.push(entry);
+    }});
     console.log(this.findGroupInfoDTO);
   }
 }

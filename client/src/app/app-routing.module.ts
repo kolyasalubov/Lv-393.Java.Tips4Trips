@@ -17,6 +17,7 @@ import {BigPostComponent} from "./components/blog/big-post/big-post.component";
 import {AccountEditComponent} from "./components/authentication/account-edit/account-edit.component"
 import { ListOfRoutesComponent } from './list-of-routes/list-of-routes.component';
 import { TripComponent } from './components/trip/trip/trip.component';
+import { TripInfoComponent } from './components/trip/trip-info/trip-info.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -38,7 +39,7 @@ const routes: Routes = [
   { path: 'single_page', component: BigPostComponent },
   { path: 'routes', component: ListOfRoutesComponent },
   { path: 'trip', component: TripComponent }
-
+  { path: 'trip_info', component: TripInfoComponent }
 ];
 
 @NgModule({
