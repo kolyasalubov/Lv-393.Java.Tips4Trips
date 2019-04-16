@@ -14,7 +14,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/countries/{countryId}/cities/{cityId}/places")
+@RequestMapping
 public class PlaceController {
     private PlaceService placeService;
     private CityService cityService;
@@ -28,10 +28,18 @@ public class PlaceController {
         this.placeConverter = placeConverter;
     }
 
-    @GetMapping
+    @GetMapping("/countries/{countryId}/cities/{cityId}/places")
     public ResponseEntity<List<PlaceInfoDTO>> getAllByCityId(@PathVariable Long cityId) {
         City city = cityService.findById(cityId);
         return new ResponseEntity<>(placeConverter.convertToInfoDTO(placeService
                 .findByCity(city)), HttpStatus.OK);
     }
+
+    @GetMapping("/places/name/{name}")
+    public ResponseEntity<List<PlaceInfoDTO>> getByName(@PathVariable String name) {
+        return new ResponseEntity<>(placeConverter.convertToInfoDTO(placeService
+                .findByName(name)), HttpStatus.OK);
+    }
+
+
 }
