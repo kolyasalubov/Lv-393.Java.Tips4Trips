@@ -20,7 +20,7 @@ import { RecentStoriesComponent } from './components/home/recent-stories/recent-
 import { NewsSubscribeComponent } from './components/home/news-subscribe/news-subscribe.component';
 import { CreatePostComponent } from './components/create-post/create-post.component';
 import { CreatePostPlaceComponent } from './components/create-post-place/create-post-place.component';
-import { CreatePostRouteComponent } from './components/create-post-route/create-post-route.component';
+import { CreateRouteComponent } from './components/create-route/create-route.component';
 import { LikeComponent } from './components/blog/like/like.component';
 import { SingComponent } from './components/authentication/sing/sing.component';
 import { ListOfUsersComponent } from './components/list-of-users/list-of-users.component';
@@ -49,7 +49,7 @@ import { AccountEditComponent } from './components/authentication/account-edit/a
     HelpInfoComponent,
     CreatePostComponent,
     CreatePostPlaceComponent,
-    CreatePostRouteComponent,
+    CreateRouteComponent,
     LikeComponent,
     SingComponent,
     ListOfUsersComponent,
