@@ -34,6 +34,7 @@ import { LessPostComponent } from './components/blog/less-post/less-post.compone
 import { CreateHotelComponent } from './components/create-post-place/create-hotel/create-hotel.component';
 import { AccountEditComponent } from './components/authentication/account-edit/account-edit.component';
 import { ListOfRoutesComponent } from './components/list-of-routes/list-of-routes.component';
+import { RouteComponent } from './components/route/route.component';
 
 @NgModule({
   declarations: [
@@ -64,6 +65,7 @@ import { ListOfRoutesComponent } from './components/list-of-routes/list-of-route
     CreateHotelComponent,
     AccountEditComponent,
     ListOfRoutesComponent,
+    RouteComponent,
   ],
   imports: [
     BrowserModule,
