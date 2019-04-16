@@ -33,7 +33,7 @@ import { LittlePostComponent } from './components/blog/little-post/little-post.c
 import { LessPostComponent } from './components/blog/less-post/less-post.component';
 import { CreateHotelComponent } from './components/create-post-place/create-hotel/create-hotel.component';
 import { AccountEditComponent } from './components/authentication/account-edit/account-edit.component';
-import { ListOfRoutesComponent } from './list-of-routes/list-of-routes.component';
+import { ListOfRoutesComponent } from './components/list-of-routes/list-of-routes.component';
 
 @NgModule({
   declarations: [

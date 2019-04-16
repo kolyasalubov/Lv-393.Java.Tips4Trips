@@ -15,7 +15,7 @@ import {CreateRestaurantComponent} from "./components/create-post-place/create-r
 import {CreateHotelComponent} from "./components/create-post-place/create-hotel/create-hotel.component";
 import {BigPostComponent} from "./components/blog/big-post/big-post.component";
 import {AccountEditComponent} from "./components/authentication/account-edit/account-edit.component"
-import { ListOfRoutesComponent } from './list-of-routes/list-of-routes.component';
+import { ListOfRoutesComponent } from './components/list-of-routes/list-of-routes.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
