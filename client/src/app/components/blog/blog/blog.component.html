@@ -16,17 +16,14 @@
 
 <section class="ftco-section bg-light">
   <div class="container">
-    <div class="row d-flex">
-      <div class="col-md-4" *ngIf="pagePost?.content">
-      <div class="col-md-4 d-flex ftco-animate">
-
-          <div *ngFor="let post of pagePost.content">
-            <app-little-post [post]="post" style="width: 100%"></app-little-post>
-
-          </div>
+      <div class="row d-flex" *ngIf="pagePost?.content">
+        <div class="col-md-4 d-flex ftco-animate" *ngFor="let post of pagePost.content"  >
+            <div class="blog-entry justify-content-end" style="width: 100%;">
+              <app-little-post [post]="post"></app-little-post>
+            </div>
         </div>
       </div>
-    </div>
+
     <div class="row mt-5">
       <div class="col text-center">
         <div class="block-27">
