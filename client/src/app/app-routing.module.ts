@@ -15,6 +15,7 @@ import {CreateRestaurantComponent} from "./components/create-post-place/create-r
 import {CreateHotelComponent} from "./components/create-post-place/create-hotel/create-hotel.component";
 import {BigPostComponent} from "./components/blog/big-post/big-post.component";
 import {AccountEditComponent} from "./components/authentication/account-edit/account-edit.component"
+import { ListOfRoutesComponent } from './list-of-routes/list-of-routes.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -33,7 +34,8 @@ const routes: Routes = [
   { path: 'about', component: AboutePageComponent },
   { path: 'create_place/restaurant', component: CreateRestaurantComponent },
   { path: 'create_place/hotel', component: CreateHotelComponent },
-  { path: 'single_page', component: BigPostComponent }
+  { path: 'single_page', component: BigPostComponent },
+  { path: 'routes', component: ListOfRoutesComponent }
 
 
 ];

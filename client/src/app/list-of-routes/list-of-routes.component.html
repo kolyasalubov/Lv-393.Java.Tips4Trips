@@ -1,0 +1,10 @@
+<ul class="routes">
+  <li *ngFor="let route of routes">
+    <label>name: {{route.name}}</label><br>
+    <div>
+      Author:
+      <label>{{route.authorInfo.firstName}} {{route.authorInfo.lastName}}</label>
+    </div>
+    <label>created: {{route.creationDate}}</label><br>
+  </li>
+</ul>
