@@ -21,9 +21,11 @@ export class AccountComponent implements OnInit {
 
     this.accountService.findById(6).subscribe(data => this.accountProfile = data);
 
-     
   }
 
+  initAcc(accountProfile: Account){
+      this.accountProfile = accountProfile;
+  }
 
 
   editAccount() {
