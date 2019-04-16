@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
-import {TokenInterceptor} from "./core/interceptor";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -33,6 +32,7 @@ import { LittlePostComponent } from './components/blog/little-post/little-post.c
 import { LessPostComponent } from './components/blog/less-post/less-post.component';
 import { CreateHotelComponent } from './components/create-post-place/create-hotel/create-hotel.component';
 import { AccountEditComponent } from './components/authentication/account-edit/account-edit.component';
+import { httpInterceptorProviders } from './components/authentication/auth-interceptor';
 
 @NgModule({
   declarations: [
@@ -70,9 +70,7 @@ import { AccountEditComponent } from './components/authentication/account-edit/a
     FormsModule, 
     ReactiveFormsModule
   ],
-  providers: [AccountService, {provide: HTTP_INTERCEPTORS,
-    useClass: TokenInterceptor,
-    multi : true}],
+  providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
