@@ -6,6 +6,8 @@ import com.softserve.academy.Tips4Trips.repository.AccountRepository;
 import com.softserve.academy.Tips4Trips.repository.PostRepository;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -35,7 +37,9 @@ public class PostService {
             throw new NoSuchElementException("Author not found!");
         }
     }
-
+    public Page<Post> getPaginatedArticles(Pageable pageable) {
+        return repository.findAll(pageable);
+    }
     public List<Post> searchByName(String name) {
         return repository.findByNameContainingIgnoreCase(name);
     }
@@ -62,6 +66,7 @@ public class PostService {
     public List<Post> findAll() {
         return repository.findAll();
     }
+
 
     public Post findById(Long id) {
         Optional<Post> post = repository.findById(id);
