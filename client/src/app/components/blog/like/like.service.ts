@@ -14,7 +14,7 @@ export class LikeService {
   
 
 createLike(postId: number, accountId:number):Observable<Like>{
-  return this.http.post<Like>(this.baseUrl + postId +'/likes/create/'+ accountId, {});
+  return this.http.post<Like>(this.baseUrl + postId +'/likes/create/'+ accountId, {postId,accountId});
 };
 deleteLike(postId: number, accountId:number):Observable<Like>{
   return this.http.delete<Like>(this.baseUrl + postId + '/likes/delete/' + accountId, {})

@@ -8,12 +8,12 @@ import{LikeService} from './like.service';
 })
 export class LikeComponent implements OnInit {
 
-  constructor(private createLike:LikeService, private delLike:LikeService) { }
+  constructor(private likeService:LikeService) { }
     addLike(){
-      this.createLike.createLike(1,1).subscribe(item=>console.log(item));
+      this.likeService.createLike(1,1).subscribe(item=>console.log(item));
     }
     deleteLike(){
-      this.delLike.deleteLike(1,1).subscribe(item=>console.log(item));
+      this.likeService.deleteLike(1,1).subscribe(item=>console.log(item));
     }
   ngOnInit() {
    

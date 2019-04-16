@@ -29,7 +29,7 @@ const routes: Routes = [
   { path: 'blog', component: BlogComponent },
   { path: 'about', component: AboutePageComponent },
   { path: 'create_place/restaurant', component: CreateRestaurantComponent },
-  { path: 'single_page', component: BigPostComponent }
+  { path: 'post', component: BigPostComponent }
 
 ];
 
