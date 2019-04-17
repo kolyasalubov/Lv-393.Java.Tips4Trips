@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { CommentService } from './comment.service';
-import {Comment} from "../../../model/comment.model";
-import {AccountInfo} from "../../../model/account-info.model";
-import {NgForm} from "@angular/forms";
+import {Component, Input, OnInit} from '@angular/core';
+import {CommentService} from './comment.service';
+import {Comment} from '../../../model/comment.model';
+import {AccountInfo} from '../../../model/account-info.model';
+import {NgForm} from '@angular/forms';
+import {LittlepostModel} from '../../../model/littlepost.model';
 
 
 @Component({
@@ -12,21 +13,44 @@ import {NgForm} from "@angular/forms";
 })
 export class CommentComponent implements OnInit {
 
-  constructor(private commentService:CommentService) { }
- account: AccountInfo = new AccountInfo();
- 
-  commentProfile:Comment=new Comment(null,this.account, null,new Date(),null,1,null);
-  commentList:Comment[];
+  @Input() postid: number;
+  @Input() countOfLikes: number;
 
-  onSubmit(f: NgForm){
-    this.commentService.createComment(this.commentProfile).subscribe(item=>console.log(item));
+  constructor(private commentService: CommentService) {
+  }
+
+  account: AccountInfo = new AccountInfo();
+  noComment = false;
+  oneComment = false;
+  moreComment = false;
+
+
+  commentProfile: Comment = new Comment(null, this.account, null, new Date(), null, 1, null);
+  commentList: Comment[];
+
+  onSubmit(f: NgForm) {
+    console.log(f);
+    this.commentService.createComment(this.commentProfile).subscribe(item => console.log(item));
     this.commentList.push(this.commentProfile);
     f.resetForm();
   }
-  ngOnInit() {
-this.account.id=1;
 
-     this.commentService.findByPostId(1).subscribe(item=>this.commentList = item);
+  ngOnInit() {
+    this.account.id = 1;
+    this.account.firstName = 'asdfasd';
+    this.account.lastName = 'sdfsdf';
+    if (this.countOfLikes > 1) {
+      this.commentService.findByPostId(this.postid).subscribe(item => this.commentList = item);
+      if (this.countOfLikes = 1) {
+        this.oneComment = true;
+      } else {
+        this.moreComment = true;
+      }
+    } else {
+      this.noComment = true;
+    }
+    console.log(this.oneComment, this.moreComment, this.noComment);
+
   }
 
 }
