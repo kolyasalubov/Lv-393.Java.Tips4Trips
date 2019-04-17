@@ -1,9 +1,14 @@
 package com.softserve.academy.Tips4Trips.dto.converter;
 
+import com.softserve.academy.Tips4Trips.controller.HotelController;
+import com.softserve.academy.Tips4Trips.controller.MonumentController;
 import com.softserve.academy.Tips4Trips.controller.RestaurantController;
 import com.softserve.academy.Tips4Trips.dto.PlaceDTO;
 import com.softserve.academy.Tips4Trips.dto.info.PlaceInfoDTO;
+import com.softserve.academy.Tips4Trips.entity.place.Hotel;
+import com.softserve.academy.Tips4Trips.entity.place.Monument;
 import com.softserve.academy.Tips4Trips.entity.place.Place;
+import com.softserve.academy.Tips4Trips.entity.place.Restaurant;
 import org.springframework.hateoas.mvc.ControllerLinkBuilder;
 import org.springframework.stereotype.Component;
 
@@ -45,11 +50,30 @@ public class PlaceConverter implements Converter<Place,  PlaceInfoDTO> {
         String description = content.length() > MAX_DESCRIPTION_LENGTH
                 ? content.substring(0, MAX_DESCRIPTION_LENGTH) : content;
         placeInfoDTO.setDescription(description);
-        placeInfoDTO.setSelf(ControllerLinkBuilder.linkTo(
-                ControllerLinkBuilder.methodOn(RestaurantController.class)
-                        .getById(place.getCity().getCountry().getId(), place.getCity().getId(), place.getId())
-        ).withSelfRel().getHref().replace("{countryId}", place.getCity().getCountry().getId().toString())
-                .replace("{cityId}", place.getCity().getId().toString()));
+        placeInfoDTO.setSelf(getSelfLink(place));
         return placeInfoDTO;
+    }
+
+    private String getSelfLink(Place place) {
+        if (place.getClass().equals(Restaurant.class)) {
+            return ControllerLinkBuilder.linkTo(
+                    ControllerLinkBuilder.methodOn(RestaurantController.class)
+                            .getById(place.getCity().getCountry().getId(), place.getCity().getId(), place.getId())
+            ).withSelfRel().getHref().replace("{countryId}", place.getCity().getCountry().getId().toString())
+                    .replace("{cityId}", place.getCity().getId().toString());
+        } else if (place.getClass().equals(Hotel.class)) {
+            return ControllerLinkBuilder.linkTo(
+                    ControllerLinkBuilder.methodOn(HotelController.class)
+                            .getById(place.getCity().getCountry().getId(), place.getCity().getId(), place.getId())
+            ).withSelfRel().getHref().replace("{countryId}", place.getCity().getCountry().getId().toString())
+                    .replace("{cityId}", place.getCity().getId().toString());
+        } else if (place.getClass().equals(Monument.class)) {
+            return ControllerLinkBuilder.linkTo(
+                    ControllerLinkBuilder.methodOn(MonumentController.class)
+                            .getById(place.getCity().getCountry().getId(), place.getCity().getId(), place.getId())
+            ).withSelfRel().getHref().replace("{countryId}", place.getCity().getCountry().getId().toString())
+                    .replace("{cityId}", place.getCity().getId().toString());
+        }
+        return "";
     }
 }

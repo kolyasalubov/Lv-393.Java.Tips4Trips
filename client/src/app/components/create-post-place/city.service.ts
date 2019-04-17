@@ -21,5 +21,7 @@ getById(id: number): Observable<City> {
   return this.http.get<City>(this.baseUrl + id);
 }
 
-
+getAllByCountryId(id: number): Observable<City[]> {
+  return this.http.get<City[]>("http://localhost:8080/countries/" + id + "/cities/");
+}
 }

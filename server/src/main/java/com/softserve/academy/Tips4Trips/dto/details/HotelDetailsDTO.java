@@ -14,8 +14,8 @@ public class HotelDetailsDTO extends PlaceInfoDTO {
     private String webSite;
     private String telephone;
     private TypeOfBuilding type;
-    private Date openingTime;
-    private Date closingTime;
+    private String openingTime;
+    private String closingTime;
     private String address;
     private Position position;
     private String photoPath;
@@ -55,19 +55,19 @@ public class HotelDetailsDTO extends PlaceInfoDTO {
         this.type = type;
     }
 
-    public Date getOpeningTime() {
+    public String getOpeningTime() {
         return openingTime;
     }
 
-    public void setOpeningTime(Date openingTime) {
+    public void setOpeningTime(String openingTime) {
         this.openingTime = openingTime;
     }
 
-    public Date getClosingTime() {
+    public String getClosingTime() {
         return closingTime;
     }
 
-    public void setClosingTime(Date closingTime) {
+    public void setClosingTime(String closingTime) {
         this.closingTime = closingTime;
     }
 

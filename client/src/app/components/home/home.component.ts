@@ -1,9 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import * as $ from 'jquery';
 import {BlogService} from '../blog/blog/blog.service';
 import {PagelittlepostModel} from '../../model/pagelittlepost.model';
-import { AuthService } from '../authentication/auth.service';
+import {AuthService} from '../authentication/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -39,6 +38,6 @@ export class HomeComponent implements OnInit {
       });
     this.authenticationService.getCurrentUser().subscribe(
       data => console.log(data)
-    ); 
+    );
   };
 }

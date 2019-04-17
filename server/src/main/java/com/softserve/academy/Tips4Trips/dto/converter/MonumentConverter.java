@@ -1,5 +1,6 @@
 package com.softserve.academy.Tips4Trips.dto.converter;
 
+import com.softserve.academy.Tips4Trips.controller.MonumentController;
 import com.softserve.academy.Tips4Trips.controller.RestaurantController;
 import com.softserve.academy.Tips4Trips.dto.details.MonumentDetailsDTO;
 import com.softserve.academy.Tips4Trips.entity.place.Monument;
@@ -51,7 +52,7 @@ public class MonumentConverter implements Converter<Monument, MonumentDetailsDTO
         monumentDetailsDTO.setPhotoPath(monument.getPhotoPath());
         monumentDetailsDTO.setCityDTO(cityConverter.convertToDTO(cityService.findById(monument.getCity().getId())));
         monumentDetailsDTO.setSelf(ControllerLinkBuilder.linkTo(
-                ControllerLinkBuilder.methodOn(RestaurantController.class)
+                ControllerLinkBuilder.methodOn(MonumentController.class)
                         .getById(monument.getCity().getCountry().getId(), monument.getCity().getId(), monument.getId())
         ).withSelfRel().getHref().replace("{countryId}", monument.getCity().getCountry().getId().toString())
                 .replace("{cityId}", monument.getCity().getId().toString()));
