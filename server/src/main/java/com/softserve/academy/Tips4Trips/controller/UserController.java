@@ -30,46 +30,54 @@ public class UserController {
 
     @GetMapping("/all")
     public ResponseEntity<List<UserDTO>> getAll() {
+        logger.info("get all users method executing: ");
         return new ResponseEntity<>(userConverter
                 .convertToDTO(userService.findAll()), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<UserDTO> getById(@PathVariable Long id) {
+        logger.info("get user by id method executing: ");
         return new ResponseEntity<>(userConverter
                 .convertToDTO(userService.findById(id)), HttpStatus.OK);
     }
 
     @GetMapping("/login/{login}")
     public ResponseEntity<UserDTO> getByLogin(@PathVariable String login) {
+        logger.info("get user by login method executing: ");
         return new ResponseEntity<>(userConverter
                 .convertToDTO(userService.findByLogin(login)), HttpStatus.OK);
     }
 
     @GetMapping("/exists/login/{login}")
     public ResponseEntity<Boolean> loginExists(@PathVariable String login) {
+        logger.info("login exists method executing: ");
         return new ResponseEntity<>(userService.loginExists(login), HttpStatus.OK);
     }
 
     @GetMapping("/exists/email/{email}")
     public ResponseEntity<Boolean> emailExists(@PathVariable String email) {
+        logger.info("email exists method executing: ");
         return new ResponseEntity<>(userService.emailExists(email), HttpStatus.OK);
     }
 
     @PostMapping("/create")
     public ResponseEntity<UserDTO> createUser(@RequestBody UserDTO userDTO) {
+        logger.info("create user method executing: ");
         User user = userService.createUser(userConverter.convertToEntity(userDTO));
         return new ResponseEntity<>(userConverter.convertToDTO(user), HttpStatus.CREATED);
     }
 
     @PutMapping("/update")
     public ResponseEntity<UserDTO> updateUser(@RequestBody UserDTO userDTO) {
+        logger.info("update user method executing: ");
         User user = userService.update(userConverter.convertToEntity(userDTO));
         return new ResponseEntity<>(userConverter.convertToDTO(user), HttpStatus.ACCEPTED);
     }
 
     @DeleteMapping("/delete/{id}")
     public void deleteById(@PathVariable Long id) {
+        logger.info("delete user by id method executing: ");
         userService.deleteById(id);
     }
 
