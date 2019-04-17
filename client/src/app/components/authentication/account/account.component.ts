@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Account } from 'src/app/model/account.model';
 import { AccountService } from './account.service';
 import {Router} from '@angular/router';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-account',
@@ -12,7 +13,8 @@ export class AccountComponent implements OnInit {
 
   accountProfile: Account;
 
-  constructor(private accountService: AccountService,private router: Router) {
+  constructor(private accountService: AccountService, private authService: AuthService,
+    private router: Router) {
   }
 
   ngOnInit() {
@@ -22,6 +24,11 @@ export class AccountComponent implements OnInit {
       //this.accountProfile = data
        ); 
 
+  }
+
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['home']);
   }
 
   initAcc(accountProfile: Account){
