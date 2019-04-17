@@ -29,13 +29,18 @@ public class LikeService {
         return repository.countByPostId(id);
     }
 
+    public Boolean existsByLikedByAndPost(Account account, Post post){
+        return repository.existsByLikedByAndPost(account,post);
+    }
+
     public Like findByAccountAndPost(Account account, Post post) {
         Optional<Like> likes = repository.findByLikedByAndPost(account, post);
-        if (likes.isPresent()) {
-            return likes.get();
+        if (repository.existsByLikedByAndPost(account, post)) {
+            deleteLike(post, account);
         } else {
-            throw new NoSuchElementException("Like is not found!");
+            createLike(account, post);
         }
+        return likes.get();
     }
 
     public List<Account> findAccounts(Post post) {

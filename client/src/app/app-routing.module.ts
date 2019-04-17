@@ -16,12 +16,15 @@ import {CreateRestaurantComponent} from "./components/create-post-place/create-r
 import {CreateHotelComponent} from "./components/create-post-place/create-hotel/create-hotel.component";
 import {BigPostComponent} from "./components/blog/big-post/big-post.component";
 import {AccountEditComponent} from "./components/authentication/account-edit/account-edit.component"
+import { CommentComponent } from './components/blog/comment/comment.component';
 import { ListOfRoutesComponent } from './components/list-of-routes/list-of-routes.component';
 import {RestaurantDetailsComponent} from "./components/restaurant-details/restaurant-details.component";
 import {CreateMonumentComponent} from "./components/create-post-place/create-monument/create-monument.component";
 import {MonumentDetailsComponent} from "./components/monument-details/monument-details.component";
 import { TripComponent } from './components/trip/trip/trip.component';
 import { TripInfoComponent } from './components/trip/trip-info/trip-info.component';
+import {TestComponent} from './components/test/test.component';
+
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -41,15 +44,20 @@ const routes: Routes = [
   { path: 'blog/:id', component: BlogComponent },
   { path: 'about', component: AboutePageComponent },
   { path: 'create_place/restaurant', component: CreateRestaurantComponent },
+  { path: 'post', component: BigPostComponent },
   { path: 'create_place/hotel', component: CreateHotelComponent },
   { path: 'create_place/monument', component: CreateMonumentComponent },
   { path: 'routes', component: ListOfRoutesComponent },
+  { path: 'comment', component: CommentComponent },
   { path: 'restaurants/:id', component: RestaurantDetailsComponent },
   { path: 'monuments/:id', component: MonumentDetailsComponent },
   { path: 'routes/:id', component: RouteComponent },
-    { path: 'post/:id', component: BigPostComponent },
+  { path: 'post/:id', component: BigPostComponent },
   { path: 'trip', component: TripComponent },
-    { path: 'trip/:id', component: TripInfoComponent }
+  { path: 'trip/:id', component: TripInfoComponent },
+  { path: 'test', component: TestComponent }
+
+
 ];
 
 @NgModule({
