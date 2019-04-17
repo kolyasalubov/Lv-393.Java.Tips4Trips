@@ -19,8 +19,9 @@ export class AccountComponent implements OnInit {
 
   ngOnInit() {
 
-    //this.accountService.findById(1).subscribe(data => this.accountProfile = data);
-    this.accountService.getCurrentUser().subscribe(data => this.accountProfile = data);}
+    this.authService.getCurrentUser().subscribe(data => this.accountProfile = data);
+    //this.accountService.getCurrentUser().subscribe(data => this.accountProfile = data);
+  }
 
 
 

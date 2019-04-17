@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FindGroupDetailsDTO} from '../../../model/trip-details'
 import {TripInfoService} from './trip-info.service'
 import {ActivatedRoute} from "@angular/router";
+import {PlaceInfo} from "../../../model/place-info.model";
 
 @Component({
   selector: 'app-trip-info',
@@ -32,11 +33,16 @@ export class TripInfoComponent implements OnInit {
       this.findGroupDetailsDTO.route = data.route;
       this.findGroupDetailsDTO.creator = data.creator;
       this.findGroupDetailsDTO.subscribers = data.subscribers;
-
+      //this.findGroupDetailsDTO.route[0] = data.route[0];
 
       console.log(data);
     });
     console.log(this.findGroupDetailsDTO);
+  }
+
+  getSelfLink(placeInfo: PlaceInfo): string {
+    const url: string[] = placeInfo.self.split("/");
+    return url[url.length-2] + "/" + url[url.length - 1];
   }
   }
 

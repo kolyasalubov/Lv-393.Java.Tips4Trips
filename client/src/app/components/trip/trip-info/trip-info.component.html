@@ -43,20 +43,23 @@
 
     </div>
     <h1 align="center">Trip info</h1>
-
-
-
-
-
-
-
-
-
-
-
-
-    <br>
-    <br>
+    <section class="ftco-section bg-light">
+    <div style="text-align:center; width:70%; margin: auto;">
+    <h1 style="text-align: center;">{{findGroupDetailsDTO.route.name}}</h1>
+    <div style="display: inline-block; margin:auto;">
+    <h4>Creation Date: {{findGroupDetailsDTO.route.creationDate}}</h4>
+    <h4 style="text-align: left;">Places: </h4>
+    <div style="display:grid; grid-gap:20px 10px;
+    grid-template-columns: auto auto auto;">
+      <div style="border: 1px solid black; padding: 20px 5px; max-width: 250px;" *ngFor="let place of findGroupDetailsDTO.route.places">
+        <h4><a [href]="getSelfLink(place)">{{place.name}}</a></h4>
+        <p>{{place.description}}</p>
+      </div>
+    </div>
+    <div style="text-align: left;"><button (click)="goBack()" style="margin-top:20px;">Back</button></div>
+    </div>
+    </div>
+    </section>
     <br>
     <br>
     <br>
@@ -76,7 +79,7 @@
           <span class="icon-map-signs"><img src="../../../../assets/images/round_perm_identity_black_48dp.png"></span>
         </div>
         <h3 class="mb-4">{{subscriber.firstName}}    {{subscriber.lastName}}</h3>
-        <p align="center" >{{subscriber.id}}</p>
+        <p align="center" >subscribed</p>
       </div>
     </div>
     </li>
