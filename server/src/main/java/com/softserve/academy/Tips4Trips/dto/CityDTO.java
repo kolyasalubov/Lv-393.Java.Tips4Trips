@@ -1,9 +1,6 @@
 package com.softserve.academy.Tips4Trips.dto;
 
-import com.softserve.academy.Tips4Trips.dto.info.PlaceInfoDTO;
 import com.softserve.academy.Tips4Trips.entity.Position;
-
-import java.util.List;
 
 public class CityDTO {
 
