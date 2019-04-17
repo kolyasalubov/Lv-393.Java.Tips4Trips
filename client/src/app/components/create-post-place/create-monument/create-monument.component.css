@@ -31,24 +31,3 @@ select {
   -moz-appearance: none;
   appearance: none;
 }
-
-.weekDays-selector input {
-  display: none!important;
-}
-
-.weekDays-selector input[type=checkbox] + mark {
-  display: inline-block;
-  border-radius: 6px;
-  background: #dddddd;
-  height: 40px;
-  width: 45px;
-  margin-right: 3px;
-  line-height: 40px;
-  text-align: center;
-  cursor: pointer;
-}
-
-.weekDays-selector input[type=checkbox]:checked + mark {
-  background: #ffb400;
-  color: #ffffff;
-}

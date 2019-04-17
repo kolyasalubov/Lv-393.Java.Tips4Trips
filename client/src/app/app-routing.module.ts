@@ -16,6 +16,9 @@ import {CreateHotelComponent} from "./components/create-post-place/create-hotel/
 import {BigPostComponent} from "./components/blog/big-post/big-post.component";
 import {AccountEditComponent} from "./components/authentication/account-edit/account-edit.component"
 import { ListOfRoutesComponent } from './list-of-routes/list-of-routes.component';
+import {RestaurantDetailsComponent} from "./components/restaurant-details/restaurant-details.component";
+import {CreateMonumentComponent} from "./components/create-post-place/create-monument/create-monument.component";
+import {MonumentDetailsComponent} from "./components/monument-details/monument-details.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -34,8 +37,11 @@ const routes: Routes = [
   { path: 'about', component: AboutePageComponent },
   { path: 'create_place/restaurant', component: CreateRestaurantComponent },
   { path: 'create_place/hotel', component: CreateHotelComponent },
+  { path: 'create_place/monument', component: CreateMonumentComponent },
   { path: 'single_page', component: BigPostComponent },
-  { path: 'routes', component: ListOfRoutesComponent }
+  { path: 'routes', component: ListOfRoutesComponent },
+  { path: 'restaurants/:id', component: RestaurantDetailsComponent },
+  { path: 'monuments/:id', component: MonumentDetailsComponent }
 
 
 ];

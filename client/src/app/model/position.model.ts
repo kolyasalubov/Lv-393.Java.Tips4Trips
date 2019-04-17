@@ -1,10 +1,10 @@
 export class Position {
-  x: number;
-  y: number
+  coordinateX: number;
+  coordinateY: number
 
-  constructor(x: number, y: number){
-    this.x = x;
-    this.y = y;
+  constructor(coordinateX: number, coordinateY: number){
+    this.coordinateX = coordinateX;
+    this.coordinateY = coordinateY;
   }
 
 }
