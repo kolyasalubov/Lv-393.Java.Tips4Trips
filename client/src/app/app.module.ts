@@ -20,7 +20,7 @@ import { RecentStoriesComponent } from './components/home/recent-stories/recent-
 import { NewsSubscribeComponent } from './components/home/news-subscribe/news-subscribe.component';
 import { CreatePostComponent } from './components/create-post/create-post.component';
 import { CreatePostPlaceComponent } from './components/create-post-place/create-post-place.component';
-import { CreatePostRouteComponent } from './components/create-post-route/create-post-route.component';
+import { CreateRouteComponent } from './components/create-route/create-route.component';
 import { LikeComponent } from './components/blog/like/like.component';
 import { SingComponent } from './components/authentication/sing/sing.component';
 import { ListOfUsersComponent } from './components/list-of-users/list-of-users.component';
@@ -31,6 +31,9 @@ import { CommentComponent } from './components/blog/comment/comment.component';
 import { BigPostComponent } from './components/blog/big-post/big-post.component';
 import { LittlePostComponent } from './components/blog/little-post/little-post.component';
 import { LessPostComponent } from './components/blog/less-post/less-post.component';
+import { CreateHotelComponent } from './components/create-post-place/create-hotel/create-hotel.component';
+import { AccountEditComponent } from './components/authentication/account-edit/account-edit.component';
+import { ListOfRoutesComponent } from './list-of-routes/list-of-routes.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +50,7 @@ import { LessPostComponent } from './components/blog/less-post/less-post.compone
     HelpInfoComponent,
     CreatePostComponent,
     CreatePostPlaceComponent,
-    CreatePostRouteComponent,
+    CreateRouteComponent,
     LikeComponent,
     SingComponent,
     ListOfUsersComponent,
@@ -58,6 +61,9 @@ import { LessPostComponent } from './components/blog/less-post/less-post.compone
     BigPostComponent,
     LittlePostComponent,
     LessPostComponent,
+    CreateHotelComponent,
+    AccountEditComponent,
+    ListOfRoutesComponent,
   ],
   imports: [
     BrowserModule,

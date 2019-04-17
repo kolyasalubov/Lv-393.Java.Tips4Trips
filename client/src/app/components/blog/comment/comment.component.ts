@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CommentService } from './comment.service';
 import {Comment} from "../../../model/comment.model";
+import {AccountInfo} from "../../../model/account-info.model";
+import {NgForm} from "@angular/forms";
+
 
 @Component({
   selector: 'app-comment',
@@ -10,15 +13,18 @@ import {Comment} from "../../../model/comment.model";
 export class CommentComponent implements OnInit {
 
   constructor(private commentService:CommentService) { }
-  findAll(){
-    this.commentService.findByPostId(1).subscribe(item=>console.log(item));
+ account: AccountInfo = new AccountInfo(1,'xvv','xcvxcv','sdfsf');
+ 
+  commentProfile:Comment=new Comment(null,this.account, null,new Date(),null,1,null);
+  commentList:Comment[];
+
+  onSubmit(f: NgForm){
+    this.commentService.createComment(this.commentProfile).subscribe(item=>console.log(item));
+    f.resetForm();
   }
-  commentProfile:Comment=new Comment(null,null,null,null,null);
-  // onSubmit(){
-  //   this.commentService.createComment(commentProfile:Comment).subscribe(item=>console.log(item));
-  // }
   ngOnInit() {
-    this.findAll();
+
+     this.commentService.findByPostId(1).subscribe(item=>this.commentList = item);
   }
 
 }

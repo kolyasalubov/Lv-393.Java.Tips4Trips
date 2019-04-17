@@ -11,7 +11,7 @@ export class CommentService {
   baseUrl: string = 'http://localhost:8080/posts/';
 
   createComment(comment:Comment):Observable<Comment>{
-    return this.http.post<Comment>(this.baseUrl+comment.postId+'comments/create',{comment})
+    return this.http.post<Comment>(this.baseUrl+comment.postId+'/comments/create/',comment)
   }
 
   deleteComment(postId:number,id:number):Observable<Comment>{
