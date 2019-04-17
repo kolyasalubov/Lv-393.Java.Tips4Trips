@@ -10,4 +10,5 @@ import java.util.List;
 @Repository
 public interface PlaceRepository extends JpaRepository<Place, Long> {
     List<Place> findByCity(City city);
+    List<Place> findByNameIgnoreCase(String name);
 }

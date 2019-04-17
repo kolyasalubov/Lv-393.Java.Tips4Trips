@@ -1,25 +1,24 @@
 <li class="comment">
-  <div class="vcard bio">
-    <form  #f="ngForm"(ngSubmit)="onSubmit(f)">
-      <textarea name="title" [(ngModel)]=commentProfile.text></textarea>
-      <button type="submit" class="btn btn-primary" >Submit</button>
 
-    </form>
-  </div>
   <div class="comment-body">
 
 
-    <div class="meta">October 03, 2018 at 2:21pm</div>
-
-    <tr *ngFor="let comment of commentList">
+     <tr *ngFor="let comment of commentList">
       <td>{{comment.accountInfo.firstName}}</td>
       <td>{{comment.accountInfo.lastName}}</td>
       <td>{{comment.creationDate}}</td>
       <td>{{comment.shortText}}</td>
+       <!--<td><button type="submit" >delete</button></td>-->
       <!--<td><a href="{{comment.self}}">...read more</a> </td>-->
   </tr>
 
+    <div class="vcard bio">
+      <form  #f="ngForm"(ngSubmit)="onSubmit(f)">
+        <textarea name="title" [(ngModel)]=commentProfile.text></textarea>
+        <button type="submit" class="btn btn-primary" >Submit</button>
 
+      </form>
+    </div>
   
   </div>
 </li>

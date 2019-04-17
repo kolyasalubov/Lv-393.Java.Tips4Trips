@@ -9,25 +9,15 @@ import{LikeService} from './like.service';
 export class LikeComponent implements OnInit {
 
   constructor(private likeService:LikeService) { }
-  isLike:Boolean=false;
-  addLike(){
-      this.likeService.createLike(1,1).subscribe(item=>console.log(item));
+  counter:number;
+  changeLike(){
+      this.likeService.changeLike(1,1).subscribe(item=>this.counter=(item));
+      console.log(this.counter);
     }
-    deleteLike(){
-      this.likeService.deleteLike(1,1).subscribe(item=>console.log(item));
-    }
-    changeLike(){
-      
-      if(this.isLike){
-        this.deleteLike();
-        this.isLike=false;
-      }else{
-        this.addLike();
-        this.isLike=true;
-      }
-    }
+
+
   ngOnInit() {
-   
+    this.likeService.changeLike(1,1).subscribe(item=>this.counter=(item));
   }
 
 }

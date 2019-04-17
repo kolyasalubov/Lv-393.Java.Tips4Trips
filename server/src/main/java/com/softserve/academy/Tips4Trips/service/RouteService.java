@@ -8,6 +8,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -51,6 +52,7 @@ public class RouteService {
     }
 
     public Route createRoute(Route route) {
+        route.setCreationDate(new Date());
         route.setId(-1L);
         return repository.save(route);
     }

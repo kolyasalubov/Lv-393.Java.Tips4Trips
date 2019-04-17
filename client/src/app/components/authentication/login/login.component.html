@@ -2,32 +2,16 @@
 <section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('../../../assets/images/bg_2.jpg'); padding-bottom: 40%;"
          data-stellar-background-ratio="0.5">
 </section>
+
 <section class="ftco-section contact-section" style="margin-bottom: 90px;">
   <div class="container">
     <div class="row block-9">
-          <h2 style="margin: auto">Login </h2>
-
-          <form class="bg-light p-5 contact-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-            <div class="form-group">
-              <label for="username">Username:</label>
-              <input type="text" class="form-control" formControlName="username" id="username" autocomplete="off">
-              <div class="error" *ngIf="loginForm.controls['username'].hasError('required') 
-        && loginForm.controls['username'].touched">Username is required</div>
-            </div>
-            <div class="form-group">
-              <label for="pwd">Password:</label>
-              <input type="password" class="form-control" formControlName="password" id="pwd" autocomplete="off">
-              <div class="error" *ngIf="loginForm.controls['password'].hasError('required') 
-        && loginForm.controls['password'].touched">Password is required</div>
-            </div>
-
-            <div class="form-group">
-              <input type="submit" [disabled]="loginForm.invalid" value="Sing in" class="btn btn-primary py-3 px-5"
-                style="width: 100%;">
-              <div *ngIf="invalidLogin" class="error">
-                <div>Invalid credentials.</div>
-              </div>
-            </div>
+          <form form ="loginForm" (ngSubmit)="onSubmit()" class="text-center border border-light p-5">
+            <p class="h3 mb-4">Sign in</p>
+            <input type="text" name="login" [(ngModel)]="loginForm.login" class="form-control mb-4" placeholder="Username">
+            <input type="password" name="password" [(ngModel)]="loginForm.password" class="form-control mb-4" placeholder="Password">
+        
+            <button mdbBtn style="background-color: #336B87;" block="true" class="my-4" type="submit">Sign in</button>
             <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
 
             <div class="chekbox-two">

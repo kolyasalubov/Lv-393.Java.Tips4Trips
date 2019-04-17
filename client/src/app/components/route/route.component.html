@@ -1,0 +1,9 @@
+<h3 class="heading">{{route.name}}</h3>
+<p>{{route.creationDate}}</p>
+<p>Created by <a href="">{{route.authorInfo.firstName}} {{route.authorInfo.lastName}}</a></p>
+<ul>
+  <li *ngFor="let place of route.places">
+    <p>{{place.name}}</p>
+    <p>{{place.description}}</p>
+  </li>
+</ul>
