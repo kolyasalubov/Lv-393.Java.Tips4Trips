@@ -25,7 +25,7 @@ export class CommentComponent implements OnInit {
   moreComment = false;
 
 
-  commentProfile: Comment = new Comment(null, this.account, null, new Date(), null, 1, null);
+  commentProfile: Comment = new Comment(null, this.account, null, new Date(), null, this.postid, null);
   commentList: Comment[];
 
   onSubmit(f: NgForm) {
@@ -42,7 +42,7 @@ export class CommentComponent implements OnInit {
     this.account.lastName = 'Yurii';
 
     //if (this.countOfLikes > 1) {
-    this.commentService.findByPostId(this.postid).subscribe(item => this.commentList = item);
+    this.commentService.findByPostId(1).subscribe(item => this.commentList = item);
     //   if (this.countOfLikes = 1) {
     //     this.oneComment = true;
     //   } else {
