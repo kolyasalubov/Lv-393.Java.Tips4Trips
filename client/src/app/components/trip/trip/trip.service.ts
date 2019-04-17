@@ -17,14 +17,4 @@ import { FindGroupInfoDTO } from 'src/app/model/trip-info';
   return this.http.get<FindGroupInfoDTO[]>(this.baseUrl);
 }
 
-    // getTrips(): Observable<TripInfo[]> {
-
-    //   return this.http.get<TripInfo[]>(this.baseUrl);
-    //   //  .pipe(
-    //  //     map(response => {
-    //    //     const data = response;
-    //   //      console.log(data.content);
-    //   //      return data;
-    //  //     }));
-    // }
   }
