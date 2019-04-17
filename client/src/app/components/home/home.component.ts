@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
 import * as $ from 'jquery';
+import {BlogService} from '../blog/blog/blog.service';
+import {PagelittlepostModel} from '../../model/pagelittlepost.model';
+import { AuthService } from '../authentication/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -23,16 +26,19 @@ import * as $ from 'jquery';
 export class HomeComponent implements OnInit {
 
   title = 'tips4trips-app';
+  pagePost: PagelittlepostModel;
 
-  constructor(private router: Router) {}
+  constructor(private blogserv: BlogService, private router: Router,
+    private authenticationService: AuthService) {
+  }
+
   ngOnInit() {
-    function fullHeight() {
-      $('.js-fullheight').css('height', $(window).height()/2);
-      $(window).resize(function(){
-          $('.js-fullheight').css('height', $(window).height()/2);
+    this.blogserv.getPosts(1)
+      .subscribe(data => {
+        this.pagePost = data;
       });
+    this.authenticationService.getCurrentUser().subscribe(
+      data => console.log(data)
+    ); 
   };
-  fullHeight();
-   }
-
 }

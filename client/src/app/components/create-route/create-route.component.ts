@@ -39,11 +39,10 @@ export class CreateRouteComponent implements OnInit {
   }
 
   save(): void {
-    console.log("save");
     if (this.validate()) {
       this.route.photoPath="no photo";
       this.routeService.createRoute(this.route).subscribe(result=>console.log(result));
-      this.router.navigate(['routes']);
+      setTimeout(() => {this.router.navigate(['routes']);}, 2000);
     }
   }
 

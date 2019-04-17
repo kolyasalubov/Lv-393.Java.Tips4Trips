@@ -23,13 +23,18 @@ export class CommentComponent implements OnInit {
   noComment = false;
   oneComment = false;
   moreComment = false;
+  commentProfile: Comment = new Comment(null, null, null, null, null, null, null);
 
-
-  commentProfile: Comment = new Comment(null, this.account, null, new Date(), null, 1, null);
   commentList: Comment[];
 
   onSubmit(f: NgForm) {
     console.log(f);
+    this.account.id = 1;
+    this.account.firstName = 'asdfasd';
+    this.account.lastName = 'sdfsdf';
+    this.commentProfile.accountInfo = this.account;
+    this.commentProfile.creationDate = new Date();
+    this.commentProfile.postId = this.postid;
     this.commentService.createComment(this.commentProfile).subscribe(item => console.log(item));
     this.commentList.push(this.commentProfile);
     f.resetForm();
@@ -39,17 +44,17 @@ export class CommentComponent implements OnInit {
     this.account.id = 1;
     this.account.firstName = 'asdfasd';
     this.account.lastName = 'sdfsdf';
-    if (this.countOfLikes > 1) {
-      this.commentService.findByPostId(this.postid).subscribe(item => this.commentList = item);
-      if (this.countOfLikes = 1) {
-        this.oneComment = true;
-      } else {
-        this.moreComment = true;
-      }
-    } else {
-      this.noComment = true;
-    }
-    console.log(this.oneComment, this.moreComment, this.noComment);
+    //if (this.countOfLikes > 1) {
+    this.commentService.findByPostId(this.postid).subscribe(item => this.commentList = item);
+    //   if (this.countOfLikes = 1) {
+    //     this.oneComment = true;
+    //   } else {
+    //     this.moreComment = true;
+    //   }
+    // } else {
+    //   this.noComment = true;
+    // }
+    // console.log(this.oneComment, this.moreComment, this.noComment);
 
   }
 
