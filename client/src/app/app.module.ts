@@ -34,10 +34,7 @@ import {AccountEditComponent} from './components/authentication/account-edit/acc
 import {ListOfRoutesComponent} from './components/list-of-routes/list-of-routes.component';
 import {RouteComponent} from './components/route/route.component';
 import {httpInterceptorProviders} from './components/authentication/auth-interceptor';
-
 import {PaginationComponent} from './components/blog/pagination/pagination.component';
-
-
 import {TripComponent} from './components/trip/trip/trip.component';
 import {TripInfoComponent} from './components/trip/trip-info/trip-info.component';
 
@@ -70,13 +67,10 @@ import {TripInfoComponent} from './components/trip/trip-info/trip-info.component
     CreateHotelComponent,
     AccountEditComponent,
     ListOfRoutesComponent,
-
     PaginationComponent,
-
     RouteComponent,
     TripComponent,
-    TripInfoComponent,
-
+    TripInfoComponent
   ],
   imports: [
     BrowserModule,

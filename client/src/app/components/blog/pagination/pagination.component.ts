@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {PagelittlepostModel} from '../../../model/pagelittlepost.model';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-pagination',
@@ -10,7 +10,7 @@ export class PaginationComponent implements OnInit {
   @Input() number: number;
   @Input() total: number;
 
-  constructor() {
+  constructor(private router: Router) {
   }
 
   page: number[] = [];
@@ -20,6 +20,10 @@ export class PaginationComponent implements OnInit {
   index: number;
 
   ngOnInit() {
+    if (this.number > this.total) {
+      this.router.navigate(['/blog']);
+      return;
+    }
     this.back = false;
     this.front = false;
     if ((this.number + 1) > 1) {

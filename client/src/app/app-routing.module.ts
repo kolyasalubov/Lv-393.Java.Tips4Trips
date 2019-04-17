@@ -42,7 +42,7 @@ const routes: Routes = [
   { path: 'create_place/restaurant', component: CreateRestaurantComponent },
   { path: 'post', component: BigPostComponent },
   { path: 'create_place/hotel', component: CreateHotelComponent },
-  { path: 'single_page', component: BigPostComponent },
+  { path: 'post/:id', component: BigPostComponent },
   { path: 'routes', component: ListOfRoutesComponent },
   { path: 'comment', component: CommentComponent },
   { path: 'routes/:id', component: RouteComponent },
