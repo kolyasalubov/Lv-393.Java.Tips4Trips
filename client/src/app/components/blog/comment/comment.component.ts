@@ -39,17 +39,17 @@ export class CommentComponent implements OnInit {
     this.account.id = 1;
     this.account.firstName = 'asdfasd';
     this.account.lastName = 'sdfsdf';
-    if (this.countOfLikes > 1) {
-      this.commentService.findByPostId(this.postid).subscribe(item => this.commentList = item);
-      if (this.countOfLikes = 1) {
-        this.oneComment = true;
-      } else {
-        this.moreComment = true;
-      }
-    } else {
-      this.noComment = true;
-    }
-    console.log(this.oneComment, this.moreComment, this.noComment);
+    //if (this.countOfLikes > 1) {
+    this.commentService.findByPostId(this.postid).subscribe(item => this.commentList = item);
+    //   if (this.countOfLikes = 1) {
+    //     this.oneComment = true;
+    //   } else {
+    //     this.moreComment = true;
+    //   }
+    // } else {
+    //   this.noComment = true;
+    // }
+    // console.log(this.oneComment, this.moreComment, this.noComment);
 
   }
 

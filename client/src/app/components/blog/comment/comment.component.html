@@ -1,13 +1,13 @@
-<div *ngIf="moreComment">
-  <h3 class="mb-5">{{countOfLikes}} Comments</h3>
-</div>
-<div *ngIf="oneComment">
-  <h3 class="mb-5">1 Comment</h3>
-</div>
-<div *ngIf="noComment">
-  <h3 class="mb-5">You will be my first</h3>
-  <p class="mb-5">Leave a comment</p>
-</div>
+<!--<div *ngIf="moreComment">-->
+  <!--<h3 class="mb-5">{{countOfLikes}} Comments</h3>-->
+<!--</div>-->
+<!--<div *ngIf="oneComment">-->
+  <!--<h3 class="mb-5">1 Comment</h3>-->
+<!--</div>-->
+<!--<div *ngIf="noComment">-->
+  <!--<h3 class="mb-5">You will be my first</h3>-->
+  <!--<p class="mb-5">Leave a comment</p>-->
+<!--</div>-->
 <ul *ngFor="let comment of commentList" class="comment-list">
   <li class="comment">
     <div class="vcard bio">
