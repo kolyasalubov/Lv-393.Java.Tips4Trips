@@ -11,17 +11,17 @@ export class CommentService {
   constructor(private http: HttpClient) {
   }
 
-  baseUrl: string = 'http://localhost:8080/posts/';
+  baseUrl: string = 'http://localhost:8080/comment';
 
   createComment(comment: Comment): Observable<Comment> {
-    return this.http.post<Comment>(this.baseUrl + comment.postId + '/comments/create/', comment);
+    return this.http.post<Comment>(this.baseUrl + '/create/', comment);
   }
 
   deleteComment(postId: number, id: number): Observable<Comment> {
-    return this.http.delete<Comment>(this.baseUrl + postId + '/comments/delete/' + id, {});
+    return this.http.delete<Comment>(this.baseUrl + postId + '/delete/' + id, {});
   }
 
   findByPostId(postId: number): Observable<Comment[]> {
-    return this.http.get<Comment[]>(this.baseUrl + postId + '/comments', {});
+    return this.http.get<Comment[]>(this.baseUrl + '/all/' + postId, {});
   }
 }
