@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import{LikeService} from './like.service';
 
 @Component({
@@ -7,17 +7,17 @@ import{LikeService} from './like.service';
   styleUrls: ['./like.component.css']
 })
 export class LikeComponent implements OnInit {
-
+  @Input() postid: number;
   constructor(private likeService:LikeService) { }
   counter:number;
   changeLike(){
-      this.likeService.changeLike(1,1).subscribe(item=>this.counter=(item));
+      this.likeService.changeLike(this.postid,1).subscribe(item=>this.counter=(item));
       console.log(this.counter);
     }
 
 
   ngOnInit() {
-    this.likeService.countLikes(1).subscribe(item=>this.counter=(item));
+    this.likeService.countLikes(this.postid).subscribe(item=>this.counter=(item));
   }
 
 }

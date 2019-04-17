@@ -38,8 +38,9 @@ export class CommentComponent implements OnInit {
   ngOnInit() {
 
     this.account.id = 1;
-    this.account.firstName = 'asdfasd';
-    this.account.lastName = 'sdfsdf';
+    this.account.firstName = 'Mota';
+    this.account.lastName = 'Yurii';
+
     //if (this.countOfLikes > 1) {
     this.commentService.findByPostId(this.postid).subscribe(item => this.commentList = item);
     //   if (this.countOfLikes = 1) {
