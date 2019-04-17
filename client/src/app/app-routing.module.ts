@@ -54,7 +54,7 @@ const routes: Routes = [
   { path: 'routes/:id', component: RouteComponent },
   { path: 'post/:id', component: BigPostComponent },
   { path: 'trip', component: TripComponent },
-  { path: 'trip_info', component: TripInfoComponent },
+  { path: 'trip/:id', component: TripInfoComponent },
   { path: 'test', component: TestComponent }
 
 
