@@ -23,6 +23,7 @@ import {CreateMonumentComponent} from "./components/create-post-place/create-mon
 import {MonumentDetailsComponent} from "./components/monument-details/monument-details.component";
 import { TripComponent } from './components/trip/trip/trip.component';
 import { TripInfoComponent } from './components/trip/trip-info/trip-info.component';
+import {TestComponent} from './components/test/test.component';
 
 
 const routes: Routes = [
@@ -53,7 +54,8 @@ const routes: Routes = [
   { path: 'routes/:id', component: RouteComponent },
   { path: 'post/:id', component: BigPostComponent },
   { path: 'trip', component: TripComponent },
-  { path: 'trip_info', component: TripInfoComponent }
+  { path: 'trip_info', component: TripInfoComponent },
+  { path: 'test', component: TestComponent }
 
 
 ];
