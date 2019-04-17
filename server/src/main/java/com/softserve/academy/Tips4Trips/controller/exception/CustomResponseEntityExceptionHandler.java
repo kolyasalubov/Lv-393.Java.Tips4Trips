@@ -1,8 +1,8 @@
-/*
 package com.softserve.academy.Tips4Trips.controller.exception;
 
 import com.softserve.academy.Tips4Trips.dto.exception.ExceptionDTO;
 import com.softserve.academy.Tips4Trips.exception.*;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -20,7 +20,7 @@ import java.util.Date;
 public class CustomResponseEntityExceptionHandler
         extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler (value = { DataNotFoundException.class,
+    @ExceptionHandler(value = {DataNotFoundException.class,
             UpdateUnexistingException.class, DeleteUnexistingException.class,
             UsernameNotFoundException.class})
     public final ResponseEntity<ExceptionDTO> handleNotFoundException(
@@ -38,8 +38,8 @@ public class CustomResponseEntityExceptionHandler
         return new ResponseEntity<>(errorDetails, HttpStatus.NOT_FOUND);
     }
 
-    @ExceptionHandler (value = { InvalidDataException.class,
-            UpdateException.class, DeleteException.class })
+    @ExceptionHandler(value = {InvalidDataException.class,
+            UpdateException.class, DeleteException.class})
     public final ResponseEntity<ExceptionDTO> handleBadRequestException(
             Exception exception, WebRequest request) {
         ExceptionDTO errorDetails = new ExceptionDTO(new Date(),
@@ -47,7 +47,7 @@ public class CustomResponseEntityExceptionHandler
         return new ResponseEntity<>(errorDetails, HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler (value = { AuthenticationException.class })
+    @ExceptionHandler(value = {AuthenticationException.class})
     public final ResponseEntity<ExceptionDTO> handleUnauthorisedException(
             Exception exception, WebRequest request) {
         ExceptionDTO errorDetails = new ExceptionDTO(new Date(),
@@ -55,7 +55,7 @@ public class CustomResponseEntityExceptionHandler
         return new ResponseEntity<>(errorDetails, HttpStatus.UNAUTHORIZED);
     }
 
-    @ExceptionHandler (value = { Exception.class })
+    @ExceptionHandler(value = {Exception.class})
     public final ResponseEntity<ExceptionDTO> handleInternalServerException(
             Exception exception, WebRequest request) {
         ExceptionDTO errorDetails = new ExceptionDTO(new Date(),
@@ -64,27 +64,33 @@ public class CustomResponseEntityExceptionHandler
                 HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    @ExceptionHandler(value = {MethodArgumentNotValidException.class})
-    public final ResponseEntity<ExceptionDTO> handleMethodArgumentNotValidException(
-            Exception exception, WebRequest request) {
+    @Override
+    public ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException exception,
+                                                               HttpHeaders headers, HttpStatus status,
+                                                               WebRequest request) {
         ExceptionDTO errorDetails = new ExceptionDTO(new Date(),
                 exception.getMessage(), request.getDescription(false));
-        return new ResponseEntity<>(errorDetails, HttpStatus.BAD_REQUEST);
+        return handleExceptionInternal(
+                exception, errorDetails, headers, HttpStatus.METHOD_NOT_ALLOWED, request);
     }
 
-    @ExceptionHandler(value = {HttpRequestMethodNotSupportedException.class})
-    public final ResponseEntity<ExceptionDTO> handleHttpRequestMethodNotSupportedException(
-            Exception exception, WebRequest request) {
+    @Override
+    public ResponseEntity<Object> handleHttpRequestMethodNotSupported(HttpRequestMethodNotSupportedException exception,
+                                                                      HttpHeaders headers,
+                                                                      HttpStatus status,
+                                                                      WebRequest request) {
         ExceptionDTO errorDetails = new ExceptionDTO(new Date(),
                 exception.getMessage(), request.getDescription(false));
         return new ResponseEntity<>(errorDetails, HttpStatus.METHOD_NOT_ALLOWED);
     }
 
-    @ExceptionHandler(value = {HttpMediaTypeNotSupportedException.class})
-    public final ResponseEntity<ExceptionDTO> handleHttpMediaTypeNotSupportedException(
-            Exception exception, WebRequest request) {
+    @Override
+    public ResponseEntity<Object> handleHttpMediaTypeNotSupported(HttpMediaTypeNotSupportedException exception,
+                                                                  HttpHeaders headers,
+                                                                  HttpStatus status,
+                                                                  WebRequest request) {
         ExceptionDTO errorDetails = new ExceptionDTO(new Date(),
                 exception.getMessage(), request.getDescription(false));
         return new ResponseEntity<>(errorDetails, HttpStatus.UNSUPPORTED_MEDIA_TYPE);
     }
-}*/
+}

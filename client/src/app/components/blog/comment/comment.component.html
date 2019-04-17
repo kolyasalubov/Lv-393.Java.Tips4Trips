@@ -1,24 +1,44 @@
-<li class="comment">
-
-  <div class="comment-body">
-
-
-     <tr *ngFor="let comment of commentList">
-      <td>{{comment.accountInfo.firstName}}</td>
-      <td>{{comment.accountInfo.lastName}}</td>
-      <td>{{comment.creationDate}}</td>
-      <td>{{comment.shortText}}</td>
-       <!--<td><button type="submit" >delete</button></td>-->
-      <!--<td><a href="{{comment.self}}">...read more</a> </td>-->
-  </tr>
-
+<div *ngIf="moreComment">
+  <h3 class="mb-5">{{countOfLikes}} Comments</h3>
+</div>
+<div *ngIf="oneComment">
+  <h3 class="mb-5">1 Comment</h3>
+</div>
+<div *ngIf="noComment">
+  <h3 class="mb-5">You will be my first</h3>
+  <p class="mb-5">Leave a comment</p>
+</div>
+<ul *ngFor="let comment of commentList" class="comment-list">
+  <li class="comment">
     <div class="vcard bio">
-      <form  #f="ngForm"(ngSubmit)="onSubmit(f)">
-        <textarea name="title" [(ngModel)]=commentProfile.text></textarea>
-        <button type="submit" class="btn btn-primary" >Submit</button>
-
-      </form>
+      <img src="../../../assets/images/person_1.jpg" alt="Image placeholder">
     </div>
-  
+    <div class="comment-body">
+      <h3>{{comment.accountInfo.firstName}} {{comment.accountInfo.lastName}}</h3>
+      <div class="meta">{{comment.creationDate}}</div>
+      <p>{{comment.shortText}}</p>
+      <p><a href="#" class="reply">Reply</a></p>
+    </div>
+  </li>
+</ul>
+<!--<td><button type="submit" >delete</button></td>-->
+<!--<td><a href="{{comment.self}}">...read more</a> </td>-->
+<div class="comment-form-wrap pt-5">
+  <div *ngIf="!noComment">
+    <h3 class="mb-5">Leave a comment</h3>
   </div>
-</li>
+  <form #f="ngForm" (ngSubmit)="onSubmit(f)" class="p-5 bg-light">
+
+    <div class="form-group">
+      <label for="message">Message</label>
+      <textarea name="name" id="message" cols="30" rows="10" class="form-control"
+                [(ngModel)]=commentProfile.text></textarea>
+    </div>
+    <div class="form-group">
+      <input type="submit" value="Post Comment" class="btn py-3 px-4 btn-primary">
+    </div>
+
+  </form>
+</div>
+
+

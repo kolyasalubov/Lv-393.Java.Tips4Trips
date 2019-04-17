@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FindGroupDetailsDTO} from '../../../model/trip-details'
 import {TripInfoService} from './trip-info.service'
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-trip-info',
@@ -12,12 +13,14 @@ export class TripInfoComponent implements OnInit {
   findGroupDetailsDTO: FindGroupDetailsDTO = new FindGroupDetailsDTO(null,"default",null,null,null,null,null,null,null);
 
 
-  constructor(private tripInfoService: TripInfoService) { }
+  constructor(private tripInfoService: TripInfoService,    private ngRoute: ActivatedRoute) { }
 
 
   ngOnInit() {
     //const id = Number(this.ngRoute.snapshot.paramMap.get('id'));
-    this.tripInfoService.findById(1).subscribe(data =>{
+    const id = Number(this.ngRoute.snapshot.paramMap.get('id'));
+    console.log(id);
+    this.tripInfoService.findById(id).subscribe(data =>{
 
 
       this.findGroupDetailsDTO.id = data.id;

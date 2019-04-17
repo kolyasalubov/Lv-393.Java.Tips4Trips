@@ -16,7 +16,7 @@ public class User {
     private String login;
 
     @NotNull
-    @Column(name = "password", length = 64, nullable = false)
+    @Column(name = "password", length = 65, nullable = false)
     private String password;
 
     @ManyToOne

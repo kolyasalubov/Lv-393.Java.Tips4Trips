@@ -36,8 +36,6 @@ public class UserConverter implements Converter<User, UserDTO> {
         user.setId(userDTO.getId());
         user.setLogin(userDTO.getLogin());
         user.setPassword(userDTO.getPassword());
-        Account account = accountService.findByEmail(userDTO.getEmail());
-        user.setAccount(account);
         return user;
     }
 

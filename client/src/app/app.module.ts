@@ -40,6 +40,7 @@ import {TripInfoComponent} from './components/trip/trip-info/trip-info.component
 import {RestaurantDetailsComponent} from "./components/restaurant-details/restaurant-details.component";
 import {CreateMonumentComponent} from "./components/create-post-place/create-monument/create-monument.component";
 import {MonumentDetailsComponent} from "./components/monument-details/monument-details.component";
+import { TestComponent } from './components/test/test.component';
 
 @NgModule({
   declarations: [
@@ -76,7 +77,8 @@ import {MonumentDetailsComponent} from "./components/monument-details/monument-d
     PaginationComponent,
     RouteComponent,
     TripComponent,
-    TripInfoComponent
+    TripInfoComponent,
+    TestComponent
   ],
   imports: [
     BrowserModule,
