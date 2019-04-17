@@ -34,24 +34,28 @@ public class PostController {
 
     @GetMapping
     public ResponseEntity<List<PostInfoDTO>> getAll() {
+        logger.info("get all post info method executing: ");
         return new ResponseEntity<>(postConverter
                 .convertToInfoDTO(postService.findAll()), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<PostDetailsDTO> getById(@PathVariable Long id) {
+        logger.info("get post by id method executing: ");
         return new ResponseEntity<>(postConverter
                 .convertToDTO(postService.findById(id)), HttpStatus.OK);
     }
 
     @GetMapping("/author/{authorId}")
     public ResponseEntity<List<PostInfoDTO>> getByAuthor(@PathVariable Long authorId) {
+        logger.info("get by author method executing: ");
         return new ResponseEntity<>(postConverter
                 .convertToInfoDTO(postService.getByAuthorId(authorId)), HttpStatus.OK);
     }
 
     @PutMapping("/update")
     public ResponseEntity<PostDetailsDTO> update(@RequestBody PostDetailsDTO postDetailsDTO) {
+        logger.info("post update method executing: ");
         Post post = postService.update(postConverter.convertToEntity(postDetailsDTO));
         return new ResponseEntity<>(postConverter
                 .convertToDTO(post), HttpStatus.ACCEPTED);
@@ -59,6 +63,7 @@ public class PostController {
 
     @PostMapping("/create")
     public ResponseEntity<PostDetailsDTO> createPost(@RequestBody PostDetailsDTO postDetailsDTO) {
+        logger.info("create post method executing: ");
         Post post = postService.createPost(postConverter.convertToEntity(postDetailsDTO));
         return new ResponseEntity<>(postConverter
                 .convertToDTO(post), HttpStatus.CREATED);
@@ -66,6 +71,7 @@ public class PostController {
 
     @DeleteMapping("/delete/{id}")
     public void deleteById(@PathVariable Long id) {
+        logger.info("delete post by id method executing: ");
         postService.deleteById(id);
     }
 

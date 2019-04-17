@@ -37,12 +37,14 @@ public class HotelController {
 
     @GetMapping("/all")
     public ResponseEntity<List<PlaceInfoDTO>> getAll(@PathVariable Long countryId,@PathVariable Long cityId){
+        logger.info("get all hotel method executing: ");
         return new ResponseEntity<>(placeConverter.
                 convertToInfoDTO(hotelService.findAll()), HttpStatus.OK);
     }
 
     @PostMapping("/create")
     public ResponseEntity<HotelDetailsDTO> createHotel(@PathVariable Long countryId,@PathVariable Long cityId,@RequestBody HotelDetailsDTO hotelDetailsDTO) {
+        logger.info("create hotel method executing: ");
         Hotel hotel = hotelConverter.convertToEntity(hotelDetailsDTO);
         return new ResponseEntity<>(hotelConverter.convertToDTO(hotelService.createHotel(hotel)), HttpStatus.CREATED);
     }
@@ -50,11 +52,13 @@ public class HotelController {
 
     @GetMapping("/{id}")
     public ResponseEntity<HotelDetailsDTO> getById(@PathVariable Long countryId,@PathVariable Long cityId,@PathVariable Long id) {
+        logger.info("get hotel by id method executing: ");
         return new ResponseEntity<>(hotelConverter.convertToDTO(hotelService.findById(id)), HttpStatus.OK);
     }
 
     @PostMapping("/update")
     public ResponseEntity<HotelDetailsDTO> update(@PathVariable Long countryId,@PathVariable Long cityId,@RequestBody HotelDetailsDTO hotelDetailsDTO) {
+        logger.info("update hotel method executing: ");
         return new ResponseEntity<>(hotelConverter.convertToDTO(hotelService.update(hotelConverter.convertToEntity(hotelDetailsDTO))), HttpStatus.OK);
     }
 }

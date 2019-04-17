@@ -33,24 +33,28 @@ public class RouteController {
 
     @GetMapping
     public ResponseEntity<List<RouteInfoDTO>> getAll() {
+        logger.info("get all route id method executing: ");
         return new ResponseEntity<>(routeConverter.convertToInfoDTO(routeService
                 .findAll()), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<RouteDetailsDTO> getById(@PathVariable Long id) {
+        logger.info("get route by id method executing: ");
         return new ResponseEntity<>(routeConverter.
                 convertToDTO(routeService.findById(id)), HttpStatus.OK);
     }
 
     @GetMapping("/author/{id}")
     public ResponseEntity<List<RouteInfoDTO>> getByAuthor(@PathVariable Long id) {
+        logger.info("get route by author method executing: ");
         return new ResponseEntity<>(routeConverter.convertToInfoDTO(routeService
                 .getByAuthorId(id)), HttpStatus.OK);
     }
 
     @PostMapping("/create")
     public ResponseEntity<RouteDetailsDTO> createRoute(@RequestBody RouteDetailsDTO routeDetailsDTO) {
+        logger.info("create route method executing: ");
         Route route = routeService.createRoute(routeConverter.convertToEntity(routeDetailsDTO));
         return new ResponseEntity<>(routeConverter
                 .convertToDTO(route), HttpStatus.CREATED);
@@ -58,6 +62,7 @@ public class RouteController {
 
     @PutMapping("/update")
     public ResponseEntity<RouteDetailsDTO> update(@RequestBody RouteDetailsDTO routeDetailsDTO) {
+        logger.info("update route method executing: ");
         Route route = routeService.update(routeConverter.convertToEntity(routeDetailsDTO));
         return new ResponseEntity<>(routeConverter
                 .convertToDTO(route), HttpStatus.ACCEPTED);
@@ -65,6 +70,7 @@ public class RouteController {
 
     @DeleteMapping("/delete/{id}")
     public void deleteById(@PathVariable Long id) {
+        logger.info("delete route by id method executing: ");
         routeService.deleteById(id);
     }
 

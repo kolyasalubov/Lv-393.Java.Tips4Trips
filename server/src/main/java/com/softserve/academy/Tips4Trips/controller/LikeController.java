@@ -57,6 +57,7 @@ public class LikeController {
 
     @GetMapping
     public ResponseEntity<List<AccountInfoDTO>> getAccounts(@PathVariable Long postId) {
+        logger.info("get accounts method executing: ");
         Post post = postService.findById(postId);
         return new ResponseEntity<>(accountConverter.convertToInfoDTO(likeService
                 .findAccounts(post)), HttpStatus.OK);
@@ -77,6 +78,7 @@ public class LikeController {
     @PostMapping("/create/{accountId}")
     public ResponseEntity<LikeDTO> createLike(@PathVariable Long postId,
                                               @PathVariable Long accountId) {
+        logger.info("create like method executing: ");
         Account account = accountService.findById(accountId);
         Post post = postService.findById(postId);
 
@@ -87,6 +89,7 @@ public class LikeController {
     @DeleteMapping("/delete/{accountId}")
     public void deleteLike(@PathVariable Long postId,
                            @PathVariable Long accountId) {
+        logger.info("delete like method executing: ");
         Account account = accountService.findById(accountId);
         Post post = postService.findById(postId);
         likeService.deleteLike(post, account);
