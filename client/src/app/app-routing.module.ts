@@ -24,6 +24,7 @@ import {MonumentDetailsComponent} from "./components/monument-details/monument-d
 import { TripComponent } from './components/trip/trip/trip.component';
 import { TripInfoComponent } from './components/trip/trip-info/trip-info.component';
 import {TestComponent} from './components/test/test.component';
+import { AuthGuard } from './components/authentication/guards/auth.guard';
 
 
 const routes: Routes = [
@@ -32,7 +33,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'create-place', component: CreatePostPlaceComponent },
   { path: 'like', component: LikeComponent },
-  { path: 'account', component: AccountComponent },
+  { path: 'account', component: AccountComponent, canActivate: [AuthGuard] },
   { path: 'account_edit', component: AccountEditComponent },
   { path: 'create_place', component: CreatePostPlaceComponent },
   { path: 'create_post', component: CreatePostComponent },

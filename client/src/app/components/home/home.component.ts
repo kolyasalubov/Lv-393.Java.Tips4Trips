@@ -3,6 +3,7 @@ import {Router} from '@angular/router';
 import * as $ from 'jquery';
 import {BlogService} from '../blog/blog/blog.service';
 import {PagelittlepostModel} from '../../model/pagelittlepost.model';
+import { AuthService } from '../authentication/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -27,7 +28,8 @@ export class HomeComponent implements OnInit {
   title = 'tips4trips-app';
   pagePost: PagelittlepostModel;
 
-  constructor(private blogserv: BlogService, private router: Router) {
+  constructor(private blogserv: BlogService, private router: Router,
+    private authenticationService: AuthService) {
   }
 
   ngOnInit() {
@@ -35,5 +37,8 @@ export class HomeComponent implements OnInit {
       .subscribe(data => {
         this.pagePost = data;
       });
+    this.authenticationService.getCurrentUser().subscribe(
+      data => console.log(data)
+    ); 
   };
 }
