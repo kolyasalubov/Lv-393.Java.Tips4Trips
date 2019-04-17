@@ -2,12 +2,17 @@ package com.softserve.academy.Tips4Trips.dto.converter;
 
 import com.softserve.academy.Tips4Trips.controller.RestaurantController;
 import com.softserve.academy.Tips4Trips.dto.details.RestaurantDetailsDTO;
+import com.softserve.academy.Tips4Trips.entity.City;
 import com.softserve.academy.Tips4Trips.entity.place.Restaurant;
 import com.softserve.academy.Tips4Trips.service.CityService;
 import com.softserve.academy.Tips4Trips.service.RestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.mvc.ControllerLinkBuilder;
 import org.springframework.stereotype.Component;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
 
 @Component
 public class RestaurantConverter implements Converter<Restaurant, RestaurantDetailsDTO> {
@@ -17,6 +22,7 @@ public class RestaurantConverter implements Converter<Restaurant, RestaurantDeta
     private CityConverter cityConverter;
     private PlaceConverter placeConverter;
     private final int MAX_DESCRIPTION_LENGTH = 100;
+    private final SimpleDateFormat formatter = new SimpleDateFormat("HH:mm", Locale.getDefault());
 
     @Autowired
     public RestaurantConverter (RestaurantService restaurantService, CityService cityService, CityConverter cityConverter, PlaceConverter placeConverter) {
@@ -41,8 +47,12 @@ public class RestaurantConverter implements Converter<Restaurant, RestaurantDeta
         restaurant.setWebSite(restaurantDetailsDTO.getWebSite());
         restaurant.setType(restaurantDetailsDTO.getType());
         restaurant.setTelephone(restaurantDetailsDTO.getTelephone());
-        restaurant.setOpeningTime(restaurantDetailsDTO.getOpeningTime());
-        restaurant.setClosingTime(restaurantDetailsDTO.getClosingTime());
+        try {
+            restaurant.setOpeningTime(formatter.parse(restaurantDetailsDTO.getOpeningTime()));
+            restaurant.setClosingTime(formatter.parse(restaurantDetailsDTO.getClosingTime()));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         restaurant.setAverageBill(restaurantDetailsDTO.getAverageBill());
         restaurant.setHasVeganFood(restaurantDetailsDTO.getHasVeganFood());
         return restaurant;
@@ -60,8 +70,8 @@ public class RestaurantConverter implements Converter<Restaurant, RestaurantDeta
         restaurantDetailsDTO.setWebSite(restaurant.getWebSite());
         restaurantDetailsDTO.setTelephone(restaurant.getTelephone());
         restaurantDetailsDTO.setType(restaurant.getType());
-        restaurantDetailsDTO.setOpeningTime(restaurant.getOpeningTime());
-        restaurantDetailsDTO.setClosingTime(restaurant.getClosingTime());
+        restaurantDetailsDTO.setOpeningTime(formatter.format(restaurant.getOpeningTime()));
+        restaurantDetailsDTO.setClosingTime(formatter.format(restaurant.getClosingTime()));
         restaurantDetailsDTO.setPhotoPath(restaurant.getPhotoPath());
         restaurantDetailsDTO.setPosition(restaurant.getPosition());
         restaurantDetailsDTO.setPhotoPath(restaurant.getPhotoPath());

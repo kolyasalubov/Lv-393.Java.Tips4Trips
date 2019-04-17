@@ -1,6 +1,6 @@
-import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
-import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {HeaderComponent} from './components/header/header.component';
@@ -37,6 +37,9 @@ import {httpInterceptorProviders} from './components/authentication/auth-interce
 import {PaginationComponent} from './components/blog/pagination/pagination.component';
 import {TripComponent} from './components/trip/trip/trip.component';
 import {TripInfoComponent} from './components/trip/trip-info/trip-info.component';
+import {RestaurantDetailsComponent} from "./components/restaurant-details/restaurant-details.component";
+import {CreateMonumentComponent} from "./components/create-post-place/create-monument/create-monument.component";
+import {MonumentDetailsComponent} from "./components/monument-details/monument-details.component";
 
 @NgModule({
   declarations: [
@@ -67,6 +70,9 @@ import {TripInfoComponent} from './components/trip/trip-info/trip-info.component
     CreateHotelComponent,
     AccountEditComponent,
     ListOfRoutesComponent,
+    RestaurantDetailsComponent,
+    CreateMonumentComponent,
+    MonumentDetailsComponent,
     PaginationComponent,
     RouteComponent,
     TripComponent,

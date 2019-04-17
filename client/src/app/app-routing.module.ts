@@ -18,6 +18,9 @@ import {BigPostComponent} from "./components/blog/big-post/big-post.component";
 import {AccountEditComponent} from "./components/authentication/account-edit/account-edit.component"
 import { CommentComponent } from './components/blog/comment/comment.component';
 import { ListOfRoutesComponent } from './components/list-of-routes/list-of-routes.component';
+import {RestaurantDetailsComponent} from "./components/restaurant-details/restaurant-details.component";
+import {CreateMonumentComponent} from "./components/create-post-place/create-monument/create-monument.component";
+import {MonumentDetailsComponent} from "./components/monument-details/monument-details.component";
 import { TripComponent } from './components/trip/trip/trip.component';
 import { TripInfoComponent } from './components/trip/trip-info/trip-info.component';
 
@@ -42,12 +45,16 @@ const routes: Routes = [
   { path: 'create_place/restaurant', component: CreateRestaurantComponent },
   { path: 'post', component: BigPostComponent },
   { path: 'create_place/hotel', component: CreateHotelComponent },
-  { path: 'post/:id', component: BigPostComponent },
+  { path: 'create_place/monument', component: CreateMonumentComponent },
   { path: 'routes', component: ListOfRoutesComponent },
   { path: 'comment', component: CommentComponent },
+  { path: 'restaurants/:id', component: RestaurantDetailsComponent },
+  { path: 'monuments/:id', component: MonumentDetailsComponent },
   { path: 'routes/:id', component: RouteComponent },
+  { path: 'post/:id', component: BigPostComponent },
   { path: 'trip', component: TripComponent },
   { path: 'trip_info', component: TripInfoComponent }
+
 
 ];
 
