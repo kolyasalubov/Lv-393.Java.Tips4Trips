@@ -16,7 +16,8 @@ export class AccountEditComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.accountService.findById(1).subscribe(data => this.accountProfile = data);
+    //this.accountService.findById(1).subscribe(data => this.accountProfile = data);
+    this.accountService.getCurrentUser().subscribe(data => this.accountProfile = data);
   }
 
 
@@ -24,7 +25,7 @@ export class AccountEditComponent implements OnInit {
       console.log(accountProfile);
       this.accountService.updateAccount(accountProfile).subscribe(data => this.accountProfile = data);
 
-    setTimeout(() => {this.router.navigate(['home']);}, 2000);
+    setTimeout(() => {this.router.navigate(['account']);}, 800);
   }
 
 
