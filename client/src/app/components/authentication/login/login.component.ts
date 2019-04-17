@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { TokenStorageService } from '../token/token-storage.service';
 import { AuthLoginInfo } from './login-info';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -14,10 +15,10 @@ export class LoginComponent implements OnInit {
   isLoggedIn = false;
   isLoginFailed = false;
   errorMessage = '';
-  roles: string[] = [];
   private loginInfo: AuthLoginInfo;
  
-  constructor(private authService: AuthService, private tokenStorage: TokenStorageService) { }
+  constructor(private authService: AuthService, private tokenStorage: TokenStorageService,
+    private router: Router) { }
  
   ngOnInit() {
 
@@ -31,11 +32,19 @@ export class LoginComponent implements OnInit {
  
 this.authService.attemptAuth(this.loginInfo).subscribe(
       data => {
-        console.log("success");
-
-
+      
+        this.tokenStorage.saveToken(data);
+        
         this.isLoginFailed = false;
         this.isLoggedIn = true;
+
+        this.router.navigate(['account']).then(e => {
+          if (e) {
+            console.log("Navigation is successful!");
+          } else {
+            console.log("Navigation has failed!");
+          }
+        });
         
         },
       error => {
