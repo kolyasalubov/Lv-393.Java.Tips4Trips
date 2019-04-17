@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Route } from 'src/app/model/route.model';
 import { AccountInfo } from 'src/app/model/account-info.model';
 import { Location } from '@angular/common';
+import { PlaceInfo } from 'src/app/model/place-info.model';
 
 @Component({
   selector: 'app-route',
@@ -34,6 +35,11 @@ export class RouteComponent implements OnInit {
 
   goBack(): void {
     this.location.back();
+  }
+
+  getSelfLink(placeInfo: PlaceInfo): string {
+    const url: string[] = placeInfo.self.split("/");
+    return url[url.length-2] + "/" + url[url.length - 1];
   }
 
 }
