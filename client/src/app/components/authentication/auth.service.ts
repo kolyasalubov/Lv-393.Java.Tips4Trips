@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {AuthLoginInfo} from './login/login-info';
 import {SignUpInfo} from './signup/signup-info';
+import {Account} from '../../model/account.model';
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 import { stringify } from '@angular/core/src/render3/util';
 import { TokenStorageService } from './token/token-storage.service';
