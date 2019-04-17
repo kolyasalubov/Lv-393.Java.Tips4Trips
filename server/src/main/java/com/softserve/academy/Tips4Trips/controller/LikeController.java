@@ -57,16 +57,31 @@ public class LikeController {
 
     @GetMapping
     public ResponseEntity<List<AccountInfoDTO>> getAccounts(@PathVariable Long postId) {
+        logger.info("get accounts method executing: ");
         Post post = postService.findById(postId);
         return new ResponseEntity<>(accountConverter.convertToInfoDTO(likeService
                 .findAccounts(post)), HttpStatus.OK);
     }
 
-    @PostMapping("/create/{accountId}")
-    public ResponseEntity<LikeDTO> createLike(@PathVariable Long postId,
+    @PostMapping("/change/{accountId}")
+    public long changeLikeState(@PathVariable Long postId,
                                               @PathVariable Long accountId) {
         Account account = accountService.findById(accountId);
         Post post = postService.findById(postId);
+        if(likeService.existsByLikedByAndPost(account,post)){
+            likeService.deleteLike(post, account);
+        }else{
+            likeService.createLike(account, post);
+        }
+        return likeService.countByPostId(postId);
+    }
+    @PostMapping("/create/{accountId}")
+    public ResponseEntity<LikeDTO> createLike(@PathVariable Long postId,
+                                              @PathVariable Long accountId) {
+        logger.info("create like method executing: ");
+        Account account = accountService.findById(accountId);
+        Post post = postService.findById(postId);
+
         return new ResponseEntity<>(likeConverter
                 .convertToDTO(likeService.createLike(account, post)), HttpStatus.CREATED);
     }
@@ -74,6 +89,7 @@ public class LikeController {
     @DeleteMapping("/delete/{accountId}")
     public void deleteLike(@PathVariable Long postId,
                            @PathVariable Long accountId) {
+        logger.info("delete like method executing: ");
         Account account = accountService.findById(accountId);
         Post post = postService.findById(postId);
         likeService.deleteLike(post, account);

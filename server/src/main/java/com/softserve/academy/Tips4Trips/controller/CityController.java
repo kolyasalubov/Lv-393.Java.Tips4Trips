@@ -35,6 +35,7 @@ public class CityController {
 
     @GetMapping
     public ResponseEntity<List<CityDTO>> getAllByCountryId(@PathVariable Long countryId) {
+        logger.info("get all city method executing: ");
         Country country = countryService.findById(countryId);
         return new ResponseEntity<>(cityConverter.convertToDTO(cityService
                 .findByCountry(country)), HttpStatus.OK);
@@ -42,23 +43,27 @@ public class CityController {
 
     @PostMapping("/create")
     public ResponseEntity<CityDTO> createCity(@RequestBody CityDTO cityDTO) {
+        logger.info("create city method executing: ");
         City city = cityConverter.convertToEntity(cityDTO);
         return new ResponseEntity<>(cityConverter.convertToDTO(cityService.createCity(city)), HttpStatus.OK);
     }
 
     @GetMapping("/{cityId}")
     public ResponseEntity<CityDTO> getById(@PathVariable Long cityId) {
+        logger.info("get city by id method executing: ");
         return new ResponseEntity<>(cityConverter.convertToDTO(cityService.findById(cityId)), HttpStatus.OK);
     }
 
     @PutMapping("/update")
     public ResponseEntity<CityDTO> update(@RequestBody CityDTO cityDTO) {
+        logger.info("update city method executing: ");
         City city = cityConverter.convertToEntity(cityDTO);
         return new ResponseEntity<>(cityConverter.convertToDTO(cityService.update(city)), HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{cityId}")
     public void deleteById(@PathVariable Long cityId) {
+        logger.info("delete city by id method executing: ");
         cityService.deleteById(cityId);
     }
 

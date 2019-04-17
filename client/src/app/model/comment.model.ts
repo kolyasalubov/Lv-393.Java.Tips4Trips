@@ -1,16 +1,21 @@
-import { Account } from "./account.model";
+import { AccountInfo } from "./account-info.model";
 export class Comment{
   id:number;
-  account:Account;
-  text: String;
-  date: Date;
+  accountInfo:AccountInfo;
+  shortText: String;
+  creationDate: Date;
+  self:String;
   postId:number;
+  text: String;
 
-  constructor(id: number, account: Account, text: String, date: Date, postId: number) {
+
+  constructor(id: number, accountInfo: AccountInfo, shortText: String, creationDate: Date, self: String, postId: number, text: String) {
     this.id = id;
-    this.account = account;
-    this.text = text;
-    this.date = date;
+    this.accountInfo = accountInfo;
+    this.shortText = shortText;
+    this.creationDate = creationDate;
+    this.self = self;
     this.postId = postId;
+    this.text = text;
   }
 }

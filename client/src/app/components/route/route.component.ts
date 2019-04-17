@@ -3,6 +3,7 @@ import { RouteService } from 'src/app/route.service';
 import { ActivatedRoute } from '@angular/router';
 import { Route } from 'src/app/model/route.model';
 import { AccountInfo } from 'src/app/model/account-info.model';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-route',
@@ -14,7 +15,8 @@ export class RouteComponent implements OnInit {
   route: Route;
   constructor(
     private routeService: RouteService,
-    private ngRoute: ActivatedRoute
+    private ngRoute: ActivatedRoute,
+    private location: Location
   ) { 
     this.route = new Route();
     this.route.authorInfo = new AccountInfo();
@@ -28,6 +30,10 @@ export class RouteComponent implements OnInit {
       this.route.authorInfo = data.authorInfo;
       this.route.places = data.places;
     });
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 
 }

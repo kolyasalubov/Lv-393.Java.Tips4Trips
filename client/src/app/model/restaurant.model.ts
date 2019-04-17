@@ -9,33 +9,33 @@ export class Restaurant {
   workingDays: string[];
   webSite: string;
   telephone: string;
-  typeOfBuilding: string;
-  openingTime: Date;
-  closingTime: Date;
+  type: string;
+  openingTime: string;
+  closingTime: string;
   address: string;
   position: Position;
   photoPath: string;
-  city: City;
+  cityDTO: City;
   averageBill: number;
   hasVeganFood: boolean;
 
 
   constructor(id: number, name: string, description: string, workingDays: string[], webSite: string, telephone: string,
-              typeOfBuilding: string, openingTime: Date, closingTime: Date, address: string,
-              position: Position, photoPath: string, city: City, averageBill: number, hasVeganFood: boolean) {
+              type: string, openingTime: string, closingTime: string, address: string,
+              position: Position, photoPath: string, cityDTO: City, averageBill: number, hasVeganFood: boolean) {
     this.id = id;
     this.name = name;
     this.description = description;
     this.workingDays = workingDays;
     this.webSite = webSite;
     this.telephone = telephone;
-    this.typeOfBuilding = typeOfBuilding;
+    this.type = type;
     this.openingTime = openingTime;
     this.closingTime = closingTime;
     this.address = address;
     this.position = position;
     this.photoPath = photoPath;
-    this.city = city;
+    this.cityDTO = cityDTO;
     this.averageBill = averageBill;
     this.hasVeganFood = hasVeganFood;
   }

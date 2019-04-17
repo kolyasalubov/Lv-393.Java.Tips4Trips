@@ -28,7 +28,7 @@
                     <input class="form-control" style="width: 100%;" type="text"
                            placeholder="Name"
                            name="name"
-                           maxlength="26" [(ngModel)]="restaurant.name"></td>
+                           maxlength="35" [(ngModel)]="restaurant.name"></td>
                 </tr>
                 <tr>
                   <td><h4>
@@ -39,7 +39,7 @@
                                         padding-top: 10px;
                                         width: 100%;"
                                                   placeholder="Something about it"
-                                                  name="about" [(ngModel)]="restaurant.description"></textarea>
+                                                  name="about" [(ngModel)]="restaurant.description" maxlength="255"></textarea>
                   </td>
                 </tr>
                 <tr>
@@ -48,7 +48,7 @@
                   </h4></td>
                   <td>
                     <input class="form-control" style="width: 100%;" type="text"
-                           placeholder="Website" name="web" [(ngModel)]="restaurant.webSite"></td>
+                           placeholder="Website" name="web" maxlength="35" [(ngModel)]="restaurant.webSite"></td>
                 </tr>
                 <tr>
                   <td><h4>
@@ -56,29 +56,29 @@
                   </h4></td>
                   <td>
                     <input class="form-control" style="width: 100%;" type="tel"
-                           placeholder="Telephone" name="tel" [(ngModel)]="restaurant.telephone"></td>
+                           placeholder="Telephone" name="tel" maxlength="15" [(ngModel)]="restaurant.telephone"></td>
                 </tr>
                 <tr>
                   <td><h4>
                     Working time
                   </h4></td>
-                  <!--<td>-->
-                    <!--<h5>Opening time</h5>-->
-                    <!--<input class="form-control" style="width: 50%;" type="time"-->
-                           <!--name="open_time" [(ngModel)]="restaurant.openingTime">-->
-                    <!--<h5>Closing time</h5>-->
-                    <!--<input class="form-control" style="width: 50%;" type="time"-->
-                           <!--name="close_time" [(ngModel)]="restaurant.closingTime"></td>-->
-                <!--</tr>-->
+                  <td>
+                    <h5>Opening time</h5>
+                    <input class="form-control" style="width: 50%;" type="time"
+                           name="open_time" [(ngModel)]="restaurant.openingTime">
+                    <h5>Closing time</h5>
+                    <input class="form-control" style="width: 50%;" type="time"
+                           name="close_time" [(ngModel)]="restaurant.closingTime"></td>
+                </tr>
                 <tr>
                   <td><h4 style="margin-top: -10px;">
                     Address
                   </h4></td>
                   <td>
                     <input class="form-control" style="width: 100%;" type="text"
-                           placeholder="Pleace write a address of it"
+                           placeholder="Please write an address of it"
                            name="address"
-                           maxlength="26" [(ngModel)]="restaurant.address"></td>
+                           maxlength="60" [(ngModel)]="restaurant.address"></td>
                 </tr>
                 <tr>
                   <td><h4 style="margin-top: -20px;">
@@ -90,26 +90,27 @@
                              type="number"
                              placeholder="X"
                              name="Coordinatex"
-                             maxlength="26" [(ngModel)]="position.x">
+                             maxlength="26" [(ngModel)]="position.coordinateX">
                       <input class="form-control"
                              style="width: 45%;border-radius: 5px;margin-left: 10%;" type="number"
                              placeholder="Y"
                              name="Coordinatey"
-                             maxlength="26" [(ngModel)]="position.y">
+                             maxlength="26" [(ngModel)]="position.coordinateY">
                     </div>
                   </td>
                 </tr>
                 <tr>
                   <td><h4 style="margin-top: -20px;">
-                    Country and City
+                    <!--Country and -->City
                   </h4></td>
                   <td>
                     <div>
-                      <select style="width: 45%;border-radius: 5px;margin-left: 10%;">
-                        <option *ngFor="let c of city">{{c.name}}</option>
-                      </select>
+                      <!--<select style="width: 45%;border-radius: 5px;margin-left: 10%;">-->
+                        <!--<option *ngFor="let c of city">{{c.name}}</option>-->
+                      <!--</select>-->
 
-                      <select style="width: 45%;border-radius: 5px;margin-left: 10%;" (change)="setCityId($event.target.value)">
+                      <!--style="width: 45%;border-radius: 5px;margin-left: 10%;"-->
+                      <select style="width: 100%;" (change)="setCityId($event.target.value)">
                         <option disabled>Choose city</option>
                         <option *ngFor="let c of city" value={{c.id}}>{{c.name}}</option>
                       </select>
@@ -132,6 +133,18 @@
                     <input class="form-control" style="width: 100%;" type="checkbox"
                            placeholder="has_vegan_food" name="has_vegan_food" [(ngModel)]="restaurant.hasVeganFood" (change)="restaurant.hasVeganFood"></td>
                 </tr>
+                <tr>
+                  <td><h4>
+                    Working days
+                  </h4></td>
+                  <div class="weekDays-selector">
+                    <td>
+                      <label *ngFor="let day of workingDays">
+                      <input type="checkbox" class="weekday" (change)="setWorkingDays(day)"/>
+                      <mark>{{day.substr(0, 3)}}</mark>
+                      </label>
+                    </div>
+                </tr>
               </table>
               <input class="category submit"
                      style="padding: 3%;
@@ -142,11 +155,9 @@
                      type="submit"
                      value="Create a new place"><br>
             </form>
-            <h1>{{restaurant | json}}</h1>
           </div>
           <div class="col-md-12 col-lg-4 sidebar">
           </div>
-
         </div>
       </section>
     </div>

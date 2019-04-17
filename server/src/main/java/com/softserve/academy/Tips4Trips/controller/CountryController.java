@@ -35,23 +35,27 @@ public class CountryController {
 
     @PostMapping("/create")
     public ResponseEntity<CountryDTO> createCountry(@RequestBody CountryDTO countryDTO) {
+        logger.info("create country method executing: ");
         Country country = countryConverter.convertToEntity(countryDTO);
         return new ResponseEntity<>(countryConverter.convertToDTO(countryService.createCountry(country)), HttpStatus.OK);
     }
 
     @GetMapping("/{countryId}")
     public ResponseEntity<CountryDTO> getById(@PathVariable Long countryId) {
+        logger.info("get by id method executing: ");
         return new ResponseEntity<>(countryConverter.convertToDTO(countryService.findById(countryId)), HttpStatus.OK);
     }
 
     @PutMapping("/update")
     public ResponseEntity<CountryDTO> update(@RequestBody CountryDTO countryDTO) {
+        logger.info("update country method executing: ");
         Country country = countryConverter.convertToEntity(countryDTO);
         return new ResponseEntity<>(countryConverter.convertToDTO(countryService.update(country)), HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{countryId}")
     public void deleteById(@PathVariable Long countryId) {
+        logger.info("delete country by id method executing: ");
         countryService.deleteById(countryId);
     }
 
