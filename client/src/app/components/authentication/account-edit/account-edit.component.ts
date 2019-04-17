@@ -16,14 +16,15 @@ export class AccountEditComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.accountService.findById(6).subscribe(data => this.accountProfile = data);
+    this.accountService.findById(1).subscribe(data => this.accountProfile = data);
   }
 
 
   onSubmit(accountProfile :Account) {
       console.log(accountProfile);
       this.accountService.updateAccount(accountProfile).subscribe(data => this.accountProfile = data);
-      this.router.navigate(['home']);
+
+    setTimeout(() => {this.router.navigate(['home']);}, 2000);
   }
 
 

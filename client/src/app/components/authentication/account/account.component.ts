@@ -16,11 +16,11 @@ export class AccountComponent implements OnInit {
   }
 
   ngOnInit() {
-
-    this.accountService.getCurrentUser().subscribe(data =>
-      console.log(data) 
+    this.accountService.findById(1).subscribe(data => this.accountProfile = data);
+   // this.accountService.getCurrentUser().subscribe(data =>
+    // console.log(data)
       //this.accountProfile = data
-       ); 
+     //  );
 
   }
 
