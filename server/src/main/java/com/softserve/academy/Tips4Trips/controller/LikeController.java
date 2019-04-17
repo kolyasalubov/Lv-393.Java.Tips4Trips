@@ -63,18 +63,25 @@ public class LikeController {
                 .findAccounts(post)), HttpStatus.OK);
     }
 
+    @GetMapping("/count")
+    public long countLike(@PathVariable Long postId) {
+        long count = likeService.countByPostId(postId);
+        return count;
+    }
+
     @PostMapping("/change/{accountId}")
     public long changeLikeState(@PathVariable Long postId,
-                                              @PathVariable Long accountId) {
+                                @PathVariable Long accountId) {
         Account account = accountService.findById(accountId);
         Post post = postService.findById(postId);
-        if(likeService.existsByLikedByAndPost(account,post)){
+        if (likeService.existsByLikedByAndPost(account, post)) {
             likeService.deleteLike(post, account);
-        }else{
+        } else {
             likeService.createLike(account, post);
         }
         return likeService.countByPostId(postId);
     }
+
     @PostMapping("/create/{accountId}")
     public ResponseEntity<LikeDTO> createLike(@PathVariable Long postId,
                                               @PathVariable Long accountId) {

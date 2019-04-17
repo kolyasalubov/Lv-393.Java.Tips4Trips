@@ -19,7 +19,7 @@
         <img src="{{post.photoPath}}" alt="photo" class="img-fluid">
         <h2 class="mb-3">{{post.name}}</h2>
         <p>{{post.description}}</p>
-        <app-like></app-like>
+        <app-like [postid]="post.id"></app-like>
         <div class="pt-5 mt-5">
           <app-comment [postid]="post.id" [countOfLikes]="countOfLikes"></app-comment>
         </div>
