@@ -8,21 +8,34 @@
   <div class="container">
     <div class="row block-9">
 
-      <form action="#" class="bg-light p-5 contact-form">
+      <form form ="signupForm" (ngSubmit)="onSubmit()" class="bg-light p-5 contact-form">
+        
         <div class="form-group">
-          <input type="email" class="form-control" placeholder="Login">
+          <input type="text" name="lastName" class="form-control" placeholder="Surname">
         </div>
         <div class="form-group">
-          <input type="password" class="form-control" placeholder="Password">
+          <input type="text" name="firstName" class="form-control" placeholder="Name">
         </div>
         <div class="form-group">
-          <input type="r-password" class="form-control" placeholder="Repeat Password">
+          <input type="email" name="email" class="form-control" placeholder="Email">
         </div>
         <div class="form-group">
-          <input type="submit" value="Sing up" class="btn btn-primary py-3 px-5" style="width: 100%;">
+          <input type="password" name="password"" class="form-control" placeholder="Password">
+        </div>
+        <div class="form-group">
+          <input type="r-password" name="r-password" class="form-control" placeholder="Repeat Password">
+        </div>
+        <div class="form-group">
+          <input type="text" name="password"" class="form-control" placeholder="Password">
+        </div>
+        <div class="form-group">
+          <textarea name="about" maxlength="10" rows="3">About me</textarea>
+        </div>
+        <div class="form-group">
+          <input type="submit" value="Sign up" class="btn btn-primary py-3 px-5" style="width: 100%;">
         </div>
         <div class="container signin">
-          <p>Have already an account? <a href="login">Sing in</a>.</p>
+          <p>Already have an account? <a href="login">Sing in</a>.</p>
         </div>
       </form>
     </div>
