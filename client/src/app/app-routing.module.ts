@@ -39,7 +39,7 @@ const routes: Routes = [
   { path: 'about', component: AboutePageComponent },
   { path: 'create_place/restaurant', component: CreateRestaurantComponent },
   { path: 'create_place/hotel', component: CreateHotelComponent },
-  { path: 'single_page', component: BigPostComponent },
+  { path: 'post/:id', component: BigPostComponent },
   { path: 'routes', component: ListOfRoutesComponent },
   { path: 'routes/:id', component: RouteComponent },
   { path: 'trip', component: TripComponent },

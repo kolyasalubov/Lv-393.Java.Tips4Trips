@@ -1,5 +1,4 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {PagelittlepostModel} from '../../../model/pagelittlepost.model';
 import {Router} from '@angular/router';
 
 @Component({
@@ -22,7 +21,6 @@ export class PaginationComponent implements OnInit {
 
   ngOnInit() {
     if (this.number > this.total) {
-      console.log("asdfasdfasdfasdfadsf")
       this.router.navigate(['/blog']);
       return;
     }

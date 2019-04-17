@@ -11,8 +11,6 @@ export class BlogService {
 
   constructor(private http: HttpClient) { }
 
-  private url = 'http://localhost:8080/blog/';
-
   private urlPage = 'http://localhost:8080/blog/';
 
   getPosts(page: number): Observable<PagelittlepostModel> {
