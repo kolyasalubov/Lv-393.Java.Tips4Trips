@@ -1,8 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
-
-import {JwtResponse} from './jwt-response';
 import {AuthLoginInfo} from './login/login-info';
 import {SignUpInfo} from './signup/signup-info';
 
@@ -22,9 +20,8 @@ export class AuthService {
   constructor(private http: HttpClient) {
   }
 
-  attemptAuth(credentials: AuthLoginInfo): Observable<JwtResponse> {
-    console.log(credentials);
-    return this.http.post<JwtResponse>(this.loginUrl, credentials, httpOptions);
+  attemptAuth(credentials: AuthLoginInfo): Observable<any> {
+    return this.http.post(this.loginUrl, credentials, {responseType : 'text'});
   }
 
   signUp(info: SignUpInfo): Observable<string> {
