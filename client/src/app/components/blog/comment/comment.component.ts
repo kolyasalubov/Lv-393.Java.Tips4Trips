@@ -13,16 +13,18 @@ import {NgForm} from "@angular/forms";
 export class CommentComponent implements OnInit {
 
   constructor(private commentService:CommentService) { }
- account: AccountInfo = new AccountInfo(1,'xvv','xcvxcv','sdfsf');
+ account: AccountInfo = new AccountInfo();
  
   commentProfile:Comment=new Comment(null,this.account, null,new Date(),null,1,null);
   commentList:Comment[];
 
   onSubmit(f: NgForm){
     this.commentService.createComment(this.commentProfile).subscribe(item=>console.log(item));
+    this.commentList.push(this.commentProfile);
     f.resetForm();
   }
   ngOnInit() {
+this.account.id=1;
 
      this.commentService.findByPostId(1).subscribe(item=>this.commentList = item);
   }

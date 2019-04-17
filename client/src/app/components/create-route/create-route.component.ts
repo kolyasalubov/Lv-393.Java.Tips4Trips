@@ -20,7 +20,7 @@ export class CreateRouteComponent implements OnInit {
     private router: Router
   ) {
     this.route = new Route();
-    // this.route.authorInfo = new AccountInfo();
+    this.route.authorInfo = new AccountInfo();
     this.route.places = [];
   }
 
