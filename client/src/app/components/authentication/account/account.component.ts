@@ -20,7 +20,7 @@ export class AccountComponent implements OnInit {
   ngOnInit() {
 
     this.accountService.getCurrentUser().subscribe(data =>
-      console.log(data) 
+      console.log(data)
       //this.accountProfile = data
        ); 
 
