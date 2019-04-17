@@ -10,16 +10,17 @@ import {Router} from '@angular/router';
 })
 export class AccountComponent implements OnInit {
 
-
-
-  accountProfile: Account = new Account(null,null,null,null,null,null,null,null);
+  accountProfile: Account;
 
   constructor(private accountService: AccountService,private router: Router) {
   }
 
   ngOnInit() {
 
-    this.accountService.findById(6).subscribe(data => this.accountProfile = data);
+    this.accountService.getCurrentUser().subscribe(data =>
+      console.log(data) 
+      //this.accountProfile = data
+       ); 
 
   }
 
