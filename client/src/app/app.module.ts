@@ -43,6 +43,8 @@ import {MonumentDetailsComponent} from "./components/monument-details/monument-d
 import { TestComponent } from './components/test/test.component';
 import { HotelDetailsComponent } from './components/hotel-details/hotel-details.component';
 import { CityPlacesComponent } from './components/city-places/city-places.component';
+import { CityComponent } from './components/city/city.component';
+import { CountryComponent } from './components/country/country.component';
 
 @NgModule({
   declarations: [
@@ -82,7 +84,9 @@ import { CityPlacesComponent } from './components/city-places/city-places.compon
     TripInfoComponent,
     TestComponent,
     HotelDetailsComponent,
-    CityPlacesComponent
+    CityPlacesComponent,
+    CityComponent,
+    CountryComponent
   ],
   imports: [
     BrowserModule,

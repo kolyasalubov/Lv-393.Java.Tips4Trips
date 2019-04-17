@@ -27,6 +27,8 @@ import {TestComponent} from './components/test/test.component';
 import { AuthGuard } from './components/authentication/guards/auth.guard';
 import {HotelDetailsComponent} from "./components/hotel-details/hotel-details.component";
 import {CityPlacesComponent} from "./components/city-places/city-places.component";
+import { CityComponent} from './components/city/city.component';
+import { CountryComponent} from './components/country/country.component';
 
 
 const routes: Routes = [
@@ -60,7 +62,9 @@ const routes: Routes = [
   { path: 'trip', component: TripComponent },
   { path: 'trip/:id', component: TripInfoComponent },
   { path: 'test', component: TestComponent },
-  { path: 'city_places/:id', component: CityPlacesComponent}
+  { path: 'city_places/:id', component: CityPlacesComponent},
+  { path: 'city', component: CityComponent },
+  { path: 'country', component: CountryComponent }
 
 
 ];
