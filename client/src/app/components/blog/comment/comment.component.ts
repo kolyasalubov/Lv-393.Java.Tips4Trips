@@ -25,7 +25,8 @@ export class CommentComponent implements OnInit {
   }
   ngOnInit() {
 this.account.id=1;
-
+this.account.lastName='sdsd';
+this.account.firstName='adasd';
      this.commentService.findByPostId(1).subscribe(item=>this.commentList = item);
   }
 

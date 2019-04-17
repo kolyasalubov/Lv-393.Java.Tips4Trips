@@ -17,7 +17,7 @@ export class LikeComponent implements OnInit {
 
 
   ngOnInit() {
-    this.likeService.changeLike(1,1).subscribe(item=>this.counter=(item));
+    this.likeService.countLikes(1).subscribe(item=>this.counter=(item));
   }
 
 }
