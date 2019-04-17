@@ -22,7 +22,6 @@ export class BlogService {
       .pipe(
         map(response => {
           const data = response;
-          console.log(data.content);
           return data;
         }));
   }
