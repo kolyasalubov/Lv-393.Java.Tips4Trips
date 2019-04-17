@@ -9,6 +9,7 @@ import {LittlepostModel} from '../../../model/littlepost.model';
 
 export class LittlePostComponent implements OnInit {
   @Input() post: LittlepostModel;
+
   constructor() { }
 
   ngOnInit() {

@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {BigPostService} from './big-post.service';
+import {BigPostModel} from '../../../model/big-post.model';
 
 @Component({
   selector: 'app-big-post',
@@ -7,9 +10,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BigPostComponent implements OnInit {
 
-  constructor() { }
+  constructor(private bigserv: BigPostService, private activatedRoute: ActivatedRoute) {
+  }
+
+  post: BigPostModel;
+  id: number;
+
+  getPageClient(page: number): void {
+    this.bigserv.getPost(page)
+      .subscribe(data => {
+        this.post = data;
+      });
+  }
 
   ngOnInit() {
+    this.activatedRoute.paramMap.subscribe(params => {
+      this.id = +params.get('id');
+    });
+    if (isNaN(this.id) || this.id < 1) {
+      this.id = 1;
+    }
+    this.getPageClient(this.id);
   }
 
 }

@@ -11,6 +11,7 @@ public class LittlePostDTO {
     private String month;
     private String year;
     private String description;
+    private String photoPath;
 
     public LittlePostDTO(Post post) {
         id = post.getId();
@@ -21,6 +22,15 @@ public class LittlePostDTO {
         month = String.valueOf(cal.get(Calendar.MONTH));
         year = String.valueOf(cal.get(Calendar.YEAR));
         description = post.getContent();
+        photoPath = post.getPhotoPath();
+    }
+
+    public String getPhotoPath() {
+        return photoPath;
+    }
+
+    public void setPhotoPath(String photoPath) {
+        this.photoPath = photoPath;
     }
 
     public Long getId() {

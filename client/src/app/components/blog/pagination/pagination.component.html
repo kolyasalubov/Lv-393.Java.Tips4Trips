@@ -1,0 +1,18 @@
+<div class="row mt-5">
+  <div class="col text-center">
+    <div class="block-27">
+      <ul>
+        <li *ngIf="back">
+          <a href="http://localhost:4200/blog/{{number}}">&lt;</a>
+        </li>
+        <li *ngIf="back">
+          <a href="http://localhost:4200/blog/{{number}}">{{number}}</a>
+        </li>
+        <li class="active"><span>{{number +1}}</span></li>
+        <li *ngFor="let item of page"><a href="http://localhost:4200/blog/{{item}}">{{item}}</a></li>
+        <li *ngIf="front"><a href="http://localhost:4200/blog/{{total}}">{{total}}</a></li>
+        <li *ngIf="front"><a href="http://localhost:4200/blog/{{number+2}}">&gt;</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
