@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FindGroupDetailsDTO} from '../../../model/trip-details'
 import {TripInfoService} from './trip-info.service'
 import {ActivatedRoute} from "@angular/router";
+import { Location } from '@angular/common';
 import {PlaceInfo} from "../../../model/place-info.model";
 
 @Component({
@@ -14,7 +15,7 @@ export class TripInfoComponent implements OnInit {
   findGroupDetailsDTO: FindGroupDetailsDTO = new FindGroupDetailsDTO(null,"default",null,null,null,null,null,null,null);
 
 
-  constructor(private tripInfoService: TripInfoService,    private ngRoute: ActivatedRoute) { }
+  constructor(private tripInfoService: TripInfoService,    private ngRoute: ActivatedRoute, private location: Location) { }
 
 
   ngOnInit() {
@@ -43,6 +44,10 @@ export class TripInfoComponent implements OnInit {
   getSelfLink(placeInfo: PlaceInfo): string {
     const url: string[] = placeInfo.self.split("/");
     return url[url.length-2] + "/" + url[url.length - 1];
+  }
+
+  goBack(): void {
+    this.location.back();
   }
   }
 
