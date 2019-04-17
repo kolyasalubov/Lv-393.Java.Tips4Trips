@@ -17,7 +17,9 @@ export class LikeService {
   changeLike(postId: number, accountId: number): Observable<number> {
     return this.http.post<number>(this.baseUrl + postId + '/likes/change/' + accountId,{postId, accountId} );
   };
-
+  countLikes(postId: number): Observable<number> {
+    return this.http.get<number>(this.baseUrl + postId + '/likes/count' );
+  };
   createLike(postId: number, accountId: number): Observable<Like> {
     return this.http.post<Like>(this.baseUrl + postId + '/likes/create/' + accountId, {postId, accountId});
   };

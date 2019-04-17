@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import{LikeService} from './like.service';
+import {AuthService} from "../../authentication/auth.service";
 
 @Component({
   selector: 'app-like',
@@ -7,17 +8,19 @@ import{LikeService} from './like.service';
   styleUrls: ['./like.component.css']
 })
 export class LikeComponent implements OnInit {
-
-  constructor(private likeService:LikeService) { }
+  @Input() postid: number;
+  accountId:number;
+  constructor(private likeService:LikeService, private authService: AuthService) { }
   counter:number;
   changeLike(){
-      this.likeService.changeLike(1,1).subscribe(item=>this.counter=(item));
+    // this.authService.getCurrentUser().subscribe(data=> {this.accountId=data.id, console.log(data.id)});
+      this.likeService.changeLike(this.postid,3).subscribe(item=>this.counter=(item));
       console.log(this.counter);
     }
 
 
   ngOnInit() {
-    this.likeService.changeLike(1,1).subscribe(item=>this.counter=(item));
+    this.likeService.countLikes(this.postid).subscribe(item=>this.counter=(item));
   }
 
 }
