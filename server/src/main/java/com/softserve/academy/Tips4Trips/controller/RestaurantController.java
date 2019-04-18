@@ -17,7 +17,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/countries/{countryId}/cities/{cityId}/places/restaurants")
+@RequestMapping("/places/restaurants")
 public class RestaurantController {
 
     private static final Logger logger = Logger.getLogger(RestaurantController.class);

@@ -12,7 +12,7 @@ export class CityService {
   constructor(private http: HttpClient) {
   }
 
-  baseUrl: string = 'http://localhost:8080/countries/1/cities/';
+  baseUrl: string = 'http://localhost:8080';
   createUrl: string = "http://localhost:8080/countries/";
 
   getAll(): Observable<City[]> {
@@ -28,7 +28,7 @@ export class CityService {
   }
 
   createCity(city: City): Observable<City> {
-    return this.http.post<City>(this.createUrl + city.countryId + '/cities/create', city);
+    return this.http.post<City>(this.baseUrl  + '/cities/create', city);
   }
 
 }

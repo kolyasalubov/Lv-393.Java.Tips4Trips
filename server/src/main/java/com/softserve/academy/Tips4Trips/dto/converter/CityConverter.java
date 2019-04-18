@@ -28,7 +28,7 @@ public class CityConverter implements Converter<City, CityDTO> {
         cityDTO.setPosition(city.getPosition());
         cityDTO.setCountryId(city.getCountry().getId());
         cityDTO.setPlaces(ControllerLinkBuilder.linkTo(
-                ControllerLinkBuilder.methodOn(PlaceController.class)
+                ControllerLinkBuilder.methodOn(CityController.class)
                         .getAllByCityId(city.getId())
         ).withSelfRel().getHref().replace("{countryId}", city.getCountry().getId().toString()));
         return cityDTO;
