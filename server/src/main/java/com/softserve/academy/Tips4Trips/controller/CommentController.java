@@ -35,7 +35,7 @@ public class CommentController {
 
 
     @GetMapping("/all/{id}")
-    public ResponseEntity<List<CommentDetailsDTO>> findByPostId(@PathVariable Long id) {
+        public ResponseEntity<List<CommentDetailsDTO>> findByPostId(@PathVariable Long id) {
         return new ResponseEntity<>(commentConverter.convertToDTO(commentService.findByPostId(id)), HttpStatus.OK);
     }
 /*    public long countByPost(@PathVariable Long id) {

@@ -13,14 +13,15 @@ export class LikeComponent implements OnInit {
   constructor(private likeService:LikeService, private authService: AuthService) { }
   counter:number;
   changeLike(){
-    // this.authService.getCurrentUser().subscribe(data=> {this.accountId=data.id, console.log(data.id)});
-      this.likeService.changeLike(this.postid,3).subscribe(item=>this.counter=(item));
+
+      this.likeService.changeLike(this.postid,this.accountId).subscribe(item=>this.counter=(item));
       console.log(this.counter);
     }
 
 
   ngOnInit() {
-    this.likeService.countLikes(this.postid).subscribe(item=>this.counter=(item));
+    this.authService.getCurrentUser().subscribe(data=> {this.accountId=data.id, console.log(this.accountId)});
+    this.likeService.countLikes(this.postid).subscribe(item=>this.counter=item);
   }
 
 }
