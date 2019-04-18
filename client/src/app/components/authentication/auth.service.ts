@@ -6,6 +6,7 @@ import {SignUpInfo} from './signup/signup-info';
 import {Account} from '../../model/account.model';
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 import { stringify } from '@angular/core/src/render3/util';
+import { UserAccount } from '../../model/useraccount.model';
 import { TokenStorageService } from './token/token-storage.service';
 
 
@@ -31,8 +32,8 @@ export class AuthService {
     return this.http.post(this.loginUrl, credentials, {responseType : 'text'});
   }
 
-  signUp(info: SignUpInfo): Observable<string> {
-    return this.http.post<string>(this.signupUrl, info, httpOptions);
+  signUp(info: UserAccount): Observable<any> {
+    return this.http.post(this.signupUrl, info, {responseType : 'text'});
   }
 
   getCurrentUser(): Observable<Account> {
