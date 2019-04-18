@@ -2,9 +2,12 @@ package com.softserve.academy.Tips4Trips.controller;
 
 import com.softserve.academy.Tips4Trips.dto.CityDTO;
 import com.softserve.academy.Tips4Trips.dto.converter.CityConverter;
+import com.softserve.academy.Tips4Trips.dto.converter.PlaceConverter;
+import com.softserve.academy.Tips4Trips.dto.info.PlaceInfoDTO;
 import com.softserve.academy.Tips4Trips.entity.City;
 import com.softserve.academy.Tips4Trips.entity.Country;
 import com.softserve.academy.Tips4Trips.service.CityService;
+import com.softserve.academy.Tips4Trips.service.PlaceService;
 import org.apache.log4j.Logger;
 import com.softserve.academy.Tips4Trips.service.CountryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,29 +19,25 @@ import java.util.List;
 
 @RestController
 @CrossOrigin
-@RequestMapping("countries/{countryId}/cities")
+@RequestMapping("/cities")
 public class CityController {
 
     private static final Logger logger = Logger.getLogger(CityController.class);
 
     private CityConverter cityConverter;
     private CityService cityService;
-    private CountryService countryService;
+    private PlaceConverter placeConverter;
+    private PlaceService placeService;
 
     @Autowired
-    public CityController(CityConverter cityConverter, CityService cityService,
-                          CountryService countryService) {
+    public CityController(CityConverter cityConverter,
+                          CityService cityService,
+                          PlaceConverter placeConverter,
+                          PlaceService placeService) {
         this.cityConverter = cityConverter;
         this.cityService = cityService;
-        this.countryService = countryService;
-    }
-
-    @GetMapping
-    public ResponseEntity<List<CityDTO>> getAllByCountryId(@PathVariable Long countryId) {
-        logger.info("get all city method executing: ");
-        Country country = countryService.findById(countryId);
-        return new ResponseEntity<>(cityConverter.convertToDTO(cityService
-                .findByCountry(country)), HttpStatus.OK);
+        this.placeConverter = placeConverter;
+        this.placeService = placeService;
     }
 
     @PostMapping("/create")
@@ -48,10 +47,18 @@ public class CityController {
         return new ResponseEntity<>(cityConverter.convertToDTO(cityService.createCity(city)), HttpStatus.OK);
     }
 
-    @GetMapping("/{cityId}")
-    public ResponseEntity<CityDTO> getById(@PathVariable Long cityId) {
+    @GetMapping("/{id}")
+    public ResponseEntity<CityDTO> getById(@PathVariable Long id) {
         logger.info("get city by id method executing: ");
-        return new ResponseEntity<>(cityConverter.convertToDTO(cityService.findById(cityId)), HttpStatus.OK);
+        return new ResponseEntity<>(cityConverter.convertToDTO(cityService.findById(id)), HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}/places")
+    public ResponseEntity<List<PlaceInfoDTO>> getAllByCityId(@PathVariable Long id) {
+        logger.info("get all by city id method executing: ");
+        City city = cityService.findById(id);
+        return new ResponseEntity<>(placeConverter.convertToInfoDTO(placeService
+                .findByCity(city)), HttpStatus.OK);
     }
 
     @PutMapping("/update")
@@ -61,10 +68,10 @@ public class CityController {
         return new ResponseEntity<>(cityConverter.convertToDTO(cityService.update(city)), HttpStatus.OK);
     }
 
-    @DeleteMapping("/delete/{cityId}")
-    public void deleteById(@PathVariable Long cityId) {
+    @DeleteMapping("/delete/{id}")
+    public void deleteById(@PathVariable Long id) {
         logger.info("delete city by id method executing: ");
-        cityService.deleteById(cityId);
+        cityService.deleteById(id);
     }
 
 }

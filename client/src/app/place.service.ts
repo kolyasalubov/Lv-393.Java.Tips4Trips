@@ -10,13 +10,13 @@ export class PlaceService {
 
   constructor(private http:HttpClient) { }
 
-  baseUrl: string = 'http://localhost:8080/places/';
+  baseUrl: string = 'http://localhost:8080/';
 
   findByName(name:string): Observable<PlaceInfo[]> {
-    return this.http.get<PlaceInfo[]>(this.baseUrl + "name/" + name);
+    return this.http.get<PlaceInfo[]>(this.baseUrl + "places/name/" + name);
   }
 
   getAllByCityId(cityId: number): Observable<PlaceInfo[]> {
-    return this.http.get<PlaceInfo[]>("http://localhost:8080/countries/1/cities/" + cityId + "/places")
+    return this.http.get<PlaceInfo[]>(this.baseUrl + "cities/" + cityId + "/places");
   }
 }

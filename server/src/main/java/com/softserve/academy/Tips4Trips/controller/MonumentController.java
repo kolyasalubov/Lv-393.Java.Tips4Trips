@@ -18,7 +18,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/countries/{countryId}/cities/{cityId}/places/monuments")
+@RequestMapping("/places/monuments")
 public class MonumentController {
 
     private static final Logger logger = Logger.getLogger(MonumentController.class);
