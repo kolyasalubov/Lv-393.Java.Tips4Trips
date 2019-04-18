@@ -1,38 +1,92 @@
 <app-header></app-header>
-<section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('../../../assets/images/bg_2.jpg'); padding-bottom: 40%;"
-         data-stellar-background-ratio="0.5">
+<section class="hero-wrap hero-wrap-2 js-fullheight"
+  style="background-image: url('../../../assets/images/bg_2.jpg'); padding-bottom: 40%;"
+  data-stellar-background-ratio="0.5">
 </section>
 
 <section class="ftco-section contact-section" style="margin-bottom: 90px;">
-  <div class="container">
-    <div class="row block-9">
-          <form form ="loginForm" (ngSubmit)="onSubmit()" class="text-center border border-light p-5">
-            <p class="h3 mb-4">Sign in</p>
-            <input type="text" name="login" [(ngModel)]="loginForm.login" class="form-control mb-4" placeholder="Username">
-            <input type="password" name="password" [(ngModel)]="loginForm.password" class="form-control mb-4" placeholder="Password">
-        
-            <button mdbBtn style="background-color: #336B87;" block="true" class="my-4" type="submit">Sign in</button>
-            <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+    <div class="limiter">
+      <div class="container-login100">
+        <div class="wrap-login100 p-l-110 p-r-110 p-t-62 p-b-33">
+          <form class="login100-form validate-form flex-sb flex-w" form="loginForm" (ngSubmit)="onSubmit()">
+            <span class="login100-form-title p-b-53">
+              Sign In With
+            </span>
 
-            <div class="chekbox-two">
-              <label class="checkbox" style="padding: 15px;">
-                <input type="checkbox" checked="">
-                <span class="checkbox__icon"></span>
-                Remember me
-              </label>
+            <a href="#" class="btn-face m-b-20">
+              <i class="fa fa-facebook-official"></i>
+              Facebook
+            </a>
+
+            <a href="#" class="btn-google m-b-20">
+              <img src="../../../../assets/images/icons/icon-google.png" alt="GOOGLE">
+              Google
+            </a>
+
+            <div class="p-t-31 p-b-9">
+              <span class="txt1">
+                Username
+              </span>
+            </div>
+            <div class="wrap-input100 validate-input" data-validate="Username is required">
+              <input class="input100" type="text" name="login" [(ngModel)]="loginForm.login" placeholder="Username">
+              <span class="focus-input100"></span>
             </div>
 
-            <div class="container signin">
-              <p>Have not already an account? <a href="sing_up">Create account</a>.</p>
+            <div class="p-t-13 p-b-9">
+              <span class="txt1">
+                Password
+              </span>
+
+              <a href="#" class="txt2 bo1 m-l-5">
+                Forgot?
+              </a>
+            </div>
+            <div class="wrap-input100 validate-input" data-validate="Password is required">
+              <input class="input100" type="password" name="password" [(ngModel)]="loginForm.password"
+                placeholder="Password">
+              <span class="focus-input100"></span>
             </div>
 
-            <div class="container" style="background-color:#f1f1f1; padding: 15px;">
-              <span class="psw">Forgot <a href="#">password?</a></span>
+            <div class="container-login100-form-btn m-t-17">
+              <button mdbBtn class="login100-form-btn" type="submit">
+                Sign In
+              </button>
+            </div>
+
+            <div class="w-full text-center p-t-55">
+              <span class="txt2">
+                Not a member?
+              </span>
+
+              <a class="txt2 bo1"  routerLink="/sing_up">
+                Sign up now
+              </a>
             </div>
           </form>
         </div>
-  </div>
+      </div>
+    </div>
 </section>
+
+<div id="dropDownSelect1"></div>
+
+<!--===============================================================================================-->
+<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+<script src="vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+<script src="vendor/bootstrap/js/popper.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+<script src="vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+<script src="vendor/daterangepicker/moment.min.js"></script>
+<script src="vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+<script src="vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+<script src="js/main.js"></script>
 
 <app-footer></app-footer>
 <script src="../../../../assets/js/main.js"></script>

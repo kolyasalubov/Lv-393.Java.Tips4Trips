@@ -34,7 +34,9 @@ this.authService.attemptAuth(this.loginInfo).subscribe(
       data => {
       
         this.tokenStorage.saveToken(data);
-        
+        this.authService.getCurrentUser().subscribe(
+          user => this.tokenStorage.saveAuthorities(user.role))
+
         this.isLoginFailed = false;
         this.isLoggedIn = true;
 
