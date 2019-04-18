@@ -4,6 +4,7 @@ import { RouteService } from 'src/app/route.service';
 import { AccountInfo } from 'src/app/model/account-info.model';
 import { PlaceService } from 'src/app/place.service';
 import { Router } from '@angular/router';
+import { AuthService } from '../authentication/auth.service';
 
 @Component({
   selector: 'app-create-post-route',
@@ -17,7 +18,8 @@ export class CreateRouteComponent implements OnInit {
   constructor(
     private routeService: RouteService,
     private placeService: PlaceService,
-    private router: Router
+    private router: Router,
+    private authService : AuthService
   ) {
     this.route = new Route();
     this.route.authorInfo = new AccountInfo();
@@ -25,6 +27,9 @@ export class CreateRouteComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.authService.getCurrentUser().subscribe(data => {
+      this.route.authorInfo.id = data.id;
+      });
   }
 
   addPlace(): void {
@@ -41,6 +46,7 @@ export class CreateRouteComponent implements OnInit {
   save(): void {
     if (this.validate()) {
       this.route.photoPath="no photo";
+    
       this.routeService.createRoute(this.route).subscribe(result=>console.log(result));
       setTimeout(() => {this.router.navigate(['routes']);}, 2000);
     }
