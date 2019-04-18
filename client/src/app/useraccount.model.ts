@@ -1,5 +1,5 @@
-import { Account } from "./account.model";
-import { User } from "./user.model";
+import { Account } from "./model/account.model";
+import { User } from "./model/user.model";
 
 export class UserAccount {
     account: Account;
