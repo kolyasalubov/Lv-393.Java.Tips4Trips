@@ -3,6 +3,7 @@ package com.softserve.academy.Tips4Trips.controller;
 import com.softserve.academy.Tips4Trips.dto.UserDTO;
 import com.softserve.academy.Tips4Trips.dto.converter.UserConverter;
 import com.softserve.academy.Tips4Trips.entity.administration.User;
+import com.softserve.academy.Tips4Trips.mapper.UserMapper;
 import com.softserve.academy.Tips4Trips.service.UserService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import java.util.List;
 @CrossOrigin
 @RequestMapping("/users")
 public class UserController {
+    private UserMapper userMapper;
 
     private static final Logger logger = Logger.getLogger(UserController.class);
 
@@ -23,9 +25,10 @@ public class UserController {
     private UserConverter userConverter;
 
     @Autowired
-    public UserController(UserService userService, UserConverter userConverter) {
+    public UserController(UserService userService, UserConverter userConverter,UserMapper userMapper) {
         this.userService = userService;
         this.userConverter = userConverter;
+        this.userMapper=userMapper;
     }
 
     @GetMapping("/all")
@@ -38,8 +41,7 @@ public class UserController {
     @GetMapping("/{id}")
     public ResponseEntity<UserDTO> getById(@PathVariable Long id) {
         logger.info("get user by id method executing: ");
-        return new ResponseEntity<>(userConverter
-                .convertToDTO(userService.findById(id)), HttpStatus.OK);
+        return new ResponseEntity<>(userMapper.toDTO(userService.findById(id)), HttpStatus.OK);
     }
 
     @GetMapping("/login/{login}")

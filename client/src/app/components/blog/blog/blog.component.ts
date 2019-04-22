@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {PagelittlepostModel} from '../../../model/pagelittlepost.model';
 import {BlogService} from './blog.service';
 import {ActivatedRoute} from '@angular/router';
+import {LittlepostModel} from "../../../model/littlepost.model";
 
 @Component({
   selector: 'app-blog',
@@ -15,13 +16,17 @@ export class BlogComponent implements OnInit {
 
   id: number;
   max: number;
-  pagePost: PagelittlepostModel;
+  num: number;
+  postP:  LittlepostModel[]=null;
+  pagePost: PagelittlepostModel = null;
 
   getPageClient(page: number): void {
     this.blogserv.getPosts(page)
       .subscribe(data => {
         this.pagePost = data;
         this.max = this.pagePost.totalPages;
+        this.num = this.pagePost.number;
+        this.postP=this.pagePost.content;
       });
   }
 

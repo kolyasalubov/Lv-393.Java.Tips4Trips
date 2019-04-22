@@ -9,10 +9,19 @@ public class PostInfoDTO {
     private Long id;
     private String name;
     private Date creationDate;
-    private String description;
-    private AccountInfoDTO authorInfo;
-    private long countOfLikes;
-    private String self;
+    private String content;
+    private String photoPath;
+
+    public PostInfoDTO() {
+    }
+
+    public String getPhotoPath() {
+        return photoPath;
+    }
+
+    public void setPhotoPath(String photoPath) {
+        this.photoPath = photoPath;
+    }
 
     public Long getId() {
         return id;
@@ -20,14 +29,6 @@ public class PostInfoDTO {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public long getCountOfLikes() {
-        return countOfLikes;
-    }
-
-    public void setCountOfLikes(long countOfLikes) {
-        this.countOfLikes = countOfLikes;
     }
 
     public String getName() {
@@ -46,27 +47,11 @@ public class PostInfoDTO {
         this.creationDate = creationDate;
     }
 
-    public String getDescription() {
-        return description;
+    public String getContent() {
+        return content;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public AccountInfoDTO getAuthorInfo() {
-        return authorInfo;
-    }
-
-    public void setAuthorInfo(AccountInfoDTO authorInfo) {
-        this.authorInfo = authorInfo;
-    }
-
-    public String getSelf() {
-        return self;
-    }
-
-    public void setSelf(String self) {
-        this.self = self;
+    public void setContent(String content) {
+        this.content = content;
     }
 }
