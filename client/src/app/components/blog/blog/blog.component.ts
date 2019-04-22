@@ -38,8 +38,5 @@ export class BlogComponent implements OnInit {
       this.id = 1;
     }
     this.getPageClient(this.id);
-    while (this.pagePost==null){
-      await this.delay(3000);
-    }
   }
 }
