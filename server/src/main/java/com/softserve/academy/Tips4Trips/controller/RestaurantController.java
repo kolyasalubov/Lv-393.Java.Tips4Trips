@@ -36,27 +36,27 @@ public class RestaurantController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<PlaceInfoDTO>> getAll(@PathVariable Long countryId, @PathVariable Long cityId){
+    public ResponseEntity<List<PlaceInfoDTO>> getAll(){
         logger.info("get all restaurant method executing: ");
         return new ResponseEntity<>(placeConverter
-                .convertToInfoDTO(restaurantService.findByCity(cityService.findById(cityId).getName())), HttpStatus.OK);
+                .convertToInfoDTO(restaurantService.findAll()), HttpStatus.OK);
     }
 
     @PostMapping("/create")
-    public ResponseEntity<RestaurantDetailsDTO> createRestaurant(@PathVariable Long countryId, @PathVariable Long cityId, @RequestBody RestaurantDetailsDTO restaurantDTO) {
+    public ResponseEntity<RestaurantDetailsDTO> createRestaurant(@RequestBody RestaurantDetailsDTO restaurantDTO) {
         logger.info("create restaurant method executing: ");
         Restaurant restaurant = restaurantConverter.convertToEntity(restaurantDTO);
         return new ResponseEntity<>(restaurantConverter.convertToDTO(restaurantService.createRestaurant(restaurant)), HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<RestaurantDetailsDTO> getById(@PathVariable Long countryId, @PathVariable Long cityId, @PathVariable Long id) {
+    public ResponseEntity<RestaurantDetailsDTO> getById(@PathVariable Long id) {
         logger.info("get restaurant by id method executing: ");
         return new ResponseEntity<>(restaurantConverter.convertToDTO(restaurantService.findById(id)), HttpStatus.OK);
     }
 
     @PostMapping("/update")
-    public ResponseEntity<RestaurantDetailsDTO> update(@PathVariable Long countryId, @PathVariable Long cityId, @RequestBody RestaurantDetailsDTO restaurantDetailsDTO) {
+    public ResponseEntity<RestaurantDetailsDTO> update(@RequestBody RestaurantDetailsDTO restaurantDetailsDTO) {
         logger.info("update restaurant method executing: ");
         return new ResponseEntity<>(restaurantConverter.convertToDTO(restaurantService.update(restaurantConverter.convertToEntity(restaurantDetailsDTO))), HttpStatus.OK);
     }

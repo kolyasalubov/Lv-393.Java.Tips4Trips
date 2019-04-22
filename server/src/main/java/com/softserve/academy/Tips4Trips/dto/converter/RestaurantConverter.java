@@ -79,7 +79,7 @@ public class RestaurantConverter implements Converter<Restaurant, RestaurantDeta
         restaurantDetailsDTO.setHasVeganFood(restaurant.getHasVeganFood());
         restaurantDetailsDTO.setSelf(ControllerLinkBuilder.linkTo(
                 ControllerLinkBuilder.methodOn(RestaurantController.class)
-                        .getById(restaurant.getCity().getCountry().getId(), restaurant.getCity().getId(), restaurant.getId())
+                        .getById(restaurant.getId())
         ).withSelfRel().getHref().replace("{countryId}", restaurant.getCity().getCountry().getId().toString())
                 .replace("{cityId}", restaurant.getCity().getId().toString()));
 

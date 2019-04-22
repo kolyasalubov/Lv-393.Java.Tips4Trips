@@ -13,14 +13,13 @@ export class CityService {
   }
 
   baseUrl: string = 'http://localhost:8080';
-  createUrl: string = "http://localhost:8080/countries/";
 
   getAll(): Observable<City[]> {
     return this.http.get<City[]>(this.baseUrl);
   }
 
   getById(id: number): Observable<City> {
-    return this.http.get<City>(this.baseUrl + id);
+    return this.http.get<City>(this.baseUrl + "/cities/" + id);
   }
 
   getAllByCountryId(id: number): Observable<City[]> {

@@ -5,6 +5,8 @@ import {CityService} from "../city.service";
 import {Router} from "@angular/router";
 import {MonumentService} from "./monument.service";
 import {Monument} from "../../../model/monument.model";
+import {Country} from "../../../model/country.model";
+import {CountryService} from "../../../country.service";
 
 @Component({
   selector: 'app-create-monument',
@@ -14,24 +16,28 @@ import {Monument} from "../../../model/monument.model";
 export class CreateMonumentComponent implements OnInit {
 
   city: City[] = null;
+  countries: Country[] = null;
 
   position: Position = new Position(0, 0);
-  cityDTO: City = new City(0, '', this.position, 0, '');
-  monument: Monument = new Monument(0, '', '', '', this.position, "photo_path", this.cityDTO);
+  cityDTO: City = new City(null, '', this.position, 0, '');
+  monument: Monument = new Monument(null, '', '', '', this.position, "photo_path", this.cityDTO);
 
 
 
-    constructor(private cityService: CityService, private router: Router, private monumentService: MonumentService) { }
+    constructor(private countryService: CountryService, private cityService: CityService, private router: Router, private monumentService: MonumentService) { }
 
-    setCityId(value) {
-      this.monumentService.cityId = value;
-      this.cityService.getById(value).subscribe(val => this.cityDTO = val);
-    }
+  setChosenCountry(value) {
+    this.cityService.getAllByCountryId(value).subscribe(val => this.city = val);
+  }
 
-    ngOnInit() {
-      this.cityService.getAll().subscribe(data => this.city = data);
-      // this.restaurantService.updateRestaurant(this.restaurant);
-    }
+  setChosenCity(value) {
+    this.monumentService.cityId = value;
+    this.cityService.getById(value).subscribe(val => this.cityDTO = val);
+  }
+
+  ngOnInit() {
+    this.countryService.getAll().subscribe(data => this.countries = data);
+  }
 
     create(){
       this.monument.cityDTO = this.cityDTO;
