@@ -19,7 +19,7 @@ export class CreateRouteComponent implements OnInit {
     private routeService: RouteService,
     private placeService: PlaceService,
     private router: Router,
-    private authService : AuthService
+    private authService: AuthService
   ) {
     this.route = new Route();
     this.route.authorInfo = new AccountInfo();
@@ -27,9 +27,13 @@ export class CreateRouteComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.authService.getCurrentUser().subscribe(data => {
-      this.route.authorInfo.id = data.id;
+    if (!this.authService.checkLoggedUser()) {
+      this.router.navigate(['account']);
+    } else {
+      this.authService.getCurrentUser().subscribe(data => {
+        this.route.authorInfo.id = data.id;
       });
+    }
   }
 
   addPlace(): void {
@@ -45,9 +49,11 @@ export class CreateRouteComponent implements OnInit {
 
   save(): void {
     if (this.validate()) {
-      this.route.photoPath="no photo";
-      this.routeService.createRoute(this.route).subscribe(result=>this.route = result);
-      setTimeout(() => {this.router.navigate(['routes']);}, 2000);
+      this.route.photoPath = "no photo";
+      this.routeService.createRoute(this.route).subscribe(result => {
+        this.route = result;
+        this.router.navigate(['routes']);
+      });
     }
   }
 
