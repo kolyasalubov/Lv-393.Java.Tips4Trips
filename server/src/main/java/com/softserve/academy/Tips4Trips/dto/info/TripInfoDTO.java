@@ -2,7 +2,7 @@ package com.softserve.academy.Tips4Trips.dto.info;
 
 import java.util.Date;
 
-public class FindGroupInfoDTO {
+public class TripInfoDTO {
     private Long id;
 
     private String name;

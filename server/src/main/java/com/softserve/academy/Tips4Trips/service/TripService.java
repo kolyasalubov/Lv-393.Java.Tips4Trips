@@ -3,8 +3,7 @@ package com.softserve.academy.Tips4Trips.service;
 import com.softserve.academy.Tips4Trips.entity.Route;
 import com.softserve.academy.Tips4Trips.entity.administration.Account;
 import com.softserve.academy.Tips4Trips.entity.entertainment.mountains.FindGroup;
-import com.softserve.academy.Tips4Trips.entity.Route;
-import com.softserve.academy.Tips4Trips.repository.FindGroupRepository;
+import com.softserve.academy.Tips4Trips.repository.TripRepository;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,14 +11,14 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class FindGroupService {
+public class TripService {
 
-    private static final Logger logger = Logger.getLogger(FindGroupService.class);
+    private static final Logger logger = Logger.getLogger(TripService.class);
 
-    FindGroupRepository repository;
+    TripRepository repository;
 
     @Autowired
-    public FindGroupService(FindGroupRepository repository) {
+    public TripService(TripRepository repository) {
         this.repository = repository;
     }
 

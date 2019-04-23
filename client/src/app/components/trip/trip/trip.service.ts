@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Observable} from "rxjs";
 import { HttpClient } from '@angular/common/http';
-import { FindGroupInfoDTO } from 'src/app/model/trip-info';
+import { TripInfoDTO } from 'src/app/model/trip-info';
 
 @Injectable({
     providedIn: 'root'
@@ -9,12 +9,12 @@ import { FindGroupInfoDTO } from 'src/app/model/trip-info';
   export class TripService {
 
     constructor(private http: HttpClient) { }
-    baseUrl: string = 'http://localhost:8080/findgroups';
+    baseUrl: string = 'http://localhost:8080/trips';
   
 
     
-    getAll(): Observable<FindGroupInfoDTO[]> {
-  return this.http.get<FindGroupInfoDTO[]>(this.baseUrl);
+    getAll(): Observable<TripInfoDTO[]> {
+  return this.http.get<TripInfoDTO[]>(this.baseUrl);
 }
 
   }
