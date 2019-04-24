@@ -58,19 +58,19 @@ public class PlaceConverter implements Converter<Place,  PlaceInfoDTO> {
         if (place.getClass().equals(Restaurant.class)) {
             return ControllerLinkBuilder.linkTo(
                     ControllerLinkBuilder.methodOn(RestaurantController.class)
-                            .getById(place.getCity().getCountry().getId(), place.getCity().getId(), place.getId())
+                            .getById(place.getId())
             ).withSelfRel().getHref().replace("{countryId}", place.getCity().getCountry().getId().toString())
                     .replace("{cityId}", place.getCity().getId().toString());
         } else if (place.getClass().equals(Hotel.class)) {
             return ControllerLinkBuilder.linkTo(
                     ControllerLinkBuilder.methodOn(HotelController.class)
-                            .getById(place.getCity().getCountry().getId(), place.getCity().getId(), place.getId())
+                            .getById(place.getId())
             ).withSelfRel().getHref().replace("{countryId}", place.getCity().getCountry().getId().toString())
                     .replace("{cityId}", place.getCity().getId().toString());
         } else if (place.getClass().equals(Monument.class)) {
             return ControllerLinkBuilder.linkTo(
                     ControllerLinkBuilder.methodOn(MonumentController.class)
-                            .getById(place.getCity().getCountry().getId(), place.getCity().getId(), place.getId())
+                            .getById(place.getId())
             ).withSelfRel().getHref().replace("{countryId}", place.getCity().getCountry().getId().toString())
                     .replace("{cityId}", place.getCity().getId().toString());
         }

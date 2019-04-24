@@ -12,15 +12,14 @@ export class CityService {
   constructor(private http: HttpClient) {
   }
 
-  baseUrl: string = 'http://localhost:8080/countries/1/cities/';
-  createUrl: string = "http://localhost:8080/countries/";
+  baseUrl: string = 'http://localhost:8080';
 
   getAll(): Observable<City[]> {
     return this.http.get<City[]>(this.baseUrl);
   }
 
   getById(id: number): Observable<City> {
-    return this.http.get<City>(this.baseUrl + id);
+    return this.http.get<City>(this.baseUrl + "/cities/" + id);
   }
 
   getAllByCountryId(id: number): Observable<City[]> {
@@ -28,7 +27,7 @@ export class CityService {
   }
 
   createCity(city: City): Observable<City> {
-    return this.http.post<City>(this.createUrl + city.countryId + '/cities/create', city);
+    return this.http.post<City>(this.baseUrl  + '/cities/create', city);
   }
 
 }

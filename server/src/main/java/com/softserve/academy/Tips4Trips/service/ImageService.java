@@ -20,8 +20,7 @@ import java.nio.file.Paths;
 @Service
 public class ImageService {
 
-    @Value("${images.uploadDirectory}")
-    private String imagesDirectory;
+    private final String IMAGES_DIRECTORY = "/images";
 
     private Path rootLocation;
 
@@ -30,13 +29,13 @@ public class ImageService {
                         .getCodeSource().getLocation().getPath();
         path = path.substring(1, path.lastIndexOf("/"));
         path = path.substring(0, path.lastIndexOf("/") + 1);
-        rootLocation = Paths.get(path + imagesDirectory);
+        rootLocation = Paths.get(path + IMAGES_DIRECTORY);
     }
 
     public void store(MultipartFile file) throws FileIOException {
         try {
+            String fileName = file.getOriginalFilename();
             String filepath = rootLocation + file.getOriginalFilename();
-            File newFile = new File(filepath);
             Files.copy(file.getInputStream(), Paths.get(filepath));
         } catch (Exception e) {
             e.printStackTrace();
@@ -75,4 +74,5 @@ public class ImageService {
             throw new FileIOException("Could not initialize storage!");
         }
     }
+
 }

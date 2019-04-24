@@ -45,6 +45,8 @@ import { HotelDetailsComponent } from './components/hotel-details/hotel-details.
 import { CityPlacesComponent } from './components/city-places/city-places.component';
 import { CityComponent } from './components/city/city.component';
 import { CountryComponent } from './components/country/country.component';
+import { ImageDetails } from './components/image-details/image-details.component';
+import { ImageUploadFormComponent } from './components/image-upload-form/image-upload-form.component';
 
 @NgModule({
   declarations: [
@@ -86,7 +88,9 @@ import { CountryComponent } from './components/country/country.component';
     HotelDetailsComponent,
     CityPlacesComponent,
     CityComponent,
-    CountryComponent
+    CountryComponent,
+	ImageDetails,
+	ImageUploadFormComponent
   ],
   imports: [
     BrowserModule,

@@ -16,7 +16,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/countries/{countryId}/cities/{cityId}/places/hotels")
+@RequestMapping("/places/hotels")
 public class HotelController {
 
     private static final Logger logger = Logger.getLogger(HotelController.class);
@@ -32,18 +32,15 @@ public class HotelController {
         this.placeConverter = placeConverter;
     }
 
-
-
-
     @GetMapping("/all")
-    public ResponseEntity<List<PlaceInfoDTO>> getAll(@PathVariable Long countryId,@PathVariable Long cityId){
+    public ResponseEntity<List<PlaceInfoDTO>> getAll(@PathVariable Long cityId){
         logger.info("get all hotel method executing: ");
         return new ResponseEntity<>(placeConverter.
                 convertToInfoDTO(hotelService.findAll()), HttpStatus.OK);
     }
 
     @PostMapping("/create")
-    public ResponseEntity<HotelDetailsDTO> createHotel(@PathVariable Long countryId,@PathVariable Long cityId,@RequestBody HotelDetailsDTO hotelDetailsDTO) {
+    public ResponseEntity<HotelDetailsDTO> createHotel(@RequestBody HotelDetailsDTO hotelDetailsDTO) {
         logger.info("create hotel method executing: ");
         Hotel hotel = hotelConverter.convertToEntity(hotelDetailsDTO);
         return new ResponseEntity<>(hotelConverter.convertToDTO(hotelService.createHotel(hotel)), HttpStatus.CREATED);
@@ -51,13 +48,13 @@ public class HotelController {
 
 
     @GetMapping("/{id}")
-    public ResponseEntity<HotelDetailsDTO> getById(@PathVariable Long countryId,@PathVariable Long cityId,@PathVariable Long id) {
+    public ResponseEntity<HotelDetailsDTO> getById(@PathVariable Long id) {
         logger.info("get hotel by id method executing: ");
         return new ResponseEntity<>(hotelConverter.convertToDTO(hotelService.findById(id)), HttpStatus.OK);
     }
 
     @PostMapping("/update")
-    public ResponseEntity<HotelDetailsDTO> update(@PathVariable Long countryId,@PathVariable Long cityId,@RequestBody HotelDetailsDTO hotelDetailsDTO) {
+    public ResponseEntity<HotelDetailsDTO> update(@RequestBody HotelDetailsDTO hotelDetailsDTO) {
         logger.info("update hotel method executing: ");
         return new ResponseEntity<>(hotelConverter.convertToDTO(hotelService.update(hotelConverter.convertToEntity(hotelDetailsDTO))), HttpStatus.OK);
     }

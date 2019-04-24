@@ -22,7 +22,7 @@ export class NavbarComponent implements OnInit {
     this.countryService.getAll().subscribe(data => this.countries = data);
   }
 
-  setCityId(value) {
+  setChosenCountry(value) {
     this.cityService.getAllByCountryId(value).subscribe(val => this.cities = val);
   }
 

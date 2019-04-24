@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -38,7 +39,7 @@ public class ImageController {
     public ResponseEntity<Resource> getFile(@PathVariable String filename)
             throws FileIOException {
         Resource file = imageService.loadFile(filename);
-        return ResponseEntity.ok()
+        return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG)
                 .header(HttpHeaders.CONTENT_DISPOSITION,
                         "attachment; filename=\""
                                 + file.getFilename() + "\"")

@@ -32,13 +32,6 @@ public class PostController {
         this.postConverter = postConverter;
     }
 
-    @GetMapping
-    public ResponseEntity<List<PostInfoDTO>> getAll() {
-        logger.info("get all post info method executing: ");
-        return new ResponseEntity<>(postConverter
-                .convertToInfoDTO(postService.findAll()), HttpStatus.OK);
-    }
-
     @GetMapping("/{id}")
     public ResponseEntity<PostDetailsDTO> getById(@PathVariable Long id) {
         logger.info("get post by id method executing: ");
@@ -46,12 +39,6 @@ public class PostController {
                 .convertToDTO(postService.findById(id)), HttpStatus.OK);
     }
 
-    @GetMapping("/author/{authorId}")
-    public ResponseEntity<List<PostInfoDTO>> getByAuthor(@PathVariable Long authorId) {
-        logger.info("get by author method executing: ");
-        return new ResponseEntity<>(postConverter
-                .convertToInfoDTO(postService.getByAuthorId(authorId)), HttpStatus.OK);
-    }
 
     @PutMapping("/update")
     public ResponseEntity<PostDetailsDTO> update(@RequestBody PostDetailsDTO postDetailsDTO) {

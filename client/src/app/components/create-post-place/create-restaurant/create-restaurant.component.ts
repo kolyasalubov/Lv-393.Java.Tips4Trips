@@ -5,6 +5,8 @@ import {City} from "../../../model/city.model";
 import {Restaurant} from "../../../model/restaurant.model";
 import {RestaurantService} from "./restaurant.service";
 import {Position} from "../../../model/position.model";
+import {Country} from "../../../model/country.model";
+import {CountryService} from "../../../country.service";
 
 @Component({
   selector: 'app-create-restaurant',
@@ -17,25 +19,29 @@ export class CreateRestaurantComponent implements OnInit {
     "THURSDAY", "FRIDAY", "SATURDAY", "SUNDAY"];
 
   city: City[] = null;
+  countries: Country[] = null;
 
   position: Position = new Position(0, 0);
 
-  cityDTO: City = new City(0, '', this.position, null, null);
+  cityDTO: City = new City(null, '', this.position, null, null);
 
-  restaurant: Restaurant = new Restaurant(0, '', '', [], '',
+  restaurant: Restaurant = new Restaurant(null, '', '', [], '',
     '', "FOOD", '', '','', this.position,"photo_path",
     this.cityDTO,0,false);
 
-  constructor(private cityService: CityService, private router: Router, private restaurantService: RestaurantService) { }
+  constructor(private countryService: CountryService, private cityService: CityService, private router: Router, private restaurantService: RestaurantService) { }
 
-  setCityId(value) {
+  setChosenCountry(value) {
+    this.cityService.getAllByCountryId(value).subscribe(val => this.city = val);
+  }
+
+  setChosenCity(value) {
     this.restaurantService.cityId = value;
     this.cityService.getById(value).subscribe(val => this.cityDTO = val);
   }
 
   ngOnInit() {
-    this.cityService.getAll().subscribe(data => this.city = data);
-    // this.restaurantService.updateRestaurant(this.restaurant);
+    this.countryService.getAll().subscribe(data => this.countries = data);
   }
 
   create(){

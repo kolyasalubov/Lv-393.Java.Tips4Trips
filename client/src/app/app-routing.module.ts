@@ -29,7 +29,8 @@ import {HotelDetailsComponent} from "./components/hotel-details/hotel-details.co
 import {CityPlacesComponent} from "./components/city-places/city-places.component";
 import { CityComponent} from './components/city/city.component';
 import { CountryComponent} from './components/country/country.component';
-
+import { ImageDetails } from './components/image-details/image-details.component';
+import { ImageUploadFormComponent } from './components/image-upload-form/image-upload-form.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -64,8 +65,8 @@ const routes: Routes = [
   { path: 'test', component: TestComponent },
   { path: 'city_places/:id', component: CityPlacesComponent},
   { path: 'city', component: CityComponent },
-  { path: 'country', component: CountryComponent }
-
+  { path: 'country', component: CountryComponent },
+  { path: 'uploadimage', component: ImageUploadFormComponent }
 
 ];
 

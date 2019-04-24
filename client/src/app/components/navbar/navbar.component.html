@@ -9,7 +9,7 @@
               <div class="col-lg align-items-end">
                 <div class="form-group">
                   <label for="#" style="width: 50%">Country</label>
-                  <select required name="city" style="width: 50%; background-color: white" class="btn btn-default dropdown-toggle" data-toggle="dropdown" (change)="setCityId($event.target.value)">
+                  <select required name="city" style="width: 50%; background-color: white" class="btn btn-default dropdown-toggle" data-toggle="dropdown" (change)="setChosenCountry($event.target.value)">
                     <option disabled>Choose country</option>
                     <option *ngFor="let c of countries" value={{c.id}}>{{c.name}}</option>
                   </select>

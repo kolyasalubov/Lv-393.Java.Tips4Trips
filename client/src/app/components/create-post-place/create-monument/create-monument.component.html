@@ -73,16 +73,16 @@
                 </tr>
                 <tr>
                   <td><h4 style="margin-top: -20px;">
-                    <!--Country and -->City
+                    Country and City
                   </h4></td>
                   <td>
                     <div>
-                      <!--<select style="width: 45%;border-radius: 5px;margin-left: 10%;">-->
-                        <!--<option *ngFor="let c of city">{{c.name}}</option>-->
-                      <!--</select>-->
+                      <select class="form-control" style="width: 100%;border-radius: 5px;margin-left: 0%;" (change)="setChosenCountry($event.target.value)">
+                        <option disabled>Choose country</option>
+                        <option *ngFor="let c of countries" value={{c.id}}>{{c.name}}</option>
+                      </select>
 
-                      <!--style="width: 45%;border-radius: 5px;margin-left: 10%;"-->
-                      <select class="form-control" style="width: 100%; margin-left: -2px" (change)="setCityId($event.target.value)">
+                      <select class="form-control" style="width: 100%;border-radius: 5px;margin-left: 0%;" (change)="setChosenCity($event.target.value)">
                         <option disabled>Choose city</option>
                         <option *ngFor="let c of city" value={{c.id}}>{{c.name}}</option>
                       </select>
