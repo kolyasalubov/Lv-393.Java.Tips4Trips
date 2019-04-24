@@ -41,8 +41,12 @@ public class TripController {
     @GetMapping("/{id}")
     public ResponseEntity<TripDetailsDTO> getById(@PathVariable Long id) {
         logger.info("find group get by id method executing: ");
+        FindGroup findGroup = tripService.findById(id);
+        if (findGroup==null){
+            return null;
+        }
         return new ResponseEntity<>(findGroupConverter
-                .convertToDTO(tripService.findById(id)), HttpStatus.OK);
+                .convertToDTO(findGroup), HttpStatus.OK);
     }
 
 
@@ -58,6 +62,13 @@ public class TripController {
     public void deleteById(@PathVariable Long id) {
         logger.info("delete by id method executing: ");
         tripService.deleteById(id);
+    }
+
+    @PutMapping("/update")
+    public ResponseEntity<TripDetailsDTO> update(@RequestBody TripDetailsDTO findGroupDetailsDTO) {
+        logger.info("find group update post method executing:  ");
+        FindGroup findGroup = tripService.update(findGroupConverter.convertToEntity(findGroupDetailsDTO));
+        return new ResponseEntity<>(findGroupConverter.convertToDTO(findGroup), HttpStatus.CREATED);
     }
 
 

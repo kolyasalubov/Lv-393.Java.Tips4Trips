@@ -47,6 +47,7 @@ import { CityComponent } from './components/city/city.component';
 import { CountryComponent } from './components/country/country.component';
 import { CreateTripComponent } from './components/trip/create-trip/create-trip.component';
 import { LittleRouteComponent } from './components/route/little-route/little-route.component';
+import { ChangeComponent } from './components/trip/change/change.component';
 
 @NgModule({
   declarations: [
@@ -90,7 +91,8 @@ import { LittleRouteComponent } from './components/route/little-route/little-rou
     CityComponent,
     CountryComponent,
     CreateTripComponent,
-    LittleRouteComponent
+    LittleRouteComponent,
+    ChangeComponent
   ],
   imports: [
     BrowserModule,

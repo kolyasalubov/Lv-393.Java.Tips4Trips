@@ -30,6 +30,7 @@ import {CityPlacesComponent} from "./components/city-places/city-places.componen
 import { CityComponent} from './components/city/city.component';
 import { CountryComponent} from './components/country/country.component';
 import { CreateTripComponent} from './components/trip/create-trip/create-trip.component';
+import {ChangeComponent} from "./components/trip/change/change.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -73,6 +74,7 @@ const routes: Routes = [
   { path: 'trip', component: TripComponent },
   { path: 'trip/:id', component: TripInfoComponent },
   { path: 'create_trip', component: CreateTripComponent },
+  { path: 'edit_trip/:id', component: ChangeComponent },
   { path: 'test', component: TestComponent }
 ];
 

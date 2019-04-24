@@ -21,6 +21,5 @@ export class TripComponent implements OnInit {
       for (let entry of data) {
       this.tripInfoDTO.push(entry);
     }});
-    console.log(this.tripInfoDTO);
   }
 }
