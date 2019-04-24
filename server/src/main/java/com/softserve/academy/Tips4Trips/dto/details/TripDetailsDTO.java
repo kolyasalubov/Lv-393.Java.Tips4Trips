@@ -1,12 +1,12 @@
 package com.softserve.academy.Tips4Trips.dto.details;
 
 import com.softserve.academy.Tips4Trips.dto.info.AccountInfoDTO;
-import com.softserve.academy.Tips4Trips.dto.info.FindGroupInfoDTO;
+import com.softserve.academy.Tips4Trips.dto.info.TripInfoDTO;
 import com.softserve.academy.Tips4Trips.dto.info.RouteInfoDTO;
 
 import java.util.List;
 
-public class FindGroupDetailsDTO extends FindGroupInfoDTO {
+public class TripDetailsDTO extends TripInfoDTO {
 
     private AccountDetailsDTO creator;
 

@@ -1,28 +1,23 @@
 package com.softserve.academy.Tips4Trips.dto.converter;
 
-import com.softserve.academy.Tips4Trips.controller.FindGroupController;
-import com.softserve.academy.Tips4Trips.dto.FindGroupDTO;
-import com.softserve.academy.Tips4Trips.dto.details.FindGroupDetailsDTO;
-import com.softserve.academy.Tips4Trips.dto.info.AccountInfoDTO;
-import com.softserve.academy.Tips4Trips.dto.info.FindGroupInfoDTO;
+import com.softserve.academy.Tips4Trips.controller.TripController;
+import com.softserve.academy.Tips4Trips.dto.details.TripDetailsDTO;
+import com.softserve.academy.Tips4Trips.dto.info.TripInfoDTO;
 import com.softserve.academy.Tips4Trips.entity.administration.Account;
 import com.softserve.academy.Tips4Trips.entity.entertainment.mountains.FindGroup;
 import com.softserve.academy.Tips4Trips.entity.Route;
-import com.softserve.academy.Tips4Trips.repository.RouteRepository;
 import com.softserve.academy.Tips4Trips.service.AccountService;
 import com.softserve.academy.Tips4Trips.service.RouteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.mvc.ControllerLinkBuilder;
 import org.springframework.stereotype.Component;
 
-import javax.security.sasl.AuthorizeCallback;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Component
-public class FindGroupConverter implements Converter<FindGroup, FindGroupDetailsDTO> {
+public class FindGroupConverter implements Converter<FindGroup, TripDetailsDTO> {
 
     private AccountConverter accountConverter;
     private RouteConverter routeConverter;
@@ -41,7 +36,7 @@ public class FindGroupConverter implements Converter<FindGroup, FindGroupDetails
     }
 
     @Override
-    public FindGroup convertToEntity(FindGroupDetailsDTO findGroupDetailsDTO) {
+    public FindGroup convertToEntity(TripDetailsDTO findGroupDetailsDTO) {
         FindGroup findGroup = new FindGroup();
         findGroup.setId(findGroupDetailsDTO.getId());
         findGroup.setName(findGroupDetailsDTO.getName());
@@ -56,14 +51,15 @@ public class FindGroupConverter implements Converter<FindGroup, FindGroupDetails
                 .map(p -> accountService.findById(p.getId()))
                 .collect(Collectors.toList())
         );
+
         return findGroup;
     }
 
 
     @Override
-    public FindGroupDetailsDTO convertToDTO(FindGroup findGroup) {
-        FindGroupDetailsDTO findGroupDetailsDTO = (FindGroupDetailsDTO)
-                toInfoDTO(new FindGroupDetailsDTO(), findGroup);
+    public TripDetailsDTO convertToDTO(FindGroup findGroup) {
+        TripDetailsDTO findGroupDetailsDTO = (TripDetailsDTO)
+                toInfoDTO(new TripDetailsDTO(), findGroup);
 
         Account creator = findGroup.getCreator();
         findGroupDetailsDTO.setCreator(accountConverter.convertToDTO(creator));
@@ -77,8 +73,8 @@ public class FindGroupConverter implements Converter<FindGroup, FindGroupDetails
     }
 
 
-    public List<FindGroupInfoDTO> convertToInfoDTO(final List<FindGroup> findGroupList) {
-        List<FindGroupInfoDTO> dtos = new ArrayList<>();
+    public List<TripInfoDTO> convertToInfoDTO(final List<FindGroup> findGroupList) {
+        List<TripInfoDTO> dtos = new ArrayList<>();
         if (findGroupList != null) {
             dtos = findGroupList.stream().map(this::convertToInfoDTO).collect(Collectors.toList());
         }
@@ -86,30 +82,30 @@ public class FindGroupConverter implements Converter<FindGroup, FindGroupDetails
     }
 
 
-    public FindGroupInfoDTO convertToInfoDTO(FindGroup findGroup) {
-        return toInfoDTO(new FindGroupInfoDTO(), findGroup);
+    public TripInfoDTO convertToInfoDTO(FindGroup findGroup) {
+        return toInfoDTO(new TripInfoDTO(), findGroup);
     }
 
 
-    private FindGroupInfoDTO toInfoDTO(FindGroupInfoDTO findGroupInfoDTO, FindGroup findGroup) {
-        findGroupInfoDTO.setId(findGroup.getId());
-        findGroupInfoDTO.setName(findGroup.getName());
+    private TripInfoDTO toInfoDTO(TripInfoDTO tripInfoDTO, FindGroup findGroup) {
+        tripInfoDTO.setId(findGroup.getId());
+        tripInfoDTO.setName(findGroup.getName());
 
         String description = findGroup.getDescription();
         String shortDescription = description.length() > MAX_DESCRIPTION_LENGTH
                 ? description.substring(0, MAX_DESCRIPTION_LENGTH) : description;
-        findGroupInfoDTO.setDescription(shortDescription + "...");
+        tripInfoDTO.setDescription(shortDescription + "...");
 
-        findGroupInfoDTO.setDescription(description + "...");
-        findGroupInfoDTO.setCreationDate(findGroup.getCreationDate());
-        findGroupInfoDTO.setStartDate(findGroup.getStartDate());
-        findGroupInfoDTO.setSelf(ControllerLinkBuilder
+        tripInfoDTO.setDescription(description + "...");
+        tripInfoDTO.setCreationDate(findGroup.getCreationDate());
+        tripInfoDTO.setStartDate(findGroup.getStartDate());
+        tripInfoDTO.setSelf(ControllerLinkBuilder
                 .linkTo(ControllerLinkBuilder
-                        .methodOn(FindGroupController.class)
+                        .methodOn(TripController.class)
                         .getById(findGroup.getId()))
                 .withSelfRel().getHref());
 
-        return findGroupInfoDTO;
+        return tripInfoDTO;
     }
 
 }

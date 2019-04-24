@@ -5,7 +5,7 @@ import {PlaceService} from "../../../place.service";
 import {Router} from "@angular/router";
 import {AuthService} from "../../authentication/auth.service";
 import {AccountInfo} from "../../../model/account-info.model";
-import {FindGroupDetailsDTO} from "../../../model/trip-details";
+import {TripDetailsDTO} from "../../../model/trip-details";
 import {Account} from "../../../model/account.model";
 import {TripService} from "../trip/trip.service";
 
@@ -15,8 +15,9 @@ import {TripService} from "../trip/trip.service";
   styleUrls: ['./create-trip.component.css']
 })
 export class CreateTripComponent implements OnInit {
-  trip: FindGroupDetailsDTO;
+  trip: TripDetailsDTO;
   routeName: string;
+  subscribers: AccountInfo[]=[];
 
   constructor(
     private routeService: RouteService,
@@ -25,7 +26,7 @@ export class CreateTripComponent implements OnInit {
     private authService: AuthService,
     private tripService: TripService
   ) {
-    this.trip = new FindGroupDetailsDTO(
+    this.trip = new TripDetailsDTO(
       null,
       null,
       null,
@@ -39,7 +40,7 @@ export class CreateTripComponent implements OnInit {
 
   ngOnInit() {
     this.authService.getCurrentUser().subscribe(data => {
-      this.trip.creator= new Account(null,
+      this.trip.creator = new Account(null,
         null,
         null,
         null,
@@ -47,7 +48,12 @@ export class CreateTripComponent implements OnInit {
         null,
         null,
         null)
-      this.trip.creator.id = data.id;
+      this.subscribers[0]= new AccountInfo();
+      this.trip.creator = data;
+      this.trip.subscribers=this.subscribers;
+      this.trip.subscribers[0].id = data.id;
+      this.trip.subscribers[0].lastName = data.lastName;
+      this.trip.subscribers[0].firstName = data.firstName;
     });
   }
 
@@ -64,11 +70,13 @@ export class CreateTripComponent implements OnInit {
 
   save(): void {
     if (this.validate()) {
+      this.trip.creationDate = new Date();
       console.log(this.trip);
-      // this.tripService.createTrip(this.trip).subscribe(result => this.trip = result);
-      // setTimeout(() => {
-      //   this.router.navigate(['routes']);
-      // }, 2000);
+
+      this.tripService.createTrip(this.trip).subscribe(result => this.trip = result);
+      setTimeout(() => {
+        window.location.href= 'http://localhost:4200/trip';
+      }, 100);
     }
   }
 

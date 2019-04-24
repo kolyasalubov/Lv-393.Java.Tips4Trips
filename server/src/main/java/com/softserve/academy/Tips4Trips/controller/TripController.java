@@ -1,11 +1,10 @@
 package com.softserve.academy.Tips4Trips.controller;
 
-import com.softserve.academy.Tips4Trips.dto.FindGroupDTO;
 import com.softserve.academy.Tips4Trips.dto.converter.FindGroupConverter;
-import com.softserve.academy.Tips4Trips.dto.details.FindGroupDetailsDTO;
-import com.softserve.academy.Tips4Trips.dto.info.FindGroupInfoDTO;
+import com.softserve.academy.Tips4Trips.dto.details.TripDetailsDTO;
+import com.softserve.academy.Tips4Trips.dto.info.TripInfoDTO;
 import com.softserve.academy.Tips4Trips.entity.entertainment.mountains.FindGroup;
-import com.softserve.academy.Tips4Trips.service.FindGroupService;
+import com.softserve.academy.Tips4Trips.service.TripService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,41 +15,41 @@ import java.util.List;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/findgroups")
-public class FindGroupController {
+@RequestMapping("/trips")
+public class TripController {
 
-    private static final Logger logger = Logger.getLogger(FindGroupController.class);
+    private static final Logger logger = Logger.getLogger(TripController.class);
 
-    private FindGroupService findGroupService;
+    private TripService tripService;
     private FindGroupConverter findGroupConverter;
 
     @Autowired
-    public FindGroupController(FindGroupService findGroupService,FindGroupConverter findGroupConverter) {
-        this.findGroupService = findGroupService;
+    public TripController(TripService tripService, FindGroupConverter findGroupConverter) {
+        this.tripService = tripService;
         this.findGroupConverter = findGroupConverter;
     }
 
 
     @GetMapping
-    public ResponseEntity<List<FindGroupInfoDTO>> getAll() {
+    public ResponseEntity<List<TripInfoDTO>> getAll() {
         logger.info("find group get all method executing: ");
         return new ResponseEntity<>(findGroupConverter
-                .convertToInfoDTO(findGroupService.findAll()), HttpStatus.OK);
+                .convertToInfoDTO(tripService.findAll()), HttpStatus.OK);
     }
 
 
     @GetMapping("/{id}")
-    public ResponseEntity<FindGroupDetailsDTO> getById(@PathVariable Long id) {
+    public ResponseEntity<TripDetailsDTO> getById(@PathVariable Long id) {
         logger.info("find group get by id method executing: ");
         return new ResponseEntity<>(findGroupConverter
-                .convertToDTO(findGroupService.findById(id)), HttpStatus.OK);
+                .convertToDTO(tripService.findById(id)), HttpStatus.OK);
     }
 
 
     @PostMapping("/create")
-    public ResponseEntity<FindGroupDetailsDTO> createPost(@RequestBody FindGroupDetailsDTO findGroupDetailsDTO) {
+    public ResponseEntity<TripDetailsDTO> createPost(@RequestBody TripDetailsDTO findGroupDetailsDTO) {
         logger.info("find group create post method executing: ");
-        FindGroup findGroup = findGroupService.createFindGroup(findGroupConverter.convertToEntity(findGroupDetailsDTO));
+        FindGroup findGroup = tripService.createFindGroup(findGroupConverter.convertToEntity(findGroupDetailsDTO));
         return new ResponseEntity<>(findGroupConverter.convertToDTO(findGroup), HttpStatus.CREATED);
 
     }
@@ -58,7 +57,7 @@ public class FindGroupController {
     @DeleteMapping("/delete/{id}")
     public void deleteById(@PathVariable Long id) {
         logger.info("delete by id method executing: ");
-        findGroupService.deleteById(id);
+        tripService.deleteById(id);
     }
 
 
