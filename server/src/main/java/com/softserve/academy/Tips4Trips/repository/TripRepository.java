@@ -8,8 +8,14 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 @Repository
 public interface TripRepository extends JpaRepository<FindGroup, Long> {
+
+    Page<FindGroup> findAllByOrderByIdDesc(Pageable pageable);
+
     List<FindGroup> findByNameContainingIgnoreCase(String name);
 
     List<FindGroup> findByCreator(Account creator);
