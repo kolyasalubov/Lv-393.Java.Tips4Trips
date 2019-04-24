@@ -58,6 +58,7 @@ const routes: Routes = [
   {path: 'create_route', component: CreateRouteComponent},
   {path: 'trips/create', component: CreateRouteComponent},
   {path: 'list_of_users', component: ListOfUsersComponent},
+  {path: 'list_of_users/:id', component: ListOfUsersComponent},
   {path: 'blog', component: BlogComponent},
   {path: 'blog/:id', component: BlogComponent},
   {path: 'about', component: AboutePageComponent},
