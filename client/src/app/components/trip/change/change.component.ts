@@ -28,17 +28,17 @@ export class ChangeComponent implements OnInit {
     });
     if (!isNaN(this.id) && this.id > 0) {
       this.tripService.getById(this.id).subscribe(data => {
-        if (data!=null) {
+        if (data != null) {
           this.trip = data;
           console.log('null')
         }
         else {
-          window.location.href = 'http://localhost:4200/trip';
+          window.location.href = 'http://localhost:4200/trip/page';
         }
       });
     }
     else {
-      window.location.href = 'http://localhost:4200/trip';
+      window.location.href = 'http://localhost:4200/trip/page';
     }
   }
 
@@ -73,8 +73,9 @@ export class ChangeComponent implements OnInit {
   }
 
   removePlace(): void {
-    this.tripService.deleteTrip(this.trip.id).subscribe(result => {    });
-    window.location.href = 'http://localhost:4200/trip';
+    this.tripService.deleteTrip(this.trip.id).subscribe(result => {
+    });
+    window.location.href = 'http://localhost:4200/trip/page';
   }
 }
 

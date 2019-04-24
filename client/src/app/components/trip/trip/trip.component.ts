@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {TripService} from './trip.service';
-import {Router} from '@angular/router';
-import { TripInfoDTO } from 'src/app/model/trip-info';
+import {ActivatedRoute, Router} from '@angular/router';
+import {TripInfoDTO} from 'src/app/model/trip-info';
+import {PageTripsmodel} from "../../../model/pageTripsmodel";
+
 @Component({
   selector: 'app-trip',
   templateUrl: './trip.component.html',
@@ -9,17 +11,32 @@ import { TripInfoDTO } from 'src/app/model/trip-info';
 })
 export class TripComponent implements OnInit {
 
-  tripInfoDTO: TripInfoDTO[] = [] ;
+  id: number;
+  max: number;
+  num: number;
+  postP: TripInfoDTO[] = null;
+  pagePost: PageTripsmodel = null;
 
-  constructor(private tripService: TripService,private router: Router) {
+  constructor(private tripService: TripService, private router: Router, private activatedRoute: ActivatedRoute) {
   }
 
+  getPageTrip(page: number): void {
+    this.tripService.getPageTrips(page)
+      .subscribe(data => {
+        this.pagePost = data;
+        this.max = this.pagePost.totalPages;
+        this.num = this.pagePost.number;
+        this.postP = this.pagePost.content;
+      });
+  }
 
   ngOnInit() {
-    this.tripService.getAll().subscribe(data => {
-        
-      for (let entry of data) {
-      this.tripInfoDTO.push(entry);
-    }});
+    this.activatedRoute.paramMap.subscribe(params => {
+      this.id = +params.get('id');
+    });
+    if (isNaN(this.id) || this.id < 1) {
+      this.id = 1;
+    }
+    this.getPageTrip(this.id);
   }
 }

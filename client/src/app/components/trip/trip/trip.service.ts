@@ -4,6 +4,9 @@ import {HttpClient} from '@angular/common/http';
 import {TripDetailsDTO} from "../../../model/trip-details";
 import {TripInfoDTO} from 'src/app/model/trip-info';
 import {ApiResponse} from "../../../model/api.response";
+import {PagelittlepostModel} from "../../../model/pagelittlepost.model";
+import {map} from "rxjs/operators";
+import {PageTripsmodel} from "../../../model/pageTripsmodel";
 
 @Injectable({
   providedIn: 'root'
@@ -33,6 +36,14 @@ export class TripService {
 
   deleteTrip(id: number): Observable<TripDetailsDTO> {
     return this.http.delete<TripDetailsDTO>(this.baseUrl + 'delete/' + id);
+  }
+
+  getPageTrips(page: number): Observable<PageTripsmodel> {
+    return this.http.get<PageTripsmodel>(this.baseUrl + 'page/' + page)
+      .pipe(
+        map(response => {
+          return response;
+        }));
   }
 }
 

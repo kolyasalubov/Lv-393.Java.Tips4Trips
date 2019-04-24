@@ -40,22 +40,22 @@ export class CreateTripComponent implements OnInit {
   }
 
   ngOnInit() {
-      this.authService.getCurrentUser().subscribe(data => {
-        this.trip.creator = new Account(null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null)
-        this.subscribers[0] = new AccountInfo();
-        this.trip.creator = data;
-        this.trip.subscribers = this.subscribers;
-        this.trip.subscribers[0].id = data.id;
-        this.trip.subscribers[0].lastName = data.lastName;
-        this.trip.subscribers[0].firstName = data.firstName;
-      });
+    this.authService.getCurrentUser().subscribe(data => {
+      this.trip.creator = new Account(null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null)
+      this.subscribers[0] = new AccountInfo();
+      this.trip.creator = data;
+      this.trip.subscribers = this.subscribers;
+      this.trip.subscribers[0].id = data.id;
+      this.trip.subscribers[0].lastName = data.lastName;
+      this.trip.subscribers[0].firstName = data.firstName;
+    });
   }
 
 
@@ -77,7 +77,7 @@ export class CreateTripComponent implements OnInit {
 
       this.tripService.createTrip(this.trip).subscribe(result => this.trip = result);
       setTimeout(() => {
-        window.location.href = 'http://localhost:4200/trip';
+        window.location.href = 'http://localhost:4200/trip/page';
       }, 100);
     }
   }
