@@ -10,6 +10,7 @@ export class HeaderComponent implements OnInit {
   show: boolean = false;
 
   constructor() {
+    setTimeout(()=>{},40);
   }
 
   ngOnInit() {

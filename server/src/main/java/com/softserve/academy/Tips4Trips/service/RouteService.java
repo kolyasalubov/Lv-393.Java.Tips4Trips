@@ -74,4 +74,13 @@ public class RouteService {
         // delete route from posts...
         repository.findById(id).ifPresent(repository::delete);
     }
+
+    public Route findByName(String name) {
+        Optional<Route> route = repository.findByName(name);
+        if (route.isPresent()) {
+            return route.get();
+        } else {
+            throw new NoSuchElementException();
+        }
+    }
 }

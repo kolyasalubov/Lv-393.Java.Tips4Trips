@@ -45,6 +45,8 @@ import { HotelDetailsComponent } from './components/hotel-details/hotel-details.
 import { CityPlacesComponent } from './components/city-places/city-places.component';
 import { CityComponent } from './components/city/city.component';
 import { CountryComponent } from './components/country/country.component';
+import { CreateTripComponent } from './components/trip/create-trip/create-trip.component';
+import { LittleRouteComponent } from './components/route/little-route/little-route.component';
 
 @NgModule({
   declarations: [
@@ -86,7 +88,9 @@ import { CountryComponent } from './components/country/country.component';
     HotelDetailsComponent,
     CityPlacesComponent,
     CityComponent,
-    CountryComponent
+    CountryComponent,
+    CreateTripComponent,
+    LittleRouteComponent
   ],
   imports: [
     BrowserModule,
