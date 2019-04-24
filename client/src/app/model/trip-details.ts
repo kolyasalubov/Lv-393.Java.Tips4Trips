@@ -3,7 +3,7 @@ import {AccountInfo} from './account-info.model'
 import {RouteInfo} from "./route-info.model";
 import {Route} from "./route.model";
 
-export class FindGroupDetailsDTO {
+export class TripDetailsDTO {
   id: number;
   name :string;
   description: string;

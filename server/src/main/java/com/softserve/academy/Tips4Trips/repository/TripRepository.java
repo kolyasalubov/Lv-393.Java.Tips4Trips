@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface FindGroupRepository extends JpaRepository<FindGroup, Long> {
+public interface TripRepository extends JpaRepository<FindGroup, Long> {
     List<FindGroup> findByNameContainingIgnoreCase(String name);
 
     List<FindGroup> findByCreator(Account creator);

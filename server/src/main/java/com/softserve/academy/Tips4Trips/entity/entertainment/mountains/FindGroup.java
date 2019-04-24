@@ -11,6 +11,20 @@ import java.util.List;
 @Entity
 @Table(name = "find_groups")
 public class FindGroup {
+    @Override
+    public String toString() {
+        return "FindGroup{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", creationDate=" + creationDate +
+                ", startDate=" + startDate +
+                ", creator=" + creator +
+                ", route=" + route +
+                ", subscribers=" + subscribers +
+                '}';
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
