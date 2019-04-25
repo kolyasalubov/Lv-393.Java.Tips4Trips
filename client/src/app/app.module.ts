@@ -48,6 +48,7 @@ import { CountryComponent } from './components/country/country.component';
 import { CreateTripComponent } from './components/trip/create-trip/create-trip.component';
 import { LittleRouteComponent } from './components/route/little-route/little-route.component';
 import { ChangeComponent } from './components/trip/change/change.component';
+import { ErrorComponent } from './components/error/error.component';
 
 @NgModule({
   declarations: [
@@ -92,7 +93,8 @@ import { ChangeComponent } from './components/trip/change/change.component';
     CountryComponent,
     CreateTripComponent,
     LittleRouteComponent,
-    ChangeComponent
+    ChangeComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
