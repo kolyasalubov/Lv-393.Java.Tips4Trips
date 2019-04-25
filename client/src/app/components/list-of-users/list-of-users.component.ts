@@ -34,7 +34,7 @@ export class ListOfUsersComponent implements OnInit {
         this.max = this.pagePost.totalPages;
         this.num = this.pagePost.number;
         this.postP = this.pagePost.content;
-      });
+      },err => window.location.href = 'http://localhost:4200/404');
   }
 
   ngOnInit() {
