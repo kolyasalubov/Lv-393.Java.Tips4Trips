@@ -1,20 +1,10 @@
-package com.softserve.academy.Tips4Trips.dto;
+package com.softserve.academy.Tips4Trips.dto.authentication;
 
-public class UserDTO {
-
-    private Long id;
+public class SignInFormDTO {
 
     private String login;
 
     private String password;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getLogin() {
         return login;
@@ -31,5 +21,4 @@ public class UserDTO {
     public void setPassword(String password) {
         this.password = password;
     }
-
 }
