@@ -1,23 +1,24 @@
-package com.softserve.academy.Tips4Trips.controller;
+package com.softserve.academy.Tips4Trips.controller.authentication;
 
 import com.softserve.academy.Tips4Trips.dto.UserAccountDTO;
 import com.softserve.academy.Tips4Trips.dto.UserDTO;
+import com.softserve.academy.Tips4Trips.dto.authentication.SignInFormDTO;
+import com.softserve.academy.Tips4Trips.dto.authentication.SignUpFormDTO;
 import com.softserve.academy.Tips4Trips.dto.converter.AccountConverter;
+import com.softserve.academy.Tips4Trips.dto.converter.SignInFormConverter;
+import com.softserve.academy.Tips4Trips.dto.converter.SignUpFormConverter;
 import com.softserve.academy.Tips4Trips.dto.converter.UserConverter;
 import com.softserve.academy.Tips4Trips.dto.details.AccountDetailsDTO;
 import com.softserve.academy.Tips4Trips.entity.administration.Account;
 import com.softserve.academy.Tips4Trips.entity.administration.User;
 import com.softserve.academy.Tips4Trips.security.AuthenticationConstant;
 import com.softserve.academy.Tips4Trips.service.AccountService;
-import com.softserve.academy.Tips4Trips.service.UserService;
 import com.softserve.academy.Tips4Trips.service.AuthenticationServiceImpl;
-
+import com.softserve.academy.Tips4Trips.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
-
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
@@ -27,7 +28,7 @@ import javax.validation.Valid;
 @RestController
 @CrossOrigin
 @RequestMapping("/authentication")
-public class AuthenticationTestController {
+public class AuthenticationController {
 
     @Value("${app.cookieExpirationInS}")
     private int cookieExpiration;
@@ -42,15 +43,16 @@ public class AuthenticationTestController {
     AccountService accountService;
 
     @Autowired
-    UserConverter userConverter;
+    SignInFormConverter signInFormConverter;
 
     @Autowired
-    AccountConverter accountConverter;
+    SignUpFormConverter signUpFormConverter;
+
 
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(HttpServletResponse response,
-            @Valid @RequestBody UserDTO userDto) {
-        User user = userConverter.convertToEntity(userDto);
+            @Valid @RequestBody SignInFormDTO signInFormDTO) {
+        User user = signInFormConverter.convertToEntity(signInFormDTO);
         String token = authenticationService.login(user);
         HttpHeaders responseHeaders = new HttpHeaders();
         responseHeaders.set(AuthenticationConstant
@@ -65,13 +67,12 @@ public class AuthenticationTestController {
 
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(HttpServletResponse response,
-            @Valid @RequestBody UserAccountDTO userAccountDTO)
+            @Valid @RequestBody SignUpFormDTO signUpFormDTO)
                 throws Exception {
 
-        UserDTO userDTO = userAccountDTO.getUser();
-        AccountDetailsDTO accountDTO = userAccountDTO.getAccount();
-        Account account = accountConverter.convertToEntity(accountDTO);
-        User user = userConverter.convertToEntity(userDTO);
+        User user = signUpFormConverter.convertToUser(signUpFormDTO);
+        Account account = signUpFormConverter.convertToEntity(signUpFormDTO);
+
 
         String token = authenticationService.register(user, account);
         HttpHeaders responseHeaders = new HttpHeaders();

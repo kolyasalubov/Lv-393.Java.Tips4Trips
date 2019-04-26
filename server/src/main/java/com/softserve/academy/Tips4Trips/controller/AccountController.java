@@ -26,7 +26,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("/accounts")
 public class AccountController {
 

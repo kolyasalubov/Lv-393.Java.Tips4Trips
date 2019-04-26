@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
  
 import { AuthService } from '../auth.service';
 import { TokenStorageService } from '../token/token-storage.service';
-import { AuthLoginInfo } from './login-info';
+import { SignInForm } from '../../../model/authentication/signin-form.model';
 import { Router } from "@angular/router";
 
 @Component({
@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
   isLoggedIn = false;
   isLoginFailed = false;
   errorMessage = '';
-  private loginInfo: AuthLoginInfo;
+  private loginInfo: SignInForm;
  
   constructor(private authService: AuthService, private tokenStorage: TokenStorageService,
     private router: Router) { }
@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
  
   onSubmit() {
  
-    this.loginInfo = new AuthLoginInfo(
+    this.loginInfo = new SignInForm(
       this.loginForm.login,
       this.loginForm.password);
  
