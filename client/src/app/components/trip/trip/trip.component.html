@@ -17,50 +17,35 @@
 <section class="ftco-section bg-light">
   <div class="container">
     <div class="row d-flex">
-        <div class="col-md-4 d-flex ftco-animate" *ngFor="let trip of tripInfoDTO">
-            <div class="blog-entry justify-content-end" style="width: 100%;">
+      <div class="col-md-4 d-flex ftco-animate" *ngFor="let trip of postP">
+        <div class="blog-entry justify-content-end" style="width: 100%;">
 
-              <a routerLink="/trip/{{trip.id}}" class="block-20" style="background-image: url('../../../../assets/images/image_1.jpg');">
-              </a>
-              <div class="text mt-3 float-right d-block">
-                <div class="d-flex align-items-center pt-2 mb-4 topp">
-                  <div class="one">
-                    <span class="day">{{trip.id}}</span>
-                  </div>
-                  <div class="two">
-                    <span class="yr"></span>
-                    <span class="mos">{{trip.creationDate}}</span>
-                  </div>
-                </div>
-                <h3 class="heading"><a href="single_page">{{trip.name}}</a></h3>
-                <p>{{trip.description}}</p>
-              </div> 
-
+          <a routerLink="/trip/{{trip.id}}" class="block-20"
+             style="background-image: url('../../../../assets/images/image_1.jpg');">
+          </a>
+          <div class="text mt-3 float-right d-block">
+            <div class="d-flex align-items-center pt-2 mb-4 topp">
+              <div class="one">
+                <span class="day">{{trip.id}}</span>
+              </div>
+              <div class="two">
+                <span class="yr"></span>
+                <span class="mos">{{trip.creationDate}}</span>
+              </div>
+            </div>
+            <h3 class="heading"><a href="single_page">{{trip.name}}</a></h3>
+            <p>{{trip.description}}</p>
+          </div>
 
 
         </div>
       </div>
     </div>
 
-    <div class="row mt-5">
-      <div class="col text-center">
-        <div class="block-27">
-          <ul>
-            <li><a href="#">&lt;</a></li>
-            <li class="active"><span>1</span></li>
-            <li><a href="#">&gt;</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
+    <app-pagination [number]="pagePost.number" [total]="pagePost.totalPages"
+                    [link]="'http://localhost:4200/trip/page/'"></app-pagination>
   </div>
 </section>
-
-
-
-
-
-
 
 
 <section class="ftco-subscribe" style="background-image: url(../../../../assets/images/bg_1.jpg);">

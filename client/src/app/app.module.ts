@@ -47,6 +47,11 @@ import { CityComponent } from './components/city/city.component';
 import { CountryComponent } from './components/country/country.component';
 import { CreateTripComponent } from './components/trip/create-trip/create-trip.component';
 import { LittleRouteComponent } from './components/route/little-route/little-route.component';
+import { ChangeComponent } from './components/trip/change/change.component';
+import { ErrorComponent } from './components/error/error.component';
+import { ActiveTripComponent } from './components/authentication/account/active-trip/active-trip.component';
+import { LikeAccountComponent } from './components/authentication/account/like-account/like-account.component';
+import { CommentAccountComponent } from './components/authentication/account/comment-account/comment-account.component';
 
 @NgModule({
   declarations: [
@@ -90,7 +95,12 @@ import { LittleRouteComponent } from './components/route/little-route/little-rou
     CityComponent,
     CountryComponent,
     CreateTripComponent,
-    LittleRouteComponent
+    LittleRouteComponent,
+    ChangeComponent,
+    ErrorComponent,
+    ActiveTripComponent,
+    LikeAccountComponent,
+    CommentAccountComponent
   ],
   imports: [
     BrowserModule,

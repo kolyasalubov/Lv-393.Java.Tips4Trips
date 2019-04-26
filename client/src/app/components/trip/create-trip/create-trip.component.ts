@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Route} from "../../../model/route.model";
 import {RouteService} from "../../../route.service";
 import {PlaceService} from "../../../place.service";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {AuthService} from "../../authentication/auth.service";
 import {AccountInfo} from "../../../model/account-info.model";
 import {TripDetailsDTO} from "../../../model/trip-details";
@@ -17,14 +17,15 @@ import {TripService} from "../trip/trip.service";
 export class CreateTripComponent implements OnInit {
   trip: TripDetailsDTO;
   routeName: string;
-  subscribers: AccountInfo[]=[];
+  subscribers: AccountInfo[] = [];
 
   constructor(
     private routeService: RouteService,
     private placeService: PlaceService,
     private router: Router,
     private authService: AuthService,
-    private tripService: TripService
+    private tripService: TripService,
+    private activatedRoute: ActivatedRoute
   ) {
     this.trip = new TripDetailsDTO(
       null,
@@ -48,14 +49,15 @@ export class CreateTripComponent implements OnInit {
         null,
         null,
         null)
-      this.subscribers[0]= new AccountInfo();
+      this.subscribers[0] = new AccountInfo();
       this.trip.creator = data;
-      this.trip.subscribers=this.subscribers;
+      this.trip.subscribers = this.subscribers;
       this.trip.subscribers[0].id = data.id;
       this.trip.subscribers[0].lastName = data.lastName;
       this.trip.subscribers[0].firstName = data.firstName;
     });
   }
+
 
   addRoute(): void {
     if (this.routeName == null) {
@@ -75,7 +77,7 @@ export class CreateTripComponent implements OnInit {
 
       this.tripService.createTrip(this.trip).subscribe(result => this.trip = result);
       setTimeout(() => {
-        window.location.href= 'http://localhost:4200/trip';
+        window.location.href = 'http://localhost:4200/trip/page';
       }, 100);
     }
   }

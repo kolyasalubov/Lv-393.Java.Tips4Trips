@@ -20,7 +20,7 @@
         <div class="row blog-entries element-animate">
           <div class="col-md-12 col-lg-8 main-content" style="padding-left: 0px;">
             <form enctype="multipart/form-data">
-              <h1 class="mb-4">Create a new trip</h1>
+              <h1 class="mb-4">Change your Trip</h1>
               <div class="col-md-8 col-lg-6 main-content">
                 <img src="" alt="Image" class="img-fluid mb-5">
 
@@ -100,10 +100,17 @@
                                    margin-top: 5%;
                                    font-size: 90%;
                                    border-radius:5px;
-                                   margin-bottom: 30px;" type="submit" (click)="save();" value="Create a  new Trip"><br>
+                                   margin-bottom: 30px;" type="submit" (click)="save();" value="Change your Trip"><br>
             </form>
           </div>
           <div class="col-md-12 col-lg-4 sidebar">
+            <form>
+            <input id= "delete"class="category submit" style="padding: 3%;
+                                   margin-top: 5%;
+                                   font-size: 90%;
+                                   border-radius:5px;
+                                   margin-bottom: 30px;" type="submit" (click)="removePlace();" value="DELETE"><br>
+            </form>
           </div>
 
         </div>
