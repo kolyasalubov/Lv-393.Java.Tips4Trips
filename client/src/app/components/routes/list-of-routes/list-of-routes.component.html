@@ -25,6 +25,7 @@
             <h3 class="heading"><a href="/routes/{{route.id}}">{{route.name}}</a></h3>
             <p>{{route.creationDate}}</p>
             <p>Created by <a href="">{{route.authorInfo.firstName}} {{route.authorInfo.lastName}}</a></p>
+            <button *ngIf="hasAuthority" (click)="deleteRoute(route.id)">delete</button>
           </div>
         </div>
       </div>

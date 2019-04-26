@@ -2,6 +2,8 @@ package com.softserve.academy.Tips4Trips.entity.entertainment.mountains;
 
 import com.softserve.academy.Tips4Trips.entity.administration.Account;
 import com.softserve.academy.Tips4Trips.entity.Route;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -40,6 +42,7 @@ public class FindGroup {
 
     @NotNull
     @ManyToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "route_id",referencedColumnName = "id",nullable = false)
     private Route route;
 

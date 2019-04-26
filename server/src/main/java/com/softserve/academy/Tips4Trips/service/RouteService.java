@@ -3,6 +3,7 @@ package com.softserve.academy.Tips4Trips.service;
 import com.softserve.academy.Tips4Trips.entity.Route;
 import com.softserve.academy.Tips4Trips.entity.administration.Account;
 import com.softserve.academy.Tips4Trips.repository.AccountRepository;
+import com.softserve.academy.Tips4Trips.repository.PostRepository;
 import com.softserve.academy.Tips4Trips.repository.RouteRepository;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,13 +21,16 @@ public class RouteService {
 
     private RouteRepository repository;
     private AccountRepository accountRepository;
+    private PostRepository postRepository;
 
 
     @Autowired
     public RouteService(RouteRepository repository,
-                        AccountRepository accountRepository) {
+                        AccountRepository accountRepository,
+                        PostRepository postRepository) {
         this.repository = repository;
         this.accountRepository = accountRepository;
+        this.postRepository = postRepository;
     }
 
     public List<Route> findAll() {
@@ -72,6 +76,9 @@ public class RouteService {
 
     public void deleteById(Long id) {
         // delete route from posts...
-        repository.findById(id).ifPresent(repository::delete);
+        repository.findById(id).ifPresent(route -> {
+            postRepository.findByRoute(route).forEach(post -> post.setRoute(null));
+            repository.delete(route);
+        });
     }
 }

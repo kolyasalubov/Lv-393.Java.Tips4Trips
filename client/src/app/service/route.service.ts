@@ -24,8 +24,8 @@ export class RouteService {
   updateRoute(route: Route): Observable<Route> {
     return this.http.put<Route>(this.baseUrl + "update", route);
   }
-  deleteRoute(route: Route): Observable<Route> {
-    return this.http.delete<Route>(this.baseUrl + "delete/" + route.id);
+  deleteRoute(id: number): Observable<Route> {
+    return this.http.delete<Route>(this.baseUrl + "delete/" + id);
   }
 
 }
