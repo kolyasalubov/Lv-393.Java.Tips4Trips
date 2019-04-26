@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { RouteInfo } from '../../model/route-info.model';
-import { RouteService } from '../../route.service';
+import { RouteInfo } from '../../../model/route-info.model';
+import { RouteService } from '../../../service/route.service';
 
 @Component({
   selector: 'app-list-of-routes',

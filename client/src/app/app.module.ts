@@ -18,7 +18,7 @@ import {RecentStoriesComponent} from './components/home/recent-stories/recent-st
 import {NewsSubscribeComponent} from './components/home/news-subscribe/news-subscribe.component';
 import {CreatePostComponent} from './components/create-post/create-post.component';
 import {CreatePostPlaceComponent} from './components/create-post-place/create-post-place.component';
-import {CreateRouteComponent} from './components/create-route/create-route.component';
+import {CreateRouteComponent} from './components/routes/create-route/create-route.component';
 import {LikeComponent} from './components/blog/like/like.component';
 import {SignupComponent} from './components/authentication/signup/signup.component';
 import {ListOfUsersComponent} from './components/list-of-users/list-of-users.component';
@@ -31,8 +31,8 @@ import {LittlePostComponent} from './components/blog/little-post/little-post.com
 import {LessPostComponent} from './components/blog/less-post/less-post.component';
 import {CreateHotelComponent} from './components/create-post-place/create-hotel/create-hotel.component';
 import {AccountEditComponent} from './components/authentication/account-edit/account-edit.component';
-import {ListOfRoutesComponent} from './components/list-of-routes/list-of-routes.component';
-import {RouteComponent} from './components/route/route.component';
+import {ListOfRoutesComponent} from './components/routes/list-of-routes/list-of-routes.component';
+import {RouteComponent} from './components/routes/route/route.component';
 import {httpInterceptorProviders} from './components/authentication/auth-interceptor';
 import {PaginationComponent} from './components/blog/pagination/pagination.component';
 import {TripComponent} from './components/trip/trip/trip.component';

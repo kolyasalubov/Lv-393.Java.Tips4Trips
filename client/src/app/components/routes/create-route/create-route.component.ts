@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Route } from 'src/app/model/route.model';
-import { RouteService } from 'src/app/route.service';
+import { RouteService } from 'src/app/service/route.service';
 import { AccountInfo } from 'src/app/model/account-info.model';
 import { PlaceService } from 'src/app/place.service';
 import { Router } from '@angular/router';
-import { AuthService } from '../authentication/auth.service';
+import { AuthService } from '../../authentication/auth.service';
 
 @Component({
   selector: 'app-create-post-route',

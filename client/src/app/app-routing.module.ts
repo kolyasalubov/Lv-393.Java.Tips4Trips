@@ -3,11 +3,11 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/authentication/login/login.component';
 import { AccountComponent } from './components/authentication/account/account.component';
-import { RouteComponent } from './components/route/route.component';
+import { RouteComponent } from './components/routes/route/route.component';
 import {CreatePostComponent} from "./components/create-post/create-post.component";
 import {CreatePostPlaceComponent} from "./components/create-post-place/create-post-place.component";
 import {LikeComponent} from "./components/blog/like/like.component";
-import {CreateRouteComponent} from "./components/create-route/create-route.component";
+import {CreateRouteComponent} from "./components/routes/create-route/create-route.component";
 import {SignupComponent} from "./components/authentication/signup/signup.component";
 import {ListOfUsersComponent} from "./components/list-of-users/list-of-users.component";
 import {BlogComponent} from "./components/blog/blog/blog.component";
@@ -17,7 +17,7 @@ import {CreateHotelComponent} from "./components/create-post-place/create-hotel/
 import {BigPostComponent} from "./components/blog/big-post/big-post.component";
 import {AccountEditComponent} from "./components/authentication/account-edit/account-edit.component"
 import { CommentComponent } from './components/blog/comment/comment.component';
-import { ListOfRoutesComponent } from './components/list-of-routes/list-of-routes.component';
+import { ListOfRoutesComponent } from './components/routes/list-of-routes/list-of-routes.component';
 import {RestaurantDetailsComponent} from "./components/restaurant-details/restaurant-details.component";
 import {CreateMonumentComponent} from "./components/create-post-place/create-monument/create-monument.component";
 import {MonumentDetailsComponent} from "./components/monument-details/monument-details.component";
