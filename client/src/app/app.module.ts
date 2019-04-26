@@ -49,6 +49,9 @@ import { CreateTripComponent } from './components/trip/create-trip/create-trip.c
 import { LittleRouteComponent } from './components/route/little-route/little-route.component';
 import { ChangeComponent } from './components/trip/change/change.component';
 import { ErrorComponent } from './components/error/error.component';
+import { ActiveTripComponent } from './components/authentication/account/active-trip/active-trip.component';
+import { LikeAccountComponent } from './components/authentication/account/like-account/like-account.component';
+import { CommentAccountComponent } from './components/authentication/account/comment-account/comment-account.component';
 
 @NgModule({
   declarations: [
@@ -94,7 +97,10 @@ import { ErrorComponent } from './components/error/error.component';
     CreateTripComponent,
     LittleRouteComponent,
     ChangeComponent,
-    ErrorComponent
+    ErrorComponent,
+    ActiveTripComponent,
+    LikeAccountComponent,
+    CommentAccountComponent
   ],
   imports: [
     BrowserModule,
