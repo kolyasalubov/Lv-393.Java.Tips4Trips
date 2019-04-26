@@ -68,7 +68,8 @@ public class FindGroupConverter implements Converter<FindGroup, FindGroupDetails
         Account creator = findGroup.getCreator();
         findGroupDetailsDTO.setCreator(accountConverter.convertToDTO(creator));
         Route route = findGroup.getRoute();
-        findGroupDetailsDTO.setRoute(routeConverter.convertToInfoDTO(route));
+        findGroupDetailsDTO.setRoute(routeConverter.convertToDTO(route));
+
         List<Account> accountInfoDTOS = findGroup.getSubscribers();
         findGroupDetailsDTO.setSubscribers(accountConverter.convertToInfoDTO(accountInfoDTOS));
 

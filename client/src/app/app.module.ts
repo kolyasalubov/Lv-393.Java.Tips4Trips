@@ -41,6 +41,8 @@ import {RestaurantDetailsComponent} from "./components/restaurant-details/restau
 import {CreateMonumentComponent} from "./components/create-post-place/create-monument/create-monument.component";
 import {MonumentDetailsComponent} from "./components/monument-details/monument-details.component";
 import { TestComponent } from './components/test/test.component';
+import { HotelDetailsComponent } from './components/hotel-details/hotel-details.component';
+import { CityPlacesComponent } from './components/city-places/city-places.component';
 import { CityComponent } from './components/city/city.component';
 import { CountryComponent } from './components/country/country.component';
 
@@ -81,6 +83,8 @@ import { CountryComponent } from './components/country/country.component';
     TripComponent,
     TripInfoComponent,
     TestComponent,
+    HotelDetailsComponent,
+    CityPlacesComponent,
     CityComponent,
     CountryComponent
   ],

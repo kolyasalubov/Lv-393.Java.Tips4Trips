@@ -1,6 +1,7 @@
 import {Account} from './account.model'
 import {AccountInfo} from './account-info.model'
 import {RouteInfo} from "./route-info.model";
+import {Route} from "./route.model";
 
 export class FindGroupDetailsDTO {
   id: number;
@@ -10,12 +11,12 @@ export class FindGroupDetailsDTO {
   startDate: Date;
   self: string;
   creator: Account;
-  route: RouteInfo;
+  route: Route;
   subscribers: AccountInfo[];
 
 
 
-  constructor(id: number, name: string, description: string, creationDate: Date, startDate: Date, self: string, creator: Account, route: RouteInfo, subscribers: AccountInfo[]) {
+  constructor(id: number, name: string, description: string, creationDate: Date, startDate: Date, self: string, creator: Account, route: Route, subscribers: AccountInfo[]) {
     this.id = id;
     this.name = name;
     this.description = description;

@@ -82,7 +82,7 @@
                       <!--</select>-->
 
                       <!--style="width: 45%;border-radius: 5px;margin-left: 10%;"-->
-                      <select style="width: 100%" (change)="setCityId($event.target.value)">
+                      <select class="form-control" style="width: 100%; margin-left: -2px" (change)="setCityId($event.target.value)">
                         <option disabled>Choose city</option>
                         <option *ngFor="let c of city" value={{c.id}}>{{c.name}}</option>
                       </select>

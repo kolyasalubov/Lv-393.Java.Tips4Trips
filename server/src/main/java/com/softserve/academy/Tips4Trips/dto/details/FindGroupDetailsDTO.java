@@ -10,7 +10,7 @@ public class FindGroupDetailsDTO extends FindGroupInfoDTO {
 
     private AccountDetailsDTO creator;
 
-    private RouteInfoDTO route;
+    private RouteDetailsDTO route;
 
     private List<AccountInfoDTO> subscribers;
 
@@ -26,7 +26,7 @@ public class FindGroupDetailsDTO extends FindGroupInfoDTO {
         return route;
     }
 
-    public void setRoute(RouteInfoDTO route) {
+    public void setRoute(RouteDetailsDTO route) {
         this.route = route;
     }
 

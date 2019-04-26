@@ -21,7 +21,6 @@ public class RestaurantConverter implements Converter<Restaurant, RestaurantDeta
     private CityService cityService;
     private CityConverter cityConverter;
     private PlaceConverter placeConverter;
-    private final int MAX_DESCRIPTION_LENGTH = 100;
     private final SimpleDateFormat formatter = new SimpleDateFormat("HH:mm", Locale.getDefault());
 
     @Autowired

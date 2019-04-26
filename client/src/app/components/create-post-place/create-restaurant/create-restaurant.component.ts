@@ -18,12 +18,13 @@ export class CreateRestaurantComponent implements OnInit {
 
   city: City[] = null;
 
-  restaurant: Restaurant = new Restaurant(null, null, null, [], null,
-    null, "FOOD", null, null,null,null,"photo_path",
-    null,null,false);
-
   position: Position = new Position(0, 0);
-  cityDTO: City = new City(null, null, null, null, null);
+
+  cityDTO: City = new City(0, '', this.position, null, null);
+
+  restaurant: Restaurant = new Restaurant(0, '', '', [], '',
+    '', "FOOD", '', '','', this.position,"photo_path",
+    this.cityDTO,0,false);
 
   constructor(private cityService: CityService, private router: Router, private restaurantService: RestaurantService) { }
 

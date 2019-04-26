@@ -15,10 +15,9 @@ export class CreateMonumentComponent implements OnInit {
 
   city: City[] = null;
 
-  monument: Monument = new Monument(null, null, null, null, null, "photo_path", null);
-
   position: Position = new Position(0, 0);
-  cityDTO: City = new City(null, null, null, null, null);
+  cityDTO: City = new City(0, '', this.position, 0, '');
+  monument: Monument = new Monument(0, '', '', '', this.position, "photo_path", this.cityDTO);
 
 
 

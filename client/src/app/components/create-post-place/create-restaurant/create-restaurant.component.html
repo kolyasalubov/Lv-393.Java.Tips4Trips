@@ -110,7 +110,7 @@
                       <!--</select>-->
 
                       <!--style="width: 45%;border-radius: 5px;margin-left: 10%;"-->
-                      <select style="width: 100%;" (change)="setCityId($event.target.value)">
+                      <select class="form-control" style="width: 100%; margin-left: -2px" (change)="setCityId($event.target.value)">
                         <option disabled>Choose city</option>
                         <option *ngFor="let c of city" value={{c.id}}>{{c.name}}</option>
                       </select>
@@ -130,7 +130,7 @@
                     Has vegan food
                   </h4></td>
                   <td>
-                    <input class="form-control" style="width: 100%;" type="checkbox"
+                    <input class="form-control-sm" style="width: 10%;" type="checkbox"
                            placeholder="has_vegan_food" name="has_vegan_food" [(ngModel)]="restaurant.hasVeganFood" (change)="restaurant.hasVeganFood"></td>
                 </tr>
                 <tr>

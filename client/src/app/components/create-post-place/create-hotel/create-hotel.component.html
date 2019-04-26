@@ -10,13 +10,15 @@
       <section class="container">
         <div class="row blog-entries element-animate">
           <div class="col-md-12 col-lg-8 main-content" style="padding-left: 0px;">
-            <h1 class="mb-4">Create a new restaurant</h1>
-            <form action="#" method="post" enctype="multipart/form-data">
-              <div class="col-md-8 col-lg-6 main-content">
-                <img src="" alt="Image" class="img-fluid mb-5">
+            <h1 class="mb-4">Create a new hotel</h1>
+            <form (ngSubmit)="create()" method="post" enctype="multipart/form-data">
+              <!--<div class="col-md-8 col-lg-6 main-content">-->
+              <!--<img src="" alt="Image" class="img-fluid mb-5">-->
 
-       
-              </div>
+              <!--<input class="ion-android-radio-button-off" name="image_uploads" type="file"-->
+              <!--accept=".jpg, .jpeg, .png" style="margin: 5%;margin-left: 0;"><br>-->
+              <!--<p>*File have to be less than 5 MB</p>-->
+              <!--</div>-->
               <table style="width: 100%;margin-top: 5%;">
                 <tr>
                   <td><h4>
@@ -26,7 +28,7 @@
                     <input class="form-control" style="width: 100%;" type="text"
                            placeholder="Name"
                            name="name"
-                           maxlength="26"></td>
+                           maxlength="35" [(ngModel)]="hotel.name"></td>
                 </tr>
                 <tr>
                   <td><h4>
@@ -37,7 +39,7 @@
                                         padding-top: 10px;
                                         width: 100%;"
                                                   placeholder="Something about it"
-                                                  name="about"></textarea>
+                                                  name="about" [(ngModel)]="hotel.description" maxlength="255"></textarea>
                   </td>
                 </tr>
                 <tr>
@@ -46,7 +48,7 @@
                   </h4></td>
                   <td>
                     <input class="form-control" style="width: 100%;" type="text"
-                           placeholder="Website" name="web"></td>
+                           placeholder="Website" name="web" maxlength="35" [(ngModel)]="hotel.webSite"></td>
                 </tr>
                 <tr>
                   <td><h4>
@@ -54,7 +56,7 @@
                   </h4></td>
                   <td>
                     <input class="form-control" style="width: 100%;" type="tel"
-                           placeholder="Telephone" name="tel"></td>
+                           placeholder="Telephone" name="tel" maxlength="15" [(ngModel)]="hotel.telephone"></td>
                 </tr>
                 <tr>
                   <td><h4>
@@ -63,10 +65,10 @@
                   <td>
                     <h5>Opening time</h5>
                     <input class="form-control" style="width: 50%;" type="time"
-                           name="open_time">
+                           name="open_time" [(ngModel)]="hotel.openingTime">
                     <h5>Closing time</h5>
                     <input class="form-control" style="width: 50%;" type="time"
-                           name="close_time"></td>
+                           name="close_time" [(ngModel)]="hotel.closingTime"></td>
                 </tr>
                 <tr>
                   <td><h4 style="margin-top: -10px;">
@@ -74,9 +76,9 @@
                   </h4></td>
                   <td>
                     <input class="form-control" style="width: 100%;" type="text"
-                           placeholder="Pleace write a address of it"
+                           placeholder="Please write an address of it"
                            name="address"
-                           maxlength="26"></td>
+                           maxlength="60" [(ngModel)]="hotel.address"></td>
                 </tr>
                 <tr>
                   <td><h4 style="margin-top: -20px;">
@@ -88,57 +90,60 @@
                              type="number"
                              placeholder="X"
                              name="Coordinatex"
-                             maxlength="26">
+                             maxlength="26" [(ngModel)]="position.coordinateX">
                       <input class="form-control"
                              style="width: 45%;border-radius: 5px;margin-left: 10%;" type="number"
                              placeholder="Y"
                              name="Coordinatey"
-                             maxlength="26">
+                             maxlength="26" [(ngModel)]="position.coordinateY">
                     </div>
                   </td>
                 </tr>
                 <tr>
                   <td><h4 style="margin-top: -20px;">
-                    Country and City
+                    <!--Country and -->City
                   </h4></td>
                   <td>
-                    <div class="form-group d-flex">
-                      <input class="form-control" style="width:45%;border-radius: 5px" type="text"
-                             placeholder="Country"
-                             name="country"
-                             maxlength="26">
-                      <input class="form-control"
-                             style="width: 45%;border-radius: 5px;margin-left: 10%;" type="text"
-                             placeholder="City"
-                             name="city"
-                             maxlength="26">
+                    <div>
+                      <!--<select style="width: 45%;border-radius: 5px;margin-left: 10%;">-->
+                      <!--<option *ngFor="let c of city">{{c.name}}</option>-->
+                      <!--</select>-->
+
+                      <!--style="width: 45%;border-radius: 5px;margin-left: 10%;"-->
+                      <select class="form-control" style="width: 100%; margin-left: -2px" (change)="setCityId($event.target.value)">
+                        <option disabled>Choose city</option>
+                        <option *ngFor="let c of city" value={{c.id}}>{{c.name}}</option>
+                      </select>
                     </div>
                   </td>
                 </tr>
                 <tr>
                   <td><h4>
-                    Average bill
+                    Minimum price
                   </h4></td>
                   <td>
                     <input class="form-control" style="width: 100%;" type="number"
-                           placeholder="Average bill" name="avg_bill"></td>
+                           placeholder="Minimum price" name="min_price" [(ngModel)]="hotel.minimumPrice"></td>
                 </tr>
                 <tr>
                   <td><h4>
-
-
-                    Has vegan food  
-
-                    <tr *ngFor="let c of city">
-                      <td>{{c.name}}</td>
-                      </tr>
-
-
-
+                    Maximum price
                   </h4></td>
                   <td>
-                    <input class="form-control" style="width: 100%;" type="checkbox"
-                           placeholder="has_vegan_food" name="has_vegan_food"></td>
+                    <input class="form-control" style="width: 100%;" type="number"
+                           placeholder="Maximum price" name="max_price" [(ngModel)]="hotel.maximumPrice"></td>
+                </tr>
+                <tr>
+                  <td><h4>
+                    Working days
+                  </h4></td>
+                  <div class="weekDays-selector">
+                    <td>
+                      <label *ngFor="let day of workingDays">
+                        <input type="checkbox" class="weekday" (change)="setWorkingDays(day)"/>
+                        <mark>{{day.substr(0, 3)}}</mark>
+                      </label>
+                  </div>
                 </tr>
               </table>
               <input class="category submit"
@@ -153,7 +158,6 @@
           </div>
           <div class="col-md-12 col-lg-4 sidebar">
           </div>
-
         </div>
       </section>
     </div>

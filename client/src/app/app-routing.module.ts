@@ -25,6 +25,8 @@ import { TripComponent } from './components/trip/trip/trip.component';
 import { TripInfoComponent } from './components/trip/trip-info/trip-info.component';
 import {TestComponent} from './components/test/test.component';
 import { AuthGuard } from './components/authentication/guards/auth.guard';
+import {HotelDetailsComponent} from "./components/hotel-details/hotel-details.component";
+import {CityPlacesComponent} from "./components/city-places/city-places.component";
 import { CityComponent} from './components/city/city.component';
 import { CountryComponent} from './components/country/country.component';
 
@@ -54,11 +56,13 @@ const routes: Routes = [
   { path: 'comment', component: CommentComponent },
   { path: 'restaurants/:id', component: RestaurantDetailsComponent },
   { path: 'monuments/:id', component: MonumentDetailsComponent },
+  { path: 'hotels/:id', component: HotelDetailsComponent },
   { path: 'routes/:id', component: RouteComponent },
   { path: 'post/:id', component: BigPostComponent },
   { path: 'trip', component: TripComponent },
   { path: 'trip/:id', component: TripInfoComponent },
   { path: 'test', component: TestComponent },
+  { path: 'city_places/:id', component: CityPlacesComponent},
   { path: 'city', component: CityComponent },
   { path: 'country', component: CountryComponent }
 

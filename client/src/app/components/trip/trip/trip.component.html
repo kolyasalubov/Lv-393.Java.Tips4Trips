@@ -16,7 +16,7 @@
 
 <section class="ftco-section bg-light">
   <div class="container">
-  
+    <div class="row d-flex">
         <div class="col-md-4 d-flex ftco-animate" *ngFor="let trip of findGroupInfoDTO">
             <div class="blog-entry justify-content-end" style="width: 100%;">
 
@@ -28,11 +28,11 @@
                     <span class="day">{{trip.id}}</span>
                   </div>
                   <div class="two">
-                    <span class="yr">{{trip.name}}</span>
+                    <span class="yr"></span>
                     <span class="mos">{{trip.creationDate}}</span>
                   </div>
                 </div>
-                <h3 class="heading"><a href="single_page">{{trip.description}}</a></h3>
+                <h3 class="heading"><a href="single_page">{{trip.name}}</a></h3>
                 <p>{{trip.description}}</p>
               </div> 
 
@@ -40,6 +40,7 @@
 
         </div>
       </div>
+    </div>
 
     <div class="row mt-5">
       <div class="col text-center">
@@ -47,10 +48,6 @@
           <ul>
             <li><a href="#">&lt;</a></li>
             <li class="active"><span>1</span></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
             <li><a href="#">&gt;</a></li>
           </ul>
         </div>
@@ -58,6 +55,13 @@
     </div>
   </div>
 </section>
+
+
+
+
+
+
+
 
 <section class="ftco-subscribe" style="background-image: url(../../../assets/images/bg_1.jpg);">
 

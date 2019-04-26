@@ -43,13 +43,61 @@
 
     </div>
     <h1 align="center">Trip info</h1>
+    <br>
+    <h2>{{findGroupDetailsDTO.route.name}}</h2>
+    <br>
+    <!--<section class="ftco-section bg-light">-->
+    <!--<div style="text-align:center; width:70%; margin: auto;">-->
+    <!--<h1 style="text-align: center;">{{findGroupDetailsDTO.route.name}}</h1>-->
+    <!--<div style="display: inline-block; margin:auto;">-->
+    <!--<h4>Creation Date: {{findGroupDetailsDTO.route.creationDate}}</h4>-->
+    <!--<h4 style="text-align: left;">Places: </h4>-->
+    <!--<div style="display:grid; grid-gap:20px 10px;-->
+    <!--grid-template-columns: auto auto auto;">-->
+
+      <!--<div style="border: 1px solid black; padding: 20px 5px; max-width: 250px;" *ngFor="let place of findGroupDetailsDTO.route.places">-->
+        <!--<h4><a [href]="getSelfLink(place)">{{place.name}}</a></h4>-->
+        <!--<p>{{place.description}}</p>-->
+      <!--</div>-->
+
+      <section class="ftco-section bg-light">
+        <div class="container">
+          <div class="row d-flex">
+            <div class="col-md-4 d-flex ftco-animate" *ngFor="let place of findGroupDetailsDTO.route.places">
+              <div class="blog-entry justify-content-end" style="width: 100%;">
+
+                <a [href]="getSelfLink(place)" class="block-20" style="background-image: url('../../../../assets/images/place.png');">
+                </a>
+                <div class="text mt-3 float-right d-block">
+                  <div class="d-flex align-items-center pt-2 mb-4 topp">
+                    <div class="one">
+                      <span class="day">{{place.id}}</span>
+                    </div>
+                    <div class="two">
+                      <!--<span class="yr">{{place.name}}</span>-->
+                      <!--<span class="mos">{{place..creationDate}}</span>-->
+                    </div>
+                  </div>
+                  <h3 class="heading"><a href="single_page">{{place.name}}</a></h3>
+                  <p>{{place.description}}</p>
+                </div>
 
 
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+
+    <!--</div>-->
+
+    <!--</div>-->
+    <!--</div>-->
+    <!--</section>-->
+
   </div>
 </section>
 
@@ -59,20 +107,32 @@
     <h1 align="center">Subscribers</h1>
     <div class="row d-flex contact-info">
 
-    <li *ngFor="let subscriber of findGroupDetailsDTO.subscribers;">
+    <div *ngFor="let subscriber of findGroupDetailsDTO.subscribers;">
     <div class="col-md-3 d-flex">
       <div class="align-self-stretch box p-4 text-center">
         <div class="icon d-flex align-items-center justify-content-center">
           <span class="icon-map-signs"><img src="../../../../assets/images/round_perm_identity_black_48dp.png"></span>
         </div>
         <h3 class="mb-4">{{subscriber.firstName}}    {{subscriber.lastName}}</h3>
-        <p align="center" >{{subscriber.id}}</p>
+        <p align="center" >subscribed</p>
       </div>
     </div>
-    </li>
+    </div>
+      <div class="col-md-3 d-flex">
+        <div class="align-self-stretch box p-4 text-center">
+          <div class="icon d-flex align-items-center justify-content-center">
+            <span class="icon-map-signs"><img src="../../../../assets/images/round_add_circle_outline_black_48dp.png"></span>
+          </div>
+          <h3 class="mb-4">subscribe</h3>
+          <p align="center" ></p>
+        </div>
+      </div>
     </div>
 
+    <button type="submit"(click)="goBack()()" class="btn btn-primary" >Back</button>
   </div>
+
+
 </section>
 <br>
 <br>

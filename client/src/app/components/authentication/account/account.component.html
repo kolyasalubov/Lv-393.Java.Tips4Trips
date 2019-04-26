@@ -1,10 +1,16 @@
 <app-header></app-header>
-<section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('../../../assets/images/bg_2.jpg');"
+
+<section class="hero-wrap hero-wrap-2 js-fullheight"
+         style="background-image: url('../../../../assets/images/bg_1.jpg'); padding-bottom: 5%;"
          data-stellar-background-ratio="0.5">
-    <div class="overlay" style="background:white;"></div>
-
+  <div class="container">
+    <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-center">
+      <div class="col-md-9 ftco-animate pb-5 text-center">
+        <h1 class="mb-3 bread" style="margin-top: 15%;">{{accountProfile.firstName}}    {{accountProfile.lastName}}</h1>
+      </div>
+    </div>
+  </div>
 </section>
-
 
 
 <section class="ftco-section ftco-no-pb contact-section">
@@ -57,68 +63,21 @@
           <section class="container">
               <div class="row blog-entries element-animate">
                   <div class="col-md-12 col-lg-8 main-content" style="padding-left: 0px;">
-                    <h1 class="mb-4">Your account</h1>  
+                    <h1 class="mb-4">About</h1>
                     <h2>    {{accountProfile.about}}   </h2>
+                    <br><br>
                     <div class="btn-group" role="group">
                         <a class="btn btn-info" href="/country">Create country</a>
                         <a class="btn btn-info" href="/city">Create city</a>
                     </div>
                     <p>
-                    <button (click)='logout()'>Logout</button>
-                      
+                      <br><br>
+                      <button  type="submit"(click)="editAccount()" class="btn btn-primary" >Edit</button>
+                      <br>
+                      <br>
+                      <button type="submit"(click)="logout()" class="btn btn-primary" >Logout</button>
+                      <br>
 
-                          <!-- <table style="width: 100%;margin-top: 5%;">
-
-                              <tr>
-                                  <td><h4 >
-                                      First Name
-                                  </h4></td>
-                                  <td><h4   >
-                                      
-                                  {{accountProfile.firstName}}
-                                  </h4></td>
-                              </tr>
-                              
-                         
-
-                              <tr>
-                                  <td><h4>
-                                      Last Name
-                                  </h4></td>
-                                  <td><h4>
-                                      {{accountProfile.lastName}}
-                                  </h4></td>
-                              </tr>
-                              <tr>
-                                  <td><h4>
-                                      Email     
-                                  </h4></td>
-                                  <td><h4>
-                                    {{accountProfile.email}}
-                                  </h4></td>
-                              </tr>
-
-                         
-                              <tr>
-                                  <td><h4>
-                                      Telephone
-                                  </h4></td>
-                                  <td><h4>
-                                      {{accountProfile.phoneNumber}}
-                                  </h4></td>
-                              </tr>
-                   
-                         
-                            <tr>
-                                <td><h4>
-                                    About
-                                </h4></td>
-                                <td><h4>
-                                    {{accountProfile.about}}
-                                </h4></td>
-                            </tr>
-                        </table> -->
-                                 <button type="submit"(click)="editAccount()" class="btn btn-primary" >Edit</button>
                      
                   </div>
 

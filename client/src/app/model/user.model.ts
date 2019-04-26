@@ -1,8 +1,12 @@
-import { Account } from "./account.model";
 
 export class User {
     id: number;
     login: string;
     password: string;
-    account: Account;
+
+    constructor(id:number, login: string, password: string) {
+        this.id = id;
+        this.login = login;
+        this.password = password;
+    }
 }

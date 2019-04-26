@@ -15,5 +15,8 @@ export class PlaceService {
   findByName(name:string): Observable<PlaceInfo[]> {
     return this.http.get<PlaceInfo[]>(this.baseUrl + "name/" + name);
   }
-  
+
+  getAllByCityId(cityId: number): Observable<PlaceInfo[]> {
+    return this.http.get<PlaceInfo[]>("http://localhost:8080/countries/1/cities/" + cityId + "/places")
+  }
 }

@@ -1,0 +1,13 @@
+mark {
+  display: inline-block;
+  border-radius: 6px;
+  background: #ffb400;
+  color: #ffffff;
+  height: 40px;
+  width: 45px;
+  margin-right: 3px;
+  line-height: 40px;
+  text-align: center;
+  cursor: pointer;
+}
+

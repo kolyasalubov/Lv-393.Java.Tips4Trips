@@ -19,7 +19,6 @@ export class RouteService {
     return this.http.get<Route>(this.baseUrl + id);
   }
   createRoute(route: Route): Observable<Route> {
-    route.authorInfo.id = 1;
     return this.http.post<Route>(this.baseUrl + "create", route);
   }
 
