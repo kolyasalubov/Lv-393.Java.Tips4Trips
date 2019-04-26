@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {AuthLoginInfo} from './login/login-info';
-import {SignUpInfo} from './signup/signup-info';
+import {SignInForm} from '../../model/authentication/signin-form.model';
+import {SignUpForm} from '../../model/authentication/signup-form.model';
 import {Account} from '../../model/account.model';
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 import { stringify } from '@angular/core/src/render3/util';
@@ -28,11 +28,11 @@ export class AuthService {
   constructor(private http: HttpClient, private tokenStorage: TokenStorageService) {
   }
 
-  attemptAuth(credentials: AuthLoginInfo): Observable<any> {
+  attemptAuth(credentials: SignInForm): Observable<any> {
     return this.http.post(this.loginUrl, credentials, {responseType : 'text'});
   }
 
-  signUp(info: UserAccount): Observable<any> {
+  signUp(info: SignUpForm): Observable<any> {
     return this.http.post(this.signupUrl, info, {responseType : 'text'});
   }
 
