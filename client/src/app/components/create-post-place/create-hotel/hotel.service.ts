@@ -12,7 +12,7 @@ export class HotelService {
   constructor(private http: HttpClient) { }//todo country id as 1
   private _countryId;
   private _cityId;
-  baseUrl: string = "http://localhost:8080/countries/1/cities/1/places/hotels/"; //todo URL
+  baseUrl: string = "http://localhost:8080/places/hotels/"; //todo URL
   //Todo all methods
 
   get countryId() {
@@ -28,12 +28,11 @@ export class HotelService {
   }
 
   set cityId(value) {
-    this.baseUrl = "http://localhost:8080/countries/1/cities/" + value +"/places/hotels/create";
     this._cityId = value;
   }
 
   createHotel(hotel: Hotel): Observable<Hotel> {
-    return this.http.post<Hotel>(this.baseUrl, hotel);
+    return this.http.post<Hotel>(this.baseUrl + "create", hotel);
   }
 
   findById(id: number): Observable<Hotel> {

@@ -11,7 +11,7 @@ export class RestaurantService {
   constructor(private http: HttpClient) { }//todo country id as 1
   private _countryId;
   private _cityId;
-  baseUrl: string = "http://localhost:8080/countries/1/cities/1/places/restaurants/"; //todo URL
+  baseUrl: string = "http://localhost:8080/places/restaurants/"; //todo URL
   //Todo all methods
 
   get countryId() {
@@ -27,12 +27,11 @@ export class RestaurantService {
   }
 
   set cityId(value) {
-    this.baseUrl = "http://localhost:8080/countries/1/cities/" + value +"/places/restaurants/create";
     this._cityId = value;
   }
 
   createRestaurant(restaurant: Restaurant): Observable<Restaurant> {
-    return this.http.post<Restaurant>(this.baseUrl, restaurant);
+    return this.http.post<Restaurant>(this.baseUrl + "create", restaurant);
   }
 
 //??????????????????

@@ -11,7 +11,7 @@ export class MonumentService {
   constructor(private http: HttpClient) { }//todo country id as 1
   private _countryId;
   private _cityId;
-  baseUrl: string = "http://localhost:8080/countries/1/cities/1/places/monuments/"; //todo URL
+  baseUrl: string = "http://localhost:8080/places/monuments/"; //todo URL
   //Todo all methods
 
   get countryId() {
@@ -27,12 +27,11 @@ export class MonumentService {
   }
 
   set cityId(value) {
-    this.baseUrl = "http://localhost:8080/countries/1/cities/" + value +"/places/monuments/create";
     this._cityId = value;
   }
 
   createMonument(monument: Monument): Observable<Monument> {
-    return this.http.post<Monument>(this.baseUrl, monument);
+    return this.http.post<Monument>(this.baseUrl + "create", monument);
   }
 
   findById(id: number): Observable<Monument> {

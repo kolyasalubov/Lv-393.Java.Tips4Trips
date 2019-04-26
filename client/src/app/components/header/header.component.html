@@ -1,16 +1,16 @@
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
   <div class="container">
     <a class="navbar-brand" routerLink="/home"><span>Tips4Trips</span></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav"
-       aria-label="Toggle navigation">
+    <button class="navbar-toggler" (click)="showIt()" type="button" data-toggle="collapse" data-target="#ftco-nav"
+            aria-controls="ftco-nav"
+            aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span> Menu
     </button>
-
-    <div class="navbar-collapse collapse show" id="ftco-nav">
+    <div class="navbar-collapse collapse show" id="ftco-nav" *ngIf="show">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item actice"><a class="nav-link" routerLink="/home">Home</a></li>
         <li class="nav-item"><a class="nav-link" routerLink="/blog">Blog</a></li>
-        <li class="nav-item"><a class="nav-link" routerLink="/trip">Trips</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="/trip/page">Trips</a></li>
         <li class="nav-item"><a class="nav-link" routerLink="/about">About</a></li>
         <li class="nav-item"><a class="nav-link" routerLink="/">Contact</a></li>
         <li class="nav-item"><a class="nav-link" routerLink="/test">Test</a></li>
@@ -20,10 +20,10 @@
             <i class="fas fa-search" aria-hidden="true"></i>
             <span class="icon fa fa-search" style="margin-top: -8px;"></span>
             <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search" aria-label="Search"
-              style="border: 1px solid #C0C0C0;">
+                   style="border: 1px solid #C0C0C0;">
           </form>
         </li>
-        <li class="nav-item cta"><a class="nav-link" routerLink="/account">My Account</a></li>
+        <li class="nav-item cta"><a class="nav-link" routerLink="/account" style="white-space: pre;">My Account</a></li>
 
       </ul>
     </div>

@@ -27,7 +27,7 @@ public class CountryConverter implements Converter<Country, CountryDTO> {
         countryDTO.setName(country.getName());
         countryDTO.setPosition(country.getPosition());
         countryDTO.setCities(ControllerLinkBuilder.linkTo(
-                ControllerLinkBuilder.methodOn(CityController.class)
+                ControllerLinkBuilder.methodOn(CountryController.class)
                         .getAllByCountryId(country.getId())
         ).withSelfRel().getHref());
         return countryDTO;

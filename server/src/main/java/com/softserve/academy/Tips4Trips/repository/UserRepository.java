@@ -13,7 +13,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     Optional<User> findByLogin(String login);
 
-    List<User> findByAccount(Account account);
+    User findByAccount(Account account);
 
     boolean existsByLogin(String login);
 

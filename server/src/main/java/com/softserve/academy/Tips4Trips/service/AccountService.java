@@ -3,9 +3,14 @@ package com.softserve.academy.Tips4Trips.service;
 import com.softserve.academy.Tips4Trips.dto.converter.AccountConverter;
 import com.softserve.academy.Tips4Trips.entity.administration.Account;
 import com.softserve.academy.Tips4Trips.entity.administration.User;
+import com.softserve.academy.Tips4Trips.entity.blog.Post;
 import com.softserve.academy.Tips4Trips.repository.AccountRepository;
+import com.softserve.academy.Tips4Trips.repository.UserRepository;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,11 +24,13 @@ public class AccountService {
 
     private AccountConverter accountConverter;
     private AccountRepository repository;
+    private UserRepository userRepository;
 
     @Autowired
-    public AccountService(AccountConverter accountConverter, AccountRepository repository) {
+    public AccountService(AccountConverter accountConverter, AccountRepository repository, UserRepository userRepository) {
         this.accountConverter = accountConverter;
         this.repository = repository;
+        this.userRepository = userRepository;
     }
 
     public List<Account> findAll() {
@@ -51,10 +58,10 @@ public class AccountService {
     public Account findByEmail(String email) {
 
         Optional<Account> account = repository.findByEmail(email);
-        if(account.isPresent()){
+        if (account.isPresent()) {
             return account.get();
-        }else {
-            throw  new NoSuchElementException();
+        } else {
+            throw new NoSuchElementException();
         }
 
     }
@@ -68,10 +75,16 @@ public class AccountService {
 
     public Account update(Account account) {
         return repository.save(account);
-
     }
 
     boolean existsByPhoneNumber(String number) {
         return repository.existsByPhoneNumber(number);
+    }
+
+    public Page<Account> getPaginatedArticles(Pageable pageable) {
+        return repository.findAllByOrderByIdDesc(pageable);
+    }
+
+    public void deleteById(Long id) {
     }
 }

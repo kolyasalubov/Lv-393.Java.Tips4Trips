@@ -53,7 +53,7 @@ public class MonumentConverter implements Converter<Monument, MonumentDetailsDTO
         monumentDetailsDTO.setCityDTO(cityConverter.convertToDTO(cityService.findById(monument.getCity().getId())));
         monumentDetailsDTO.setSelf(ControllerLinkBuilder.linkTo(
                 ControllerLinkBuilder.methodOn(MonumentController.class)
-                        .getById(monument.getCity().getCountry().getId(), monument.getCity().getId(), monument.getId())
+                        .getById(monument.getId())
         ).withSelfRel().getHref().replace("{countryId}", monument.getCity().getCountry().getId().toString())
                 .replace("{cityId}", monument.getCity().getId().toString()));
 

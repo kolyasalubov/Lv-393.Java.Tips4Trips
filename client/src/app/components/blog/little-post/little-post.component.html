@@ -5,15 +5,15 @@
   <div class="text mt-3 float-right d-block">
     <div class="d-flex align-items-center pt-2 mb-4 topp">
       <div class="one">
-        <span class="day">{{post.date}}</span>
+        <span class="day">{{date}}</span>
       </div>
       <div class="two">
-        <span class="yr">{{post.year}}</span>
-        <span class="mos">{{post.month}}</span>
+        <span class="yr">{{year}}</span>
+        <span class="mos">{{month}}</span>
       </div>
     </div>
-    <h3 class="heading"><a href="single_page">{{post.name}}</a></h3>
-    <p>{{post.description}}</p>
+    <h3 class="heading"><a href="post/{{post.id}}">{{post.name}}</a></h3>
+    <p>{{post.content}}</p>
   </div>
 
 

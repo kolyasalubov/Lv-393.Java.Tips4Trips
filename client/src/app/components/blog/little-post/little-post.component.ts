@@ -10,9 +10,18 @@ import {LittlepostModel} from '../../../model/littlepost.model';
 export class LittlePostComponent implements OnInit {
   @Input() post: LittlepostModel;
 
-  constructor() { }
+  date: number;
+  year: number;
+  month: any;
 
-  ngOnInit() {
+
+  constructor() {
   }
 
+  ngOnInit() {
+    let input = new Date(this.post.creationDate);
+    this.date = input.getDay();
+    this.year = input.getFullYear();
+    this.month = input.toLocaleString('en-us', {month: "long"});
+  }
 }

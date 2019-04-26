@@ -14,13 +14,10 @@ export class BlogService {
   private urlPage = 'http://localhost:8080/blog/';
 
   getPosts(page: number): Observable<PagelittlepostModel> {
-    let url = this.urlPage;
-    url = url + page;
-    return this.http.get<PagelittlepostModel>(url)
+    return this.http.get<PagelittlepostModel>(this.urlPage+page)
       .pipe(
         map(response => {
-          const data = response;
-          return data;
+          return response;
         }));
   }
 

@@ -38,7 +38,7 @@ public class PostService {
         }
     }
     public Page<Post> getPaginatedArticles(Pageable pageable) {
-        return repository.findAll(pageable);
+        return repository.findAllByOrderByIdDesc(pageable);
     }
     public List<Post> searchByName(String name) {
         return repository.findByNameContainingIgnoreCase(name);

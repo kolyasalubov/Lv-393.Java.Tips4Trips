@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Observable} from "rxjs";
 import { HttpClient } from '@angular/common/http';
-import {FindGroupDetailsDTO} from "../../../model/trip-details";
+import {TripDetailsDTO} from "../../../model/trip-details";
 
 @Injectable({
     providedIn: 'root'
@@ -9,10 +9,10 @@ import {FindGroupDetailsDTO} from "../../../model/trip-details";
   export class TripInfoService {
 
     constructor(private http: HttpClient) { }
-    baseUrl: string = 'http://localhost:8080/findgroups/';
+    baseUrl: string = 'http://localhost:8080/trips/';
   
-     findById(id: number): Observable<FindGroupDetailsDTO> {
-         return this.http.get<FindGroupDetailsDTO>(this.baseUrl + id);
+     findById(id: number): Observable<TripDetailsDTO> {
+         return this.http.get<TripDetailsDTO>(this.baseUrl + id);
        }
 
 

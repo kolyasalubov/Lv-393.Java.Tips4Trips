@@ -1,6 +1,6 @@
 
 
-export class FindGroupInfoDTO {
+export class TripInfoDTO {
     id: number;
     name: string;
     description: string;

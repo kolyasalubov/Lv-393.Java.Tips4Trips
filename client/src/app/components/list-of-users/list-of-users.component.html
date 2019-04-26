@@ -18,13 +18,13 @@
             border-bottom-style: solid;border-top-width: 2px;border-top-style: solid;border-right-width: 2px;
             border-right-style: solid;border-left-width: 2px;border-left-style: solid;margin-bottom: 20px;padding: 2%; width: 100%">
             <b>Email of account to change role</b>
-            <input type="text" placeholder="Enter Email" name="email" required>
-            <select style="height: 34px;" name="role">
-              <option>user</option>
-              <option>moderator</option>
-              <option>admin</option>
+            <input type="text" [(ngModel)]="accForUpdate.email" placeholder="Enter Email" name="email" required>
+            <select [(ngModel)]="accForUpdate.role" style="height: 34px;" name="role" >
+              <option >USER</option>
+              <option>MODERATOR</option>
+              <option>ADMIN</option>
             </select>
-            <button type="submit" class="registerbtn">Change role</button>
+            <button type="submit" class="registerbtn" (click)="update()">Change role</button>
           </form>
           <form action="" method="post" style="border: red;border-bottom-width: 2px;
             border-bottom-style: solid;border-top-width: 2px;border-top-style: solid;border-right-width: 2px;
@@ -42,26 +42,28 @@
               <th>role</th>
             </tr>
 
-            <tr>
+            <tr *ngFor="let post of postP">
               <td>
-                lox@lox.l
+                {{post.email}}
               </td>
               <td>
-                пупкін
+                {{post.firstName}}
               </td>
               <td>
-                2000-01-01
+                {{post.lastName}}
               </td>
               <td>
-                /asdfadsf/sadfasd/dsaf/photo.png
+                {{post.registrationDate}}
               </td>
               <td>
-                ADMIN/USER/MODERATOR
+                {{post.role}}
               </td>
             </tr>
 
           </table>
-
+          <div class="blog-entry justify-content-end" style="width: 100%;">
+<app-pagination [number]="num" [total]="max" [link]="'http://localhost:4200/list_of_users/'" ></app-pagination>
+          </div>
         </div>
 
       </section>

@@ -46,8 +46,7 @@ export class CreateRouteComponent implements OnInit {
   save(): void {
     if (this.validate()) {
       this.route.photoPath="no photo";
-    
-      this.routeService.createRoute(this.route).subscribe(result=>console.log(result));
+      this.routeService.createRoute(this.route).subscribe(result=>this.route = result);
       setTimeout(() => {this.router.navigate(['routes']);}, 2000);
     }
   }
