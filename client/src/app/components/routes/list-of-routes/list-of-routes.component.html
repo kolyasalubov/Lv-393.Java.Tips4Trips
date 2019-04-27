@@ -19,7 +19,7 @@
     <div class="row d-flex">
       <div *ngFor="let route of routes" class="col-md-4 d-flex ftco-animate">
         <div class="blog-entry justify-content-end">
-          <app-route-info [routeInfo]="route" [displayDeleteButton]="hasAuthority" 
+          <app-route-info [routeInfo]="route" [displayEditButtons]="hasAuthority" 
           (delete)="deleteRoute(route.id)"></app-route-info>
         </div>
       </div>

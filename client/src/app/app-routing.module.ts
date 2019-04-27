@@ -4,31 +4,32 @@ import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/authentication/login/login.component';
 import { AccountComponent } from './components/authentication/account/account.component';
 import { RouteComponent } from './components/routes/route/route.component';
-import {CreatePostComponent} from "./components/create-post/create-post.component";
-import {CreatePostPlaceComponent} from "./components/create-post-place/create-post-place.component";
-import {LikeComponent} from "./components/blog/like/like.component";
-import {CreateRouteComponent} from "./components/routes/create-route/create-route.component";
-import {SignupComponent} from "./components/authentication/signup/signup.component";
-import {ListOfUsersComponent} from "./components/list-of-users/list-of-users.component";
-import {BlogComponent} from "./components/blog/blog/blog.component";
-import {AboutePageComponent} from "./components/aboute-page/aboute-page.component";
-import {CreateRestaurantComponent} from "./components/create-post-place/create-restaurant/create-restaurant.component";
-import {CreateHotelComponent} from "./components/create-post-place/create-hotel/create-hotel.component";
-import {BigPostComponent} from "./components/blog/big-post/big-post.component";
-import {AccountEditComponent} from "./components/authentication/account-edit/account-edit.component"
+import { CreatePostComponent } from "./components/create-post/create-post.component";
+import { CreatePostPlaceComponent } from "./components/create-post-place/create-post-place.component";
+import { LikeComponent } from "./components/blog/like/like.component";
+import { CreateRouteComponent } from "./components/routes/create-route/create-route.component";
+import { SignupComponent } from "./components/authentication/signup/signup.component";
+import { ListOfUsersComponent } from "./components/list-of-users/list-of-users.component";
+import { BlogComponent } from "./components/blog/blog/blog.component";
+import { AboutePageComponent } from "./components/aboute-page/aboute-page.component";
+import { CreateRestaurantComponent } from "./components/create-post-place/create-restaurant/create-restaurant.component";
+import { CreateHotelComponent } from "./components/create-post-place/create-hotel/create-hotel.component";
+import { BigPostComponent } from "./components/blog/big-post/big-post.component";
+import { AccountEditComponent } from "./components/authentication/account-edit/account-edit.component"
 import { CommentComponent } from './components/blog/comment/comment.component';
 import { ListOfRoutesComponent } from './components/routes/list-of-routes/list-of-routes.component';
-import {RestaurantDetailsComponent} from "./components/restaurant-details/restaurant-details.component";
-import {CreateMonumentComponent} from "./components/create-post-place/create-monument/create-monument.component";
-import {MonumentDetailsComponent} from "./components/monument-details/monument-details.component";
+import { RestaurantDetailsComponent } from "./components/restaurant-details/restaurant-details.component";
+import { CreateMonumentComponent } from "./components/create-post-place/create-monument/create-monument.component";
+import { MonumentDetailsComponent } from "./components/monument-details/monument-details.component";
 import { TripComponent } from './components/trip/trip/trip.component';
 import { TripInfoComponent } from './components/trip/trip-info/trip-info.component';
-import {TestComponent} from './components/test/test.component';
+import { TestComponent } from './components/test/test.component';
 import { AuthGuard } from './components/authentication/guards/auth.guard';
-import {HotelDetailsComponent} from "./components/hotel-details/hotel-details.component";
-import {CityPlacesComponent} from "./components/city-places/city-places.component";
-import { CityComponent} from './components/city/city.component';
-import { CountryComponent} from './components/country/country.component';
+import { HotelDetailsComponent } from "./components/hotel-details/hotel-details.component";
+import { CityPlacesComponent } from "./components/city-places/city-places.component";
+import { CityComponent } from './components/city/city.component';
+import { CountryComponent } from './components/country/country.component';
+import { EditRouteComponent } from './components/routes/edit-route/edit-route.component';
 
 
 const routes: Routes = [
@@ -58,11 +59,12 @@ const routes: Routes = [
   { path: 'monuments/:id', component: MonumentDetailsComponent },
   { path: 'hotels/:id', component: HotelDetailsComponent },
   { path: 'routes/:id', component: RouteComponent },
+  { path: 'routes/:id/edit', component: EditRouteComponent },
   { path: 'post/:id', component: BigPostComponent },
   { path: 'trip', component: TripComponent },
   { path: 'trip/:id', component: TripInfoComponent },
   { path: 'test', component: TestComponent },
-  { path: 'city_places/:id', component: CityPlacesComponent},
+  { path: 'city_places/:id', component: CityPlacesComponent },
   { path: 'city', component: CityComponent },
   { path: 'country', component: CountryComponent }
 

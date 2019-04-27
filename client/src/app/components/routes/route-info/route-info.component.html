@@ -4,5 +4,8 @@ style="background-image: url('../../../assets/images/image_1.jpg');"></a>
   <h3 class="heading"><a href="/routes/{{routeInfo.id}}">{{routeInfo.name}}</a></h3>
   <p>{{routeInfo.creationDate}}</p>
   <p>Created by <a href="">{{routeInfo.authorInfo.firstName}} {{routeInfo.authorInfo.lastName}}</a></p>
-  <button *ngIf="displayDeleteButton" (click)="delete.emit()">delete</button>
+  <div *ngIf="displayEditButtons">
+    <button (click)="edit()">Edit</button>
+    <button (click)="delete.emit()">delete</button>
+  </div>
 </div>

@@ -56,4 +56,8 @@ export class RouteComponent implements OnInit {
       .subscribe(data => this.router.navigate(['routes']));
   }
 
+  edit(): void {
+    this.router.navigate(['routes/' + this.route.id + '/edit']);
+  }
+
 }

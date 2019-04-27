@@ -46,6 +46,7 @@ import { CityPlacesComponent } from './components/city-places/city-places.compon
 import { CityComponent } from './components/city/city.component';
 import { CountryComponent } from './components/country/country.component';
 import { RouteInfoComponent } from './components/routes/route-info/route-info.component';
+import { EditRouteComponent } from './components/routes/edit-route/edit-route.component';
 
 @NgModule({
   declarations: [
@@ -88,7 +89,8 @@ import { RouteInfoComponent } from './components/routes/route-info/route-info.co
     CityPlacesComponent,
     CityComponent,
     CountryComponent,
-    RouteInfoComponent
+    RouteInfoComponent,
+    EditRouteComponent
   ],
   imports: [
     BrowserModule,
