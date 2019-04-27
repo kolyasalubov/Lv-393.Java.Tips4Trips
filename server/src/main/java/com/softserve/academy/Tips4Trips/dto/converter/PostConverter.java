@@ -20,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.mvc.ControllerLinkBuilder;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -45,6 +46,35 @@ public class PostConverter implements Converter<Post, PostDetailsDTO> {
         this.accountConverter = accountConverter;
         this.modelMapper = modelMapper;
     }
+//    @PostConstruct
+//    private void post(){
+//        modelMapper.createTypeMap(Post.class, PostDetailsDTO.class)
+//                .setPostConverter(converter -> {
+//                    PostDetailsDTO postDetailsDTO = converter.getDestination();
+//                    Post source = converter.getSource();
+//                    Route route = source.getRoute();
+//                    modelMapper.createTypeMap(Route.class, RouteInfoDTO.class)
+//                            .setPostConverter(converter1 -> {
+//                                RouteInfoDTO routeInfoDTO = converter1.getDestination();
+//
+//                                return routeInfoDTO;
+//                            });
+//                    postDetailsDTO.setRouteInfo(modelMapper.map(route, RouteInfoDTO.class));
+//
+//                    postDetailsDTO.setLikes(ControllerLinkBuilder
+//                            .linkTo(ControllerLinkBuilder
+//                                    .methodOn(LikeController.class)
+//                                    .getAccounts(source.getId()))
+//                            .withRel("likes").getHref());
+//                    postDetailsDTO.setComments(ControllerLinkBuilder
+//                            .linkTo(ControllerLinkBuilder
+//                                    .methodOn(CommentController.class)
+//                                    .findByPostId(source.getId()))
+//                            .withRel("comments").getHref());
+//                    return postDetailsDTO;
+//
+//                });
+//    }
 
     @Override
     public Post convertToEntity(PostDetailsDTO postDetailsDTO) {
@@ -59,35 +89,8 @@ public class PostConverter implements Converter<Post, PostDetailsDTO> {
         post.setRoute(route);
         return post;
     }
-
     @Override
     public PostDetailsDTO convertToDTO(Post post) {
-        modelMapper.createTypeMap(Post.class, PostDetailsDTO.class)
-                .setPostConverter(converter -> {
-                    PostDetailsDTO postDetailsDTO = converter.getDestination();
-                    Post source = converter.getSource();
-                    Route route = source.getRoute();
-                    modelMapper.createTypeMap(Route.class, RouteInfoDTO.class)
-                            .setPostConverter(converter1 -> {
-                                RouteInfoDTO routeInfoDTO = converter1.getDestination();
-
-                                return  routeInfoDTO;
-                            });
-                    postDetailsDTO.setRouteInfo(modelMapper.map(route, RouteInfoDTO.class));
-
-                    postDetailsDTO.setLikes(ControllerLinkBuilder
-                            .linkTo(ControllerLinkBuilder
-                                    .methodOn(LikeController.class)
-                                    .getAccounts(post.getId()))
-                            .withRel("likes").getHref());
-                    postDetailsDTO.setComments(ControllerLinkBuilder
-                            .linkTo(ControllerLinkBuilder
-                                    .methodOn(CommentController.class)
-                                    .findByPostId(post.getId()))
-                            .withRel("comments").getHref());
-                    return postDetailsDTO;
-
-                });
         return modelMapper.map(post, PostDetailsDTO.class);
     }
 

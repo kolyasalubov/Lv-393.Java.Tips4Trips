@@ -17,11 +17,14 @@ export class CommentService {
     return this.http.post<Comment>(this.baseUrl + '/create', comment);
   }
 
-  deleteComment(postId: number, id: number): Observable<Comment> {
-    return this.http.delete<Comment>(this.baseUrl + postId + '/delete/' + id, {});
+  deleteComment( commentId: number, accountId):Observable<Comment> {
+    console.log(commentId);
+    console.log(accountId);
+    return this.http.delete<Comment>(this.baseUrl +'/delete/' + accountId+'/'+commentId);
   }
 
   findByPostId(postId: number): Observable<Comment[]> {
     return this.http.get<Comment[]>(this.baseUrl + '/all/' + postId, {});
   }
+
 }

@@ -70,7 +70,7 @@ public class LikeController {
     }
 
     @PostMapping("/change/{accountId}")
-    public long changeLikeState(@PathVariable Long postId,
+    public void changeLikeState(@PathVariable Long postId,
                                 @PathVariable Long accountId) {
         Account account = accountService.findById(accountId);
         Post post = postService.findById(postId);
@@ -79,7 +79,20 @@ public class LikeController {
         } else {
             likeService.createLike(account, post);
         }
-        return likeService.countByPostId(postId);
+    }
+
+    @GetMapping("/exists/{accountId}")
+    public boolean isAdded(@PathVariable Long postId,
+                           @PathVariable Long accountId) {
+        boolean isAdded = false;
+        Account account = accountService.findById(accountId);
+        Post post = postService.findById(postId);
+        if (likeService.existsByLikedByAndPost(account, post)) {
+            isAdded = true;
+        } else {
+            isAdded = false;
+        }
+        return isAdded;
     }
 
     @PostMapping("/create/{accountId}")
@@ -92,6 +105,7 @@ public class LikeController {
         return new ResponseEntity<>(likeConverter
                 .convertToDTO(likeService.createLike(account, post)), HttpStatus.CREATED);
     }
+
 
     @DeleteMapping("/delete/{accountId}")
     public void deleteLike(@PathVariable Long postId,

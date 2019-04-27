@@ -32,7 +32,7 @@ public class UserService {
         return user.isPresent() ? user.get() : null;
     }
 
-    public List<User> findByAccount(Account account) {
+    public User findByAccount(Account account) {
         return repository.findByAccount(account);
     }
 

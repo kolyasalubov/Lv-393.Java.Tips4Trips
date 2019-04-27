@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { TokenStorageService } from '../token/token-storage.service';
-import { UserAccount } from '../../../model/useraccount.model';
+import { SignUpForm } from '../../../model/authentication/signup-form.model';
 import { User } from '../../../model/user.model';
 import { Account } from '../../../model/account.model';
 import { Router } from "@angular/router";
@@ -18,10 +18,8 @@ export class SignupComponent implements OnInit {
   isLoginFailed = false;
   errorMessage = '';
   roles: string[] = [];
-  private signupInfo: UserAccount;
-  private userInfo: User;
-  private accountInfo: Account;
-
+  private signupInfo: SignUpForm;
+  
   constructor(private authService: AuthService,
               private tokenStorage: TokenStorageService, private router: Router) { }
 
@@ -29,13 +27,11 @@ export class SignupComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.signUpForm.firstName);
-    this.userInfo = new User(-1, this.signUpForm.login, this.signUpForm.password);
-    this.accountInfo = new Account(-1, this.signUpForm.firstName,
+
+    this.signupInfo = new SignUpForm(this.signUpForm.login, this.signUpForm.firstName,
       this.signUpForm.lastName, this.signUpForm.phoneNumber,
-      this.signUpForm.email, null, null, this.signUpForm.about);
+      this.signUpForm.email, this.signUpForm.password, this.signUpForm.about);
     
-      this.signupInfo = new UserAccount(this.accountInfo, this.userInfo);
       this.authService.signUp(this.signupInfo).subscribe(
         data => {
       
