@@ -45,6 +45,7 @@ import { HotelDetailsComponent } from './components/hotel-details/hotel-details.
 import { CityPlacesComponent } from './components/city-places/city-places.component';
 import { CityComponent } from './components/city/city.component';
 import { CountryComponent } from './components/country/country.component';
+import { RouteInfoComponent } from './components/routes/route-info/route-info.component';
 
 @NgModule({
   declarations: [
@@ -86,7 +87,8 @@ import { CountryComponent } from './components/country/country.component';
     HotelDetailsComponent,
     CityPlacesComponent,
     CityComponent,
-    CountryComponent
+    CountryComponent,
+    RouteInfoComponent
   ],
   imports: [
     BrowserModule,

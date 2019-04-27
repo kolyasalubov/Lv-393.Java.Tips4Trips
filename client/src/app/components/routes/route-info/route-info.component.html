@@ -1,0 +1,8 @@
+<a href="/routes/{{routeInfo.id}}" class="block-20" 
+style="background-image: url('../../../assets/images/image_1.jpg');"></a>
+<div class="text mt-3 float-right d-block">
+  <h3 class="heading"><a href="/routes/{{routeInfo.id}}">{{routeInfo.name}}</a></h3>
+  <p>{{routeInfo.creationDate}}</p>
+  <p>Created by <a href="">{{routeInfo.authorInfo.firstName}} {{routeInfo.authorInfo.lastName}}</a></p>
+  <button *ngIf="displayDeleteButton" (click)="delete.emit()">delete</button>
+</div>
