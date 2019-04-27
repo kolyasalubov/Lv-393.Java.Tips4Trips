@@ -20,7 +20,7 @@ export class BigPostComponent implements OnInit {
     this.bigserv.getPost(page)
       .subscribe(data => {
         this.post = data;
-      });
+      },err => window.location.href = 'http://localhost:4200/404');
   }
 
   ngOnInit() {

@@ -14,6 +14,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @RestController
 @CrossOrigin
@@ -33,7 +34,6 @@ public class CommentController {
     }
 
 
-
     @GetMapping("/all/{id}")
     public ResponseEntity<List<CommentDetailsDTO>> findByPostId(@PathVariable Long id) {
         return new ResponseEntity<>(commentConverter.convertToDTO(commentService.findByPostId(id)), HttpStatus.OK);
@@ -43,16 +43,20 @@ public class CommentController {
         return count;
     }*/
 
-        @PostMapping("/create")
-        public ResponseEntity<CommentDetailsDTO> createComment (@RequestBody CommentDetailsDTO commentDetailsDTO){
-            Comment comment = commentService.createComment(commentConverter.convertToEntity(commentDetailsDTO));
-            return new ResponseEntity<>(commentConverter.convertToDTO(comment), HttpStatus.CREATED);
+    @PostMapping("/create")
+    public ResponseEntity<CommentDetailsDTO> createComment(@RequestBody CommentDetailsDTO commentDetailsDTO) {
+        Comment comment = commentService.createComment(commentConverter.convertToEntity(commentDetailsDTO));
+        return new ResponseEntity<>(commentConverter.convertToDTO(comment), HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("/delete/{accountId}/{commentId}")
+    public ResponseEntity deleteComment(@PathVariable Long accountId, @PathVariable Long commentId) {
+        if (commentService.existsByCommentedByIdAndId(accountId, commentId)) {
+            commentService.deleteComment(commentId);
+        } else {
+            throw new NoSuchElementException();
         }
-
-        @DeleteMapping("/delete/{id}")
-        public void deleteComment (@PathVariable Long id){
-            commentService.deleteComment(id);
-
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
 

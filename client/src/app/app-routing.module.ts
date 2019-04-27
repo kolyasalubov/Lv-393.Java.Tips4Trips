@@ -29,50 +29,65 @@ import { HotelDetailsComponent } from "./components/hotel-details/hotel-details.
 import { CityPlacesComponent } from "./components/city-places/city-places.component";
 import { CityComponent } from './components/city/city.component';
 import { CountryComponent } from './components/country/country.component';
+import { CreateTripComponent } from './components/trip/create-trip/create-trip.component';
+import { ChangeComponent } from "./components/trip/change/change.component";
+import { ErrorComponent } from "./components/error/error.component";
 import { EditRouteComponent } from './components/routes/edit-route/edit-route.component';
-
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'create-place', component: CreatePostPlaceComponent },
+  { path: 'sing_up', component: SignupComponent },
   { path: 'like', component: LikeComponent },
+  { path: 'comment', component: CommentComponent },
   { path: 'account', component: AccountComponent, canActivate: [AuthGuard] },
   { path: 'account_edit', component: AccountEditComponent },
+  { path: 'city', component: CityComponent },
+  { path: 'country', component: CountryComponent },
+  //  { path: 'create-place', component: CreatePostPlaceComponent },
   { path: 'create_place', component: CreatePostPlaceComponent },
+  { path: 'create_place/restaurant', component: CreateRestaurantComponent },
+  { path: 'restaurants/:id', component: RestaurantDetailsComponent },
+  { path: 'create_place/hotel', component: CreateHotelComponent },
+  { path: 'hotels/:id', component: HotelDetailsComponent },
+  { path: 'create_place/monument', component: CreateMonumentComponent },
+  { path: 'monuments/:id', component: MonumentDetailsComponent },
+  { path: 'routes', component: ListOfRoutesComponent },
+  { path: 'routes/:id', component: RouteComponent },
+  { path: 'city_places/:id', component: CityPlacesComponent },
   { path: 'create_post', component: CreatePostComponent },
-  { path: 'routes/create', component: CreateRouteComponent },
   { path: 'create_route', component: CreateRouteComponent },
-  { path: 'sing_up', component: SignupComponent },
+  { path: 'trips/create', component: CreateRouteComponent },
   { path: 'list_of_users', component: ListOfUsersComponent },
+  { path: 'list_of_users/:id', component: ListOfUsersComponent },
   { path: 'blog', component: BlogComponent },
   { path: 'blog/:id', component: BlogComponent },
   { path: 'about', component: AboutePageComponent },
   { path: 'create_place/restaurant', component: CreateRestaurantComponent },
-  { path: 'post', component: BigPostComponent },
-  { path: 'create_place/hotel', component: CreateHotelComponent },
-  { path: 'create_place/monument', component: CreateMonumentComponent },
-  { path: 'routes', component: ListOfRoutesComponent },
-  { path: 'comment', component: CommentComponent },
   { path: 'restaurants/:id', component: RestaurantDetailsComponent },
-  { path: 'monuments/:id', component: MonumentDetailsComponent },
+  { path: 'create_place/hotel', component: CreateHotelComponent },
   { path: 'hotels/:id', component: HotelDetailsComponent },
+  { path: 'create_place/monument', component: CreateMonumentComponent },
+  { path: 'monuments/:id', component: MonumentDetailsComponent },
+  { path: 'routes', component: ListOfRoutesComponent },
   { path: 'routes/:id', component: RouteComponent },
   { path: 'routes/:id/edit', component: EditRouteComponent },
+  { path: 'post', component: BigPostComponent },
   { path: 'post/:id', component: BigPostComponent },
-  { path: 'trip', component: TripComponent },
+  { path: 'trip/page', component: TripComponent },
+  { path: 'trip/page/:page', component: TripComponent },
   { path: 'trip/:id', component: TripInfoComponent },
+  { path: 'create_trip', component: CreateTripComponent },
+  { path: 'edit_trip/:id', component: ChangeComponent },
   { path: 'test', component: TestComponent },
-  { path: 'city_places/:id', component: CityPlacesComponent },
-  { path: 'city', component: CityComponent },
-  { path: 'country', component: CountryComponent }
-
-
+  { path: '404', component: ErrorComponent },
+  { path: '**', redirectTo: '/404' }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

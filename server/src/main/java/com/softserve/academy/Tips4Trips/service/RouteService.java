@@ -81,4 +81,13 @@ public class RouteService {
             repository.delete(route);
         });
     }
+
+    public Route findByName(String name) {
+        Optional<Route> route = repository.findByName(name);
+        if (route.isPresent()) {
+            return route.get();
+        } else {
+            throw new NoSuchElementException();
+        }
+    }
 }

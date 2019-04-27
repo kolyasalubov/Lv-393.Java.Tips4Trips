@@ -9,6 +9,7 @@ import {Router} from '@angular/router';
 export class PaginationComponent implements OnInit {
   @Input() number: number;
   @Input() total: number;
+  @Input() link: string;
 
   constructor(private router: Router) {
   }

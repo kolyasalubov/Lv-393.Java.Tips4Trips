@@ -13,13 +13,19 @@ export class LikeService {
   }
 
   baseUrl: string = 'http://localhost:8080/posts/';
-
-  changeLike(postId: number, accountId: number): Observable<number> {
-    return this.http.post<number>(this.baseUrl + postId + '/likes/change/' + accountId,{postId, accountId} );
+ getAccounts(postId:number):Observable<Account[]>{
+   return this.http.get<Account[]>(this.baseUrl + postId + '/likes');
+ }
+  changeLike(postId: number, accountId: number): Observable<void> {
+    return this.http.post<void>(this.baseUrl + postId + '/likes/change/' + accountId,{postId, accountId} );
+  };
+  isAdded(postId: number, accountId: number): Observable<boolean> {
+    return this.http.get<boolean>(this.baseUrl + postId + '/likes/exists/' + accountId );
   };
   countLikes(postId: number): Observable<number> {
     return this.http.get<number>(this.baseUrl + postId + '/likes/count' );
   };
+
   createLike(postId: number, accountId: number): Observable<Like> {
     return this.http.post<Like>(this.baseUrl + postId + '/likes/create/' + accountId, {postId, accountId});
   };
