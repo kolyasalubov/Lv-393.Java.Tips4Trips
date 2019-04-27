@@ -27,6 +27,10 @@
         </div>
       </div>
       <div style="text-align: left;"><button (click)="goBack()" style="margin-top:20px;">Back</button></div>
+      <div style="text-align: right;" *ngIf="hasAuthority">
+        <button (click)="edit()" style="margin-top:20px;">Edit</button>
+        <button (click)="delete()" style="margin-top:20px;">Delete</button>
+      </div>
     </div>
   </div>
 </section>

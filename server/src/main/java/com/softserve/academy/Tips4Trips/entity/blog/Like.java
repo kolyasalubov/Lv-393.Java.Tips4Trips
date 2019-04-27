@@ -1,6 +1,8 @@
 package com.softserve.academy.Tips4Trips.entity.blog;
 
 import com.softserve.academy.Tips4Trips.entity.administration.Account;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 
@@ -13,10 +15,12 @@ public class Like {
     private Long id;
 
     @ManyToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "liked_by", referencedColumnName = "id" ,nullable = false)
     private Account likedBy;
 
     @ManyToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "post_id", referencedColumnName = "id" ,nullable = false)
     private Post post;
 

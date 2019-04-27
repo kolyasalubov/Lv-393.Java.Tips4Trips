@@ -2,7 +2,9 @@ package com.softserve.academy.Tips4Trips.service;
 
 import com.softserve.academy.Tips4Trips.entity.Route;
 import com.softserve.academy.Tips4Trips.entity.administration.Account;
+import com.softserve.academy.Tips4Trips.entity.enums.Role;
 import com.softserve.academy.Tips4Trips.repository.AccountRepository;
+import com.softserve.academy.Tips4Trips.repository.PostRepository;
 import com.softserve.academy.Tips4Trips.repository.RouteRepository;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,13 +22,16 @@ public class RouteService {
 
     private RouteRepository repository;
     private AccountRepository accountRepository;
+    private PostRepository postRepository;
 
 
     @Autowired
     public RouteService(RouteRepository repository,
-                        AccountRepository accountRepository) {
+                        AccountRepository accountRepository,
+                        PostRepository postRepository) {
         this.repository = repository;
         this.accountRepository = accountRepository;
+        this.postRepository = postRepository;
     }
 
     public List<Route> findAll() {
@@ -53,17 +58,18 @@ public class RouteService {
 
     public Route createRoute(Route route) {
         route.setCreationDate(new Date());
+        route.setVerified(route.getAuthor().getRole().equals(Role.ADMIN)
+                || route.getAuthor().getRole().equals(Role.MODERATOR));
         route.setId(-1L);
         return repository.save(route);
     }
 
-    public  Route update(Route route) {
+    public Route update(Route route) {
         Optional<Route> existingRoute = repository.findById(route.getId());
         if (!existingRoute.isPresent()) {
             throw new NoSuchElementException();
         } else {
             existingRoute.get().setName(route.getName());
-            existingRoute.get().setPhotoPath(route.getPhotoPath());
             existingRoute.get().setAuthor(route.getAuthor());
             existingRoute.get().setListOfPlaces(route.getListOfPlaces());
         }
@@ -72,7 +78,10 @@ public class RouteService {
 
     public void deleteById(Long id) {
         // delete route from posts...
-        repository.findById(id).ifPresent(repository::delete);
+        repository.findById(id).ifPresent(route -> {
+            postRepository.findByRoute(route).forEach(post -> post.setRoute(null));
+            repository.delete(route);
+        });
     }
 
     public Route findByName(String name) {

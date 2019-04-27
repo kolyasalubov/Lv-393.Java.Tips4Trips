@@ -18,7 +18,7 @@ import {RecentStoriesComponent} from './components/home/recent-stories/recent-st
 import {NewsSubscribeComponent} from './components/home/news-subscribe/news-subscribe.component';
 import {CreatePostComponent} from './components/create-post/create-post.component';
 import {CreatePostPlaceComponent} from './components/create-post-place/create-post-place.component';
-import {CreateRouteComponent} from './components/create-route/create-route.component';
+import {CreateRouteComponent} from './components/routes/create-route/create-route.component';
 import {LikeComponent} from './components/blog/like/like.component';
 import {SignupComponent} from './components/authentication/signup/signup.component';
 import {ListOfUsersComponent} from './components/list-of-users/list-of-users.component';
@@ -31,8 +31,8 @@ import {LittlePostComponent} from './components/blog/little-post/little-post.com
 import {LessPostComponent} from './components/blog/less-post/less-post.component';
 import {CreateHotelComponent} from './components/create-post-place/create-hotel/create-hotel.component';
 import {AccountEditComponent} from './components/authentication/account-edit/account-edit.component';
-import {ListOfRoutesComponent} from './components/list-of-routes/list-of-routes.component';
-import {RouteComponent} from './components/route/route.component';
+import {ListOfRoutesComponent} from './components/routes/list-of-routes/list-of-routes.component';
+import {RouteComponent} from './components/routes/route/route.component';
 import {httpInterceptorProviders} from './components/authentication/auth-interceptor';
 import {PaginationComponent} from './components/blog/pagination/pagination.component';
 import {TripComponent} from './components/trip/trip/trip.component';
@@ -45,8 +45,13 @@ import { HotelDetailsComponent } from './components/hotel-details/hotel-details.
 import { CityPlacesComponent } from './components/city-places/city-places.component';
 import { CityComponent } from './components/city/city.component';
 import { CountryComponent } from './components/country/country.component';
+<<<<<<< HEAD
 import { ImageDetails } from './components/image-details/image-details.component';
 import { ImageUploadFormComponent } from './components/image-upload-form/image-upload-form.component';
+=======
+import { RouteInfoComponent } from './components/routes/route-info/route-info.component';
+import { EditRouteComponent } from './components/routes/edit-route/edit-route.component';
+>>>>>>> ee2afa32e44a63c6c85e022f7a7a1c9e43f34b5b
 import { CreateTripComponent } from './components/trip/create-trip/create-trip.component';
 import { LittleRouteComponent } from './components/route/little-route/little-route.component';
 import { ChangeComponent } from './components/trip/change/change.component';
@@ -96,8 +101,13 @@ import { CommentAccountComponent } from './components/authentication/account/com
     CityPlacesComponent,
     CityComponent,
     CountryComponent,
+<<<<<<< HEAD
 	ImageDetails,
 	ImageUploadFormComponent
+=======
+    RouteInfoComponent,
+    EditRouteComponent,
+>>>>>>> ee2afa32e44a63c6c85e022f7a7a1c9e43f34b5b
     CreateTripComponent,
     LittleRouteComponent,
     ChangeComponent,

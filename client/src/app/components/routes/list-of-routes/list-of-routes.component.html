@@ -19,13 +19,8 @@
     <div class="row d-flex">
       <div *ngFor="let route of routes" class="col-md-4 d-flex ftco-animate">
         <div class="blog-entry justify-content-end">
-          <a routerLink="/routes/{{route.id}}" class="block-20" style="background-image: url('../../../assets/images/image_1.jpg');">
-          </a>
-          <div class="text mt-3 float-right d-block">
-            <h3 class="heading"><a routerLink="/routes/{{route.id}}">{{route.name}}</a></h3>
-            <p>{{route.creationDate}}</p>
-            <p>Created by <a href="">{{route.authorInfo.firstName}} {{route.authorInfo.lastName}}</a></p>
-          </div>
+          <app-route-info [routeInfo]="route" [displayEditButtons]="hasAuthority" 
+          (delete)="deleteRoute(route.id)"></app-route-info>
         </div>
       </div>
     </div>

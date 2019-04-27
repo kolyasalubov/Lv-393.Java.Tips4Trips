@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {RouteInfo} from './model/route-info.model';
+import {RouteInfo} from '../model/route-info.model';
 import {Observable} from 'rxjs';
-import {Route} from './model/route.model';
-import {PlaceInfo} from "./model/place-info.model";
+import {Route} from '../model/route.model';
+import {PlaceInfo} from "../model/place-info.model";
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +25,12 @@ export class RouteService {
 
   createRoute(route: Route): Observable<Route> {
     return this.http.post<Route>(this.baseUrl + "create", route);
+  }
+  updateRoute(route: Route): Observable<Route> {
+    return this.http.put<Route>(this.baseUrl + "update", route);
+  }
+  deleteRoute(id: number): Observable<Route> {
+    return this.http.delete<Route>(this.baseUrl + "delete/" + id);
   }
 
   findByName(name: string): Observable<Route> {

@@ -3,6 +3,8 @@ package com.softserve.academy.Tips4Trips.entity;
 import com.softserve.academy.Tips4Trips.entity.administration.Account;
 import com.softserve.academy.Tips4Trips.entity.file.Image;
 import com.softserve.academy.Tips4Trips.entity.place.Place;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -20,6 +22,9 @@ public class Route {
     @NotNull
     @Column(name = "name", length = 100, nullable = false)
     private String name;
+
+    @Column(name = "is_verified")
+    private boolean verified = false;
 
     @ManyToOne
     @JoinColumn(name = "author_id", referencedColumnName = "id", nullable = false)
@@ -53,6 +58,14 @@ public class Route {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public boolean isVerified() {
+        return verified;
+    }
+
+    public void setVerified(boolean verified) {
+        this.verified = verified;
     }
 
     public Account getAuthor() {

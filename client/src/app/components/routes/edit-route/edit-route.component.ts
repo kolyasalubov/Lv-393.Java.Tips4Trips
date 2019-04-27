@@ -1,25 +1,25 @@
 import { Component, OnInit } from '@angular/core';
 import { Route } from 'src/app/model/route.model';
-import { RouteService } from 'src/app/route.service';
+import { RouteService } from 'src/app/service/route.service';
 import { AccountInfo } from 'src/app/model/account-info.model';
 import { PlaceService } from 'src/app/place.service';
-import { Router } from '@angular/router';
-import { AuthService } from '../authentication/auth.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import { AuthService } from '../../authentication/auth.service';
 
 @Component({
-  selector: 'app-create-post-route',
-  templateUrl: './create-route.component.html',
-  styleUrls: ['./create-route.component.css']
+  selector: 'app-edit-route',
+  templateUrl: './edit-route.component.html',
+  styleUrls: ['./edit-route.component.css']
 })
-export class CreateRouteComponent implements OnInit {
-
+export class EditRouteComponent implements OnInit {
   route: Route;
   placeName: string;
   constructor(
     private routeService: RouteService,
     private placeService: PlaceService,
+    private ngRoute: ActivatedRoute,
     private router: Router,
-    private authService : AuthService
+    private authService: AuthService
   ) {
     this.route = new Route();
     this.route.authorInfo = new AccountInfo();
@@ -27,9 +27,17 @@ export class CreateRouteComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.authService.getCurrentUser().subscribe(data => {
-      this.route.authorInfo.id = data.id;
-      });
+    this.authService.getCurrentUser().subscribe(account => {
+      if (!(account.role.toLowerCase() == "admin" || account.role.toLowerCase() == "moderator")) {
+        this.router.navigate(['routes']);
+      }
+    });
+    const id = Number(this.ngRoute.snapshot.paramMap.get('id'));
+    this.routeService.findById(id).subscribe(data => {
+      this.route = data;
+      this.route.authorInfo = data.authorInfo;
+      this.route.places = data.places;
+    });
   }
 
   addPlace(): void {
@@ -45,9 +53,10 @@ export class CreateRouteComponent implements OnInit {
 
   save(): void {
     if (this.validate()) {
-      this.route.photoPath="no photo";
-      this.routeService.createRoute(this.route).subscribe(result=>this.route = result);
-      setTimeout(() => {this.router.navigate(['routes']);}, 2000);
+      this.routeService.updateRoute(this.route).subscribe(result => {
+        this.route = result;
+        this.router.navigate(['routes/' + this.route.id]);
+      });
     }
   }
 
@@ -58,4 +67,5 @@ export class CreateRouteComponent implements OnInit {
   removePlace(id: number): void {
     this.route.places = this.route.places.filter(p => p.id != id);
   }
+
 }

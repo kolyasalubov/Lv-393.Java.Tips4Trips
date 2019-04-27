@@ -3,7 +3,7 @@ import {ActivatedRoute} from "@angular/router";
 import {TripService} from "../trip/trip.service";
 import {TripDetailsDTO} from "../../../model/trip-details";
 import {AccountInfo} from "../../../model/account-info.model";
-import {RouteService} from "../../../route.service";
+import {RouteService} from "../../../service/route.service";
 
 @Component({
   selector: 'app-change',

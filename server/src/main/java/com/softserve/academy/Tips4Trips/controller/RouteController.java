@@ -1,6 +1,5 @@
 package com.softserve.academy.Tips4Trips.controller;
 
-import com.softserve.academy.Tips4Trips.dto.RouteDTO;
 import com.softserve.academy.Tips4Trips.dto.converter.RouteConverter;
 import com.softserve.academy.Tips4Trips.dto.details.RouteDetailsDTO;
 import com.softserve.academy.Tips4Trips.dto.info.RouteInfoDTO;
