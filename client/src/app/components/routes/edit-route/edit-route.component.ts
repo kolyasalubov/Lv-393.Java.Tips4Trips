@@ -53,7 +53,6 @@ export class EditRouteComponent implements OnInit {
 
   save(): void {
     if (this.validate()) {
-      this.route.photoPath = "no photo";
       this.routeService.updateRoute(this.route).subscribe(result => {
         this.route = result;
         this.router.navigate(['routes/' + this.route.id]);

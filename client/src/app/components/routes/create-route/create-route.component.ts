@@ -49,7 +49,6 @@ export class CreateRouteComponent implements OnInit {
 
   save(): void {
     if (this.validate()) {
-      this.route.photoPath = "no photo";
       this.routeService.createRoute(this.route).subscribe(result => {
         this.route = result;
         this.router.navigate(['routes']);

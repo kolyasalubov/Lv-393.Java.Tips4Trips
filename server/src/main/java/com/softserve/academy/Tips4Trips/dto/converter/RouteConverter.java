@@ -40,7 +40,7 @@ public class RouteConverter implements Converter<Route, RouteDetailsDTO> {
     public RouteDetailsDTO convertToDTO(Route route) {
         RouteDetailsDTO routedetailsDTO = (RouteDetailsDTO)
                 toInfoDTO(new RouteDetailsDTO(), route);
-        routedetailsDTO.setPhotoPath(route.getPhotoPath());
+        routedetailsDTO.setVerified(route.isVerified());
         routedetailsDTO.setPlaces(placeConverter
                 .convertToDTO(route.getListOfPlaces()));
         return routedetailsDTO;
@@ -52,7 +52,7 @@ public class RouteConverter implements Converter<Route, RouteDetailsDTO> {
         route.setId(routeDetailsDTO.getId());
         route.setCreationDate(routeDetailsDTO.getCreationDate());
         route.setName(routeDetailsDTO.getName());
-        route.setPhotoPath(routeDetailsDTO.getPhotoPath());
+        route.setVerified(routeDetailsDTO.isVerified());
         Account author = accountService.findById(
                 routeDetailsDTO.getAuthorInfo().getId());
         route.setAuthor(author);

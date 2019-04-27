@@ -2,6 +2,7 @@ package com.softserve.academy.Tips4Trips.service;
 
 import com.softserve.academy.Tips4Trips.entity.Route;
 import com.softserve.academy.Tips4Trips.entity.administration.Account;
+import com.softserve.academy.Tips4Trips.entity.enums.Role;
 import com.softserve.academy.Tips4Trips.repository.AccountRepository;
 import com.softserve.academy.Tips4Trips.repository.PostRepository;
 import com.softserve.academy.Tips4Trips.repository.RouteRepository;
@@ -57,17 +58,18 @@ public class RouteService {
 
     public Route createRoute(Route route) {
         route.setCreationDate(new Date());
+        route.setVerified(route.getAuthor().getRole().equals(Role.ADMIN)
+                || route.getAuthor().getRole().equals(Role.MODERATOR));
         route.setId(-1L);
         return repository.save(route);
     }
 
-    public  Route update(Route route) {
+    public Route update(Route route) {
         Optional<Route> existingRoute = repository.findById(route.getId());
         if (!existingRoute.isPresent()) {
             throw new NoSuchElementException();
         } else {
             existingRoute.get().setName(route.getName());
-            existingRoute.get().setPhotoPath(route.getPhotoPath());
             existingRoute.get().setAuthor(route.getAuthor());
             existingRoute.get().setListOfPlaces(route.getListOfPlaces());
         }
