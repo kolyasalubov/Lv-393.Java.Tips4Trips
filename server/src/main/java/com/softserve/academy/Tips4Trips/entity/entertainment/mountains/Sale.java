@@ -1,6 +1,7 @@
 package com.softserve.academy.Tips4Trips.entity.entertainment.mountains;
 
 import com.softserve.academy.Tips4Trips.entity.administration.Account;
+import com.softserve.academy.Tips4Trips.entity.file.Image;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -17,12 +18,13 @@ public class Sale {
     @Column(name = "name", nullable = false, length = 50)
     private String name;
 
-    @NotNull
-    @Column(name = "photo_path", length = 500, nullable = false)
-    private String photoPath;
+    @ManyToOne
+    @JoinColumn(name = "image_id", referencedColumnName = "id")
+    private Image image;
 
     @ManyToOne
-    @JoinColumn(name = "creator_id", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "creator_id", referencedColumnName = "id",
+            nullable = false)
     private Account creator;
 
     @NotNull
@@ -58,12 +60,12 @@ public class Sale {
         this.name = name;
     }
 
-    public String getPhotoPath() {
-        return photoPath;
+    public Image getImage() {
+        return image;
     }
 
-    public void setPhotoPath(String photoPath) {
-        this.photoPath = photoPath;
+    public void setImage(Image image) {
+        this.image = image;
     }
 
     public Account getCreator() {
