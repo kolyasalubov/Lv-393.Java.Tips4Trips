@@ -17,11 +17,18 @@ public class Image implements Serializable {
     @Column(nullable = false, length = 50)
     private String name;
 
+    @NotBlank
+    @Size(max = 4, min = 3)
+    @Column(nullable = false, length = 4)
+    private String format;
+
     public Image() {
     }
 
-    public Image(@NotBlank @Size(max = 50, min = 1) String name) {
+    public Image(@NotBlank @Size(max = 50, min = 1) String name,
+                 @NotBlank @Size(max = 4, min = 3) String format) {
         this.name = name;
+        this.format = format;
     }
 
     public Long getId() {
@@ -38,5 +45,13 @@ public class Image implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getFormat() {
+        return format;
+    }
+
+    public void setFormat(String format) {
+        this.format = format;
     }
 }

@@ -1,6 +1,7 @@
 package com.softserve.academy.Tips4Trips.entity;
 
 import com.softserve.academy.Tips4Trips.entity.administration.Account;
+import com.softserve.academy.Tips4Trips.entity.file.Image;
 import com.softserve.academy.Tips4Trips.entity.place.Place;
 
 import javax.persistence.*;
@@ -19,9 +20,6 @@ public class Route {
     @NotNull
     @Column(name = "name", length = 100, nullable = false)
     private String name;
-
-    @Column(name = "photo_path", length = 500, nullable = false)
-    private String photoPath;
 
     @ManyToOne
     @JoinColumn(name = "author_id", referencedColumnName = "id", nullable = false)
@@ -55,14 +53,6 @@ public class Route {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getPhotoPath() {
-        return photoPath;
-    }
-
-    public void setPhotoPath(String photoPath) {
-        this.photoPath = photoPath;
     }
 
     public Account getAuthor() {

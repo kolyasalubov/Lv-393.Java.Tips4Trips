@@ -52,7 +52,7 @@ public class PostConverter implements Converter<Post, PostDetailsDTO> {
         post.setId(postDetailsDTO.getId());
         post.setName(postDetailsDTO.getName());
         post.setContent(postDetailsDTO.getContent());
-        post.setPhotoPath(postDetailsDTO.getPhotoPath());
+        post.setImage(postDetailsDTO.getImage());
         // post.setCreationDate(postDetailsDTO.getCreationDate());
         Route route = routeService.findById(
                 postDetailsDTO.getRouteInfo().getId());

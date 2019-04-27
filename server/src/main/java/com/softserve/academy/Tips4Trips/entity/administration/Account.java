@@ -44,7 +44,7 @@ public class Account {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    @OneToMany(mappedBy = "author")
+    @OneToMany(mappedBy = "author", cascade = CascadeType.REMOVE)
     private List<Post> post;
 
     @ManyToMany(cascade = CascadeType.ALL)
@@ -56,7 +56,7 @@ public class Account {
     @OneToMany(mappedBy = "account", cascade = CascadeType.REMOVE)
     private List<User> users;
 
-    @OneToMany(mappedBy = "creator")
+    @OneToMany(mappedBy = "creator", cascade = CascadeType.REMOVE)
     private List<Sale> sales;
 
     public Account() {
