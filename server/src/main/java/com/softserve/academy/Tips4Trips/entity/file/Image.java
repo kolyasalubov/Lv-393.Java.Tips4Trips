@@ -34,7 +34,6 @@ public class Image implements Serializable {
     private Date uploadDate;
 
     @NotNull
-    @Column(nullable = false)
     @ManyToOne
     @JoinColumn(name = "account_id", referencedColumnName = "id")
     private Account creator;

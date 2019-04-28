@@ -23,15 +23,21 @@ public class HotelConverter implements Converter<Hotel, HotelDetailsDTO> {
     private CityConverter cityConverter;
     private PlaceConverter placeConverter;
     private CityService cityService;
+    private ImageConverter imageConverter;
     private final SimpleDateFormat formatter = new SimpleDateFormat("HH:mm", Locale.getDefault());
 
 
     @Autowired
-    public HotelConverter(HotelService hotelService, CityConverter cityConverter, PlaceConverter placeConverter, CityService cityService) {
+    public HotelConverter(ImageConverter imageConverter,
+                          HotelService hotelService,
+                          CityConverter cityConverter,
+                          PlaceConverter placeConverter,
+                          CityService cityService) {
         this.hotelService = hotelService;
         this.cityConverter = cityConverter;
         this.placeConverter = placeConverter;
         this.cityService = cityService;
+        this.imageConverter = imageConverter;
     }
 
 
@@ -56,9 +62,8 @@ public class HotelConverter implements Converter<Hotel, HotelDetailsDTO> {
         hotelDetailsDTO.setType(hotel.getType());
         hotelDetailsDTO.setOpeningTime(formatter.format(hotel.getOpeningTime()));
         hotelDetailsDTO.setClosingTime(formatter.format(hotel.getClosingTime()));
-        hotelDetailsDTO.setPhotoPath(hotel.getPhotoPath());
+        hotelDetailsDTO.setImage(imageConverter.convertToDTO(hotel.getImage()));
         hotelDetailsDTO.setPosition(hotel.getPosition());
-        hotelDetailsDTO.setPhotoPath(hotel.getPhotoPath());
         hotelDetailsDTO.setCityDTO(cityConverter.convertToDTO(cityService.findById(hotel.getCity().getId())));
         hotelDetailsDTO.setMinimumPrice(hotel.getMinimumPrice());
         hotelDetailsDTO.setMaximumPrice(hotel.getMaximumPrice());
@@ -73,8 +78,10 @@ public class HotelConverter implements Converter<Hotel, HotelDetailsDTO> {
         hotel.setDescription(hotelDetailsDTO.getDescription());
         hotel.setAddress(hotelDetailsDTO.getAddress());
         hotel.setPosition(hotelDetailsDTO.getPosition());
-        hotel.setPhotoPath(hotelDetailsDTO.getPhotoPath());
-        hotel.setCity(cityConverter.convertToEntity(hotelDetailsDTO.getCityDTO()));
+        hotel.setImage(imageConverter
+                .convertToEntity(hotelDetailsDTO.getImage()));
+        hotel.setCity(cityConverter
+                .convertToEntity(hotelDetailsDTO.getCityDTO()));
         hotel.setWorkingDays(hotelDetailsDTO.getWorkingDays());
         hotel.setWebSite(hotelDetailsDTO.getWebSite());
         hotel.setTelephone(hotelDetailsDTO.getTelephone());

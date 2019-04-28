@@ -58,7 +58,7 @@ public class RestaurantService {
         restaurantToUpdate.setDescription(restaurant.getDescription());
         restaurantToUpdate.setAddress(restaurant.getAddress());
         restaurantToUpdate.setPosition(restaurant.getPosition());
-        restaurantToUpdate.setPhotoPath(restaurant.getPhotoPath());
+        restaurantToUpdate.setImage(restaurant.getImage());
         restaurantToUpdate.setCity(restaurant.getCity());
         restaurantToUpdate.setWorkingDays(restaurant.getWorkingDays());
         restaurantToUpdate.setWebSite(restaurant.getWebSite());

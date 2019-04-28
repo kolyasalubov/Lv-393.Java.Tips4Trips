@@ -39,10 +39,6 @@ public class Post {
     @JoinColumn(name = "account_id",referencedColumnName = "id")
     private Account author;
 
-    @ManyToOne
-    @JoinColumn(name = "route_id", referencedColumnName = "id")
-    private Route route;
-
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "posts_images",
             joinColumns = {@JoinColumn(name = "account_id",
@@ -50,6 +46,10 @@ public class Post {
             inverseJoinColumns = {@JoinColumn(name = "image_id",
                     referencedColumnName = "id")})
     private List<Image> images;
+
+    @ManyToOne
+    @JoinColumn(name = "route_id", referencedColumnName = "id")
+    private Route route;
 
     @OneToMany(mappedBy = "post", cascade = CascadeType.REMOVE)
     private List<Like> likes;

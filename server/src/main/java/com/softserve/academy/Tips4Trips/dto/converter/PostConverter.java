@@ -40,11 +40,13 @@ public class PostConverter implements Converter<Post, PostDetailsDTO> {
                          RouteService routeService,
                          RouteConverter routeConverter,
                          AccountConverter accountConverter,
+                         ImageConverter imageConverter,
                          ModelMapper modelMapper) {
         this.accountService = accountService;
         this.routeService = routeService;
         this.routeConverter = routeConverter;
         this.accountConverter = accountConverter;
+        this.imageConverter = imageConverter;
         this.modelMapper = modelMapper;
     }
 //    @PostConstruct
@@ -83,7 +85,7 @@ public class PostConverter implements Converter<Post, PostDetailsDTO> {
         post.setId(postDetailsDTO.getId());
         post.setName(postDetailsDTO.getName());
         post.setContent(postDetailsDTO.getContent());
-        post.setImages(postDetailsDTO.getImages());
+        post.setImages(imageConverter.convertToEntity(postDetailsDTO.getImages()));
         // post.setCreationDate(postDetailsDTO.getCreationDate());
         Route route = routeService.findById(
                 postDetailsDTO.getRouteInfo().getId());

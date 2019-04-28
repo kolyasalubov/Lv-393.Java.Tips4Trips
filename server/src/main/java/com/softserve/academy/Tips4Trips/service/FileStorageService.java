@@ -1,7 +1,7 @@
 package com.softserve.academy.Tips4Trips.service;
-
 import com.softserve.academy.Tips4Trips.Tips4TripsApplication;
 import com.softserve.academy.Tips4Trips.entity.administration.Account;
+
 import com.softserve.academy.Tips4Trips.entity.file.Image;
 import com.softserve.academy.Tips4Trips.exception.DataNotFoundException;
 import com.softserve.academy.Tips4Trips.exception.FileIOException;
@@ -93,7 +93,7 @@ public class FileStorageService {
     }
 
     private Image createImage(String fileName, Account creator)
-            throws FileIOException{
+            throws FileIOException {
         try {
             Image image = new Image();
             image.setName(fileName);

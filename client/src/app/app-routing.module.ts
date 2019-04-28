@@ -33,6 +33,8 @@ import { CreateTripComponent } from './components/trip/create-trip/create-trip.c
 import { ChangeComponent } from "./components/trip/change/change.component";
 import { ErrorComponent } from "./components/error/error.component";
 import { EditRouteComponent } from './components/routes/edit-route/edit-route.component';
+import { ImageDetails } from './components/image-details/image-details.component';
+import { ImageUploadFormComponent } from './components/image-upload-form/image-upload-form.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -81,12 +83,12 @@ const routes: Routes = [
   { path: 'edit_trip/:id', component: ChangeComponent },
   { path: 'test', component: TestComponent },
   { path: '404', component: ErrorComponent },
-  { path: '**', redirectTo: '/404' }
+  { path: '**', redirectTo: '/404' },
+  { path: 'uploadimage', component: ImageUploadFormComponent }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule {
-}
+export class AppRoutingModule { }
