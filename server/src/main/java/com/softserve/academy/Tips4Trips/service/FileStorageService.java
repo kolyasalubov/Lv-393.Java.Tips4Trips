@@ -1,6 +1,7 @@
 package com.softserve.academy.Tips4Trips.service;
 
 import com.softserve.academy.Tips4Trips.Tips4TripsApplication;
+import com.softserve.academy.Tips4Trips.entity.administration.Account;
 import com.softserve.academy.Tips4Trips.entity.file.Image;
 import com.softserve.academy.Tips4Trips.exception.DataNotFoundException;
 import com.softserve.academy.Tips4Trips.exception.FileIOException;
@@ -16,6 +17,7 @@ import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Date;
 
 @Service
 public class FileStorageService {
@@ -37,14 +39,17 @@ public class FileStorageService {
         this.imageService = imageService;
     }
 
-    public void store(MultipartFile file) throws FileIOException {
+    public Image store(MultipartFile file, Account creator) throws FileIOException {
         try {
             String fileName = file.getOriginalFilename();
-            String filepath = rootLocation + file.getOriginalFilename();
+            Image image = createImage(fileName, creator);
+            String filepath = rootLocation + String.valueOf(image.getId())
+                    + image.getFormat();
             Files.copy(file.getInputStream(), Paths.get(filepath));
+            return image;
         } catch (Exception e) {
-            e.printStackTrace();
-            throw new FileIOException("Failed to save file! ");
+            //e.printStackTrace();
+            throw new FileIOException("Failed to save file!");
         }
     }
 
@@ -84,6 +89,23 @@ public class FileStorageService {
             }
         } catch (IOException e) {
             throw new FileIOException("Could not initialize storage!");
+        }
+    }
+
+    private Image createImage(String fileName, Account creator)
+            throws FileIOException{
+        try {
+            Image image = new Image();
+            image.setName(fileName);
+            image.setFormat(fileName.substring(fileName.lastIndexOf("."),
+                    fileName.length()));
+            image.setCreator(creator);
+            image.setUploadDate(new Date());
+            image = imageService.createImage(image);
+
+            return image;
+        } catch (NullPointerException e) {
+            throw new FileIOException("Invalid file format!");
         }
     }
 }

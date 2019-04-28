@@ -5,10 +5,12 @@ import com.softserve.academy.Tips4Trips.dto.AccountRoleDTO;
 import com.softserve.academy.Tips4Trips.dto.converter.AccountConverter;
 import com.softserve.academy.Tips4Trips.dto.details.AccountDetailsDTO;
 import com.softserve.academy.Tips4Trips.dto.details.PostDetailsDTO;
+import com.softserve.academy.Tips4Trips.dto.file.ImageDTO;
 import com.softserve.academy.Tips4Trips.dto.info.AccountInfoDTO;
 import com.softserve.academy.Tips4Trips.dto.info.PostInfoDTO;
 import com.softserve.academy.Tips4Trips.entity.administration.Account;
 import com.softserve.academy.Tips4Trips.entity.blog.Post;
+import com.softserve.academy.Tips4Trips.exception.FileIOException;
 import com.softserve.academy.Tips4Trips.service.AccountService;
 import com.softserve.academy.Tips4Trips.service.UserService;
 import org.modelmapper.ModelMapper;
@@ -24,6 +26,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -110,5 +115,18 @@ public class AccountController {
         AccountDetailsDTO accountDetailsDTO = (accountConverter.convertToDTO(
                 accountService.findByUser(userService.findByLogin(userDetails.getUsername()))));
         return accountDetailsDTO;
+    }
+
+    @PostMapping("/{id}/image")
+    public ResponseEntity<AccountDetailsDTO> addImage(
+            @RequestParam("file") MultipartFile file) throws FileIOException {
+        Account updatedAccount = accountService.createImageForAccount(file);
+        return new ResponseEntity<>(accountConverter
+                .convertToDTO(updatedAccount), HttpStatus.CREATED);
+    }
+
+    @GetMapping("/{id}/image")
+    public RedirectView redirectToImageGet(@PathVariable Long id) {
+        return new RedirectView("/images/" + id);
     }
 }
