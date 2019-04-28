@@ -24,8 +24,7 @@ public class Country implements Serializable {
     @Column(nullable = false)
     private Position position;
 
-    @OneToMany(mappedBy="country", cascade = CascadeType.ALL,
-            orphanRemoval = true)
+    @OneToMany(mappedBy="country", cascade = CascadeType.ALL)
     private List<City> listOfCities;
 
     public Country() {}

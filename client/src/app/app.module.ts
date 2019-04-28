@@ -78,6 +78,7 @@ import { MapPickerComponent } from './components/map/map-picker/map-picker.compo
 import { ChatComponent } from './components/chat/chat.component';
 import { FeedbackPlaceComponent } from './components/feedback/place/feedback-place/feedback-place.component';
 import { FeedbackPlaceCreateComponent } from './components/feedback/place/feedback-place-create/feedback-place-create.component';
+import { CountryListComponent } from './components/country-list/country-list.component';
 import { SocialHandlerComponent } from './components/authentication/social-handler/social-handler.component';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -88,7 +89,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material';
 import {RouteMapComponent} from "./components/map/route-map/route-map.component";
 import {AgmDirectionModule} from "agm-direction";
-
 
 @NgModule({
   declarations: [
@@ -143,6 +143,7 @@ import {AgmDirectionModule} from "agm-direction";
     ActiveTripComponent,
     LikeAccountComponent,
     CommentAccountComponent,
+    CountryListComponent,
     NewsComponent,
     RoutesPageComponent,
     NotVerifiedRoutesPageComponent,

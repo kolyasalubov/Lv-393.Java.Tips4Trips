@@ -1,0 +1,35 @@
+<app-header></app-header>
+<section class="hero-wrap hero-wrap-2 js-fullheight"
+  style="background-image: url('../../../../assets/images/bg_2.jpg');" data-stellar-background-ratio="0.5">
+  <div class="overlay" style="background:white;"></div>
+</section>
+
+<section class="ftco-section contact-section" style="margin-bottom: 90px;">
+  <div class="container">
+    <div class="row block-9">
+      <section class="container">
+        <div class="row blog-entries element-animate">
+          <table>
+            <tr>
+              <th>Country Name</th>
+              <th>Edit</th>
+              <th>Delete</th>
+            </tr>
+            <tr *ngFor="let c of countries">
+              <td>{{c.name}}</td>
+              <td>
+                <button (click)="update(c.id)">Edit</button>
+              </td>
+              <td>
+                <button (click)="onClickMe(c.id)">Delete</button>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </section>
+    </div>
+  </div>
+</section>
+
+<app-footer></app-footer>
+<script src="../../../../assets/js/main.js"></script>
