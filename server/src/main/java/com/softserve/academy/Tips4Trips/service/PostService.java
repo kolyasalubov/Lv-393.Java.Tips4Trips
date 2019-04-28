@@ -55,7 +55,7 @@ public class PostService {
             throw new NoSuchElementException();
         } else {
             existingPost.get().setRoute(post.getRoute());
-            existingPost.get().setPhotoPath(post.getPhotoPath());
+            existingPost.get().setImages(post.getImages());
             existingPost.get().setAuthor(post.getAuthor());
             existingPost.get().setContent(post.getContent());
             existingPost.get().setName(post.getName());

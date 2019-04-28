@@ -3,6 +3,7 @@ package com.softserve.academy.Tips4Trips.entity.administration;
 import com.softserve.academy.Tips4Trips.entity.blog.Post;
 import com.softserve.academy.Tips4Trips.entity.entertainment.mountains.Sale;
 import com.softserve.academy.Tips4Trips.entity.enums.Role;
+import com.softserve.academy.Tips4Trips.entity.file.Image;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -43,6 +44,10 @@ public class Account {
     @Column(name = "role", nullable = false)
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    @ManyToOne
+    @JoinColumn(name = "image_id", referencedColumnName = "id")
+    private Image image;
 
     @OneToMany(mappedBy = "author", cascade = CascadeType.REMOVE)
     private List<Post> post;
@@ -158,4 +163,11 @@ public class Account {
         this.sales = sales;
     }
 
+    public Image getImage() {
+        return image;
+    }
+
+    public void setImage(Image image) {
+        this.image = image;
+    }
 }

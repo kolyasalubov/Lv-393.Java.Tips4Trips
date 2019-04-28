@@ -39,6 +39,14 @@ public class Post {
     @JoinColumn(name = "account_id",referencedColumnName = "id")
     private Account author;
 
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "posts_images",
+            joinColumns = {@JoinColumn(name = "account_id",
+                    referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "image_id",
+                    referencedColumnName = "id")})
+    private List<Image> images;
+
     @ManyToOne
     @JoinColumn(name = "route_id", referencedColumnName = "id")
     private Route route;
@@ -122,5 +130,13 @@ public class Post {
 
     public void setComments(List<Comment> comments) {
         this.comments = comments;
+    }
+
+    public List<Image> getImages() {
+        return images;
+    }
+
+    public void setImages(List<Image> images) {
+        this.images = images;
     }
 }

@@ -1,9 +1,14 @@
 package com.softserve.academy.Tips4Trips.entity.file;
 
+import com.softserve.academy.Tips4Trips.entity.administration.Account;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.Date;
 
 @Entity
 @Table(name = "images")
@@ -22,13 +27,28 @@ public class Image implements Serializable {
     @Column(nullable = false, length = 4)
     private String format;
 
+    @NotNull
+    @PastOrPresent
+    @Column(name = "upload_date", nullable = false)
+    @Temporal(value = TemporalType.DATE)
+    private Date uploadDate;
+
+    @NotNull
+    @ManyToOne
+    @JoinColumn(name = "account_id", referencedColumnName = "id")
+    private Account creator;
+
     public Image() {
     }
 
     public Image(@NotBlank @Size(max = 50, min = 1) String name,
-                 @NotBlank @Size(max = 4, min = 3) String format) {
+                 @NotBlank @Size(max = 4, min = 3) String format,
+                 @NotNull @PastOrPresent Date uploadDate,
+                 @NotNull Account creator) {
         this.name = name;
         this.format = format;
+        this.uploadDate = uploadDate;
+        this.creator = creator;
     }
 
     public Long getId() {
@@ -53,5 +73,21 @@ public class Image implements Serializable {
 
     public void setFormat(String format) {
         this.format = format;
+    }
+
+    public Date getUploadDate() {
+        return uploadDate;
+    }
+
+    public void setUploadDate(Date uploadDate) {
+        this.uploadDate = uploadDate;
+    }
+
+    public Account getCreator() {
+        return creator;
+    }
+
+    public void setCreator(Account creator) {
+        this.creator = creator;
     }
 }

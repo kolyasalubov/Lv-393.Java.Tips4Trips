@@ -1,21 +1,24 @@
 package com.softserve.academy.Tips4Trips.dto.details;
 
+import com.softserve.academy.Tips4Trips.dto.file.ImageDTO;
 import com.softserve.academy.Tips4Trips.dto.info.PostInfoDTO;
 import com.softserve.academy.Tips4Trips.dto.info.RouteInfoDTO;
 
+import java.util.List;
+
 public class PostDetailsDTO extends PostInfoDTO {
-    private String photoPath;
+    private List<ImageDTO> images;
     private String content;
     private RouteInfoDTO routeInfo;
     private String likes;
     private String comments;
 
-    public String getPhotoPath() {
-        return photoPath;
+    public List<ImageDTO> getImages() {
+        return images;
     }
 
-    public void setPhotoPath(String photoPath) {
-        this.photoPath = photoPath;
+    public void setImages(List<ImageDTO> images) {
+        this.images = images;
     }
 
     public String getContent() {

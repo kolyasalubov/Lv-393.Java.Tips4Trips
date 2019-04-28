@@ -1,6 +1,7 @@
 package com.softserve.academy.Tips4Trips;
 
 import com.softserve.academy.Tips4Trips.exception.FileIOException;
+import com.softserve.academy.Tips4Trips.service.FileStorageService;
 import com.softserve.academy.Tips4Trips.service.ImageService;
 
 import org.modelmapper.ModelMapper;
@@ -19,7 +20,7 @@ import org.springframework.context.annotation.Bean;
 public class Tips4TripsApplication implements CommandLineRunner {
 
 	@Autowired
-	ImageService imageService;
+	FileStorageService imageService;
 
 	public static void main(String[] args) throws FileIOException {
 		SpringApplication.run(Tips4TripsApplication.class, args);

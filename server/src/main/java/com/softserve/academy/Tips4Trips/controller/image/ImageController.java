@@ -5,7 +5,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.softserve.academy.Tips4Trips.exception.FileIOException;
+import com.softserve.academy.Tips4Trips.service.FileStorageService;
 import com.softserve.academy.Tips4Trips.service.ImageService;
+import com.sun.xml.internal.ws.api.pipe.ContentType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
@@ -24,32 +26,15 @@ import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBui
 public class ImageController {
 
     @Autowired
-    ImageService imageService;
+    FileStorageService storageService;
 
-    @PostMapping
-    public ResponseEntity<String> handleFileUpload(
-            @RequestParam("file")MultipartFile file)
-            throws FileIOException {
-        imageService.store(file);
-        return ResponseEntity.status(HttpStatus.OK).body("OK");
-    }
-
-    @GetMapping("/files/{filename:.+}")
+    @GetMapping("/{id}")
     @ResponseBody
-    public ResponseEntity<Resource> getFile(@PathVariable String filename)
+    public ResponseEntity<Resource> getFile(@PathVariable Long id)
             throws FileIOException {
-        Resource file = imageService.loadFile(filename);
+        Resource file = storageService.loadFile(id);
         return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG)
-                .header(HttpHeaders.CONTENT_DISPOSITION,
-                        "attachment; filename=\""
-                                + file.getFilename() + "\"")
+                .header(HttpHeaders.CONTENT_DISPOSITION)
                 .body(file);
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteFile(@PathVariable String filename)
-            throws FileIOException {
-        imageService.deleteFile(filename);
-        return ResponseEntity.ok().body("OK");
     }
 }

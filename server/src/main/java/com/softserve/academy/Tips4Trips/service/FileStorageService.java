@@ -1,10 +1,14 @@
 package com.softserve.academy.Tips4Trips.service;
 
 import com.softserve.academy.Tips4Trips.Tips4TripsApplication;
+import com.softserve.academy.Tips4Trips.entity.file.Image;
+import com.softserve.academy.Tips4Trips.exception.DataNotFoundException;
 import com.softserve.academy.Tips4Trips.exception.FileIOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
+import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -13,9 +17,11 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+@Service
 public class FileStorageService {
 
     private final String IMAGES_DIRECTORY = "/images";
+    private final String DEFAULT_IMAGE = "default.png";
 
     private Path rootLocation;
 
@@ -42,9 +48,16 @@ public class FileStorageService {
         }
     }
 
-    public Resource loadFile(String filename) throws FileIOException {
+    public Resource loadFile(Long id) throws FileIOException {
         try {
-            Path file = Paths.get(rootLocation + filename);
+            String path;
+            try {
+                Image image = imageService.getImageById(id);
+                path = id + image.getFormat();
+            } catch (DataNotFoundException e) {
+                path = DEFAULT_IMAGE;
+            }
+            Path file = Paths.get(rootLocation + path);
             Resource resource = new UrlResource(file.toUri());
             if (resource.exists() || resource.isReadable()) {
                 return resource;
@@ -56,7 +69,7 @@ public class FileStorageService {
         }
     }
 
-    public void deleteFile(String filename) throws FileIOException {
+    public void deleteFile(Long id) throws FileIOException {
         try {
             Files.delete(rootLocation);
         } catch (IOException e) {
