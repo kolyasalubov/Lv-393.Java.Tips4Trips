@@ -11,7 +11,9 @@ export class RouteInfoComponent implements OnInit {
 
   @Input() routeInfo: RouteInfo;
   @Input() displayEditButtons: boolean = false;
+  @Input() displayVerifyButton: boolean = false;
   @Output() delete = new EventEmitter();
+  @Output() verify = new EventEmitter();
   constructor(private router: Router) { }
 
   ngOnInit() {

@@ -6,6 +6,7 @@ import { AccountInfo } from 'src/app/model/account-info.model';
 import { Location } from '@angular/common';
 import { PlaceInfo } from 'src/app/model/place-info.model';
 import { AuthService } from '../../authentication/auth.service';
+import { Account } from '../../../model/account.model';
 
 @Component({
   selector: 'app-route',
@@ -16,6 +17,7 @@ export class RouteComponent implements OnInit {
 
   route: Route;
   hasAuthority: boolean = false;
+  currUser: Account;
   constructor(
     private routeService: RouteService,
     private authService: AuthService,
@@ -36,6 +38,7 @@ export class RouteComponent implements OnInit {
       this.route.places = data.places;
     });
     this.authService.getCurrentUser().subscribe(account => {
+      this.currUser = account;
       if (account.role.toLowerCase() == "admin" || account.role.toLowerCase() == "moderator") {
         this.hasAuthority = true;
       }
@@ -58,6 +61,10 @@ export class RouteComponent implements OnInit {
 
   edit(): void {
     this.router.navigate(['routes/' + this.route.id + '/edit']);
+  }
+
+  verify(): void {
+    this.routeService.verifyRoute(this.route.id).subscribe(data => this.route.verified = true);
   }
 
 }

@@ -19,6 +19,14 @@ export class RouteService {
     return this.http.get<RouteInfo[]>(this.baseUrl);
   }
 
+  findVerified(): Observable<RouteInfo[]> {
+    return this.http.get<RouteInfo[]>(this.baseUrl + "verified");
+  }
+
+  findNotVerified(): Observable<RouteInfo[]> {
+    return this.http.get<RouteInfo[]>(this.baseUrl + "notVerified");
+  }
+
   findById(id: number): Observable<Route> {
     return this.http.get<Route>(this.baseUrl + id);
   }
@@ -32,7 +40,9 @@ export class RouteService {
   deleteRoute(id: number): Observable<Route> {
     return this.http.delete<Route>(this.baseUrl + "delete/" + id);
   }
-
+  verifyRoute(id: number): Observable<Route> {
+    return this.http.put<Route>(this.baseUrl + id + "/verify", {});
+  }
   findByName(name: string): Observable<Route> {
     return this.http.get<Route>(this.baseUrl + "name/" + name);
   }

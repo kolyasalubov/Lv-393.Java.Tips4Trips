@@ -27,16 +27,15 @@ export class EditRouteComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.authService.getCurrentUser().subscribe(account => {
-      if (!(account.role.toLowerCase() == "admin" || account.role.toLowerCase() == "moderator")) {
-        this.router.navigate(['routes']);
-      }
-    });
     const id = Number(this.ngRoute.snapshot.paramMap.get('id'));
     this.routeService.findById(id).subscribe(data => {
       this.route = data;
-      this.route.authorInfo = data.authorInfo;
-      this.route.places = data.places;
+      this.authService.getCurrentUser().subscribe(account => {
+        if (!(account.role.toLowerCase() == "admin" || account.role.toLowerCase() == "moderator"
+          || (!this.route.verified && this.route.authorInfo.id == account.id))) {
+            this.router.navigate(['routes']);
+          }
+      });
     });
   }
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { RouteInfo } from '../../../model/route-info.model';
 import { RouteService } from '../../../service/route.service';
 import { AuthService } from '../../authentication/auth.service';
@@ -10,26 +10,23 @@ import { AuthService } from '../../authentication/auth.service';
 })
 export class ListOfRoutesComponent implements OnInit {
 
-  routes: RouteInfo[] = [];
-  hasAuthority: boolean = false;
+  @Input() routes: RouteInfo[];
+  @Input() displayEditButtons: boolean = false;
+  @Input() displayVerifyButton: boolean = false;
 
   constructor(
-    private routeService: RouteService,
-    private authService: AuthService
+    private routeService: RouteService
   ) { }
 
   ngOnInit() {
-    this.routeService.findAll()
-      .subscribe(data => this.routes = data);
-    this.authService.getCurrentUser().subscribe(account => {
-      if (account.role.toLowerCase() == "admin" || account.role.toLowerCase() == "moderator") {
-        this.hasAuthority = true;
-      }
-    });
+
   }
 
   deleteRoute(id: number): void {
-    this.routeService.deleteRoute(id).subscribe(data=> this.routes = this.routes.filter(route=>route.id != id));
+    this.routeService.deleteRoute(id).subscribe(data => this.routes = this.routes.filter(route => route.id != id));
+  }
+  verifyRoute(id: number): void {
+    this.routeService.verifyRoute(id).subscribe(data => this.routes = this.routes.filter(route => route.id != id));
   }
 
 }

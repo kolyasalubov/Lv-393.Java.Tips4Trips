@@ -3,6 +3,8 @@ package com.softserve.academy.Tips4Trips.service;
 import com.softserve.academy.Tips4Trips.entity.Route;
 import com.softserve.academy.Tips4Trips.entity.administration.Account;
 import com.softserve.academy.Tips4Trips.entity.enums.Role;
+import com.softserve.academy.Tips4Trips.exception.DataNotFoundException;
+import com.softserve.academy.Tips4Trips.exception.InvalidDataException;
 import com.softserve.academy.Tips4Trips.repository.AccountRepository;
 import com.softserve.academy.Tips4Trips.repository.PostRepository;
 import com.softserve.academy.Tips4Trips.repository.RouteRepository;
@@ -38,12 +40,16 @@ public class RouteService {
         return repository.findAll();
     }
 
-    public List<Route> getByAuthorId(Long authorId) {
+    public List<Route> findByVerified(boolean verified) {
+        return repository.findByVerified(verified);
+    }
+
+    public List<Route> findByAuthorId(Long authorId) {
         Optional<Account> author = accountRepository.findById(authorId);
         if (author.isPresent()) {
             return repository.findByAuthor(author.get());
         } else {
-            throw new NoSuchElementException("Author not found!");
+            throw new DataNotFoundException("Author not found!");
         }
     }
 
@@ -52,7 +58,7 @@ public class RouteService {
         if (route.isPresent()) {
             return route.get();
         } else {
-            throw new NoSuchElementException();
+            throw new DataNotFoundException();
         }
     }
 
@@ -67,7 +73,7 @@ public class RouteService {
     public Route update(Route route) {
         Optional<Route> existingRoute = repository.findById(route.getId());
         if (!existingRoute.isPresent()) {
-            throw new NoSuchElementException();
+            throw new DataNotFoundException();
         } else {
             existingRoute.get().setName(route.getName());
             existingRoute.get().setAuthor(route.getAuthor());
@@ -76,8 +82,21 @@ public class RouteService {
         return repository.save(existingRoute.get());
     }
 
+    public void verify(Long id) {
+        Optional<Route> route = repository.findById(id);
+        if (!route.isPresent()) {
+            throw new DataNotFoundException();
+        } else {
+            if (route.get().isVerified()) {
+                throw new InvalidDataException();
+            } else {
+                route.get().setVerified(true);
+                repository.save(route.get());
+            }
+        }
+    }
+
     public void deleteById(Long id) {
-        // delete route from posts...
         repository.findById(id).ifPresent(route -> {
             postRepository.findByRoute(route).forEach(post -> post.setRoute(null));
             repository.delete(route);
@@ -89,7 +108,7 @@ public class RouteService {
         if (route.isPresent()) {
             return route.get();
         } else {
-            throw new NoSuchElementException();
+            throw new DataNotFoundException();
         }
     }
 }

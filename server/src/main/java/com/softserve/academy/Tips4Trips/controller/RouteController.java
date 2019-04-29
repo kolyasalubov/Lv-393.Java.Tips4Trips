@@ -37,6 +37,20 @@ public class RouteController {
                 .findAll()), HttpStatus.OK);
     }
 
+    @GetMapping("/verified")
+    public ResponseEntity<List<RouteInfoDTO>> getVerified() {
+        logger.info("get verified routes method executing: ");
+        return new ResponseEntity<>(routeConverter.convertToInfoDTO(routeService
+                .findByVerified(true)), HttpStatus.OK);
+    }
+
+    @GetMapping("/notVerified")
+    public ResponseEntity<List<RouteInfoDTO>> getNotVerified() {
+        logger.info("get verified routes method executing: ");
+        return new ResponseEntity<>(routeConverter.convertToInfoDTO(routeService
+                .findByVerified(false)), HttpStatus.OK);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<RouteDetailsDTO> getById(@PathVariable Long id) {
         logger.info("get route by id method executing: ");
@@ -55,7 +69,7 @@ public class RouteController {
     public ResponseEntity<List<RouteInfoDTO>> getByAuthor(@PathVariable Long id) {
         logger.info("get route by author method executing: ");
         return new ResponseEntity<>(routeConverter.convertToInfoDTO(routeService
-                .getByAuthorId(id)), HttpStatus.OK);
+                .findByAuthorId(id)), HttpStatus.OK);
     }
 
     @PostMapping("/create")
@@ -72,6 +86,12 @@ public class RouteController {
         Route route = routeService.update(routeConverter.convertToEntity(routeDetailsDTO));
         return new ResponseEntity<>(routeConverter
                 .convertToDTO(route), HttpStatus.ACCEPTED);
+    }
+
+    @PutMapping("/{id}/verify")
+    public void verify(@PathVariable Long id) {
+        logger.info("verify route method executing: ");
+        routeService.verify(id);
     }
 
     @DeleteMapping("/delete/{id}")

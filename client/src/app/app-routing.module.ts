@@ -17,7 +17,7 @@ import { CreateHotelComponent } from "./components/create-post-place/create-hote
 import { BigPostComponent } from "./components/blog/big-post/big-post.component";
 import { AccountEditComponent } from "./components/authentication/account-edit/account-edit.component"
 import { CommentComponent } from './components/blog/comment/comment.component';
-import { ListOfRoutesComponent } from './components/routes/list-of-routes/list-of-routes.component';
+import { RoutesPageComponent } from './components/routes/routes-page/routes-page.component';
 import { RestaurantDetailsComponent } from "./components/restaurant-details/restaurant-details.component";
 import { CreateMonumentComponent } from "./components/create-post-place/create-monument/create-monument.component";
 import { MonumentDetailsComponent } from "./components/monument-details/monument-details.component";
@@ -33,6 +33,7 @@ import { CreateTripComponent } from './components/trip/create-trip/create-trip.c
 import { ChangeComponent } from "./components/trip/change/change.component";
 import { ErrorComponent } from "./components/error/error.component";
 import { EditRouteComponent } from './components/routes/edit-route/edit-route.component';
+import { NotVerifiedRoutesPageComponent } from './components/routes/not-verified-routes-page/not-verified-routes-page.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -68,8 +69,9 @@ const routes: Routes = [
   { path: 'hotels/:id', component: HotelDetailsComponent },
   { path: 'create_place/monument', component: CreateMonumentComponent },
   { path: 'monuments/:id', component: MonumentDetailsComponent },
-  { path: 'routes', component: ListOfRoutesComponent },
+  { path: 'routes', component: RoutesPageComponent },
   { path: 'routes/create', component: CreateRouteComponent },
+  { path: 'routes/notverified', component: NotVerifiedRoutesPageComponent },
   { path: 'routes/:id', component: RouteComponent },
   { path: 'routes/:id/edit', component: EditRouteComponent },
   { path: 'post', component: BigPostComponent },
