@@ -24,7 +24,6 @@ public class TripService {
     @PersistenceContext
     private EntityManager em;
 
-
     TripRepository repository;
 
     @Autowired
@@ -65,6 +64,14 @@ public class TripService {
                 .setParameter(1,account.getId())
                 .setParameter(2,tripId)
                 .executeUpdate();
+    }
+    @Transactional
+    public List<Account> getSubscribers(Long tripId){
+        Trip trip = repository.findById(tripId).get();
+        return trip.getSubscribers();
+        //return  em.createQuery("select subscribers from Trip ").getResultList();
+
+
     }
 
 

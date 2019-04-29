@@ -1,5 +1,6 @@
 package com.softserve.academy.Tips4Trips.controller;
 
+import com.softserve.academy.Tips4Trips.dto.converter.AccountConverter;
 import com.softserve.academy.Tips4Trips.dto.converter.TripConverter;
 import com.softserve.academy.Tips4Trips.dto.details.TripDetailsDTO;
 import com.softserve.academy.Tips4Trips.dto.info.AccountInfoDTO;
@@ -28,12 +29,14 @@ public class TripController {
     private TripService tripService;
     private TripConverter tripConverter;
     private AccountService accountService;
+    private AccountConverter accountConverter;
 
     @Autowired
-    public TripController(TripService tripService, TripConverter tripConverter, AccountService accountService) {
+    public TripController(TripService tripService, TripConverter tripConverter, AccountService accountService,AccountConverter accountConverter) {
         this.tripService = tripService;
         this.tripConverter = tripConverter;
         this.accountService = accountService;
+        this.accountConverter = accountConverter;
     }
 
     @GetMapping
@@ -85,7 +88,15 @@ public class TripController {
         return new ResponseEntity<>(tripConverter.convertToDTO(trip), HttpStatus.CREATED);
     }
 
-    @PostMapping("/subscribe/{tripId}")
+    @GetMapping("/{tripId}/subscribers")
+    public ResponseEntity<List<AccountInfoDTO>> getSubscribers(@PathVariable Long tripId) {
+        logger.info("trip getSubscribers method executing: ");
+        List<AccountInfoDTO> accountInfoDTOS = accountConverter.convertToInfoDTO(tripService.getSubscribers(tripId));
+        return new ResponseEntity<>(accountInfoDTOS,HttpStatus.OK);
+    }
+
+
+    @PostMapping("/{tripId}/subscribe")
     public ResponseEntity subscribeAcc(@PathVariable Long tripId, @RequestBody AccountInfoDTO accountInfoDTO){
         logger.info("trip subscribe post method executing:  ");
         Account acc = accountService.findById(accountInfoDTO.getId());
@@ -93,7 +104,7 @@ public class TripController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PostMapping("/unSubscribe/{tripId}")
+    @PostMapping("/{tripId}/unsubscribe")
     public ResponseEntity unSubscribeAcc(@PathVariable Long tripId, @RequestBody AccountInfoDTO accountInfoDTO){
         Account account = accountService.findById(accountInfoDTO.getId());
         logger.info("trip unSubscribe post method executing:  ");
