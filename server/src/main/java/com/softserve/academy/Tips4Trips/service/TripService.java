@@ -1,5 +1,6 @@
 package com.softserve.academy.Tips4Trips.service;
 
+import com.softserve.academy.Tips4Trips.dto.info.AccountInfoDTO;
 import com.softserve.academy.Tips4Trips.entity.Route;
 import com.softserve.academy.Tips4Trips.entity.administration.Account;
 import com.softserve.academy.Tips4Trips.entity.blog.Post;
@@ -12,6 +13,10 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,6 +24,10 @@ import java.util.Optional;
 public class TripService {
 
     private static final Logger logger = Logger.getLogger(TripService.class);
+
+    @PersistenceContext
+    private EntityManager em;
+
 
     TripRepository repository;
 
@@ -44,6 +53,24 @@ public class TripService {
             return null;
         }
     }
+
+    @Transactional
+    public void subscribe(Long tripId, Account account){
+         em.createNativeQuery("INSERT  INTO  subscriber_group(subscriber_id,group_id)  values(?,?)")
+                 .setParameter(1,account.getId())
+                 .setParameter(2,tripId)
+                 .executeUpdate();
+    }
+
+
+    @Transactional
+    public void unSubscribe(Long tripId, Account account){
+        em.createNativeQuery("DELETE FROM  subscriber_group where subscriber_id =?  and group_id = ?")
+                .setParameter(1,account.getId())
+                .setParameter(2,tripId)
+                .executeUpdate();
+    }
+
 
     public void delete(FindGroup findGroup) {
         repository.delete(findGroup);

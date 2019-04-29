@@ -63,9 +63,11 @@ public class FindGroup {
     @ManyToMany
     @JoinTable( name="subscriber_group",
             joinColumns=
-            @JoinColumn(name="subscriber_id", referencedColumnName="id"),
+            @JoinColumn(name="group_id", referencedColumnName="id")
+            ,
             inverseJoinColumns=
-            @JoinColumn(name="group_id", referencedColumnName="id") )
+            @JoinColumn(name="subscriber_id", referencedColumnName="id")
+             )
     private List<Account> subscribers;
 
     public FindGroup() {
@@ -133,5 +135,13 @@ public class FindGroup {
 
     public void setSubscribers(List<Account> subscribers) {
         this.subscribers = subscribers;
+    }
+
+    public void addSubscriber(Account account){
+        subscribers.add(account);
+    }
+
+    public void removeSubscriber(Account account){
+        subscribers.remove(account);
     }
 }

@@ -1,11 +1,16 @@
 package com.softserve.academy.Tips4Trips.controller;
 
+import com.softserve.academy.Tips4Trips.dto.converter.AccountConverter;
 import com.softserve.academy.Tips4Trips.dto.converter.FindGroupConverter;
+import com.softserve.academy.Tips4Trips.dto.details.AccountDetailsDTO;
 import com.softserve.academy.Tips4Trips.dto.details.TripDetailsDTO;
+import com.softserve.academy.Tips4Trips.dto.info.AccountInfoDTO;
 import com.softserve.academy.Tips4Trips.dto.info.PostInfoDTO;
 import com.softserve.academy.Tips4Trips.dto.info.TripInfoDTO;
+import com.softserve.academy.Tips4Trips.entity.administration.Account;
 import com.softserve.academy.Tips4Trips.entity.blog.Post;
 import com.softserve.academy.Tips4Trips.entity.entertainment.mountains.FindGroup;
+import com.softserve.academy.Tips4Trips.service.AccountService;
 import com.softserve.academy.Tips4Trips.service.TripService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,11 +31,13 @@ public class TripController {
 
     private TripService tripService;
     private FindGroupConverter findGroupConverter;
+    private AccountService accountService;
 
     @Autowired
-    public TripController(TripService tripService, FindGroupConverter findGroupConverter) {
+    public TripController(TripService tripService, FindGroupConverter findGroupConverter, AccountService accountService) {
         this.tripService = tripService;
         this.findGroupConverter = findGroupConverter;
+        this.accountService = accountService;
     }
 
     @GetMapping
@@ -80,6 +87,22 @@ public class TripController {
         logger.info("find group update post method executing:  ");
         FindGroup findGroup = tripService.update(findGroupConverter.convertToEntity(findGroupDetailsDTO));
         return new ResponseEntity<>(findGroupConverter.convertToDTO(findGroup), HttpStatus.CREATED);
+    }
+
+    @PostMapping("/subscribe/{tripId}")
+    public ResponseEntity subscribeAcc(@PathVariable Long tripId, @RequestBody AccountInfoDTO accountInfoDTO){
+        logger.info("trip subscribe post method executing:  ");
+        Account acc = accountService.findById(accountInfoDTO.getId());
+        tripService.subscribe(tripId, acc);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PostMapping("/unSubscribe/{tripId}")
+    public ResponseEntity unSubscribeAcc(@PathVariable Long tripId, @RequestBody AccountInfoDTO accountInfoDTO){
+        Account account = accountService.findById(accountInfoDTO.getId());
+        logger.info("trip unSubscribe post method executing:  ");
+        tripService.unSubscribe(tripId, account);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 
