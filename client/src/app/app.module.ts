@@ -56,6 +56,7 @@ import { LikeAccountComponent } from './components/authentication/account/like-a
 import { CommentAccountComponent } from './components/authentication/account/comment-account/comment-account.component';
 import { RoutesPageComponent } from './components/routes/routes-page/routes-page.component';
 import { NotVerifiedRoutesPageComponent } from './components/routes/not-verified-routes-page/not-verified-routes-page.component';
+import { SubscribersComponent } from './components/trip/subscribers/subscribers.component';
 
 @NgModule({
   declarations: [
@@ -108,7 +109,8 @@ import { NotVerifiedRoutesPageComponent } from './components/routes/not-verified
     LikeAccountComponent,
     CommentAccountComponent,
     RoutesPageComponent,
-    NotVerifiedRoutesPageComponent
+    NotVerifiedRoutesPageComponent,
+    SubscribersComponent
   ],
   imports: [
     BrowserModule,

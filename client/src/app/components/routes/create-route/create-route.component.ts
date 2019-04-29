@@ -51,7 +51,7 @@ export class CreateRouteComponent implements OnInit {
     if (this.validate()) {
       this.routeService.createRoute(this.route).subscribe(result => {
         this.route = result;
-        this.router.navigate(['routes']);
+        this.router.navigate(['routes/' + result.id]);
       });
     }
   }
