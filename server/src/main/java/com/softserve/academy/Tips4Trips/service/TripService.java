@@ -1,20 +1,16 @@
 package com.softserve.academy.Tips4Trips.service;
 
-import com.softserve.academy.Tips4Trips.dto.info.AccountInfoDTO;
 import com.softserve.academy.Tips4Trips.entity.Route;
 import com.softserve.academy.Tips4Trips.entity.administration.Account;
-import com.softserve.academy.Tips4Trips.entity.blog.Post;
-import com.softserve.academy.Tips4Trips.entity.entertainment.mountains.FindGroup;
+import com.softserve.academy.Tips4Trips.entity.entertainment.mountains.Trip;
 import com.softserve.academy.Tips4Trips.repository.TripRepository;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import java.util.List;
@@ -36,16 +32,16 @@ public class TripService {
         this.repository = repository;
     }
 
-    public List<FindGroup> searchByName(String name) {
+    public List<Trip> searchByName(String name) {
         return repository.findByNameContainingIgnoreCase(name);
     }
 
-    public List<FindGroup> findByCreator(Account author) {
+    public List<Trip> findByCreator(Account author) {
         return repository.findByCreator(author);
     }
 
-    public FindGroup findById(Long id) {
-        Optional<FindGroup> i =repository.findById(id);
+    public Trip findById(Long id) {
+        Optional<Trip> i =repository.findById(id);
         if(i.isPresent()){
             return i.get();
         }
@@ -72,15 +68,15 @@ public class TripService {
     }
 
 
-    public void delete(FindGroup findGroup) {
-        repository.delete(findGroup);
+    public void delete(Trip trip) {
+        repository.delete(trip);
     }
 
-    public List<FindGroup> findByRoute(Route route) {
+    public List<Trip> findByRoute(Route route) {
         return repository.findByRoute(route);
     }
 
-    public List<FindGroup> findAll() {
+    public List<Trip> findAll() {
         return repository.findAll();
     }
 
@@ -88,15 +84,15 @@ public class TripService {
         repository.findById(id).ifPresent(repository::delete);
     }
 
-    public FindGroup createFindGroup(FindGroup findGroup) {
-        return repository.save(findGroup);
+    public Trip createFindGroup(Trip trip) {
+        return repository.save(trip);
     }
 
-    public FindGroup update(FindGroup findGroup) {
-        return repository.save(findGroup);
+    public Trip update(Trip trip) {
+        return repository.save(trip);
     }
 
-    public Page<FindGroup> getPaginatedArticles(Pageable pageable) {
+    public Page<Trip> getPaginatedArticles(Pageable pageable) {
         return repository.findAllByOrderByIdDesc(pageable);
     }
 }

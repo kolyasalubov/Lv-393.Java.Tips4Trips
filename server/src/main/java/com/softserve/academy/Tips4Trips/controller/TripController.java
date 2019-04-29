@@ -1,15 +1,11 @@
 package com.softserve.academy.Tips4Trips.controller;
 
-import com.softserve.academy.Tips4Trips.dto.converter.AccountConverter;
-import com.softserve.academy.Tips4Trips.dto.converter.FindGroupConverter;
-import com.softserve.academy.Tips4Trips.dto.details.AccountDetailsDTO;
+import com.softserve.academy.Tips4Trips.dto.converter.TripConverter;
 import com.softserve.academy.Tips4Trips.dto.details.TripDetailsDTO;
 import com.softserve.academy.Tips4Trips.dto.info.AccountInfoDTO;
-import com.softserve.academy.Tips4Trips.dto.info.PostInfoDTO;
 import com.softserve.academy.Tips4Trips.dto.info.TripInfoDTO;
 import com.softserve.academy.Tips4Trips.entity.administration.Account;
-import com.softserve.academy.Tips4Trips.entity.blog.Post;
-import com.softserve.academy.Tips4Trips.entity.entertainment.mountains.FindGroup;
+import com.softserve.academy.Tips4Trips.entity.entertainment.mountains.Trip;
 import com.softserve.academy.Tips4Trips.service.AccountService;
 import com.softserve.academy.Tips4Trips.service.TripService;
 import org.apache.log4j.Logger;
@@ -30,28 +26,28 @@ public class TripController {
     private static final Logger logger = Logger.getLogger(TripController.class);
 
     private TripService tripService;
-    private FindGroupConverter findGroupConverter;
+    private TripConverter tripConverter;
     private AccountService accountService;
 
     @Autowired
-    public TripController(TripService tripService, FindGroupConverter findGroupConverter, AccountService accountService) {
+    public TripController(TripService tripService, TripConverter tripConverter, AccountService accountService) {
         this.tripService = tripService;
-        this.findGroupConverter = findGroupConverter;
+        this.tripConverter = tripConverter;
         this.accountService = accountService;
     }
 
     @GetMapping
     public ResponseEntity<List<TripInfoDTO>> getAll() {
         logger.info("find group get all method executing: ");
-        return new ResponseEntity<>(findGroupConverter
+        return new ResponseEntity<>(tripConverter
                 .convertToInfoDTO(tripService.findAll()), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/page/{page}", method = RequestMethod.GET)
     public Page<TripDetailsDTO> listArticlesPageByPage(@PathVariable("page") int page) {
         PageRequest pageable = PageRequest.of(page - 1, 6);
-        Page<FindGroup> articlePage = tripService.getPaginatedArticles(pageable);
-        Page<TripDetailsDTO> postDetailsDTOS = articlePage.map(trip -> findGroupConverter.convertToDTO(trip));
+        Page<Trip> articlePage = tripService.getPaginatedArticles(pageable);
+        Page<TripDetailsDTO> postDetailsDTOS = articlePage.map(trip -> tripConverter.convertToDTO(trip));
         return postDetailsDTOS;
 
     }
@@ -59,20 +55,20 @@ public class TripController {
     @GetMapping("/{id}")
     public ResponseEntity<TripDetailsDTO> getById(@PathVariable Long id) {
         logger.info("find group get by id method executing: ");
-        FindGroup findGroup = tripService.findById(id);
-        if (findGroup == null) {
+        Trip trip = tripService.findById(id);
+        if (trip == null) {
             return null;
         }
-        return new ResponseEntity<>(findGroupConverter
-                .convertToDTO(findGroup), HttpStatus.OK);
+        return new ResponseEntity<>(tripConverter
+                .convertToDTO(trip), HttpStatus.OK);
     }
 
 
     @PostMapping("/create")
     public ResponseEntity<TripDetailsDTO> createPost(@RequestBody TripDetailsDTO findGroupDetailsDTO) {
         logger.info("find group create post method executing: ");
-        FindGroup findGroup = tripService.createFindGroup(findGroupConverter.convertToEntity(findGroupDetailsDTO));
-        return new ResponseEntity<>(findGroupConverter.convertToDTO(findGroup), HttpStatus.CREATED);
+        Trip trip = tripService.createFindGroup(tripConverter.convertToEntity(findGroupDetailsDTO));
+        return new ResponseEntity<>(tripConverter.convertToDTO(trip), HttpStatus.CREATED);
 
     }
 
@@ -83,10 +79,10 @@ public class TripController {
     }
 
     @PutMapping("/update")
-    public ResponseEntity<TripDetailsDTO> update(@RequestBody TripDetailsDTO findGroupDetailsDTO) {
+    public ResponseEntity<TripDetailsDTO> update(@RequestBody TripDetailsDTO tripDetailsDTO) {
         logger.info("find group update post method executing:  ");
-        FindGroup findGroup = tripService.update(findGroupConverter.convertToEntity(findGroupDetailsDTO));
-        return new ResponseEntity<>(findGroupConverter.convertToDTO(findGroup), HttpStatus.CREATED);
+        Trip trip = tripService.update(tripConverter.convertToEntity(tripDetailsDTO));
+        return new ResponseEntity<>(tripConverter.convertToDTO(trip), HttpStatus.CREATED);
     }
 
     @PostMapping("/subscribe/{tripId}")
