@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Account } from 'src/app/model/account.model';
 import { AccountService } from 'src/app/components/authentication/account/account.service';
 import {Router} from '@angular/router';
+import { ImageUploadFormComponent } from '../../image-upload-form/image-upload-form.component';
 @Component({
   selector: 'app-account-edit',
   templateUrl: './account-edit.component.html',
@@ -12,14 +13,15 @@ export class AccountEditComponent implements OnInit {
 
   accountProfile: Account = new Account(null,null,null,null,null,null,null,null);
 
-  constructor(private accountService: AccountService,private router: Router) {
+  constructor(private accountService: AccountService,
+              private router: Router,
+              private imageUpload: ImageUploadFormComponent) {
   }
 
   ngOnInit() {
     //this.accountService.findById(1).subscribe(data => this.accountProfile = data);
     this.accountService.getCurrentUser().subscribe(data => this.accountProfile = data);
   }
-
 
   onSubmit(accountProfile :Account) {
       console.log(accountProfile);
@@ -28,12 +30,8 @@ export class AccountEditComponent implements OnInit {
     setTimeout(() => {this.router.navigate(['account']);}, 800);
   }
 
-
-
   accountInfo() {
     this.router.navigate(['account']);
   }
-
-
 
 }

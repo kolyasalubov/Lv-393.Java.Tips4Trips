@@ -56,6 +56,7 @@ import { ErrorComponent } from './components/error/error.component';
 import { ActiveTripComponent } from './components/authentication/account/active-trip/active-trip.component';
 import { LikeAccountComponent } from './components/authentication/account/like-account/like-account.component';
 import { CommentAccountComponent } from './components/authentication/account/comment-account/comment-account.component';
+import { ImagetestComponent } from './src/app/components/imagetest/imagetest.component';
 
 @NgModule({
   declarations: [
@@ -108,7 +109,8 @@ import { CommentAccountComponent } from './components/authentication/account/com
     ErrorComponent,
     ActiveTripComponent,
     LikeAccountComponent,
-    CommentAccountComponent
+    CommentAccountComponent,
+    ImagetestComponent
   ],
   imports: [
     BrowserModule,

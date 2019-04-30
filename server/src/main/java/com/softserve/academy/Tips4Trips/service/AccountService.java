@@ -5,6 +5,7 @@ import com.softserve.academy.Tips4Trips.entity.administration.Account;
 import com.softserve.academy.Tips4Trips.entity.administration.User;
 import com.softserve.academy.Tips4Trips.entity.blog.Post;
 import com.softserve.academy.Tips4Trips.entity.file.Image;
+import com.softserve.academy.Tips4Trips.exception.DataNotFoundException;
 import com.softserve.academy.Tips4Trips.exception.FileIOException;
 import com.softserve.academy.Tips4Trips.repository.AccountRepository;
 import com.softserve.academy.Tips4Trips.repository.UserRepository;
@@ -29,17 +30,17 @@ public class AccountService {
 
     private AccountConverter accountConverter;
     private AccountRepository repository;
-    private UserService userService;
+    private UserRepository userRepository;
     private FileStorageService fileStorageService;
 
     @Autowired
     public AccountService(FileStorageService fileStorageService,
                           AccountConverter accountConverter,
                           AccountRepository repository,
-                          UserService userService) {
+                          UserRepository userRepository) {
         this.accountConverter = accountConverter;
         this.repository = repository;
-        this.userService = userService;
+        this.userRepository = userRepository;
         this.fileStorageService = fileStorageService;
     }
 
@@ -76,7 +77,6 @@ public class AccountService {
 
     }
 
-
     public Account createAccount(Account account) {
         account.setId(-1L);
         return repository.save(account);
@@ -98,15 +98,37 @@ public class AccountService {
     public void deleteById(Long id) {
     }
 
-    public Account createImageForAccount(MultipartFile image)
+    public Account createImageForAccount(MultipartFile image, Long id)
             throws FileIOException {
-        UserDetails userDetails = (UserDetails) SecurityContextHolder.
-                getContext().getAuthentication().getPrincipal();
-        Account account = findByUser(userService
-                .findByLogin(userDetails.getUsername()));
-
-        Image newImage = fileStorageService.store(image, account);
+        Account account = findById(id);
+        if (account.getImage() != null) {
+            throw new FileIOException("Account image already exists! Try " +
+                    "updating it.");
+        }
+        Image newImage = fileStorageService.store(image);
         account.setImage(newImage);
+        return update(account);
+    }
+
+    public void deleteAccountImage(Long id) throws FileIOException,
+            DataNotFoundException {
+        try {
+            Account account = findById(id);
+            Long imageId = account.getImage().getId();
+            account.setImage(null);
+            update(account);
+            fileStorageService.deleteFile(imageId);
+        } catch (NullPointerException e) {
+            throw new DataNotFoundException("Image doesn't exist");
+        }
+    }
+
+    public Account updateAccountImage(Long id, MultipartFile newImage)
+            throws FileIOException, DataNotFoundException {
+        deleteAccountImage(id);
+        Image image = fileStorageService.store(newImage);
+        Account account = findById(id);
+        account.setImage(image);
         return update(account);
     }
 }
