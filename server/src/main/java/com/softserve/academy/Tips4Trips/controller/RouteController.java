@@ -9,6 +9,8 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -45,6 +47,7 @@ public class RouteController {
     }
 
     @GetMapping("/notVerified")
+    @PreAuthorize("hasRole('ROLE_MODERATOR')")
     public ResponseEntity<List<RouteInfoDTO>> getNotVerified() {
         logger.info("get verified routes method executing: ");
         return new ResponseEntity<>(routeConverter.convertToInfoDTO(routeService
@@ -73,6 +76,7 @@ public class RouteController {
     }
 
     @PostMapping("/create")
+    @PreAuthorize("hasRole('ROLE_USER')")
     public ResponseEntity<RouteDetailsDTO> createRoute(@RequestBody RouteDetailsDTO routeDetailsDTO) {
         logger.info("create route method executing: ");
         Route route = routeService.createRoute(routeConverter.convertToEntity(routeDetailsDTO));
@@ -81,6 +85,7 @@ public class RouteController {
     }
 
     @PutMapping("/update")
+    @PreAuthorize("hasRole('ROLE_MODERATOR') or #routeDetailsDTO.authorInfo.id == authentication.principal.id")
     public ResponseEntity<RouteDetailsDTO> update(@RequestBody RouteDetailsDTO routeDetailsDTO) {
         logger.info("update route method executing: ");
         Route route = routeService.update(routeConverter.convertToEntity(routeDetailsDTO));
@@ -89,12 +94,14 @@ public class RouteController {
     }
 
     @PutMapping("/{id}/verify")
+    @PreAuthorize("hasRole('ROLE_MODERATOR')")
     public void verify(@PathVariable Long id) {
         logger.info("verify route method executing: ");
         routeService.verify(id);
     }
 
     @DeleteMapping("/delete/{id}")
+    @PreAuthorize("hasRole('ROLE_MODERATOR') or @A.mayDeleteRoute(#id)")
     public void deleteById(@PathVariable Long id) {
         logger.info("delete route by id method executing: ");
         routeService.deleteById(id);
