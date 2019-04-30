@@ -96,6 +96,20 @@
 
 
 
+<section class="ftco-section ftco-no-pb contact-section">
+  <div class="container">
+    <h1 align="center">Subscribers</h1>
+
+
+    <app-subscribers [tripId]="tripDetailsDTO.id"></app-subscribers>
+
+
+
+
+    <button type="submit"(click)="goBack()" class="btn btn-primary" >Back</button>
+    <a type="submit" routerLink="/edit_trip/{{tripDetailsDTO.id}}" class="btn btn-primary" style="margin-left: 20px;">Edit</a>
+  </div>
+</section>
 <!--<section class="ftco-section ftco-no-pb contact-section">-->
   <!--<div class="container">-->
     <!--<h1 align="center">Subscribers</h1>-->

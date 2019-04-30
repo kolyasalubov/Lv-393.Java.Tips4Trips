@@ -30,8 +30,6 @@ export class TripService {
     return this.http.post<TripDetailsDTO>(this.baseUrl + "create", trip);
   }
 
-
-
   update(trip: TripDetailsDTO): Observable<TripDetailsDTO> {
     return this.http.put<TripDetailsDTO>(this.baseUrl + "update", trip);
   }

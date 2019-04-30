@@ -1,19 +1,19 @@
 import { Injectable } from '@angular/core';
 import {Observable} from "rxjs";
 import { HttpClient } from '@angular/common/http';
-import {TripDetailsDTO} from "../../../model/trip-details";
+import {AccountInfo} from "../../../model/account-info.model";
 
 @Injectable({
   providedIn: 'root'
 })
-export class TripInfoService {
+export class SubscribersService {
 
   constructor(private http: HttpClient) { }
   baseUrl: string = 'http://localhost:8080/trips/';
 
-  // findById(id: number): Observable<TripDetailsDTO> {
-  //   return this.http.get<TripDetailsDTO>(this.baseUrl + id);
-  // }
+   findByTripId(id: number): Observable<AccountInfo[]> {
+     return this.http.get<AccountInfo[]>(this.baseUrl + id + "/subscribers");
+   }
 
 
 }
