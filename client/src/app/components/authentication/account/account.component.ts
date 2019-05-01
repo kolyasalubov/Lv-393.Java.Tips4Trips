@@ -28,8 +28,8 @@ export class AccountComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getIdPosts();
     this.authService.getCurrentUser().subscribe(data => this.accountProfile = data);
+    setTimeout(()=>{ this.getIdPosts();},500);
   }
 
 
@@ -48,13 +48,13 @@ export class AccountComponent implements OnInit {
   }
 
   getIdPosts() {
-    this.postService.getComment(2,1).subscribe((data) => {
+    this.postService.getComment(this.accountProfile.id,1).subscribe((data) => {
       this.comments=data;
       if(this.comments.content.length==0){
         this.arecomments=true
       }
     });
-    this.postService.getLike(2,1).subscribe((data) => {
+    this.postService.getLike(this.accountProfile.id,1).subscribe((data) => {
       this.likes=data;
       if(this.likes.content.length==0){
         this.arelikes=true
