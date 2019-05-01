@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-like-account',
@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LikeAccountComponent implements OnInit {
 
-  constructor() { }
+  @Input() accountPost: number;
+
+  constructor() {
+  }
 
   ngOnInit() {
+    setTimeout(() => {    }, 100);
+    console.log('tyt'+this.accountPost);
   }
 
 }
