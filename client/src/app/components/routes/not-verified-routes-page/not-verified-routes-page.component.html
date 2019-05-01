@@ -16,19 +16,12 @@
 
 <section class="ftco-section bg-light">
   <div class="container">
-    <div class="row d-flex">
-      <div *ngFor="let route of routes" class="col-md-4 d-flex ftco-animate">
-        <div class="blog-entry justify-content-end">
-          <a routerLink="/routes/{{route.id}}" class="block-20" style="background-image: url('../../../assets/images/image_1.jpg');">
-          </a>
-          <div class="text mt-3 float-right d-block">
-            <h3 class="heading"><a routerLink="/routes/{{route.id}}">{{route.name}}</a></h3>
-            <p>{{route.creationDate}}</p>
-            <p>Created by <a href="">{{route.authorInfo.firstName}} {{route.authorInfo.lastName}}</a></p>
-          </div>
-        </div>
-      </div>
+    <div class="mb-4">
+      <h1 style="margin-left: -8px; display: inline;">Not Verified Routes</h1>
+      <a *ngIf="hasAuthority" href="/routes" style="float:right; margin-right: 15px;">Back To Routes</a>
     </div>
+    <app-list-of-routes [routes]="routes" [displayEditButtons]="hasAuthority" [displayVerifyButton]="hasAuthority">
+    </app-list-of-routes>
     <!-- <div class="row mt-5">
       <div class="col text-center">
         <div class="block-27">
