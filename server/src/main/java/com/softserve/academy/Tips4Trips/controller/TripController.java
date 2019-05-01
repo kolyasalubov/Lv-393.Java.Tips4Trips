@@ -96,16 +96,15 @@ public class TripController {
     }
 
 
-    @PostMapping("/{tripId}/subscribe")
-    public ResponseEntity subscribeAcc(@PathVariable Long tripId, @RequestBody AccountInfoDTO accountInfoDTO){
+    @GetMapping("/{tripId}/subscribe/{accountId}")
+    public ResponseEntity<AccountInfoDTO> subscribeAcconut(@PathVariable Long tripId, @PathVariable Long accountId){
         logger.info("trip subscribe post method executing:  ");
-        Account acc = accountService.findById(accountInfoDTO.getId());
-        tripService.subscribe(tripId, acc);
-        return new ResponseEntity<>(HttpStatus.OK);
+        //todo add validation
+        return new ResponseEntity<>(accountConverter.convertToInfoDTO(tripService.subscribe(tripId, accountId)),HttpStatus.OK);
     }
 
     @PostMapping("/{tripId}/unsubscribe")
-    public ResponseEntity unSubscribeAcc(@PathVariable Long tripId, @RequestBody AccountInfoDTO accountInfoDTO){
+    public ResponseEntity unSubscribe(@PathVariable Long tripId, @RequestBody AccountInfoDTO accountInfoDTO){
         Account account = accountService.findById(accountInfoDTO.getId());
         logger.info("trip unSubscribe post method executing:  ");
         tripService.unSubscribe(tripId, account);

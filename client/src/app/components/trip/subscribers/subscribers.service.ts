@@ -15,5 +15,9 @@ export class SubscribersService {
      return this.http.get<AccountInfo[]>(this.baseUrl + id + "/subscribers");
    }
 
+  subscribeById(tripId: number, account: AccountInfo): Observable<AccountInfo> {
+    return this.http.get<AccountInfo>(this.baseUrl + tripId +'/subscribe/' + account.id);
+  }
+
 
 }

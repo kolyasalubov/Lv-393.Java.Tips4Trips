@@ -14,6 +14,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -25,10 +26,12 @@ public class TripService {
     private EntityManager em;
 
     TripRepository repository;
+    AccountService accountService;
 
     @Autowired
-    public TripService(TripRepository repository) {
+    public TripService(TripRepository repository,AccountService accountService) {
         this.repository = repository;
+        this.accountService = accountService;
     }
 
     public List<Trip> searchByName(String name) {
@@ -50,11 +53,21 @@ public class TripService {
     }
 
     @Transactional
-    public void subscribe(Long tripId, Account account){
-         em.createNativeQuery("INSERT  INTO  subscriber_group(subscriber_id,group_id)  values(?,?)")
-                 .setParameter(1,account.getId())
-                 .setParameter(2,tripId)
-                 .executeUpdate();
+    public Account subscribe(Long tripId, Long accountId){
+
+        Optional<Trip> trip = repository.findById(tripId);
+
+        if(trip.isPresent()){
+            //todo add [me]
+            trip.get().addSubscriber(accountService.findById(accountId));
+            return accountService.findById(accountId);
+        }else {
+            throw new NoSuchElementException();
+        }
+         //em.createNativeQuery("INSERT  INTO  subscriber_group(subscriber_id,group_id)  values(?,?)")
+         //        .setParameter(1,accountId)
+         //        .setParameter(2,tripId)
+         //        .executeUpdate();
     }
 
 
@@ -67,11 +80,12 @@ public class TripService {
     }
     @Transactional
     public List<Account> getSubscribers(Long tripId){
-        Trip trip = repository.findById(tripId).get();
-        return trip.getSubscribers();
-        //return  em.createQuery("select subscribers from Trip ").getResultList();
-
-
+        Optional<Trip> trip = repository.findById(tripId);
+        if(trip.isPresent()){
+            return trip.get().getSubscribers();
+        }else {
+            throw new NoSuchElementException();
+        }
     }
 
 
