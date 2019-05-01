@@ -28,7 +28,7 @@
         </div>
       </div>
       <div style="text-align: left;"><button (click)="goBack()" style="margin-top:20px;">Back</button></div>
-      <div style="text-align: right;" *ngIf="hasAuthority || currUser?.id == route.authorInfo?.id">
+      <div style="text-align: right;" *ngIf="hasAuthority || (currUser?.id == route.authorInfo?.id && !route.verified)">
         <button (click)="edit()" style="margin-top:20px;">Edit</button>
         <button (click)="delete()" style="margin-top:20px;">Delete</button>
         <button (click)="verify()" style="margin-top:20px;" *ngIf="hasAuthority && !route.verified">Verify</button>
