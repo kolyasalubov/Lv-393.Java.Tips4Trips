@@ -1,7 +1,6 @@
-<div class="row d-flex"><h5>User name </h5>
+<div class="row d-flex"><h5> {{comment.count}} people</h5>
   <p style="margin-top: 1rem;margin-left: .4rem;margin-right: .4rem;">commented</p>
-  <p style="margin-top: 1rem;"> some text</p>
-  <a class="round" href="#"
-     style="background-image: url('../../../../../assets/images/about-1.jpg')">
+  <a  href="post/{{comment.id}}">
+    <img class="round" src="{{comment.photoPath}}" alt="img">
   </a>
 </div>

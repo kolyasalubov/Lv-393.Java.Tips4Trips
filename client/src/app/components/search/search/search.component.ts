@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { SearchPlaceComponent } from '../search-place/search-place.component';
 
 @Component({
@@ -6,20 +6,24 @@ import { SearchPlaceComponent } from '../search-place/search-place.component';
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css']
 })
-export class SearchComponent implements OnInit {
+export class SearchComponent implements OnInit, AfterViewInit{
 
   seek: string;
   currCategory:string = "PLACE";
 
   @ViewChild(SearchPlaceComponent) searchPlace : SearchPlaceComponent;
 
-  categoriesComponents = {
-    "PLACE":this.searchPlace
-  }
+  categoriesComponents: any;
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  ngAfterViewInit(): void {
+    this.categoriesComponents = {
+      "PLACE":this.searchPlace
+    }
   }
 
   search():void {

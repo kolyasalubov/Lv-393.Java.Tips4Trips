@@ -15,8 +15,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 import java.util.List;
 
 @RestController
@@ -32,7 +35,7 @@ public class TripController {
     private AccountConverter accountConverter;
 
     @Autowired
-    public TripController(TripService tripService, TripConverter tripConverter, AccountService accountService,AccountConverter accountConverter) {
+    public TripController(TripService tripService, TripConverter tripConverter, AccountService accountService, AccountConverter accountConverter) {
         this.tripService = tripService;
         this.tripConverter = tripConverter;
         this.accountService = accountService;
@@ -41,7 +44,7 @@ public class TripController {
 
     @GetMapping
     public ResponseEntity<List<TripInfoDTO>> getAll() {
-        logger.info("find group get all method executing: ");
+        logger.info("trips get all method executing: ");
         return new ResponseEntity<>(tripConverter
                 .convertToInfoDTO(tripService.findAll()), HttpStatus.OK);
     }
@@ -68,47 +71,55 @@ public class TripController {
 
 
     @PostMapping("/create")
-    public ResponseEntity<TripDetailsDTO> createPost(@RequestBody TripDetailsDTO findGroupDetailsDTO) {
+    @PreAuthorize("hasRole('ROLE_USER')")
+    public ResponseEntity<TripDetailsDTO> create(@RequestBody TripDetailsDTO findGroupDetailsDTO) {
         logger.info("find group create post method executing: ");
-        Trip trip = tripService.createFindGroup(tripConverter.convertToEntity(findGroupDetailsDTO));
+        Trip trip = tripService.createTrip(tripConverter.convertToEntity(findGroupDetailsDTO));
         return new ResponseEntity<>(tripConverter.convertToDTO(trip), HttpStatus.CREATED);
 
     }
 
     @DeleteMapping("/delete/{id}")
+    @PreAuthorize("hasRole('ROLE_USER')")
     public void deleteById(@PathVariable Long id) {
-        logger.info("delete by id method executing: ");
-        tripService.deleteById(id);
+        logger.info("trips delete by id method executing: ");
+        tripService.delete(id);
     }
 
     @PutMapping("/update")
+    @PreAuthorize("hasRole('ROLE_USER')")
     public ResponseEntity<TripDetailsDTO> update(@RequestBody TripDetailsDTO tripDetailsDTO) {
         logger.info("find group update post method executing:  ");
         Trip trip = tripService.update(tripConverter.convertToEntity(tripDetailsDTO));
-        return new ResponseEntity<>(tripConverter.convertToDTO(trip), HttpStatus.CREATED);
+        return new ResponseEntity<>(tripConverter.convertToDTO(trip), HttpStatus.OK);
     }
 
     @GetMapping("/{tripId}/subscribers")
+    @PreAuthorize("hasRole('ROLE_USER')")
     public ResponseEntity<List<AccountInfoDTO>> getSubscribers(@PathVariable Long tripId) {
         logger.info("trip getSubscribers method executing: ");
         List<AccountInfoDTO> accountInfoDTOS = accountConverter.convertToInfoDTO(tripService.getSubscribers(tripId));
-        return new ResponseEntity<>(accountInfoDTOS,HttpStatus.OK);
+        return new ResponseEntity<>(accountInfoDTOS, HttpStatus.OK);
     }
 
 
-    @PostMapping("/{tripId}/subscribe")
-    public ResponseEntity subscribeAcc(@PathVariable Long tripId, @RequestBody AccountInfoDTO accountInfoDTO){
+    @PutMapping("/{tripId}/subscribe/{accountId}")
+    @PreAuthorize("hasRole('ROLE_USER')")
+    public ResponseEntity<AccountInfoDTO> subscribeAccountById(
+            @PathVariable(value = "tripId") @NotNull @Positive Long tripId,
+            @PathVariable(value = "accountId") @NotNull @Positive Long accountId) {
         logger.info("trip subscribe post method executing:  ");
-        Account acc = accountService.findById(accountInfoDTO.getId());
-        tripService.subscribe(tripId, acc);
-        return new ResponseEntity<>(HttpStatus.OK);
+        //todo add validation
+        return new ResponseEntity<>(accountConverter.convertToInfoDTO(tripService.subscribe(tripId, accountId)), HttpStatus.OK);
     }
 
-    @PostMapping("/{tripId}/unsubscribe")
-    public ResponseEntity unSubscribeAcc(@PathVariable Long tripId, @RequestBody AccountInfoDTO accountInfoDTO){
-        Account account = accountService.findById(accountInfoDTO.getId());
+    @DeleteMapping("/{tripId}/unsubscribe/{accountId}")
+    @PreAuthorize("hasRole('ROLE_USER')")
+    public ResponseEntity unSubscribeAccountById(@PathVariable(value = "tripId") @NotNull @Positive Long tripId,
+                                      @PathVariable(value = "accountId") @NotNull @Positive Long accountId) {
+       // Account account = accountService.findById(accountId);
         logger.info("trip unSubscribe post method executing:  ");
-        tripService.unSubscribe(tripId, account);
+        tripService.unSubscribe(tripId, accountId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

@@ -1,9 +1,11 @@
 package com.softserve.academy.Tips4Trips.service;
 
+import com.softserve.academy.Tips4Trips.constants.ExceptionMessages;
 import com.softserve.academy.Tips4Trips.dto.converter.AccountConverter;
 import com.softserve.academy.Tips4Trips.entity.administration.Account;
 import com.softserve.academy.Tips4Trips.entity.administration.User;
 import com.softserve.academy.Tips4Trips.entity.blog.Post;
+import com.softserve.academy.Tips4Trips.exception.DataNotFoundException;
 import com.softserve.academy.Tips4Trips.repository.AccountRepository;
 import com.softserve.academy.Tips4Trips.repository.UserRepository;
 import org.apache.log4j.Logger;
@@ -47,7 +49,7 @@ public class AccountService {
         if (account.isPresent()) {
             return account.get();
         } else {
-            throw new NoSuchElementException();
+            throw new DataNotFoundException(ExceptionMessages.ACCOUNT_BY_THIS_ID_IS_NOT_FOUND);
         }
     }
 

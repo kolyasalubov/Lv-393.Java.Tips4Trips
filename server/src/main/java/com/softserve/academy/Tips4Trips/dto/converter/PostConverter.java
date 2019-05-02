@@ -1,29 +1,13 @@
 package com.softserve.academy.Tips4Trips.dto.converter;
 
-import com.softserve.academy.Tips4Trips.controller.CommentController;
-import com.softserve.academy.Tips4Trips.controller.LikeController;
-import com.softserve.academy.Tips4Trips.controller.PostController;
 import com.softserve.academy.Tips4Trips.dto.details.PostDetailsDTO;
-import com.softserve.academy.Tips4Trips.dto.info.PostInfoDTO;
-import com.softserve.academy.Tips4Trips.dto.info.RouteInfoDTO;
 import com.softserve.academy.Tips4Trips.entity.Route;
-import com.softserve.academy.Tips4Trips.entity.administration.Account;
 import com.softserve.academy.Tips4Trips.entity.blog.Post;
-import com.softserve.academy.Tips4Trips.repository.AccountRepository;
-import com.softserve.academy.Tips4Trips.repository.RouteRepository;
 import com.softserve.academy.Tips4Trips.service.AccountService;
-import com.softserve.academy.Tips4Trips.service.LikeService;
 import com.softserve.academy.Tips4Trips.service.RouteService;
 import org.modelmapper.ModelMapper;
-import org.modelmapper.PropertyMap;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.hateoas.mvc.ControllerLinkBuilder;
 import org.springframework.stereotype.Component;
-
-import javax.annotation.PostConstruct;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Component
 public class PostConverter implements Converter<Post, PostDetailsDTO> {
@@ -46,6 +30,8 @@ public class PostConverter implements Converter<Post, PostDetailsDTO> {
         this.accountConverter = accountConverter;
         this.modelMapper = modelMapper;
     }
+
+
 //    @PostConstruct
 //    private void post(){
 //        modelMapper.createTypeMap(Post.class, PostDetailsDTO.class)
@@ -89,9 +75,15 @@ public class PostConverter implements Converter<Post, PostDetailsDTO> {
         post.setRoute(route);
         return post;
     }
+
     @Override
     public PostDetailsDTO convertToDTO(Post post) {
         return modelMapper.map(post, PostDetailsDTO.class);
     }
+
+
+
+
+
 
 }
