@@ -85,20 +85,27 @@
           <div class="col-md-4 col-lg-3 main-content" style="padding-left: 0px;">
             <h2>Your Likes</h2>
             <div style="border: 2px solid #999999;border-radius: 6px;">
-              <app-like-account></app-like-account>
-              <app-like-account></app-like-account>
-              <app-like-account></app-like-account>
-              <app-like-account></app-like-account>
+              <div *ngIf="arelikes">
+                <h3 style="margin-left: 7%;">{{massage}}</h3>
+              </div>
+              <div *ngIf="!arelikes">
+                <div *ngFor="let like of likes.content">rve
+                  <app-comment-account [comment]="like"></app-comment-account>
+                </div>
+              </div>
             </div>
           </div>
           <div class="col-md-4 col-lg-3 main-content" style="padding-left: 0px;">
             <h2>Your comments</h2>
             <div style="border: 2px solid #999999;border-radius: 6px;">
-              <app-comment-account></app-comment-account>
-              <app-comment-account></app-comment-account>
-              <app-comment-account></app-comment-account>
-              <app-comment-account></app-comment-account>
-              <app-comment-account></app-comment-account>
+              <div *ngIf="arecomments">
+                <h3 style="margin-left: 7%;">{{massage}}</h3>
+              </div>
+              <div *ngIf="!arecomments">
+                <div *ngFor="let comment of comments.content">
+                  <app-comment-account [comment]="comment"></app-comment-account>
+                </div>
+              </div>
             </div>
           </div>
           <div class="col-md-4 col-lg-3 main-content" style="padding-left: 0px;">
