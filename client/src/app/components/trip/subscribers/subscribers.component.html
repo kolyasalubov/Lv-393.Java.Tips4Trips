@@ -19,7 +19,10 @@
           </div>
           <h3 class="mb-4">subscribe</h3>
 
-          <button type="submit"(click)="subscribe()" class="btn btn-primary" >subSuka!</button>
+
+        <div *ngIf="!isSubscribed"> <button type="submit" (click)="subscribe()" class="btn btn-primary" >subscribe!</button></div>
+          <div *ngIf="isSubscribed"> <button type="submit" (click)="unsubscribe()" class="btn btn-primary" >unsubscribe!</button></div>
+
 
           <p align="center" ></p>
         </div>
