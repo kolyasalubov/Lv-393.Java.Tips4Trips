@@ -48,7 +48,7 @@ import { CountryComponent } from './components/country/country.component';
 import { RouteInfoComponent } from './components/routes/route-info/route-info.component';
 import { EditRouteComponent } from './components/routes/edit-route/edit-route.component';
 import { CreateTripComponent } from './components/trip/create-trip/create-trip.component';
-import { LittleRouteComponent } from './components/route/little-route/little-route.component';
+import { LittleRouteComponent } from './components/routes/little-route/little-route.component';
 import { ChangeComponent } from './components/trip/change/change.component';
 import { ErrorComponent } from './components/error/error.component';
 import { ActiveTripComponent } from './components/authentication/account/active-trip/active-trip.component';
