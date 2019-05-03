@@ -111,10 +111,14 @@
           <div class="col-md-4 col-lg-3 main-content" style="padding-left: 0px;">
             <h2>Active Trips</h2>
             <div style="border: 2px solid #999999;border-radius: 6px;">
-              <app-active-trip></app-active-trip>
-              <app-active-trip></app-active-trip>
-              <app-active-trip></app-active-trip>
-              <app-active-trip></app-active-trip>
+              <div *ngIf="areTrips">
+                <h3 style="margin-left: 7%;">{{massage}}</h3>
+              </div>
+              <div *ngIf="!areTrips">
+                <div *ngFor="let trip of trip.content">
+                  <app-active-trip [trip]="trip"></app-active-trip>
+                </div>
+              </div>
             </div>
           </div>
 

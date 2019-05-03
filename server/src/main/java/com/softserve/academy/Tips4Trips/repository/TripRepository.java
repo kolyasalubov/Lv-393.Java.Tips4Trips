@@ -3,6 +3,7 @@ package com.softserve.academy.Tips4Trips.repository;
 import com.softserve.academy.Tips4Trips.entity.administration.Account;
 import com.softserve.academy.Tips4Trips.entity.entertainment.mountains.Trip;
 import com.softserve.academy.Tips4Trips.entity.Route;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -25,4 +26,5 @@ public interface TripRepository extends JpaRepository<Trip, Long> {
 
     List<Trip> findByRoute(Route route);
 
+    Page<Trip> findByCreatorIdOrderByIdDesc(Long id, Pageable pageable);
 }
