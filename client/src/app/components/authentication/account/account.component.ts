@@ -5,6 +5,7 @@ import {Router} from '@angular/router';
 import {AuthService} from '../auth.service';
 import {PostService} from "../../blog/post.service";
 import {PageNotificationComment} from "../../../model/page-notification-comment";
+import {PageNotificationTrip} from "../../../model/page-notification-trip";
 
 @Component({
   selector: 'app-account',
@@ -18,6 +19,8 @@ export class AccountComponent implements OnInit {
   arecomments: boolean=false;
   likes: PageNotificationComment;
   arelikes: boolean=false;
+  trip: PageNotificationTrip;
+  areTrips: boolean=false;
   massage:string='you don\'t have yet';
 
   constructor(private accountService: AccountService,
@@ -29,7 +32,7 @@ export class AccountComponent implements OnInit {
 
   ngOnInit() {
     this.authService.getCurrentUser().subscribe(data => this.accountProfile = data);
-    setTimeout(()=>{ this.getIdPosts();},500);
+    setTimeout(()=>{ this.getNotific();},500);
   }
 
 
@@ -47,7 +50,7 @@ export class AccountComponent implements OnInit {
     this.router.navigate(['account_edit']);
   }
 
-  getIdPosts() {
+  getNotific() {
     this.postService.getComment(this.accountProfile.id,1).subscribe((data) => {
       this.comments=data;
       if(this.comments.content.length==0){
@@ -58,6 +61,12 @@ export class AccountComponent implements OnInit {
       this.likes=data;
       if(this.likes.content.length==0){
         this.arelikes=true
+      }
+    });
+    this.postService.getTrip(this.accountProfile.id,1).subscribe((data) => {
+      this.trip=data;
+      if(this.trip.content.length==0){
+        this.areTrips=true
       }
     });
   }

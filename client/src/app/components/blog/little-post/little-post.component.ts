@@ -23,5 +23,6 @@ export class LittlePostComponent implements OnInit {
     this.date = input.getDay();
     this.year = input.getFullYear();
     this.month = input.toLocaleString('en-us', {month: "long"});
+    this.post.content=this.post.content.substr(0,125);
   }
 }
