@@ -1,4 +1,5 @@
 import {Component, HostListener, OnInit} from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -8,8 +9,11 @@ import {Component, HostListener, OnInit} from '@angular/core';
 export class HeaderComponent implements OnInit {
 
   show: boolean = false;
+  seek: string;
 
-  constructor() {
+  constructor(
+    private router: Router
+  ) {
     setTimeout(()=>{},400);
   }
 
@@ -32,6 +36,9 @@ export class HeaderComponent implements OnInit {
 
   showIt() {
     this.show = !this.show;
+  }
+  goToSearch(): void {
+    this.router.navigate(['/search'], { queryParams: { seek: this.seek } });
   }
 
 }

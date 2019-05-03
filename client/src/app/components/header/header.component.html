@@ -16,11 +16,11 @@
         <li class="nav-item"><a routerLinkActive="chosen" [routerLinkActiveOptions]="{exact: true}" class="nav-link" routerLink="/test">Test</a></li>
         <li class="nav-item"><a routerLinkActive="chosen" [routerLinkActiveOptions]="{exact: true}" class="nav-link" routerLink="/routes">Routes</a></li>
         <li class="nav-item">
-          <form class="form-inline active-cyan active-cyan-2">
+          <form class="form-inline active-cyan active-cyan-2" (ngSubmit)="goToSearch()">
             <i class="fas fa-search" aria-hidden="true"></i>
             <span class="icon fa fa-search" style="margin-top: -8px;"></span>
             <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search" aria-label="Search"
-                   style="border: 1px solid #C0C0C0;">
+                   style="border: 1px solid #C0C0C0;" [(ngModel)]="seek" name="seek">
           </form>
         </li>
         <li class="nav-item cta"><a class="nav-link" routerLink="/account" style="white-space: pre;">My Account</a></li>
