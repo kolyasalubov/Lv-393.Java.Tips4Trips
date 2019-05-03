@@ -59,6 +59,7 @@ import { NotVerifiedRoutesPageComponent } from './components/routes/not-verified
 import { SubscribersComponent } from './components/trip/subscribers/subscribers.component';
 import { SearchPlaceComponent } from './components/search/search-place/search-place.component';
 import { SearchComponent } from './components/search/search/search.component';
+import { SearchRouteComponent } from './components/search/search-route/search-route.component';
 
 @NgModule({
   declarations: [
@@ -114,7 +115,8 @@ import { SearchComponent } from './components/search/search/search.component';
     NotVerifiedRoutesPageComponent,
     SubscribersComponent,
     SearchPlaceComponent,
-    SearchComponent
+    SearchComponent,
+    SearchRouteComponent
   ],
   imports: [
     BrowserModule,
