@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PlaceService } from 'src/app/place.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PlaceInfo } from 'src/app/model/place-info.model';
 
 @Component({
@@ -10,7 +10,7 @@ import { PlaceInfo } from 'src/app/model/place-info.model';
 })
 export class SearchPlaceComponent implements OnInit {
 
-  constructor(private placeService: PlaceService, private activatedRoute: ActivatedRoute) { }
+  constructor(private placeService: PlaceService, private activatedRoute: ActivatedRoute, private router: Router) { }
 
   places: PlaceInfo[] = null;
   cityId: number;
@@ -30,6 +30,14 @@ export class SearchPlaceComponent implements OnInit {
 
   search(seek: string) {
     console.log("seek" + seek);
+  }
+
+  init(): void {
+
+  }
+
+  navigate(seek: string) : void {
+    this.router.navigate(['/search'], { queryParams: { seek: seek, category: 'place' } });
   }
 
 }
