@@ -12,9 +12,7 @@ export class LikeAccountComponent implements OnInit {
   constructor() {
   }
 
-  ngOnInit() {
-    setTimeout(() => {    }, 100);
-    console.log('tyt'+this.accountPost);
-  }
+  ngOnInit() {}
+
 
 }

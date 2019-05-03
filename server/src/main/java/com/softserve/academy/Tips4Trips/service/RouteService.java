@@ -111,4 +111,8 @@ public class RouteService {
             throw new DataNotFoundException();
         }
     }
+
+    public List<Route> findByNameContaining(String name) {
+        return repository.findByNameContainingIgnoreCase(name);
+    }
 }

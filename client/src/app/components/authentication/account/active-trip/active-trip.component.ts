@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {NotificationTripModel} from "../../../../model/notification-trip.model";
 
 @Component({
   selector: 'app-active-trip',
@@ -7,7 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ActiveTripComponent implements OnInit {
 
-  constructor() { }
+  @Input() trip: NotificationTripModel;
+
+  constructor() {
+  }
 
   ngOnInit() {
   }

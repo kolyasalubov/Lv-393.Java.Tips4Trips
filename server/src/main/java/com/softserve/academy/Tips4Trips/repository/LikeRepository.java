@@ -10,7 +10,8 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface LikeRepository extends JpaRepository<Like, Long>,NotifMark {
+public interface LikeRepository extends JpaRepository<Like, Long>, NotifMark {
+
     long countByPostId(Long id);
 
     Optional<Like> findByLikedByAndPost(Account account, Post post);

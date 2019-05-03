@@ -1,6 +1,8 @@
 package com.softserve.academy.Tips4Trips.controller;
 
 import com.softserve.academy.Tips4Trips.dto.NotificationDTO;
+import com.softserve.academy.Tips4Trips.dto.info.TripInfoDTO;
+import com.softserve.academy.Tips4Trips.entity.entertainment.mountains.Trip;
 import com.softserve.academy.Tips4Trips.service.NotificationService;
 import org.apache.log4j.Logger;
 import org.modelmapper.ModelMapper;
@@ -29,15 +31,22 @@ public class NotificationController {
     @GetMapping("/comment/{id}/{page}")
     public ResponseEntity<Page<NotificationDTO>> getComment(@PathVariable Long id, @PathVariable int page) {
         logger.info("get comment by id method executing: ");
-        Page<NotificationDTO> commentPage=notificService.getCommentsByCreaterId(id,page);
+        Page<NotificationDTO> commentPage = notificService.getCommentsByCreaterId(id, page);
         return new ResponseEntity<>(commentPage, HttpStatus.OK);
     }
 
     @GetMapping("/like/{id}/{page}")
     public ResponseEntity<Page<NotificationDTO>> getLike(@PathVariable Long id, @PathVariable int page) {
         logger.info("get comment by id method executing: ");
-        Page<NotificationDTO> commentPage=notificService.getLikeByCreaterId(id,page);
+        Page<NotificationDTO> commentPage = notificService.getLikeByCreaterId(id, page);
         return new ResponseEntity<>(commentPage, HttpStatus.OK);
+    }
+
+    @GetMapping("/trip/{id}/{page}")
+    public ResponseEntity<Page<TripInfoDTO>> getTrip(@PathVariable Long id, @PathVariable int page) {
+        logger.info("get comment by id method executing: ");
+        Page<Trip> trips = notificService.getTripByCreaterId(id, page);
+        return new ResponseEntity<>(trips.map(trip -> modelMapper.map(trip, TripInfoDTO.class)), HttpStatus.OK);
     }
 
 }

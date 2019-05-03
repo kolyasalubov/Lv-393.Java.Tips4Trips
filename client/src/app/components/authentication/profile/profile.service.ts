@@ -16,6 +16,5 @@ export class ProfileService {
   findById(id: number): Observable<Account> {
     return this.http.get<Account>(this.baseUrl + id);
   }
-
-
+  
 }
