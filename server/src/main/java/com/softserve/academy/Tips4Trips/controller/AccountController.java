@@ -1,6 +1,7 @@
 package com.softserve.academy.Tips4Trips.controller;
 
 
+import com.softserve.academy.Tips4Trips.dto.AccountDTO;
 import com.softserve.academy.Tips4Trips.dto.AccountRoleDTO;
 import com.softserve.academy.Tips4Trips.dto.converter.AccountConverter;
 import com.softserve.academy.Tips4Trips.dto.details.AccountDetailsDTO;
@@ -17,6 +18,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +26,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -111,4 +116,25 @@ public class AccountController {
                 accountService.findByUser(userService.findByLogin(userDetails.getUsername()))));
         return accountDetailsDTO;
     }
+
+    @PutMapping("/{accountId}/profile/{profileId}")
+//    @PreAuthorize("hasRole('ROLE_USER')")
+    public ResponseEntity<AccountInfoDTO> subscribe(
+            @PathVariable(value = "accountId") @NotNull @Positive Long accountId,
+            @PathVariable(value = "profileId") @NotNull @Positive Long profileId) {
+
+        //todo add validation
+        return new ResponseEntity<>(accountConverter.convertToInfoDTO(accountService.subscribe(accountId, profileId)), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{accountId}/profile/{profileId}")
+    //    @PreAuthorize("hasRole('ROLE_USER')")
+    public ResponseEntity unSubscribe(
+            @PathVariable(value = "accountId") @NotNull @Positive Long accountId,
+            @PathVariable(value = "profileId") @NotNull @Positive Long profileId){
+        //todo add validation
+        accountService.unSubscribe(accountId,profileId);
+        return new ResponseEntity<>( HttpStatus.OK);
+    }
+
 }

@@ -11,10 +11,10 @@
 
   <!--<button  (click)="changeLike()" [style.color]="counter==true?'red':'grey'" style="font-size:24px; background-color: inherit" class="btn-light" ><i class="fa fa-heart"></i></button>{{counter}}-->
 </p>
-<p  class="pointer" style="font-size:30px;   ">
+<p  class="pointer" style="font-size:25px;   ">
   <a >
 
-    <span [style.color]="isAdded==true?'red':'grey'" disabled="isButtonDisabled" class="glyphicon glyphicon-heart" (click)="changeLike()" style="font-size:30px; color: red"></span>
+    <span [style.color]="isAdded==true?'red':'grey'" disabled="isButtonDisabled" class="glyphicon glyphicon-heart" (click)="changeLike()" style="font-size:25px; color: red"></span>
     <a class="popup" (click)="showAccounts()">    {{counter}}
       <span class="popuptext" id="myPopup" style="text-align: left"><ul *ngFor="let account of allAccounts "  >
   <div class="comment" style="font-size: 14px; text-align: left">  {{account.firstName}} {{account.lastName}}

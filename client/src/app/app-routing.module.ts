@@ -37,6 +37,7 @@ import { EditRouteComponent } from './components/routes/edit-route/edit-route.co
 import { NotVerifiedRoutesPageComponent } from './components/routes/not-verified-routes-page/not-verified-routes-page.component';
 import { SearchPlaceComponent } from './components/search/search-place/search-place.component';
 import { SearchComponent } from './components/search/search/search.component';
+import {NewsComponent} from "./components/news/news.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -88,6 +89,7 @@ const routes: Routes = [
   { path: 'profile/:id', component: ProfileComponent },
   { path: 'search', component: SearchComponent },
   { path: '404', component: ErrorComponent },
+  {path: 'news', component: NewsComponent},
   { path: '**', redirectTo: '/404' }
 ];
 

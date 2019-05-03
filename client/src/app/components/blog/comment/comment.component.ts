@@ -30,7 +30,7 @@ export class CommentComponent implements OnInit {
 
   allComments: Comment[];
 
-  public showComents() {
+  public showComments() {
 
     this.commentService.findByPostId(this.postid)
       .subscribe(comments => this.allComments = comments);
@@ -51,7 +51,7 @@ export class CommentComponent implements OnInit {
   onSubmit(f: NgForm) {
     this.isButtonDisabled = true;
     console.log(this.commentProfile.text);
-    //setTimeout(()=>{ this.showComents() },400 )
+    //setTimeout(()=>{ this.showComments() },400 )
     this.commentProfile.accountInfo = this.account;
     this.commentProfile.creationDate = new Date();
     this.commentProfile.postId = this.postid;
@@ -70,6 +70,6 @@ export class CommentComponent implements OnInit {
       this.account.firstName = data.firstName;
       this.account.lastName = data.lastName;
     })
-    this.showComents();
+    this.showComments();
   }
 }
