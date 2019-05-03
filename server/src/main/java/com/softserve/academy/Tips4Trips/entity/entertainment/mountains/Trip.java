@@ -62,12 +62,11 @@ public class Trip {
 
     @ManyToMany
     @JoinTable( name="subscriber_group",
+            inverseJoinColumns=
+            @JoinColumn(name="subscriber_id", referencedColumnName="id")
+            ,
             joinColumns=
             @JoinColumn(name="group_id", referencedColumnName="id")
-            ,
-            inverseJoinColumns=
-
-            @JoinColumn(name="subscriber_id", referencedColumnName="id")
              )
     private List<Account> subscribers;
 

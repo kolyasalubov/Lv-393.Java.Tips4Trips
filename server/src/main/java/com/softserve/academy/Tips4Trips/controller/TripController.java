@@ -71,7 +71,6 @@ public class TripController {
 
 
     @PostMapping("/create")
-    @PreAuthorize("hasRole('ROLE_USER')")
     public ResponseEntity<TripDetailsDTO> create(@RequestBody TripDetailsDTO findGroupDetailsDTO) {
         logger.info("find group create post method executing: ");
         Trip trip = tripService.createTrip(tripConverter.convertToEntity(findGroupDetailsDTO));
@@ -80,7 +79,7 @@ public class TripController {
     }
 
     @DeleteMapping("/delete/{id}")
-    @PreAuthorize("hasRole('ROLE_USER')")
+    //@PreAuthorize("hasRole('ROLE_USER')")
     public void deleteById(@PathVariable Long id) {
         logger.info("trips delete by id method executing: ");
         tripService.delete(id);
@@ -95,7 +94,7 @@ public class TripController {
     }
 
     @GetMapping("/{tripId}/subscribers")
-    @PreAuthorize("hasRole('ROLE_USER')")
+    //@PreAuthorize("hasRole('ROLE_USER')")
     public ResponseEntity<List<AccountInfoDTO>> getSubscribers(@PathVariable Long tripId) {
         logger.info("trip getSubscribers method executing: ");
         List<AccountInfoDTO> accountInfoDTOS = accountConverter.convertToInfoDTO(tripService.getSubscribers(tripId));
@@ -104,7 +103,7 @@ public class TripController {
 
 
     @PutMapping("/{tripId}/subscribe/{accountId}")
-    @PreAuthorize("hasRole('ROLE_USER')")
+    //@PreAuthorize("hasRole('ROLE_USER')")
     public ResponseEntity<AccountInfoDTO> subscribeAccountById(
             @PathVariable(value = "tripId") @NotNull @Positive Long tripId,
             @PathVariable(value = "accountId") @NotNull @Positive Long accountId) {
