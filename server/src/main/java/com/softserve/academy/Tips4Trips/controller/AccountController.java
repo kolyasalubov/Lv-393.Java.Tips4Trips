@@ -1,6 +1,7 @@
 package com.softserve.academy.Tips4Trips.controller;
 
 
+import com.softserve.academy.Tips4Trips.dto.AccountDTO;
 import com.softserve.academy.Tips4Trips.dto.AccountRoleDTO;
 import com.softserve.academy.Tips4Trips.dto.converter.AccountConverter;
 import com.softserve.academy.Tips4Trips.dto.details.AccountDetailsDTO;
@@ -111,4 +112,11 @@ public class AccountController {
                 accountService.findByUser(userService.findByLogin(userDetails.getUsername()))));
         return accountDetailsDTO;
     }
+
+ /*   @PutMapping("/{id}/profile/{profileId}")
+    public ResponseEntity<AccountDTO> subscribe(@PathVariable Long id, @PathVariable Long profileId ) {
+        Account account = accountService.findById(id);
+
+        return new ResponseEntity<>(accountConverter.convertToDTO(account), HttpStatus.ACCEPTED);
+    }*/
 }

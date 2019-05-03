@@ -1,25 +1,21 @@
 package com.softserve.academy.Tips4Trips.dto;
 
-import com.softserve.academy.Tips4Trips.entity.enums.Role;
+import com.softserve.academy.Tips4Trips.entity.administration.Account;
+import com.softserve.academy.Tips4Trips.entity.blog.Post;
 
-import java.util.Date;
+import java.util.List;
 
 public class AccountDTO {
+
     private Long id;
 
     private String firstName;
 
     private String lastName;
 
-    private String phoneNumber;
+    private List<Post> post;
 
-    private String email;
-
-    private Date registrationDate;
-
-    private String about;
-
-    private Role role;
+    private List<Account> subscriptions;
 
     public Long getId() {
         return id;
@@ -45,43 +41,19 @@ public class AccountDTO {
         this.lastName = lastName;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public List<Post> getPost() {
+        return post;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setPost(List<Post> post) {
+        this.post = post;
     }
 
-    public String getEmail() {
-        return email;
+    public List<Account> getSubscriptions() {
+        return subscriptions;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public Date getRegistrationDate() {
-        return registrationDate;
-    }
-
-    public void setRegistrationDate(Date registrationDate) {
-        this.registrationDate = registrationDate;
-    }
-
-    public String getAbout() {
-        return about;
-    }
-
-    public void setAbout(String about) {
-        this.about = about;
-    }
-
-    public Role getRole() {
-        return role;
-    }
-
-    public void setRole(Role role) {
-        this.role = role;
+    public void setSubscriptions(List<Account> subscriptions) {
+        this.subscriptions = subscriptions;
     }
 }

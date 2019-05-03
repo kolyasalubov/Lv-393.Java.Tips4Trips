@@ -32,6 +32,7 @@ import {CountryComponent} from './components/country/country.component';
 import {CreateTripComponent} from './components/trip/create-trip/create-trip.component';
 import {ChangeComponent} from "./components/trip/change/change.component";
 import {ErrorComponent} from "./components/error/error.component";
+import {NewsComponent} from "./components/news/news.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -80,7 +81,9 @@ const routes: Routes = [
   {path: 'edit_trip/:id', component: ChangeComponent},
   {path: 'test', component: TestComponent},
   {path: '404', component: ErrorComponent},
+  {path: 'news', component: NewsComponent},
   {path: '**', redirectTo: '/404'}
+
 ];
 
 @NgModule({

@@ -1,7 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import{LikeService} from './like.service';
+import {LikeService} from './like.service';
 import {AuthService} from "../../authentication/auth.service";
-import {Like} from "../../../model/like.model";
 
 @Component({
   selector: 'app-like',
