@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {AccountInfo} from '../../../model/account-info.model';
 import {AuthService} from "../../authentication/auth.service";
 import { SubscribersService } from './subscribers.service';
+import {PlaceInfo} from "../../../model/place-info.model";
 
 @Component({
   selector: 'app-subscribers',
@@ -72,6 +73,11 @@ export class SubscribersComponent implements OnInit {
         .splice(this.subscribers.indexOf(this.account), 1);
       this.isSubscribed = false;
     });
+  }
+
+  getSelfLink(accountInfo: AccountInfo): string {
+    const url: string[] = accountInfo.self.replace("accounts","profile").split("/");
+    return url[url.length-2] + "/" + url[url.length - 1];
   }
 
 }
