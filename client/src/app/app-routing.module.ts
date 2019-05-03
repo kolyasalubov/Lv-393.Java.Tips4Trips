@@ -85,7 +85,7 @@ const routes: Routes = [
   { path: 'create_trip', component: CreateTripComponent },
   { path: 'edit_trip/:id', component: ChangeComponent },
   { path: 'test', component: TestComponent },
-  { path: 'profile', component: ProfileComponent },
+  { path: 'profile/:id', component: ProfileComponent },
   { path: 'search', component: SearchComponent },
   { path: '404', component: ErrorComponent },
   { path: '**', redirectTo: '/404' }
