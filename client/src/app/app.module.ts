@@ -61,6 +61,7 @@ import { SearchPlaceComponent } from './components/search/search-place/search-pl
 import { SearchComponent } from './components/search/search/search.component';
 import { SearchRouteComponent } from './components/search/search-route/search-route.component';
 import {ProfileComponent} from "./components/authentication/profile/profile.component";
+import { ListPostsComponent } from './components/blog/list-posts/list-posts.component';
 
 @NgModule({
   declarations: [
@@ -118,7 +119,8 @@ import {ProfileComponent} from "./components/authentication/profile/profile.comp
     SearchPlaceComponent,
     SearchComponent,
     SearchRouteComponent,
-    ProfileComponent
+    ProfileComponent,
+    ListPostsComponent
   ],
   imports: [
     BrowserModule,
