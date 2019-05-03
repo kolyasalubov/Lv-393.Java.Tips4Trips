@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {AccountInfo} from '../../../model/account-info.model';
-import {SubscribersService} from "./subscribers.service";
 import {AuthService} from "../../authentication/auth.service";
+import { SubscribersService } from './subscribers.service';
 
 @Component({
   selector: 'app-subscribers',

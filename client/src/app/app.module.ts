@@ -58,6 +58,8 @@ import { RoutesPageComponent } from './components/routes/routes-page/routes-page
 import { NotVerifiedRoutesPageComponent } from './components/routes/not-verified-routes-page/not-verified-routes-page.component';
 import { SubscribersComponent } from './components/trip/subscribers/subscribers.component';
 import { ProfileComponent } from './components/authentication/profile/profile.component';
+import { SearchPlaceComponent } from './components/search/search-place/search-place.component';
+import { SearchComponent } from './components/search/search/search.component';
 
 @NgModule({
   declarations: [
@@ -112,7 +114,9 @@ import { ProfileComponent } from './components/authentication/profile/profile.co
     RoutesPageComponent,
     NotVerifiedRoutesPageComponent,
     SubscribersComponent,
-    ProfileComponent
+    ProfileComponent,
+    SearchPlaceComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
