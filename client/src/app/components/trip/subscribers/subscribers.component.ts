@@ -46,20 +46,17 @@ export class SubscribersComponent implements OnInit {
   }
 
   public checkSubscription() {
-    console.log("in checkSubscription");
     if (this.subscribers.find(x => this.account.id === x.id)) {
       this.isSubscribed = true;
-      console.log("exist");
     } else {
       this.isSubscribed = false;
-      console.log("not exist");
     }
     console.log(this.subscribers);
   }
 
 
   public subscribe() {
-    console.log("trip Id = " + this.tripId + "acc Id = " + this.account.id);
+    console.log("subscribe : trip Id = " + this.tripId + "acc Id = " + this.account.id);
     //check whatever subscribers[] contains current user
     this.subscribersService.subscribeById(this.tripId, this.account.id).subscribe(item => {
       this.subscribers.push(item);
@@ -68,7 +65,7 @@ export class SubscribersComponent implements OnInit {
   }
 
   public unsubscribe() {
-    console.log("trip Id = " + this.tripId + "acc Id = " + this.account.id);
+    console.log("unsubscribe: trip Id = " + this.tripId + "acc Id = " + this.account.id);
     //check whatever subscribers[] contains current user
     this.subscribersService.unSubscribeById(this.tripId, this.account.id).subscribe(item => {
       this.subscribers
