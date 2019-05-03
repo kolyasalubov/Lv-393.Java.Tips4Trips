@@ -60,6 +60,7 @@ import { SubscribersComponent } from './components/trip/subscribers/subscribers.
 import { SearchPlaceComponent } from './components/search/search-place/search-place.component';
 import { SearchComponent } from './components/search/search/search.component';
 import { SearchRouteComponent } from './components/search/search-route/search-route.component';
+import {ProfileComponent} from "./components/authentication/profile/profile.component";
 
 @NgModule({
   declarations: [
@@ -116,7 +117,8 @@ import { SearchRouteComponent } from './components/search/search-route/search-ro
     SubscribersComponent,
     SearchPlaceComponent,
     SearchComponent,
-    SearchRouteComponent
+    SearchRouteComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

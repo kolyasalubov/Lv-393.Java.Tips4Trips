@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {AccountInfo} from '../../../model/account-info.model';
 import {AuthService} from "../../authentication/auth.service";
 import { SubscribersService } from './subscribers.service';
+import {PlaceInfo} from "../../../model/place-info.model";
 
 @Component({
   selector: 'app-subscribers',
@@ -46,20 +47,17 @@ export class SubscribersComponent implements OnInit {
   }
 
   public checkSubscription() {
-    console.log("in checkSubscription");
     if (this.subscribers.find(x => this.account.id === x.id)) {
       this.isSubscribed = true;
-      console.log("exist");
     } else {
       this.isSubscribed = false;
-      console.log("not exist");
     }
     console.log(this.subscribers);
   }
 
 
   public subscribe() {
-    console.log("trip Id = " + this.tripId + "acc Id = " + this.account.id);
+    console.log("subscribe : trip Id = " + this.tripId + "acc Id = " + this.account.id);
     //check whatever subscribers[] contains current user
     this.subscribersService.subscribeById(this.tripId, this.account.id).subscribe(item => {
       this.subscribers.push(item);
@@ -68,13 +66,18 @@ export class SubscribersComponent implements OnInit {
   }
 
   public unsubscribe() {
-    console.log("trip Id = " + this.tripId + "acc Id = " + this.account.id);
+    console.log("unsubscribe: trip Id = " + this.tripId + "acc Id = " + this.account.id);
     //check whatever subscribers[] contains current user
     this.subscribersService.unSubscribeById(this.tripId, this.account.id).subscribe(item => {
       this.subscribers
         .splice(this.subscribers.indexOf(this.account), 1);
       this.isSubscribed = false;
     });
+  }
+
+  getSelfLink(accountInfo: AccountInfo): string {
+    const url: string[] = accountInfo.self.replace("accounts","profile").split("/");
+    return url[url.length-2] + "/" + url[url.length - 1];
   }
 
 }
