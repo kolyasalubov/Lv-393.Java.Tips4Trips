@@ -13,5 +13,7 @@ public interface RouteRepository extends JpaRepository<Route, Long> {
 
     List<Route> findByAuthor(Account author);
 
+    List<Route> findByVerified(boolean verified);
+
     Optional<Route> findByName(String name);
 }

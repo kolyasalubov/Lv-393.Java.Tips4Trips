@@ -18,6 +18,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
@@ -25,6 +26,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -113,10 +117,24 @@ public class AccountController {
         return accountDetailsDTO;
     }
 
- /*   @PutMapping("/{id}/profile/{profileId}")
-    public ResponseEntity<AccountDTO> subscribe(@PathVariable Long id, @PathVariable Long profileId ) {
-        Account account = accountService.findById(id);
+    @PutMapping("/{accountId}/profile/{profileId}")
+//    @PreAuthorize("hasRole('ROLE_USER')")
+    public ResponseEntity<AccountInfoDTO> subscribe(
+            @PathVariable(value = "accountId") @NotNull @Positive Long accountId,
+            @PathVariable(value = "profileId") @NotNull @Positive Long profileId) {
 
-        return new ResponseEntity<>(accountConverter.convertToDTO(account), HttpStatus.ACCEPTED);
-    }*/
+        //todo add validation
+        return new ResponseEntity<>(accountConverter.convertToInfoDTO(accountService.subscribe(accountId, profileId)), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{accountId}/profile/{profileId}")
+    //    @PreAuthorize("hasRole('ROLE_USER')")
+    public ResponseEntity unSubscribe(
+            @PathVariable(value = "accountId") @NotNull @Positive Long accountId,
+            @PathVariable(value = "profileId") @NotNull @Positive Long profileId){
+        //todo add validation
+        accountService.unSubscribe(accountId,profileId);
+        return new ResponseEntity<>( HttpStatus.OK);
+    }
+
 }

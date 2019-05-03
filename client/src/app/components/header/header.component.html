@@ -8,14 +8,16 @@
     </button>
     <div class="navbar-collapse collapse show" id="ftco-nav" *ngIf="show">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item actice"><a class="nav-link" routerLink="/home">Home</a></li>
-        <li class="nav-item"><a class="nav-link" routerLink="/blog">Blog</a></li>
-        <li class="nav-item"><a class="nav-link" routerLink="/trip/page">Trips</a></li>
-        <li class="nav-item"><a class="nav-link" routerLink="/about">About</a></li>
-        <li class="nav-item"><a class="nav-link" routerLink="/">Contact</a></li>
-        <li class="nav-item"><a class="nav-link" routerLink="/test">Test</a></li>
-        <li class="nav-item"><a class="nav-link" routerLink="/routes">Routes</a></li>
-        <li class="nav-item"><a class="nav-link" routerLink="/news">News</a></li>
+
+        <li class="nav-item actice"><a routerLinkActive="chosen" [routerLinkActiveOptions]="{exact: true}" class="nav-link" routerLink="/home">Home</a></li>
+        <li class="nav-item" ><a routerLinkActive="chosen" [routerLinkActiveOptions]="{exact: true}" class="nav-link" routerLink="/blog">Blog</a></li>
+        <li class="nav-item"><a routerLinkActive="chosen" [routerLinkActiveOptions]="{exact: true}" class="nav-link" routerLink="/trip/page">Trips</a></li>
+        <li class="nav-item"><a routerLinkActive="chosen" [routerLinkActiveOptions]="{exact: true}" class="nav-link" routerLink="/about">About</a></li>
+        <li class="nav-item"><a routerLinkActive="chosen" [routerLinkActiveOptions]="{exact: true}" class="nav-link" routerLink="/">Contact</a></li>
+        <li class="nav-item"><a routerLinkActive="chosen" [routerLinkActiveOptions]="{exact: true}" class="nav-link" routerLink="/test">Test</a></li>
+        <li class="nav-item"><a routerLinkActive="chosen" [routerLinkActiveOptions]="{exact: true}" class="nav-link" routerLink="/routes">Routes</a></li>
+        <li class="nav-item"><a routerLinkActive="chosen" [routerLinkActiveOptions]="{exact: true}" class="nav-link" routerLink="/news">News</a></li>
+
         <li class="nav-item">
           <form class="form-inline active-cyan active-cyan-2">
             <i class="fas fa-search" aria-hidden="true"></i>

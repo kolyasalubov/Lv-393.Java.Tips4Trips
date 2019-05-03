@@ -10,9 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class PostService {
@@ -37,9 +35,11 @@ public class PostService {
             throw new NoSuchElementException("Author not found!");
         }
     }
+
     public Page<Post> getPaginatedArticles(Pageable pageable) {
         return repository.findAllByOrderByIdDesc(pageable);
     }
+
     public List<Post> searchByName(String name) {
         return repository.findByNameContainingIgnoreCase(name);
     }
@@ -67,6 +67,16 @@ public class PostService {
         return repository.findAll();
     }
 
+    public List<Post> findByAuthor(Account account) {
+        return repository.findByAuthor(account);
+    }
+
+    //
+    public List<Post>  getIdPostsByAccountId(Long id){
+        Account account = new Account();
+        account.setId(id);
+        return repository.findByAuthor(account);
+    }
 
     public Post findById(Long id) {
         Optional<Post> post = repository.findById(id);
