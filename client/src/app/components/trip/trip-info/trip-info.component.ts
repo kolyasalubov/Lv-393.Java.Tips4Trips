@@ -34,9 +34,7 @@ export class TripInfoComponent implements OnInit {
       this.tripDetailsDTO.route = data.route;
       this.tripDetailsDTO.creator = data.creator;
       this.tripDetailsDTO.subscribers = data.subscribers;
-      //this.findGroupDetailsDTO.route[0] = data.route[0];
 
-      console.log(data);
     });
     console.log(this.tripDetailsDTO);
   }

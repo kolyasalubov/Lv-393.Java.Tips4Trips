@@ -6,8 +6,9 @@
             <div class="icon d-flex align-items-center justify-content-center">
               <span class="icon-map-signs"><img src="../../../../assets/images/round_perm_identity_black_48dp.png"></span>
             </div>
-            <h3 class="mb-4">{{subscriber.firstName}}    {{subscriber.lastName}}</h3>
-            <p align="center" >subscribed</p>
+            <h3 class="mb-4"><a [href]="getSelfLink(subscriber)">{{subscriber.firstName}}    {{subscriber.lastName}}</a></h3>
+            <p align="center"  >subscribed</p>
+
           </div>
         </div>
       </div>
@@ -19,7 +20,10 @@
           </div>
           <h3 class="mb-4">subscribe</h3>
 
-          <button type="submit"(click)="subscribe()" class="btn btn-primary" >subSuka!</button>
+
+        <div *ngIf="!isSubscribed"> <button type="submit" (click)="subscribe()" class="btn btn-primary" >subscribe!</button></div>
+          <div *ngIf="isSubscribed"> <button type="submit" (click)="unsubscribe()" class="btn btn-primary" >unsubscribe!</button></div>
+
 
           <p align="center" ></p>
         </div>

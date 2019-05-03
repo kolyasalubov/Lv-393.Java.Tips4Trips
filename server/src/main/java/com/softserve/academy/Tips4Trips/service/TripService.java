@@ -1,8 +1,11 @@
 package com.softserve.academy.Tips4Trips.service;
 
+import com.softserve.academy.Tips4Trips.constants.ExceptionMessages;
 import com.softserve.academy.Tips4Trips.entity.Route;
 import com.softserve.academy.Tips4Trips.entity.administration.Account;
 import com.softserve.academy.Tips4Trips.entity.entertainment.mountains.Trip;
+import com.softserve.academy.Tips4Trips.exception.DataNotFoundException;
+import com.softserve.academy.Tips4Trips.exception.DuplicateValueException;
 import com.softserve.academy.Tips4Trips.repository.TripRepository;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +32,7 @@ public class TripService {
     AccountService accountService;
 
     @Autowired
-    public TripService(TripRepository repository,AccountService accountService) {
+    public TripService(TripRepository repository, AccountService accountService) {
         this.repository = repository;
         this.accountService = accountService;
     }
@@ -42,54 +45,63 @@ public class TripService {
         return repository.findByCreator(author);
     }
 
-    public Trip findById(Long id) {
-        Optional<Trip> i =repository.findById(id);
-        if(i.isPresent()){
+    public Trip findById(Long tripId) {
+        Optional<Trip> i = repository.findById(tripId);
+        if (i.isPresent()) {
             return i.get();
-        }
-        else {
-            return null;
+        } else {
+            throw new DataNotFoundException(ExceptionMessages.TRIP_BY_THIS_ID_IS_NOT_FOUND);
         }
     }
 
     @Transactional
-    public Account subscribe(Long tripId, Long accountId){
-
+    public Account subscribe(Long tripId, Long accountId) {
         Optional<Trip> trip = repository.findById(tripId);
 
-        if(trip.isPresent()){
-            //todo add [me]
-            trip.get().addSubscriber(accountService.findById(accountId));
-            return accountService.findById(accountId);
-        }else {
-            throw new NoSuchElementException();
+        if (trip.isPresent()) {
+            Account account = accountService.findById(accountId);
+            if (!trip.get().getSubscribers().contains(account)) {
+                trip.get().addSubscriber(account);
+                return account;
+            } else {
+                throw new DuplicateValueException(ExceptionMessages.ACCOUNT_CAN_NOT_BE_SUBSCRIBED_TWICE);
+            }
+        } else {
+            throw new DataNotFoundException(ExceptionMessages.TRIP_BY_THIS_ID_IS_NOT_FOUND);
         }
-         //em.createNativeQuery("INSERT  INTO  subscriber_group(subscriber_id,group_id)  values(?,?)")
-         //        .setParameter(1,accountId)
-         //        .setParameter(2,tripId)
-         //        .executeUpdate();
     }
 
-
     @Transactional
-    public void unSubscribe(Long tripId, Account account){
-        em.createNativeQuery("DELETE FROM  subscriber_group where subscriber_id =?  and group_id = ?")
-                .setParameter(1,account.getId())
-                .setParameter(2,tripId)
-                .executeUpdate();
-    }
-    @Transactional
-    public List<Account> getSubscribers(Long tripId){
+    public void unSubscribe(Long tripId, Long accountId) {
         Optional<Trip> trip = repository.findById(tripId);
-        if(trip.isPresent()){
+        if (trip.isPresent()) {
+            trip.get().removeSubscriber(accountService.findById(accountId));
+        } else {
+            throw new DataNotFoundException(ExceptionMessages.TRIP_BY_THIS_ID_IS_NOT_FOUND);
+        }
+    }
+
+    @Transactional
+    public List<Account> getSubscribers(Long tripId) {
+        Optional<Trip> trip = repository.findById(tripId);
+        if (trip.isPresent()) {
             return trip.get().getSubscribers();
-        }else {
-            throw new NoSuchElementException();
+        } else {
+            throw new DataNotFoundException(ExceptionMessages.TRIP_BY_THIS_ID_IS_NOT_FOUND);
         }
     }
 
 
     public void delete(Trip trip) {
+
+        Optional<Trip> tripOptional = repository.findById(trip.getId());
+
+        if (tripOptional.isPresent()) {
+            repository.delete(trip);
+        } else {
+            throw new DataNotFoundException(ExceptionMessages.TRIP_BY_THIS_ID_IS_NOT_FOUND);
+        }
+
         repository.delete(trip);
     }
 
@@ -101,11 +113,17 @@ public class TripService {
         return repository.findAll();
     }
 
-    public void deleteById(Long id) {
-        repository.findById(id).ifPresent(repository::delete);
+    public void delete(Long id) {
+        Optional<Trip> tripOptional = repository.findById(id);
+
+        if (tripOptional.isPresent()) {
+            repository.delete(tripOptional.get());
+        } else {
+            throw new DataNotFoundException(ExceptionMessages.TRIP_BY_THIS_ID_IS_NOT_FOUND);
+        }
     }
 
-    public Trip createFindGroup(Trip trip) {
+    public Trip createTrip(Trip trip) {
         return repository.save(trip);
     }
 

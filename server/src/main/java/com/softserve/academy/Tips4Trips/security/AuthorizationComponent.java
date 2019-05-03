@@ -18,8 +18,10 @@ public final class AuthorizationComponent {
         this.accountController = accountController;
     }
 
-    public boolean mayDeleteRoute(final Long id) {
+    public boolean mayEditRoute(final Long id) {
         Route route = routeService.findById(id);
-        return route.getAuthor().getId().equals(accountController.getCurrentUser().getId());
+        return route.getAuthor().getId().equals(accountController.getCurrentUser().getId())
+                && !route.isVerified();
     }
+
 }

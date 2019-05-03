@@ -85,7 +85,7 @@ public class RouteController {
     }
 
     @PutMapping("/update")
-    @PreAuthorize("hasRole('ROLE_MODERATOR') or #routeDetailsDTO.authorInfo.id == authentication.principal.id")
+    @PreAuthorize("hasRole('ROLE_MODERATOR') or @A.mayEditRoute(#routeDetailsDTO.id)")
     public ResponseEntity<RouteDetailsDTO> update(@RequestBody RouteDetailsDTO routeDetailsDTO) {
         logger.info("update route method executing: ");
         Route route = routeService.update(routeConverter.convertToEntity(routeDetailsDTO));
@@ -101,7 +101,7 @@ public class RouteController {
     }
 
     @DeleteMapping("/delete/{id}")
-    @PreAuthorize("hasRole('ROLE_MODERATOR') or @A.mayDeleteRoute(#id)")
+    @PreAuthorize("hasRole('ROLE_MODERATOR') or @A.mayEditRoute(#id)")
     public void deleteById(@PathVariable Long id) {
         logger.info("delete route by id method executing: ");
         routeService.deleteById(id);

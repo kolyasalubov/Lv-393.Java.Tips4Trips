@@ -15,9 +15,12 @@ export class SubscribersService {
      return this.http.get<AccountInfo[]>(this.baseUrl + id + "/subscribers");
    }
 
-  subscribeById(tripId: number, account: AccountInfo): Observable<AccountInfo> {
-    return this.http.get<AccountInfo>(this.baseUrl + tripId +'/subscribe/' + account.id);
+  subscribeById(tripId: number, accountId: number): Observable<AccountInfo> {
+    return this.http.put<AccountInfo>(this.baseUrl + tripId +'/subscribe/' + accountId,{},{});
   }
 
+  unSubscribeById(tripId: number, accountId: number){
+    return this.http.delete(this.baseUrl + tripId +'/unsubscribe/' + accountId,{});
+  }
 
 }
