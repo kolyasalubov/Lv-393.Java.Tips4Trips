@@ -49,7 +49,7 @@
                   <td>
                     <input class="form-control" style="width: 100%;" type="text"
                            [(ngModel)]="trip.description" placeholder="Description" value="{{trip.description}}"
-                           name="description" maxlength="26"></td>
+                           name="description" minlength="10"></td>
                 </tr>
                 <tr>
                   <td>
@@ -85,16 +85,7 @@
                     </div>
                   </td>
                 </tr>
-                <!-- <td>
-                    <h4>
-                        About
-                    </h4>
-                </td>
-                <td>
-                    <textarea class="form-control" rows="13" style="
-                        padding-top: 10px;
-                        width: 100%;" placeholder="Something about it" name="about"></textarea>
-                </td> -->
+
               </table>
               <input class="category submit" style="padding: 3%;
                                    margin-top: 5%;
