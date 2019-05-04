@@ -3,6 +3,7 @@ import com.softserve.academy.Tips4Trips.interceptor.HttpHandshakeInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;
+import org.springframework.stereotype.Component;
 import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBroker;
 import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
 import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerConfigurer;
@@ -11,10 +12,17 @@ import static com.softserve.academy.Tips4Trips.config.PropertiesConfig.getProper
 
 @Configuration
 @EnableWebSocketMessageBroker
+@Component
 public class WebSocketConfiguration implements WebSocketMessageBrokerConfigurer {
 
-    @Autowired
+
     private HttpHandshakeInterceptor httpHandshakeInterceptor;
+
+    @Autowired
+    public WebSocketConfiguration(HttpHandshakeInterceptor httpHandshakeInterceptor){
+        this.httpHandshakeInterceptor = httpHandshakeInterceptor;
+
+    }
 
     @Override
     public void configureMessageBroker(MessageBrokerRegistry registry) {
@@ -25,8 +33,9 @@ public class WebSocketConfiguration implements WebSocketMessageBrokerConfigurer 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
 
-        registry.addEndpoint("/ws").
-                setAllowedOrigins(getPropertyValue("Access-Control-Allow-Origin"))
+        registry.addEndpoint("/ws")
+                //todo Fix Acess - Controll
+                //.setAllowedOrigins(getPropertyValue("Access-Control-Allow-Origin"))
                 .withSockJS().setInterceptors(httpHandshakeInterceptor);
     }
 }
