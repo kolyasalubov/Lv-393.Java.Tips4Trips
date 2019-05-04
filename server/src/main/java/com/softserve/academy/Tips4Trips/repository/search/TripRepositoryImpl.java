@@ -1,7 +1,7 @@
-package com.softserve.academy.Tips4Trips.repository.custom;
+package com.softserve.academy.Tips4Trips.repository.search;
 
-import com.softserve.academy.Tips4Trips.dto.search.RouteSearchParams;
-import com.softserve.academy.Tips4Trips.entity.Route;
+import com.softserve.academy.Tips4Trips.dto.search.TripSearchParams;
+import com.softserve.academy.Tips4Trips.entity.entertainment.mountains.Trip;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -14,27 +14,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class RouteRepositoryImpl implements RouteRepositoryCustom {
+public class TripRepositoryImpl implements SearchRepository<Trip, TripSearchParams> {
 
     private EntityManager em;
 
     @Autowired
-    public RouteRepositoryImpl(EntityManager em) {
+    public TripRepositoryImpl(EntityManager em) {
         this.em = em;
     }
 
     @Override
-    public List<Route> findByParams(RouteSearchParams routeSearchParams) {
+    public List<Trip> findByParams(TripSearchParams searchParams) {
         CriteriaBuilder cb = em.getCriteriaBuilder();
-        CriteriaQuery<Route> cq = cb.createQuery(Route.class);
-        Root<Route> route = cq.from(Route.class);
+        CriteriaQuery<Trip> cq = cb.createQuery(Trip.class);
+        Root<Trip> route = cq.from(Trip.class);
         List<Predicate> predicates = new ArrayList<>();
-        if (routeSearchParams.getName() != null) {
+        if (searchParams.getName() != null) {
             predicates.add(cb.like(cb.upper(route.get("name")),
-                    "%" + routeSearchParams.getName().toUpperCase() + "%"));
+                    "%" + searchParams.getName().toUpperCase() + "%"));
         }
         cq.where(predicates.toArray(new Predicate[0]));
         return em.createQuery(cq).getResultList();
     }
-
 }

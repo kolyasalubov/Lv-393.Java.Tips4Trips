@@ -1,8 +1,10 @@
 package com.softserve.academy.Tips4Trips.repository;
 
+import com.softserve.academy.Tips4Trips.dto.search.PostSearchParams;
 import com.softserve.academy.Tips4Trips.entity.Route;
 import com.softserve.academy.Tips4Trips.entity.administration.Account;
 import com.softserve.academy.Tips4Trips.entity.blog.Post;
+import com.softserve.academy.Tips4Trips.repository.search.SearchRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -13,7 +15,8 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface PostRepository extends JpaRepository<Post, Long> {
+public interface PostRepository
+        extends JpaRepository<Post, Long>, SearchRepository<Post, PostSearchParams> {
 
     Optional<Post> findById(Long id);
 
