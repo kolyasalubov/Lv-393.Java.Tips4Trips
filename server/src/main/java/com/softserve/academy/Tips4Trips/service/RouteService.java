@@ -112,7 +112,4 @@ public class RouteService {
         }
     }
 
-    public List<Route> findByNameContaining(String name) {
-        return repository.findByNameContainingIgnoreCase(name);
-    }
 }

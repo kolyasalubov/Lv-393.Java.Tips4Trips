@@ -2,14 +2,13 @@ package com.softserve.academy.Tips4Trips.repository;
 
 import com.softserve.academy.Tips4Trips.entity.administration.Account;
 import com.softserve.academy.Tips4Trips.entity.Route;
+import com.softserve.academy.Tips4Trips.repository.custom.RouteRepositoryCustom;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 import java.util.Optional;
 
-public interface RouteRepository extends JpaRepository<Route, Long> {
-
-    List<Route> findByNameContainingIgnoreCase(String name);
+public interface RouteRepository extends JpaRepository<Route, Long>, RouteRepositoryCustom {
 
     List<Route> findByAuthor(Account author);
 
