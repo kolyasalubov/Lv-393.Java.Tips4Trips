@@ -68,13 +68,6 @@ public class RouteController {
                 convertToDTO(routeService.findByName(name)), HttpStatus.OK);
     }
 
-    @GetMapping("/search/{seek}")
-    public ResponseEntity<List<RouteInfoDTO>> searchByName(@PathVariable String seek) {
-        logger.info("search route by name method executing: ");
-        return new ResponseEntity<>(routeConverter.
-                convertToInfoDTO(routeService.findByNameContaining(seek)), HttpStatus.OK);
-    }
-
     @GetMapping("/author/{id}")
     public ResponseEntity<List<RouteInfoDTO>> getByAuthor(@PathVariable Long id) {
         logger.info("get route by author method executing: ");

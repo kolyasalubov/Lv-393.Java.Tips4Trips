@@ -46,8 +46,4 @@ export class RouteService {
   findByName(name: string): Observable<Route> {
     return this.http.get<Route>(this.baseUrl + "name/" + name);
   }
-  searchByName(name: string): Observable<RouteInfo[]> {
-    return this.http.get<RouteInfo[]>(this.baseUrl + "search/" + name);
-  }
-
 }
