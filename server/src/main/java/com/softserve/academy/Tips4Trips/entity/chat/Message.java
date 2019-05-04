@@ -13,7 +13,7 @@ public class Message {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String messageContent;
+    private String content;
 
     @CreationTimestamp
     @Column(updatable = false)
@@ -32,8 +32,8 @@ public class Message {
 
     public Message( ) { }
 
-    public Message(String messageContent, LocalDateTime sendTime, Account sender, Chat chat) {
-        this.messageContent = messageContent;
+    public Message(String content, LocalDateTime sendTime, Account sender, Chat chat) {
+        this.content = content;
         this.sendTime = sendTime;
         this.sender = sender;
         this.chat = chat;
@@ -47,12 +47,12 @@ public class Message {
         this.id = id;
     }
 
-    public String getMessageContent() {
-        return messageContent;
+    public String getContent() {
+        return content;
     }
 
-    public void setMessageContent(String messageContent) {
-        this.messageContent = messageContent;
+    public void setContent(String messageContent) {
+        this.content = messageContent;
     }
 
     public LocalDateTime getSendTime() {

@@ -38,6 +38,5 @@ public class MessageService {
 
     public List<Message> getMessagesByChatId(Long chatId) {
         return messageRepository.findAllByChatId(chatId);
-
     }
 }
