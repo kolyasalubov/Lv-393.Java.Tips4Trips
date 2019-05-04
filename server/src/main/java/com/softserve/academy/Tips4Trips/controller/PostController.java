@@ -77,6 +77,7 @@ public class PostController {
     public ResponseEntity<PostDetailsDTO> addImage(@PathVariable Long id,
             @RequestParam("files") MultipartFile[] files)
             throws FileIOException {
+        System.out.println(files);
         Post updatedPost = postService.createImagesForPost(files, id);
         return new ResponseEntity<>(postConverter
                 .convertToDTO(updatedPost), HttpStatus.CREATED);

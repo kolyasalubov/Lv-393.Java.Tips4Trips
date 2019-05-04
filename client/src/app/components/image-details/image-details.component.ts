@@ -6,11 +6,10 @@ import {Component, OnInit, Input} from '@angular/core';
   styleUrls: ['./image-details.component.css']
 })
 export class ImageDetailsComponent implements OnInit {
-  fileUpload: string;
+  @Input()fileUpload: string;
   constructor() { }
 
-  ngOnInit(fileUpload: string) {
-    this.fileUpload = fileUpload;
+  ngOnInit() {
   }
 
 }

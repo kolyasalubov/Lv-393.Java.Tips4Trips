@@ -45,7 +45,7 @@ import { HotelDetailsComponent } from './components/hotel-details/hotel-details.
 import { CityPlacesComponent } from './components/city-places/city-places.component';
 import { CityComponent } from './components/city/city.component';
 import { CountryComponent } from './components/country/country.component';
-import { ImageDetails } from './components/image-details/image-details.component';
+import { ImageDetailsComponent } from './components/image-details/image-details.component';
 import { ImageUploadFormComponent } from './components/image-upload-form/image-upload-form.component';
 import { RouteInfoComponent } from './components/routes/route-info/route-info.component';
 import { EditRouteComponent } from './components/routes/edit-route/edit-route.component';
@@ -56,7 +56,7 @@ import { ErrorComponent } from './components/error/error.component';
 import { ActiveTripComponent } from './components/authentication/account/active-trip/active-trip.component';
 import { LikeAccountComponent } from './components/authentication/account/like-account/like-account.component';
 import { CommentAccountComponent } from './components/authentication/account/comment-account/comment-account.component';
-import { ImagetestComponent } from './src/app/components/imagetest/imagetest.component';
+import { ImagetestComponent } from './components/imagetest/imagetest.component';
 
 @NgModule({
   declarations: [
@@ -99,8 +99,8 @@ import { ImagetestComponent } from './src/app/components/imagetest/imagetest.com
     CityPlacesComponent,
     CityComponent,
     CountryComponent,
-	ImageDetails,
-	ImageUploadFormComponent
+	ImageDetailsComponent,
+	ImageUploadFormComponent,
     RouteInfoComponent,
     EditRouteComponent,
     CreateTripComponent,

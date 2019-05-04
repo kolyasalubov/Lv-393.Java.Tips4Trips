@@ -33,8 +33,7 @@ import { CreateTripComponent } from './components/trip/create-trip/create-trip.c
 import { ChangeComponent } from "./components/trip/change/change.component";
 import { ErrorComponent } from "./components/error/error.component";
 import { EditRouteComponent } from './components/routes/edit-route/edit-route.component';
-import { ImageDetails } from './components/image-details/image-details.component';
-import { ImageUploadFormComponent } from './components/image-upload-form/image-upload-form.component';
+import { ImagetestComponent } from './components/imagetest/imagetest.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -81,10 +80,10 @@ const routes: Routes = [
   { path: 'trip/:id', component: TripInfoComponent },
   { path: 'create_trip', component: CreateTripComponent },
   { path: 'edit_trip/:id', component: ChangeComponent },
+  { path: 'uploadimage', component: ImagetestComponent },
   { path: 'test', component: TestComponent },
   { path: '404', component: ErrorComponent },
-  { path: '**', redirectTo: '/404' },
-  { path: 'uploadimage', component: ImageUploadFormComponent }
+  { path: '**', redirectTo: '/404' }
 ];
 
 @NgModule({

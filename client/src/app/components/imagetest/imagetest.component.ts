@@ -7,6 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ImagetestComponent implements OnInit {
 
+  imageURL: string = 'http://localhost:8181/posts/1/images';
+  alreadyCreatedImages: string[] = null;
+  type: string = 'POST';
+  allowMultiple: Boolean = true;
+  
   constructor() { }
 
   ngOnInit() {

@@ -1,5 +1,6 @@
+
 <div *ngIf="multiple">
-  <div *ngIf="currentFileUpload" class="progress">
+  <div *ngIf="currentFilesUpload" class="progress">
     <div class="progress-bar progress-bar-info progress-bar-striped"
       role="progressbar" attr.aria-valuenow="{{progress.percentage}}"
       aria-valuemin="0" aria-valuemax="100"
@@ -8,13 +9,15 @@
   </div>
   
   <label class="btn btn-default">
-    <input type="file" (change)="selectFile($event)" multiple="multiple">
+    <input type="file" (change)="selectMultipleFiles($event)" multiple="multiple">
   </label>
+  <button class="btn btn-success" [disabled]="!selectedFiles"
+  (click)="uploadMultipleFiles()">Upload</button>
 </div>
 
 <div *ngIf="!multiple">
 
-    <div *ngIf="currentFilesUpload" class="progress">
+    <div *ngIf="currentFileUpload" class="progress">
         <div class="progress-bar progress-bar-info progress-bar-striped"
           role="progressbar" attr.aria-valuenow="{{progress.percentage}}"
           aria-valuemin="0" aria-valuemax="100"
@@ -25,7 +28,13 @@
   <label class="btn btn-default">
     <input type="file" (change)="selectFile($event)">
   </label>
+  <button class="btn btn-success" [disabled]="!selectedFiles"
+  (click)="upload()">Upload</button>
 </div>
 
-<button class="btn btn-success" [disabled]="!selectedFiles"
-  (click)="upload()">Upload</button>
+<div *ngFor="let picture of uploadedImages" class="image-list">
+	<div class="col-2 image">
+		<app-image-details [fileUpload]="picture"></app-image-details>
+	</div>
+	<span><button (click)="delete(picture)">Delete</button></span>
+</div>

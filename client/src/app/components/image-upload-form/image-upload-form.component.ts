@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { HttpClient, HttpResponse, HttpEventType } from '@angular/common/http';
 import { ImageService } from '../../image.service';
 import { ImageDetailsComponent } from '../image-details/image-details.component';
@@ -14,29 +14,25 @@ export class ImageUploadFormComponent implements OnInit {
   currentFileUpload: File;
   currentFilesUpload: File[];
   progress: { percentage: number } = { percentage: 0 };
-  storageURL: string;
-  requestType: string;
-  multiple: Boolean;
-  uploadedImages: ImageDetailsComponent[];
+  imageToDelete: string;
+  xmlRequest: XMLHttpRequest;
+  @Input() storageURL: string;
+  @Input() requestType: string;
+  @Input() multiple: Boolean;
+  @Input() uploadedImages: string[];
  
   constructor(private uploadService: ImageService) { 
   }
  
-  ngOnInit(storageURL: string, multiple: Boolean, requestType: string, uploadedImages: string[]) {
-    this.storageURL = storageURL;
-    this.multiple = multiple;
-    this.requestType = requestType;
-    if (uploadedImages != null) {
-      this.uploadedImages = new ImageDetailsComponent[uploadedImages.length];
-      for(let i =0; i<uploadedImages.length; i++) {
-        this.uploadedImages[i] = new ImageDetailsComponent();
-        this.uploadedImages[i].ngOnInit(uploadedImages[i]);
-      }
-    } else {
-      this.uploadedImages = null;
-    }
+  ngOnInit() {
   }
  
+  delete(url: string) {
+	this.imageToDelete=url;
+    this.uploadService.deleteFiles(this.imageToDelete).subscribe(() => console.log("image deleted"));
+	this.imageToDelete = undefined;
+  }
+
   selectFile(event) {
     const file = event.target.files.item(0);
     if (file.type.match('image.*')) {
@@ -77,24 +73,40 @@ export class ImageUploadFormComponent implements OnInit {
   uploadMultipleFiles() {
     this.progress.percentage = 0;
     this.fileListToArray();
-    this.uploadService.pushFilesToStorage(this.currentFilesUpload,
-      this.storageURL, this.requestType)
-    .subscribe(event => {
-      if (event.type === HttpEventType.UploadProgress) {
-        this.progress.percentage = Math.round(100 * event.loaded / event.total);
-      } else if (event instanceof HttpResponse) {
-        console.log('Files are completely uploaded!');
+	  console.log(this.currentFilesUpload);
+    this.xmlRequest = this.uploadService.pushFilesToStorage(this.currentFilesUpload,
+      this.storageURL, this.requestType);
+      
+      const setPercentage = this.setPercentage;
+      this.xmlRequest.upload.onprogress = function(event) {
+        if (event.lengthComputable) {
+          setPercentage(Math.round(100 * event.loaded / event.total));
+        }
+      };
+
+      this.xmlRequest.onload = function() {
+        if (this.status === 200) {
+          console.log('Files completely uploaded');
+        }
+      };
+      const formdata = new FormData();
+      for (let i = 0; i < this.currentFilesUpload.length; i++) {
+        formdata.append('files', this.currentFilesUpload[i]);
+        console.log(this.currentFilesUpload[i]);
       }
-    });
- 
+      this.xmlRequest.send(formdata);
     this.selectedFiles = undefined;
   }
 
   fileListToArray() {
-    let files = new File[this.selectedFiles.length];
+    let files = [];
     for (let i = 0; i < this.selectedFiles.length; i++) {
-      files[i] = this.selectedFiles.item(i);
+      files.push(this.selectedFiles.item(i));
     }
     this.currentFilesUpload = files;
+  }
+
+  setPercentage = (percentage: number)  => {
+    this.progress.percentage = percentage;
   }
 }
