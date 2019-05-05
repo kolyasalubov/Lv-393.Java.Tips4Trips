@@ -65,6 +65,7 @@ import {ProfileComponent} from "./components/authentication/profile/profile.comp
 import { ListPostsComponent } from './components/blog/list-posts/list-posts.component';
 import { SearchPostComponent } from './components/search/search-post/search-post.component';
 import { SearchTripComponent } from './components/search/search-trip/search-trip.component';
+import { ListTripsComponent } from './components/trip/list-trips/list-trips.component';
 
 
 @NgModule({
@@ -127,7 +128,8 @@ import { SearchTripComponent } from './components/search/search-trip/search-trip
     ProfileComponent,
     ListPostsComponent,
     SearchPostComponent,
-    SearchTripComponent
+    SearchTripComponent,
+    ListTripsComponent
   ],
   imports: [
     BrowserModule,
