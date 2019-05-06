@@ -1,5 +1,6 @@
 package com.softserve.academy.Tips4Trips.config;
 import com.softserve.academy.Tips4Trips.interceptor.HttpHandshakeInterceptor;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;
@@ -14,6 +15,8 @@ import static com.softserve.academy.Tips4Trips.config.PropertiesConfig.getProper
 @EnableWebSocketMessageBroker
 @Component
 public class WebSocketConfiguration implements WebSocketMessageBrokerConfigurer {
+
+    private static final Logger logger = Logger.getLogger(WebSocketConfiguration.class);
 
 
     private HttpHandshakeInterceptor httpHandshakeInterceptor;
@@ -35,7 +38,9 @@ public class WebSocketConfiguration implements WebSocketMessageBrokerConfigurer 
 
         registry.addEndpoint("/ws")
                 //todo Fix Acess - Controll
-                //.setAllowedOrigins(getPropertyValue("Access-Control-Allow-Origin"))
-                .withSockJS().setInterceptors(httpHandshakeInterceptor);
+                //.setAllowedOrigins("*")
+                .setAllowedOrigins(getPropertyValue("Access-Control-Allow-Origin"))
+                .withSockJS()
+                .setInterceptors(httpHandshakeInterceptor);
     }
 }

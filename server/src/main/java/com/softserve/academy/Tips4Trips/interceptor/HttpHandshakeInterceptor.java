@@ -1,5 +1,6 @@
 package com.softserve.academy.Tips4Trips.interceptor;
 
+import org.apache.log4j.Logger;
 import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.http.server.ServerHttpResponse;
 import org.springframework.http.server.ServletServerHttpRequest;
@@ -13,9 +14,13 @@ import java.util.Map;
 @Component
 public class HttpHandshakeInterceptor implements HandshakeInterceptor {
 
+    private static final Logger logger = Logger.getLogger(HttpHandshakeInterceptor.class);
+
     @Override
     public boolean beforeHandshake(ServerHttpRequest serverHttpRequest, ServerHttpResponse serverHttpResponse,
                                    WebSocketHandler webSocketHandler, Map<String, Object> map) throws Exception {
+
+        logger.info("before handshake");
 
         if(serverHttpRequest instanceof ServletServerHttpRequest){
 
@@ -29,5 +34,6 @@ public class HttpHandshakeInterceptor implements HandshakeInterceptor {
     @Override
     public void afterHandshake(ServerHttpRequest serverHttpRequest, ServerHttpResponse serverHttpResponse,
                                WebSocketHandler webSocketHandler, Exception e) {
+        logger.info("after handshake");
     }
 }

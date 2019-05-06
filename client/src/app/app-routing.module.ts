@@ -38,6 +38,7 @@ import { NotVerifiedRoutesPageComponent } from './components/routes/not-verified
 import { SearchPlaceComponent } from './components/search/search-place/search-place.component';
 import { SearchComponent } from './components/search/search/search.component';
 import {NewsComponent} from "./components/news/news.component";
+import {ChatComponent} from "./components/chat/chat.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -90,6 +91,7 @@ const routes: Routes = [
   { path: 'search', component: SearchComponent },
   { path: '404', component: ErrorComponent },
   {path: 'news', component: NewsComponent},
+  {path: 'chat', component: ChatComponent},
   { path: '**', redirectTo: '/404' }
 ];
 

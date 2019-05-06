@@ -7,11 +7,24 @@ public class ChatMessageDTO {
 
     private String sendTime;
 
-    private String accountFirstName;
+    private String senderId;
 
-    private String accountLastName;
+    private String senderFirstName;
+
+    private String senderLastName;
 
     private Long chatId;
+
+    public ChatMessageDTO() {
+    }
+
+    public String getSenderId() {
+        return senderId;
+    }
+
+    public void setSenderId(String senderId) {
+        this.senderId = senderId;
+    }
 
     public Long getId() {
         return id;
@@ -37,20 +50,20 @@ public class ChatMessageDTO {
         this.sendTime = sendTime;
     }
 
-    public String getAccountFirstName() {
-        return accountFirstName;
+    public String getSenderFirstName() {
+        return senderFirstName;
     }
 
-    public void setAccountFirstName(String accountFirstName) {
-        this.accountFirstName = accountFirstName;
+    public void setSenderFirstName(String senderFirstName) {
+        this.senderFirstName = senderFirstName;
     }
 
-    public String getAccountLastName() {
-        return accountLastName;
+    public String getSenderLastName() {
+        return senderLastName;
     }
 
-    public void setAccountLastName(String accountLastName) {
-        this.accountLastName = accountLastName;
+    public void setSenderLastName(String senderLastName) {
+        this.senderLastName = senderLastName;
     }
 
     public Long getChatId() {

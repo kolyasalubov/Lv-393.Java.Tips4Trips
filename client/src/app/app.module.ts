@@ -63,6 +63,7 @@ import { SearchComponent } from './components/search/search/search.component';
 import { SearchRouteComponent } from './components/search/search-route/search-route.component';
 import {ProfileComponent} from "./components/authentication/profile/profile.component";
 import { ListPostsComponent } from './components/blog/list-posts/list-posts.component';
+import { ChatComponent } from './components/chat/chat.component';
 
 
 @NgModule({
@@ -123,7 +124,8 @@ import { ListPostsComponent } from './components/blog/list-posts/list-posts.comp
     SearchComponent,
     SearchRouteComponent,
     ProfileComponent,
-    ListPostsComponent
+    ListPostsComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,

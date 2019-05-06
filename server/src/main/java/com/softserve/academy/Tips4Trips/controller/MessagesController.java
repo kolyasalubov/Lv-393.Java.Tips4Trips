@@ -2,6 +2,7 @@ package com.softserve.academy.Tips4Trips.controller;
 
 import com.softserve.academy.Tips4Trips.dto.details.ChatMessageDTO;
 import com.softserve.academy.Tips4Trips.service.MessageService;
+import org.apache.log4j.Logger;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,8 +14,12 @@ import java.util.stream.Collectors;
 
 @RestController
 @CrossOrigin
+//@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 @RequestMapping("/messages")
 public class MessagesController {
+
+
+    private static final Logger logger = Logger.getLogger(MessagesController.class);
 
     private MessageService messageService;
     private ModelMapper modelMapper;
@@ -25,11 +30,12 @@ public class MessagesController {
         this.modelMapper = modelMapper;
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/messages/")
+    public List<ChatMessageDTO> getMessagesByChatId(/*@PathVariable @NotNull @Positive Long id*/) {
 
-    public List<ChatMessageDTO> getMessagesByChatId(@PathVariable @NotNull @Positive Long id) {
+        logger.info("MessagesController get messages by chat id");
 
-        return messageService.getMessagesByChatId(id)
+        return messageService.getMessagesByChatId(1L)
                 .stream()
                 .map(source -> modelMapper.map(source,ChatMessageDTO.class))
                 .collect(Collectors.toList());
