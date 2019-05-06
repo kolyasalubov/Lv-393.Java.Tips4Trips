@@ -16,7 +16,7 @@ import {AboutComponent} from './components/home/about/about.component';
 import {HelpInfoComponent} from './components/home/help-info/help-info.component';
 import {RecentStoriesComponent} from './components/home/recent-stories/recent-stories.component';
 import {NewsSubscribeComponent} from './components/home/news-subscribe/news-subscribe.component';
-import {CreatePostComponent} from './components/create-post/create-post.component';
+import {CreatePostComponent} from './components/blog/create-post/create-post.component';
 import {CreatePostPlaceComponent} from './components/create-post-place/create-post-place.component';
 import {CreateRouteComponent} from './components/routes/create-route/create-route.component';
 import {LikeComponent} from './components/blog/like/like.component';

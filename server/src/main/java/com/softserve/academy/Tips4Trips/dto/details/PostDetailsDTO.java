@@ -9,6 +9,7 @@ public class PostDetailsDTO extends PostInfoDTO {
     private RouteInfoDTO routeInfo;
     private String likes;
     private String comments;
+    private AccountDetailsDTO author;
 
     public String getPhotoPath() {
         return photoPath;
@@ -48,5 +49,13 @@ public class PostDetailsDTO extends PostInfoDTO {
 
     public void setComments(String comments) {
         this.comments = comments;
+    }
+
+    public AccountDetailsDTO getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(AccountDetailsDTO author) {
+        this.author = author;
     }
 }

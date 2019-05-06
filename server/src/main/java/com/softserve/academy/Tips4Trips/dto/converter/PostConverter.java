@@ -9,6 +9,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Date;
+
 @Component
 public class PostConverter implements Converter<Post, PostDetailsDTO> {
 
@@ -69,10 +71,11 @@ public class PostConverter implements Converter<Post, PostDetailsDTO> {
         post.setName(postDetailsDTO.getName());
         post.setContent(postDetailsDTO.getContent());
         post.setPhotoPath(postDetailsDTO.getPhotoPath());
-        // post.setCreationDate(postDetailsDTO.getCreationDate());
+        post.setCreationDate(new Date());
         Route route = routeService.findById(
                 postDetailsDTO.getRouteInfo().getId());
         post.setRoute(route);
+        post.setAuthor(accountService.findById(postDetailsDTO.getAuthor().getId()));
         return post;
     }
 
@@ -80,10 +83,6 @@ public class PostConverter implements Converter<Post, PostDetailsDTO> {
     public PostDetailsDTO convertToDTO(Post post) {
         return modelMapper.map(post, PostDetailsDTO.class);
     }
-
-
-
-
 
 
 }

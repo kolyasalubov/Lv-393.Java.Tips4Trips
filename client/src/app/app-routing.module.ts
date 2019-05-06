@@ -5,7 +5,7 @@ import { LoginComponent } from './components/authentication/login/login.componen
 import { AccountComponent } from './components/authentication/account/account.component';
 import { ProfileComponent } from './components/authentication/profile/profile.component';
 import { RouteComponent } from './components/routes/route/route.component';
-import { CreatePostComponent } from "./components/create-post/create-post.component";
+import { CreatePostComponent } from "./components/blog/create-post/create-post.component";
 import { CreatePostPlaceComponent } from "./components/create-post-place/create-post-place.component";
 import { LikeComponent } from "./components/blog/like/like.component";
 import { CreateRouteComponent } from "./components/routes/create-route/create-route.component";
@@ -88,8 +88,8 @@ const routes: Routes = [
   { path: 'test', component: TestComponent },
   { path: 'profile/:id', component: ProfileComponent },
   { path: 'search', component: SearchComponent },
-  { path: '404', component: ErrorComponent },
   {path: 'news', component: NewsComponent},
+  { path: '404', component: ErrorComponent },
   { path: '**', redirectTo: '/404' }
 ];
 
