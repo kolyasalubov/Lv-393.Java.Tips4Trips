@@ -57,6 +57,10 @@ import { ActiveTripComponent } from './components/authentication/account/active-
 import { LikeAccountComponent } from './components/authentication/account/like-account/like-account.component';
 import { CommentAccountComponent } from './components/authentication/account/comment-account/comment-account.component';
 import { ImagetestComponent } from './components/imagetest/imagetest.component';
+import { AgmCoreModule, GoogleMapsAPIWrapper } from '@agm/core';
+import { MaptestComponent } from './components/maptest/maptest.component';
+import { MapDisplayComponent } from './components/map/map-display/map-display.component';
+import { MapPickerComponent } from './components/map/map-picker/map-picker.component';
 
 @NgModule({
   declarations: [
@@ -110,16 +114,23 @@ import { ImagetestComponent } from './components/imagetest/imagetest.component';
     ActiveTripComponent,
     LikeAccountComponent,
     CommentAccountComponent,
-    ImagetestComponent
+    ImagetestComponent,
+    MapDisplayComponent,
+    MaptestComponent,
+    MapPickerComponent
   ],
   imports: [
     BrowserModule,
+    AgmCoreModule.forRoot({apiKey: 'AIzaSyAMi90MHGDlEA-F6ktlRC36j1uhBBK9noo'}),
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [httpInterceptorProviders],
+  providers: [
+    httpInterceptorProviders,
+    GoogleMapsAPIWrapper
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

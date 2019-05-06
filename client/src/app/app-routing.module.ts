@@ -34,6 +34,8 @@ import { ChangeComponent } from "./components/trip/change/change.component";
 import { ErrorComponent } from "./components/error/error.component";
 import { EditRouteComponent } from './components/routes/edit-route/edit-route.component';
 import { ImagetestComponent } from './components/imagetest/imagetest.component';
+import { MaptestComponent } from './components/maptest/maptest.component';
+import { MapPickerComponent } from './components/map/map-picker/map-picker.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -82,6 +84,7 @@ const routes: Routes = [
   { path: 'edit_trip/:id', component: ChangeComponent },
   { path: 'uploadimage', component: ImagetestComponent },
   { path: 'test', component: TestComponent },
+  { path: 'maptest', component:  MapPickerComponent },
   { path: '404', component: ErrorComponent },
   { path: '**', redirectTo: '/404' }
 ];

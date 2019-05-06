@@ -3,7 +3,8 @@
 // The list of image replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  myCustomProp: 'AIzaSyAMi90MHGDlEA-F6ktlRC36j1uhBBK9noo'
 };
 
 /*
