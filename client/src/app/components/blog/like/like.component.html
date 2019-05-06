@@ -2,19 +2,15 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
 <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
-<!---->
+
 <p>
 
-<!--<button (click)="changeLike()" class="btn-lg">{{counter}} </button>-->
-  <!--<button [disabled]="isButtonDisabled"  type="image" (click)="changeLike()" style="font-size:24px; color: red" class="btn-light" >{{counter}}<i class="fa fa-heart"></i></button>-->
 
-
-  <!--<button  (click)="changeLike()" [style.color]="counter==true?'red':'grey'" style="font-size:24px; background-color: inherit" class="btn-light" ><i class="fa fa-heart"></i></button>{{counter}}-->
 </p>
 <p  class="pointer" style="font-size:25px;   ">
   <a >
 
-    <span [style.color]="isAdded==true?'red':'grey'" disabled="isButtonDisabled" class="glyphicon glyphicon-heart" (click)="changeLike()" style="font-size:25px; color: red"></span>
+    <span [style.color]="isAdded==true?'red':'grey'" disabled="isButtonDisabled"  (click)="changeLike()" style="font-size:25px; color: red"><i class="material-icons">favorite</i></span>
     <a class="popup" (click)="showAccounts()">    {{counter}}
       <span class="popuptext" id="myPopup" style="text-align: left"><ul *ngFor="let account of allAccounts "  >
   <div class="comment" style="font-size: 14px; text-align: left">  {{account.firstName}} {{account.lastName}}
@@ -22,7 +18,7 @@
 </ul></span>
     </a>
   </a>
-  <!--<a class="popup" (click)="myFunction()">   {{counter}}</a>-->
+
 </p>
 
 

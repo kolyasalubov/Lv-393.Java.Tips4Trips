@@ -14,4 +14,6 @@ export class BigPostModel {
   routeInfo: RouteInfo;
   likes: String;
   comments: String;
+  firstName: String;
+  lastName:String;
 }
