@@ -12,26 +12,17 @@
 
 <div class="row d-flex">
   <div class="col-md-4 d-flex ftco-animate" *ngFor="let mes of messages">
-    <div class="blog-entry justify-content-end" style="width: 100%;">
-
-      <a routerLink="/trip/{{mes.id}}" class="block-20"
-         style="background-image: url('../../../assets/images/image_1.jpg');">
-      </a>
-      <div class="text mt-3 float-right d-block">
-        <div class="d-flex align-items-center pt-2 mb-4 topp">
-          <div class="one">
-            <span class="day">{{mes.firstName}}</span>
-          </div>
-          <div class="two">
-            <span class="yr"></span>
-            <span class="mos">{{mes.lastName}}</span>
-          </div>
-        </div>
-        <h3 class="heading"><a href="single_page">{{mes.sendTime}}</a></h3>
-        <p>{{mes.chatId}}</p>
-      </div>
-
-
-    </div>
+    <p>{{mes.id}} </p>
+    <br>
+    <p>{{mes.chatId}} </p>
+    <br>
+    <p>{{mes.content}} </p>
+    <br>
+    <p>sender id </p>
+    <p>{{mes.senderId}} </p>
+    <br>
+    <p>{{mes.senderFirstName}} </p>
+    <br>
+    <p>{{mes.senderLastName}} </p>
   </div>
 </div>

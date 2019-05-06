@@ -68,20 +68,18 @@ public class ChatWebSocketController {
 //    }
 
     @MessageMapping("/send/message")
-    public void sendMessage(@Nullable final String messageStr) {
+    public void sendMessage(@Payload ChatMessageInfoDTO chatMessageInfoDTO) {
 
         logger.info("ChatWebsocketController send message");
 
         //chatMessageInfoDTO.setAccountId(1L);
         //chatMessageInfoDTO.setChatId(1L);
         //chatMessageInfoDTO.setContent("helloo");
-
         Message message = new Message();
 
-        message.setSender(accountService.findById(1L));
-        message.setChat(chatService.getChatById(1L));
-        message.setContent(messageStr);
-
+        message.setSender(accountService.findById(chatMessageInfoDTO.getAccountId()));
+        message.setChat(chatService.getChatById(chatMessageInfoDTO.getChatId()));
+        message.setContent(chatMessageInfoDTO.getContent());
 
 
 //        modelMapper.addMappings(new PropertyMap<Message, ChatMessageDTO>() {

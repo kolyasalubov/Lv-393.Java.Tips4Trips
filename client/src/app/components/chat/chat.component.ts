@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import * as Stomp from 'stompjs';
 import * as SockJS from 'sockjs-client';
 import {Message} from "../../model/message.model";
+import {ChatMessageInfoDTO} from "../../model/chat-message.model";
 
 @Component({
   selector: 'app-chat',
@@ -16,6 +17,9 @@ export class ChatComponent implements OnInit {
   msg: String;
   messages: Message[] = [];
   testString: string;
+
+  chatMessageInfo: ChatMessageInfoDTO = new ChatMessageInfoDTO(null,null,null);
+
 
   constructor() { }
 
@@ -52,14 +56,16 @@ export class ChatComponent implements OnInit {
       let messageResult: Message = JSON.parse(message.body);
       console.log(messageResult);
       this.messages.push(messageResult);
-
-
+      console.log(this.messages);
     }
   }
 
   sendMessage(message) {
     if (message) {
-      this.stompClient.send("/chat/send/message", {}, message);
+      this.chatMessageInfo.chatId=1;
+      this.chatMessageInfo.accountId=1;
+      this.chatMessageInfo.content=message;
+      this.stompClient.send("/chat/send/message", {}, JSON.stringify(this.chatMessageInfo));
     }
 
   }

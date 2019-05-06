@@ -2,9 +2,9 @@ package com.softserve.academy.Tips4Trips.dto.info;
 
 public class ChatMessageInfoDTO {
 
-    Long chatId;
-    Long accountId;
-    String content;
+    private Long chatId;
+    private Long accountId;
+    private String content;
 
 
     public Long getAccountId() {
