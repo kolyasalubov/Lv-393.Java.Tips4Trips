@@ -100,15 +100,7 @@
             <column name="account_id" valueNumeric="2"/>
             <column name="route_id" valueNumeric="1"/>
         </insert>
-        <insert tableName="posts">
-            <column name="id" valueNumeric="7"/>
-            <column name="content" value="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis, eius mollitia suscipit, quisquam doloremque distinctio perferendis et doloribus unde architecto optio laboriosam porro adipisci sapiente officiis nemo accusamus ad praesentium? Esse minima nisi et. Dolore perferendis, enim praesentium omnis, iste doloremque quia officia optio deserunt molestiae voluptates soluta architecto tempora."/>
-            <column name="creation_date" valueDate="2019-05-03"/>
-            <column name="name" value="It is a long established fact a reader be distracted"/>
-            <column name="photo_path" value="../../../assets/images/image_1.jpg"/>
-            <column name="account_id" valueNumeric="2"/>
-            <column name="route_id" valueNumeric="1"/>
-        </insert>
+
         <insert tableName="posts">
             <column name="id" valueNumeric="8"/>
             <column name="content" value="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis, eius mollitia suscipit, quisquam doloremque distinctio perferendis et doloribus unde architecto optio laboriosam porro adipisci sapiente officiis nemo accusamus ad praesentium? Esse minima nisi et. Dolore perferendis, enim praesentium omnis, iste doloremque quia officia optio deserunt molestiae voluptates soluta architecto tempora."/>

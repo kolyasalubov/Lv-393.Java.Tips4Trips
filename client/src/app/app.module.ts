@@ -62,6 +62,10 @@ import { SearchPlaceComponent } from './components/search/search-place/search-pl
 import { SearchComponent } from './components/search/search/search.component';
 import { SearchRouteComponent } from './components/search/search-route/search-route.component';
 import {ProfileComponent} from "./components/authentication/profile/profile.component";
+import { ListPostsComponent } from './components/blog/list-posts/list-posts.component';
+import { SearchPostComponent } from './components/search/search-post/search-post.component';
+import { SearchTripComponent } from './components/search/search-trip/search-trip.component';
+import { ListTripsComponent } from './components/trip/list-trips/list-trips.component';
 
 
 @NgModule({
@@ -121,7 +125,11 @@ import {ProfileComponent} from "./components/authentication/profile/profile.comp
     SearchPlaceComponent,
     SearchComponent,
     SearchRouteComponent,
-    ProfileComponent
+    ProfileComponent,
+    ListPostsComponent,
+    SearchPostComponent,
+    SearchTripComponent,
+    ListTripsComponent
   ],
   imports: [
     BrowserModule,

@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { SearchPlaceComponent } from '../search-place/search-place.component';
 import { SearchRouteComponent } from '../search-route/search-route.component';
 import { Router, ActivatedRoute } from '@angular/router';
+import { SearchPostComponent } from '../search-post/search-post.component';
+import { SearchTripComponent } from '../search-trip/search-trip.component';
 
 @Component({
   selector: 'app-search',
@@ -15,6 +17,8 @@ export class SearchComponent implements OnInit, AfterViewInit {
 
   @ViewChild(SearchPlaceComponent) searchPlace: SearchPlaceComponent;
   @ViewChild(SearchRouteComponent) searchRoute: SearchRouteComponent;
+  @ViewChild(SearchPostComponent) searchPost: SearchPostComponent;
+  @ViewChild(SearchTripComponent) searchTrip: SearchTripComponent;
 
   categoriesComponents: any;
 
@@ -34,7 +38,9 @@ export class SearchComponent implements OnInit, AfterViewInit {
       }
       this.categoriesComponents = {
         "PLACE": this.searchPlace,
-        "ROUTE": this.searchRoute
+        "ROUTE": this.searchRoute,
+        "POST": this.searchPost,
+        "TRIP": this.searchTrip
       };
       this.categoriesComponents[this.currCategory].init();
       this.categoriesComponents[this.currCategory].search(this.seek);
@@ -42,7 +48,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    
+
   }
 
   navigate(category: string) {

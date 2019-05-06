@@ -1,13 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<databaseChangeLog
-        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
-                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
-
-
-
-    <changeSet author="rsboy (generated)" id="1556377338637-1">
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <changeSet author="Dell (generated)" id="1556898251777-1">
         <createTable tableName="accounts">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints primaryKey="true"/>
@@ -31,7 +24,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="rsboy (generated)" id="1556377338637-2">
+    <changeSet author="Dell (generated)" id="1556898251777-2">
         <createTable tableName="accounts_subscribers">
             <column name="account_id" type="BIGINT">
                 <constraints nullable="false"/>
@@ -41,7 +34,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="rsboy (generated)" id="1556377338637-3">
+    <changeSet author="Dell (generated)" id="1556898251777-3">
         <createTable tableName="building_working_days">
             <column name="building_id" type="BIGINT">
                 <constraints nullable="false"/>
@@ -51,7 +44,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="rsboy (generated)" id="1556377338637-4">
+    <changeSet author="Dell (generated)" id="1556898251777-4">
         <createTable tableName="cities">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints primaryKey="true"/>
@@ -70,7 +63,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="rsboy (generated)" id="1556377338637-5">
+    <changeSet author="Dell (generated)" id="1556898251777-5">
         <createTable tableName="comments">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints primaryKey="true"/>
@@ -89,7 +82,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="rsboy (generated)" id="1556377338637-6">
+    <changeSet author="Dell (generated)" id="1556898251777-6">
         <createTable tableName="countries">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints primaryKey="true"/>
@@ -105,32 +98,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="rsboy (generated)" id="1556377338637-7">
-        <createTable tableName="trips">
-            <column autoIncrement="true" name="id" type="BIGINT">
-                <constraints primaryKey="true"/>
-            </column>
-            <column name="creation_date" type="date">
-                <constraints nullable="false"/>
-            </column>
-            <column name="description" type="VARCHAR(255)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="name" type="VARCHAR(255)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="start_date" type="date">
-                <constraints nullable="false"/>
-            </column>
-            <column name="creator_id" type="BIGINT">
-                <constraints nullable="false"/>
-            </column>
-            <column name="route_id" type="BIGINT">
-                <constraints nullable="false"/>
-            </column>
-        </createTable>
-    </changeSet>
-    <changeSet author="rsboy (generated)" id="1556377338637-8">
+    <changeSet author="Dell (generated)" id="1556898251777-7">
         <createTable tableName="hotels">
             <column name="id" type="BIGINT">
                 <constraints nullable="false"/>
@@ -165,7 +133,7 @@
             <column name="minimum_price" type="FLOAT(12)"/>
         </createTable>
     </changeSet>
-    <changeSet author="rsboy (generated)" id="1556377338637-9">
+    <changeSet author="Dell (generated)" id="1556898251777-8">
         <createTable tableName="key_generator">
             <column name="sequence_name" type="VARCHAR(255)">
                 <constraints nullable="false"/>
@@ -173,7 +141,7 @@
             <column name="next_val" type="BIGINT"/>
         </createTable>
     </changeSet>
-    <changeSet author="rsboy (generated)" id="1556377338637-10">
+    <changeSet author="Dell (generated)" id="1556898251777-9">
         <createTable tableName="likes">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints primaryKey="true"/>
@@ -186,7 +154,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="rsboy (generated)" id="1556377338637-11">
+    <changeSet author="Dell (generated)" id="1556898251777-10">
         <createTable tableName="monuments">
             <column name="id" type="BIGINT">
                 <constraints nullable="false"/>
@@ -212,7 +180,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="rsboy (generated)" id="1556377338637-12">
+    <changeSet author="Dell (generated)" id="1556898251777-11">
         <createTable tableName="posts">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints primaryKey="true"/>
@@ -233,7 +201,7 @@
             <column name="route_id" type="BIGINT"/>
         </createTable>
     </changeSet>
-    <changeSet author="rsboy (generated)" id="1556377338637-13">
+    <changeSet author="Dell (generated)" id="1556898251777-12">
         <createTable tableName="restaurants">
             <column name="id" type="BIGINT">
                 <constraints nullable="false"/>
@@ -268,7 +236,7 @@
             <column name="has_vegan_food" type="BIT(1)"/>
         </createTable>
     </changeSet>
-    <changeSet author="rsboy (generated)" id="1556377338637-14">
+    <changeSet author="Dell (generated)" id="1556898251777-13">
         <createTable tableName="routes">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints primaryKey="true"/>
@@ -285,7 +253,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="rsboy (generated)" id="1556377338637-15">
+    <changeSet author="Dell (generated)" id="1556898251777-14">
         <createTable tableName="routes_places">
             <column name="route_id" type="BIGINT">
                 <constraints nullable="false"/>
@@ -295,7 +263,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="rsboy (generated)" id="1556377338637-16">
+    <changeSet author="Dell (generated)" id="1556898251777-15">
         <createTable tableName="sales">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints primaryKey="true"/>
@@ -320,17 +288,42 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="rsboy (generated)" id="1556377338637-17">
+    <changeSet author="Dell (generated)" id="1556898251777-16">
         <createTable tableName="subscriber_group">
-            <column name="subscriber_id" type="BIGINT">
+            <column name="group_id" type="BIGINT">
                 <constraints nullable="false"/>
             </column>
-            <column name="group_id" type="BIGINT">
+            <column name="subscriber_id" type="BIGINT">
                 <constraints nullable="false"/>
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="rsboy (generated)" id="1556377338637-18">
+    <changeSet author="Dell (generated)" id="1556898251777-17">
+        <createTable tableName="trips">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="creation_date" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="start_date" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="creator_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="route_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Dell (generated)" id="1556898251777-18">
         <createTable tableName="users">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints primaryKey="true"/>
@@ -346,185 +339,185 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="rsboy (generated)" id="1556377338637-19">
+    <changeSet author="Dell (generated)" id="1556898251777-19">
         <addPrimaryKey columnNames="id" constraintName="PRIMARY" tableName="hotels"/>
     </changeSet>
-    <changeSet author="rsboy (generated)" id="1556377338637-20">
+    <changeSet author="Dell (generated)" id="1556898251777-20">
         <addPrimaryKey columnNames="sequence_name" constraintName="PRIMARY" tableName="key_generator"/>
     </changeSet>
-    <changeSet author="rsboy (generated)" id="1556377338637-21">
+    <changeSet author="Dell (generated)" id="1556898251777-21">
         <addPrimaryKey columnNames="id" constraintName="PRIMARY" tableName="monuments"/>
     </changeSet>
-    <changeSet author="rsboy (generated)" id="1556377338637-22">
+    <changeSet author="Dell (generated)" id="1556898251777-22">
         <addPrimaryKey columnNames="id" constraintName="PRIMARY" tableName="restaurants"/>
     </changeSet>
-    <changeSet author="rsboy (generated)" id="1556377338637-23">
+    <changeSet author="Dell (generated)" id="1556898251777-23">
         <addUniqueConstraint columnNames="phone_number" constraintName="UK_aien07q29q89wriyl53yj841h" tableName="accounts"/>
     </changeSet>
-    <changeSet author="rsboy (generated)" id="1556377338637-24">
+    <changeSet author="Dell (generated)" id="1556898251777-24">
         <addUniqueConstraint columnNames="email" constraintName="UK_n7ihswpy07ci568w34q0oi8he" tableName="accounts"/>
     </changeSet>
-    <changeSet author="rsboy (generated)" id="1556377338637-25">
+    <changeSet author="Dell (generated)" id="1556898251777-25">
         <addUniqueConstraint columnNames="login" constraintName="UK_ow0gan20590jrb00upg3va2fn" tableName="users"/>
     </changeSet>
-    <changeSet author="rsboy (generated)" id="1556377338637-26">
-        <createIndex indexName="FK1k5d2c6b6dvoloa3xqni5ckku" tableName="trips">
-            <column name="route_id"/>
-        </createIndex>
-    </changeSet>
-    <changeSet author="rsboy (generated)" id="1556377338637-27">
+    <changeSet author="Dell (generated)" id="1556898251777-26">
         <createIndex indexName="FK3nsw69j6l8kkmcye9eb5wfpxf" tableName="comments">
             <column name="commented_by"/>
         </createIndex>
     </changeSet>
-    <changeSet author="rsboy (generated)" id="1556377338637-28">
+    <changeSet author="Dell (generated)" id="1556898251777-27">
         <createIndex indexName="FK6gatmv9dwedve82icy8wrkdmk" tableName="cities">
             <column name="country_id"/>
         </createIndex>
     </changeSet>
-    <changeSet author="rsboy (generated)" id="1556377338637-29">
+    <changeSet author="Dell (generated)" id="1556898251777-28">
         <createIndex indexName="FK_1ihythtjluu9omkwor0vcor8i" tableName="hotels">
             <column name="city_id"/>
         </createIndex>
     </changeSet>
-    <changeSet author="rsboy (generated)" id="1556377338637-30">
+    <changeSet author="Dell (generated)" id="1556898251777-29">
         <createIndex indexName="FK_33ch33etllr7cjusd0gtre7xm" tableName="monuments">
             <column name="city_id"/>
         </createIndex>
     </changeSet>
-    <changeSet author="rsboy (generated)" id="1556377338637-31">
+    <changeSet author="Dell (generated)" id="1556898251777-30">
         <createIndex indexName="FK_i2df8v2h84eg1kvvi9scd9r7f" tableName="restaurants">
             <column name="city_id"/>
         </createIndex>
     </changeSet>
-    <changeSet author="rsboy (generated)" id="1556377338637-32">
+    <changeSet author="Dell (generated)" id="1556898251777-31">
+        <createIndex indexName="FKb2b5nceol3ofbvw302smcde7m" tableName="subscriber_group">
+            <column name="group_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Dell (generated)" id="1556898251777-32">
         <createIndex indexName="FKddl7747epwheh9umkc38f5688" tableName="accounts_subscribers">
             <column name="subscriber_id"/>
         </createIndex>
     </changeSet>
-    <changeSet author="rsboy (generated)" id="1556377338637-33">
+    <changeSet author="Dell (generated)" id="1556898251777-33">
         <createIndex indexName="FKf9l8slr2hdv6us03g5fkn5tcd" tableName="posts">
             <column name="account_id"/>
         </createIndex>
     </changeSet>
-    <changeSet author="rsboy (generated)" id="1556377338637-34">
+    <changeSet author="Dell (generated)" id="1556898251777-34">
         <createIndex indexName="FKfdermq8lkpd7ct4uaxfxj08l4" tableName="routes">
             <column name="author_id"/>
         </createIndex>
     </changeSet>
-    <changeSet author="rsboy (generated)" id="1556377338637-35">
+    <changeSet author="Dell (generated)" id="1556898251777-35">
         <createIndex indexName="FKfm8rm8ks0kgj4fhlmmljkj17x" tableName="users">
             <column name="account_id"/>
         </createIndex>
     </changeSet>
-    <changeSet author="rsboy (generated)" id="1556377338637-36">
-        <createIndex indexName="FKgoljghh1j7893bph62mqr8xoh" tableName="subscriber_group">
-            <column name="subscriber_id"/>
-        </createIndex>
-    </changeSet>
-    <changeSet author="rsboy (generated)" id="1556377338637-37">
+    <changeSet author="Dell (generated)" id="1556898251777-36">
         <createIndex indexName="FKh4c7lvsc298whoyd4w9ta25cr" tableName="comments">
             <column name="post_id"/>
         </createIndex>
     </changeSet>
-    <changeSet author="rsboy (generated)" id="1556377338637-38">
+    <changeSet author="Dell (generated)" id="1556898251777-37">
         <createIndex indexName="FKhdb3v0c0nicxanvxl8je63062" tableName="accounts_subscribers">
             <column name="account_id"/>
         </createIndex>
     </changeSet>
-    <changeSet author="rsboy (generated)" id="1556377338637-39">
+    <changeSet author="Dell (generated)" id="1556898251777-38">
         <createIndex indexName="FKiv38krdjqcox5qxowf7mmp2vd" tableName="posts">
             <column name="route_id"/>
         </createIndex>
     </changeSet>
-    <changeSet author="rsboy (generated)" id="1556377338637-40">
+    <changeSet author="Dell (generated)" id="1556898251777-39">
+        <createIndex indexName="FKm7ci3blm9wj2k0d94chu18y7s" tableName="trips">
+            <column name="route_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Dell (generated)" id="1556898251777-40">
         <createIndex indexName="FKmo8v5mbqcoo4xaxtb496v2ldj" tableName="likes">
             <column name="liked_by"/>
         </createIndex>
     </changeSet>
-    <changeSet author="rsboy (generated)" id="1556377338637-41">
+    <changeSet author="Dell (generated)" id="1556898251777-41">
         <createIndex indexName="FKn1q4ikk0ro1o6t1h3aw1tj0sf" tableName="routes_places">
             <column name="route_id"/>
         </createIndex>
     </changeSet>
-    <changeSet author="rsboy (generated)" id="1556377338637-42">
-        <createIndex indexName="FKnucs6ig63ew9vx6gqh1h3yfx5" tableName="subscriber_group">
-            <column name="group_id"/>
+    <changeSet author="Dell (generated)" id="1556898251777-42">
+        <createIndex indexName="FKn610r4xnyxqgsnaoecfwrg6bw" tableName="subscriber_group">
+            <column name="subscriber_id"/>
         </createIndex>
     </changeSet>
-    <changeSet author="rsboy (generated)" id="1556377338637-43">
-        <createIndex indexName="FKnxa2fiwv7b0amh0fko4tb6oli" tableName="trips">
-            <column name="creator_id"/>
-        </createIndex>
-    </changeSet>
-    <changeSet author="rsboy (generated)" id="1556377338637-44">
+    <changeSet author="Dell (generated)" id="1556898251777-43">
         <createIndex indexName="FKoymoi02qb97svxsda6srb6q4u" tableName="sales">
             <column name="creator_id"/>
         </createIndex>
     </changeSet>
-    <changeSet author="rsboy (generated)" id="1556377338637-45">
+    <changeSet author="Dell (generated)" id="1556898251777-44">
         <createIndex indexName="FKry8tnr4x2vwemv2bb0h5hyl0x" tableName="likes">
             <column name="post_id"/>
         </createIndex>
     </changeSet>
-    <changeSet author="rsboy (generated)" id="1556377338637-46">
-        <addForeignKeyConstraint baseColumnNames="route_id" baseTableName="trips" constraintName="FK1k5d2c6b6dvoloa3xqni5ckku" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="routes"/>
+    <changeSet author="Dell (generated)" id="1556898251777-45">
+        <createIndex indexName="FKt9p7k1j65aj1add9ufjtgx25b" tableName="trips">
+            <column name="creator_id"/>
+        </createIndex>
     </changeSet>
-    <changeSet author="rsboy (generated)" id="1556377338637-47">
+    <changeSet author="Dell (generated)" id="1556898251777-46">
         <addForeignKeyConstraint baseColumnNames="commented_by" baseTableName="comments" constraintName="FK3nsw69j6l8kkmcye9eb5wfpxf" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="accounts"/>
     </changeSet>
-    <changeSet author="rsboy (generated)" id="1556377338637-48">
+    <changeSet author="Dell (generated)" id="1556898251777-47">
         <addForeignKeyConstraint baseColumnNames="country_id" baseTableName="cities" constraintName="FK6gatmv9dwedve82icy8wrkdmk" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="countries"/>
     </changeSet>
-    <changeSet author="rsboy (generated)" id="1556377338637-49">
+    <changeSet author="Dell (generated)" id="1556898251777-48">
         <addForeignKeyConstraint baseColumnNames="city_id" baseTableName="hotels" constraintName="FK_1ihythtjluu9omkwor0vcor8i" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="cities"/>
     </changeSet>
-    <changeSet author="rsboy (generated)" id="1556377338637-50">
+    <changeSet author="Dell (generated)" id="1556898251777-49">
         <addForeignKeyConstraint baseColumnNames="city_id" baseTableName="monuments" constraintName="FK_33ch33etllr7cjusd0gtre7xm" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="cities"/>
     </changeSet>
-    <changeSet author="rsboy (generated)" id="1556377338637-51">
+    <changeSet author="Dell (generated)" id="1556898251777-50">
         <addForeignKeyConstraint baseColumnNames="city_id" baseTableName="restaurants" constraintName="FK_i2df8v2h84eg1kvvi9scd9r7f" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="cities"/>
     </changeSet>
-    <changeSet author="rsboy (generated)" id="1556377338637-52">
+    <changeSet author="Dell (generated)" id="1556898251777-51">
+        <addForeignKeyConstraint baseColumnNames="group_id" baseTableName="subscriber_group" constraintName="FKb2b5nceol3ofbvw302smcde7m" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="trips"/>
+    </changeSet>
+    <changeSet author="Dell (generated)" id="1556898251777-52">
         <addForeignKeyConstraint baseColumnNames="subscriber_id" baseTableName="accounts_subscribers" constraintName="FKddl7747epwheh9umkc38f5688" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="accounts"/>
     </changeSet>
-    <changeSet author="rsboy (generated)" id="1556377338637-53">
+    <changeSet author="Dell (generated)" id="1556898251777-53">
         <addForeignKeyConstraint baseColumnNames="account_id" baseTableName="posts" constraintName="FKf9l8slr2hdv6us03g5fkn5tcd" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="accounts"/>
     </changeSet>
-    <changeSet author="rsboy (generated)" id="1556377338637-54">
+    <changeSet author="Dell (generated)" id="1556898251777-54">
         <addForeignKeyConstraint baseColumnNames="author_id" baseTableName="routes" constraintName="FKfdermq8lkpd7ct4uaxfxj08l4" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="accounts"/>
     </changeSet>
-    <changeSet author="rsboy (generated)" id="1556377338637-55">
+    <changeSet author="Dell (generated)" id="1556898251777-55">
         <addForeignKeyConstraint baseColumnNames="account_id" baseTableName="users" constraintName="FKfm8rm8ks0kgj4fhlmmljkj17x" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="accounts"/>
     </changeSet>
-    <changeSet author="rsboy (generated)" id="1556377338637-56">
-        <addForeignKeyConstraint baseColumnNames="subscriber_id" baseTableName="subscriber_group" constraintName="FKgoljghh1j7893bph62mqr8xoh" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="trips"/>
-    </changeSet>
-    <changeSet author="rsboy (generated)" id="1556377338637-57">
+    <changeSet author="Dell (generated)" id="1556898251777-56">
         <addForeignKeyConstraint baseColumnNames="post_id" baseTableName="comments" constraintName="FKh4c7lvsc298whoyd4w9ta25cr" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="posts"/>
     </changeSet>
-    <changeSet author="rsboy (generated)" id="1556377338637-58">
+    <changeSet author="Dell (generated)" id="1556898251777-57">
         <addForeignKeyConstraint baseColumnNames="account_id" baseTableName="accounts_subscribers" constraintName="FKhdb3v0c0nicxanvxl8je63062" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="accounts"/>
     </changeSet>
-    <changeSet author="rsboy (generated)" id="1556377338637-59">
+    <changeSet author="Dell (generated)" id="1556898251777-58">
         <addForeignKeyConstraint baseColumnNames="route_id" baseTableName="posts" constraintName="FKiv38krdjqcox5qxowf7mmp2vd" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="routes"/>
     </changeSet>
-    <changeSet author="rsboy (generated)" id="1556377338637-60">
+    <changeSet author="Dell (generated)" id="1556898251777-59">
+        <addForeignKeyConstraint baseColumnNames="route_id" baseTableName="trips" constraintName="FKm7ci3blm9wj2k0d94chu18y7s" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="routes"/>
+    </changeSet>
+    <changeSet author="Dell (generated)" id="1556898251777-60">
         <addForeignKeyConstraint baseColumnNames="liked_by" baseTableName="likes" constraintName="FKmo8v5mbqcoo4xaxtb496v2ldj" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="accounts"/>
     </changeSet>
-    <changeSet author="rsboy (generated)" id="1556377338637-61">
+    <changeSet author="Dell (generated)" id="1556898251777-61">
         <addForeignKeyConstraint baseColumnNames="route_id" baseTableName="routes_places" constraintName="FKn1q4ikk0ro1o6t1h3aw1tj0sf" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="routes"/>
     </changeSet>
-    <changeSet author="rsboy (generated)" id="1556377338637-62">
-        <addForeignKeyConstraint baseColumnNames="group_id" baseTableName="subscriber_group" constraintName="FKnucs6ig63ew9vx6gqh1h3yfx5" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="accounts"/>
+    <changeSet author="Dell (generated)" id="1556898251777-62">
+        <addForeignKeyConstraint baseColumnNames="subscriber_id" baseTableName="subscriber_group" constraintName="FKn610r4xnyxqgsnaoecfwrg6bw" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="accounts"/>
     </changeSet>
-    <changeSet author="rsboy (generated)" id="1556377338637-63">
-        <addForeignKeyConstraint baseColumnNames="creator_id" baseTableName="trips" constraintName="FKnxa2fiwv7b0amh0fko4tb6oli" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="accounts"/>
-    </changeSet>
-    <changeSet author="rsboy (generated)" id="1556377338637-64">
+    <changeSet author="Dell (generated)" id="1556898251777-63">
         <addForeignKeyConstraint baseColumnNames="creator_id" baseTableName="sales" constraintName="FKoymoi02qb97svxsda6srb6q4u" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="accounts"/>
     </changeSet>
-    <changeSet author="rsboy (generated)" id="1556377338637-65">
+    <changeSet author="Dell (generated)" id="1556898251777-64">
         <addForeignKeyConstraint baseColumnNames="post_id" baseTableName="likes" constraintName="FKry8tnr4x2vwemv2bb0h5hyl0x" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="posts"/>
+    </changeSet>
+    <changeSet author="Dell (generated)" id="1556898251777-65">
+        <addForeignKeyConstraint baseColumnNames="creator_id" baseTableName="trips" constraintName="FKt9p7k1j65aj1add9ufjtgx25b" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="accounts"/>
     </changeSet>
 </databaseChangeLog>
