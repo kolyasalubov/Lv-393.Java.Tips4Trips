@@ -91,6 +91,10 @@ public class PostService {
         // delete comments, likes
         repository.findById(id).ifPresent(repository::delete);
     }
+
+    public Long getCount() {
+        return repository.count();
+    }
 }
 
 

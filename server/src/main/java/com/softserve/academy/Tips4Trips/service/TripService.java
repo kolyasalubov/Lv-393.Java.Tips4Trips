@@ -134,4 +134,8 @@ public class TripService {
     public Page<Trip> getPaginatedArticles(Pageable pageable) {
         return repository.findAllByOrderByIdDesc(pageable);
     }
+
+    public Long getCount() {
+        return repository.count();
+    }
 }

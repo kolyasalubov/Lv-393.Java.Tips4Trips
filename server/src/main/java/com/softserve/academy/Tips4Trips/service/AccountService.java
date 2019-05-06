@@ -38,6 +38,10 @@ public class AccountService {
         this.userRepository = userRepository;
     }
 
+    public Long getCount() {
+        return  (repository.count()+100L);
+    }
+
     public List<Account> findAll() {
         return repository.findAll();
     }

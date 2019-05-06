@@ -50,7 +50,11 @@ public class AccountController {
         this.userService = userService;
         this.modelMapper = modelMapper;
     }
-
+    @GetMapping("/count")
+    public ResponseEntity<Long> getCount() {
+        logger.info("get post by id method executing: ");
+        return new ResponseEntity<>(accountService.getCount(), HttpStatus.OK);
+    }
 
     @GetMapping
     public ResponseEntity<List<AccountInfoDTO>> getAll() {

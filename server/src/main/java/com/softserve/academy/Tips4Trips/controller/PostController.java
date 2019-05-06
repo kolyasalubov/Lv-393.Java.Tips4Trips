@@ -32,6 +32,12 @@ public class PostController {
         this.postConverter = postConverter;
     }
 
+    @GetMapping("/count")
+    public ResponseEntity<Long> getCount() {
+        logger.info("get post by id method executing: ");
+        return new ResponseEntity<>(postService.getCount(), HttpStatus.OK);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<PostDetailsDTO> getById(@PathVariable Long id) {
         logger.info("get post by id method executing: ");
