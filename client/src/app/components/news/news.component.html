@@ -12,8 +12,47 @@
 </section>
 <section class="ftco-section">
   <div class="container">
-fff
+    <div class="row">
+      <div class="col-lg-8 order-md-last ftco-animate">
+        <ul *ngFor="let post of posts"  class="comment-list">
+          <h4>{{post.firstName}} {{post.lastName}}</h4>
+          <h6 style="color: #868e96">{{post.creationDate}}</h6>
+        <img src="{{post.photoPath}}" alt="photo" class="img-fluid">
+          <app-like [postid]="post.id"></app-like>
+        <h2 class="mb-3">{{post.name}}</h2>
+        <p>{{post.content.substr(0,275)}}...</p>
+
+
+        </ul>
+      </div>
+
+    </div>
   </div>
 </section>
+
+<!--<section class="ftco-section">-->
+  <!--<div class="container">-->
+    <!--<ul *ngFor="let post of posts"  class="comment-list">-->
+      <!--<li >-->
+
+       <!--<div>{{post.name}}</div>-->
+       <!--<div>{{post.firstName}} {{post.lastName}}</div>-->
+       <!--<div>{{post.creationDate}}</div>-->
+        <!--<div>{{post.content}}</div>-->
+        <!--<div>{{post.photoPath}}</div>-->
+
+
+        <!--<div></div>-->
+
+
+
+
+      <!--</li>-->
+
+
+
+    <!--</ul>-->
+  <!--</div>-->
+<!--</section>-->
 
 <app-footer></app-footer>

@@ -3,6 +3,8 @@ package com.softserve.academy.Tips4Trips.controller;
 
 import com.softserve.academy.Tips4Trips.dto.AccountDTO;
 import com.softserve.academy.Tips4Trips.dto.AccountRoleDTO;
+import com.softserve.academy.Tips4Trips.dto.News.AccountFeedDTO;
+import com.softserve.academy.Tips4Trips.dto.News.AccountFollowingDTO;
 import com.softserve.academy.Tips4Trips.dto.converter.AccountConverter;
 import com.softserve.academy.Tips4Trips.dto.details.AccountDetailsDTO;
 import com.softserve.academy.Tips4Trips.dto.details.PostDetailsDTO;
@@ -24,6 +26,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.apache.log4j.Logger;
 
@@ -121,7 +124,7 @@ public class AccountController {
         return accountDetailsDTO;
     }
 
-    @PutMapping("/{accountId}/profile/{profileId}")
+    @PutMapping("/{accountId}/subscribe/{profileId}")
 //    @PreAuthorize("hasRole('ROLE_USER')")
     public ResponseEntity<AccountInfoDTO> subscribe(
             @PathVariable(value = "accountId") @NotNull @Positive Long accountId,
@@ -131,14 +134,29 @@ public class AccountController {
         return new ResponseEntity<>(accountConverter.convertToInfoDTO(accountService.subscribe(accountId, profileId)), HttpStatus.OK);
     }
 
-    @DeleteMapping("/{accountId}/profile/{profileId}")
+    @DeleteMapping("/{accountId}/unsubscribe/{profileId}")
     //    @PreAuthorize("hasRole('ROLE_USER')")
     public ResponseEntity unSubscribe(
             @PathVariable(value = "accountId") @NotNull @Positive Long accountId,
-            @PathVariable(value = "profileId") @NotNull @Positive Long profileId){
+            @PathVariable(value = "profileId") @NotNull @Positive Long profileId) {
         //todo add validation
-        accountService.unSubscribe(accountId,profileId);
-        return new ResponseEntity<>( HttpStatus.OK);
+        accountService.unSubscribe(accountId, profileId);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}/news")
+    public ResponseEntity<AccountFeedDTO> getAccountFeedById(@PathVariable Long id) {
+        logger.info("get by id method executing: ");
+        Account account = accountService.findById(id);
+
+        AccountFeedDTO accountFeedDTO = modelMapper.map(account, AccountFeedDTO.class);
+        List<AccountFollowingDTO> accountFollowingDTOS = account.getSubscribers()
+                .stream()
+                .map(source -> modelMapper.map(source, AccountFollowingDTO.class))
+                .collect(Collectors.toList());
+        accountFeedDTO.setFollowingAccounts(accountFollowingDTOS);
+
+        return new ResponseEntity<>(accountFeedDTO, HttpStatus.OK);
     }
 
 }

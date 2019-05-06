@@ -15,20 +15,24 @@
 </div>
 
 <section class="ftco-section bg-light">
-  <form class="form-inline active-cyan active-cyan-2" (ngSubmit)="navigate(currCategory)" >
+  <form class="form-inline active-cyan active-cyan-2" (ngSubmit)="navigate(currCategory)">
     <i class="fas fa-search" aria-hidden="true"></i>
     <span class="icon fa fa-search" style="margin-top: -8px;"></span>
     <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search" aria-label="Search"
-      style="border: 1px solid #C0C0C0;" [(ngModel)]="seek" name="seek" value = "{{seek}}">
+      style="border: 1px solid #C0C0C0;" [(ngModel)]="seek" name="seek" value="{{seek}}">
   </form>
   <div class="navbar-collapse collapse show mt-4">
     <ul>
       <li class="nav-item"><a (click)="navigate('PLACE')">Places</a></li>
       <li class="nav-item"><a (click)="navigate('ROUTE')">Routes</a></li>
+      <li class="nav-item"><a (click)="navigate('POST')">Posts</a></li>
+      <li class="nav-item"><a (click)="navigate('TRIP')">Trips</a></li>
     </ul>
   </div>
   <app-search-place [hidden]="currCategory != 'PLACE'"></app-search-place>
   <app-search-route [hidden]="currCategory != 'ROUTE'"></app-search-route>
+  <app-search-post [hidden]="currCategory != 'POST'"></app-search-post>
+  <app-search-trip [hidden]="currCategory != 'TRIP'"></app-search-trip>
 </section>
 
 <section class="ftco-subscribe" style="background-image: url(../../../assets/images/bg_1.jpg);">

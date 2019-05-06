@@ -18,6 +18,12 @@ export class ProfileComponent implements OnInit {
 
   constructor(private ngRoute: ActivatedRoute,private router: Router, private profileService: ProfileService,private authService: AuthService,) { }
 
+  public subscribeTo(){
+    this.profileService.subscribeTo(this.currentProfileId,this.accountProfile.id).subscribe();
+  }
+  public unSubscribe(){
+    this.profileService.unSubscribe(this.currentProfileId,this.accountProfile.id).subscribe();
+  }
 
   ngOnInit() {
     const id = Number(this.ngRoute.snapshot.paramMap.get('id'));

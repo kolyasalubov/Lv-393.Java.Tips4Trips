@@ -2,7 +2,6 @@ import {Component, Input, OnInit} from '@angular/core';
 import {AccountInfo} from '../../../model/account-info.model';
 import {AuthService} from "../../authentication/auth.service";
 import { SubscribersService } from './subscribers.service';
-import {PlaceInfo} from "../../../model/place-info.model";
 
 @Component({
   selector: 'app-subscribers',

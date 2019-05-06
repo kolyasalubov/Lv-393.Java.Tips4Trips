@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { RouteInfo } from 'src/app/model/route-info.model';
-import { RouteService } from 'src/app/service/route.service';
 import { Router } from '@angular/router';
+import { SearchService } from 'src/app/service/search.service';
+import { RouteSearchParams } from 'src/app/model/search/route-search-params';
 
 @Component({
   selector: 'app-search-route',
@@ -11,18 +12,20 @@ import { Router } from '@angular/router';
 export class SearchRouteComponent {
 
   routes: RouteInfo[];
+  params: RouteSearchParams;
 
   constructor(
-    private routeService: RouteService,
+    private searchService: SearchService,
     private router: Router
   ) { }
 
   init() {
-    
+    this.params = new RouteSearchParams();
   }
 
   search(seek: string): void {
-    this.routeService.searchByName(seek).subscribe(data => this.routes = data);
+    this.params.name = seek;
+    this.searchService.findRoutesByParams(this.params).subscribe(data => this.routes = data);
   }
 
   navigate(seek: string) : void {
