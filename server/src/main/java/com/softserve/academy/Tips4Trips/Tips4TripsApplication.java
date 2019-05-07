@@ -26,19 +26,20 @@ public class Tips4TripsApplication implements CommandLineRunner {
 		SpringApplication.run(Tips4TripsApplication.class, args);
 	}
 
-	@Bean
-	public ModelMapper modelMapper() {
-		ModelMapper mapper = new ModelMapper();
-		mapper.getConfiguration()
-				.setMatchingStrategy(MatchingStrategies.STRICT)
-				.setFieldMatchingEnabled(true)
-				.setSkipNullEnabled(true)
-				.setFieldAccessLevel(PRIVATE);
-		return mapper;
-	}
+//	@Bean
+//	public ModelMapper modelMapper() {
+//		ModelMapper mapper = new ModelMapper();
+//		mapper.getConfiguration()
+//				.setMatchingStrategy(MatchingStrategies.STRICT)
+//				.setFieldMatchingEnabled(true)
+//				.setSkipNullEnabled(true)
+//				.setFieldAccessLevel(PRIVATE);
+//		return mapper;
+//	}
 
 	@Override
 	public void run(String... arg) throws Exception {
 		imageService.init();
 	}
+
 }

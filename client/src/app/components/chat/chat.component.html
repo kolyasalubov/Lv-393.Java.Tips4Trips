@@ -1,0 +1,77 @@
+
+
+
+<!--<div class="row d-flex">-->
+  <!--<div class="col-md-4 d-flex ftco-animate" *ngFor="let mes of messages">-->
+    <!--<p>{{mes.id}} </p>-->
+    <!--<br>-->
+    <!--<p>{{mes.chatId}} </p>-->
+    <!--<br>-->
+    <!--<p>{{mes.content}} </p>-->
+    <!--<br>-->
+    <!--<p>sender id </p>-->
+    <!--<p>{{mes.senderId}} </p>-->
+    <!--<br>-->
+    <!--<p>{{mes.senderFirstName}} </p>-->
+    <!--<br>-->
+    <!--<p>{{mes.senderLastName}} </p>-->
+  <!--</div>-->
+<!--</div>-->
+
+
+<div class="container">
+  <h3 class=" text-center">Messaging</h3>
+  <div class="messaging">
+    <div class="inbox_msg">
+
+<div class="mesgs"   >
+  <div class="msg_history" >
+    <div *ngFor="let mes of messages">
+      <div class="outgoing_msg"  *ngIf="mes.senderId == currentAccountId">
+        <div class="sent_msg">
+          <p>{{mes.content}}</p>
+          <span class="time_date"> {{mes.sendTime}}</span> </div>
+      </div>
+      <div class="incoming_msg" *ngIf="mes.senderId != currentAccountId">
+        <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+        <div class="received_msg">
+          <div class="received_withd_msg">
+            <p>{{mes.content}}</p>
+            <span class="time_date">{{mes.sendTime}}</span></div>
+        </div>
+      </div>
+    </div>
+</div>
+
+
+      <!--<p class="text-center top_spac"> Design by <a target="_blank" href="#">Sunil Rajput</a></p>-->
+
+    </div></div>
+
+  </div>
+  <div class="type_msg">
+    <div class="input_msg_write">
+      <!--<input type="text" class="write_msg" placeholder="Type a message" />-->
+      <input id="input" type="text" class="write_msg"  placeholder="Type a message"
+             #input
+             (keyup.enter)="sendMessage(input.value); input.value='' "/>
+      <button class="msg_send_btn" type="button" (click)="sendMessage(input.value); input.value='' " ><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="container justify-content-center" style="height: 100%;">
+    <div class="d-flex flex-column" style="height: 100%; max-height: 812px;">
+      <h2 class="p-2">Chat</h2>
+      <div class="p-2 chat"></div>
+      <!--<input id="input" type="text" class="p-2 mt-auto input-group border border-success rounded"-->
+             <!--#input-->
+             <!--(keyup.enter)="sendMessage(input.value)"/>-->
+    <!--</div>-->
+  </div>
+
+
+
+</div>
+
+
+</div>

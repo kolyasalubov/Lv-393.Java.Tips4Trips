@@ -2,6 +2,9 @@ package com.softserve.academy.Tips4Trips.entity.entertainment.mountains;
 
 import com.softserve.academy.Tips4Trips.entity.administration.Account;
 import com.softserve.academy.Tips4Trips.entity.Route;
+import com.softserve.academy.Tips4Trips.entity.chat.Chat;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -59,6 +62,11 @@ public class Trip {
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "route_id",referencedColumnName = "id",nullable = false)
     private Route route;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "chat_id")
+    @Fetch(FetchMode.JOIN)
+    private Chat chat;
 
     @ManyToMany
     @JoinTable( name="subscriber_group",
@@ -143,5 +151,13 @@ public class Trip {
 
     public void removeSubscriber(Account account){
         subscribers.remove(account);
+    }
+
+    public Chat getChat() {
+        return chat;
+    }
+
+    public void setChat(Chat chat) {
+        this.chat = chat;
     }
 }

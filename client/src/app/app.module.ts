@@ -73,6 +73,8 @@ import { AgmCoreModule, GoogleMapsAPIWrapper } from '@agm/core';
 import { MaptestComponent } from './components/maptest/maptest.component';
 import { MapDisplayComponent } from './components/map/map-display/map-display.component';
 import { MapPickerComponent } from './components/map/map-picker/map-picker.component';
+import { ChatComponent } from './components/chat/chat.component';
+
 
 @NgModule({
   declarations: [
@@ -141,8 +143,9 @@ import { MapPickerComponent } from './components/map/map-picker/map-picker.compo
     ImagetestComponent,
     MapDisplayComponent,
     MaptestComponent,
-    MapPickerComponent
+    MapPickerComponent,
 
+    ChatComponent
   ],
   imports: [
     BrowserModule,

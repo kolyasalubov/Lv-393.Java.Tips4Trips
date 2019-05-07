@@ -41,6 +41,7 @@ import {NewsComponent} from "./components/news/news.component";
 import { ImagetestComponent } from './components/imagetest/imagetest.component';
 import { MaptestComponent } from './components/maptest/maptest.component';
 import { MapPickerComponent } from './components/map/map-picker/map-picker.component';
+import {ChatComponent} from "./components/chat/chat.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -95,6 +96,7 @@ const routes: Routes = [
   {path: 'news', component: NewsComponent},
   { path: 'maptest', component:  MapPickerComponent },
   { path: '404', component: ErrorComponent },
+  {path: 'chat', component: ChatComponent},
   { path: '**', redirectTo: '/404' }
 ];
 
