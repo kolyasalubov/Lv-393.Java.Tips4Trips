@@ -8,10 +8,14 @@ import com.softserve.academy.Tips4Trips.dto.News.AccountFollowingDTO;
 import com.softserve.academy.Tips4Trips.dto.converter.AccountConverter;
 import com.softserve.academy.Tips4Trips.dto.details.AccountDetailsDTO;
 import com.softserve.academy.Tips4Trips.dto.details.PostDetailsDTO;
+import com.softserve.academy.Tips4Trips.dto.file.ImageDTO;
 import com.softserve.academy.Tips4Trips.dto.info.AccountInfoDTO;
 import com.softserve.academy.Tips4Trips.dto.info.PostInfoDTO;
 import com.softserve.academy.Tips4Trips.entity.administration.Account;
 import com.softserve.academy.Tips4Trips.entity.blog.Post;
+import com.softserve.academy.Tips4Trips.entity.file.Image;
+import com.softserve.academy.Tips4Trips.exception.DataNotFoundException;
+import com.softserve.academy.Tips4Trips.exception.FileIOException;
 import com.softserve.academy.Tips4Trips.service.AccountService;
 import com.softserve.academy.Tips4Trips.service.UserService;
 import org.modelmapper.ModelMapper;
@@ -29,6 +33,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.apache.log4j.Logger;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
@@ -106,7 +113,8 @@ public class AccountController {
         Account account = accountService.findById(accountDTO.getId());
         account.setRole(accountDTO.getRole());
         account = accountService.update(account);
-        return new ResponseEntity<>(accountConverter.convertToDTO(account), HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(accountConverter.convertToDTO(account),
+                HttpStatus.ACCEPTED);
     }
 
     @DeleteMapping("/delete/{id}")
@@ -123,6 +131,7 @@ public class AccountController {
                 accountService.findByUser(userService.findByLogin(userDetails.getUsername()))));
         return accountDetailsDTO;
     }
+
 
     @PutMapping("/{accountId}/subscribe/{profileId}")
 //    @PreAuthorize("hasRole('ROLE_USER')")
@@ -159,4 +168,37 @@ public class AccountController {
         return new ResponseEntity<>(accountFeedDTO, HttpStatus.OK);
     }
 
+
+    @PostMapping("/{id}/image")
+    public ResponseEntity<AccountDetailsDTO> addImage(@PathVariable Long id,
+            @RequestParam("file") MultipartFile file) throws FileIOException {
+        Account updatedAccount = accountService.createImageForAccount(file, id);
+        return new ResponseEntity<>(accountConverter
+                .convertToDTO(updatedAccount), HttpStatus.CREATED);
+    }
+
+    @GetMapping("/{id}/image")
+    public RedirectView redirectToImageGet(@PathVariable Long id) {
+        Image image = accountService.findById(id).getImage();
+        Long imageId = image == null ? -1 : image.getId();
+        return new RedirectView("/images/" + imageId);
+    }
+
+    @DeleteMapping("/{id}/image")
+    public void deleteImageById(@PathVariable Long id) throws FileIOException,
+            DataNotFoundException {
+        logger.info("delete image account by id method executing: ");
+        accountService.deleteAccountImage(id);
+    }
+
+    @PutMapping("/{id}/image")
+    public ResponseEntity<AccountDetailsDTO> updateImageById(
+            @PathVariable Long id, @RequestParam("file") MultipartFile file)
+            throws FileIOException, DataNotFoundException {
+
+        logger.info("update image account by id method executing: ");
+        Account updatedAccount = accountService.updateAccountImage(id, file);
+        return new ResponseEntity<>(accountConverter
+                .convertToDTO(updatedAccount), HttpStatus.ACCEPTED);
+    }
 }

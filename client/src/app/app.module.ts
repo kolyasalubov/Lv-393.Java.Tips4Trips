@@ -45,6 +45,8 @@ import { HotelDetailsComponent } from './components/hotel-details/hotel-details.
 import { CityPlacesComponent } from './components/city-places/city-places.component';
 import { CityComponent } from './components/city/city.component';
 import { CountryComponent } from './components/country/country.component';
+import { ImageDetailsComponent } from './components/image-details/image-details.component';
+import { ImageUploadFormComponent } from './components/image-upload-form/image-upload-form.component';
 import { RouteInfoComponent } from './components/routes/route-info/route-info.component';
 import { EditRouteComponent } from './components/routes/edit-route/edit-route.component';
 import { CreateTripComponent } from './components/trip/create-trip/create-trip.component';
@@ -66,7 +68,11 @@ import { ListPostsComponent } from './components/blog/list-posts/list-posts.comp
 import { SearchPostComponent } from './components/search/search-post/search-post.component';
 import { SearchTripComponent } from './components/search/search-trip/search-trip.component';
 import { ListTripsComponent } from './components/trip/list-trips/list-trips.component';
-
+import { ImagetestComponent } from './components/imagetest/imagetest.component';
+import { AgmCoreModule, GoogleMapsAPIWrapper } from '@agm/core';
+import { MaptestComponent } from './components/maptest/maptest.component';
+import { MapDisplayComponent } from './components/map/map-display/map-display.component';
+import { MapPickerComponent } from './components/map/map-picker/map-picker.component';
 
 @NgModule({
   declarations: [
@@ -109,6 +115,8 @@ import { ListTripsComponent } from './components/trip/list-trips/list-trips.comp
     CityPlacesComponent,
     CityComponent,
     CountryComponent,
+	ImageDetailsComponent,
+	ImageUploadFormComponent,
     RouteInfoComponent,
     EditRouteComponent,
     CreateTripComponent,
@@ -129,16 +137,25 @@ import { ListTripsComponent } from './components/trip/list-trips/list-trips.comp
     ListPostsComponent,
     SearchPostComponent,
     SearchTripComponent,
-    ListTripsComponent
+    ListTripsComponent,
+    ImagetestComponent,
+    MapDisplayComponent,
+    MaptestComponent,
+    MapPickerComponent
+
   ],
   imports: [
     BrowserModule,
+    AgmCoreModule.forRoot({apiKey: 'AIzaSyAMi90MHGDlEA-F6ktlRC36j1uhBBK9noo'}),
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [httpInterceptorProviders],
+  providers: [
+    httpInterceptorProviders,
+    GoogleMapsAPIWrapper
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

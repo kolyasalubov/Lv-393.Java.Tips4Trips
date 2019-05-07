@@ -37,7 +37,6 @@ public class NotificationService {
             NotificationDTO dto = new NotificationDTO();
             dto.setId(p.getId());
             dto.setCount(rep.countByPost(p));
-            dto.setPhotoPath(p.getPhotoPath());
             if (dto.getCount() > 0) {
                 list.add(dto);
             }

@@ -38,6 +38,9 @@ import { NotVerifiedRoutesPageComponent } from './components/routes/not-verified
 import { SearchPlaceComponent } from './components/search/search-place/search-place.component';
 import { SearchComponent } from './components/search/search/search.component';
 import {NewsComponent} from "./components/news/news.component";
+import { ImagetestComponent } from './components/imagetest/imagetest.component';
+import { MaptestComponent } from './components/maptest/maptest.component';
+import { MapPickerComponent } from './components/map/map-picker/map-picker.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -85,10 +88,12 @@ const routes: Routes = [
   { path: 'trip/:id', component: TripInfoComponent },
   { path: 'create_trip', component: CreateTripComponent },
   { path: 'edit_trip/:id', component: ChangeComponent },
+  { path: 'uploadimage', component: ImagetestComponent },
   { path: 'test', component: TestComponent },
   { path: 'profile/:id', component: ProfileComponent },
   { path: 'search', component: SearchComponent },
   {path: 'news', component: NewsComponent},
+  { path: 'maptest', component:  MapPickerComponent },
   { path: '404', component: ErrorComponent },
   { path: '**', redirectTo: '/404' }
 ];
@@ -97,5 +102,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule {
-}
+export class AppRoutingModule { }
