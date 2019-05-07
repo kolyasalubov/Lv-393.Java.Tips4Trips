@@ -30,12 +30,12 @@ public class MessagesController {
         this.modelMapper = modelMapper;
     }
 
-    @GetMapping("/messages/")
-    public List<ChatMessageDTO> getMessagesByChatId(/*@PathVariable @NotNull @Positive Long id*/) {
+    @GetMapping("/messages/{id}")
+    public List<ChatMessageDTO> getMessagesByChatId(@PathVariable @NotNull @Positive Long id) {
 
         logger.info("MessagesController get messages by chat id");
 
-        return messageService.getMessagesByChatId(1L)
+        return messageService.getMessagesByChatId(id)
                 .stream()
                 .map(source -> modelMapper.map(source,ChatMessageDTO.class))
                 .collect(Collectors.toList());

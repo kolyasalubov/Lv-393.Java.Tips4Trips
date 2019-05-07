@@ -3,22 +3,22 @@ import {Observable} from "rxjs";
 import {HttpClient} from '@angular/common/http';
 import {TripInfoDTO} from 'src/app/model/trip-info';
 import {ApiResponse} from "../../model/api.response";
+import {Message} from "../../model/message.model";
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class TripService {
+export class ChatService {
 
   constructor(private http: HttpClient) {
   }
 
-  baseUrl: string = 'http://localhost:8080/trips/';
+  baseUrl: string = 'http://localhost:8080/messages/messages/';
 
-
-  //getById(id: number): Observable<TripDetailsDTO> {
-  //  return this.http.get<TripDetailsDTO>(this.baseUrl + id);
- // }
+  getMessagesByChatId(id: number): Observable<Message[]> {
+    return this.http.get<Message[]>(this.baseUrl + id);
+  }
 
 }
 
