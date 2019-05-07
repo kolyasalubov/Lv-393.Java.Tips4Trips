@@ -4,6 +4,7 @@ import * as SockJS from 'sockjs-client';
 import {Message} from "../../model/message.model";
 import {ChatMessageInfoDTO} from "../../model/chat-message.model";
 import {ChatService} from "./chat.service";
+import {AuthService} from "../authentication/auth.service";
 
 @Component({
   selector: 'app-chat',
@@ -13,19 +14,18 @@ import {ChatService} from "./chat.service";
 export class ChatComponent implements OnInit {
 
 
-   usernamePage = document.querySelector('#username-page');
-   chatPage = document.querySelector('#chat-page');
-   usernameForm = document.querySelector('#usernameForm');
-   messageForm = document.querySelector('#messageForm');
-   messageInput = document.querySelector('#message');
-   messageArea = document.querySelector('#messageArea');
-   connectingElement = document.querySelector('.connecting');
+   // usernamePage = document.querySelector('#username-page');
+   // chatPage = document.querySelector('#chat-page');
+   // usernameForm = document.querySelector('#usernameForm');
+   // messageForm = document.querySelector('#messageForm');
+   // messageInput = document.querySelector('#message');
+   // messageArea = document.querySelector('#messageArea');
+   // connectingElement = document.querySelector('.connecting');
   serverUrl = "http://localhost:8080/ws/";
   private stompClient;
-  isCustomSocketOpened = true;
+  currentAccountId: number;
   msg: String;
   messages: Message[] = [];
-  testString: string;
 
    colors = [
     '#2196F3', '#32c787', '#00BCD4', '#ff5652',
@@ -35,9 +35,10 @@ export class ChatComponent implements OnInit {
   chatMessageInfo: ChatMessageInfoDTO = new ChatMessageInfoDTO(null,null,null);
 
 
-  constructor(private chatService: ChatService) { }
+  constructor(private chatService: ChatService, private authService: AuthService) { }
 
   ngOnInit() {
+    this.authService.getCurrentUser().subscribe(data => this.currentAccountId = data.id);
     this.initializeWebSocketConnection();
     this.chatService.getMessagesByChatId(1).subscribe(data => this.messages = data);
   }
@@ -127,7 +128,7 @@ export class ChatComponent implements OnInit {
   sendMessage(message) {
     if (message) {
       this.chatMessageInfo.chatId=1;
-      this.chatMessageInfo.accountId=1;
+      this.chatMessageInfo.accountId=this.currentAccountId;
       this.chatMessageInfo.content=message;
       this.stompClient.send("/chat/send/message", {}, JSON.stringify(this.chatMessageInfo));
     }

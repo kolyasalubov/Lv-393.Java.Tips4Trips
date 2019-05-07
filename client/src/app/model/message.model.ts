@@ -2,7 +2,7 @@
 export class Message {
 
   id: number;
-  content: number;
+  content: string;
   sendTime: string;
   senderId:number;
   senderFirstName: string;
@@ -10,7 +10,7 @@ export class Message {
   chatId: number;
 
 
-  constructor(id: number, content: number, sendTime: string, senderId: number, senderFirstName: string, senderLastName: string, chatId: number) {
+  constructor(id: number, content: string, sendTime: string, senderId: number, senderFirstName: string, senderLastName: string, chatId: number) {
     this.id = id;
     this.content = content;
     this.sendTime = sendTime;

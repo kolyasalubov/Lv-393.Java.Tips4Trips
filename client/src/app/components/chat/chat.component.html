@@ -1,152 +1,77 @@
-<div class="container justify-content-center" style="height: 100%;">
-  <div class="d-flex flex-column" style="height: 100%; max-height: 812px;">
-    <h2 class="p-2">Chat</h2>
-    <div class="p-2 chat"></div>
-    <input id="input" type="text" class="p-2 mt-auto input-group border border-success rounded"
-           #input
-           (keyup.enter)="sendMessage(input.value)"/>
-  </div>
-</div>
 
 
 
-<div class="row d-flex">
-  <div class="col-md-4 d-flex ftco-animate" *ngFor="let mes of messages">
-    <p>{{mes.id}} </p>
-    <br>
-    <p>{{mes.chatId}} </p>
-    <br>
-    <p>{{mes.content}} </p>
-    <br>
-    <p>sender id </p>
-    <p>{{mes.senderId}} </p>
-    <br>
-    <p>{{mes.senderFirstName}} </p>
-    <br>
-    <p>{{mes.senderLastName}} </p>
-  </div>
-</div>
-
-
-<!--<div class="container">-->
-  <!--<div class="row">-->
-    <!--<div class="col-md-5">-->
-      <!--<div class="panel panel-primary">-->
-        <!--<div class="panel-heading">-->
-          <!--<span class="glyphicon glyphicon-comment"></span> Chat-->
-          <!--<div class="btn-group pull-right">-->
-            <!--<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">-->
-              <!--<span class="glyphicon glyphicon-chevron-down"></span>-->
-            <!--</button>-->
-            <!--<ul class="dropdown-menu slidedown">-->
-              <!--<li><a href="http://www.jquery2dotnet.com"><span class="glyphicon glyphicon-refresh">-->
-                            <!--</span>Refresh</a></li>-->
-              <!--<li><a href="http://www.jquery2dotnet.com"><span class="glyphicon glyphicon-ok-sign">-->
-                            <!--</span>Available</a></li>-->
-              <!--<li><a href="http://www.jquery2dotnet.com"><span class="glyphicon glyphicon-remove">-->
-                            <!--</span>Busy</a></li>-->
-              <!--<li><a href="http://www.jquery2dotnet.com"><span class="glyphicon glyphicon-time"></span>-->
-                <!--Away</a></li>-->
-              <!--<li class="divider"></li>-->
-              <!--<li><a href="http://www.jquery2dotnet.com"><span class="glyphicon glyphicon-off"></span>-->
-                <!--Sign Out</a></li>-->
-            <!--</ul>-->
-          <!--</div>-->
-        <!--</div>-->
-        <!--<div class="panel-body">-->
-          <!--<ul class="chat">-->
-            <!--<li class="left clearfix"><span class="chat-img pull-left">-->
-                            <!--<img src="http://placehold.it/50/55C1E7/fff&amp;text=U" alt="User Avatar" class="img-circle">-->
-                        <!--</span>-->
-              <!--<div class="chat-body clearfix">-->
-                <!--<div class="header">-->
-                  <!--<strong class="primary-font">Jack Sparrow</strong> <small class="pull-right text-muted">-->
-                  <!--<span class="glyphicon glyphicon-time"></span>12 mins ago</small>-->
-                <!--</div>-->
-                <!--<p>-->
-                  <!--Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare-->
-                  <!--dolor, quis ullamcorper ligula sodales.-->
-                <!--</p>-->
-              <!--</div>-->
-            <!--</li>-->
-            <!--<li class="right clearfix"><span class="chat-img pull-right">-->
-                            <!--<img src="http://placehold.it/50/FA6F57/fff&amp;text=ME" alt="User Avatar" class="img-circle">-->
-                        <!--</span>-->
-              <!--<div class="chat-body clearfix">-->
-                <!--<div class="header">-->
-                  <!--<small class=" text-muted"><span class="glyphicon glyphicon-time"></span>13 mins ago</small>-->
-                  <!--<strong class="pull-right primary-font">Bhaumik Patel</strong>-->
-                <!--</div>-->
-                <!--<p>-->
-                  <!--Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare-->
-                  <!--dolor, quis ullamcorper ligula sodales.-->
-                <!--</p>-->
-              <!--</div>-->
-            <!--</li>-->
-            <!--<li class="left clearfix"><span class="chat-img pull-left">-->
-                            <!--<img src="http://placehold.it/50/55C1E7/fff&amp;text=U" alt="User Avatar" class="img-circle">-->
-                        <!--</span>-->
-              <!--<div class="chat-body clearfix">-->
-                <!--<div class="header">-->
-                  <!--<strong class="primary-font">Jack Sparrow</strong> <small class="pull-right text-muted">-->
-                  <!--<span class="glyphicon glyphicon-time"></span>14 mins ago</small>-->
-                <!--</div>-->
-                <!--<p>-->
-                  <!--Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare-->
-                  <!--dolor, quis ullamcorper ligula sodales.-->
-                <!--</p>-->
-              <!--</div>-->
-            <!--</li>-->
-            <!--<li class="right clearfix"><span class="chat-img pull-right">-->
-                            <!--<img src="http://placehold.it/50/FA6F57/fff&amp;text=ME" alt="User Avatar" class="img-circle">-->
-                        <!--</span>-->
-              <!--<div class="chat-body clearfix">-->
-                <!--<div class="header">-->
-                  <!--<small class=" text-muted"><span class="glyphicon glyphicon-time"></span>15 mins ago</small>-->
-                  <!--<strong class="pull-right primary-font">Bhaumik Patel</strong>-->
-                <!--</div>-->
-                <!--<p>-->
-                  <!--Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare-->
-                  <!--dolor, quis ullamcorper ligula sodales.-->
-                <!--</p>-->
-              <!--</div>-->
-            <!--</li>-->
-          <!--</ul>-->
-        <!--</div>-->
-        <!--<div class="panel-footer">-->
-          <!--<div class="input-group">-->
-            <!--<input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here...">-->
-            <!--<span class="input-group-btn">-->
-                            <!--<button class="btn btn-warning btn-sm" id="btn-chat">-->
-                                <!--Send</button>-->
-                        <!--</span>-->
-          <!--</div>-->
-        <!--</div>-->
-      <!--</div>-->
-    <!--</div>-->
+<!--<div class="row d-flex">-->
+  <!--<div class="col-md-4 d-flex ftco-animate" *ngFor="let mes of messages">-->
+    <!--<p>{{mes.id}} </p>-->
+    <!--<br>-->
+    <!--<p>{{mes.chatId}} </p>-->
+    <!--<br>-->
+    <!--<p>{{mes.content}} </p>-->
+    <!--<br>-->
+    <!--<p>sender id </p>-->
+    <!--<p>{{mes.senderId}} </p>-->
+    <!--<br>-->
+    <!--<p>{{mes.senderFirstName}} </p>-->
+    <!--<br>-->
+    <!--<p>{{mes.senderLastName}} </p>-->
   <!--</div>-->
 <!--</div>-->
 
-<div id="chat-page" class="hidden">
-  <div class="chat-container">
-    <div class="chat-header">
-      <h2>Spring WebSocket Chat Demo</h2>
-    </div>
-    <div class="connecting">
-      Connecting...
-    </div>
-    <ul id="messageArea">
 
-    </ul>
-    <form id="messageForm" name="messageForm" nameForm="messageForm">
-      <div class="form-group">
-        <div class="input-group clearfix">
-          <input type="text" id="message" placeholder="Type a message..." autocomplete="off" class="form-control"/>
-          <button type="submit" class="primary">Send</button>
+<div class="container">
+  <h3 class=" text-center">Messaging</h3>
+  <div class="messaging">
+    <div class="inbox_msg">
+
+<div class="mesgs"   >
+  <div class="msg_history" >
+    <div *ngFor="let mes of messages">
+      <div class="outgoing_msg"  *ngIf="mes.senderId != currentAccountId">
+        <div class="sent_msg">
+          <p>{{mes.content}}</p>
+          <span class="time_date"> {{mes.sendTime}}</span> </div>
+      </div>
+      <div class="incoming_msg" *ngIf="mes.senderId == currentAccountId">
+        <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+        <div class="received_msg">
+          <div class="received_withd_msg">
+            <p>{{mes.content}}</p>
+            <span class="time_date">{{mes.sendTime}}</span></div>
         </div>
       </div>
-    </form>
-  </div>
+    </div>
 </div>
 
 
+      <!--<p class="text-center top_spac"> Design by <a target="_blank" href="#">Sunil Rajput</a></p>-->
+
+    </div></div>
+
+  </div>
+  <div class="type_msg">
+    <div class="input_msg_write">
+      <!--<input type="text" class="write_msg" placeholder="Type a message" />-->
+      <input id="input" type="text" class="p-2 mt-auto input-group border border-success rounded"
+             #input
+             (keyup.enter)="sendMessage(input.value)"/>
+      <!--<button class="msg_send_btn" type="button"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>-->
+    </div>
+  </div>
+
+  <div class="container justify-content-center" style="height: 100%;">
+    <div class="d-flex flex-column" style="height: 100%; max-height: 812px;">
+      <h2 class="p-2">Chat</h2>
+      <div class="p-2 chat"></div>
+      <!--<input id="input" type="text" class="p-2 mt-auto input-group border border-success rounded"-->
+             <!--#input-->
+             <!--(keyup.enter)="sendMessage(input.value)"/>-->
+    <!--</div>-->
+  </div>
+
+
+
+</div>
+
+
+</div>
