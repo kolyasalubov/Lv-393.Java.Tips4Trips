@@ -131,6 +131,7 @@ export class ChatComponent implements OnInit {
       this.chatMessageInfo.accountId=this.currentAccountId;
       this.chatMessageInfo.content=message;
       this.stompClient.send("/chat/send/message", {}, JSON.stringify(this.chatMessageInfo));
+
     }
 
   }

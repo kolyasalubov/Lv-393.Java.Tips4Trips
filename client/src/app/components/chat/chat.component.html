@@ -27,12 +27,12 @@
 <div class="mesgs"   >
   <div class="msg_history" >
     <div *ngFor="let mes of messages">
-      <div class="outgoing_msg"  *ngIf="mes.senderId != currentAccountId">
+      <div class="outgoing_msg"  *ngIf="mes.senderId == currentAccountId">
         <div class="sent_msg">
           <p>{{mes.content}}</p>
           <span class="time_date"> {{mes.sendTime}}</span> </div>
       </div>
-      <div class="incoming_msg" *ngIf="mes.senderId == currentAccountId">
+      <div class="incoming_msg" *ngIf="mes.senderId != currentAccountId">
         <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
         <div class="received_msg">
           <div class="received_withd_msg">
@@ -52,10 +52,10 @@
   <div class="type_msg">
     <div class="input_msg_write">
       <!--<input type="text" class="write_msg" placeholder="Type a message" />-->
-      <input id="input" type="text" class="p-2 mt-auto input-group border border-success rounded"
+      <input id="input" type="text" class="write_msg"  placeholder="Type a message"
              #input
-             (keyup.enter)="sendMessage(input.value)"/>
-      <!--<button class="msg_send_btn" type="button"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>-->
+             (keyup.enter)="sendMessage(input.value); input.value='' "/>
+      <button class="msg_send_btn" type="button" (click)="sendMessage(input.value); input.value='' " ><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
     </div>
   </div>
 
