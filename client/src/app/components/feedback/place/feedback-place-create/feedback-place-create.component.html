@@ -1,0 +1,26 @@
+<!-- Add icon library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div class="col-md-4">
+  <span (click)="oneF()" class="fa fa-star {{one}}"></span>
+  <span (click)="twoF()" class="fa fa-star {{two}}"></span>
+  <span (click)="threeF()" class="fa fa-star {{three}}"></span>
+  <span (click)="fourF()" class="fa fa-star {{four}}"></span>
+  <span (click)="fiveF()" class="fa fa-star {{five}}"></span>
+  <form>
+   <textarea [(ngModel)]="feedbackPlaceModel.comment" class="form-control" rows="4" style="
+                                        padding-top: 10px;
+                                        width: 100%;"
+             value="{{feedbackPlaceModel.comment}}"
+             placeholder="Something about it"
+             name="about"></textarea>
+    <input class="category submit"
+           style="padding: 3%;
+  margin-top: 5%;
+  font-size: 90%;
+  border-radius:5px;
+  margin-bottom: 30px;"
+           type="submit"
+           value="Create a new post" (click)="save()">
+  </form>
+</div>
+
