@@ -41,6 +41,7 @@ import {NewsComponent} from "./components/news/news.component";
 import { ImagetestComponent } from './components/imagetest/imagetest.component';
 import { MaptestComponent } from './components/maptest/maptest.component';
 import { MapPickerComponent } from './components/map/map-picker/map-picker.component';
+import {TComponent} from "./components/t/t.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -63,8 +64,8 @@ const routes: Routes = [
   { path: 'monuments/:id', component: MonumentDetailsComponent },
   { path: 'city_places/:id', component: CityPlacesComponent },
   { path: 'create_post', component: CreatePostComponent },
-  { path: 'create_route', component: CreateRouteComponent },
-  { path: 'trips/create', component: CreateRouteComponent },
+  // { path: 'create_route', component: CreateRouteComponent },
+  // { path: 'trips/create', component: CreateRouteComponent },
   { path: 'list_of_users', component: ListOfUsersComponent },
   { path: 'list_of_users/:id', component: ListOfUsersComponent },
   { path: 'blog', component: BlogComponent },
@@ -94,6 +95,7 @@ const routes: Routes = [
   { path: 'search', component: SearchComponent },
   {path: 'news', component: NewsComponent},
   { path: 'maptest', component:  MapPickerComponent },
+  { path: 'tttt', component:  TComponent },
   { path: '404', component: ErrorComponent },
   { path: '**', redirectTo: '/404' }
 ];

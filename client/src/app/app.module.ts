@@ -73,9 +73,16 @@ import { AgmCoreModule, GoogleMapsAPIWrapper } from '@agm/core';
 import { MaptestComponent } from './components/maptest/maptest.component';
 import { MapDisplayComponent } from './components/map/map-display/map-display.component';
 import { MapPickerComponent } from './components/map/map-picker/map-picker.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
+import { TComponent } from './components/t/t.component';
 
 @NgModule({
   declarations: [
+    RouteComponent,
+    NewsSubscribeComponent,
+    CreateRouteComponent,
+    ListOfRoutesComponent,
     AppComponent,
     HeaderComponent,
     FooterComponent,
@@ -141,7 +148,8 @@ import { MapPickerComponent } from './components/map/map-picker/map-picker.compo
     ImagetestComponent,
     MapDisplayComponent,
     MaptestComponent,
-    MapPickerComponent
+    MapPickerComponent,
+    TComponent
 
   ],
   imports: [
@@ -150,7 +158,8 @@ import { MapPickerComponent } from './components/map/map-picker/map-picker.compo
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
     httpInterceptorProviders,
