@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterViewChecked, Component, ElementRef, OnInit, ViewChild, ViewChildren} from '@angular/core';
 import * as Stomp from 'stompjs';
 import * as SockJS from 'sockjs-client';
 import {Message} from "../../model/message.model";
@@ -11,8 +11,8 @@ import {AuthService} from "../authentication/auth.service";
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.css']
 })
-export class ChatComponent implements OnInit {
-
+export class ChatComponent implements OnInit, AfterViewChecked  {
+  @ViewChild('content') content: ElementRef;
 
    // usernamePage = document.querySelector('#username-page');
    // chatPage = document.querySelector('#chat-page');
@@ -25,7 +25,8 @@ export class ChatComponent implements OnInit {
   private stompClient;
   currentAccountId: number;
   msg: String;
-  messages: Message[] = [];
+   messages: Message[] = [];
+  @ViewChild('scrollMe') private myScrollContainer: ElementRef;
 
    colors = [
     '#2196F3', '#32c787', '#00BCD4', '#ff5652',
@@ -41,6 +42,18 @@ export class ChatComponent implements OnInit {
     this.authService.getCurrentUser().subscribe(data => this.currentAccountId = data.id);
     this.initializeWebSocketConnection();
     this.chatService.getMessagesByChatId(1).subscribe(data => this.messages = data);
+    this.scrollToBottom();
+  }
+
+
+  ngAfterViewChecked() {
+    this.scrollToBottom();
+  }
+
+  scrollToBottom(): void {
+    try {
+      this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
+    } catch(err) { }
   }
 
   initializeWebSocketConnection() {
@@ -64,6 +77,16 @@ export class ChatComponent implements OnInit {
     });
 
   }
+
+  // ngAfterViewInit() {
+  //   this.messages.changes.subscribe(this.scrollToBottom);
+  // }
+  //
+  // scrollToBottom = () => {
+  //   try {
+  //     this.content.nativeElement.scrollTop = this.content.nativeElement.scrollHeight;
+  //   } catch (err) {}
+  // }
 
   //  onMessageReceived(payload) {
   //   console.log("onMessageRecive");
