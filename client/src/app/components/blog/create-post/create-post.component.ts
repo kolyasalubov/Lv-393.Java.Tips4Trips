@@ -3,7 +3,7 @@ import {RouteService} from "../../../service/route.service";
 import {PostDetailsModel} from "../../../model/postDetails.model";
 import {PostCreateModel} from "../../../model/postCreate.model";
 import {PostService} from "../post.service";
-import {AuthService} from "../../authentication/auth.service";
+import {CustomAuthService} from "../../authentication/custom-auth.service";
 import {Account} from "../../../model/account.model";
 
 @Component({
@@ -16,7 +16,8 @@ export class CreatePostComponent implements OnInit {
   routeName: string;
   post: PostCreateModel;
 
-  constructor(private routeService: RouteService, private postService: PostService, private authService: AuthService,) {
+  constructor(private routeService: RouteService, private postService: PostService, 
+    private authService: CustomAuthService,) {
   }
 
   ngOnInit() {

@@ -4,7 +4,7 @@ import {Comment} from '../../../model/comment.model';
 import {AccountInfo} from '../../../model/account-info.model';
 import {NgForm} from '@angular/forms';
 
-import {AuthService} from "../../authentication/auth.service";
+import {CustomAuthService} from "../../authentication/custom-auth.service";
 import {Router} from "@angular/router";
 
 
@@ -18,7 +18,8 @@ export class CommentComponent implements OnInit {
   @Input() postid: number;
   @Input() countOfLikes: number;
 
-  constructor(private commentService: CommentService, private  authService: AuthService, private router: Router) {
+  constructor(private commentService: CommentService, private  authService: CustomAuthService,
+     private router: Router) {
   }
 
   account: AccountInfo = new AccountInfo();

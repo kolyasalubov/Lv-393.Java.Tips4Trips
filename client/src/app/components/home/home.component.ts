@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {BlogService} from '../blog/blog/blog.service';
 import {PagelittlepostModel} from '../../model/pagelittlepost.model';
-import {AuthService} from '../authentication/auth.service';
+import {CustomAuthService} from '../authentication/custom-auth.service';
 
 @Component({
   selector: 'app-home',
@@ -28,7 +28,7 @@ export class HomeComponent implements OnInit {
   pagePost: PagelittlepostModel;
 
   constructor(private blogserv: BlogService, private router: Router,
-    private authenticationService: AuthService) {
+    private authenticationService: CustomAuthService) {
   }
 
   ngOnInit() {

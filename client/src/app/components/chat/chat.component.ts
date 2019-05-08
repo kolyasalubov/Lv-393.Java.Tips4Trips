@@ -4,7 +4,7 @@ import * as SockJS from 'sockjs-client';
 import {Message} from "../../model/message.model";
 import {ChatMessageInfoDTO} from "../../model/chat-message.model";
 import {ChatService} from "./chat.service";
-import {AuthService} from "../authentication/auth.service";
+import {CustomAuthService} from "../authentication/custom-auth.service";
 
 @Component({
   selector: 'app-chat',
@@ -35,7 +35,7 @@ export class ChatComponent implements OnInit {
   chatMessageInfo: ChatMessageInfoDTO = new ChatMessageInfoDTO(null,null,null);
 
 
-  constructor(private chatService: ChatService, private authService: AuthService) { }
+  constructor(private chatService: ChatService, private authService: CustomAuthService) { }
 
   ngOnInit() {
     this.authService.getCurrentUser().subscribe(data => this.currentAccountId = data.id);

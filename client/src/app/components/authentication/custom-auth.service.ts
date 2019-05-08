@@ -8,6 +8,7 @@ import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 import { stringify } from '@angular/core/src/render3/util';
 import { UserAccount } from '../../model/useraccount.model';
 import { TokenStorageService } from './token/token-storage.service';
+import { User } from 'src/app/model/user.model';
 
 
 const httpOptions = {
@@ -19,16 +20,17 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class CustomAuthService {
   private loginUrl = '//localhost:8080/authentication/signin';
   private signupUrl = '//localhost:8080/authentication/signup';
   private logoutUrl = '//localhost:8080/authentication/logout';
-  currentUserUrl: string = 'http://localhost:8080/accounts/me';
+  private currentUserUrl = '//localhost:8080/accounts/me';
 
   constructor(private http: HttpClient, private tokenStorage: TokenStorageService) {
   }
 
   attemptAuth(credentials: SignInForm): Observable<any> {
+    console.log(credentials);
     return this.http.post(this.loginUrl, credentials, {responseType : 'text'});
   }
 
@@ -36,8 +38,8 @@ export class AuthService {
     return this.http.post(this.signupUrl, info, {responseType : 'text'});
   }
 
-  getCurrentUser(): Observable<Account> {
-    return this.http.get<Account>(this.currentUserUrl);
+  getCurrentUser(): Observable<User> {
+    return this.http.get<User>(this.currentUserUrl);
   }
   
   checkLoggedUser(): boolean {
