@@ -36,7 +36,7 @@ export class ChatComponent implements OnInit, AfterViewChecked  {
   chatMessageInfo: ChatMessageInfoDTO = new ChatMessageInfoDTO(null,null,null);
 
 
-  constructor(private chatService: ChatService, private authService: AuthService) { }
+  constructor(private chatService: ChatService, private authService: AuthService, ) { }
 
   ngOnInit() {
     this.authService.getCurrentUser().subscribe(data => this.currentAccountId = data.id);
@@ -53,7 +53,7 @@ export class ChatComponent implements OnInit, AfterViewChecked  {
   scrollToBottom(): void {
     try {
       this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
-    } catch(err) { }
+    } catch(err) { console.log(err)}
   }
 
   initializeWebSocketConnection() {

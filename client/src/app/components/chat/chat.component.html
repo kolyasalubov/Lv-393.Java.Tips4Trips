@@ -3,26 +3,27 @@
   <div class="messaging">
     <div class="inbox_msg">
 
+
+
+
 <div class="mesgs"   >
   <div class="msg_history"  #scrollMe   >
     <div  *ngFor="let mes of messages">
       <div class="outgoing_msg"  *ngIf="mes.senderId == currentAccountId">
         <div class="sent_msg">
           <p>{{mes.content}}</p>
-          <span class="time_date"> {{mes.sendTime}}</span> </div>
+          <span class="time_date"> {{mes.sendTime.substr(11,5)}}</span> </div>
       </div>
       <div class="incoming_msg" *ngIf="mes.senderId != currentAccountId">
         <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
         <div class="received_msg">
           <div class="received_withd_msg">
             <p>{{mes.content}}</p>
-            <span class="time_date">{{mes.sendTime}}</span></div>
+            <span class="time_date">{{mes.sendTime.substr(11,5)}}</span></div>
         </div>
       </div>
     </div>
 </div>
-
-
       <!--<p class="text-center top_spac"> Design by <a target="_blank" href="https://github.com/VolodymyrPaziuk">Volodymyr Paziuk</a></p>-->
 
     </div></div>
@@ -47,10 +48,8 @@
              <!--(keyup.enter)="sendMessage(input.value)"/>-->
     <!--</div>-->
   </div>
-
-
-
+</div>
 </div>
 
 
-</div>
+

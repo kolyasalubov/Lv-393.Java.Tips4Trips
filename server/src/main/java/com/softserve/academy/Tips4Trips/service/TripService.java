@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
+import java.util.Collections;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -85,7 +86,9 @@ public class TripService {
     public List<Account> getSubscribers(Long tripId) {
         Optional<Trip> trip = repository.findById(tripId);
         if (trip.isPresent()) {
-            return trip.get().getSubscribers();
+            List<Account> accountList = trip.get().getSubscribers();
+            Collections.reverse(accountList);
+            return accountList;
         } else {
             throw new DataNotFoundException(ExceptionMessages.TRIP_BY_THIS_ID_IS_NOT_FOUND);
         }

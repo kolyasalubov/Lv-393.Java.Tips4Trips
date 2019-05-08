@@ -64,6 +64,8 @@ import { SearchRouteComponent } from './components/search/search-route/search-ro
 import {ProfileComponent} from "./components/authentication/profile/profile.component";
 import { ListPostsComponent } from './components/blog/list-posts/list-posts.component';
 import { ChatComponent } from './components/chat/chat.component';
+import { ToastrModule } from 'ngx-toastr';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 
 @NgModule({
@@ -126,13 +128,16 @@ import { ChatComponent } from './components/chat/chat.component';
     ProfileComponent,
     ListPostsComponent,
     ChatComponent
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
