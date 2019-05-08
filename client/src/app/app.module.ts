@@ -74,6 +74,8 @@ import {MaptestComponent} from './components/maptest/maptest.component';
 import {MapDisplayComponent} from './components/map/map-display/map-display.component';
 import {MapPickerComponent} from './components/map/map-picker/map-picker.component';
 import {ChatComponent} from './components/chat/chat.component';
+import { FeedbackPlaceComponent } from './components/feedback/place/feedback-place/feedback-place.component';
+import { FeedbackPlaceCreateComponent } from './components/feedback/place/feedback-place-create/feedback-place-create.component';
 
 
 @NgModule({
@@ -146,7 +148,11 @@ import {ChatComponent} from './components/chat/chat.component';
     MaptestComponent,
     MapPickerComponent,
 
-    ChatComponent
+    ChatComponent,
+
+    FeedbackPlaceComponent,
+
+    FeedbackPlaceCreateComponent
   ],
   imports: [
     BrowserModule,
