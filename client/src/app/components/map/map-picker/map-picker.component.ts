@@ -100,7 +100,7 @@ export class MapPickerComponent implements OnInit {
     });
   }
 
-  markerDragEnd(m: any, $event: any) {
+  markerDragEnd(m: any) {
     this.location.marker.latitude = m.coords.lat;
     this.location.marker.longitude = m.coords.lng;
     this.findAddressByCoordinates();

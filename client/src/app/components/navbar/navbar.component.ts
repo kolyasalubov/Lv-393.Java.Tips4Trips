@@ -30,7 +30,7 @@ export class NavbarComponent implements OnInit {
     this.chosenCity = value;
   }
 
-  viewCityPlaces(value) {
+  viewCityPlaces() {
     this.router.navigate(["city_places/" + this.chosenCity]);
   }
 }
