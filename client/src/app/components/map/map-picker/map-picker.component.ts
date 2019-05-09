@@ -23,7 +23,8 @@ interface Location {
 })
 export class MapPickerComponent implements OnInit {
 
-  @Input() formName: string;
+  @Input() locationUpdate: Function;
+
   geocoder: any;
   public location: Location = {
     latitude: 0,
@@ -94,6 +95,8 @@ export class MapPickerComponent implements OnInit {
           this.location.viewport = results[0].geometry.viewport;
         }
         this.map.triggerResize();
+        this.locationUpdate(this.location.marker.latitude,
+          this.location.marker.longitude);
       } else {
         alert("Sorry, this search produced no results.");
       }
@@ -103,6 +106,8 @@ export class MapPickerComponent implements OnInit {
   markerDragEnd(m: any) {
     this.location.marker.latitude = m.coords.lat;
     this.location.marker.longitude = m.coords.lng;
+    this.locationUpdate(this.location.marker.latitude,
+      this.location.marker.longitude);
     this.findAddressByCoordinates();
    }
 

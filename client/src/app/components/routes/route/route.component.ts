@@ -5,7 +5,7 @@ import { Route } from 'src/app/model/route.model';
 import { AccountInfo } from 'src/app/model/account-info.model';
 import { Location } from '@angular/common';
 import { PlaceInfo } from 'src/app/model/place-info.model';
-import { AuthService } from '../../authentication/auth.service';
+import { CustomAuthService } from '../../authentication/custom-auth.service';
 import { Account } from '../../../model/account.model';
 
 @Component({
@@ -20,7 +20,7 @@ export class RouteComponent implements OnInit {
   currUser: Account;
   constructor(
     private routeService: RouteService,
-    private authService: AuthService,
+    private authService: CustomAuthService,
     private ngRoute: ActivatedRoute,
     private router: Router,
     private location: Location

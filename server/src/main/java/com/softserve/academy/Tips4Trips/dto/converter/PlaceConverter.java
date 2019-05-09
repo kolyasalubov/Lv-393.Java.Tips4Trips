@@ -3,7 +3,6 @@ package com.softserve.academy.Tips4Trips.dto.converter;
 import com.softserve.academy.Tips4Trips.controller.HotelController;
 import com.softserve.academy.Tips4Trips.controller.MonumentController;
 import com.softserve.academy.Tips4Trips.controller.RestaurantController;
-import com.softserve.academy.Tips4Trips.dto.PlaceDTO;
 import com.softserve.academy.Tips4Trips.dto.info.PlaceInfoDTO;
 import com.softserve.academy.Tips4Trips.entity.place.Hotel;
 import com.softserve.academy.Tips4Trips.entity.place.Monument;
@@ -17,7 +16,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
-public class PlaceConverter implements Converter<Place,  PlaceInfoDTO> {
+public class PlaceConverter implements Converter<Place, PlaceInfoDTO> {
 
     private final int MAX_DESCRIPTION_LENGTH = 100;
 
@@ -51,6 +50,8 @@ public class PlaceConverter implements Converter<Place,  PlaceInfoDTO> {
                 ? content.substring(0, MAX_DESCRIPTION_LENGTH) : content;
         placeInfoDTO.setDescription(description);
         placeInfoDTO.setSelf(getSelfLink(place));
+        placeInfoDTO.setCategory(place.getCategory());
+        placeInfoDTO.setPosition(place.getPosition());
         return placeInfoDTO;
     }
 

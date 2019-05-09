@@ -68,6 +68,9 @@ import {ListPostsComponent} from './components/blog/list-posts/list-posts.compon
 import {SearchPostComponent} from './components/search/search-post/search-post.component';
 import {SearchTripComponent} from './components/search/search-trip/search-trip.component';
 import {ListTripsComponent} from './components/trip/list-trips/list-trips.component';
+import {EditHotelComponent} from './components/create-post-place/edit-hotel/edit-hotel.component';
+import {EditRestaurantComponent} from './components/create-post-place/edit-restaurant/edit-restaurant.component';
+import {EditMonumentComponent} from './components/create-post-place/edit-monument/edit-monument.component';
 import {ImagetestComponent} from './components/imagetest/imagetest.component';
 import {AgmCoreModule, GoogleMapsAPIWrapper} from '@agm/core';
 import {MaptestComponent} from './components/maptest/maptest.component';
@@ -76,6 +79,7 @@ import {MapPickerComponent} from './components/map/map-picker/map-picker.compone
 import {ChatComponent} from './components/chat/chat.component';
 import { FeedbackPlaceComponent } from './components/feedback/place/feedback-place/feedback-place.component';
 import { FeedbackPlaceCreateComponent } from './components/feedback/place/feedback-place-create/feedback-place-create.component';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 
 @NgModule({
@@ -143,24 +147,25 @@ import { FeedbackPlaceCreateComponent } from './components/feedback/place/feedba
     SearchPostComponent,
     SearchTripComponent,
     ListTripsComponent,
+    EditHotelComponent,
+    EditRestaurantComponent,
+    EditMonumentComponent,
     ImagetestComponent,
     MapDisplayComponent,
     MaptestComponent,
     MapPickerComponent,
-
     ChatComponent,
-
     FeedbackPlaceComponent,
-
     FeedbackPlaceCreateComponent
   ],
   imports: [
     BrowserModule,
-    AgmCoreModule.forRoot({apiKey: 'AIzaSyAMi90MHGDlEA-F6ktlRC36j1uhBBK9noo'}),
+    AgmCoreModule.forRoot({apiKey: 'AIzaSyDGk8vnhsQ8XqNJRLCEfr1c4k7z1GsyvXE'}),
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule
   ],
   providers: [
     httpInterceptorProviders,

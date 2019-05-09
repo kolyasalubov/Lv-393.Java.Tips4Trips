@@ -3,6 +3,7 @@ package com.softserve.academy.Tips4Trips.entity.entertainment.mountains;
 import com.softserve.academy.Tips4Trips.entity.administration.Account;
 import com.softserve.academy.Tips4Trips.entity.Route;
 import com.softserve.academy.Tips4Trips.entity.chat.Chat;
+import com.softserve.academy.Tips4Trips.entity.file.Image;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.OnDelete;
@@ -67,6 +68,11 @@ public class Trip {
     @JoinColumn(name = "chat_id")
     @Fetch(FetchMode.JOIN)
     private Chat chat;
+
+    @ManyToOne
+    @JoinColumn(name = "image_id", referencedColumnName = "id")
+    private Image image;
+
 
     @ManyToMany
     @JoinTable( name="subscriber_group",
@@ -151,6 +157,14 @@ public class Trip {
 
     public void removeSubscriber(Account account){
         subscribers.remove(account);
+    }
+
+    public Image getImage() {
+        return image;
+    }
+
+    public void setImage(Image image) {
+        this.image = image;
     }
 
     public Chat getChat() {

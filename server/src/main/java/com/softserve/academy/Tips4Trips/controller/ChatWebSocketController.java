@@ -21,7 +21,7 @@ public class ChatWebSocketController {
 
     private static final Logger logger = Logger.getLogger(ChatController.class);
 
-        private final SimpMessagingTemplate  simpMessagingTemplate;
+    private final SimpMessagingTemplate  simpMessagingTemplate;
 
     private AccountService accountService;
     private ChatService chatService;

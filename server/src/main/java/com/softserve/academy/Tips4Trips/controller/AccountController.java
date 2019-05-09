@@ -127,6 +127,7 @@ public class AccountController {
     public AccountDetailsDTO getCurrentUser() {
         UserDetails userDetails = (UserDetails) SecurityContextHolder.
                 getContext().getAuthentication().getPrincipal();
+
         AccountDetailsDTO accountDetailsDTO = (accountConverter.convertToDTO(
                 accountService.findByUser(userService.findByLogin(userDetails.getUsername()))));
         return accountDetailsDTO;

@@ -4,7 +4,7 @@ import { RouteService } from 'src/app/service/route.service';
 import { AccountInfo } from 'src/app/model/account-info.model';
 import { PlaceService } from 'src/app/place.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { AuthService } from '../../authentication/auth.service';
+import { CustomAuthService } from '../../authentication/custom-auth.service';
 
 @Component({
   selector: 'app-edit-route',
@@ -19,7 +19,7 @@ export class EditRouteComponent implements OnInit {
     private placeService: PlaceService,
     private ngRoute: ActivatedRoute,
     private router: Router,
-    private authService: AuthService
+    private authService: CustomAuthService
   ) {
     this.route = new Route();
     this.route.authorInfo = new AccountInfo();

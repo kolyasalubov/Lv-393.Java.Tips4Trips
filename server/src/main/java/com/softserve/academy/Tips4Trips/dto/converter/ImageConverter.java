@@ -50,12 +50,12 @@ public class ImageConverter implements Converter <Image, ImageDTO> {
 
     @Override
     public ImageDTO convertToDTO(Image image) {
-        return modelmapper.map(image, ImageDTO.class);
+        return image == null ? null : modelmapper.map(image, ImageDTO.class);
     }
 
     @Override
     public Image convertToEntity(ImageDTO imageDTO) {
-        return modelmapper.map(imageDTO, Image.class);
+        return imageDTO == null ? null : modelmapper.map(imageDTO, Image.class);
     }
 
 }

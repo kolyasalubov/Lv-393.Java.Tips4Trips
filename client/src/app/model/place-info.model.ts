@@ -3,4 +3,6 @@ export class PlaceInfo {
     name: string;
     description: string;
     self: string;
+    category: string;
+    position: Position;
 }

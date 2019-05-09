@@ -7,6 +7,7 @@ import {MonumentService} from "./monument.service";
 import {Monument} from "../../../model/monument.model";
 import {Country} from "../../../model/country.model";
 import {CountryService} from "../../../country.service";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-create-monument',
@@ -22,9 +23,37 @@ export class CreateMonumentComponent implements OnInit {
   cityDTO: City = new City(null, '', this.position, 0, '');
   monument: Monument = new Monument(null, '', '', '', this.position, "photo_path", this.cityDTO);
 
+  formGroup: FormGroup = new FormGroup({
+    name: new FormControl(null,[
+      Validators.required,
+      Validators.minLength(2),
+      Validators.maxLength(35)
+    ]),
+    description: new FormControl(null,[
+      Validators.required,
+      Validators.minLength(10),
+      Validators.maxLength(255)
+    ]),
+    address: new FormControl(null,[
+      Validators.required,
+      Validators.minLength(3),
+      Validators.maxLength(60)
+    ]),
+    positionX: new FormControl(null,[
+      Validators.required
+    ]),
+    positionY: new FormControl(null,[
+      Validators.required
+    ]),
+    country: new FormControl(null,[
+      Validators.required
+    ]),
+    city: new FormControl(null,[
+      Validators.required
+    ])
+  });
 
-
-    constructor(private countryService: CountryService, private cityService: CityService, private router: Router, private monumentService: MonumentService) { }
+  constructor(private countryService: CountryService, private cityService: CityService, private router: Router, private monumentService: MonumentService) { }
 
   setChosenCountry(value) {
     this.cityService.getAllByCountryId(value).subscribe(val => this.city = val);

@@ -60,6 +60,7 @@ public class MonumentConverter implements Converter<Monument, MonumentDetailsDTO
                 .convertToDTO(monument.getImage()));
         monumentDetailsDTO.setCityDTO(cityConverter.convertToDTO(cityService
                 .findById(monument.getCity().getId())));
+        monumentDetailsDTO.setCategory(monument.getCategory());
         monumentDetailsDTO.setSelf(ControllerLinkBuilder.linkTo(
                 ControllerLinkBuilder.methodOn(MonumentController.class)
                         .getById(monument.getId())

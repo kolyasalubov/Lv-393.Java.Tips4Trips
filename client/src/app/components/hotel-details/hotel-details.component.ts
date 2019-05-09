@@ -4,6 +4,7 @@ import {Hotel} from "../../model/hotel.model";
 import {HotelService} from "../create-post-place/create-hotel/hotel.service";
 import {Position} from "../../model/position.model";
 import {City} from "../../model/city.model";
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-hotel-details',
@@ -12,12 +13,13 @@ import {City} from "../../model/city.model";
 })
 export class HotelDetailsComponent implements OnInit {
 
-  constructor(private activatedRoute: ActivatedRoute, private router: Router, private hotelService: HotelService) { }
+  constructor(private activatedRoute: ActivatedRoute, private router: Router, private hotelService: HotelService,
+              private location: Location) { }
   id: number;
   countryId: number;
   cityId: number;
   hotel: Hotel = new Hotel(0, '', '', [], '',
-    '', '', '', '','',new Position(0, 0),'',
+    '', '', '', '',new Position(0, 0),'',
     new City(0, '', new Position(0, 0), 0, ''),0,0);
 
   ngOnInit() {
@@ -25,5 +27,13 @@ export class HotelDetailsComponent implements OnInit {
       this.id = +params.get('id');
     });
     this.hotelService.findById(this.id).subscribe(value => this.hotel = value);
+  }
+
+  deletePlace() {
+    let confirmation = confirm("Delete " + this.hotel.name + "?");
+    if (confirmation) {
+      this.hotelService.deleteById(this.hotel.id);
+    }
+    this.location.back();
   }
 }

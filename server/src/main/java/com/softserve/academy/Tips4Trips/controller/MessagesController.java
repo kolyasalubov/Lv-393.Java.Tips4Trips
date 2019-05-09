@@ -5,6 +5,7 @@ import com.softserve.academy.Tips4Trips.service.MessageService;
 import org.apache.log4j.Logger;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.NotNull;
@@ -15,7 +16,7 @@ import java.util.stream.Collectors;
 @RestController
 @CrossOrigin
 //@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
-@RequestMapping("/messages")
+//@RequestMapping("/")
 public class MessagesController {
 
 
@@ -31,7 +32,8 @@ public class MessagesController {
     }
 
     @GetMapping("/messages/{id}")
-    public List<ChatMessageDTO> getMessagesByChatId(@PathVariable @NotNull @Positive Long id) {
+//    @PreAuthorize("hasRole('USER')")
+    public List<ChatMessageDTO> getCurrentMessagesByChatId(@PathVariable @NotNull @Positive Long id) {
 
         logger.info("MessagesController get messages by chat id");
 

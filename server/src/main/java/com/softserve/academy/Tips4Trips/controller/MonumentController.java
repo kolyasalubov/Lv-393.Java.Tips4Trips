@@ -56,9 +56,22 @@ public class MonumentController {
         return new ResponseEntity<>(monumentConverter.convertToDTO(monumentService.findById(id)), HttpStatus.OK);
     }
 
-    @PostMapping("/update")
+    @PutMapping("/update")
     public ResponseEntity<MonumentDetailsDTO> update(@RequestBody MonumentDetailsDTO monumentDetailsDTO) {
         logger.info("update monument method executing: ");
         return new ResponseEntity<>(monumentConverter.convertToDTO(monumentService.update(monumentConverter.convertToEntity(monumentDetailsDTO))), HttpStatus.OK);
+    }
+
+    @GetMapping("/city/{id}")
+    public ResponseEntity<List<PlaceInfoDTO>> getAllByCity(@PathVariable Long id) {
+        logger.info("get all monuments by city method executing: ");
+        return new ResponseEntity<>(placeConverter.convertToInfoDTO(monumentService.findByCity(id)), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity deleteById(@PathVariable Long id) {
+        logger.info("delete monument by id method executing: ");
+        monumentService.deleteById(id);
+        return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 }

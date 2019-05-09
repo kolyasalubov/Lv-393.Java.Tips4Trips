@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
  
-import { AuthService } from '../auth.service';
+import { CustomAuthService } from '../custom-auth.service';
 import { TokenStorageService } from '../token/token-storage.service';
 import { SignInForm } from '../../../model/authentication/signin-form.model';
 import { Router } from "@angular/router";
@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
   errorMessage = '';
   private loginInfo: SignInForm;
  
-  constructor(private authService: AuthService, private tokenStorage: TokenStorageService,
+  constructor(private authService: CustomAuthService, private tokenStorage: TokenStorageService,
     private router: Router) { }
  
   ngOnInit() {
