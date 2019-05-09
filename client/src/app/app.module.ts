@@ -73,7 +73,8 @@ import {AgmCoreModule, GoogleMapsAPIWrapper} from '@agm/core';
 import {MaptestComponent} from './components/maptest/maptest.component';
 import {MapDisplayComponent} from './components/map/map-display/map-display.component';
 import {MapPickerComponent} from './components/map/map-picker/map-picker.component';
-import {ChatComponent} from './components/chat/chat.component';
+import { ChatComponent } from './components/chat/chat.component';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 
 @NgModule({
@@ -147,6 +148,7 @@ import {ChatComponent} from './components/chat/chat.component';
     MapPickerComponent,
 
     ChatComponent
+
   ],
   imports: [
     BrowserModule,
@@ -154,7 +156,8 @@ import {ChatComponent} from './components/chat/chat.component';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule
   ],
   providers: [
     httpInterceptorProviders,
