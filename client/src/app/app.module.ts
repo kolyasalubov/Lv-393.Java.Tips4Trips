@@ -64,7 +64,6 @@ import { SearchRouteComponent } from './components/search/search-route/search-ro
 import {ProfileComponent} from "./components/authentication/profile/profile.component";
 import { ListPostsComponent } from './components/blog/list-posts/list-posts.component';
 import { ChatComponent } from './components/chat/chat.component';
-import { ToastrModule } from 'ngx-toastr';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 
@@ -136,8 +135,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule,
-    ToastrModule.forRoot()
+    BrowserAnimationsModule
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
