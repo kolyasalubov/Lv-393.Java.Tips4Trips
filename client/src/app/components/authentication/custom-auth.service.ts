@@ -38,8 +38,8 @@ export class CustomAuthService {
     return this.http.post(this.signupUrl, info, {responseType : 'text'});
   }
 
-  getCurrentUser(): Observable<User> {
-    return this.http.get<User>(this.currentUserUrl);
+  getCurrentUser(): Observable<Account> {
+    return this.http.get<Account>(this.currentUserUrl);
   }
   
   checkLoggedUser(): boolean {
