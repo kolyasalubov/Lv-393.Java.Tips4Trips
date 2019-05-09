@@ -1,7 +1,6 @@
 package com.softserve.academy.Tips4Trips.controller;
 
 
-import com.softserve.academy.Tips4Trips.dto.LikeDTO;
 import com.softserve.academy.Tips4Trips.dto.converter.AccountConverter;
 import com.softserve.academy.Tips4Trips.dto.converter.LikeConverter;
 import com.softserve.academy.Tips4Trips.dto.info.AccountInfoDTO;
@@ -47,14 +46,15 @@ public class LikeController {
 
     @GetMapping
     public ResponseEntity<List<AccountInfoDTO>> getAccounts(@PathVariable Long postId) {
-        logger.info("get accounts method executing: ");
+        logger.info("getAccounts method executing: ");
         Post post = postService.findById(postId);
         return new ResponseEntity<>(accountConverter.convertToInfoDTO(likeService
                 .findAccounts(post)), HttpStatus.OK);
     }
 
     @GetMapping("/count")
-    public long countLike(@PathVariable Long postId) {
+    public long countLikes(@PathVariable Long postId) {
+        logger.info("countLikes method executing: ");
         long count = likeService.countByPostId(postId);
         return count;
     }
@@ -62,6 +62,7 @@ public class LikeController {
     @PostMapping("/change/{accountId}")
     public void changeLikeState(@PathVariable Long postId,
                                 @PathVariable Long accountId) {
+        logger.info("changeLikeState method executing: ");
         Account account = accountService.findById(accountId);
         Post post = postService.findById(postId);
         if (likeService.existsByLikedByAndPost(account, post)) {
@@ -74,7 +75,8 @@ public class LikeController {
     @GetMapping("/exists/{accountId}")
     public boolean isAdded(@PathVariable Long postId,
                            @PathVariable Long accountId) {
-        boolean isAdded = false;
+        logger.info("isAdded method executing: ");
+        boolean isAdded;
         Account account = accountService.findById(accountId);
         Post post = postService.findById(postId);
         if (likeService.existsByLikedByAndPost(account, post)) {
@@ -84,24 +86,4 @@ public class LikeController {
         }
         return isAdded;
     }
-
-  /*  @PostMapping("/create/{accountId}")
-    public ResponseEntity<LikeDTO> createLike(@PathVariable Long postId,
-                                              @PathVariable Long accountId) {
-        logger.info("create like method executing: ");
-        Account account = accountService.findById(accountId);
-        Post post = postService.findById(postId);
-
-        return new ResponseEntity<>(likeConverter
-                .convertToDTO(likeService.createLike(account, post)), HttpStatus.CREATED);
-    }
-
-    @DeleteMapping("/delete/{accountId}")
-    public void deleteLike(@PathVariable Long postId,
-                           @PathVariable Long accountId) {
-        logger.info("delete like method executing: ");
-        Account account = accountService.findById(accountId);
-        Post post = postService.findById(postId);
-        likeService.deleteLike(post, account);
-    }*/
 }

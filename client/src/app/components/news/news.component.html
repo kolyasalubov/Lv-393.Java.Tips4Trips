@@ -15,13 +15,23 @@
     <div class="row">
       <div class="col-lg-8 order-md-last ftco-animate">
         <ul *ngFor="let post of posts"  class="comment-list">
-          <h4>{{post.firstName}} {{post.lastName}}</h4>
+          <h4 ><a style="color:#4d4d4d" href="/profile/{{post.accountId}}">{{post.firstName}} {{post.lastName}}</a></h4>
           <h6 style="color: #868e96">{{post.creationDate}}</h6>
         <img src="{{post.photoPath}}" alt="photo" class="img-fluid">
           <app-like [postid]="post.id"></app-like>
-        <h2 class="mb-3">{{post.name}}</h2>
-        <p>{{post.content.substr(0,275)}}...</p>
+        <h2 class="mb-3"><a href="/post/{{post.id}}">{{post.name}}</a></h2>
+        <p *ngIf="post.content.length>275 "> {{post.content.substr(0,275)}}<a style="color:#006dcc"  href="/post/{{post.id}}">...read more</a></p>
+        <p *ngIf="post.content.length<=275 "> {{post.content}}</p>
 
+          <!--<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus imperdiet, nulla-->
+            <!--et dictum interdum, nisi lorem egestas-->
+            <!--vitae scel<span id="dots{{post.id}}">...<span id="more{{post.id}}" style="display: none">erisque enim ligula venenatis dolor.-->
+              <!--Maecenas nisl est, ultrices nec congue eget, auctor vitae massa. Fusce luctus vestibulum-->
+            <!--augue ut aliquet. Nunc sagittis dictum nisi, sed ullamcorper-->
+            <!--ipsum dignissim ac. In at libero sed nunc venenatis imperdiet sed-->
+            <!--ornare turpis. Donec vitae dui eget tellus gravida venenatis. Integer fringilla-->
+              <!--congue eros non fermentum. Sed dapibus pulvinar nibh tempor porta.</span></span></p>-->
+          <!--<button onclick="myFunction()" id="myBtn{{post.id}}">Read more</button>-->
 
         </ul>
       </div>

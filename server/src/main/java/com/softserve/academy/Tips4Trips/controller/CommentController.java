@@ -1,16 +1,13 @@
 package com.softserve.academy.Tips4Trips.controller;
 
-import com.softserve.academy.Tips4Trips.dto.details.CommentDetailsDTO;
 import com.softserve.academy.Tips4Trips.dto.converter.CommentConverter;
-import com.softserve.academy.Tips4Trips.dto.converter.PostConverter;
-import com.softserve.academy.Tips4Trips.dto.details.PostDetailsDTO;
+import com.softserve.academy.Tips4Trips.dto.details.CommentDetailsDTO;
 import com.softserve.academy.Tips4Trips.entity.blog.Comment;
 import com.softserve.academy.Tips4Trips.service.CommentService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,7 +22,7 @@ public class CommentController {
 
     CommentConverter commentConverter;
     CommentService commentService;
-    PostConverter postConverter;
+
 
     @Autowired
     public CommentController(CommentConverter commentConverter, CommentService commentService) {
@@ -36,21 +33,20 @@ public class CommentController {
 
     @GetMapping("/all/{id}")
     public ResponseEntity<List<CommentDetailsDTO>> findByPostId(@PathVariable Long id) {
+        logger.info("findByPostId method executing: ");
         return new ResponseEntity<>(commentConverter.convertToDTO(commentService.findByPostId(id)), HttpStatus.OK);
     }
-/*    public long countByPost(@PathVariable Long id) {
-        long count = commentService.countByPostId(id);
-        return count;
-    }*/
 
     @PostMapping("/create")
     public ResponseEntity<CommentDetailsDTO> createComment(@RequestBody CommentDetailsDTO commentDetailsDTO) {
+        logger.info("createComment method executing: ");
         Comment comment = commentService.createComment(commentConverter.convertToEntity(commentDetailsDTO));
         return new ResponseEntity<>(commentConverter.convertToDTO(comment), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/delete/{accountId}/{commentId}")
     public ResponseEntity deleteComment(@PathVariable Long accountId, @PathVariable Long commentId) {
+        logger.info("deleteComment method executing: ");
         if (commentService.existsByCommentedByIdAndId(accountId, commentId)) {
             commentService.deleteComment(commentId);
         } else {

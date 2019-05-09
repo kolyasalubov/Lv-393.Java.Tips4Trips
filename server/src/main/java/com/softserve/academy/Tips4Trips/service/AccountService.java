@@ -94,16 +94,18 @@ public class AccountService {
     }
 
     @Transactional
-    public Account subscribe(Long accountId, Long profileId) {
+    public Account subscribe(Long accountId, Long followingAccountId) {
         Optional<Account> account = repository.findById(accountId);
 
         if (account.isPresent()) {
-            Optional<Account> profile = repository.findById(profileId);
-            if (!account.get().getSubscribers().contains(profile.get())) {
-                account.get().getSubscribers().add(profile.get());
+            if (!isFollowing(accountId, followingAccountId)) {
+                Optional<Account> followingAccount = repository.findById(followingAccountId);
+                account.get().getSubscribers().add(followingAccount.get());
             } else {
                 throw new DuplicateValueException(ExceptionMessages.ACCOUNT_CAN_NOT_BE_SUBSCRIBED_TWICE);
             }
+        } else {
+            throw new DataNotFoundException();
         }
         return account.get();
     }
@@ -112,10 +114,30 @@ public class AccountService {
     public void unSubscribe(Long accountId, Long profileId) {
         Optional<Account> account = repository.findById(accountId);
         if (account.isPresent()) {
-            Optional<Account> profile = repository.findById(profileId);
-            account.get().getSubscribers().remove(profile.get());
+            if (isFollowing(accountId, profileId)) {
+                Optional<Account> profile = repository.findById(profileId);
+                account.get().getSubscribers().remove(profile.get());
+            } else {
+                throw new DataNotFoundException();
+            }
         } else {
             throw new DataNotFoundException();
         }
+    }
+
+    public boolean isFollowing(Long accountId, Long followingAccountId) {
+        boolean isFollowing;
+        Optional<Account> account = repository.findById(accountId);
+        if (account.isPresent()) {
+            Account followingAccount = findById(followingAccountId);
+            if (account.get().getSubscribers().contains(followingAccount)) {
+                isFollowing = true;
+            } else {
+                isFollowing = false;
+            }
+        } else {
+            throw new DataNotFoundException();
+        }
+        return isFollowing;
     }
 }
