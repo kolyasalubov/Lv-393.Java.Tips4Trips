@@ -66,6 +66,7 @@ import { ListPostsComponent } from './components/blog/list-posts/list-posts.comp
 import { SearchPostComponent } from './components/search/search-post/search-post.component';
 import { SearchTripComponent } from './components/search/search-trip/search-trip.component';
 import { ListTripsComponent } from './components/trip/list-trips/list-trips.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -136,7 +137,8 @@ import { ListTripsComponent } from './components/trip/list-trips/list-trips.comp
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
