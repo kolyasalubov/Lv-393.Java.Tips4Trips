@@ -40,10 +40,7 @@ public class HotelConverter implements Converter<Hotel, HotelDetailsDTO> {
         HotelDetailsDTO hotelDetailsDTO = new HotelDetailsDTO();
         hotelDetailsDTO.setId(hotel.getId());
         hotelDetailsDTO.setName(hotel.getName());
-        String description = hotel.getDescription();
-        String shortedDescription = description.length() > MAX_DESCRIPTION_LENGTH
-                ? description.substring(0, MAX_DESCRIPTION_LENGTH) : description;
-        hotelDetailsDTO.setDescription(shortedDescription);
+        hotelDetailsDTO.setDescription(hotel.getDescription());
         hotelDetailsDTO.setSelf(ControllerLinkBuilder.linkTo(
                 ControllerLinkBuilder.methodOn(HotelController.class)
                         .getById(hotel.getId())
@@ -53,7 +50,6 @@ public class HotelConverter implements Converter<Hotel, HotelDetailsDTO> {
         hotelDetailsDTO.setWorkingDays(hotel.getWorkingDays());
         hotelDetailsDTO.setWebSite(hotel.getWebSite());
         hotelDetailsDTO.setTelephone(hotel.getTelephone());
-        hotelDetailsDTO.setType(hotel.getType());
         hotelDetailsDTO.setOpeningTime(formatter.format(hotel.getOpeningTime()));
         hotelDetailsDTO.setClosingTime(formatter.format(hotel.getClosingTime()));
         hotelDetailsDTO.setPhotoPath(hotel.getPhotoPath());
@@ -62,6 +58,7 @@ public class HotelConverter implements Converter<Hotel, HotelDetailsDTO> {
         hotelDetailsDTO.setCityDTO(cityConverter.convertToDTO(cityService.findById(hotel.getCity().getId())));
         hotelDetailsDTO.setMinimumPrice(hotel.getMinimumPrice());
         hotelDetailsDTO.setMaximumPrice(hotel.getMaximumPrice());
+        hotelDetailsDTO.setCategory(hotel.getCategory());
         return hotelDetailsDTO;
     }
 
@@ -78,7 +75,6 @@ public class HotelConverter implements Converter<Hotel, HotelDetailsDTO> {
         hotel.setWorkingDays(hotelDetailsDTO.getWorkingDays());
         hotel.setWebSite(hotelDetailsDTO.getWebSite());
         hotel.setTelephone(hotelDetailsDTO.getTelephone());
-        hotel.setType(hotelDetailsDTO.getType());
         try {
             hotel.setOpeningTime(formatter.parse(hotelDetailsDTO.getOpeningTime()));
             hotel.setClosingTime(formatter.parse(hotelDetailsDTO.getClosingTime()));

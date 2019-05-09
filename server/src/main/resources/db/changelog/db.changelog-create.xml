@@ -125,9 +125,6 @@
             <column name="closing_time" type="time"/>
             <column name="opening_time" type="time"/>
             <column name="telephone" type="VARCHAR(15)"/>
-            <column name="type" type="SMALLINT">
-                <constraints nullable="false"/>
-            </column>
             <column name="web_site" type="VARCHAR(30)"/>
             <column name="maximum_price" type="FLOAT(12)"/>
             <column name="minimum_price" type="FLOAT(12)"/>
@@ -228,9 +225,6 @@
             <column name="closing_time" type="time"/>
             <column name="opening_time" type="time"/>
             <column name="telephone" type="VARCHAR(15)"/>
-            <column name="type" type="SMALLINT">
-                <constraints nullable="false"/>
-            </column>
             <column name="web_site" type="VARCHAR(30)"/>
             <column name="average_bill" type="FLOAT(12)"/>
             <column name="has_vegan_food" type="BIT(1)"/>

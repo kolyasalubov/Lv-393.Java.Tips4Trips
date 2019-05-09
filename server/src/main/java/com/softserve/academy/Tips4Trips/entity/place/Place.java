@@ -2,6 +2,7 @@ package com.softserve.academy.Tips4Trips.entity.place;
 
 import com.softserve.academy.Tips4Trips.entity.City;
 import com.softserve.academy.Tips4Trips.entity.Position;
+import com.softserve.academy.Tips4Trips.entity.enums.PlaceCategory;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -114,4 +115,6 @@ public abstract class Place implements Serializable {
     public void setPhotoPath(String photoPath) {
         this.photoPath = photoPath;
     }
+
+    public abstract PlaceCategory getCategory();
 }

@@ -165,4 +165,334 @@
             <column name="route_id" valueNumeric="1"/>
         </insert>
     </changeSet>
+    <changeSet author="BBV (generated)" id="1557143174622-2">
+        <insert tableName="building_working_days">
+            <column name="building_id" valueNumeric="1"/>
+            <column name="working_day" valueNumeric="0"/>
+        </insert>
+        <insert tableName="building_working_days">
+            <column name="building_id" valueNumeric="1"/>
+            <column name="working_day" valueNumeric="2"/>
+        </insert>
+        <insert tableName="building_working_days">
+            <column name="building_id" valueNumeric="1"/>
+            <column name="working_day" valueNumeric="4"/>
+        </insert>
+        <insert tableName="building_working_days">
+            <column name="building_id" valueNumeric="1"/>
+            <column name="working_day" valueNumeric="1"/>
+        </insert>
+        <insert tableName="building_working_days">
+            <column name="building_id" valueNumeric="1"/>
+            <column name="working_day" valueNumeric="3"/>
+        </insert>
+        <insert tableName="building_working_days">
+            <column name="building_id" valueNumeric="1"/>
+            <column name="working_day" valueNumeric="5"/>
+        </insert>
+        <insert tableName="building_working_days">
+            <column name="building_id" valueNumeric="1"/>
+            <column name="working_day" valueNumeric="6"/>
+        </insert>
+        <insert tableName="building_working_days">
+            <column name="building_id" valueNumeric="2"/>
+            <column name="working_day" valueNumeric="0"/>
+        </insert>
+        <insert tableName="building_working_days">
+            <column name="building_id" valueNumeric="2"/>
+            <column name="working_day" valueNumeric="1"/>
+        </insert>
+        <insert tableName="building_working_days">
+            <column name="building_id" valueNumeric="2"/>
+            <column name="working_day" valueNumeric="2"/>
+        </insert>
+        <insert tableName="building_working_days">
+            <column name="building_id" valueNumeric="2"/>
+            <column name="working_day" valueNumeric="3"/>
+        </insert>
+        <insert tableName="building_working_days">
+            <column name="building_id" valueNumeric="2"/>
+            <column name="working_day" valueNumeric="4"/>
+        </insert>
+        <insert tableName="building_working_days">
+            <column name="building_id" valueNumeric="3"/>
+            <column name="working_day" valueNumeric="0"/>
+        </insert>
+        <insert tableName="building_working_days">
+            <column name="building_id" valueNumeric="3"/>
+            <column name="working_day" valueNumeric="1"/>
+        </insert>
+        <insert tableName="building_working_days">
+            <column name="building_id" valueNumeric="3"/>
+            <column name="working_day" valueNumeric="2"/>
+        </insert>
+        <insert tableName="building_working_days">
+            <column name="building_id" valueNumeric="3"/>
+            <column name="working_day" valueNumeric="3"/>
+        </insert>
+        <insert tableName="building_working_days">
+            <column name="building_id" valueNumeric="3"/>
+            <column name="working_day" valueNumeric="4"/>
+        </insert>
+        <insert tableName="building_working_days">
+            <column name="building_id" valueNumeric="3"/>
+            <column name="working_day" valueNumeric="5"/>
+        </insert>
+        <insert tableName="building_working_days">
+            <column name="building_id" valueNumeric="3"/>
+            <column name="working_day" valueNumeric="6"/>
+        </insert>
+        <insert tableName="building_working_days">
+            <column name="building_id" valueNumeric="4"/>
+            <column name="working_day" valueNumeric="0"/>
+        </insert>
+        <insert tableName="building_working_days">
+            <column name="building_id" valueNumeric="4"/>
+            <column name="working_day" valueNumeric="1"/>
+        </insert>
+        <insert tableName="building_working_days">
+            <column name="building_id" valueNumeric="4"/>
+            <column name="working_day" valueNumeric="2"/>
+        </insert>
+        <insert tableName="building_working_days">
+            <column name="building_id" valueNumeric="4"/>
+            <column name="working_day" valueNumeric="3"/>
+        </insert>
+        <insert tableName="building_working_days">
+            <column name="building_id" valueNumeric="4"/>
+            <column name="working_day" valueNumeric="4"/>
+        </insert>
+        <insert tableName="building_working_days">
+            <column name="building_id" valueNumeric="4"/>
+            <column name="working_day" valueNumeric="5"/>
+        </insert>
+        <insert tableName="building_working_days">
+            <column name="building_id" valueNumeric="4"/>
+            <column name="working_day" valueNumeric="6"/>
+        </insert>
+        <insert tableName="building_working_days">
+            <column name="building_id" valueNumeric="5"/>
+            <column name="working_day" valueNumeric="0"/>
+        </insert>
+        <insert tableName="building_working_days">
+            <column name="building_id" valueNumeric="5"/>
+            <column name="working_day" valueNumeric="1"/>
+        </insert>
+        <insert tableName="building_working_days">
+            <column name="building_id" valueNumeric="5"/>
+            <column name="working_day" valueNumeric="2"/>
+        </insert>
+        <insert tableName="building_working_days">
+            <column name="building_id" valueNumeric="5"/>
+            <column name="working_day" valueNumeric="3"/>
+        </insert>
+        <insert tableName="building_working_days">
+            <column name="building_id" valueNumeric="5"/>
+            <column name="working_day" valueNumeric="4"/>
+        </insert>
+        <insert tableName="building_working_days">
+            <column name="building_id" valueNumeric="5"/>
+            <column name="working_day" valueNumeric="5"/>
+        </insert>
+        <insert tableName="building_working_days">
+            <column name="building_id" valueNumeric="5"/>
+            <column name="working_day" valueNumeric="6"/>
+        </insert>
+        <insert tableName="building_working_days">
+            <column name="building_id" valueNumeric="6"/>
+            <column name="working_day" valueNumeric="0"/>
+        </insert>
+        <insert tableName="building_working_days">
+            <column name="building_id" valueNumeric="6"/>
+            <column name="working_day" valueNumeric="1"/>
+        </insert>
+        <insert tableName="building_working_days">
+            <column name="building_id" valueNumeric="6"/>
+            <column name="working_day" valueNumeric="2"/>
+        </insert>
+        <insert tableName="building_working_days">
+            <column name="building_id" valueNumeric="6"/>
+            <column name="working_day" valueNumeric="3"/>
+        </insert>
+        <insert tableName="building_working_days">
+            <column name="building_id" valueNumeric="6"/>
+            <column name="working_day" valueNumeric="4"/>
+        </insert>
+        <insert tableName="building_working_days">
+            <column name="building_id" valueNumeric="6"/>
+            <column name="working_day" valueNumeric="5"/>
+        </insert>
+        <insert tableName="building_working_days">
+            <column name="building_id" valueNumeric="6"/>
+            <column name="working_day" valueNumeric="6"/>
+        </insert>
+    </changeSet>
+    <changeSet author="BBV (generated)" id="1557143174622-4">
+        <insert tableName="countries">
+            <column name="id" valueNumeric="1"/>
+            <column name="name" value="First Country"/>
+            <column name="coordinate_x" valueNumeric="1525.0"/>
+            <column name="coordinate_y" valueNumeric="2658.0"/>
+        </insert>
+        <insert tableName="countries">
+            <column name="id" valueNumeric="2"/>
+            <column name="name" value="Second Country"/>
+            <column name="coordinate_x" valueNumeric="3142.0"/>
+            <column name="coordinate_y" valueNumeric="3124.0"/>
+        </insert>
+    </changeSet>
+    <changeSet author="BBV (generated)" id="1557143174622-3">
+        <insert tableName="cities">
+            <column name="id" valueNumeric="1"/>
+            <column name="name" value="Frist City"/>
+            <column name="coordinate_x" valueNumeric="1321.0"/>
+            <column name="coordinate_y" valueNumeric="4232.0"/>
+            <column name="country_id" valueNumeric="1"/>
+        </insert>
+        <insert tableName="cities">
+            <column name="id" valueNumeric="2"/>
+            <column name="name" value="Second City"/>
+            <column name="coordinate_x" valueNumeric="1321.0"/>
+            <column name="coordinate_y" valueNumeric="4232.0"/>
+            <column name="country_id" valueNumeric="1"/>
+        </insert>
+    </changeSet>
+    <changeSet author="BBV (generated)" id="1557143174622-5">
+        <insert tableName="hotels">
+            <column name="id" valueNumeric="4"/>
+            <column name="address" value="A street with hotel"/>
+            <column name="description" value="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."/>
+            <column name="name" value="First hotel"/>
+            <column name="photo_path" value="photo_path"/>
+            <column name="coordinate_x" valueNumeric="1312.0"/>
+            <column name="coordinate_y" valueNumeric="1234.0"/>
+            <column name="city_id" valueNumeric="1"/>
+            <column name="closing_time" valueDate="23:00:00"/>
+            <column name="opening_time" valueDate="08:00:00"/>
+            <column name="telephone" value="165325456"/>
+            <column name="web_site" value="http://hot.st"/>
+            <column name="maximum_price" valueNumeric="1400.0"/>
+            <column name="minimum_price" valueNumeric="400.0"/>
+        </insert>
+        <insert tableName="hotels">
+            <column name="id" valueNumeric="5"/>
+            <column name="address" value="A street with second hotel"/>
+            <column name="description" value="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."/>
+            <column name="name" value="Second hotel"/>
+            <column name="photo_path" value="photo_path"/>
+            <column name="coordinate_x" valueNumeric="12341.0"/>
+            <column name="coordinate_y" valueNumeric="12311.0"/>
+            <column name="city_id" valueNumeric="2"/>
+            <column name="closing_time" valueDate="23:00:00"/>
+            <column name="opening_time" valueDate="08:00:00"/>
+            <column name="telephone" value="258965478"/>
+            <column name="web_site" value="http://hot.nd"/>
+            <column name="maximum_price" valueNumeric="2000.0"/>
+            <column name="minimum_price" valueNumeric="500.0"/>
+        </insert>
+        <insert tableName="hotels">
+            <column name="id" valueNumeric="6"/>
+            <column name="address" value="Street with third hotel"/>
+            <column name="description" value="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."/>
+            <column name="name" value="Third hotel"/>
+            <column name="photo_path" value="photo_path"/>
+            <column name="coordinate_x" valueNumeric="41241.0"/>
+            <column name="coordinate_y" valueNumeric="123.0"/>
+            <column name="city_id" valueNumeric="1"/>
+            <column name="closing_time" valueDate="22:00:00"/>
+            <column name="opening_time" valueDate="07:00:00"/>
+            <column name="telephone" value="259654789"/>
+            <column name="web_site" value="http://hot.rd"/>
+            <column name="maximum_price" valueNumeric="400.0"/>
+            <column name="minimum_price" valueNumeric="150.0"/>
+        </insert>
+    </changeSet>
+    <changeSet author="BBV (generated)" id="1557143174622-6">
+        <insert tableName="key_generator">
+            <column name="sequence_name" value="places"/>
+            <column name="next_val" valueNumeric="100"/>
+        </insert>
+    </changeSet>
+    <changeSet author="BBV (generated)" id="1557143174622-7">
+        <insert tableName="monuments">
+            <column name="id" valueNumeric="7"/>
+            <column name="address" value="Some street with monument"/>
+            <column name="description" value="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."/>
+            <column name="name" value="First monument"/>
+            <column name="photo_path" value="photo_path"/>
+            <column name="coordinate_x" valueNumeric="84651.0"/>
+            <column name="coordinate_y" valueNumeric="4512.0"/>
+            <column name="city_id" valueNumeric="1"/>
+        </insert>
+        <insert tableName="monuments">
+            <column name="id" valueNumeric="8"/>
+            <column name="address" value="Street with second monument"/>
+            <column name="description" value="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."/>
+            <column name="name" value="Second monument"/>
+            <column name="photo_path" value="photo_path"/>
+            <column name="coordinate_x" valueNumeric="5416.0"/>
+            <column name="coordinate_y" valueNumeric="166.0"/>
+            <column name="city_id" valueNumeric="2"/>
+        </insert>
+        <insert tableName="monuments">
+            <column name="id" valueNumeric="9"/>
+            <column name="address" value="Street with third monument"/>
+            <column name="description" value="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."/>
+            <column name="name" value="Third monument"/>
+            <column name="photo_path" value="photo_path"/>
+            <column name="coordinate_x" valueNumeric="1324.0"/>
+            <column name="coordinate_y" valueNumeric="1598.0"/>
+            <column name="city_id" valueNumeric="1"/>
+        </insert>
+    </changeSet>
+    <changeSet author="BBV (generated)" id="1557143174622-9">
+        <insert tableName="restaurants">
+            <column name="id" valueNumeric="1"/>
+            <column name="address" value="Another one street in the city"/>
+            <column name="description" value="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."/>
+            <column name="name" value="Third Restaurant"/>
+            <column name="photo_path" value="photo_path"/>
+            <column name="coordinate_x" valueNumeric="1123.0"/>
+            <column name="coordinate_y" valueNumeric="1223.0"/>
+            <column name="city_id" valueNumeric="1"/>
+            <column name="closing_time" valueDate="23:00:00"/>
+            <column name="opening_time" valueDate="10:00:00"/>
+            <column name="telephone" value="398512589"/>
+            <column name="web_site" value="http://rest.rd"/>
+            <column name="average_bill" valueNumeric="450.0"/>
+            <column name="has_vegan_food" valueBoolean="true"/>
+        </insert>
+        <insert tableName="restaurants">
+            <column name="id" valueNumeric="2"/>
+            <column name="address" value="A street in the city"/>
+            <column name="description" value="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."/>
+            <column name="name" value="First Restaurant"/>
+            <column name="photo_path" value="photo_path"/>
+            <column name="coordinate_x" valueNumeric="1652.0"/>
+            <column name="coordinate_y" valueNumeric="1545.0"/>
+            <column name="city_id" valueNumeric="1"/>
+            <column name="closing_time" valueDate="21:00:00"/>
+            <column name="opening_time" valueDate="10:00:00"/>
+            <column name="telephone" value="365897548"/>
+            <column name="web_site" value="http://rest.st"/>
+            <column name="average_bill" valueNumeric="500.0"/>
+            <column name="has_vegan_food" valueBoolean="true"/>
+        </insert>
+        <insert tableName="restaurants">
+            <column name="id" valueNumeric="3"/>
+            <column name="address" value="Another street in the city"/>
+            <column name="description" value="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."/>
+            <column name="name" value="Second Restaurant"/>
+            <column name="photo_path" value="photo_path"/>
+            <column name="coordinate_x" valueNumeric="4231.0"/>
+            <column name="coordinate_y" valueNumeric="12313.0"/>
+            <column name="city_id" valueNumeric="1"/>
+            <column name="closing_time" valueDate="23:00:00"/>
+            <column name="opening_time" valueDate="09:00:00"/>
+            <column name="telephone" value="258965478"/>
+            <column name="web_site" value="http://rest.nd"/>
+            <column name="average_bill" valueNumeric="200.0"/>
+            <column name="has_vegan_food" valueBoolean="false"/>
+        </insert>
+    </changeSet>
 </databaseChangeLog>

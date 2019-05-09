@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {Observable} from "rxjs/index";
 import {Restaurant} from "../../../model/restaurant.model";
+import {RestaurantSearchCriteria} from "../../city-places/restaurant-search-criteria.model";
 
 @Injectable({
   providedIn: 'root'
@@ -34,13 +35,19 @@ export class RestaurantService {
     return this.http.post<Restaurant>(this.baseUrl + "create", restaurant);
   }
 
-//??????????????????
-  updateRestaurant(myRestaurant: Restaurant): Observable<Restaurant> {
-    console.log(myRestaurant);
-    return this.http.post<Restaurant>(this.baseUrl + "update", Restaurant);
-  }
-
   findById(id: number): Observable<Restaurant> {
     return this.http.get<Restaurant>(this.baseUrl + id);
+  }
+
+  filter(restaurantFilter: RestaurantSearchCriteria): Observable<Restaurant[]> {
+    return this.http.post<Restaurant[]>(this.baseUrl + "filter", restaurantFilter);
+  }
+
+  deleteById(id: number) {
+    this.http.delete(this.baseUrl + id).subscribe();
+  }
+
+  update(restaurant: Restaurant): Observable<Restaurant> {
+    return this.http.put<Restaurant>(this.baseUrl + "update", restaurant);
   }
 }

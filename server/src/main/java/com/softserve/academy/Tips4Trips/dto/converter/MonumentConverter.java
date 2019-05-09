@@ -51,6 +51,7 @@ public class MonumentConverter implements Converter<Monument, MonumentDetailsDTO
         monumentDetailsDTO.setPosition(monument.getPosition());
         monumentDetailsDTO.setPhotoPath(monument.getPhotoPath());
         monumentDetailsDTO.setCityDTO(cityConverter.convertToDTO(cityService.findById(monument.getCity().getId())));
+        monumentDetailsDTO.setCategory(monument.getCategory());
         monumentDetailsDTO.setSelf(ControllerLinkBuilder.linkTo(
                 ControllerLinkBuilder.methodOn(MonumentController.class)
                         .getById(monument.getId())

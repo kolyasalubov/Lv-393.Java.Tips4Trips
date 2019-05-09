@@ -3,6 +3,11 @@ import {CityService} from "../create-post-place/city.service";
 import {PlaceService} from "../../place.service";
 import {PlaceInfo} from "../../model/place-info.model";
 import {ActivatedRoute} from "@angular/router";
+import {RestaurantSearchCriteria} from "./restaurant-search-criteria.model";
+import {RestaurantService} from "../create-post-place/create-restaurant/restaurant.service";
+import {HotelService} from "../create-post-place/create-hotel/hotel.service";
+import {HotelSearchCriteria} from "./hotel-search-criteria.model";
+import {MonumentService} from "../create-post-place/create-monument/monument.service";
 
 @Component({
   selector: 'app-city-places',
@@ -11,21 +16,78 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class CityPlacesComponent implements OnInit {
 
-  constructor(private placeService: PlaceService, private activatedRoute: ActivatedRoute) { }
+  constructor(private placeService: PlaceService, private activatedRoute: ActivatedRoute,
+              private restaurantService: RestaurantService, private hotelService: HotelService,
+              private monumentService: MonumentService) { }
 
-  places: PlaceInfo[] = null;
+  places: any[];
+  categorizedPlaces: any[];
   cityId: number;
+  categories: string[];
+  selectedCategory: string = "all";
+  restaurantFilter: RestaurantSearchCriteria = new RestaurantSearchCriteria(null, "", null, null);
+  hotelFilter: HotelSearchCriteria = new HotelSearchCriteria(null, "", null);
 
   ngOnInit() {
+    this.places = new Array();
+    this.categories = new Array();
     this.activatedRoute.paramMap.subscribe(params => {
       this.cityId = +params.get('id');
     });
     this.placeService.getAllByCityId(this.cityId).subscribe(data => this.places = data);
+
+
+    let scrollToTop = window.setInterval(() => {
+      let pos = window.pageYOffset;
+      if (pos > 0) {
+        window.scrollTo(0, pos - 20);
+      } else {
+        window.clearInterval(scrollToTop);
+      }
+    }, 16);
   }
+
 
   transferSelfUrl(url: string): string {
     const urlArr = url.split('/');
     return urlArr[urlArr.length - 2] + "/" + urlArr[urlArr.length - 1];
   }
 
+  filterRestaurants() {
+    this.restaurantFilter.cityId = this.cityId;
+    this.restaurantService.filter(this.restaurantFilter).subscribe(data => this.categorizedPlaces = data);
+  }
+
+  filterHotels() {
+    this.hotelFilter.cityId = this.cityId;
+    this.hotelService.filter(this.hotelFilter).subscribe(data => this.categorizedPlaces = data);
+  }
+
+  filterMonuments() {
+    this.monumentService.findByCity(this.cityId).subscribe(data => this.categorizedPlaces = data);
+  }
+
+  selectCategory(value: string) {
+    this.selectedCategory = value;
+    if (value === "restaurants") {
+      this.filterRestaurants();
+    } else if (value === "hotels") {
+      this.filterHotels();
+    } else if (value === "monuments") {
+      this.filterMonuments();
+    }
+  }
+
+  clearRestaurantFilter() {
+    this.restaurantFilter.worksAt = "";
+    this.restaurantFilter.averageBill = null;
+    this.restaurantFilter.hasVeganFood = null;
+    this.filterRestaurants();
+  }
+
+  clearHotelFilter() {
+    this.hotelFilter.priceIn = null;
+    this.hotelFilter.worksAt = "";
+    this.filterHotels();
+  }
 }

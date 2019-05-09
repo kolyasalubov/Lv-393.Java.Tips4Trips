@@ -11,6 +11,10 @@
         <div class="row blog-entries element-animate">
           <div class="col-md-12 col-lg-8 main-content" style="padding-left: 0px;">
             <h1 class="mb-4">Restaurant details</h1>
+            <div>
+              <button class="btn submit" routerLink="/restaurants/edit/{{restaurant.id}}">Edit</button>
+              <button class="btn submit" (click)="deletePlace()">Delete</button>
+            </div>
               <table style="width: 100%;margin-top: 5%;">
                 <tr>
                   <td><h4>

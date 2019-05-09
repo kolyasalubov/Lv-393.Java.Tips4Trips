@@ -38,6 +38,9 @@ import { NotVerifiedRoutesPageComponent } from './components/routes/not-verified
 import { SearchPlaceComponent } from './components/search/search-place/search-place.component';
 import { SearchComponent } from './components/search/search/search.component';
 import {NewsComponent} from "./components/news/news.component";
+import {EditRestaurantComponent} from "./components/create-post-place/edit-restaurant/edit-restaurant.component";
+import {EditHotelComponent} from "./components/create-post-place/edit-hotel/edit-hotel.component";
+import {EditMonumentComponent} from "./components/create-post-place/edit-monument/edit-monument.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -90,6 +93,9 @@ const routes: Routes = [
   { path: 'search', component: SearchComponent },
   { path: '404', component: ErrorComponent },
   {path: 'news', component: NewsComponent},
+  { path: 'restaurants/edit/:id', component: EditRestaurantComponent},
+  { path: 'monuments/edit/:id', component: EditMonumentComponent},
+  { path: 'hotels/edit/:id', component: EditHotelComponent},
   { path: '**', redirectTo: '/404' }
 ];
 

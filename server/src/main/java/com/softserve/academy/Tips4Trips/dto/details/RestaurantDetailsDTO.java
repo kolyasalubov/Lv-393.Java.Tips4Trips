@@ -3,7 +3,6 @@ package com.softserve.academy.Tips4Trips.dto.details;
 import com.softserve.academy.Tips4Trips.dto.CityDTO;
 import com.softserve.academy.Tips4Trips.dto.info.PlaceInfoDTO;
 import com.softserve.academy.Tips4Trips.entity.Position;
-import com.softserve.academy.Tips4Trips.entity.enums.TypeOfBuilding;
 
 import java.time.DayOfWeek;
 import java.util.Date;
@@ -13,11 +12,9 @@ public class RestaurantDetailsDTO extends PlaceInfoDTO {
     private List<DayOfWeek> workingDays;
     private String webSite;
     private String telephone;
-    private TypeOfBuilding type;
     private String openingTime;
     private String closingTime;
     private String address;
-    private Position position;
     private String photoPath;
     private CityDTO cityDTO;
     private Float averageBill;
@@ -47,14 +44,6 @@ public class RestaurantDetailsDTO extends PlaceInfoDTO {
         this.telephone = telephone;
     }
 
-    public TypeOfBuilding getType() {
-        return type;
-    }
-
-    public void setType(TypeOfBuilding type) {
-        this.type = type;
-    }
-
     public String getOpeningTime() {
         return openingTime;
     }
@@ -77,14 +66,6 @@ public class RestaurantDetailsDTO extends PlaceInfoDTO {
 
     public void setAddress(String address) {
         this.address = address;
-    }
-
-    public Position getPosition() {
-        return position;
-    }
-
-    public void setPosition(Position position) {
-        this.position = position;
     }
 
     public String getPhotoPath() {

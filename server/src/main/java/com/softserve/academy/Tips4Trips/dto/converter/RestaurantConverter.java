@@ -44,7 +44,6 @@ public class RestaurantConverter implements Converter<Restaurant, RestaurantDeta
         restaurant.setCity(cityConverter.convertToEntity(restaurantDetailsDTO.getCityDTO()));
         restaurant.setWorkingDays(restaurantDetailsDTO.getWorkingDays());
         restaurant.setWebSite(restaurantDetailsDTO.getWebSite());
-        restaurant.setType(restaurantDetailsDTO.getType());
         restaurant.setTelephone(restaurantDetailsDTO.getTelephone());
         try {
             restaurant.setOpeningTime(formatter.parse(restaurantDetailsDTO.getOpeningTime()));
@@ -68,7 +67,6 @@ public class RestaurantConverter implements Converter<Restaurant, RestaurantDeta
         restaurantDetailsDTO.setWorkingDays(restaurant.getWorkingDays());
         restaurantDetailsDTO.setWebSite(restaurant.getWebSite());
         restaurantDetailsDTO.setTelephone(restaurant.getTelephone());
-        restaurantDetailsDTO.setType(restaurant.getType());
         restaurantDetailsDTO.setOpeningTime(formatter.format(restaurant.getOpeningTime()));
         restaurantDetailsDTO.setClosingTime(formatter.format(restaurant.getClosingTime()));
         restaurantDetailsDTO.setPhotoPath(restaurant.getPhotoPath());
@@ -77,6 +75,7 @@ public class RestaurantConverter implements Converter<Restaurant, RestaurantDeta
         restaurantDetailsDTO.setCityDTO(cityConverter.convertToDTO(cityService.findById(restaurant.getCity().getId())));
         restaurantDetailsDTO.setAverageBill(restaurant.getAverageBill());
         restaurantDetailsDTO.setHasVeganFood(restaurant.getHasVeganFood());
+        restaurantDetailsDTO.setCategory(restaurant.getCategory());
         restaurantDetailsDTO.setSelf(ControllerLinkBuilder.linkTo(
                 ControllerLinkBuilder.methodOn(RestaurantController.class)
                         .getById(restaurant.getId())

@@ -1,6 +1,7 @@
 package com.softserve.academy.Tips4Trips.entity.place;
 
 import com.softserve.academy.Tips4Trips.entity.Position;
+import com.softserve.academy.Tips4Trips.entity.enums.PlaceCategory;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -16,4 +17,8 @@ public class Monument extends Place{
         super();
     }
 
+    @Override
+    public PlaceCategory getCategory() {
+        return PlaceCategory.MONUMENTS;
+    }
 }

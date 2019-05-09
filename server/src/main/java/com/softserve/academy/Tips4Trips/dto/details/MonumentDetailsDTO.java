@@ -7,7 +7,6 @@ import com.softserve.academy.Tips4Trips.entity.Position;
 public class MonumentDetailsDTO extends PlaceInfoDTO {
 
     private String address;
-    private Position position;
     private String photoPath;
     private CityDTO cityDTO;
 
@@ -17,14 +16,6 @@ public class MonumentDetailsDTO extends PlaceInfoDTO {
 
     public void setAddress(String address) {
         this.address = address;
-    }
-
-    public Position getPosition() {
-        return position;
-    }
-
-    public void setPosition(Position position) {
-        this.position = position;
     }
 
     public String getPhotoPath() {

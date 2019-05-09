@@ -1,6 +1,5 @@
 package com.softserve.academy.Tips4Trips.entity.place;
 
-import com.softserve.academy.Tips4Trips.entity.enums.TypeOfBuilding;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -28,11 +27,6 @@ public abstract class Building extends Place {
     @Size(max = 15)
     @Column(length = 15)
     private String telephone;
-
-    @Enumerated
-    @NotNull
-    @Column(columnDefinition = "smallint", nullable = false)
-    private TypeOfBuilding type;
 
     @Column(name = "opening_time")
     @Temporal(TemporalType.TIME)
@@ -68,14 +62,6 @@ public abstract class Building extends Place {
 
     public void setTelephone(String telephone) {
         this.telephone = telephone;
-    }
-
-    public TypeOfBuilding getType() {
-        return type;
-    }
-
-    public void setType(TypeOfBuilding type) {
-        this.type = type;
     }
 
     public Date getOpeningTime() {

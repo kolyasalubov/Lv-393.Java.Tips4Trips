@@ -34,8 +34,8 @@ public class MonumentService {
         return repository.findByName(name);
     }
 
-    public List<Monument> findByCity(String name) {
-        Optional<City> city = cityRepository.findByName(name);
+    public List<Monument> findByCity(Long id) {
+        Optional<City> city = cityRepository.findById(id);
         return city.map(value -> repository.findByCity(value)).orElse(null);
     }
 
@@ -57,5 +57,9 @@ public class MonumentService {
         monumentToUpdate.setPhotoPath(monument.getPhotoPath());
         monumentToUpdate.setCity(monument.getCity());
         return repository.save(monumentToUpdate);
+    }
+
+    public void deleteById(Long id) {
+        repository.deleteById(id);
     }
 }

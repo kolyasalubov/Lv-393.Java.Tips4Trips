@@ -9,7 +9,7 @@ export class Restaurant {
   workingDays: string[];
   webSite: string;
   telephone: string;
-  type: string;
+  category: string;
   openingTime: string;
   closingTime: string;
   address: string;
@@ -21,7 +21,7 @@ export class Restaurant {
 
 
   constructor(id: number, name: string, description: string, workingDays: string[], webSite: string, telephone: string,
-              type: string, openingTime: string, closingTime: string, address: string,
+              openingTime: string, closingTime: string, address: string,
               position: Position, photoPath: string, cityDTO: City, averageBill: number, hasVeganFood: boolean) {
     this.id = id;
     this.name = name;
@@ -29,7 +29,7 @@ export class Restaurant {
     this.workingDays = workingDays;
     this.webSite = webSite;
     this.telephone = telephone;
-    this.type = type;
+    this.category = "RESTAURANTS";
     this.openingTime = openingTime;
     this.closingTime = closingTime;
     this.address = address;
