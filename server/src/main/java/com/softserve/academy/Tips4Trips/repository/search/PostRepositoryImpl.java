@@ -1,5 +1,6 @@
 package com.softserve.academy.Tips4Trips.repository.search;
 
+import com.softserve.academy.Tips4Trips.dto.Page;
 import com.softserve.academy.Tips4Trips.dto.search.PostSearchParams;
 import com.softserve.academy.Tips4Trips.entity.blog.Post;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,12 +28,26 @@ public class PostRepositoryImpl implements SearchRepository<Post, PostSearchPara
     }
 
     @Override
-    public List<Post> findByParams(PostSearchParams searchParams) {
+    public Page<Post> findByParams(PostSearchParams searchParams, long page, int size) {
         CriteriaQuery<Post> cq = cb.createQuery(Post.class);
         Root<Post> post = cq.from(Post.class);
         List<Predicate> wherePredicates = getWherePredicates(searchParams, post);
         cq.where(wherePredicates.toArray(new Predicate[0]));
-        return em.createQuery(cq).getResultList();
+        long count = getCountByParams(searchParams);
+        long total = (count % size == 0) ? count / size : count / size + 1;
+        List<Post> result = em.createQuery(cq)
+                .setFirstResult((int) page * size)
+                .setMaxResults(size).getResultList();
+        return new Page<>(result, page, total);
+    }
+
+    private long getCountByParams(PostSearchParams searchParams) {
+        CriteriaQuery<Long> cq = cb.createQuery(Long.class);
+        Root<Post> from = cq.from(Post.class);
+        List<Predicate> wherePredicates = getWherePredicates(searchParams, from);
+        cq.select(cb.count(from))
+                .where(wherePredicates.toArray(new Predicate[0]));
+        return em.createQuery(cq).getSingleResult();
     }
 
     private List<Predicate> getWherePredicates(PostSearchParams searchParams, Root<Post> post) {

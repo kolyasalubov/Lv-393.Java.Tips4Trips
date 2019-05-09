@@ -88,6 +88,7 @@ const routes: Routes = [
   { path: 'test', component: TestComponent },
   { path: 'profile/:id', component: ProfileComponent },
   { path: 'search', component: SearchComponent },
+  { path: 'search/page/:page', component: SearchComponent },
   { path: '404', component: ErrorComponent },
   {path: 'news', component: NewsComponent},
   { path: '**', redirectTo: '/404' }

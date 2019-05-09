@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchService } from 'src/app/service/search.service';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { LittlepostModel } from 'src/app/model/littlepost.model';
 import { PostSearchParams } from 'src/app/model/search/post-search-params';
 
@@ -11,6 +11,9 @@ import { PostSearchParams } from 'src/app/model/search/post-search-params';
 })
 export class SearchPostComponent {
 
+  total: number;
+  page: number;
+  queryParams: object = {};
   posts: LittlepostModel[];
   params: PostSearchParams = new PostSearchParams();
   dateDropdownText: string = "Whenever";
@@ -22,6 +25,7 @@ export class SearchPostComponent {
   ) { }
 
   init() {
+    this.queryParams = this.route.snapshot.queryParams;
     this.params = new PostSearchParams();
     this.route.queryParams.subscribe(params => {
       let dateOption = params['dateOption'];
@@ -40,11 +44,21 @@ export class SearchPostComponent {
       }
       if (this.params.startDate == null && this.params.endDate == null) this.setWheneverOption();
     });
+    this.route.params.forEach((params: Params) => {
+      try {
+        this.page = (params['page']) ? +params['page'] -1 : 0 ;
+      } catch (err) {
+        this.page = 0;
+      }
+    });
   }
   
-  search(seek: string): void {
+  search(seek: string, page: number): void {
     this.params.name = seek;
-    this.searchService.findPostsByParams(this.params).subscribe(data => this.posts = data);
+    this.searchService.findPostsByParams(this.params, page).subscribe(data => {
+      this.posts = data.list;
+      this.total = data.total;
+    });
   }
 
   navigate(seek: string) : void {

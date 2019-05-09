@@ -1,5 +1,6 @@
 package com.softserve.academy.Tips4Trips.repository.search;
 
+import com.softserve.academy.Tips4Trips.dto.Page;
 import com.softserve.academy.Tips4Trips.dto.search.TripSearchParams;
 import com.softserve.academy.Tips4Trips.entity.administration.Account;
 import com.softserve.academy.Tips4Trips.entity.entertainment.mountains.Trip;
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
@@ -28,7 +30,7 @@ public class TripRepositoryImpl implements SearchRepository<Trip, TripSearchPara
     }
 
     @Override
-    public List<Trip> findByParams(TripSearchParams searchParams) {
+    public Page<Trip> findByParams(TripSearchParams searchParams, long page, int size) {
         CriteriaQuery<Trip> cq = cb.createQuery(Trip.class);
         Root<Trip> trip = cq.from(Trip.class);
         List<Predicate> wherePredicates = getWherePredicates(searchParams, trip);
@@ -36,7 +38,29 @@ public class TripRepositoryImpl implements SearchRepository<Trip, TripSearchPara
         cq.where(wherePredicates.toArray(new Predicate[0]))
                 .groupBy(trip)
                 .having(havingPredicates.toArray(new Predicate[0]));
-        return em.createQuery(cq).getResultList();
+        long count = getCountByParams(searchParams);
+        long total = (count % size == 0) ? count / size : count / size + 1;
+        List<Trip> result = em.createQuery(cq)
+                .setFirstResult((int) page * size)
+                .setMaxResults(size).getResultList();
+        return new Page<>(result, page, total);
+    }
+
+    private long getCountByParams(TripSearchParams searchParams) {
+        CriteriaQuery<Long> cq = cb.createQuery(Long.class);
+        Root<Trip> from = cq.from(Trip.class);
+        List<Predicate> wherePredicates = getWherePredicates(searchParams, from);
+        List<Predicate> havingPredicates = getHavingPredicates(searchParams, from);
+        cq.select(cb.count(from))
+                .where(wherePredicates.toArray(new Predicate[0]))
+                .groupBy(from)
+                .having(havingPredicates.toArray(new Predicate[0]));
+        try {
+            return em.createQuery(cq).getSingleResult();
+        } catch (NoResultException ex) {
+            return 0;
+        }
+
     }
 
     private List<Predicate> getWherePredicates(TripSearchParams searchParams, Root<Trip> trip) {
@@ -69,8 +93,8 @@ public class TripRepositoryImpl implements SearchRepository<Trip, TripSearchPara
         if (searchParams.getMinSubscribersCount() > 0) {
             havingPredicates.add(cb
                     .greaterThanOrEqualTo(cb
-                    .count(trip.join("subscribers")), searchParams
-                    .getMinSubscribersCount()));
+                            .count(trip.join("subscribers")), searchParams
+                            .getMinSubscribersCount()));
         }
         return havingPredicates;
     }

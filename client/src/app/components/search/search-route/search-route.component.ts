@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RouteInfo } from 'src/app/model/route-info.model';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { SearchService } from 'src/app/service/search.service';
 import { RouteSearchParams } from 'src/app/model/search/route-search-params';
 
@@ -11,7 +11,10 @@ import { RouteSearchParams } from 'src/app/model/search/route-search-params';
 })
 export class SearchRouteComponent {
 
+  total: number;
+  page: number;
   routes: RouteInfo[];
+  queryParams: object = {};
   params: RouteSearchParams = new RouteSearchParams();
   dateDropdownText: string = "Whenever";
   verifiedDropdownText: string = "Verified only";
@@ -23,6 +26,7 @@ export class SearchRouteComponent {
   ) { }
 
   init() {
+    this.queryParams = this.route.snapshot.queryParams;
     this.params = new RouteSearchParams();
     this.route.queryParams.subscribe(params => {
       this.params.verifiedOnly = params['verifiedOnly'] != "false";
@@ -43,11 +47,21 @@ export class SearchRouteComponent {
       if (this.params.startDate == null && this.params.endDate == null) this.setWheneverOption();
       if (!this.params.verifiedOnly) this.verifiedDropdownText = "All";
     });
+    this.route.params.forEach((params: Params) => {
+      try {
+        this.page = (params['page']) ? +params['page'] -1 : 0 ;
+      } catch (err) {
+        this.page = 0;
+      }
+    });
   }
 
-  search(seek: string): void {
+  search(seek: string, page: number): void {
     this.params.name = seek;
-    this.searchService.findRoutesByParams(this.params).subscribe(data => this.routes = data);
+    this.searchService.findRoutesByParams(this.params, page).subscribe(data => { 
+      this.routes = data.list;
+      this.total = data.total;
+    });
   }
 
   navigate(seek: string): void {

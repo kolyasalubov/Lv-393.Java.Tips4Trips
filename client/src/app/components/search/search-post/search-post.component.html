@@ -32,4 +32,5 @@
 
 <div class="container mt-5">
   <app-list-posts [postP]="posts"></app-list-posts>
+  <app-pagination [number]="page" [link]="'/search/page/'" [total]="total" [queryParams]="queryParams"></app-pagination>
 </div>

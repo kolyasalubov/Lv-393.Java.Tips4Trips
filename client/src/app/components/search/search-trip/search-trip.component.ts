@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchService } from 'src/app/service/search.service';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { TripInfoDTO } from 'src/app/model/trip-info';
 import { TripSearchParams } from 'src/app/model/search/trip-search-params';
 
@@ -11,6 +11,9 @@ import { TripSearchParams } from 'src/app/model/search/trip-search-params';
 })
 export class SearchTripComponent {
 
+  total: number;
+  page: number;
+  queryParams: object = {};
   trips: TripInfoDTO[];
   params: TripSearchParams = new TripSearchParams();
   dateDropdownText: string = "Whenever";
@@ -22,6 +25,7 @@ export class SearchTripComponent {
   ) { }
 
   init() {
+    this.queryParams = this.route.snapshot.queryParams;
     this.params = new TripSearchParams();
     this.route.queryParams.subscribe(params => {
       let dateOption = params['dateOption'];
@@ -42,11 +46,21 @@ export class SearchTripComponent {
       this.params.routeName = params['routeName'];
       this.params.minSubscribersCount = params['minSubscribersCount'];
     });
+    this.route.params.forEach((params: Params) => {
+      try {
+        this.page = (params['page']) ? +params['page'] -1 : 0 ;
+      } catch (err) {
+        this.page = 0;
+      }
+    });
   }
 
-  search(seek: string): void {
+  search(seek: string, page: number): void {
     this.params.name = seek;
-    this.searchService.findTripsByParams(this.params).subscribe(data => this.trips = data);
+    this.searchService.findTripsByParams(this.params, page).subscribe(data => { 
+      this.trips = data.list;
+      this.total = data.total;
+    });
   }
 
   navigate(seek: string) : void {

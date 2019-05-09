@@ -7,6 +7,7 @@ import { PostSearchParams } from '../model/search/post-search-params';
 import { LittlepostModel } from '../model/littlepost.model';
 import { TripSearchParams } from '../model/search/trip-search-params';
 import { TripInfoDTO } from '../model/trip-info';
+import { Page } from '../model/page';
 
 @Injectable({
   providedIn: 'root'
@@ -18,16 +19,16 @@ export class SearchService {
 
   baseUrl: string = 'http://localhost:8080/search/';
 
-  findRoutesByParams(params: RouteSearchParams): Observable<RouteInfo[]> {
-    return this.http.post<RouteInfo[]>(this.baseUrl + "routes", params );
+  findRoutesByParams(params: RouteSearchParams, page: number): Observable<Page<RouteInfo>> {
+    return this.http.post<Page<RouteInfo>>(this.baseUrl + "routes" + "?page=" + page, params );
   }
 
-  findPostsByParams(params: PostSearchParams): Observable<LittlepostModel[]> {
-    return this.http.post<LittlepostModel[]>(this.baseUrl + "posts", params );
+  findPostsByParams(params: PostSearchParams, page: number): Observable<Page<LittlepostModel>> {
+    return this.http.post<Page<LittlepostModel>>(this.baseUrl + "posts" + "?page=" + page, params );
   }
 
-  findTripsByParams(params: TripSearchParams): Observable<TripInfoDTO[]> {
-    return this.http.post<TripInfoDTO[]>(this.baseUrl + "trips", params );
+  findTripsByParams(params: TripSearchParams, page: number): Observable<Page<TripInfoDTO>> {
+    return this.http.post<Page<TripInfoDTO>>(this.baseUrl + "trips" + "?page=" + page, params );
   }
 
 }

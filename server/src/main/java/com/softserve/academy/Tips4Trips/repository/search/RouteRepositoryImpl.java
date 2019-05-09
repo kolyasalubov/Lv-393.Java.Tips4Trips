@@ -1,5 +1,6 @@
 package com.softserve.academy.Tips4Trips.repository.search;
 
+import com.softserve.academy.Tips4Trips.dto.Page;
 import com.softserve.academy.Tips4Trips.dto.search.RouteSearchParams;
 import com.softserve.academy.Tips4Trips.entity.Route;
 import com.softserve.academy.Tips4Trips.entity.place.Place;
@@ -31,12 +32,26 @@ public class RouteRepositoryImpl implements SearchRepository<Route, RouteSearchP
     }
 
     @Override
-    public List<Route> findByParams(RouteSearchParams searchParams) {
+    public Page<Route> findByParams(RouteSearchParams searchParams, long page, int size) {
         CriteriaQuery<Route> cq = cb.createQuery(Route.class);
         Root<Route> route = cq.from(Route.class);
         List<Predicate> wherePredicates = getWherePredicates(searchParams, route);
         cq.where(wherePredicates.toArray(new Predicate[0]));
-        return em.createQuery(cq).getResultList();
+        long count = getCountByParams(searchParams);
+        long total = (count % size == 0) ? count / size : count / size + 1;
+        List<Route> result = em.createQuery(cq)
+                .setFirstResult((int) page * size)
+                .setMaxResults(size).getResultList();
+        return new Page<>(result, page, total);
+    }
+
+    private long getCountByParams(RouteSearchParams searchParams) {
+        CriteriaQuery<Long> cq = cb.createQuery(Long.class);
+        Root<Route> from = cq.from(Route.class);
+        List<Predicate> wherePredicates = getWherePredicates(searchParams, from);
+        cq.select(cb.count(from))
+                .where(wherePredicates.toArray(new Predicate[0]));
+        return em.createQuery(cq).getSingleResult();
     }
 
     private List<Predicate> getWherePredicates(RouteSearchParams searchParams, Root<Route> route) {
