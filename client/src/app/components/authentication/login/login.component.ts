@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
   onSubmit() {
  
     this.loginInfo = new SignInForm(
-      this.loginForm.email,
+      this.loginForm.login,
       this.loginForm.password);
  
 this.authService.attemptAuth(this.loginInfo).subscribe(

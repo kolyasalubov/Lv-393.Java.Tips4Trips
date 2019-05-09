@@ -1,9 +1,9 @@
 export class SignInForm {
-    email: string;
+  login: string;
     password: string;
 
-    constructor(email: string, password: string) {
-        this.email = email;
+    constructor(login: string, password: string) {
+        this.login = login;
         this.password = password;
       }
 }
