@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {Account} from 'src/app/model/account.model';
 import {ProfileService} from './profile.service';
-import {AuthService} from "../auth.service";
+import {CustomAuthService} from "../custom-auth.service";
 
 
 
@@ -16,8 +16,15 @@ export class ProfileComponent implements OnInit {
   accountProfile: Account;
   currentProfileId: number;
 
-  constructor(private ngRoute: ActivatedRoute,private router: Router, private profileService: ProfileService,private authService: AuthService,) { }
+  constructor(private ngRoute: ActivatedRoute,private router: Router, private profileService: ProfileService,
+    private authService: CustomAuthService,) { }
 
+  public subscribeTo(){
+    this.profileService.subscribeTo(this.currentProfileId,this.accountProfile.id).subscribe();
+  }
+  public unSubscribe(){
+    this.profileService.unSubscribe(this.currentProfileId,this.accountProfile.id).subscribe();
+  }
 
   ngOnInit() {
     const id = Number(this.ngRoute.snapshot.paramMap.get('id'));

@@ -5,7 +5,7 @@ import { LoginComponent } from './components/authentication/login/login.componen
 import { AccountComponent } from './components/authentication/account/account.component';
 import { ProfileComponent } from './components/authentication/profile/profile.component';
 import { RouteComponent } from './components/routes/route/route.component';
-import { CreatePostComponent } from "./components/create-post/create-post.component";
+// import { CreatePostComponent } from "./components/create-post/create-post.component";
 import { CreatePostPlaceComponent } from "./components/create-post-place/create-post-place.component";
 import { LikeComponent } from "./components/blog/like/like.component";
 import { CreateRouteComponent } from "./components/routes/create-route/create-route.component";
@@ -41,6 +41,10 @@ import {NewsComponent} from "./components/news/news.component";
 import {EditRestaurantComponent} from "./components/create-post-place/edit-restaurant/edit-restaurant.component";
 import {EditHotelComponent} from "./components/create-post-place/edit-hotel/edit-hotel.component";
 import {EditMonumentComponent} from "./components/create-post-place/edit-monument/edit-monument.component";
+import { ImagetestComponent } from './components/imagetest/imagetest.component';
+import { MaptestComponent } from './components/maptest/maptest.component';
+import { MapPickerComponent } from './components/map/map-picker/map-picker.component';
+import {ChatComponent} from "./components/chat/chat.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -62,7 +66,7 @@ const routes: Routes = [
   { path: 'create_place/monument', component: CreateMonumentComponent },
   { path: 'monuments/:id', component: MonumentDetailsComponent },
   { path: 'city_places/:id', component: CityPlacesComponent },
-  { path: 'create_post', component: CreatePostComponent },
+  // { path: 'create_post', component: CreatePostComponent },
   { path: 'create_route', component: CreateRouteComponent },
   { path: 'trips/create', component: CreateRouteComponent },
   { path: 'list_of_users', component: ListOfUsersComponent },
@@ -91,11 +95,13 @@ const routes: Routes = [
   { path: 'test', component: TestComponent },
   { path: 'profile/:id', component: ProfileComponent },
   { path: 'search', component: SearchComponent },
-  { path: '404', component: ErrorComponent },
   {path: 'news', component: NewsComponent},
   { path: 'restaurants/edit/:id', component: EditRestaurantComponent},
   { path: 'monuments/edit/:id', component: EditMonumentComponent},
   { path: 'hotels/edit/:id', component: EditHotelComponent},
+  { path: 'maptest', component:  MapPickerComponent },
+  { path: '404', component: ErrorComponent },
+  {path: 'chat', component: ChatComponent},
   { path: '**', redirectTo: '/404' }
 ];
 

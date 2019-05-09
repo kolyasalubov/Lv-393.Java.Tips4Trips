@@ -1,13 +1,15 @@
 package com.softserve.academy.Tips4Trips.dto.details;
 
 import com.softserve.academy.Tips4Trips.dto.CityDTO;
+import com.softserve.academy.Tips4Trips.dto.file.ImageDTO;
 import com.softserve.academy.Tips4Trips.dto.info.PlaceInfoDTO;
 import com.softserve.academy.Tips4Trips.entity.Position;
 
 public class MonumentDetailsDTO extends PlaceInfoDTO {
 
     private String address;
-    private String photoPath;
+    private Position position;
+    private ImageDTO image;
     private CityDTO cityDTO;
 
     public String getAddress() {
@@ -18,12 +20,20 @@ public class MonumentDetailsDTO extends PlaceInfoDTO {
         this.address = address;
     }
 
-    public String getPhotoPath() {
-        return photoPath;
+    public Position getPosition() {
+        return position;
     }
 
-    public void setPhotoPath(String photoPath) {
-        this.photoPath = photoPath;
+    public void setPosition(Position position) {
+        this.position = position;
+    }
+
+    public ImageDTO getImage() {
+        return image;
+    }
+
+    public void setImage(ImageDTO image) {
+        this.image = image;
     }
 
     public CityDTO getCityDTO() {

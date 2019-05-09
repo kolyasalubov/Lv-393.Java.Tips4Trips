@@ -1,6 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {HeaderComponent} from './components/header/header.component';
@@ -9,12 +9,14 @@ import {HomeComponent} from './components/home/home.component';
 import {AccountComponent} from './components/authentication/account/account.component';
 import {LoginComponent} from './components/authentication/login/login.component';
 import {UserComponent} from './components/authentication/user/user.component';
+import {AccountService} from './components/authentication/account/account.service';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NavbarComponent} from './components/navbar/navbar.component';
 import {AboutComponent} from './components/home/about/about.component';
 import {HelpInfoComponent} from './components/home/help-info/help-info.component';
 import {RecentStoriesComponent} from './components/home/recent-stories/recent-stories.component';
-import {CreatePostComponent} from './components/create-post/create-post.component';
+import {NewsSubscribeComponent} from './components/home/news-subscribe/news-subscribe.component';
+import {CreatePostComponent} from './components/blog/create-post/create-post.component';
 import {CreatePostPlaceComponent} from './components/create-post-place/create-post-place.component';
 import {CreateRouteComponent} from './components/routes/create-route/create-route.component';
 import {LikeComponent} from './components/blog/like/like.component';
@@ -43,6 +45,8 @@ import {HotelDetailsComponent} from './components/hotel-details/hotel-details.co
 import {CityPlacesComponent} from './components/city-places/city-places.component';
 import {CityComponent} from './components/city/city.component';
 import {CountryComponent} from './components/country/country.component';
+import {ImageDetailsComponent} from './components/image-details/image-details.component';
+import {ImageUploadFormComponent} from './components/image-upload-form/image-upload-form.component';
 import {RouteInfoComponent} from './components/routes/route-info/route-info.component';
 import {EditRouteComponent} from './components/routes/edit-route/edit-route.component';
 import {CreateTripComponent} from './components/trip/create-trip/create-trip.component';
@@ -67,12 +71,20 @@ import {ListTripsComponent} from './components/trip/list-trips/list-trips.compon
 import {EditHotelComponent} from './components/create-post-place/edit-hotel/edit-hotel.component';
 import {EditRestaurantComponent} from './components/create-post-place/edit-restaurant/edit-restaurant.component';
 import {EditMonumentComponent} from './components/create-post-place/edit-monument/edit-monument.component';
+import {ImagetestComponent} from './components/imagetest/imagetest.component';
+import {AgmCoreModule, GoogleMapsAPIWrapper} from '@agm/core';
+import {MaptestComponent} from './components/maptest/maptest.component';
+import {MapDisplayComponent} from './components/map/map-display/map-display.component';
+import {MapPickerComponent} from './components/map/map-picker/map-picker.component';
+import { ChatComponent } from './components/chat/chat.component';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
+    NewsSubscribeComponent,
     FooterComponent,
     HomeComponent,
     AccountComponent,
@@ -110,6 +122,8 @@ import {EditMonumentComponent} from './components/create-post-place/edit-monumen
     CityPlacesComponent,
     CityComponent,
     CountryComponent,
+    ImageDetailsComponent,
+    ImageUploadFormComponent,
     RouteInfoComponent,
     EditRouteComponent,
     CreateTripComponent,
@@ -133,16 +147,28 @@ import {EditMonumentComponent} from './components/create-post-place/edit-monumen
     ListTripsComponent,
     EditHotelComponent,
     EditRestaurantComponent,
-    EditMonumentComponent
+    EditMonumentComponent,
+    ImagetestComponent,
+    MapDisplayComponent,
+    MaptestComponent,
+    MapPickerComponent,
+
+    ChatComponent
+
   ],
   imports: [
     BrowserModule,
+    AgmCoreModule.forRoot({apiKey: 'AIzaSyDGk8vnhsQ8XqNJRLCEfr1c4k7z1GsyvXE'}),
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule
   ],
-  providers: [httpInterceptorProviders],
+  providers: [
+    httpInterceptorProviders,
+    GoogleMapsAPIWrapper
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

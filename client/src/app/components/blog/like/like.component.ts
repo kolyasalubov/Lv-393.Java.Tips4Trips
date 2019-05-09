@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {LikeService} from './like.service';
-import {AuthService} from "../../authentication/auth.service";
+import {CustomAuthService} from "../../authentication/custom-auth.service";
 
 @Component({
   selector: 'app-like',
@@ -14,7 +14,8 @@ export class LikeComponent implements OnInit {
   isAdded:boolean=false;
   counter:number;
   allAccounts:Account[];
-  constructor(private likeService:LikeService, private authService: AuthService) { }
+  constructor(private likeService:LikeService, 
+    private authService: CustomAuthService) { }
 
    showAccounts() {
     var popup = document.getElementById("myPopup");

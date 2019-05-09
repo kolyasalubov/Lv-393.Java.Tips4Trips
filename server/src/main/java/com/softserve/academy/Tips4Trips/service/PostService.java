@@ -2,15 +2,25 @@ package com.softserve.academy.Tips4Trips.service;
 
 import com.softserve.academy.Tips4Trips.entity.administration.Account;
 import com.softserve.academy.Tips4Trips.entity.blog.Post;
+import com.softserve.academy.Tips4Trips.entity.file.Image;
+import com.softserve.academy.Tips4Trips.exception.DataNotFoundException;
+import com.softserve.academy.Tips4Trips.exception.FileIOException;
 import com.softserve.academy.Tips4Trips.repository.AccountRepository;
 import com.softserve.academy.Tips4Trips.repository.PostRepository;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Service
 public class PostService {
@@ -19,12 +29,15 @@ public class PostService {
 
     private AccountRepository accountRepository;
     private PostRepository repository;
+    private FileStorageService fileStorageService;
 
     @Autowired
     public PostService(AccountRepository accountRepository,
-                       PostRepository repository) {
+                       PostRepository repository,
+                       FileStorageService fileStorageService) {
         this.accountRepository = accountRepository;
         this.repository = repository;
+        this.fileStorageService = fileStorageService;
     }
 
     public List<Post> getByAuthorId(Long authorId) {
@@ -55,7 +68,7 @@ public class PostService {
             throw new NoSuchElementException();
         } else {
             existingPost.get().setRoute(post.getRoute());
-            existingPost.get().setPhotoPath(post.getPhotoPath());
+            existingPost.get().setImages(post.getImages());
             existingPost.get().setAuthor(post.getAuthor());
             existingPost.get().setContent(post.getContent());
             existingPost.get().setName(post.getName());
@@ -72,7 +85,7 @@ public class PostService {
     }
 
     //
-    public List<Post>  getIdPostsByAccountId(Long id){
+    public List<Post> getIdPostsByAccountId(Long id) {
         Account account = new Account();
         account.setId(id);
         return repository.findByAuthor(account);
@@ -90,6 +103,52 @@ public class PostService {
     public void deleteById(Long id) {
         // delete comments, likes
         repository.findById(id).ifPresent(repository::delete);
+    }
+
+    public Long getCount() {
+        return repository.count();
+    }
+
+    public Post createImagesForPost(MultipartFile[] images, Long postId)
+            throws FileIOException {
+        Post post = repository.getOne(postId);
+        if (post.getImage() != null) {
+            throw new FileIOException("Post images already exist! Try " +
+                    "updating them.");
+        }
+        return addImagesToStorage(post, images);
+    }
+
+    public void deletePostImages(Long id) throws FileIOException,
+            DataNotFoundException {
+        try {
+            Post post = repository.getOne(id);
+            List<Long> imageIds = new ArrayList<>();
+            post.getImages().forEach(image -> imageIds.add(image.getId()));
+            post.setImages(null);
+            update(post);
+            for (Long imageId : imageIds) {
+                fileStorageService.deleteFile(imageId);
+            }
+        } catch (NullPointerException e) {
+            throw new DataNotFoundException("Images don't exist!");
+        }
+    }
+
+    public Post updatePostImages(Long id, MultipartFile[] newImages)
+            throws FileIOException, DataNotFoundException {
+        deletePostImages(id);
+        return addImagesToStorage(repository.getOne(id), newImages);
+    }
+
+    private Post addImagesToStorage(Post post, MultipartFile[] images)
+            throws FileIOException {
+        List<Image> newImages = new ArrayList<>();
+        for (MultipartFile image : images) {
+            newImages.add(fileStorageService.store(image));
+        }
+        post.setImages(newImages);
+        return update(post);
     }
 }
 

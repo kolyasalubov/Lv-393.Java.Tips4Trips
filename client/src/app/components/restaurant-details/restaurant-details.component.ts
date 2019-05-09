@@ -21,6 +21,7 @@ export class RestaurantDetailsComponent implements OnInit {
   restaurant: Restaurant = new Restaurant(0, '', '', [], '',
     '', '', '', '',new Position(0,0),'',
     new City(0, '',new Position(0,0), 0,''),0,false);
+  zoom: number = ZoomLevel.Place;
 
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe(params => {

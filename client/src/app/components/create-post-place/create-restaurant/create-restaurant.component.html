@@ -86,6 +86,7 @@
                  placeholder="Y"
                  name="Coordinatey"
                  maxlength="26" [(ngModel)]="position.coordinateY" formControlName="positionY">
+
         </div>
       </td>
     </tr>
@@ -158,3 +159,4 @@
          type="submit"
          value="Create a new place" [disabled]="!formGroup.valid"><br>
 </form>
+<app-map-picker [locationUpdate]="setXY"></app-map-picker>

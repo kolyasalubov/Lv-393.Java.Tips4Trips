@@ -3,7 +3,7 @@ import {Route} from "../../../model/route.model";
 import {RouteService} from "../../../service/route.service";
 import {PlaceService} from "../../../place.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {AuthService} from "../../authentication/auth.service";
+import {CustomAuthService} from "../../authentication/custom-auth.service";
 import {AccountInfo} from "../../../model/account-info.model";
 import {TripDetailsDTO} from "../../../model/trip-details";
 import {Account} from "../../../model/account.model";
@@ -23,7 +23,7 @@ export class CreateTripComponent implements OnInit {
     private routeService: RouteService,
     private placeService: PlaceService,
     private router: Router,
-    private authService: AuthService,
+    private authService: CustomAuthService,
     private tripService: TripService,
     private activatedRoute: ActivatedRoute
   ) {

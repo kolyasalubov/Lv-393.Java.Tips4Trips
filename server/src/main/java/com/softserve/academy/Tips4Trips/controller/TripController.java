@@ -69,6 +69,12 @@ public class TripController {
                 .convertToDTO(trip), HttpStatus.OK);
     }
 
+    @GetMapping("/count")
+    public ResponseEntity<Long> getCount() {
+        logger.info("get post by id method executing: ");
+        return new ResponseEntity<>(tripService.getCount(), HttpStatus.OK);
+    }
+
 
     @PostMapping("/create")
     public ResponseEntity<TripDetailsDTO> create(@RequestBody TripDetailsDTO findGroupDetailsDTO) {
@@ -115,8 +121,8 @@ public class TripController {
     @DeleteMapping("/{tripId}/unsubscribe/{accountId}")
     @PreAuthorize("hasRole('ROLE_USER')")
     public ResponseEntity unSubscribeAccountById(@PathVariable(value = "tripId") @NotNull @Positive Long tripId,
-                                      @PathVariable(value = "accountId") @NotNull @Positive Long accountId) {
-       // Account account = accountService.findById(accountId);
+                                                 @PathVariable(value = "accountId") @NotNull @Positive Long accountId) {
+        // Account account = accountService.findById(accountId);
         logger.info("trip unSubscribe post method executing:  ");
         tripService.unSubscribe(tripId, accountId);
         return new ResponseEntity<>(HttpStatus.OK);

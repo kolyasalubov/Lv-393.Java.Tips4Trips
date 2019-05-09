@@ -30,6 +30,11 @@ export class CreateRestaurantComponent implements OnInit {
     '', '', '', '', this.position,"photo_path",
     this.cityDTO,0,false);
 
+  setXY: Function = (x: number, y: number) => {
+    this.position.coordinateX = x;
+    this.position.coordinateY = y;
+  }
+
   formGroup: FormGroup = new FormGroup({
     name: new FormControl(null,[
       Validators.required,

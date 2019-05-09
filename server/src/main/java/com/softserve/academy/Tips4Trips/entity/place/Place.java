@@ -3,6 +3,7 @@ package com.softserve.academy.Tips4Trips.entity.place;
 import com.softserve.academy.Tips4Trips.entity.City;
 import com.softserve.academy.Tips4Trips.entity.Position;
 import com.softserve.academy.Tips4Trips.entity.enums.PlaceCategory;
+import com.softserve.academy.Tips4Trips.entity.file.Image;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -36,10 +37,11 @@ public abstract class Place implements Serializable {
     @Column(nullable = false)
     private Position position;
 
-    @Size(max = 60)
-    @Column(nullable = false, length = 60)
-    private String photoPath;
+    @ManyToOne
+    @JoinColumn(name = "image_id", referencedColumnName = "id")
+    private Image image;
 
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "city_id", referencedColumnName = "id",
             nullable = false)
@@ -50,13 +52,13 @@ public abstract class Place implements Serializable {
 
     public Place(@Size(max = 35) @NotBlank String name, String description,
                  @Size(max = 60) @NotBlank String address,
-                 @NotNull Position position, @Size(max = 60) String photoPath,
-                 City city) {
+                 @NotNull Position position, Image image,
+                 @NotNull City city) {
         this.name = name;
         this.description = description;
         this.address = address;
         this.position = position;
-        this.photoPath = photoPath;
+        this.image = image;
         this.city = city;
     }
 
@@ -108,12 +110,12 @@ public abstract class Place implements Serializable {
         this.position = position;
     }
 
-    public String getPhotoPath() {
-        return photoPath;
+    public Image getImage() {
+        return image;
     }
 
-    public void setPhotoPath(String photoPath) {
-        this.photoPath = photoPath;
+    public void setImage(Image image) {
+        this.image = image;
     }
 
     public abstract PlaceCategory getCategory();

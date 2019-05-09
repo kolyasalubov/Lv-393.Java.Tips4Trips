@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../auth.service';
+import { CustomAuthService } from '../custom-auth.service';
 import { TokenStorageService } from '../token/token-storage.service';
 import { SignUpForm } from '../../../model/authentication/signup-form.model';
 import { User } from '../../../model/user.model';
@@ -20,7 +20,7 @@ export class SignupComponent implements OnInit {
   roles: string[] = [];
   private signupInfo: SignUpForm;
   
-  constructor(private authService: AuthService,
+  constructor(private authService: CustomAuthService,
               private tokenStorage: TokenStorageService, private router: Router) { }
 
   ngOnInit() {
