@@ -1,34 +1,34 @@
 package com.softserve.academy.Tips4Trips.dto.details;
 
+import com.softserve.academy.Tips4Trips.dto.file.ImageDTO;
 import com.softserve.academy.Tips4Trips.dto.info.PostInfoDTO;
 import com.softserve.academy.Tips4Trips.dto.info.RouteInfoDTO;
 
+import java.util.List;
+
 public class PostDetailsDTO extends PostInfoDTO {
-    private String photoPath;
+    private List<ImageDTO> images;
     private String content;
     private RouteInfoDTO routeInfo;
     private String likes;
     private String comments;
+    private AccountDetailsDTO author;
     private Long authorId;
     private String authorFirstName;
     private String authorLastName;
 
-    @Override
-    public String getPhotoPath() {
-        return photoPath;
+    public List<ImageDTO> getImages() {
+        return images;
     }
 
-    @Override
-    public void setPhotoPath(String photoPath) {
-        this.photoPath = photoPath;
+    public void setImages(List<ImageDTO> images) {
+        this.images = images;
     }
 
-    @Override
     public String getContent() {
         return content;
     }
 
-    @Override
     public void setContent(String content) {
         this.content = content;
     }
@@ -79,5 +79,13 @@ public class PostDetailsDTO extends PostInfoDTO {
 
     public void setAuthorLastName(String authorLastName) {
         this.authorLastName = authorLastName;
+    }
+
+    public AccountDetailsDTO getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(AccountDetailsDTO author) {
+        this.author = author;
     }
 }

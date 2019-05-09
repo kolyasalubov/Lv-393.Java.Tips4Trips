@@ -15,10 +15,8 @@ import java.util.Objects;
 public class UserDetailsImpl implements UserDetails {
     private Long id;
 
-    @JsonIgnore
     private String login;
 
-    @JsonIgnore
     private String password;
 
     private Collection<? extends GrantedAuthority> authorities;

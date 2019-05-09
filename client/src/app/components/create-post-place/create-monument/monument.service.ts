@@ -37,4 +37,16 @@ export class MonumentService {
   findById(id: number): Observable<Monument> {
     return this.http.get<Monument>(this.baseUrl + id);
   }
+
+  findByCity(id: number): Observable<Monument[]> {
+    return this.http.get<Monument[]>(this.baseUrl + "city/" + id);
+  }
+
+  deleteById(id: number) {
+    this.http.delete(this.baseUrl + id).subscribe();
+  }
+
+  update(monument: Monument): Observable<Monument> {
+    return this.http.put<Monument>(this.baseUrl + "update", monument);
+  }
 }

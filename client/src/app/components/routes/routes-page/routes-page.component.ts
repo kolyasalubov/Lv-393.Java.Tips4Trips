@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RouteInfo } from '../../../model/route-info.model';
 import { RouteService } from '../../../service/route.service';
-import { AuthService } from '../../authentication/auth.service';
+import { CustomAuthService } from '../../authentication/custom-auth.service';
 
 @Component({
   selector: 'app-routes-page',
@@ -14,7 +14,7 @@ export class RoutesPageComponent implements OnInit {
 
   constructor(
     private routeService: RouteService,
-    private authService: AuthService
+    private authService: CustomAuthService
   ) { }
 
   ngOnInit() {

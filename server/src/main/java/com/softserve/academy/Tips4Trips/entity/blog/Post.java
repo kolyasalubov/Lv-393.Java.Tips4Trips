@@ -2,8 +2,7 @@ package com.softserve.academy.Tips4Trips.entity.blog;
 
 import com.softserve.academy.Tips4Trips.entity.Route;
 import com.softserve.academy.Tips4Trips.entity.administration.Account;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
+import com.softserve.academy.Tips4Trips.entity.file.Image;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -21,8 +20,9 @@ public class Post {
     @Column(name = "name",nullable = false)
     private String name;
 
-    @Column(name = "photo_path")
-    private String photoPath;
+    @ManyToOne
+    @JoinColumn(name = "image_id", referencedColumnName = "id")
+    private Image image;
 
     @NotNull
     @Column(name = "creation_date",nullable = false)
@@ -38,6 +38,14 @@ public class Post {
     @ManyToOne
     @JoinColumn(name = "account_id",referencedColumnName = "id")
     private Account author;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "posts_images",
+            joinColumns = {@JoinColumn(name = "account_id",
+                    referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "image_id",
+                    referencedColumnName = "id")})
+    private List<Image> images;
 
     @ManyToOne
     @JoinColumn(name = "route_id", referencedColumnName = "id")
@@ -68,12 +76,12 @@ public class Post {
         this.name = name;
     }
 
-    public String getPhotoPath() {
-        return photoPath;
+    public Image getImage() {
+        return image;
     }
 
-    public void setPhotoPath(String photoPath) {
-        this.photoPath = photoPath;
+    public void setImage(Image image) {
+        this.image = image;
     }
 
     public Date getCreationDate() {
@@ -122,5 +130,13 @@ public class Post {
 
     public void setComments(List<Comment> comments) {
         this.comments = comments;
+    }
+
+    public List<Image> getImages() {
+        return images;
+    }
+
+    public void setImages(List<Image> images) {
+        this.images = images;
     }
 }

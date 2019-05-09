@@ -1,5 +1,7 @@
 package com.softserve.academy.Tips4Trips.controller;
 
+import com.softserve.academy.Tips4Trips.dto.converter.HotelSearchCriteriaConverter;
+import com.softserve.academy.Tips4Trips.dto.search.HotelSearchCriteriaDTO;
 import com.softserve.academy.Tips4Trips.dto.converter.HotelConverter;
 import com.softserve.academy.Tips4Trips.dto.converter.PlaceConverter;
 import com.softserve.academy.Tips4Trips.dto.details.HotelDetailsDTO;
@@ -24,12 +26,15 @@ public class HotelController {
     private HotelService hotelService;
     private HotelConverter hotelConverter;
     private PlaceConverter placeConverter;
+    private HotelSearchCriteriaConverter searchCriteriaConverter;
 
     @Autowired
-    public HotelController(HotelService hotelService, HotelConverter hotelConverter, PlaceConverter placeConverter) {
+    public HotelController(HotelService hotelService, HotelConverter hotelConverter, PlaceConverter placeConverter,
+                           HotelSearchCriteriaConverter searchCriteriaConverter) {
         this.hotelService = hotelService;
         this.hotelConverter = hotelConverter;
         this.placeConverter = placeConverter;
+        this.searchCriteriaConverter = searchCriteriaConverter;
     }
 
     @GetMapping("/all")
@@ -53,9 +58,21 @@ public class HotelController {
         return new ResponseEntity<>(hotelConverter.convertToDTO(hotelService.findById(id)), HttpStatus.OK);
     }
 
-    @PostMapping("/update")
+    @PutMapping("/update")
     public ResponseEntity<HotelDetailsDTO> update(@RequestBody HotelDetailsDTO hotelDetailsDTO) {
         logger.info("update hotel method executing: ");
         return new ResponseEntity<>(hotelConverter.convertToDTO(hotelService.update(hotelConverter.convertToEntity(hotelDetailsDTO))), HttpStatus.OK);
+    }
+
+    @PostMapping("/filter")
+    public ResponseEntity<List<PlaceInfoDTO>> filter(@RequestBody HotelSearchCriteriaDTO searchCriteriaDTO) {
+        return new ResponseEntity<>(placeConverter.convertToInfoDTO(hotelService.filter(searchCriteriaConverter.convertToEntity(searchCriteriaDTO))), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity deleteById(@PathVariable Long id) {
+        logger.info("delete monument by id method executing: ");
+        hotelService.deleteById(id);
+        return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 }

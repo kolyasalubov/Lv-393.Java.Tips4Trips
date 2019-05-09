@@ -1,15 +1,19 @@
 package com.softserve.academy.Tips4Trips.service;
 
+import com.softserve.academy.Tips4Trips.dto.search.RestaurantSearchCriteria;
 import com.softserve.academy.Tips4Trips.entity.City;
 import com.softserve.academy.Tips4Trips.entity.place.Restaurant;
 import com.softserve.academy.Tips4Trips.repository.CityRepository;
 import com.softserve.academy.Tips4Trips.repository.RestaurantRepository;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+
+import static com.softserve.academy.Tips4Trips.specifications.RestaurantSpecifications.*;
 
 @Service
 public class RestaurantService {
@@ -58,15 +62,26 @@ public class RestaurantService {
         restaurantToUpdate.setDescription(restaurant.getDescription());
         restaurantToUpdate.setAddress(restaurant.getAddress());
         restaurantToUpdate.setPosition(restaurant.getPosition());
-        restaurantToUpdate.setPhotoPath(restaurant.getPhotoPath());
+        restaurantToUpdate.setImage(restaurant.getImage());
         restaurantToUpdate.setCity(restaurant.getCity());
         restaurantToUpdate.setWorkingDays(restaurant.getWorkingDays());
         restaurantToUpdate.setWebSite(restaurant.getWebSite());
-        restaurantToUpdate.setType(restaurant.getType());
         restaurantToUpdate.setOpeningTime(restaurant.getOpeningTime());
         restaurantToUpdate.setClosingTime(restaurant.getClosingTime());
         restaurantToUpdate.setAverageBill(restaurant.getAverageBill());
         restaurantToUpdate.setHasVeganFood(restaurant.getHasVeganFood());
         return repository.save(restaurantToUpdate);
+    }
+
+    public List<Restaurant> filter(RestaurantSearchCriteria criteria) {
+        return repository.findAll(Specification.where(city(criteria.getCityId()))
+                .and(inOpeningTime(criteria.getWorksAt()))
+                .and(inClosingTime(criteria.getWorksAt()))
+                .and(averageBill(criteria.getAverageBill()))
+                .and(hasVeganFood(criteria.getHasVeganFood())));
+    }
+
+    public void deleteById(Long id) {
+        repository.deleteById(id);
     }
 }

@@ -47,6 +47,12 @@ public class CityController {
         return new ResponseEntity<>(cityConverter.convertToDTO(cityService.createCity(city)), HttpStatus.OK);
     }
 
+    @GetMapping("/count")
+    public ResponseEntity<Long> getCount() {
+        logger.info("get post by id method executing: ");
+        return new ResponseEntity<>(cityService.getCount(), HttpStatus.OK);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<CityDTO> getById(@PathVariable Long id) {
         logger.info("get city by id method executing: ");

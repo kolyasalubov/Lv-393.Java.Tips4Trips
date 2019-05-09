@@ -2,10 +2,12 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {Account} from 'src/app/model/account.model';
 import {ProfileService} from './profile.service';
-import {AuthService} from "../auth.service";
 import {NewsService} from "../../news/news.service";
 import {AccountFeed} from "../../../model/account-feed";
 import {AccountFollowing} from "../../../model/account-following";
+import {CustomAuthService} from "../custom-auth.service";
+
+
 
 
 @Component({
@@ -22,8 +24,10 @@ export class ProfileComponent implements OnInit {
   followingAccounts: AccountFollowing[];
   isButtonDisabled: boolean = false;
 
-  constructor(private newsService: NewsService, private ngRoute: ActivatedRoute, private router: Router, private profileService: ProfileService, private authService: AuthService,) {
+
+  constructor(private newsService: NewsService, private ngRoute: ActivatedRoute, private router: Router, private profileService: ProfileService, private authService: CustomAuthService) {
   }
+
 
   public toggleStatus() {
     this.isButtonDisabled = true;
@@ -69,5 +73,4 @@ export class ProfileComponent implements OnInit {
 
 
   }
-
 }

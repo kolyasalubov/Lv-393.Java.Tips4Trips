@@ -16,11 +16,16 @@ public class MonumentConverter implements Converter<Monument, MonumentDetailsDTO
     private MonumentService monumentService;
     private CityService cityService;
     private CityConverter cityConverter;
+    private ImageConverter imageConverter;
     private final int MAX_DESCRIPTION_LENGTH = 100;
     private PlaceConverter placeConverter;
 
     @Autowired
-    public MonumentConverter (MonumentService monumentService, CityService cityService, CityConverter cityConverter, PlaceConverter placeConverter) {
+    public MonumentConverter(ImageConverter imageConverter,
+                             MonumentService monumentService,
+                             CityService cityService,
+                             CityConverter cityConverter,
+                             PlaceConverter placeConverter) {
         this.monumentService = monumentService;
         this.cityService = cityService;
         this.cityConverter = cityConverter;
@@ -35,8 +40,10 @@ public class MonumentConverter implements Converter<Monument, MonumentDetailsDTO
         monument.setDescription(monumentDetailsDTO.getDescription());
         monument.setAddress(monumentDetailsDTO.getAddress());
         monument.setPosition(monumentDetailsDTO.getPosition());
-        monument.setPhotoPath(monumentDetailsDTO.getPhotoPath());
-        monument.setCity(cityConverter.convertToEntity(monumentDetailsDTO.getCityDTO()));
+        monument.setImage(imageConverter
+                .convertToEntity(monumentDetailsDTO.getImage()));
+        monument.setCity(cityConverter
+                .convertToEntity(monumentDetailsDTO.getCityDTO()));
         return monument;
     }
 
@@ -49,8 +56,11 @@ public class MonumentConverter implements Converter<Monument, MonumentDetailsDTO
         monumentDetailsDTO.setDescription(monument.getDescription());
         monumentDetailsDTO.setAddress(monument.getAddress());
         monumentDetailsDTO.setPosition(monument.getPosition());
-        monumentDetailsDTO.setPhotoPath(monument.getPhotoPath());
-        monumentDetailsDTO.setCityDTO(cityConverter.convertToDTO(cityService.findById(monument.getCity().getId())));
+        monumentDetailsDTO.setImage(imageConverter
+                .convertToDTO(monument.getImage()));
+        monumentDetailsDTO.setCityDTO(cityConverter.convertToDTO(cityService
+                .findById(monument.getCity().getId())));
+        monumentDetailsDTO.setCategory(monument.getCategory());
         monumentDetailsDTO.setSelf(ControllerLinkBuilder.linkTo(
                 ControllerLinkBuilder.methodOn(MonumentController.class)
                         .getById(monument.getId())

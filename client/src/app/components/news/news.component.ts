@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {NewsService} from "./news.service";
-import {AuthService} from "../authentication/auth.service";
+import {CustomAuthService} from "../authentication/custom-auth.service";
 import {AccountInfo} from "../../model/account-info.model";
 import {AccountFeed} from "../../model/account-feed";
 import {AccountFollowing} from "../../model/account-following";
@@ -15,7 +15,7 @@ import {post} from "selenium-webdriver/http";
 })
 export class NewsComponent implements OnInit {
 
-  constructor(private newsService: NewsService, private authService: AuthService ) {
+  constructor(private newsService: NewsService, private authService: CustomAuthService ) {
   }
   currentAccount:Account;
   account: AccountFeed;

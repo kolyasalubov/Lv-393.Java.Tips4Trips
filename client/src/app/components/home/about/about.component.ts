@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-about',
@@ -7,9 +8,31 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AboutComponent implements OnInit {
 
-  constructor() { }
+  account:number=0;
+  trip:number=0;
+  city:number=0;
+  post:number=0;
+  aa:number=0;
+
+  private urlPage = 'http://localhost:8080/';
+
+  constructor(private http: HttpClient) {
+  }
 
   ngOnInit() {
+
+    this.http.get<number>(this.urlPage + "accounts/count").subscribe(data=>{
+      this.account=data;
+    });
+    this.http.get<number>(this.urlPage + "trips/count").subscribe(data=>{
+      this.trip=data;
+    });
+    this.http.get<number>(this.urlPage + "cities/count").subscribe(data=>{
+      this.city=data;
+    });
+    this.http.get<number>(this.urlPage + "posts/count").subscribe(data=>{
+      this.post=data;
+    });
   }
 
 }

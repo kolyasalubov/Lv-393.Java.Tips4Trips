@@ -11,16 +11,18 @@
                 <div class="row blog-entries element-animate">
                     <div class="col-md-12 col-lg-8 main-content" style="padding-left: 0px;">
                       <h1 class="mb-4">Create a new place</h1>
-                        <select onChange="window.document.location.href=this.options[this.selectedIndex].value;">
+                        <select (change)="createPlace=$event.target.value">
                           <option disabled>Choose place to create</option>
-                          <option value="create_place/restaurant">Restaurant</option>
-                          <option value="create_place/hotel">Hotel</option>
-                          <option value="create_place/monument">Monument</option>
+                          <option value="restaurant">Restaurant</option>
+                          <option value="hotel">Hotel</option>
+                          <option value="monument">Monument</option>
                         </select>
                     </div>
                     <div class="col-md-12 col-lg-4 sidebar">
                     </div>
-
+                  <app-create-restaurant *ngIf="createPlace === 'restaurant'"></app-create-restaurant>
+                  <app-create-hotel *ngIf="createPlace === 'hotel'"></app-create-hotel>
+                  <app-create-monument *ngIf="createPlace === 'monument'"></app-create-monument>
                 </div>
             </section>
         </div>

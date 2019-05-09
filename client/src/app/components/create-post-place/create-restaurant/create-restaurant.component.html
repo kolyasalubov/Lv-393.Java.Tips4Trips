@@ -1,168 +1,162 @@
-<app-header></app-header>
-<section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('../../../../assets/images/bg_2.jpg');"
-         data-stellar-background-ratio="0.5">
-  <div class="overlay" style="background:white;"></div>
-</section>
+<form (ngSubmit)="create()" method="post" enctype="multipart/form-data" [formGroup]="formGroup">
+  <!--<div class="col-md-8 col-lg-6 main-content">-->
+  <!--<img src="" alt="Image" class="img-fluid mb-5">-->
 
-<section class="ftco-section contact-section" style="margin-bottom: 90px;">
-  <div class="container">
-    <div class="row block-9">
-      <section class="container">
-        <div class="row blog-entries element-animate">
-          <div class="col-md-12 col-lg-8 main-content" style="padding-left: 0px;">
-            <h1 class="mb-4">Create a new restaurant</h1>
-            <form (ngSubmit)="create()" method="post" enctype="multipart/form-data">
-              <!--<div class="col-md-8 col-lg-6 main-content">-->
-                <!--<img src="" alt="Image" class="img-fluid mb-5">-->
-
-                <!--<input class="ion-android-radio-button-off" name="image_uploads" type="file"-->
-                       <!--accept=".jpg, .jpeg, .png" style="margin: 5%;margin-left: 0;"><br>-->
-                <!--<p>*File have to be less than 5 MB</p>-->
-              <!--</div>-->
-              <table style="width: 100%;margin-top: 5%;">
-                <tr>
-                  <td><h4>
-                    Name
-                  </h4></td>
-                  <td>
-                    <input class="form-control" style="width: 100%;" type="text"
-                           placeholder="Name"
-                           name="name"
-                           maxlength="35" [(ngModel)]="restaurant.name"></td>
-                </tr>
-                <tr>
-                  <td><h4>
-                    Description
-                  </h4></td>
-                  <td>
+  <!--<input class="ion-android-radio-button-off" name="image_uploads" type="file"-->
+  <!--accept=".jpg, .jpeg, .png" style="margin: 5%;margin-left: 0;"><br>-->
+  <!--<p>*File have to be less than 5 MB</p>-->
+  <!--</div>-->
+  <table style="width: 100%;margin-top: 5%;">
+    <tr>
+      <td><h4>
+        Name
+      </h4></td>
+      <td>
+        <input class="form-control" style="width: 100%;" type="text"
+               placeholder="Name"
+               name="name"
+               maxlength="35" [(ngModel)]="restaurant.name" formControlName="name"></td>
+    </tr>
+    <tr>
+      <td><h4>
+        Description
+      </h4></td>
+      <td>
                                         <textarea class="form-control" rows="13" style="
                                         padding-top: 10px;
                                         width: 100%;"
                                                   placeholder="Something about it"
-                                                  name="about" [(ngModel)]="restaurant.description" maxlength="255"></textarea>
-                  </td>
-                </tr>
-                <tr>
-                  <td><h4>
-                    Website
-                  </h4></td>
-                  <td>
-                    <input class="form-control" style="width: 100%;" type="text"
-                           placeholder="Website" name="web" maxlength="35" [(ngModel)]="restaurant.webSite"></td>
-                </tr>
-                <tr>
-                  <td><h4>
-                    Telephone
-                  </h4></td>
-                  <td>
-                    <input class="form-control" style="width: 100%;" type="tel"
-                           placeholder="Telephone" name="tel" maxlength="15" [(ngModel)]="restaurant.telephone"></td>
-                </tr>
-                <tr>
-                  <td><h4>
-                    Working time
-                  </h4></td>
-                  <td>
-                    <h5>Opening time</h5>
-                    <input class="form-control" style="width: 50%;" type="time"
-                           name="open_time" [(ngModel)]="restaurant.openingTime">
-                    <h5>Closing time</h5>
-                    <input class="form-control" style="width: 50%;" type="time"
-                           name="close_time" [(ngModel)]="restaurant.closingTime"></td>
-                </tr>
-                <tr>
-                  <td><h4 style="margin-top: -10px;">
-                    Address
-                  </h4></td>
-                  <td>
-                    <input class="form-control" style="width: 100%;" type="text"
-                           placeholder="Please write an address of it"
-                           name="address"
-                           maxlength="60" [(ngModel)]="restaurant.address"></td>
-                </tr>
-                <tr>
-                  <td><h4 style="margin-top: -20px;">
-                    Coordinate
-                  </h4></td>
-                  <td>
-                    <div class="form-group d-flex">
-                      <input class="form-control" style="width:45%;border-radius: 5px"
-                             type="number"
-                             placeholder="X"
-                             name="Coordinatex"
-                             maxlength="26" [(ngModel)]="position.coordinateX">
-                      <input class="form-control"
-                             style="width: 45%;border-radius: 5px;margin-left: 10%;" type="number"
-                             placeholder="Y"
-                             name="Coordinatey"
-                             maxlength="26" [(ngModel)]="position.coordinateY">
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td><h4 style="margin-top: -20px;">
-                    Country and City
-                  </h4></td>
-                  <td>
-                    <div>
-                      <select class="form-control" style="width: 100%;border-radius: 5px;margin-left: 0%;" (change)="setChosenCountry($event.target.value)">
-                        <option disabled>Choose country</option>
-                        <option *ngFor="let c of countries" value={{c.id}}>{{c.name}}</option>
-                      </select>
+                                                  name="about" [(ngModel)]="restaurant.description" maxlength="255"
+                                                  formControlName="description"></textarea>
+      </td>
+    </tr>
+    <tr>
+      <td><h4>
+        Website
+      </h4></td>
+      <td>
+        <input class="form-control" style="width: 100%;" type="text"
+               placeholder="Website" name="web" maxlength="35" [(ngModel)]="restaurant.webSite"
+               formControlName="webSite"></td>
+    </tr>
+    <tr>
+      <td><h4>
+        Telephone
+      </h4></td>
+      <td>
+        <input class="form-control" style="width: 100%;" type="tel"
+               placeholder="Telephone" name="tel" maxlength="15" [(ngModel)]="restaurant.telephone"
+               formControlName="telephone"></td>
+    </tr>
+    <tr>
+      <td><h4>
+        Working time
+      </h4></td>
+      <td>
+        <h5>Opening time</h5>
+        <input class="form-control" style="width: 50%;" type="time"
+               name="open_time" [(ngModel)]="restaurant.openingTime" formControlName="openingTime">
+        <h5>Closing time</h5>
+        <input class="form-control" style="width: 50%;" type="time"
+               name="close_time" [(ngModel)]="restaurant.closingTime" formControlName="closingTime"></td>
+    </tr>
+    <tr>
+      <td><h4 style="margin-top: -10px;">
+        Address
+      </h4></td>
+      <td>
+        <input class="form-control" style="width: 100%;" type="text"
+               placeholder="Please write an address of it"
+               name="address"
+               maxlength="60" [(ngModel)]="restaurant.address" formControlName="address"></td>
+    </tr>
+    <tr>
+      <td><h4 style="margin-top: -20px;">
+        Coordinate
+      </h4></td>
+      <td>
+        <div class="form-group d-flex">
+          <input class="form-control" style="width:45%;border-radius: 5px"
+                 type="number"
+                 placeholder="X"
+                 name="Coordinatex"
+                 maxlength="26" [(ngModel)]="position.coordinateX" formControlName="positionX">
+          <input class="form-control"
+                 style="width: 45%;border-radius: 5px;margin-left: 10%;" type="number"
+                 placeholder="Y"
+                 name="Coordinatey"
+                 maxlength="26" [(ngModel)]="position.coordinateY" formControlName="positionY">
 
-                      <select class="form-control" style="width: 100%;border-radius: 5px;margin-left: 0%;" (change)="setChosenCity($event.target.value)">
-                        <option disabled>Choose city</option>
-                        <option *ngFor="let c of city" value={{c.id}}>{{c.name}}</option>
-                      </select>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td><h4>
-                    Average bill
-                  </h4></td>
-                  <td>
-                    <input class="form-control" style="width: 100%;" type="number"
-                           placeholder="Average bill" name="avg_bill" [(ngModel)]="restaurant.averageBill"></td>
-                </tr>
-                <tr>
-                  <td><h4>
-                    Has vegan food
-                  </h4></td>
-                  <td>
-                    <input class="form-control-sm" style="width: 10%;" type="checkbox"
-                           placeholder="has_vegan_food" name="has_vegan_food" [(ngModel)]="restaurant.hasVeganFood" (change)="restaurant.hasVeganFood"></td>
-                </tr>
-                <tr>
-                  <td><h4>
-                    Working days
-                  </h4></td>
-                  <div class="weekDays-selector">
-                    <td>
-                      <label *ngFor="let day of workingDays">
-                      <input type="checkbox" class="weekday" (change)="setWorkingDays(day)"/>
-                      <mark>{{day.substr(0, 3)}}</mark>
-                      </label>
-                    </div>
-                </tr>
-              </table>
-              <input class="category submit"
-                     style="padding: 3%;
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td><h4 style="margin-top: -20px;">
+        Country
+      </h4></td>
+      <td>
+        <div>
+          <select class="form-control" style="width: 100%;border-radius: 5px;margin-left: 0%;"
+                  (change)="setChosenCountry($event.target.value)" formControlName="country">
+            <option disabled>Choose country</option>
+            <option *ngFor="let c of countries" value={{c.id}}>{{c.name}}</option>
+          </select>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td><h4 style="margin-top: -20px;">
+        City
+      </h4></td>
+      <td>
+        <div>
+          <select class="form-control" style="width: 100%;border-radius: 5px;margin-left: 0%;"
+                  (change)="setChosenCity($event.target.value)" formControlName="city">
+            <option disabled>Choose city</option>
+            <option *ngFor="let c of city" value={{c.id}}>{{c.name}}</option>
+          </select>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td><h4>
+        Average bill
+      </h4></td>
+      <td>
+        <input class="form-control" style="width: 100%;" type="number"
+               placeholder="Average bill" name="avg_bill" [(ngModel)]="restaurant.averageBill"
+               formControlName="averageBill"></td>
+    </tr>
+    <tr>
+      <td><h4>
+        Has vegan food
+      </h4></td>
+      <td>
+        <input class="form-control-sm" style="width: 10%;" type="checkbox"
+               placeholder="has_vegan_food" name="has_vegan_food" [(ngModel)]="restaurant.hasVeganFood"
+               (change)="restaurant.hasVeganFood" formControlName="hasVeganFood"></td>
+    </tr>
+    <tr>
+      <td><h4>
+        Working days
+      </h4></td>
+      <div class="weekDays-selector">
+        <td>
+          <label *ngFor="let day of workingDays">
+            <input type="checkbox" class="weekday" (change)="setWorkingDays(day)"
+                   formControlName="workingDays"/>
+            <mark>{{day.substr(0, 3)}}</mark>
+          </label>
+      </div>
+    </tr>
+  </table>
+  <input class="category submit"
+         style="padding: 3%;
                                    margin-top: 5%;
                                    font-size: 90%;
                                    border-radius:5px;
                                    margin-bottom: 30px;"
-                     type="submit"
-                     value="Create a new place"><br>
-            </form>
-          </div>
-          <div class="col-md-12 col-lg-4 sidebar">
-          </div>
-        </div>
-      </section>
-    </div>
-  </div>
-</section>
-
-<app-footer></app-footer>
-<script src="../../../../assets/js/main.js"></script>
+         type="submit"
+         value="Create a new place" [disabled]="!formGroup.valid"><br>
+</form>
+<app-map-picker [locationUpdate]="setXY"></app-map-picker>

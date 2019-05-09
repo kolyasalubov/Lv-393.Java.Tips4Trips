@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {NotificationCommentModel} from "../../../../model/notification-comment.model";
 
 @Component({
   selector: 'app-like-account',
@@ -7,7 +8,7 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class LikeAccountComponent implements OnInit {
 
-  @Input() accountPost: number;
+  @Input() like: NotificationCommentModel;
 
   constructor() {
   }

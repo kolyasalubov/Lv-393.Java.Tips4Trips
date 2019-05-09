@@ -7,6 +7,7 @@ import {RestaurantService} from "./restaurant.service";
 import {Position} from "../../../model/position.model";
 import {Country} from "../../../model/country.model";
 import {CountryService} from "../../../country.service";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-create-restaurant',
@@ -26,8 +27,68 @@ export class CreateRestaurantComponent implements OnInit {
   cityDTO: City = new City(null, '', this.position, null, null);
 
   restaurant: Restaurant = new Restaurant(null, '', '', [], '',
-    '', "FOOD", '', '','', this.position,"photo_path",
+    '', '', '', '', this.position,"photo_path",
     this.cityDTO,0,false);
+
+  setXY: Function = (x: number, y: number) => {
+    this.position.coordinateX = x;
+    this.position.coordinateY = y;
+  }
+
+  formGroup: FormGroup = new FormGroup({
+    name: new FormControl(null,[
+      Validators.required,
+      Validators.minLength(2),
+      Validators.maxLength(35)
+    ]),
+    description: new FormControl(null,[
+      Validators.required,
+      Validators.minLength(10),
+      Validators.maxLength(255)
+    ]),
+    workingDays: new FormControl(null, [
+      Validators.required
+    ]),
+    webSite: new FormControl(null,[
+      Validators.required,
+      Validators.minLength(2),
+      Validators.maxLength(35)
+    ]),
+    telephone: new FormControl(null,[
+      Validators.required,
+      Validators.minLength(8),
+      Validators.maxLength(15)
+    ]),
+    openingTime: new FormControl(null,[
+      Validators.required
+    ]),
+    closingTime: new FormControl(null,[
+      Validators.required
+    ]),
+    address: new FormControl(null,[
+      Validators.required,
+      Validators.minLength(3),
+      Validators.maxLength(60)
+    ]),
+    averageBill: new FormControl(null,[
+      Validators.required,
+      Validators.minLength(2),
+      Validators.maxLength(5)
+    ]),
+    positionX: new FormControl(null,[
+      Validators.required
+    ]),
+    positionY: new FormControl(null,[
+      Validators.required
+    ]),
+    country: new FormControl(null,[
+      Validators.required
+    ]),
+    city: new FormControl(null,[
+      Validators.required
+    ]),
+    hasVeganFood: new FormControl(),
+  });
 
   constructor(private countryService: CountryService, private cityService: CityService, private router: Router, private restaurantService: RestaurantService) { }
 
@@ -42,6 +103,7 @@ export class CreateRestaurantComponent implements OnInit {
 
   ngOnInit() {
     this.countryService.getAll().subscribe(data => this.countries = data);
+
   }
 
   create(){

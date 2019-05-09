@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from "rxjs/index";
 import {Hotel} from '../../../model/hotel.model';
+import {HotelSearchCriteria} from "../../city-places/hotel-search-criteria.model";
 
 
 @Injectable({
@@ -39,5 +40,15 @@ export class HotelService {
     return this.http.get<Hotel>(this.baseUrl + id);
   }
 
+  filter(hotelSearchCriteria: HotelSearchCriteria): Observable<Hotel[]> {
+    return this.http.post<Hotel[]>(this.baseUrl + "filter", hotelSearchCriteria);
+  }
 
+  deleteById(id: number) {
+    this.http.delete(this.baseUrl + id).subscribe();
+  }
+
+  update(hotel: Hotel): Observable<Hotel> {
+    return this.http.put<Hotel>(this.baseUrl + "update", hotel);
+  }
 }

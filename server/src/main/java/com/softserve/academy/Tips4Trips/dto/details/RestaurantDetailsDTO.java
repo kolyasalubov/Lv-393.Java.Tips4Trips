@@ -1,9 +1,9 @@
 package com.softserve.academy.Tips4Trips.dto.details;
 
 import com.softserve.academy.Tips4Trips.dto.CityDTO;
+import com.softserve.academy.Tips4Trips.dto.file.ImageDTO;
 import com.softserve.academy.Tips4Trips.dto.info.PlaceInfoDTO;
 import com.softserve.academy.Tips4Trips.entity.Position;
-import com.softserve.academy.Tips4Trips.entity.enums.TypeOfBuilding;
 
 import java.time.DayOfWeek;
 import java.util.Date;
@@ -13,12 +13,11 @@ public class RestaurantDetailsDTO extends PlaceInfoDTO {
     private List<DayOfWeek> workingDays;
     private String webSite;
     private String telephone;
-    private TypeOfBuilding type;
     private String openingTime;
     private String closingTime;
     private String address;
     private Position position;
-    private String photoPath;
+    private ImageDTO image;
     private CityDTO cityDTO;
     private Float averageBill;
     private Boolean hasVeganFood;
@@ -45,14 +44,6 @@ public class RestaurantDetailsDTO extends PlaceInfoDTO {
 
     public void setTelephone(String telephone) {
         this.telephone = telephone;
-    }
-
-    public TypeOfBuilding getType() {
-        return type;
-    }
-
-    public void setType(TypeOfBuilding type) {
-        this.type = type;
     }
 
     public String getOpeningTime() {
@@ -87,12 +78,12 @@ public class RestaurantDetailsDTO extends PlaceInfoDTO {
         this.position = position;
     }
 
-    public String getPhotoPath() {
-        return photoPath;
+    public ImageDTO getImage() {
+        return image;
     }
 
-    public void setPhotoPath(String photoPath) {
-        this.photoPath = photoPath;
+    public void setImage(ImageDTO image) {
+        this.image = image;
     }
 
     public CityDTO getCityDTO() {
