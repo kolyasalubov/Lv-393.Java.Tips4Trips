@@ -109,7 +109,6 @@ export class SearchRouteComponent {
   }
 
   formatDate(date: any): string {
-    console.log(date);
     if (date == null || date == "") return " ...";
     date = new Date(date);
     try {

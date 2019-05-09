@@ -1,4 +1,35 @@
+<div class="container mt-2">
+  <div ngbDropdown class="d-inline-block" #dateDrop="ngbDropdown" autoClose="outside">
+    <button class="btn btn-outline-primary mr-2" id="dropdownForm1" ngbDropdownToggle>{{dateDropdownText}}</button>
+    <div ngbDropdownMenu aria-labelledby="dropdownForm1">
+      <form class="px-4 py-3">
+        <button ngbDropdownItem
+          (click)="setWheneverOption(); $event.stopPropagation(); dateDrop.close();">Whenever</button>
+        <button ngbDropdownItem (click)="setTodayOption(); $event.stopPropagation(); dateDrop.close();">Today</button>
+        <button ngbDropdownItem (click)="setLastWeekOption(); $event.stopPropagation(); dateDrop.close();">Last
+          week</button>
+        <button ngbDropdownItem (click)="setLastMonthOption(); $event.stopPropagation(); dateDrop.close();">Last
+          month</button>
+        <button ngbDropdownItem (click)="setLastYearOption(); $event.stopPropagation(); dateDrop.close();">Last
+          year</button>
+        <div class="dropdown-divider"></div>
+        <div class="form-group">
+          <label for="exampleDropdownFormEmail1">Start date</label>
+          <input type="date" [ngModel]="params.startDate | date:'yyyy-MM-dd'"
+            (ngModelChange)="params.startDate = $event; dateDropdownText = formatDate(params.startDate) + ' - '+ formatDate(params.endDate);"
+            name="startDate" class="form-control" id="exampleDropdownFormEmail1">
+        </div>
+        <div class="form-group">
+          <label for="exampleDropdownFormEmail2">End date</label>
+          <input type="date" [ngModel]="params.endDate | date:'yyyy-MM-dd'"
+            (ngModelChange)="params.endDate = $event; dateDropdownText = formatDate(params.startDate) + ' - '+ formatDate(params.endDate);"
+            name="endDate" class="form-control" id="exampleDropdownFormEmail2">
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
 <div class="container mt-5">
   <app-list-posts [postP]="posts"></app-list-posts>
 </div>
-

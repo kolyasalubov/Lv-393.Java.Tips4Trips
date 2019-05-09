@@ -1,3 +1,5 @@
 export class PostSearchParams {
-    name: string
+    name: string;
+    startDate: Date;
+    endDate: Date;
 }
