@@ -7,6 +7,7 @@ import {ApiResponse} from "../../../model/api.response";
 import {PagelittlepostModel} from "../../../model/pagelittlepost.model";
 import {map} from "rxjs/operators";
 import {PageTripsmodel} from "../../../model/pageTripsmodel";
+import {Account} from "../../../model/account.model";
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +25,10 @@ export class TripService {
 
   getById(id: number): Observable<TripDetailsDTO> {
     return this.http.get<TripDetailsDTO>(this.baseUrl + id);
+  }
+
+  getByCreatorId(id: number): Observable<TripInfoDTO[]> {
+    return this.http.get<TripInfoDTO[]>(this.baseUrl + "creator/" + id);
   }
 
   createTrip(trip: TripDetailsDTO): Observable<TripDetailsDTO> {
