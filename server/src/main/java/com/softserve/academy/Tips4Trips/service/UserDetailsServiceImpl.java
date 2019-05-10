@@ -45,22 +45,13 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Transactional
     public UserDetails loadUserById(Long id) {
-        User user = userService.findById(id);
-        if (user == null) {
+        Account account = accountService.findById(id);
+        if (account == null) {
             throw new UsernameNotFoundException(
-                    "User with id '" + id + "' not found."
+                    "Account with id '" + id + "' not found."
             );
         }
 
-        Account account = accountService.findByUser(user);
-        if (account == null) {
-            throw new UsernameNotFoundException(
-                    "User with id '" + id+ "' not found.",
-                    new AccountNotFoundException(
-                            "Account for user '" + id + "' not found."
-                    )
-            );
-        }
-        return UserDetailsImpl.create(user, account.getRole());
+        return UserDetailsImpl.createAccount(account, account.getRole());
     }
 }

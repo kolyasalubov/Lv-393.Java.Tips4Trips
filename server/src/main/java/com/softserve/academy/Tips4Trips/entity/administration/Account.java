@@ -2,6 +2,7 @@ package com.softserve.academy.Tips4Trips.entity.administration;
 
 import com.softserve.academy.Tips4Trips.entity.blog.Post;
 import com.softserve.academy.Tips4Trips.entity.entertainment.mountains.Sale;
+import com.softserve.academy.Tips4Trips.entity.enums.AuthProvider;
 import com.softserve.academy.Tips4Trips.entity.enums.Role;
 import com.softserve.academy.Tips4Trips.entity.file.Image;
 
@@ -44,6 +45,13 @@ public class Account {
     @Column(name = "role", nullable = false)
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    @Column(name = "provider", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private AuthProvider provider;
+
+    @Column(name = "provider_id", nullable = false)
+    private String providerId;
 
     @ManyToOne
     @JoinColumn(name = "image_id", referencedColumnName = "id")
@@ -129,6 +137,22 @@ public class Account {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public AuthProvider getProvider() {
+        return provider;
+    }
+
+    public void setProvider(AuthProvider provider) {
+        this.provider = provider;
+    }
+
+    public String getProviderId() {
+        return providerId;
+    }
+
+    public void setProviderId(String providerId) {
+        this.providerId = providerId;
     }
 
     public List<Post> getPost() {

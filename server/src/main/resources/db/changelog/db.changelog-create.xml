@@ -22,6 +22,8 @@
             <column name="role" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
+            <column name="provider" type="VARCHAR(255)"/>
+            <column name="provider_id" type="VARCHAR(255)"/>
             <column name="image_id" type="BIGINT"/>
         </createTable>
     </changeSet>
