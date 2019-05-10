@@ -1,0 +1,17 @@
+.trip-input {
+    height: auto !important; 
+    border-color: #007bff; 
+    color: #007bff;
+}
+/* .trip-input::placeholder { 
+    color: #007bff;
+    opacity: 1;
+  }
+  
+.trip-input:-ms-input-placeholder { 
+    color: #007bff;
+  }
+  
+.trip-input::-ms-input-placeholder { 
+    color: #007bff;
+  } */

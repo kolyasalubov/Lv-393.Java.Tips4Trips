@@ -1,6 +1,8 @@
 package com.softserve.academy.Tips4Trips.dto.converter;
 
+import com.softserve.academy.Tips4Trips.dto.Page;
 import com.softserve.academy.Tips4Trips.dto.details.PostDetailsDTO;
+import com.softserve.academy.Tips4Trips.dto.info.PostInfoDTO;
 import com.softserve.academy.Tips4Trips.entity.Route;
 import com.softserve.academy.Tips4Trips.entity.blog.Post;
 import com.softserve.academy.Tips4Trips.service.AccountService;
@@ -8,8 +10,10 @@ import com.softserve.academy.Tips4Trips.service.RouteService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
+import java.util.List;
+import java.util.stream.Collectors;
 import java.util.Date;
+
 
 @Component
 public class PostConverter implements Converter<Post, PostDetailsDTO> {
@@ -81,6 +85,13 @@ public class PostConverter implements Converter<Post, PostDetailsDTO> {
         post.setRoute(route);
         post.setAuthor(accountService.findById(postDetailsDTO.getAuthor().getId()));
         return post;
+    }
+
+    public Page<PostInfoDTO> convertToInfoDTO(final Page<Post> postPage) {
+        List<PostInfoDTO> dtos = postPage.getList().stream()
+                .map(post -> modelMapper.map(post, PostInfoDTO.class))
+                .collect(Collectors.toList());
+        return new Page<>(dtos, postPage.getPage(), postPage.getTotal());
     }
 
     @Override

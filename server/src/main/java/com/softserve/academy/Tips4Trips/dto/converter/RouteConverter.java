@@ -1,6 +1,7 @@
 package com.softserve.academy.Tips4Trips.dto.converter;
 
 import com.softserve.academy.Tips4Trips.controller.RouteController;
+import com.softserve.academy.Tips4Trips.dto.Page;
 import com.softserve.academy.Tips4Trips.dto.details.RouteDetailsDTO;
 import com.softserve.academy.Tips4Trips.dto.info.AccountInfoDTO;
 import com.softserve.academy.Tips4Trips.dto.info.RouteInfoDTO;
@@ -73,6 +74,11 @@ public class RouteConverter implements Converter<Route, RouteDetailsDTO> {
             dtos = routes.stream().map(this::convertToInfoDTO).collect(Collectors.toList());
         }
         return dtos;
+    }
+
+    public Page<RouteInfoDTO> convertToInfoDTO(final Page<Route> routePage) {
+        List<RouteInfoDTO> dtos = convertToInfoDTO(routePage.getList());
+        return new Page<>(dtos, routePage.getPage(), routePage.getTotal());
     }
 
     private RouteInfoDTO toInfoDTO(RouteInfoDTO routeInfoDTO, Route route) {

@@ -1,5 +1,6 @@
 package com.softserve.academy.Tips4Trips.service;
 
+import com.softserve.academy.Tips4Trips.dto.Page;
 import com.softserve.academy.Tips4Trips.dto.search.PostSearchParams;
 import com.softserve.academy.Tips4Trips.dto.search.RouteSearchParams;
 import com.softserve.academy.Tips4Trips.dto.search.TripSearchParams;
@@ -30,15 +31,15 @@ public class SearchService {
         this.tripRepository = tripRepository;
     }
 
-    public List<Route> findRoutesByParams(RouteSearchParams routeSearchParams) {
-        return routeRepository.findByParams(routeSearchParams);
+    public Page<Route> findRoutesByParams(RouteSearchParams routeSearchParams, long page, int size) {
+        return routeRepository.findByParams(routeSearchParams, page, size);
     }
 
-    public List<Post> findPostsByParams(PostSearchParams postSearchParams) {
-        return postRepository.findByParams(postSearchParams);
+    public Page<Post> findPostsByParams(PostSearchParams postSearchParams, long page, int size) {
+        return postRepository.findByParams(postSearchParams, page, size);
     }
 
-    public List<Trip> findTripsByParams(TripSearchParams tripSearchParams) {
-        return tripRepository.findByParams(tripSearchParams);
+    public Page<Trip> findTripsByParams(TripSearchParams tripSearchParams, long page, int size) {
+        return tripRepository.findByParams(tripSearchParams, page, size);
     }
 }

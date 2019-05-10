@@ -9,7 +9,7 @@ import {TripInfoDTO} from "../../../model/trip-info";
 })
 export class ListTripsComponent implements OnInit {
 
-  @Input() postP:TripInfoDTO[]=null;
+  @Input() trips:TripInfoDTO[]=null;
 
   constructor() { }
 

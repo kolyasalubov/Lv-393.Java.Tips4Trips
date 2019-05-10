@@ -3,8 +3,6 @@ package com.softserve.academy.Tips4Trips.entity;
 import com.softserve.academy.Tips4Trips.entity.administration.Account;
 import com.softserve.academy.Tips4Trips.entity.file.Image;
 import com.softserve.academy.Tips4Trips.entity.place.Place;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;

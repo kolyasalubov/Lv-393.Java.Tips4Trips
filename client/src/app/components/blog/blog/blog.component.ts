@@ -33,10 +33,11 @@ export class BlogComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe(params => {
       this.id = +params.get('id');
+      if (isNaN(this.id) || this.id < 1) {
+        this.id = 1;
+      }
+      this.getPageClient(this.id);
     });
-    if (isNaN(this.id) || this.id < 1) {
-      this.id = 1;
-    }
-    this.getPageClient(this.id);
+    
   }
 }

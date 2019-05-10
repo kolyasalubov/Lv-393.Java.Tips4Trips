@@ -134,29 +134,26 @@ public class AccountController {
     }
 
 
-    @PutMapping("/{accountId}/subscribe/{profileId}")
-//    @PreAuthorize("hasRole('ROLE_USER')")
+    @PutMapping("/{accountId}/subscribe/{followingAccountId}")
     public ResponseEntity<AccountInfoDTO> subscribe(
             @PathVariable(value = "accountId") @NotNull @Positive Long accountId,
-            @PathVariable(value = "profileId") @NotNull @Positive Long profileId) {
-
-        //todo add validation
-        return new ResponseEntity<>(accountConverter.convertToInfoDTO(accountService.subscribe(accountId, profileId)), HttpStatus.OK);
+            @PathVariable(value = "followingAccountId") @NotNull @Positive Long followingAccountId) {
+        logger.info("subscribe method executing: ");
+        return new ResponseEntity<>(accountConverter.convertToInfoDTO(accountService.subscribe(accountId, followingAccountId)), HttpStatus.OK);
     }
 
-    @DeleteMapping("/{accountId}/unsubscribe/{profileId}")
-    //    @PreAuthorize("hasRole('ROLE_USER')")
+    @DeleteMapping("/{accountId}/unsubscribe/{followingAccountId}")
     public ResponseEntity unSubscribe(
             @PathVariable(value = "accountId") @NotNull @Positive Long accountId,
-            @PathVariable(value = "profileId") @NotNull @Positive Long profileId) {
-        //todo add validation
-        accountService.unSubscribe(accountId, profileId);
+            @PathVariable(value = "followingAccountId") @NotNull @Positive Long followingAccountId) {
+        logger.info("unSubscribe method executing: ");
+        accountService.unSubscribe(accountId, followingAccountId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @GetMapping("/{id}/news")
     public ResponseEntity<AccountFeedDTO> getAccountFeedById(@PathVariable Long id) {
-        logger.info("get by id method executing: ");
+        logger.info("getAccountFeedById method executing: ");
         Account account = accountService.findById(id);
 
         AccountFeedDTO accountFeedDTO = modelMapper.map(account, AccountFeedDTO.class);
@@ -167,6 +164,15 @@ public class AccountController {
         accountFeedDTO.setFollowingAccounts(accountFollowingDTOS);
 
         return new ResponseEntity<>(accountFeedDTO, HttpStatus.OK);
+    }
+
+
+    @GetMapping("{accountId}/following/{followingAccountId}")
+    public boolean isFollowing(@PathVariable Long accountId,
+                               @PathVariable Long followingAccountId) {
+        logger.info("isFollowing method executing: ");
+        return accountService.isFollowing(accountId, followingAccountId);
+
     }
 
 
@@ -202,4 +208,5 @@ public class AccountController {
         return new ResponseEntity<>(accountConverter
                 .convertToDTO(updatedAccount), HttpStatus.ACCEPTED);
     }
+
 }
