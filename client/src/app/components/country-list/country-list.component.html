@@ -6,6 +6,10 @@
 
 <section class="ftco-section contact-section" style="margin-bottom: 90px;">
   <div class="container">
+      <a routerLink="/country">Create</a>
+      <p>
+
+      </p>
     <div class="row block-9">
       <section class="container">
         <div class="row blog-entries element-animate">
@@ -18,10 +22,10 @@
             <tr *ngFor="let c of countries">
               <td>{{c.name}}</td>
               <td>
-                <button (click)="update(c.id)">Edit</button>
+                <button [routerLink]="['/country/',c.id]" type="button" class="btn btn-success">Edit</button>
               </td>
               <td>
-                <button (click)="onClickMe(c.id)">Delete</button>
+                <button (click)="openConfirmationDialog(c)" type="button" class="btn btn-danger">Delete</button>
               </td>
             </tr>
           </table>

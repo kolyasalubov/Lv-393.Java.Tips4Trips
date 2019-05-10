@@ -1,6 +1,6 @@
 package com.softserve.academy.Tips4Trips.service;
 
-import com.softserve.academy.Tips4Trips.entity.City;
+import com.softserve.academy.Tips4Trips.entity.city.City;
 import com.softserve.academy.Tips4Trips.entity.file.Image;
 import com.softserve.academy.Tips4Trips.entity.place.Place;
 import com.softserve.academy.Tips4Trips.exception.DataNotFoundException;

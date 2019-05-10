@@ -1,9 +1,8 @@
 package com.softserve.academy.Tips4Trips.dto.converter;
 
 import com.softserve.academy.Tips4Trips.controller.CityController;
-import com.softserve.academy.Tips4Trips.controller.PlaceController;
 import com.softserve.academy.Tips4Trips.dto.CityDTO;
-import com.softserve.academy.Tips4Trips.entity.City;
+import com.softserve.academy.Tips4Trips.entity.city.City;
 import com.softserve.academy.Tips4Trips.entity.Country;
 import com.softserve.academy.Tips4Trips.repository.CountryRepository;
 import org.springframework.beans.factory.annotation.Autowired;

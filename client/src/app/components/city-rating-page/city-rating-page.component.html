@@ -1,0 +1,85 @@
+<app-header></app-header>
+<section class="hero-wrap hero-wrap-2 js-fullheight"
+  style="background-image: url('../../../../assets/images/bg_2.jpg');" data-stellar-background-ratio="0.5">
+  <div class="overlay" style="background:white;"></div>
+</section>
+
+
+<section class="ftco-section contact-section" style="margin-bottom: 90px;">
+  <div class="container">
+    <div class="row">
+      <h1>{{city.name}}</h1>
+      <div class="stars">
+        <bar-rating theme="fontawesome-o" [(rate)]="cityRate" [max]="5"></bar-rating>
+      </div>
+    </div>
+    <form>
+      <div class="row">
+        <bar-rating theme="fontawesome-o" [(rate)]="cityFeedback.weatherRating" [max]="5"></bar-rating>
+        <span style="margin-top: 12px">Weather</span>
+      </div>
+      <div class="row">
+        <bar-rating theme="fontawesome-o" [(rate)]="cityFeedback.safetyRating" [max]="5"></bar-rating>
+        <span style="margin-top: 12px">Safety</span>
+      </div>
+      <div class="row">
+        <bar-rating theme="fontawesome-o" [(rate)]="cityFeedback.transportRating" [max]="5"></bar-rating>
+        <span style="margin-top: 12px">Transport</span>
+      </div>
+      <div class="row">
+        <bar-rating theme="fontawesome-o" [(rate)]="cityFeedback.costOfLivingRating" [max]="5"></bar-rating>
+        <span style="margin-top: 12px">Cost of living</span>
+      </div>
+      <div class="row">
+        <bar-rating theme="fontawesome-o" [(rate)]="cityFeedback.entertainmentRating" [max]="5"></bar-rating>
+        <span style="margin-top: 12px">Entertainment</span>
+      </div>
+
+      <div class="row">
+        <label for="exampleFormControlTextarea1">Leave a comment</label>
+        <textarea [(ngModel)]="cityFeedback.content" name="content" class="form-control"
+          id="exampleFormControlTextarea1" rows="3"></textarea>
+      </div>
+      <button type="submit" (click)="saveFeedback()" style="float:right" class="btn btn-primary">Save</button>
+    </form>
+
+    <div class="col-sm-6" *ngFor="let f of cityFeedbacks">
+      <div class="card">
+        <div class="card-header">
+          <div class="row">
+            <bar-rating style="margin-right: 220px" theme="fontawesome-o" [(rate)]="cityFeedback.entertainmentRating" [max]="5"></bar-rating>
+            <!-- <h5 style="margin-right: 350px" class="card-title">{{f.weatherRating}}</h5> -->
+            <h5 class="card-title">Date & Author</h5>
+          </div>
+        </div>
+        <div class="card-body">
+          <blockquote class="blockquote mb-0">
+            <p>{{f.content}}</p>
+          </blockquote>
+        </div>
+      </div>
+
+      <!-- <div class="row">
+        <h5 style="margin-right: 100px" class="card-title">{{f.weatherRating}}</h5>
+        <h5 class="card-title">Date & Author</h5>
+      </div>
+      <div class="row">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{f.content}}</h5>
+          </div>
+        </div>
+      </div>
+      <p>
+
+
+      </p> -->
+    </div>
+  </div>
+
+
+</section>
+
+
+<app-footer></app-footer>
+<script src="../../../../assets/js/main.js"></script>

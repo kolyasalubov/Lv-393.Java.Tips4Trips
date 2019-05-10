@@ -1,10 +1,6 @@
 package com.softserve.academy.Tips4Trips.dto.search;
 
-import com.softserve.academy.Tips4Trips.entity.City;
-
 import java.util.Date;
-import java.util.List;
-import java.util.Set;
 
 public class RouteSearchParams {
     private String name;

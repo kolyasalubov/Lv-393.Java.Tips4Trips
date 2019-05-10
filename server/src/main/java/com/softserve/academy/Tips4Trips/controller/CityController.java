@@ -1,15 +1,17 @@
 package com.softserve.academy.Tips4Trips.controller;
 
 import com.softserve.academy.Tips4Trips.dto.CityDTO;
+import com.softserve.academy.Tips4Trips.dto.CityFeedbackDTO;
 import com.softserve.academy.Tips4Trips.dto.converter.CityConverter;
+import com.softserve.academy.Tips4Trips.dto.converter.CityFeedbackConverter;
 import com.softserve.academy.Tips4Trips.dto.converter.PlaceConverter;
 import com.softserve.academy.Tips4Trips.dto.info.PlaceInfoDTO;
-import com.softserve.academy.Tips4Trips.entity.City;
-import com.softserve.academy.Tips4Trips.entity.Country;
+import com.softserve.academy.Tips4Trips.entity.city.City;
+import com.softserve.academy.Tips4Trips.entity.city.CityFeedback;
+import com.softserve.academy.Tips4Trips.service.CityFeedbackService;
 import com.softserve.academy.Tips4Trips.service.CityService;
 import com.softserve.academy.Tips4Trips.service.PlaceService;
 import org.apache.log4j.Logger;
-import com.softserve.academy.Tips4Trips.service.CountryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,16 +30,40 @@ public class CityController {
     private CityService cityService;
     private PlaceConverter placeConverter;
     private PlaceService placeService;
+    private CityFeedbackService cityFeedbackService;
+    private CityFeedbackConverter cityFeedbackConverter;
 
     @Autowired
     public CityController(CityConverter cityConverter,
                           CityService cityService,
                           PlaceConverter placeConverter,
-                          PlaceService placeService) {
+                          PlaceService placeService,
+                          CityFeedbackService cityFeedbackService,
+                          CityFeedbackConverter cityFeedbackConverter) {
+        this.cityFeedbackConverter = cityFeedbackConverter;
         this.cityConverter = cityConverter;
         this.cityService = cityService;
         this.placeConverter = placeConverter;
         this.placeService = placeService;
+        this.cityFeedbackService = cityFeedbackService;
+    }
+
+    @GetMapping
+    public ResponseEntity<List<CityDTO>> getAll() {
+        return new ResponseEntity<>(cityConverter.convertToDTO(cityService.findAll()), HttpStatus.OK);
+    }
+
+    @PostMapping("/addFeedback")
+    public ResponseEntity<CityFeedbackDTO> addFeedback(@RequestBody CityFeedbackDTO cityFeedbackDTO) {
+        logger.info("add feedback method executing: ");
+        CityFeedback cityFeedback = cityFeedbackConverter.convertToEntity(cityFeedbackDTO);
+        return new ResponseEntity<>(cityFeedbackConverter.convertToDTO(cityFeedbackService.createCityFeedback(cityFeedback)), HttpStatus.OK);
+    }
+
+    @GetMapping("/getFeedbacks/{id}")
+    public ResponseEntity<List<CityFeedbackDTO>> getFeedback(@PathVariable Long id) {
+        logger.info("get city by id method executing: ");
+        return new ResponseEntity<>(cityFeedbackConverter.convertToDTO(cityFeedbackService.findByCityFeedback(id)), HttpStatus.OK);
     }
 
     @PostMapping("/create")

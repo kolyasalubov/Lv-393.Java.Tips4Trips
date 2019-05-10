@@ -1,4 +1,22 @@
-/* You can add global styles to this image, and also import other style files */
+/* You can add global styles to this file, and also import other style files */
+@import '~font-awesome/css/font-awesome.css';
+@import '~ngx-bar-rating/themes/br-default-theme.css';
+@import '~ngx-bar-rating/themes/br-bootstrap-theme.css';
+@import '~ngx-bar-rating/themes/br-horizontal-theme.css';
+@import '~ngx-bar-rating/themes/br-fontawesome-o-theme.css';
+
+section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3em;
+}
+
+p {
+  font-family: Lato;
+}
+
 /*!
  * Bootstrap v4.2.1 (https://getbootstrap.com/)
  * Copyright 2011-2018 The Bootstrap Authors

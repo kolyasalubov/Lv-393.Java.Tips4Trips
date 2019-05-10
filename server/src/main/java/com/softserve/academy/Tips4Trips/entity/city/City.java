@@ -1,5 +1,7 @@
-package com.softserve.academy.Tips4Trips.entity;
+package com.softserve.academy.Tips4Trips.entity.city;
 
+import com.softserve.academy.Tips4Trips.entity.Country;
+import com.softserve.academy.Tips4Trips.entity.Position;
 import com.softserve.academy.Tips4Trips.entity.place.Place;
 
 import javax.persistence.*;
@@ -31,27 +33,29 @@ public class City implements Serializable {
             nullable = false)
     private Country country;
 
-    @OneToMany(mappedBy = "city", cascade = CascadeType.ALL,
-            orphanRemoval = true)
+    @OneToMany(mappedBy = "city", cascade = CascadeType.ALL)
     private List<Place> listOfPlaces;
 
-    public City() {}
+    @OneToMany(mappedBy = "city", cascade = CascadeType.ALL)
+    private List<CityFeedback> cityFeedbacks;
 
-    public City(@Size(max = 35) @NotBlank String name,
-                @NotNull Position position, Country country,
-                List<Place> listOfPlaces) {
+    public City() {
+    }
+
+    public City(@Size(max = 35) @NotBlank String name, @NotNull Position position, Country country, List<Place> listOfPlaces, List<CityFeedback> cityFeedbacks) {
         this.name = name;
         this.position = position;
         this.country = country;
         this.listOfPlaces = listOfPlaces;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+        this.cityFeedbacks = cityFeedbacks;
     }
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -84,5 +88,13 @@ public class City implements Serializable {
 
     public void setListOfPlaces(List<Place> listOfPlaces) {
         this.listOfPlaces = listOfPlaces;
+    }
+
+    public List<CityFeedback> getCityFeedbacks() {
+        return cityFeedbacks;
+    }
+
+    public void setCityFeedbacks(List<CityFeedback> cityFeedbacks) {
+        this.cityFeedbacks = cityFeedbacks;
     }
 }

@@ -20,12 +20,17 @@ export class CountryService {
         return this.http.get<Country[]>(this.url);
     }
 
-    deleteById(id: any) {
+    deleteById(id: number) {
         this.http.delete(this.url + '/delete/' + id).subscribe((s) => {});
     }
 
-    updateCountry(country: Country): Observable<Country> {
-        return this.http.put<Country>(this.url + "/update", country);
-      }
+    getById(id: number): Observable<Country> {
+        return this.http.get<Country>(this.url + '/' + id);
+    }
+
+    updateCountry(country: Country) {
+        this.http.put(this.url + '/update', country).subscribe((s) => {console.log(s)});
+    }
+
 
 }
