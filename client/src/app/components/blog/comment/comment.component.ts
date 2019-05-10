@@ -2,7 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {CommentService} from './comment.service';
 import {Comment} from '../../../model/comment.model';
 import {AccountInfo} from '../../../model/account-info.model';
-import {NgForm} from '@angular/forms';
+import {FormControl, FormGroup, NgForm, Validators} from '@angular/forms';
 
 import {CustomAuthService} from "../../authentication/custom-auth.service";
 import {Router} from "@angular/router";
@@ -30,7 +30,13 @@ export class CommentComponent implements OnInit {
   commentProfile: Comment = new Comment(null, null, null, null, null, null, null);
 
   allComments: Comment[];
-
+  formGroup: FormGroup = new FormGroup({
+    description: new FormControl(null, [
+      Validators.required,
+      Validators.minLength(1),
+      Validators.maxLength(500)
+    ])
+});
   public showComments() {
 
     this.commentService.findByPostId(this.postid)

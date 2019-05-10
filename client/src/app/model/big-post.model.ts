@@ -1,5 +1,6 @@
 import {AccountInfo} from './account-info.model';
 import {RouteInfo} from './route-info.model';
+import {Image} from "./image.model";
 
 export class BigPostModel {
   id: number;
@@ -20,4 +21,5 @@ export class BigPostModel {
   accountId:number;
   firstName: String;
   lastName:String;
+  images:Image[];
 }

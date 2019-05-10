@@ -7,6 +7,7 @@ import {AccountFollowing} from "../../model/account-following";
 import {PostDetailsModel} from "../../model/postDetails.model";
 import {BigPostModel} from "../../model/big-post.model";
 import {post} from "selenium-webdriver/http";
+import {Image} from "../../model/image.model";
 
 @Component({
   selector: 'app-news',
@@ -21,6 +22,16 @@ export class NewsComponent implements OnInit {
   account: AccountFeed;
   followingAccounts: AccountFollowing[];
   posts: BigPostModel[]=[];
+  more: boolean=false;
+  imageURL = 'http://localhost:8080/posts/images/';
+  imageReady = false;
+  readMore(){
+    if(this.more==false){
+      this.more=true;
+    }else{
+      this.more=false;
+    }
+  }
 sortPosts(){
   this.posts.sort(function (a,b) {
     return a.id-b.id;
@@ -65,10 +76,15 @@ allPosts(){
           console.log(this.followingAccounts);
          this.allPosts();
          this.sortPosts();
+         this.imageReady = true;
        });
     });
 
 
+  }
+
+  getImageString(image: Image) {
+    return this.imageURL + image.id;
   }
 
 }
