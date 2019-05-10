@@ -6,6 +6,8 @@ import {NewsService} from "../../news/news.service";
 import {AccountFeed} from "../../../model/account-feed";
 import {AccountFollowing} from "../../../model/account-following";
 import {CustomAuthService} from "../custom-auth.service";
+import {TripInfoDTO} from "../../../model/trip-info";
+import {TripService} from "../../trip/trip/trip.service";
 
 
 
@@ -23,9 +25,10 @@ export class ProfileComponent implements OnInit {
   isFollowing: boolean = false;
   followingAccounts: AccountFollowing[];
   isButtonDisabled: boolean = false;
+  trips: TripInfoDTO[] = [];
 
 
-  constructor(private newsService: NewsService, private ngRoute: ActivatedRoute, private router: Router, private profileService: ProfileService, private authService: CustomAuthService) {
+  constructor(private newsService: NewsService, private ngRoute: ActivatedRoute, private router: Router, private profileService: ProfileService, private authService: CustomAuthService, private tripService: TripService) {
   }
 
 
@@ -70,7 +73,6 @@ export class ProfileComponent implements OnInit {
       }
 
     });
-
-
+    this.tripService.getByCreatorId(id).subscribe(data => this.trips = data);
   }
 }
