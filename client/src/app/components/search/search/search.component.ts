@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { SearchPlaceComponent } from '../search-place/search-place.component';
 import { SearchRouteComponent } from '../search-route/search-route.component';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { SearchPostComponent } from '../search-post/search-post.component';
 import { SearchTripComponent } from '../search-trip/search-trip.component';
 
@@ -21,6 +21,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
   @ViewChild(SearchTripComponent) searchTrip: SearchTripComponent;
 
   categoriesComponents: any;
+  page: number;
 
   constructor(
     private router: Router,
@@ -28,23 +29,31 @@ export class SearchComponent implements OnInit, AfterViewInit {
   ) { }
 
   ngOnInit() {
-    this.route.queryParams.subscribe(params => {
-      this.seek = params['seek'] || '';
-      this.currCategory = params['category'] || 'PLACE';
-      if (!categories.includes(this.currCategory.toUpperCase())) {
-        this.currCategory = 'PLACE';
-      } else {
-        this.currCategory = this.currCategory.toUpperCase();
+    
+    this.route.params.forEach((params: Params) => {
+      try {
+        this.page = (params['page']) ? +params['page'] - 1 : 0 ;
+      } catch (err) {
+        this.page = 0;
       }
-      this.categoriesComponents = {
-        "PLACE": this.searchPlace,
-        "ROUTE": this.searchRoute,
-        "POST": this.searchPost,
-        "TRIP": this.searchTrip
-      };
-      this.categoriesComponents[this.currCategory].init();
-      this.categoriesComponents[this.currCategory].search(this.seek);
-    });
+      this.route.queryParams.subscribe(params => {
+        this.seek = params['seek'] || '';
+        this.currCategory = params['category'] || 'PLACE';
+        if (!categories.includes(this.currCategory.toUpperCase())) {
+          this.currCategory = 'PLACE';
+        } else {
+          this.currCategory = this.currCategory.toUpperCase();
+        }
+        this.categoriesComponents = {
+          "PLACE": this.searchPlace,
+          "ROUTE": this.searchRoute,
+          "POST": this.searchPost,
+          "TRIP": this.searchTrip
+        };
+        this.categoriesComponents[this.currCategory].init();
+        this.categoriesComponents[this.currCategory].search(this.seek, this.page);
+      });
+    })
   }
 
   ngAfterViewInit(): void {

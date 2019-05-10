@@ -37,14 +37,14 @@ import { EditRouteComponent } from './components/routes/edit-route/edit-route.co
 import { NotVerifiedRoutesPageComponent } from './components/routes/not-verified-routes-page/not-verified-routes-page.component';
 import { SearchPlaceComponent } from './components/search/search-place/search-place.component';
 import { SearchComponent } from './components/search/search/search.component';
-import {NewsComponent} from "./components/news/news.component";
-import {EditRestaurantComponent} from "./components/create-post-place/edit-restaurant/edit-restaurant.component";
-import {EditHotelComponent} from "./components/create-post-place/edit-hotel/edit-hotel.component";
-import {EditMonumentComponent} from "./components/create-post-place/edit-monument/edit-monument.component";
+import { NewsComponent } from "./components/news/news.component";
+import { EditRestaurantComponent } from "./components/create-post-place/edit-restaurant/edit-restaurant.component";
+import { EditHotelComponent } from "./components/create-post-place/edit-hotel/edit-hotel.component";
+import { EditMonumentComponent } from "./components/create-post-place/edit-monument/edit-monument.component";
 import { ImagetestComponent } from './components/imagetest/imagetest.component';
 import { MaptestComponent } from './components/maptest/maptest.component';
 import { MapPickerComponent } from './components/map/map-picker/map-picker.component';
-import {ChatComponent} from "./components/chat/chat.component";
+import { ChatComponent } from "./components/chat/chat.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -95,13 +95,14 @@ const routes: Routes = [
   { path: 'test', component: TestComponent },
   { path: 'profile/:id', component: ProfileComponent },
   { path: 'search', component: SearchComponent },
-  {path: 'news', component: NewsComponent},
-  { path: 'restaurants/edit/:id', component: EditRestaurantComponent},
-  { path: 'monuments/edit/:id', component: EditMonumentComponent},
-  { path: 'hotels/edit/:id', component: EditHotelComponent},
-  { path: 'maptest', component:  MapPickerComponent },
+  { path: 'search/page/:page', component: SearchComponent },
+  { path: 'news', component: NewsComponent },
+  { path: 'restaurants/edit/:id', component: EditRestaurantComponent },
+  { path: 'monuments/edit/:id', component: EditMonumentComponent },
+  { path: 'hotels/edit/:id', component: EditHotelComponent },
+  { path: 'maptest', component: MapPickerComponent },
   { path: '404', component: ErrorComponent },
-  {path: 'chat', component: ChatComponent},
+  { path: 'chat', component: ChatComponent },
   { path: '**', redirectTo: '/404' }
 ];
 

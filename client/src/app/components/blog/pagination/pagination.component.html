@@ -3,15 +3,15 @@
     <div class="block-27">
       <ul>
         <li *ngIf="back">
-          <a href="{{link}}{{number}}">&lt;</a>
+          <a [routerLink]="[link + number]" [queryParams]="queryParams">&lt;</a>
         </li>
         <li *ngIf="back">
-          <a href="{{link}}{{number}}">{{number}}</a>
+          <a [routerLink]="[link + number]" [queryParams]="queryParams">{{number}}</a>
         </li>
         <li class="active"><span>{{number +1}}</span></li>
-        <li *ngFor="let item of page"><a href="{{link}}{{item}}">{{item}}</a></li>
-        <li *ngIf="front"><a href="{{link}}{{total}}">{{total}}</a></li>
-        <li *ngIf="front"><a href="{{link}}{{number+2}}">&gt;</a></li>
+        <li *ngFor="let item of page"><a [routerLink]="[link + item]" [queryParams]="queryParams">{{item}}</a></li>
+        <li *ngIf="front"><a [routerLink]="[link + total]" [queryParams]="queryParams">{{total}}</a></li>
+        <li *ngIf="front"><a [routerLink]="[link + (number + 2)]" [queryParams]="queryParams">&gt;</a></li>
       </ul>
     </div>
   </div>

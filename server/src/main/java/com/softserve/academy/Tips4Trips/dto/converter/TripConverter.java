@@ -1,6 +1,7 @@
 package com.softserve.academy.Tips4Trips.dto.converter;
 
 import com.softserve.academy.Tips4Trips.controller.TripController;
+import com.softserve.academy.Tips4Trips.dto.Page;
 import com.softserve.academy.Tips4Trips.dto.details.TripDetailsDTO;
 import com.softserve.academy.Tips4Trips.dto.info.TripInfoDTO;
 import com.softserve.academy.Tips4Trips.entity.administration.Account;
@@ -84,6 +85,11 @@ public class TripConverter implements Converter<Trip, TripDetailsDTO> {
 
     public TripInfoDTO convertToInfoDTO(Trip trip) {
         return toInfoDTO(new TripInfoDTO(), trip);
+    }
+
+    public Page<TripInfoDTO> convertToInfoDTO(final Page<Trip> tripPage) {
+        List<TripInfoDTO> dtos = convertToInfoDTO(tripPage.getList());
+        return new Page<>(dtos, tripPage.getPage(), tripPage.getTotal());
     }
 
 
