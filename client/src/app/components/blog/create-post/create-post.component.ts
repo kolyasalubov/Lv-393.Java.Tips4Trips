@@ -17,7 +17,7 @@ export class CreatePostComponent implements OnInit {
 
   routeName: string;
   post: PostCreateModel;
-  url: string = null;
+  url: string = 'http://localhost:8080/posts/';
   uploadPhoto: boolean=false;
 
   constructor(private routeService: RouteService, private postService: PostService,
@@ -55,6 +55,7 @@ export class CreatePostComponent implements OnInit {
     if (this.validate()) {
       this.postService.createTrip(this.post).subscribe(result => {
           this.post = result;
+          this.url=this.url+this.post.id+'/images';
           console.log(2222);
           this.uploadPhoto=true;
         }

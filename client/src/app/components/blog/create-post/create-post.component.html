@@ -14,7 +14,7 @@
               <h1 class="mb-4">Create a new post</h1>
               <div class="col-md-8 col-lg-6 main-content">
                 <img src="" alt="Image" class="img-fluid mb-5">
-                <app-image-upload-form [multiple]="true" [requestType]="'POST'" [storageURL]="'http://localhost:8080/posts/1/images'" [UploadStart]="uploadPhoto"></app-image-upload-form>
+                <app-image-upload-form [multiple]="true" [requestType]="'POST'" [storageURL]="url" [UploadStart]="uploadPhoto"></app-image-upload-form>
                 <p>*File have to be less than 5 MB</p>
               </div>
               <table style="width: 100%;margin-top: 5%;">
