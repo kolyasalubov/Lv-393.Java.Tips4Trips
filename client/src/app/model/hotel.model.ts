@@ -8,7 +8,7 @@ export class Hotel {
     workingDays: string[];
     webSite: string;
     telephone: string;
-    type: string;
+    category: string;
     openingTime: string;
     closingTime: string;
     address: string;
@@ -20,7 +20,7 @@ export class Hotel {
 
 
     constructor( id: number, name: string, description: string, workingDays:string [],webSite: string,telephone: string,
-                 type: string,openingTime: string,closingTime: string,address: string,position: Position,
+                 openingTime: string,closingTime: string,address: string,position: Position,
                  photoPath: string, cityDTO: City ,maximumPrice : number,minimumPrice : number,) {
         this.id = id;
         this.name = name;
@@ -28,7 +28,7 @@ export class Hotel {
         this.workingDays = workingDays;
         this.webSite = webSite;
         this.telephone = telephone;
-        this.type = type;
+        this.category = "HOTELS";
         this.openingTime = openingTime;
         this.closingTime = closingTime;
         this.address = address;

@@ -9,6 +9,7 @@ export class Monument {
   position: Position;
   photoPath: string;
   cityDTO: City;
+  category: string;
 
   constructor(id: number, name: string, description: string, address: string,
               position: Position, photoPath: string, cityDTO: City) {
@@ -19,5 +20,6 @@ export class Monument {
     this.position = position;
     this.photoPath = photoPath;
     this.cityDTO = cityDTO;
+    this.category = "HOTELS";
   }
 }

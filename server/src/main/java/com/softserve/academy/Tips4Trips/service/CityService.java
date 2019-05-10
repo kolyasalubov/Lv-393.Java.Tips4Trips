@@ -48,4 +48,8 @@ public class CityService {
     public City findById(Long id) {
         return cityRepository.findById(id).get();
     }
+
+    public Long getCount() {
+        return cityRepository.count();
+    }
 }

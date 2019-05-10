@@ -8,6 +8,9 @@ import com.softserve.academy.Tips4Trips.entity.blog.Post;
 import com.softserve.academy.Tips4Trips.entity.entertainment.mountains.Trip;
 import com.softserve.academy.Tips4Trips.exception.DataNotFoundException;
 import com.softserve.academy.Tips4Trips.exception.DuplicateValueException;
+import com.softserve.academy.Tips4Trips.entity.file.Image;
+import com.softserve.academy.Tips4Trips.exception.DataNotFoundException;
+import com.softserve.academy.Tips4Trips.exception.FileIOException;
 import com.softserve.academy.Tips4Trips.repository.AccountRepository;
 import com.softserve.academy.Tips4Trips.repository.UserRepository;
 import org.apache.log4j.Logger;
@@ -15,7 +18,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -30,12 +36,21 @@ public class AccountService {
     private AccountConverter accountConverter;
     private AccountRepository repository;
     private UserRepository userRepository;
+    private FileStorageService fileStorageService;
 
     @Autowired
-    public AccountService(AccountConverter accountConverter, AccountRepository repository, UserRepository userRepository) {
+    public AccountService(FileStorageService fileStorageService,
+                          AccountConverter accountConverter,
+                          AccountRepository repository,
+                          UserRepository userRepository) {
         this.accountConverter = accountConverter;
         this.repository = repository;
         this.userRepository = userRepository;
+        this.fileStorageService = fileStorageService;
+    }
+
+    public Long getCount() {
+        return  (repository.count()+100L);
     }
 
     public List<Account> findAll() {
@@ -70,7 +85,6 @@ public class AccountService {
         }
 
     }
-
 
     public Account createAccount(Account account) {
         account.setId(-1L);
@@ -117,5 +131,38 @@ public class AccountService {
         } else {
             throw new DataNotFoundException();
         }
+    }
+    public Account createImageForAccount(MultipartFile image, Long id)
+            throws FileIOException {
+        Account account = findById(id);
+        if (account.getImage() != null) {
+            throw new FileIOException("Account image already exists! Try " +
+                    "updating it.");
+        }
+        Image newImage = fileStorageService.store(image);
+        account.setImage(newImage);
+        return update(account);
+    }
+
+    public void deleteAccountImage(Long id) throws FileIOException,
+            DataNotFoundException {
+        try {
+            Account account = findById(id);
+            Long imageId = account.getImage().getId();
+            account.setImage(null);
+            update(account);
+            fileStorageService.deleteFile(imageId);
+        } catch (NullPointerException e) {
+            throw new DataNotFoundException("Image doesn't exist");
+        }
+    }
+
+    public Account updateAccountImage(Long id, MultipartFile newImage)
+            throws FileIOException, DataNotFoundException {
+        deleteAccountImage(id);
+        Image image = fileStorageService.store(newImage);
+        Account account = findById(id);
+        account.setImage(image);
+        return update(account);
     }
 }

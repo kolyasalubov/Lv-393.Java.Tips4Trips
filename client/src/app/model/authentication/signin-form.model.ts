@@ -1,5 +1,5 @@
 export class SignInForm {
-    login: string;
+  login: string;
     password: string;
 
     constructor(login: string, password: string) {

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RouteInfo } from '../../../model/route-info.model';
 import { RouteService } from '../../../service/route.service';
-import { AuthService } from '../../authentication/auth.service';
+import { CustomAuthService } from '../../authentication/custom-auth.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -15,7 +15,7 @@ export class NotVerifiedRoutesPageComponent implements OnInit {
 
   constructor(
     private routeService: RouteService,
-    private authService: AuthService,
+    private authService: CustomAuthService,
     private router: Router
   ) { }
 

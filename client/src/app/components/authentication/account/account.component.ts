@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Account} from 'src/app/model/account.model';
 import {AccountService} from './account.service';
 import {Router} from '@angular/router';
-import {AuthService} from '../auth.service';
+import {CustomAuthService} from '../custom-auth.service';
 import {PostService} from "../../blog/post.service";
 import {PageNotificationComment} from "../../../model/page-notification-comment";
 import {PageNotificationTrip} from "../../../model/page-notification-trip";
@@ -24,7 +24,7 @@ export class AccountComponent implements OnInit {
   massage:string='you don\'t have yet';
 
   constructor(private accountService: AccountService,
-              private authService: AuthService,
+              private authService: CustomAuthService,
               private router: Router,
               private postService: PostService
   ) {

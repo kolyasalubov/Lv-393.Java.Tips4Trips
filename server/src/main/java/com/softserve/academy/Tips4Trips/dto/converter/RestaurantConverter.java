@@ -21,14 +21,20 @@ public class RestaurantConverter implements Converter<Restaurant, RestaurantDeta
     private CityService cityService;
     private CityConverter cityConverter;
     private PlaceConverter placeConverter;
+    private ImageConverter imageConverter;
     private final SimpleDateFormat formatter = new SimpleDateFormat("HH:mm", Locale.getDefault());
 
     @Autowired
-    public RestaurantConverter (RestaurantService restaurantService, CityService cityService, CityConverter cityConverter, PlaceConverter placeConverter) {
+    public RestaurantConverter(RestaurantService restaurantService,
+                               CityService cityService,
+                               CityConverter cityConverter,
+                               PlaceConverter placeConverter,
+                               ImageConverter imageConverter) {
         this.restaurantService = restaurantService;
         this.cityService = cityService;
         this.cityConverter = cityConverter;
         this.placeConverter = placeConverter;
+        this.imageConverter = imageConverter;
     }
 
 
@@ -40,15 +46,18 @@ public class RestaurantConverter implements Converter<Restaurant, RestaurantDeta
         restaurant.setDescription(restaurantDetailsDTO.getDescription());
         restaurant.setAddress(restaurantDetailsDTO.getAddress());
         restaurant.setPosition(restaurantDetailsDTO.getPosition());
-        restaurant.setPhotoPath(restaurantDetailsDTO.getPhotoPath());
-        restaurant.setCity(cityConverter.convertToEntity(restaurantDetailsDTO.getCityDTO()));
+        restaurant.setImage(imageConverter
+                .convertToEntity(restaurantDetailsDTO.getImage()));
+        restaurant.setCity(cityConverter.convertToEntity(restaurantDetailsDTO
+                .getCityDTO()));
         restaurant.setWorkingDays(restaurantDetailsDTO.getWorkingDays());
         restaurant.setWebSite(restaurantDetailsDTO.getWebSite());
-        restaurant.setType(restaurantDetailsDTO.getType());
         restaurant.setTelephone(restaurantDetailsDTO.getTelephone());
         try {
-            restaurant.setOpeningTime(formatter.parse(restaurantDetailsDTO.getOpeningTime()));
-            restaurant.setClosingTime(formatter.parse(restaurantDetailsDTO.getClosingTime()));
+            restaurant.setOpeningTime(formatter.parse(restaurantDetailsDTO
+                    .getOpeningTime()));
+            restaurant.setClosingTime(formatter.parse(restaurantDetailsDTO
+                    .getClosingTime()));
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -68,20 +77,25 @@ public class RestaurantConverter implements Converter<Restaurant, RestaurantDeta
         restaurantDetailsDTO.setWorkingDays(restaurant.getWorkingDays());
         restaurantDetailsDTO.setWebSite(restaurant.getWebSite());
         restaurantDetailsDTO.setTelephone(restaurant.getTelephone());
-        restaurantDetailsDTO.setType(restaurant.getType());
-        restaurantDetailsDTO.setOpeningTime(formatter.format(restaurant.getOpeningTime()));
-        restaurantDetailsDTO.setClosingTime(formatter.format(restaurant.getClosingTime()));
-        restaurantDetailsDTO.setPhotoPath(restaurant.getPhotoPath());
+        restaurantDetailsDTO.setOpeningTime(formatter.format(restaurant.
+                getOpeningTime()));
+        restaurantDetailsDTO.setClosingTime(formatter.format(restaurant.
+                getClosingTime()));
+        restaurantDetailsDTO.setImage(imageConverter.convertToDTO(restaurant.
+                getImage()));
         restaurantDetailsDTO.setPosition(restaurant.getPosition());
-        restaurantDetailsDTO.setPhotoPath(restaurant.getPhotoPath());
-        restaurantDetailsDTO.setCityDTO(cityConverter.convertToDTO(cityService.findById(restaurant.getCity().getId())));
+        restaurantDetailsDTO.setCityDTO(cityConverter.convertToDTO(cityService.
+                findById(restaurant.getCity().getId())));
         restaurantDetailsDTO.setAverageBill(restaurant.getAverageBill());
         restaurantDetailsDTO.setHasVeganFood(restaurant.getHasVeganFood());
+        restaurantDetailsDTO.setCategory(restaurant.getCategory());
         restaurantDetailsDTO.setSelf(ControllerLinkBuilder.linkTo(
                 ControllerLinkBuilder.methodOn(RestaurantController.class)
                         .getById(restaurant.getId())
-        ).withSelfRel().getHref().replace("{countryId}", restaurant.getCity().getCountry().getId().toString())
-                .replace("{cityId}", restaurant.getCity().getId().toString()));
+        ).withSelfRel().getHref().replace("{countryId}", restaurant
+                .getCity().getCountry().getId().toString())
+                .replace("{cityId}", restaurant.getCity().getId()
+                        .toString()));
 
         return restaurantDetailsDTO;
     }

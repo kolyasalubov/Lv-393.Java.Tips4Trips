@@ -1,6 +1,7 @@
 package com.softserve.academy.Tips4Trips.entity;
 
 import com.softserve.academy.Tips4Trips.entity.administration.Account;
+import com.softserve.academy.Tips4Trips.entity.file.Image;
 import com.softserve.academy.Tips4Trips.entity.place.Place;
 
 import javax.persistence.*;

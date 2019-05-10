@@ -1,5 +1,7 @@
 package com.softserve.academy.Tips4Trips.controller;
 
+import com.softserve.academy.Tips4Trips.dto.converter.RestaurantSearchCriteriaConverter;
+import com.softserve.academy.Tips4Trips.dto.search.RestaurantSearchCriteriaDTO;
 import com.softserve.academy.Tips4Trips.dto.converter.PlaceConverter;
 import com.softserve.academy.Tips4Trips.dto.details.RestaurantDetailsDTO;
 import com.softserve.academy.Tips4Trips.dto.converter.RestaurantConverter;
@@ -26,13 +28,15 @@ public class RestaurantController {
     private RestaurantConverter restaurantConverter;
     private PlaceConverter placeConverter;
     private CityService cityService;
+    private RestaurantSearchCriteriaConverter searchCriteriaConverter;
 
     @Autowired
-    public RestaurantController(RestaurantService restaurantService, RestaurantConverter restaurantConverter, PlaceConverter placeConverter, CityService cityService) {
+    public RestaurantController(RestaurantService restaurantService, RestaurantConverter restaurantConverter, PlaceConverter placeConverter, CityService cityService, RestaurantSearchCriteriaConverter searchCriteriaConverter) {
         this.restaurantService = restaurantService;
         this.restaurantConverter = restaurantConverter;
         this.placeConverter = placeConverter;
         this.cityService = cityService;
+        this.searchCriteriaConverter = searchCriteriaConverter;
     }
 
     @GetMapping("/all")
@@ -55,9 +59,21 @@ public class RestaurantController {
         return new ResponseEntity<>(restaurantConverter.convertToDTO(restaurantService.findById(id)), HttpStatus.OK);
     }
 
-    @PostMapping("/update")
+    @PutMapping("/update")
     public ResponseEntity<RestaurantDetailsDTO> update(@RequestBody RestaurantDetailsDTO restaurantDetailsDTO) {
         logger.info("update restaurant method executing: ");
         return new ResponseEntity<>(restaurantConverter.convertToDTO(restaurantService.update(restaurantConverter.convertToEntity(restaurantDetailsDTO))), HttpStatus.OK);
+    }
+
+    @PostMapping("/filter")
+    public ResponseEntity<List<PlaceInfoDTO>> filter(@RequestBody RestaurantSearchCriteriaDTO searchCriteriaDTO) {
+        return new ResponseEntity<>(placeConverter.convertToInfoDTO(restaurantService.filter(searchCriteriaConverter.convertToEntity(searchCriteriaDTO))), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity deleteById(@PathVariable Long id) {
+        logger.info("delete monument by id method executing: ");
+        restaurantService.deleteById(id);
+        return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 }

@@ -1,6 +1,7 @@
 package com.softserve.academy.Tips4Trips.entity.place;
 
 import com.softserve.academy.Tips4Trips.entity.Position;
+import com.softserve.academy.Tips4Trips.entity.enums.PlaceCategory;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -40,5 +41,10 @@ public class Hotel extends Building {
 
     public void setMinimumPrice(Float minimumPrice) {
         this.minimumPrice = minimumPrice;
+    }
+
+    @Override
+    public PlaceCategory getCategory() {
+        return PlaceCategory.HOTELS;
     }
 }

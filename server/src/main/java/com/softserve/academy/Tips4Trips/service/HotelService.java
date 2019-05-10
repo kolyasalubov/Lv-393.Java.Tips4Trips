@@ -1,15 +1,19 @@
 package com.softserve.academy.Tips4Trips.service;
 
+import com.softserve.academy.Tips4Trips.dto.search.HotelSearchCriteria;
 import com.softserve.academy.Tips4Trips.entity.City;
 import com.softserve.academy.Tips4Trips.entity.place.Hotel;
 import com.softserve.academy.Tips4Trips.repository.CityRepository;
 import com.softserve.academy.Tips4Trips.repository.HotelRepository;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+
+import static com.softserve.academy.Tips4Trips.specifications.HotelSpecifications.*;
 
 @Service
 public class HotelService {
@@ -59,5 +63,14 @@ public class HotelService {
         return repository.save(hotel);
     }
 
+    public List<Hotel> filter(HotelSearchCriteria criteria) {
+        return repository.findAll(Specification.where(city(criteria.getCityId()))
+                .and(inOpeningTime(criteria.getWorksAt()))
+                .and(inClosingTime(criteria.getWorksAt()))
+                .and(priceIn(criteria.getPriceIn())));
+    }
 
+    public void deleteById(Long id) {
+        repository.deleteById(id);
+    }
 }

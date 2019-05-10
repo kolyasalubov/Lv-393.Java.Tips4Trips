@@ -12,14 +12,14 @@ export class AccountEditComponent implements OnInit {
 
   accountProfile: Account = new Account(null,null,null,null,null,null,null,null);
 
-  constructor(private accountService: AccountService,private router: Router) {
+  constructor(private accountService: AccountService,
+              private router: Router) {
   }
 
   ngOnInit() {
     //this.accountService.findById(1).subscribe(data => this.accountProfile = data);
     this.accountService.getCurrentUser().subscribe(data => this.accountProfile = data);
   }
-
 
   onSubmit(accountProfile :Account) {
       console.log(accountProfile);
@@ -28,12 +28,8 @@ export class AccountEditComponent implements OnInit {
     setTimeout(() => {this.router.navigate(['account']);}, 800);
   }
 
-
-
   accountInfo() {
     this.router.navigate(['account']);
   }
-
-
 
 }

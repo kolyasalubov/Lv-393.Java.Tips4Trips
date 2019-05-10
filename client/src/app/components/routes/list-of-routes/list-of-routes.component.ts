@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { RouteInfo } from '../../../model/route-info.model';
 import { RouteService } from '../../../service/route.service';
-import { AuthService } from '../../authentication/auth.service';
+import { CustomAuthService } from '../../authentication/custom-auth.service';
 
 @Component({
   selector: 'app-list-of-routes',
