@@ -20,10 +20,6 @@ public class Post {
     @Column(name = "name",nullable = false)
     private String name;
 
-    @ManyToOne
-    @JoinColumn(name = "image_id", referencedColumnName = "id")
-    private Image image;
-
     @NotNull
     @Column(name = "creation_date",nullable = false)
     @Temporal(value = TemporalType.DATE)
@@ -41,7 +37,7 @@ public class Post {
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "posts_images",
-            joinColumns = {@JoinColumn(name = "account_id",
+            joinColumns = {@JoinColumn(name = "post_id",
                     referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "image_id",
                     referencedColumnName = "id")})
@@ -76,13 +72,6 @@ public class Post {
         this.name = name;
     }
 
-    public Image getImage() {
-        return image;
-    }
-
-    public void setImage(Image image) {
-        this.image = image;
-    }
 
     public Date getCreationDate() {
         return creationDate;

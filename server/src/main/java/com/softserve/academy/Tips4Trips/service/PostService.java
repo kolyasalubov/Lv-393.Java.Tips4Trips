@@ -111,8 +111,8 @@ public class PostService {
 
     public Post createImagesForPost(MultipartFile[] images, Long postId)
             throws FileIOException {
-        Post post = repository.getOne(postId);
-        if (post.getImage() != null) {
+        Post post = repository.findById(postId).get();
+        if (!post.getImages().isEmpty()) {
             throw new FileIOException("Post images already exist! Try " +
                     "updating them.");
         }

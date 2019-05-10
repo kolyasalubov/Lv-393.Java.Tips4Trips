@@ -8,6 +8,7 @@ import com.softserve.academy.Tips4Trips.exception.FileIOException;
 import com.softserve.academy.Tips4Trips.repository.AccountRepository;
 
 import com.softserve.academy.Tips4Trips.repository.UserRepository;
+import com.softserve.academy.Tips4Trips.security.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
@@ -120,13 +121,11 @@ public class FileStorageService {
             throw new FileIOException("Invalid file format!");
         }
     }
-
+//@minato7878
     private Account getImageCreator() {
-        return accountRepository.findByUsersContains(userRepository
-                .findByLogin("minato7878").get()).get();
-        /*UserDetails userDetails = (UserDetails) SecurityContextHolder.
-                getContext().getAuthentication().getPrincipal();
-        return accountRepository.findByUsersContains(userRepository
-                .findByLogin(userDetails.getUsername()).get()).get();*/
+        return accountRepository.findById(1L).get();
+//        UserDetailsImpl userDetails = (UserDetailsImpl) SecurityContextHolder.
+//                getContext().getAuthentication().getPrincipal();
+//        return accountRepository.findById(userDetails.getId()).get();
     }
 }

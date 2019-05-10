@@ -17,11 +17,14 @@ export class ProfileService {
     return this.http.get<Account>(this.baseUrl + id);
   }
 
-  subscribeTo(accountId:number, profileId:number):Observable<Account>{
-     return this.http.put<Account>(this.baseUrl + accountId+'/subscribe/' + profileId,{});
+  subscribeTo(accountId:number, followingAccountId:number):Observable<Account>{
+     return this.http.put<Account>(this.baseUrl + accountId+'/subscribe/' + followingAccountId,{});
   }
-  unSubscribe(accountId:number, profileId:number):Observable<Account>{
-    return this.http.delete<Account>(this.baseUrl + accountId+'/unsubscribe/' + profileId);
+  unSubscribe(accountId:number, followingAccountId:number):Observable<Account>{
+    return this.http.delete<Account>(this.baseUrl + accountId+'/unsubscribe/' + followingAccountId);
+  }
+  isFollowing(accountId:number, followingAccountId:number):Observable<boolean>{
+    return this.http.get<boolean>(this.baseUrl + accountId + '/following/' + followingAccountId);
   }
   
 }

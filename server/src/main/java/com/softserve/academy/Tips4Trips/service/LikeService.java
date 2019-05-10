@@ -33,15 +33,6 @@ public class LikeService {
         return repository.existsByLikedByAndPost(account,post);
     }
 
-    public Like findByAccountAndPost(Account account, Post post) {
-        Optional<Like> likes = repository.findByLikedByAndPost(account, post);
-        if (repository.existsByLikedByAndPost(account, post)) {
-            deleteLike(post, account);
-        } else {
-            createLike(account, post);
-        }
-        return likes.get();
-    }
 
     public List<Account> findAccounts(Post post) {
         List<Like> likes = repository.findByPost(post);

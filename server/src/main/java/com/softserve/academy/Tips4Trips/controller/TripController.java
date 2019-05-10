@@ -49,6 +49,14 @@ public class TripController {
                 .convertToInfoDTO(tripService.findAll()), HttpStatus.OK);
     }
 
+    @GetMapping("/creator/{id}")
+    public ResponseEntity<List<TripInfoDTO>> getTripsByCreatorId(@PathVariable Long id) {
+        logger.info("trips get by creator id method executing: ");
+        return new ResponseEntity<>(tripConverter
+                .convertToInfoDTO(tripService.findByCreator(accountService.findById(id))), HttpStatus.OK);
+    }
+
+
     @RequestMapping(value = "/page/{page}", method = RequestMethod.GET)
     public Page<TripDetailsDTO> listArticlesPageByPage(@PathVariable("page") int page) {
         PageRequest pageable = PageRequest.of(page - 1, 6);

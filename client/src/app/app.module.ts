@@ -79,6 +79,7 @@ import { MapPickerComponent } from './components/map/map-picker/map-picker.compo
 import { ChatComponent } from './components/chat/chat.component';
 import { FeedbackPlaceComponent } from './components/feedback/place/feedback-place/feedback-place.component';
 import { FeedbackPlaceCreateComponent } from './components/feedback/place/feedback-place-create/feedback-place-create.component';
+import { SocialHandlerComponent } from './components/authentication/social-handler/social-handler.component';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -157,7 +158,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     MapPickerComponent,
     ChatComponent,
     FeedbackPlaceComponent,
-    FeedbackPlaceCreateComponent
+    FeedbackPlaceCreateComponent,
+    SocialHandlerComponent
   ],
   imports: [
     BrowserModule,

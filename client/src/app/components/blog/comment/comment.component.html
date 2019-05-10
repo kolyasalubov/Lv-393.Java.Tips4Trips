@@ -25,15 +25,15 @@
   <div *ngIf="!noComment">
     <h3 class="mb-5">Leave a comment</h3>
   </div>
-  <form #f="ngForm" (ngSubmit)="onSubmit(f)" class="p-5 bg-light">
+  <form #f="ngForm"  (ngSubmit)="onSubmit(f)" [formGroup]="formGroup" class="p-5 bg-light">
 
     <div class="form-group">
       <label for="message">Message</label>
       <textarea style="font-size: 18px; font-family: 'Times New Roman'" name="name" id="message" cols="30" rows="10" class="form-control"
-                [(ngModel)]=commentProfile.text></textarea>
+                formControlName="description"    [(ngModel)]=commentProfile.text ></textarea>
     </div>
     <div class="form-group">
-      <input [disabled]="isButtonDisabled"  type="submit" value="Post Comment" class="btn py-3 px-4 btn-primary">
+      <input [disabled]="isButtonDisabled" [disabled]="!formGroup.valid" type="submit" value="Post Comment" class="btn py-3 px-4 btn-primary">
     </div>
 
   </form>

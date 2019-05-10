@@ -37,8 +37,8 @@ public class CommentService {
         repository.findById(id).ifPresent(repository::delete);
     }
 
-    public boolean existsByCommentedByIdAndId(Long accoutId, Long commentId) {
-        return repository.existsByCommentedByIdAndId(accoutId,commentId);
+    public boolean existsByCommentedByIdAndId(Long accountId, Long commentId) {
+        return repository.existsByCommentedByIdAndId(accountId,commentId);
     }
 
 }

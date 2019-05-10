@@ -33,8 +33,11 @@
                     <p><span class="title-s">Profile: </span> <span>{{accountProfile.role}}</span></p>
                     <p><span class="title-s">Email: </span> <span>{{accountProfile.email}}</span></p>
                     <p><span class="title-s">Phone: </span> <span>{{accountProfile.phoneNumber}}</span></p>
-                    <button type="submit" (click)="subscribeTo()" class="btn btn-primary">Subscribe</button>
-                    <button type="submit" (click)="unSubscribe()" class="btn btn-primary">UnSubscribe</button>
+                    <!--<span [style.color]="isAdded==true?'red':'grey'" disabled="isButtonDisabled"  (click)="changeLike()" style="font-size:25px; color: red"><i class="material-icons">favorite</i></span>-->
+
+                    <button  *ngIf="isFollowing" (click)="toggleStatus()"  class="btn btn-primary" >Following</button>
+                    <button *ngIf="isFollowing==false" (click)="toggleStatus()"  class="btn btn-info">Follow</button>
+                    <!--<button type="submit" (click)="unSubscribe()" class="btn btn-primary">UnSubscribe</button>-->
                   </div>
                 </div>
               </div>
@@ -88,8 +91,43 @@
               </div>
             </div>
           </div>
+
+
+
+      <div class="container">
+        <h1 class="mb-4">Trips</h1>
+        <div class="row d-flex">
+
+
+          <div class="col-md-4 d-flex ftco-animate" *ngFor="let trip of trips">
+            <div class="blog-entry justify-content-end" style="width: 100%;">
+
+              <a routerLink="/trip/{{trip.id}}" class="block-20"
+                 style="background-image: url('../../../../assets/images/image_1.jpg');">
+              </a>
+              <div class="text mt-3 float-right d-block">
+                <div class="d-flex align-items-center pt-2 mb-4 topp">
+                  <div class="one">
+                    <span class="day">{{trip.id}}</span>
+                  </div>
+                  <div class="two">
+                    <span class="yr"></span>
+                    <span class="mos">{{trip.creationDate}}</span>
+                  </div>
+                </div>
+                <h3 class="heading"><a href="trip/{{trip.id}}">{{trip.name}}</a></h3>
+                <p>{{trip.description}}</p>
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+
+      </div>
         </div>
       </div>
+
     </div>
   </div>
 </section>
