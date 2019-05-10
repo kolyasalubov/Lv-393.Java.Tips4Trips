@@ -1,11 +1,11 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
 import { RouteInfo } from 'src/app/model/route-info.model';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-route-info',
   templateUrl: './route-info.component.html',
-  styleUrls: ['./route-info.component.css']
+  styleUrls: ['./route-info.component.css'],
 })
 export class RouteInfoComponent implements OnInit {
 

@@ -8,7 +8,7 @@ import java.util.Date;
 
 public class FeedbackPlaceDTO {
     private Long id;
-    private PlaceDTO place;
+    private MiniPlaceDTO place;
     private AccountDetailsDTO creator;
     private Date date;
     private FeedbackMark mark;
@@ -22,11 +22,11 @@ public class FeedbackPlaceDTO {
         this.id = id;
     }
 
-    public PlaceDTO getPlace() {
+    public MiniPlaceDTO getPlace() {
         return place;
     }
 
-    public void setPlace(PlaceDTO place) {
+    public void setPlace(MiniPlaceDTO place) {
         this.place = place;
     }
 

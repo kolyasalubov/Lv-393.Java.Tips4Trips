@@ -1,9 +1,5 @@
-<div class="row d-flex">
-  <div *ngFor="let route of routes" class="col-md-4 d-flex ftco-animate">
-    <div class="blog-entry justify-content-end">
-      <app-route-info [routeInfo]="route" [displayEditButtons]="displayEditButtons"
-        [displayVerifyButton]="displayVerifyButton" (delete)="deleteRoute(route.id)" (verify)="verifyRoute(route.id)">
-      </app-route-info>
-    </div>
-  </div>
+<div class="card-deck">
+  <app-route-info *ngFor="let route of routes" class="mx-auto mb-4" [routeInfo]="route" [displayEditButtons]="displayEditButtons"
+    [displayVerifyButton]="displayVerifyButton" (delete)="deleteRoute(route.id)" (verify)="verifyRoute(route.id)">
+  </app-route-info>
 </div>

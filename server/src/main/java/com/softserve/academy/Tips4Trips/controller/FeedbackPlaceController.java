@@ -1,16 +1,8 @@
 package com.softserve.academy.Tips4Trips.controller;
 
 import com.softserve.academy.Tips4Trips.dto.FeedbackPlaceDTO;
-import com.softserve.academy.Tips4Trips.dto.PlaceDTO;
 import com.softserve.academy.Tips4Trips.dto.converter.PlaceConverter;
-import com.softserve.academy.Tips4Trips.dto.details.PostDetailsDTO;
-import com.softserve.academy.Tips4Trips.dto.details.TripDetailsDTO;
-import com.softserve.academy.Tips4Trips.dto.info.PlaceInfoDTO;
-import com.softserve.academy.Tips4Trips.entity.administration.Account;
-import com.softserve.academy.Tips4Trips.entity.blog.Post;
-import com.softserve.academy.Tips4Trips.entity.entertainment.mountains.Trip;
 import com.softserve.academy.Tips4Trips.entity.feedback.FeedbackPlace;
-import com.softserve.academy.Tips4Trips.entity.place.Place;
 import com.softserve.academy.Tips4Trips.service.AccountService;
 import com.softserve.academy.Tips4Trips.service.FeedbackPlaceService;
 import com.softserve.academy.Tips4Trips.service.PlaceService;

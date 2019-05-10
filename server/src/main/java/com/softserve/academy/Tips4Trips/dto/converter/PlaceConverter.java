@@ -3,6 +3,7 @@ package com.softserve.academy.Tips4Trips.dto.converter;
 import com.softserve.academy.Tips4Trips.controller.HotelController;
 import com.softserve.academy.Tips4Trips.controller.MonumentController;
 import com.softserve.academy.Tips4Trips.controller.RestaurantController;
+import com.softserve.academy.Tips4Trips.dto.MiniPlaceDTO;
 import com.softserve.academy.Tips4Trips.dto.info.PlaceInfoDTO;
 import com.softserve.academy.Tips4Trips.entity.place.Hotel;
 import com.softserve.academy.Tips4Trips.entity.place.Monument;
@@ -40,6 +41,14 @@ public class PlaceConverter implements Converter<Place, PlaceInfoDTO> {
             dtos = places.stream().map(this::convertToInfoDTO).collect(Collectors.toList());
         }
         return dtos;
+    }
+
+    public MiniPlaceDTO convertToMiniDTO(Place place) {
+        MiniPlaceDTO miniPlaceDTO = new MiniPlaceDTO();
+        miniPlaceDTO.setId(place.getId());
+        miniPlaceDTO.setName(place.getName());
+        miniPlaceDTO.setCityName(place.getCity().getName());
+        return miniPlaceDTO;
     }
 
     private PlaceInfoDTO toInfoDTO(PlaceInfoDTO placeInfoDTO, Place place) {

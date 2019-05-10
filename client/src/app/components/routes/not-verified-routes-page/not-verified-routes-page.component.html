@@ -16,27 +16,15 @@
 
 <section class="ftco-section bg-light">
   <div class="container">
-    <div class="mb-4">
-      <h1 style="margin-left: -8px; display: inline;">Not Verified Routes</h1>
-      <a *ngIf="hasAuthority" href="/routes" style="float:right; margin-right: 15px;">Back To Routes</a>
-    </div>
+    <div class="jumbotron">
+        <h1 class="display-4">Not Verified Routes</h1>
+        <!-- <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p> -->
+        <hr class="my-4">
+        <!-- <p>It uses utility classes for typography and spacing to space content out within the larger container.</p> -->
+        <a [routerLink]="['/routes']" class="btn btn-primary btn-lg mr-4" role="button">Back To Routes</a>
+      </div>
     <app-list-of-routes [routes]="routes" [displayEditButtons]="hasAuthority" [displayVerifyButton]="hasAuthority">
     </app-list-of-routes>
-    <!-- <div class="row mt-5">
-      <div class="col text-center">
-        <div class="block-27">
-          <ul>
-            <li><a href="#">&lt;</a></li>
-            <li class="active"><span>1</span></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
-            <li><a href="#">&gt;</a></li>
-          </ul>
-        </div>
-      </div>
-    </div> -->
   </div>
 </section>
 

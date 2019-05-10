@@ -1,5 +1,7 @@
 package com.softserve.academy.Tips4Trips.dto.info;
 
+import com.softserve.academy.Tips4Trips.dto.MiniPlaceDTO;
+
 import java.util.Date;
 
 public class RouteInfoDTO {
@@ -7,6 +9,8 @@ public class RouteInfoDTO {
     private String name;
     private AccountInfoDTO authorInfo;
     private Date creationDate;
+    private MiniPlaceDTO begin;
+    private MiniPlaceDTO end;
     private String self;
 
     public String getSelf() {
@@ -35,6 +39,22 @@ public class RouteInfoDTO {
 
     public Date getCreationDate() {
         return creationDate;
+    }
+
+    public MiniPlaceDTO getBegin() {
+        return begin;
+    }
+
+    public void setBegin(MiniPlaceDTO begin) {
+        this.begin = begin;
+    }
+
+    public MiniPlaceDTO getEnd() {
+        return end;
+    }
+
+    public void setEnd(MiniPlaceDTO end) {
+        this.end = end;
     }
 
     public void setCreationDate(Date creationDate) {

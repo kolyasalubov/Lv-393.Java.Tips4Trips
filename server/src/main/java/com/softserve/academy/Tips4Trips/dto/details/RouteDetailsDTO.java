@@ -1,6 +1,5 @@
 package com.softserve.academy.Tips4Trips.dto.details;
 
-import com.softserve.academy.Tips4Trips.dto.PlaceDTO;
 import com.softserve.academy.Tips4Trips.dto.info.PlaceInfoDTO;
 import com.softserve.academy.Tips4Trips.dto.info.RouteInfoDTO;
 

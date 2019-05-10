@@ -7,6 +7,7 @@ import com.softserve.academy.Tips4Trips.dto.info.AccountInfoDTO;
 import com.softserve.academy.Tips4Trips.dto.info.RouteInfoDTO;
 import com.softserve.academy.Tips4Trips.entity.Route;
 import com.softserve.academy.Tips4Trips.entity.administration.Account;
+import com.softserve.academy.Tips4Trips.entity.place.Place;
 import com.softserve.academy.Tips4Trips.service.AccountService;
 import com.softserve.academy.Tips4Trips.service.PlaceService;
 import com.softserve.academy.Tips4Trips.service.RouteService;
@@ -85,6 +86,11 @@ public class RouteConverter implements Converter<Route, RouteDetailsDTO> {
         routeInfoDTO.setId(route.getId());
         routeInfoDTO.setName(route.getName());
         routeInfoDTO.setCreationDate(route.getCreationDate());
+        List<Place> places = route.getListOfPlaces();
+        routeInfoDTO.setBegin(placeConverter
+                .convertToMiniDTO(places.get(0)));
+        routeInfoDTO.setEnd(placeConverter
+                .convertToMiniDTO(places.get(places.size() - 1)));
         AccountInfoDTO authorInfo = accountConverter
                 .convertToInfoDTO(route.getAuthor());
         routeInfoDTO.setAuthorInfo(authorInfo);
