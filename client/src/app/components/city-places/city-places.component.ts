@@ -35,16 +35,6 @@ export class CityPlacesComponent implements OnInit {
       this.cityId = +params.get('id');
     });
     this.placeService.getAllByCityId(this.cityId).subscribe(data => this.places = data);
-
-
-    let scrollToTop = window.setInterval(() => {
-      let pos = window.pageYOffset;
-      if (pos > 0) {
-        window.scrollTo(0, pos - 20);
-      } else {
-        window.clearInterval(scrollToTop);
-      }
-    }, 16);
   }
 
 

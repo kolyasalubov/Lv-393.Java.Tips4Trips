@@ -23,6 +23,17 @@ export class CreateMonumentComponent implements OnInit {
   cityDTO: City = new City(null, '', this.position, 0, '');
   monument: Monument = new Monument(null, '', '', '', this.position, "photo_path", this.cityDTO);
 
+  uploadPhoto: boolean = false;
+  photoUrl: string = '';
+
+  setCoordinates: Function = (x: number, y: number) => {
+    this.position.coordinateX = x;
+    this.position.coordinateY = y;
+  }
+  setAddress: Function = (address: string) => {
+    this.monument.address = address;
+  };
+
   formGroup: FormGroup = new FormGroup({
     name: new FormControl(null,[
       Validators.required,
@@ -71,8 +82,12 @@ export class CreateMonumentComponent implements OnInit {
     create(){
       this.monument.cityDTO = this.cityDTO;
       this.monument.position = this.position;
-      this.monumentService.createMonument(this.monument).subscribe(data => this.monument = data);
-      setTimeout(() => {window.location.href = '/monuments/' + this.monument.id;}, 2000);
+      this.monumentService.createMonument(this.monument).subscribe(data => {
+        this.monument = data;
+        this.photoUrl = 'http://localhost:8080/places/' + this.monument.id + '/image';
+        this.uploadPhoto = true;
+      });
+      // setTimeout(() => {window.location.href = '/monuments/' + this.monument.id;}, 2000);
   }
 
 }

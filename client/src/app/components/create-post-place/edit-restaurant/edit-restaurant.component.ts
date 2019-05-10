@@ -25,6 +25,19 @@ export class EditRestaurantComponent implements OnInit {
 
   id: number;
 
+  uploadPhoto: boolean = false;
+  photoUrl: string = '';
+  imageURLs: string[] = new Array();
+
+  setCoordinates: Function = (x: number, y: number) => {
+    this.position.coordinateX = x;
+    this.position.coordinateY = y;
+  }
+
+  setAddress: Function = (address: string) => {
+    this.restaurant.address = address;
+  };
+
   formGroup: FormGroup = new FormGroup({
     name: new FormControl(null,[
       Validators.required,
@@ -37,7 +50,6 @@ export class EditRestaurantComponent implements OnInit {
       Validators.maxLength(255)
     ]),
     workingDays: new FormControl(null, [
-      Validators.required
     ]),
     webSite: new FormControl(null,[
       Validators.required,
@@ -84,13 +96,18 @@ export class EditRestaurantComponent implements OnInit {
     this.restaurantService.findById(this.id).subscribe(data => {
       this.restaurant = data;
       this.position = data.position;
+      this.imageURLs.push('http://localhost:8080/places/' + this.restaurant.id + '/image');
     });
   }
 
   update(){
     this.restaurant.position = this.position;
-    this.restaurantService.update(this.restaurant).subscribe(data => this.restaurant = data);
-    setTimeout(() => {window.location.href = '/restaurants/' + this.restaurant.id;}, 2000);
+    this.restaurantService.update(this.restaurant).subscribe(data => {
+      this.restaurant = data;
+      this.photoUrl = 'http://localhost:8080/places/' + this.restaurant.id + '/image';
+      this.uploadPhoto = true;
+    });
+    // setTimeout(() => {window.location.href = '/restaurants/' + this.restaurant.id;}, 2000);
   }
 
   setWorkingDays(day: string) {

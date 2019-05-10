@@ -45,17 +45,19 @@
         Coordinate
       </h4></td>
       <td>
+        <app-map-picker [locationUpdate]="setCoordinates" [setAddress]="setAddress" [addressSearch]="true" style="width: 600px; height: 400px;"></app-map-picker>
         <div class="form-group d-flex">
-          <input class="form-control" style="width:45%;border-radius: 5px"
+          <input class="form-control" style="width:45%;border-radius: 5px; margin-top: 15px;"
                  type="number"
                  placeholder="X"
                  name="Coordinatex"
                  maxlength="26" [(ngModel)]="position.coordinateX" formControlName="positionX">
           <input class="form-control"
-                 style="width: 45%;border-radius: 5px;margin-left: 10%;" type="number"
+                 style="width: 45%;border-radius: 5px;margin-left: 10%; margin-top: 15px" type="number"
                  placeholder="Y"
                  name="Coordinatey"
                  maxlength="26" [(ngModel)]="position.coordinateY" formControlName="positionY">
+
         </div>
       </td>
     </tr>
@@ -87,8 +89,9 @@
         </div>
       </td>
     </tr>
+    <app-image-upload-form [multiple]="false" [requestType]="'POST'" [setStorageURL]="photoUrl" [UploadStart]="uploadPhoto"></app-image-upload-form>
   </table>
-  <input class="category submit"
+  <input *ngIf="formGroup.valid" class="category submit"
          style="padding: 3%;
                                    margin-top: 5%;
                                    font-size: 90%;

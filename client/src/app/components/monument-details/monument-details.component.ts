@@ -23,11 +23,17 @@ export class MonumentDetailsComponent implements OnInit {
 
   role: string;
 
+  zoom: number = ZoomLevel.Place;
+  imageURL: string = '';
+
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe(params => {
       this.id = +params.get('id');
     });
-    this.monumentService.findById(this.id).subscribe(value => this.monument = value);
+    this.monumentService.findById(this.id).subscribe(value => {
+      this.monument = value;
+      this.imageURL = 'http://localhost:8080/places/' + this.monument.id + '/image';
+    });
     this.role = this.tokenStorageService.getAuthorities();
   }
 

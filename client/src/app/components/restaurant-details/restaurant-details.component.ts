@@ -23,11 +23,26 @@ export class RestaurantDetailsComponent implements OnInit {
     new City(0, '',new Position(0,0), 0,''),0,false);
   zoom: number = ZoomLevel.Place;
 
+  daysMap = new Map();
+  imageURL: string = '';
+
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe(params => {
       this.id = +params.get('id');
     });
-    this.restaurantService.findById(this.id).subscribe(value => this.restaurant = value);
+    this.restaurantService.findById(this.id).subscribe(value => {
+      this.restaurant = value;
+      this.restaurant.workingDays.sort((d1, d2) => this.daysMap.get(d1) - this.daysMap.get(d2));
+      this.imageURL = 'http://localhost:8080/places/' + this.restaurant.id + '/image';
+    });
+
+    this.daysMap.set("MONDAY", 1);
+    this.daysMap.set("TUESDAY", 2);
+    this.daysMap.set("WEDNESDAY", 3);
+    this.daysMap.set("THURSDAY", 4);
+    this.daysMap.set("FRIDAY", 5);
+    this.daysMap.set("SATURDAY", 6);
+    this.daysMap.set("SUNDAY", 7);
   }
 
   deletePlace() {

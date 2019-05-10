@@ -22,6 +22,18 @@ export class EditMonumentComponent implements OnInit {
 
   id: number;
 
+  uploadPhoto: boolean = false;
+  photoUrl: string = '';
+  imageURLs: string[] = new Array();
+
+  setCoordinates: Function = (x: number, y: number) => {
+    this.position.coordinateX = x;
+    this.position.coordinateY = y;
+  }
+  setAddress: Function = (address: string) => {
+    this.monument.address = address;
+  };
+
   formGroup: FormGroup = new FormGroup({
     name: new FormControl(null,[
       Validators.required,
@@ -55,13 +67,18 @@ export class EditMonumentComponent implements OnInit {
     });
     this.monumentService.findById(this.id).subscribe(data => {this.monument = data;
       this.position = data.position;
+      this.imageURLs.push('http://localhost:8080/places/' + this.monument.id + '/image');
     });
   }
 
   update(){
     this.monument.position = this.position;
-    this.monumentService.update(this.monument).subscribe(data => this.monument = data);
-    setTimeout(() => {window.location.href = '/monuments/' + this.monument.id;}, 2000);
+    this.monumentService.update(this.monument).subscribe(data => {
+      this.monument = data;
+      this.photoUrl = 'http://localhost:8080/places/' + this.monument.id + '/image';
+      this.uploadPhoto = true;
+    });
+    // setTimeout(() => {window.location.href = '/monuments/' + this.monument.id;}, 2000);
   }
 
 }

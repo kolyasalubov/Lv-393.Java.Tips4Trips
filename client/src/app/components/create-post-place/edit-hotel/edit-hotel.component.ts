@@ -24,10 +24,22 @@ export class EditHotelComponent implements OnInit {
   position: Position = new Position(0, 0);
 
   hotel: Hotel = new Hotel(null, '', '', [], '',
-    '', '', '','', null,"photo_path",
+    '', '', '','', null,null,
     null,0,0);
 
   id: number;
+
+  uploadPhoto: boolean = false;
+  photoUrl: string = '';
+  imageURLs: string[] = new Array();
+
+  setCoordinates: Function = (x: number, y: number) => {
+    this.position.coordinateX = x;
+    this.position.coordinateY = y;
+  }
+  setAddress: Function = (address: string) => {
+    this.hotel.address = address;
+  };
 
   formGroup: FormGroup = new FormGroup({
     name: new FormControl(null,[
@@ -41,7 +53,6 @@ export class EditHotelComponent implements OnInit {
       Validators.maxLength(255)
     ]),
     workingDays: new FormControl(null, [
-      Validators.required
     ]),
     webSite: new FormControl(null,[
       Validators.required,
@@ -92,13 +103,18 @@ export class EditHotelComponent implements OnInit {
     this.hotelService.findById(this.id).subscribe(data => {
       this.hotel = data;
       this.position = data.position;
+      this.imageURLs.push('http://localhost:8080/places/' + this.hotel.id + '/image');
     });
   }
 
   update(){
     this.hotel.position = this.position;
-    this.hotelService.update(this.hotel).subscribe(data => this.hotel = data);
-    setTimeout(() => {window.location.href = '/hotels/' + this.hotel.id;}, 2000);
+    this.hotelService.update(this.hotel).subscribe(data => {
+      this.hotel = data;
+      this.photoUrl = 'http://localhost:8080/places/' + this.hotel.id + '/image';
+      this.uploadPhoto = true;
+    });
+    // setTimeout(() => {window.location.href = '/hotels/' + this.hotel.id;}, 2000);
   }
 
   setWorkingDays(day: string) {

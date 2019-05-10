@@ -26,8 +26,19 @@ export class CreateHotelComponent implements OnInit {
 
   cityDTO: City = new City(null, '', this.position, 0, '');
   hotel: Hotel = new Hotel(null, '', '', [], '',
-    '', '', '','', this.position,"photo_path",
+    '', '', '','', this.position,null,
     this.cityDTO,0,0);
+
+  uploadPhoto: boolean = false;
+  photoUrl: string = '';
+
+  setCoordinates: Function = (x: number, y: number) => {
+    this.position.coordinateX = x;
+    this.position.coordinateY = y;
+  }
+  setAddress: Function = (address: string) => {
+    this.hotel.address = address;
+  };
 
   formGroup: FormGroup = new FormGroup({
     name: new FormControl(null,[
@@ -106,8 +117,12 @@ export class CreateHotelComponent implements OnInit {
   create(){
     this.hotel.cityDTO = this.cityDTO;
     this.hotel.position = this.position;
-    this.hotelService.createHotel(this.hotel).subscribe(data => this.hotel = data);
-    setTimeout(() => {window.location.href = '/hotels/' + this.hotel.id;}, 2000);
+    this.hotelService.createHotel(this.hotel).subscribe(data => {
+      this.hotel = data;
+      this.photoUrl = 'http://localhost:8080/places/' + this.hotel.id + '/image';
+      this.uploadPhoto = true;
+    });
+    // setTimeout(() => {window.location.href = '/hotels/' + this.hotel.id;}, 2000);
   }
 
   setWorkingDays(day: string) {

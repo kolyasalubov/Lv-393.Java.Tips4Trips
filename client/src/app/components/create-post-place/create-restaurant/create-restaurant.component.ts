@@ -30,10 +30,16 @@ export class CreateRestaurantComponent implements OnInit {
     '', '', '', '', this.position,"photo_path",
     this.cityDTO,0,false);
 
-  setXY: Function = (x: number, y: number) => {
+  uploadPhoto: boolean = false;
+  photoUrl: string = '';
+
+  setCoordinates: Function = (x: number, y: number) => {
     this.position.coordinateX = x;
     this.position.coordinateY = y;
   }
+  setAddress: Function = (address: string) => {
+    this.restaurant.address = address;
+  };
 
   formGroup: FormGroup = new FormGroup({
     name: new FormControl(null,[
@@ -107,10 +113,18 @@ export class CreateRestaurantComponent implements OnInit {
   }
 
   create(){
-    this.restaurant.cityDTO = this.cityDTO;
-    this.restaurant.position = this.position;
-    this.restaurantService.createRestaurant(this.restaurant).subscribe(data => this.restaurant = data);
-    setTimeout(() => {window.location.href = '/restaurants/' + this.restaurant.id;}, 2000);
+    if (this.formGroup.valid) {
+      this.restaurant.cityDTO = this.cityDTO;
+      this.restaurant.position = this.position;
+      this.restaurantService.createRestaurant(this.restaurant).subscribe(data => {
+        this.restaurant = data;
+        this.photoUrl = 'http://localhost:8080/places/' + this.restaurant.id + '/image';
+        this.uploadPhoto = true;
+      });
+      // setTimeout(() => {window.location.href = '/restaurants/' + this.restaurant.id;}, 2000);
+    } else {
+      alert("Please fill all fields")
+    }
   }
 
   setWorkingDays(day: string) {

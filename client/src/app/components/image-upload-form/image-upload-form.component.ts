@@ -16,10 +16,20 @@ export class ImageUploadFormComponent implements OnInit {
   progress: { percentage: number } = { percentage: 0 };
   imageToDelete: string;
   xmlRequest: XMLHttpRequest;
-  @Input() storageURL: string;
+  storageURL: string;
+  @Input() set setStorageURL(val: string) {
+    console.log(val);
+    console.log(this.storageURL);
+    this.storageURL = val;
+  }
   @Input() requestType: string;
   @Input() multiple: Boolean = false;
-  @Input() uploadedImages: string[] = null;
+  uploadedImages: string[] = null;
+  @Input() set setUploadedImages(val: string[]) {
+    console.log(val);
+    console.log(this.uploadedImages);
+    this.uploadedImages = val;
+  }
   @Input() set UploadStart(val: boolean) {
     console.log(val);
     console.log(this.storageURL);

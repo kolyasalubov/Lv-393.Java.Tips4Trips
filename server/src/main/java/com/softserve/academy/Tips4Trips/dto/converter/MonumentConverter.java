@@ -30,6 +30,7 @@ public class MonumentConverter implements Converter<Monument, MonumentDetailsDTO
         this.cityService = cityService;
         this.cityConverter = cityConverter;
         this.placeConverter = placeConverter;
+        this.imageConverter = imageConverter;
     }
 
     @Override

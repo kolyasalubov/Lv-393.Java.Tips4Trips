@@ -17,6 +17,9 @@
             </div>
               <table style="width: 100%;margin-top: 5%;">
                 <tr>
+                  <app-image-details [fileUpload]="imageURL"></app-image-details>
+                </tr>
+                <tr>
                   <td><h4>
                     Name
                   </h4></td>
@@ -103,7 +106,7 @@
                     </td>
                   </div>
                 </tr>
-                <div style="height: 200px; width: 200px"><app-map-display [latitude]="restaurant.position.coordinateX" [longitude]="restaurant.position.coordinateY" [zoom]="zoom"></app-map-display></div>
+                <div style="height: 200px; width: 400px"><app-map-display [latitude]="restaurant.position.coordinateX" [longitude]="restaurant.position.coordinateY" [zoom]="zoom"></app-map-display></div>
               </table>
           </div>
           <div class="col-md-12 col-lg-4 sidebar">
