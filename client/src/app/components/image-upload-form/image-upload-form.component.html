@@ -11,8 +11,6 @@
   <label class="btn btn-default">
     <input type="file" (change)="selectMultipleFiles($event)" multiple="multiple">
   </label>
-  <button class="btn btn-success" [disabled]="!selectedFiles"
-  (click)="uploadMultipleFiles()">Upload</button>
 </div>
 
 <div *ngIf="!multiple">
@@ -26,10 +24,8 @@
       </div>
 
   <label class="btn btn-default">
-    <input type="file" (change)="selectFile($event)">
+    <input type="file" (change)="selectFile($event)" accept=".jpg, .jpeg, .png">
   </label>
-  <button class="btn btn-success" [disabled]="!selectedFiles"
-  (click)="upload()">Upload</button>
 </div>
 
 <div *ngFor="let picture of uploadedImages" class="image-list">

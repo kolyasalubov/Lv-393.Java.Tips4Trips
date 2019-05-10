@@ -1,44 +1,36 @@
 package com.softserve.academy.Tips4Trips.controller;
 
 
-import com.softserve.academy.Tips4Trips.dto.AccountDTO;
+import com.softserve.academy.Tips4Trips.annotations.CurrentUser;
 import com.softserve.academy.Tips4Trips.dto.AccountRoleDTO;
 import com.softserve.academy.Tips4Trips.dto.News.AccountFeedDTO;
 import com.softserve.academy.Tips4Trips.dto.News.AccountFollowingDTO;
 import com.softserve.academy.Tips4Trips.dto.converter.AccountConverter;
 import com.softserve.academy.Tips4Trips.dto.details.AccountDetailsDTO;
-import com.softserve.academy.Tips4Trips.dto.details.PostDetailsDTO;
-import com.softserve.academy.Tips4Trips.dto.file.ImageDTO;
 import com.softserve.academy.Tips4Trips.dto.info.AccountInfoDTO;
-import com.softserve.academy.Tips4Trips.dto.info.PostInfoDTO;
 import com.softserve.academy.Tips4Trips.entity.administration.Account;
-import com.softserve.academy.Tips4Trips.entity.blog.Post;
 import com.softserve.academy.Tips4Trips.entity.file.Image;
 import com.softserve.academy.Tips4Trips.exception.DataNotFoundException;
 import com.softserve.academy.Tips4Trips.exception.FileIOException;
+import com.softserve.academy.Tips4Trips.repository.AccountRepository;
+import com.softserve.academy.Tips4Trips.security.UserDetailsImpl;
 import com.softserve.academy.Tips4Trips.service.AccountService;
 import com.softserve.academy.Tips4Trips.service.UserService;
+import org.apache.log4j.Logger;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-import java.util.stream.Collectors;
-
-import org.apache.log4j.Logger;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -51,6 +43,9 @@ public class AccountController {
     private AccountConverter accountConverter;
     private UserService userService;
     private ModelMapper modelMapper;
+
+    @Autowired
+    private AccountRepository accountRepository;
 
 
     @Autowired
@@ -124,13 +119,8 @@ public class AccountController {
     }
 
     @GetMapping("/me")
-    public AccountDetailsDTO getCurrentUser() {
-        UserDetails userDetails = (UserDetails) SecurityContextHolder.
-                getContext().getAuthentication().getPrincipal();
-
-        AccountDetailsDTO accountDetailsDTO = (accountConverter.convertToDTO(
-                accountService.findByUser(userService.findByLogin(userDetails.getUsername()))));
-        return accountDetailsDTO;
+    public AccountDetailsDTO getCurrentUser(@CurrentUser UserDetailsImpl userDetailsImpl) {
+        return accountConverter.convertToDTO(accountRepository.findById(userDetailsImpl.getId()).get());
     }
 
 

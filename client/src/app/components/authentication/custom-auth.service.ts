@@ -4,42 +4,28 @@ import {Observable} from 'rxjs';
 import {SignInForm} from '../../model/authentication/signin-form.model';
 import {SignUpForm} from '../../model/authentication/signup-form.model';
 import {Account} from '../../model/account.model';
-import { Message } from '@angular/compiler/src/i18n/i18n_ast';
-import { stringify } from '@angular/core/src/render3/util';
-import { UserAccount } from '../../model/useraccount.model';
 import { TokenStorageService } from './token/token-storage.service';
-import { User } from 'src/app/model/user.model';
-
-
-const httpOptions = {
-  headers: new HttpHeaders(
-    {'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*'})
-};
+import {SIGNIN_URL, SIGNUP_URL, CURRENT_USER_URL, ACCESS_TOKEN, LOGOUT_URL} from '../../constants';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CustomAuthService {
-  private loginUrl = '//localhost:8080/authentication/signin';
-  private signupUrl = '//localhost:8080/authentication/signup';
-  private logoutUrl = '//localhost:8080/authentication/logout';
-  private currentUserUrl = '//localhost:8080/accounts/me';
 
   constructor(private http: HttpClient, private tokenStorage: TokenStorageService) {
   }
 
   attemptAuth(credentials: SignInForm): Observable<any> {
     console.log(credentials);
-    return this.http.post(this.loginUrl, credentials, {responseType : 'text'});
+    return this.http.post(SIGNIN_URL, credentials, {responseType : 'text'});
   }
 
   signUp(info: SignUpForm): Observable<any> {
-    return this.http.post(this.signupUrl, info, {responseType : 'text'});
+    return this.http.post(SIGNUP_URL, info, {responseType : 'text'});
   }
 
   getCurrentUser(): Observable<Account> {
-    return this.http.get<Account>(this.currentUserUrl);
+    return this.http.get<Account>(CURRENT_USER_URL);
   }
   
   checkLoggedUser(): boolean {
@@ -52,6 +38,7 @@ export class CustomAuthService {
 
   logout(): boolean {
     this.tokenStorage.signOut();
+    this.http.get(LOGOUT_URL);
     if(!this.checkLoggedUser){
       console.log("logout successed");
       return true;

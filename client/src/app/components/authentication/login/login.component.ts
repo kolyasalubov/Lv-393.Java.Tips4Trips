@@ -4,6 +4,7 @@ import { CustomAuthService } from '../custom-auth.service';
 import { TokenStorageService } from '../token/token-storage.service';
 import { SignInForm } from '../../../model/authentication/signin-form.model';
 import { Router } from "@angular/router";
+import {GOOGLE_AUTH_URL} from '../../../constants';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +22,6 @@ export class LoginComponent implements OnInit {
     private router: Router) { }
  
   ngOnInit() {
-
   }
  
   onSubmit() {
@@ -39,7 +39,6 @@ this.authService.attemptAuth(this.loginInfo).subscribe(
 
         this.isLoginFailed = false;
         this.isLoggedIn = true;
-
         this.router.navigate(['account']).then(e => {
           if (e) {
             console.log("Navigation is successful!");
@@ -59,6 +58,11 @@ this.authService.attemptAuth(this.loginInfo).subscribe(
  
   reloadPage() {
     window.location.href='/home';
+  }
+
+  googleSignIn(){
+   
+    window.location.href=GOOGLE_AUTH_URL;
   }
 
 }
