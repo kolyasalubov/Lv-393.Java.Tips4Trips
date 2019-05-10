@@ -18,9 +18,20 @@ export class ImageUploadFormComponent implements OnInit {
   xmlRequest: XMLHttpRequest;
   @Input() storageURL: string;
   @Input() requestType: string;
-  @Input() multiple: Boolean;
-  @Input() uploadedImages: string[];
- 
+  @Input() multiple: Boolean = false;
+  @Input() uploadedImages: string[] = null;
+  @Input() set UploadStart(val: boolean) {
+    console.log(val);
+    console.log(this.storageURL);
+      if(val) {
+        if (this.multiple) {
+          this.uploadMultipleFiles();
+        } else {
+          this.upload();
+        }
+      }
+  }
+
   constructor(private uploadService: ImageService) { 
   }
  
@@ -54,6 +65,9 @@ export class ImageUploadFormComponent implements OnInit {
   }
 
   upload() {
+    console.log(11111111111111111111);
+    if (this.selectedFiles == null)
+      return;
     this.progress.percentage = 0;
  
     this.currentFileUpload = this.selectedFiles.item(0);
@@ -71,6 +85,9 @@ export class ImageUploadFormComponent implements OnInit {
   }
 
   uploadMultipleFiles() {
+    console.log(11111111111111111111);
+    if (this.selectedFiles == null)
+      return;
     this.progress.percentage = 0;
     this.fileListToArray();
 	  console.log(this.currentFilesUpload);

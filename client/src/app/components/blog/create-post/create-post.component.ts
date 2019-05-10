@@ -5,6 +5,8 @@ import {PostCreateModel} from "../../../model/postCreate.model";
 import {PostService} from "../post.service";
 import {CustomAuthService} from "../../authentication/custom-auth.service";
 import {Account} from "../../../model/account.model";
+import {ImageUploadFormComponent} from "../../image-upload-form/image-upload-form.component";
+import {ImageService} from "../../../image.service";
 
 @Component({
   selector: 'app-create-post',
@@ -15,9 +17,11 @@ export class CreatePostComponent implements OnInit {
 
   routeName: string;
   post: PostCreateModel;
+  url: string = null;
+  uploadPhoto: boolean=false;
 
-  constructor(private routeService: RouteService, private postService: PostService, 
-    private authService: CustomAuthService,) {
+  constructor(private routeService: RouteService, private postService: PostService,
+              private authService: CustomAuthService) {
   }
 
   ngOnInit() {
@@ -49,10 +53,15 @@ export class CreatePostComponent implements OnInit {
 
   save(): void {
     if (this.validate()) {
-      this.postService.createTrip(this.post).subscribe(result => this.post = result);
-      setTimeout(() => {
-        window.location.href = 'http://localhost:4200/post/' + this.post.id;
-      }, 500);
+      this.postService.createTrip(this.post).subscribe(result => {
+          this.post = result;
+          console.log(2222);
+          this.uploadPhoto=true;
+        }
+      );
+      // setTimeout(() => {
+      //   window.location.href = 'http://localhost:4200/post/' + this.post.id;
+      // }, 500);
     }
   }
 

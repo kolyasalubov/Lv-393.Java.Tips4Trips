@@ -5,7 +5,7 @@ import { LoginComponent } from './components/authentication/login/login.componen
 import { AccountComponent } from './components/authentication/account/account.component';
 import { ProfileComponent } from './components/authentication/profile/profile.component';
 import { RouteComponent } from './components/routes/route/route.component';
-// import { CreatePostComponent } from "./components/create-post/create-post.component";
+import { CreatePostComponent } from "./components/blog/create-post/create-post.component";
 import { CreatePostPlaceComponent } from "./components/create-post-place/create-post-place.component";
 import { LikeComponent } from "./components/blog/like/like.component";
 import { CreateRouteComponent } from "./components/routes/create-route/create-route.component";
@@ -66,7 +66,7 @@ const routes: Routes = [
   { path: 'create_place/monument', component: CreateMonumentComponent },
   { path: 'monuments/:id', component: MonumentDetailsComponent },
   { path: 'city_places/:id', component: CityPlacesComponent },
-  // { path: 'create_post', component: CreatePostComponent },
+  { path: 'create_post', component: CreatePostComponent },
   { path: 'create_route', component: CreateRouteComponent },
   { path: 'trips/create', component: CreateRouteComponent },
   { path: 'list_of_users', component: ListOfUsersComponent },

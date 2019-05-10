@@ -122,8 +122,7 @@ public class FileStorageService {
     }
 
     private Account getImageCreator() {
-        return accountRepository.findByUsersContains(userRepository
-                .findByLogin("minato7878").get()).get();
+        return accountRepository.findById(1L).get();
         /*UserDetails userDetails = (UserDetails) SecurityContextHolder.
                 getContext().getAuthentication().getPrincipal();
         return accountRepository.findByUsersContains(userRepository
