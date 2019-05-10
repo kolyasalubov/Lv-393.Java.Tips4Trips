@@ -45,6 +45,7 @@ import { ImagetestComponent } from './components/imagetest/imagetest.component';
 import { MaptestComponent } from './components/maptest/maptest.component';
 import { MapPickerComponent } from './components/map/map-picker/map-picker.component';
 import {ChatComponent} from "./components/chat/chat.component";
+import { SocialHandlerComponent } from './components/authentication/social-handler/social-handler.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -54,6 +55,7 @@ const routes: Routes = [
   { path: 'like', component: LikeComponent },
   { path: 'comment', component: CommentComponent },
   { path: 'account', component: AccountComponent, canActivate: [AuthGuard] },
+  { path: 'oauth2/redirect', component: SocialHandlerComponent},
   { path: 'account_edit', component: AccountEditComponent },
   { path: 'city', component: CityComponent },
   { path: 'country', component: CountryComponent },
