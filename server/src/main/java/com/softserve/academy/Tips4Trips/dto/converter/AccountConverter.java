@@ -89,10 +89,14 @@ public class AccountConverter implements Converter<Account, AccountDetailsDTO> {
         accountInfoDTO.setFirstName(account.getFirstName());
         accountInfoDTO.setLastName(account.getLastName());
 //        accountInfoDTO.setImage( imageConverter.convertToDTO(account.getImage()));
-        accountInfoDTO.setImageId(account.getImage().getId());
-        accountInfoDTO.setImageFormat(account.getImage().getFormat());
-        accountInfoDTO.setImageName(account.getImage().getName());
-        accountInfoDTO.setImageUploadDate(account.getImage().getUploadDate());
+
+        if(account.getImage() != null){
+            accountInfoDTO.setImageId(account.getImage().getId());
+            accountInfoDTO.setImageFormat(account.getImage().getFormat());
+            accountInfoDTO.setImageName(account.getImage().getName());
+            accountInfoDTO.setImageUploadDate(account.getImage().getUploadDate());
+        }
+
         accountInfoDTO.setSelf(ControllerLinkBuilder
                 .linkTo(ControllerLinkBuilder
                         .methodOn(AccountController.class)
