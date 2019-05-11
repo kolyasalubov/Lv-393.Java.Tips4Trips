@@ -19,7 +19,7 @@ export class MonumentDetailsComponent implements OnInit {
   id: number;
   cityId: number;
   monument: Monument = new Monument(0, '', '', '', new Position(0, 0),
-    '', new City(0, '',new Position(0,0), 0,''));
+    null, new City(0, '',new Position(0,0), 0,''));
 
   role: string;
 

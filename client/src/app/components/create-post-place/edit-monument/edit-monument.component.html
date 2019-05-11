@@ -28,7 +28,9 @@
                     <input class="form-control" style="width: 100%;" type="text"
                            placeholder="Name"
                            name="name"
-                           maxlength="35" [(ngModel)]="monument.name" formControlName="name"></td>
+                           maxlength="35" [(ngModel)]="monument.name" formControlName="name"
+                    [ngClass]="formGroup.get('name').invalid ? 'invalid-input' : 'valid-input'">
+                  </td>
                 </tr>
                 <tr>
                   <td><h4>
@@ -39,7 +41,8 @@
                                         padding-top: 10px;
                                         width: 100%;"
                                                   placeholder="Something about it"
-                                                  name="about" [(ngModel)]="monument.description" maxlength="255" formControlName="description"></textarea>
+                                                  name="about" [(ngModel)]="monument.description" maxlength="255" formControlName="description"
+                                                  [ngClass]="formGroup.get('description').invalid ? 'invalid-input' : 'valid-input'"></textarea>
                   </td>
                 </tr>
                 <tr>
@@ -50,25 +53,28 @@
                     <input class="form-control" style="width: 100%;" type="text"
                            placeholder="Please write an address of it"
                            name="address"
-                           maxlength="60" [(ngModel)]="monument.address" formControlName="address"></td>
+                           maxlength="60" [(ngModel)]="monument.address" formControlName="address"
+                           [ngClass]="formGroup.get('address').invalid ? 'invalid-input' : 'valid-input'"></td>
                 </tr>
                 <tr>
                   <td><h4 style="margin-top: -20px;">
                     Coordinate
                   </h4></td>
                   <td>
-                    <app-map-picker [locationUpdate]="setCoordinates" [setAddress]="setAddress" [addressSearch]="true" style="width: 600px; height: 400px;"></app-map-picker>
+                    <app-map-picker [locationUpdate]="setCoordinates" [setAddress]="setAddress" [addressSearch]="true"></app-map-picker>
                     <div class="form-group d-flex">
                       <input class="form-control" style="width:45%;border-radius: 5px; margin-top: 15px;"
                              type="number"
                              placeholder="X"
                              name="Coordinatex"
-                             maxlength="26" [(ngModel)]="position.coordinateX" formControlName="positionX">
+                             maxlength="26" [(ngModel)]="position.coordinateX" formControlName="positionX"
+                             [ngClass]="formGroup.get('positionX').invalid ? 'invalid-input' : 'valid-input'">
                       <input class="form-control"
                              style="width: 45%;border-radius: 5px;margin-left: 10%; margin-top: 15px" type="number"
                              placeholder="Y"
                              name="Coordinatey"
-                             maxlength="26" [(ngModel)]="position.coordinateY" formControlName="positionY">
+                             maxlength="26" [(ngModel)]="position.coordinateY" formControlName="positionY"
+                             [ngClass]="formGroup.get('positionY').invalid ? 'invalid-input' : 'valid-input'">
 
                     </div>
                   </td>

@@ -19,9 +19,10 @@ export class CreateMonumentComponent implements OnInit {
   city: City[] = null;
   countries: Country[] = null;
 
-  position: Position = new Position(0, 0);
+  position: Position = new Position(null, null);
+
   cityDTO: City = new City(null, '', this.position, 0, '');
-  monument: Monument = new Monument(null, '', '', '', this.position, "photo_path", this.cityDTO);
+  monument: Monument = new Monument(null, '', '', '', this.position, null, this.cityDTO);
 
   uploadPhoto: boolean = false;
   photoUrl: string = '';

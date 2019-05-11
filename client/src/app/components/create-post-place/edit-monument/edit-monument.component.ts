@@ -18,7 +18,7 @@ export class EditMonumentComponent implements OnInit {
 
 
   position: Position = new Position(0, 0);
-  monument: Monument = new Monument(null, '', '', '', null, "photo_path", null);
+  monument: Monument = new Monument(null, '', '', '', null, null, null);
 
   id: number;
 

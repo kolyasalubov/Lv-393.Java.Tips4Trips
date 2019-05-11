@@ -29,7 +29,8 @@
                     <input class="form-control" style="width: 100%;" type="text"
                            placeholder="Name"
                            name="name"
-                           maxlength="35" [(ngModel)]="restaurant.name" formControlName="name"></td>
+                           maxlength="35" [(ngModel)]="restaurant.name" formControlName="name"
+                           [ngClass]="formGroup.get('name').invalid ? 'invalid-input' : 'valid-input'"></td>
                 </tr>
                 <tr>
                   <td><h4>
@@ -41,7 +42,8 @@
                                         width: 100%;"
                                                   placeholder="Something about it"
                                                   name="about" [(ngModel)]="restaurant.description" maxlength="255"
-                                                  formControlName="description"></textarea>
+                                                  formControlName="description"
+                                                  [ngClass]="formGroup.get('description').invalid ? 'invalid-input' : 'valid-input'"></textarea>
                   </td>
                 </tr>
                 <tr>
@@ -51,7 +53,10 @@
                   <td>
                     <input class="form-control" style="width: 100%;" type="text"
                            placeholder="Website" name="web" maxlength="35" [(ngModel)]="restaurant.webSite"
-                           formControlName="webSite"></td>
+                           formControlName="webSite"
+                           [ngClass]="formGroup.get('webSite').invalid ? 'invalid-input' : 'valid-input'">
+                    <div *ngIf="formGroup.get('webSite').hasError('maxlength')" style="font-style: italic; color: salmon;">URL is too long</div>
+                  </td>
                 </tr>
                 <tr>
                   <td><h4>
@@ -60,7 +65,10 @@
                   <td>
                     <input class="form-control" style="width: 100%;" type="tel"
                            placeholder="Telephone" name="tel" maxlength="15" [(ngModel)]="restaurant.telephone"
-                           formControlName="telephone"></td>
+                           formControlName="telephone"
+                           [ngClass]="formGroup.get('telephone').invalid ? 'invalid-input' : 'valid-input'">
+                    <div *ngIf="formGroup.get('telephone').invalid">Eg: +380441234567</div>
+                  </td>
                 </tr>
                 <tr>
                   <td><h4>
@@ -69,10 +77,12 @@
                   <td>
                     <h5>Opening time</h5>
                     <input class="form-control" style="width: 50%;" type="time"
-                           name="open_time" [(ngModel)]="restaurant.openingTime" formControlName="openingTime">
+                           name="open_time" [(ngModel)]="restaurant.openingTime" formControlName="openingTime"
+                           [ngClass]="formGroup.get('openingTime').invalid ? 'invalid-input' : 'valid-input'">
                     <h5>Closing time</h5>
                     <input class="form-control" style="width: 50%;" type="time"
-                           name="close_time" [(ngModel)]="restaurant.closingTime" formControlName="closingTime"></td>
+                           name="close_time" [(ngModel)]="restaurant.closingTime" formControlName="closingTime"
+                           [ngClass]="formGroup.get('closingTime').invalid ? 'invalid-input' : 'valid-input'"></td>
                 </tr>
                 <tr>
                   <td><h4 style="margin-top: -10px;">
@@ -82,7 +92,8 @@
                     <input class="form-control" style="width: 100%;" type="text"
                            placeholder="Please write an address of it"
                            name="address"
-                           maxlength="60" [(ngModel)]="restaurant.address" formControlName="address"></td>
+                           maxlength="60" [(ngModel)]="restaurant.address" formControlName="address"
+                           [ngClass]="formGroup.get('address').invalid ? 'invalid-input' : 'valid-input'"></td>
                 </tr>
                 <tr>
                   <td><h4 style="margin-top: -20px;">
@@ -95,12 +106,14 @@
                              type="number"
                              placeholder="X"
                              name="Coordinatex"
-                             maxlength="26" [(ngModel)]="position.coordinateX" formControlName="positionX">
+                             maxlength="26" [(ngModel)]="position.coordinateX" formControlName="positionX"
+                             [ngClass]="formGroup.get('positionX').invalid ? 'invalid-input' : 'valid-input'">
                       <input class="form-control"
                              style="width: 45%;border-radius: 5px;margin-left: 10%; margin-top: 15px" type="number"
                              placeholder="Y"
                              name="Coordinatey"
-                             maxlength="26" [(ngModel)]="position.coordinateY" formControlName="positionY">
+                             maxlength="26" [(ngModel)]="position.coordinateY" formControlName="positionY"
+                             [ngClass]="formGroup.get('positionY').invalid ? 'invalid-input' : 'valid-input'">
 
                     </div>
                   </td>
@@ -110,9 +123,13 @@
                     Average bill
                   </h4></td>
                   <td>
+                    <div *ngIf="formGroup.get('averageBill').hasError('max')" style="font-style: italic; color: salmon;">999999 is max value</div>
+                    <div *ngIf="formGroup.get('averageBill').hasError('min')" style="font-style: italic; color: salmon;">10 is min value</div>
                     <input class="form-control" style="width: 100%;" type="number"
-                           placeholder="Average bill" name="avg_bill" [(ngModel)]="restaurant.averageBill"
-                           formControlName="averageBill"></td>
+                    placeholder="Average bill" name="avg_bill" [(ngModel)]="restaurant.averageBill"
+                    formControlName="averageBill"
+                    [ngClass]="formGroup.get('averageBill').invalid ? 'invalid-input' : 'valid-input'">
+                  </td>
                 </tr>
                 <tr>
                   <td><h4>
@@ -134,6 +151,7 @@
                                formControlName="workingDays" [checked]="restaurant.workingDays.includes(day)"/>
                         <mark>{{day.substr(0, 3)}}</mark>
                       </label>
+                      <div style="color: salmon; font-style: italic" *ngIf="formGroup.get('workingDays').invalid">Choose at least one day</div>
                   </div>
                 </tr>
                 <app-image-upload-form [multiple]="false" [requestType]="'PUT'" [setStorageURL]="photoUrl" [setUploadedImages]="imageURLs" [UploadStart]="uploadPhoto"></app-image-upload-form>

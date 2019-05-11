@@ -4,7 +4,7 @@
   color: rgba(0, 0, 0, 0.7) !important;
   font-size: 20px;
   background: rgba(0, 0, 0, 0.05) !important;
-  border-radius: 5px 0px 0px 5px;
+  border-radius: 5px 5px 5px 5px;
   padding: 0 20px;
   margin-bottom: 20px;
 }
@@ -31,3 +31,17 @@ select {
   -moz-appearance: none;
   appearance: none;
 }
+
+
+.invalid-input {
+  border-left-color: salmon;
+  border-left-width: 3px;
+  border-radius: 5px;
+}
+
+.valid-input {
+  border-left-color: greenyellow;
+  border-left-width: 3px;
+  border-radius: 5px;
+}
+

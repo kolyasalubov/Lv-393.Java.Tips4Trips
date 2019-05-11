@@ -13,10 +13,13 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
+@Validated
 @RestController
 @CrossOrigin
 @RequestMapping("/places/restaurants")
@@ -47,7 +50,7 @@ public class RestaurantController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<RestaurantDetailsDTO> createRestaurant(@RequestBody RestaurantDetailsDTO restaurantDTO) {
+    public ResponseEntity<RestaurantDetailsDTO> createRestaurant(@Valid @RequestBody RestaurantDetailsDTO restaurantDTO) {
         logger.info("create restaurant method executing: ");
         Restaurant restaurant = restaurantConverter.convertToEntity(restaurantDTO);
         return new ResponseEntity<>(restaurantConverter.convertToDTO(restaurantService.createRestaurant(restaurant)), HttpStatus.CREATED);
@@ -60,13 +63,13 @@ public class RestaurantController {
     }
 
     @PutMapping("/update")
-    public ResponseEntity<RestaurantDetailsDTO> update(@RequestBody RestaurantDetailsDTO restaurantDetailsDTO) {
+    public ResponseEntity<RestaurantDetailsDTO> update(@Valid @RequestBody RestaurantDetailsDTO restaurantDetailsDTO) {
         logger.info("update restaurant method executing: ");
         return new ResponseEntity<>(restaurantConverter.convertToDTO(restaurantService.update(restaurantConverter.convertToEntity(restaurantDetailsDTO))), HttpStatus.OK);
     }
 
     @PostMapping("/filter")
-    public ResponseEntity<List<PlaceInfoDTO>> filter(@RequestBody RestaurantSearchCriteriaDTO searchCriteriaDTO) {
+    public ResponseEntity<List<PlaceInfoDTO>> filter(@Valid @RequestBody RestaurantSearchCriteriaDTO searchCriteriaDTO) {
         return new ResponseEntity<>(placeConverter.convertToInfoDTO(restaurantService.filter(searchCriteriaConverter.convertToEntity(searchCriteriaDTO))), HttpStatus.OK);
     }
 

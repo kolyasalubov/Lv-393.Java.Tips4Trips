@@ -19,10 +19,10 @@ export class RestaurantDetailsComponent implements OnInit {
   countryId: number;
   cityId: number;
   restaurant: Restaurant = new Restaurant(0, '', '', [], '',
-    '', '', '', '',new Position(0,0),'',
+    '', '', '', '', null, new Position(0,0),
     new City(0, '',new Position(0,0), 0,''),0,false);
+  hasVeganFood: string;
   zoom: number = ZoomLevel.Place;
-
   daysMap = new Map();
   imageURL: string = '';
 
@@ -34,6 +34,7 @@ export class RestaurantDetailsComponent implements OnInit {
       this.restaurant = value;
       this.restaurant.workingDays.sort((d1, d2) => this.daysMap.get(d1) - this.daysMap.get(d2));
       this.imageURL = 'http://localhost:8080/places/' + this.restaurant.id + '/image';
+      this.hasVeganFood = this.restaurant.hasVeganFood ? 'YES' : 'NO';
     });
 
     this.daysMap.set("MONDAY", 1);

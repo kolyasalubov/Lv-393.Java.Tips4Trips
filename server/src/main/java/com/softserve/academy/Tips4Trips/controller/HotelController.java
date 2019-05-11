@@ -12,10 +12,13 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
+@Validated
 @RestController
 @CrossOrigin
 @RequestMapping("/places/hotels")
@@ -45,7 +48,7 @@ public class HotelController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<HotelDetailsDTO> createHotel(@RequestBody HotelDetailsDTO hotelDetailsDTO) {
+    public ResponseEntity<HotelDetailsDTO> createHotel(@Valid @RequestBody HotelDetailsDTO hotelDetailsDTO) {
         logger.info("create hotel method executing: ");
         Hotel hotel = hotelConverter.convertToEntity(hotelDetailsDTO);
         return new ResponseEntity<>(hotelConverter.convertToDTO(hotelService.createHotel(hotel)), HttpStatus.CREATED);
@@ -59,13 +62,13 @@ public class HotelController {
     }
 
     @PutMapping("/update")
-    public ResponseEntity<HotelDetailsDTO> update(@RequestBody HotelDetailsDTO hotelDetailsDTO) {
+    public ResponseEntity<HotelDetailsDTO> update(@Valid @RequestBody HotelDetailsDTO hotelDetailsDTO) {
         logger.info("update hotel method executing: ");
         return new ResponseEntity<>(hotelConverter.convertToDTO(hotelService.update(hotelConverter.convertToEntity(hotelDetailsDTO))), HttpStatus.OK);
     }
 
     @PostMapping("/filter")
-    public ResponseEntity<List<PlaceInfoDTO>> filter(@RequestBody HotelSearchCriteriaDTO searchCriteriaDTO) {
+    public ResponseEntity<List<PlaceInfoDTO>> filter(@Valid @RequestBody HotelSearchCriteriaDTO searchCriteriaDTO) {
         return new ResponseEntity<>(placeConverter.convertToInfoDTO(hotelService.filter(searchCriteriaConverter.convertToEntity(searchCriteriaDTO))), HttpStatus.OK);
     }
 

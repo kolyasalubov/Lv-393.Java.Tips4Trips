@@ -12,10 +12,13 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
+@Validated
 @RestController
 @CrossOrigin
 @RequestMapping("/places/monuments")
@@ -44,7 +47,7 @@ public class MonumentController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<MonumentDetailsDTO> createMonument(@RequestBody MonumentDetailsDTO monumentDetailsDTO) {
+    public ResponseEntity<MonumentDetailsDTO> createMonument(@Valid @RequestBody MonumentDetailsDTO monumentDetailsDTO) {
         logger.info("create monument method executing: ");
         Monument monument = monumentConverter.convertToEntity(monumentDetailsDTO);
         return new ResponseEntity<>(monumentConverter.convertToDTO(monumentService.createMonument(monument)), HttpStatus.CREATED);
@@ -57,7 +60,7 @@ public class MonumentController {
     }
 
     @PutMapping("/update")
-    public ResponseEntity<MonumentDetailsDTO> update(@RequestBody MonumentDetailsDTO monumentDetailsDTO) {
+    public ResponseEntity<MonumentDetailsDTO> update(@Valid @RequestBody MonumentDetailsDTO monumentDetailsDTO) {
         logger.info("update monument method executing: ");
         return new ResponseEntity<>(monumentConverter.convertToDTO(monumentService.update(monumentConverter.convertToEntity(monumentDetailsDTO))), HttpStatus.OK);
     }
