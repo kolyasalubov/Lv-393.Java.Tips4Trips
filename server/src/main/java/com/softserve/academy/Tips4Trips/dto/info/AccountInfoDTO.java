@@ -1,5 +1,7 @@
 package com.softserve.academy.Tips4Trips.dto.info;
 
+import java.util.Date;
+
 public class AccountInfoDTO {
     private Long id;
 
@@ -8,6 +10,46 @@ public class AccountInfoDTO {
     private String lastName;
 
     private String self;
+
+    private Long imageId;
+    private String imageName;
+    private String imageFormat;
+    private Date imageUploadDate;
+
+    //private ImageDTO image;
+
+    public Long getImageId() {
+        return imageId;
+    }
+
+    public void setImageId(Long imageId) {
+        this.imageId = imageId;
+    }
+
+    public String getImageName() {
+        return imageName;
+    }
+
+    public void setImageName(String imageName) {
+        this.imageName = imageName;
+    }
+
+    public String getImageFormat() {
+        return imageFormat;
+    }
+
+    public void setImageFormat(String imageFormat) {
+        this.imageFormat = imageFormat;
+    }
+
+    public Date getImageUploadDate() {
+        return imageUploadDate;
+    }
+
+    public void setImageUploadDate(Date imageUploadDate) {
+        this.imageUploadDate = imageUploadDate;
+    }
+    
 
     public Long getId() {
         return id;

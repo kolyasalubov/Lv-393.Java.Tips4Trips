@@ -17,7 +17,7 @@ export class TripComponent implements OnInit {
   num: number;
   postP: TripInfoDTO[] = null;
   pagePost: PageTripsmodel = null;
-  imageURL: string = 'http://localhost:8080/trips/';
+
 
   constructor(private tripService: TripService, private router: Router, private activatedRoute: ActivatedRoute) {
   }
