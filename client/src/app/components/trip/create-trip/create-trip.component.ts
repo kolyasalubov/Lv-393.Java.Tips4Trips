@@ -49,7 +49,8 @@ export class CreateTripComponent implements OnInit {
         null,
         null,
         null,
-        null)
+        null,
+        null);
       this.subscribers[0] = new AccountInfo();
       this.trip.creator = data;
       this.trip.subscribers = this.subscribers;

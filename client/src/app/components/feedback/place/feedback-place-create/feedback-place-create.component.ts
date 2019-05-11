@@ -3,6 +3,7 @@ import {FeedbackPlaceModel} from "../../../../model/feedback-place.model";
 import {Account} from "../../../../model/account.model";
 import {FeedbackPlaceService} from "../../feedback-place.service";
 import {PlaceModel} from "../../../../model/place.model";
+import {CustomAuthService} from "../../../authentication/custom-auth.service";
 
 @Component({
   selector: 'app-feedback-place-create',
@@ -11,21 +12,23 @@ import {PlaceModel} from "../../../../model/place.model";
 })
 export class FeedbackPlaceCreateComponent implements OnInit {
 
-  @Input() placeId:number;
+  @Input() placeId: number;
 
-  feedbackPlaceModel:FeedbackPlaceModel;
+  feedbackPlaceModel: FeedbackPlaceModel;
 
-  one:string;
-  two:string;
-  three:string;
-  four:string;
-  five:string;
+  one: string;
+  two: string;
+  three: string;
+  four: string;
+  five: string;
 
-  constructor(private service:FeedbackPlaceService) { }
+  constructor(private service: FeedbackPlaceService, private authService: CustomAuthService) {
+  }
 
   ngOnInit() {
-    this.feedbackPlaceModel=new FeedbackPlaceModel();
-    this.feedbackPlaceModel.creator=  new Account (
+    this.feedbackPlaceModel = new FeedbackPlaceModel();
+    this.feedbackPlaceModel.creator = new Account(
+      null,
       null,
       null,
       null,
@@ -34,56 +37,67 @@ export class FeedbackPlaceCreateComponent implements OnInit {
       null,
       null,
       null);
-    this.feedbackPlaceModel.place= new PlaceModel();
-    this.feedbackPlaceModel.place.id=this.placeId;
+    this.feedbackPlaceModel.place = new PlaceModel();
+    this.feedbackPlaceModel.place.id = this.placeId;
   }
 
-  oneF(){
+  oneF() {
     this.clean();
-    this.one=' checked';
-    this.feedbackPlaceModel.mark=1;
+    this.one = ' checked';
+    this.feedbackPlaceModel.mark = 1;
   }
-  twoF(){
+
+  twoF() {
     this.clean();
     this.oneF();
-    this.two=' checked';
-    this.feedbackPlaceModel.mark=2;
+    this.two = ' checked';
+    this.feedbackPlaceModel.mark = 2;
   }
-  threeF(){
+
+  threeF() {
     this.clean();
     this.twoF();
-    this.three=' checked';
-    this.feedbackPlaceModel.mark=3;
+    this.three = ' checked';
+    this.feedbackPlaceModel.mark = 3;
   }
-  fourF(){
+
+  fourF() {
     this.clean();
     this.threeF();
-    this.four=' checked';
-    this.feedbackPlaceModel.mark=4;
+    this.four = ' checked';
+    this.feedbackPlaceModel.mark = 4;
   }
-  fiveF(){
+
+  fiveF() {
     this.clean();
     this.fourF();
-    this.five=' checked';
-    this.feedbackPlaceModel.mark=5;
+    this.five = ' checked';
+    this.feedbackPlaceModel.mark = 5;
   }
-  clean(){
-    this.one='';
-    this.two='';
-    this.three='';
-    this.four='';
-    this.five='';
+
+  clean() {
+    this.one = '';
+    this.two = '';
+    this.three = '';
+    this.four = '';
+    this.five = '';
   }
-  save(){
-    if(this.valid()) {
+
+  save() {
+    this.authService.getCurrentUser().subscribe(data => {
+      this.feedbackPlaceModel.creator.id = data.id;
+    });
+    if (this.valid()) {
       this.service.create(this.feedbackPlaceModel);
     }
   }
-  valid():boolean{
-    return this.feedbackPlaceModel.comment!=null&&
-     this.feedbackPlaceModel.comment!=''&&
-     this.feedbackPlaceModel.mark<6&&
-     this.feedbackPlaceModel.mark>0;
+
+  valid(): boolean {
+    return this.feedbackPlaceModel.comment != null &&
+      this.feedbackPlaceModel.comment != '' &&
+      this.feedbackPlaceModel.creator.id > 0 &&
+      this.feedbackPlaceModel.mark < 6 &&
+      this.feedbackPlaceModel.mark > 0;
   }
 
 }

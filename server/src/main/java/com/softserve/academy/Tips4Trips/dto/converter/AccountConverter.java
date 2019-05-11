@@ -25,6 +25,7 @@ public class AccountConverter implements Converter<Account, AccountDetailsDTO> {
         accountDetailsDTO.setRegistrationDate(account.getRegistrationDate());
         accountDetailsDTO.setAbout(account.getAbout());
         accountDetailsDTO.setRole(account.getRole());
+        accountDetailsDTO.setNewNotification(account.isNewNotification());
         return accountDetailsDTO;
     }
 

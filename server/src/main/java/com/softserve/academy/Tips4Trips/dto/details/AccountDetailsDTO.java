@@ -17,6 +17,16 @@ public class AccountDetailsDTO extends AccountInfoDTO {
 
     private Role role;
 
+    private Boolean newNotification;
+
+    public Boolean getNewNotification() {
+        return newNotification;
+    }
+
+    public void setNewNotification(Boolean newNotification) {
+        this.newNotification = newNotification;
+    }
+
     public String getPhoneNumber() {
         return phoneNumber;
     }

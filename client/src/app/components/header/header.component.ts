@@ -1,5 +1,7 @@
 import {Component, HostListener, OnInit} from '@angular/core';
-import { Router } from '@angular/router';
+import {Router} from '@angular/router';
+import {CustomAuthService} from "../authentication/custom-auth.service";
+import {Account} from "../../model/account.model";
 
 @Component({
   selector: 'app-header',
@@ -11,13 +13,29 @@ export class HeaderComponent implements OnInit {
   show: boolean = false;
   seek: string;
 
+  accountProfile: Account;
+  newNotification: boolean = false;
+
+  login: string = "My Account";
+
   constructor(
-    private router: Router
+    private router: Router,
+    private authService: CustomAuthService
   ) {
-    setTimeout(()=>{},400);
+    setTimeout(() => {
+      this.ngOnInit()
+    }, 200);
   }
 
   ngOnInit() {
+    this.authService.getCurrentUser().subscribe(data => {
+      this.accountProfile = data;
+      if (data.id > 0) {
+        this.login = data.email;
+        this.newNotification = data.newNotification;
+      }
+    });
+
     this.getScreenSize()
   }
 
@@ -37,8 +55,9 @@ export class HeaderComponent implements OnInit {
   showIt() {
     this.show = !this.show;
   }
+
   goToSearch(): void {
-    this.router.navigate(['/search'], { queryParams: { seek: this.seek } });
+    this.router.navigate(['/search'], {queryParams: {seek: this.seek}});
   }
 
 }

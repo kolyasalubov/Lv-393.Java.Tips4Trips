@@ -72,7 +72,18 @@ public class Account {
     @OneToMany(mappedBy = "creator", cascade = CascadeType.REMOVE)
     private List<Sale> sales;
 
+    @Column(name = "new_notification")
+    private Boolean newNotification = false;
+
     public Account() {
+    }
+
+    public boolean isNewNotification() {
+        return newNotification;
+    }
+
+    public void setNewNotification(boolean newNotification) {
+        this.newNotification = newNotification;
     }
 
     public Long getId() {

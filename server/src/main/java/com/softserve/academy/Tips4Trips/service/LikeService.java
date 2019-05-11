@@ -3,6 +3,7 @@ package com.softserve.academy.Tips4Trips.service;
 import com.softserve.academy.Tips4Trips.entity.administration.Account;
 import com.softserve.academy.Tips4Trips.entity.blog.Like;
 import com.softserve.academy.Tips4Trips.entity.blog.Post;
+import com.softserve.academy.Tips4Trips.repository.AccountRepository;
 import com.softserve.academy.Tips4Trips.repository.LikeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.apache.log4j.Logger;
@@ -19,10 +20,12 @@ public class LikeService {
     private static final Logger logger = Logger.getLogger(LikeService.class);
 
     private LikeRepository repository;
+    private AccountRepository aRepository;
 
     @Autowired
-    public LikeService(LikeRepository repository) {
+    public LikeService(LikeRepository repository, AccountRepository aRepository) {
         this.repository = repository;
+        this.aRepository = aRepository;
     }
 
     public long countByPostId(Long id) {
@@ -43,6 +46,9 @@ public class LikeService {
         Like like = new Like();
         like.setLikedBy(account);
         like.setPost(post);
+        Account acc= aRepository.findById(post.getAuthor().getId()).get();
+        acc.setNewNotification(true);
+        aRepository.save(acc);
         return repository.save(like);
     }
 
