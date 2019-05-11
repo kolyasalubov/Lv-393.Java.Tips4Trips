@@ -61,6 +61,7 @@ allPosts(){
       this.followingAccounts[i].post[j].lastName=this.followingAccounts[i].lastName;
       this.followingAccounts[i].post[j].firstName=this.followingAccounts[i].firstName;
       this.followingAccounts[i].post[j].accountId=this.followingAccounts[i].id;
+      this.followingAccounts[i].post[j].images=this.followingAccounts[i].post[j].images.splice(1,1);
       this.posts.push((this.followingAccounts[i].post[j]));
     }
   }
