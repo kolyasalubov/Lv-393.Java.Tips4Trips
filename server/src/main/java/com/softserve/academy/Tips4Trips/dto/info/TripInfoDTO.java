@@ -1,5 +1,7 @@
 package com.softserve.academy.Tips4Trips.dto.info;
 
+import com.softserve.academy.Tips4Trips.dto.file.ImageDTO;
+
 import java.util.Date;
 
 public class TripInfoDTO {
@@ -14,6 +16,16 @@ public class TripInfoDTO {
     private Date startDate;
 
     private String self;
+
+    private ImageDTO image;
+
+    public ImageDTO getImage() {
+        return image;
+    }
+
+    public void setImage(ImageDTO image) {
+        this.image = image;
+    }
 
     public Long getId() {
         return id;

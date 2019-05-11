@@ -4,6 +4,7 @@ import com.softserve.academy.Tips4Trips.controller.AccountController;
 import com.softserve.academy.Tips4Trips.dto.details.AccountDetailsDTO;
 import com.softserve.academy.Tips4Trips.dto.info.AccountInfoDTO;
 import com.softserve.academy.Tips4Trips.entity.administration.Account;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.mvc.ControllerLinkBuilder;
 import org.springframework.stereotype.Component;
 
@@ -14,6 +15,14 @@ import java.util.stream.Collectors;
 @Component
 public class AccountConverter implements Converter<Account, AccountDetailsDTO> {
 
+    //private ImageConverter imageConverter;
+
+    //@Autowired
+    //public AccountConverter(ImageConverter imageConverter){
+   //     this.imageConverter = imageConverter;
+    //}
+
+    //ImageConverter imageConverter =  new ImageConverter();
 
     @Override
     public AccountDetailsDTO convertToDTO(Account account) {
@@ -24,6 +33,9 @@ public class AccountConverter implements Converter<Account, AccountDetailsDTO> {
         accountDetailsDTO.setEmail(account.getEmail());
         accountDetailsDTO.setRegistrationDate(account.getRegistrationDate());
         accountDetailsDTO.setAbout(account.getAbout());
+
+        //accountDetailsDTO.setImage( imageConverter.convertToDTO(account.getImage()));
+
         accountDetailsDTO.setRole(account.getRole());
         return accountDetailsDTO;
     }
@@ -40,6 +52,9 @@ public class AccountConverter implements Converter<Account, AccountDetailsDTO> {
         account.setEmail(accountDetailsDTO.getEmail());
         account.setRegistrationDate(accountDetailsDTO.getRegistrationDate());
         account.setAbout(accountDetailsDTO.getAbout());
+
+        //account.setImage( imageConverter
+        //        .convertToEntity(accountDetailsDTO.getImage()));
         account.setRole(accountDetailsDTO.getRole());
         return account;
     }

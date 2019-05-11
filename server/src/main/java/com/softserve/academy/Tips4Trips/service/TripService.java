@@ -4,14 +4,17 @@ import com.softserve.academy.Tips4Trips.constants.ExceptionMessages;
 import com.softserve.academy.Tips4Trips.entity.Route;
 import com.softserve.academy.Tips4Trips.entity.administration.Account;
 import com.softserve.academy.Tips4Trips.entity.entertainment.mountains.Trip;
+import com.softserve.academy.Tips4Trips.entity.file.Image;
 import com.softserve.academy.Tips4Trips.exception.DataNotFoundException;
 import com.softserve.academy.Tips4Trips.exception.DuplicateValueException;
+import com.softserve.academy.Tips4Trips.exception.FileIOException;
 import com.softserve.academy.Tips4Trips.repository.TripRepository;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -31,11 +34,12 @@ public class TripService {
 
     TripRepository repository;
     AccountService accountService;
-
+    private FileStorageService fileStorageService;
     @Autowired
-    public TripService(TripRepository repository, AccountService accountService) {
+    public TripService(TripRepository repository, AccountService accountService, FileStorageService fileStorageService) {
         this.repository = repository;
         this.accountService = accountService;
+        this.fileStorageService = fileStorageService;
     }
 
     public List<Trip> searchByName(String name) {
@@ -54,6 +58,41 @@ public class TripService {
             throw new DataNotFoundException(ExceptionMessages.TRIP_BY_THIS_ID_IS_NOT_FOUND);
         }
     }
+
+    public Trip createTripImage(MultipartFile image, Long id)
+            throws FileIOException {
+        Trip trip = findById(id);
+        if (trip.getImage() != null) {
+            throw new FileIOException("Trip image already exists! Try " +
+                    "updating it.");
+        }
+        Image newImage = fileStorageService.store(image);
+        trip.setImage(newImage);
+        return update(trip);
+    }
+
+    public void deleteTripImage(Long id) throws FileIOException,
+            DataNotFoundException {
+        try {
+            Trip trip = findById(id);
+            Long imageId = trip.getImage().getId();
+            trip.setImage(null);
+            update(trip);
+            fileStorageService.deleteFile(imageId);
+        } catch (NullPointerException e) {
+            throw new DataNotFoundException("Image doesn't exist");
+        }
+    }
+
+    public Trip updateTripImage(Long id, MultipartFile newImage)
+            throws FileIOException, DataNotFoundException {
+        deleteTripImage(id);
+        Image image = fileStorageService.store(newImage);
+        Trip trip = findById(id);
+        trip.setImage(image);
+        return update(trip);
+    }
+
 
     @Transactional
     public Account subscribe(Long tripId, Long accountId) {
