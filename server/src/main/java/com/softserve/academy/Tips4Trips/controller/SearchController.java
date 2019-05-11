@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/search")
 public class SearchController {
 
-    public final int DEFAULT_PAGE_SIZE = 10;
+    public final int DEFAULT_PAGE_SIZE = 6;
     private SearchService service;
     private RouteConverter routeConverter;
     private TripConverter tripConverter;

@@ -14,7 +14,7 @@ export class SearchPostComponent {
   total: number;
   page: number;
   queryParams: object = {};
-  posts: LittlepostModel[];
+  posts: LittlepostModel[] = [];
   params: PostSearchParams = new PostSearchParams();
   dateDropdownText: string = "Whenever";
 
@@ -56,8 +56,8 @@ export class SearchPostComponent {
   search(seek: string, page: number): void {
     this.params.name = seek;
     this.searchService.findPostsByParams(this.params, page).subscribe(data => {
-      this.posts = data.list;
-      this.total = data.total;
+      this.posts = data.content;
+      this.total = data.totalPages;
     });
   }
 
