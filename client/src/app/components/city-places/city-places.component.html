@@ -133,20 +133,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-6 col-lg-3 ftco-animate" *ngFor="let place of places">
-        <div class="project">
-          <div>
-            <h3 routerLink="/{{transferSelfUrl(place.self)}}">{{place.name}}</h3></div>
-          <div class="img">
-            <img src="../../../assets/images/destination-4.jpg" class="img-fluid" alt="Colorlib Template">
-          </div>
-          <div style="color: #6c661c">
-            <span>{{place.description}}</span>
-          </div>
-          <a href="../../../assets/images/destination-4.jpg"
-             class="icon image-popup d-flex justify-content-center align-items-center">
-            <span class="icon-expand"></span>
-          </a>
-        </div>
+        <app-place-info [place]="place"></app-place-info>
       </div>
     </div>
   </div>
@@ -156,20 +143,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-6 col-lg-3 ftco-animate" *ngFor="let place of categorizedPlaces">
-        <div class="project">
-          <div>
-            <h3 routerLink="/{{transferSelfUrl(place.self)}}">{{place.name}}</h3></div>
-          <div class="img">
-            <img src="../../../assets/images/destination-4.jpg" class="img-fluid" alt="Colorlib Template">
-          </div>
-          <div style="color: #6c661c">
-            <span>{{place.description}}</span>
-          </div>
-          <a href="../../../assets/images/destination-4.jpg"
-             class="icon image-popup d-flex justify-content-center align-items-center">
-            <span class="icon-expand"></span>
-          </a>
-        </div>
+        <app-place-info [place]="place"></app-place-info>
       </div>
     </div>
   </div>

@@ -40,12 +40,12 @@
                                 </tr>
                                 <tr *ngIf="route.places.length != 0">
                                     <td></td>
-                                    <td style="display:grid; grid-gap:20px 10px;
-                                    grid-template-columns: auto auto auto;">
-                                        <div *ngFor="let place of route.places">
-                                            <h4>{{place.name}}</h4>
-                                            <p>{{place.description}}</p>
-                                            <button (click)="removePlace(place.id)">Remove</button>
+                                    <td >
+                                        <div class="card-deck">
+                                            <div class="card" *ngFor="let place of route.places" style="max-width: 18rem; min-width: 18rem; display: inline-block; border: none;" >
+                                                <app-place-info [place]="place"
+                                                [displayRemoveButton]="true" (remove)="removePlace(place.id)"></app-place-info>
+                                            </div>
                                         </div>
                                     </td>
                                 </tr>
