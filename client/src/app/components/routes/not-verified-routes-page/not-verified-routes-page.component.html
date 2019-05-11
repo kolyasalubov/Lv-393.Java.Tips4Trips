@@ -14,17 +14,24 @@
   </div>
 </div>
 
-<section class="ftco-section bg-light">
+<section class="ftco-section bg-light" style="padding-top: 20px;">
   <div class="container">
     <div class="jumbotron">
-        <h1 class="display-4">Not Verified Routes</h1>
-        <!-- <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p> -->
-        <hr class="my-4">
-        <!-- <p>It uses utility classes for typography and spacing to space content out within the larger container.</p> -->
-        <a [routerLink]="['/routes']" class="btn btn-primary btn-lg mr-4" role="button">Back To Routes</a>
-      </div>
+      <h1 class="display-4">Not Verified Routes</h1>
+      <!-- <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p> -->
+      <hr class="my-4">
+      <!-- <p>It uses utility classes for typography and spacing to space content out within the larger container.</p> -->
+      <a [routerLink]="['/routes']" class="btn btn-primary btn-lg mr-4" role="button">Back To Routes</a>
+    </div>
     <app-list-of-routes [routes]="routes" [displayEditButtons]="hasAuthority" [displayVerifyButton]="hasAuthority">
     </app-list-of-routes>
+    <div *ngIf="routes.length == 0" class="jumbotron jumbotron-fluid">
+      <div class="container">
+        <h1 class="display-4">Not Found!</h1>
+        <p class="lead">All routes have already been verified!</p>
+      </div>
+    </div>
+    <app-pagination [number]="page" [link]="'/routes/notverified/page/'" [total]="totalPages"></app-pagination>
   </div>
 </section>
 

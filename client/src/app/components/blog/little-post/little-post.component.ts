@@ -19,7 +19,7 @@ export class LittlePostComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.imageURL = 'http://localhost:8080/posts/' + this.post.id + '/images';
+    this.imageURL = 'http://localhost:8080/posts/images/'+this.post.id;
     console.log(this.imageURL);
     let input = new Date(this.post.creationDate);
     this.date = input.getDay();

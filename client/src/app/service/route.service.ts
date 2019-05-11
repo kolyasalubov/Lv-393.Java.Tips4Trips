@@ -4,6 +4,7 @@ import {RouteInfo} from '../model/route-info.model';
 import {Observable} from 'rxjs';
 import {Route} from '../model/route.model';
 import {PlaceInfo} from "../model/place-info.model";
+import { Page } from '../model/page';
 
 @Injectable({
   providedIn: 'root'
@@ -19,12 +20,12 @@ export class RouteService {
     return this.http.get<RouteInfo[]>(this.baseUrl);
   }
 
-  findVerified(): Observable<RouteInfo[]> {
-    return this.http.get<RouteInfo[]>(this.baseUrl + "verified");
+  findVerified(page: number): Observable<Page<RouteInfo>> {
+    return this.http.get<Page<RouteInfo>>(this.baseUrl + "verified", {params: {page: '' + page}});
   }
 
-  findNotVerified(): Observable<RouteInfo[]> {
-    return this.http.get<RouteInfo[]>(this.baseUrl + "notVerified");
+  findNotVerified(page: number): Observable<Page<RouteInfo>> {
+    return this.http.get<Page<RouteInfo>>(this.baseUrl + "notVerified", {params: {page: '' + page}});
   }
 
   findById(id: number): Observable<Route> {

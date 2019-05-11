@@ -6,11 +6,14 @@ import com.softserve.academy.Tips4Trips.dto.info.RouteInfoDTO;
 import com.softserve.academy.Tips4Trips.entity.Route;
 import com.softserve.academy.Tips4Trips.service.RouteService;
 import org.apache.log4j.Logger;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,6 +27,7 @@ public class RouteController {
 
     private RouteService routeService;
     private RouteConverter routeConverter;
+    public final int DEFAULT_PAGE_SIZE = 6;
 
     @Autowired
     public RouteController(RouteService routeService,
@@ -33,25 +37,37 @@ public class RouteController {
     }
 
     @GetMapping
-    public ResponseEntity<List<RouteInfoDTO>> getAll() {
-        logger.info("get all route id method executing: ");
-        return new ResponseEntity<>(routeConverter.convertToInfoDTO(routeService
-                .findAll()), HttpStatus.OK);
+    public ResponseEntity<Page<RouteInfoDTO>> getAll(
+            @RequestParam(value = "page", required = false) Integer page,
+            @RequestParam(value = "size", required = false) Integer size) {
+        Pageable pageable = getPageable(page, size);
+        Page<Route> routePage = routeService.findAll(pageable);
+        return new ResponseEntity<>(routePage
+                .map(routeConverter::convertToInfoDTO), HttpStatus.OK);
     }
 
+
     @GetMapping("/verified")
-    public ResponseEntity<List<RouteInfoDTO>> getVerified() {
+    public ResponseEntity<Page<RouteInfoDTO>> getVerified(
+            @RequestParam(value = "page", required = false) Integer page,
+            @RequestParam(value = "size", required = false) Integer size) {
         logger.info("get verified routes method executing: ");
-        return new ResponseEntity<>(routeConverter.convertToInfoDTO(routeService
-                .findByVerified(true)), HttpStatus.OK);
+        Pageable pageable = getPageable(page, size);
+        Page<Route> routePage = routeService.findByVerified(true, pageable);
+        return new ResponseEntity<>(routePage
+                .map(routeConverter::convertToInfoDTO), HttpStatus.OK);
     }
 
     @GetMapping("/notVerified")
     @PreAuthorize("hasRole('ROLE_MODERATOR')")
-    public ResponseEntity<List<RouteInfoDTO>> getNotVerified() {
+    public ResponseEntity<Page<RouteInfoDTO>> getNotVerified(
+            @RequestParam(value = "page", required = false) Integer page,
+            @RequestParam(value = "size", required = false) Integer size) {
         logger.info("get verified routes method executing: ");
-        return new ResponseEntity<>(routeConverter.convertToInfoDTO(routeService
-                .findByVerified(false)), HttpStatus.OK);
+        Pageable pageable = getPageable(page, size);
+        Page<Route> routePage = routeService.findByVerified(false, pageable);
+        return new ResponseEntity<>(routePage
+                .map(routeConverter::convertToInfoDTO), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
@@ -105,6 +121,12 @@ public class RouteController {
     public void deleteById(@PathVariable Long id) {
         logger.info("delete route by id method executing: ");
         routeService.deleteById(id);
+    }
+
+    private Pageable getPageable(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size) {
+        if (page == null || page < 0) page = 0;
+        if (size == null || size <= 0) size = DEFAULT_PAGE_SIZE;
+        return PageRequest.of(page, size);
     }
 
 }
