@@ -1,3 +1,5 @@
+import {Image} from "./image.model";
+
 export class Account {
   id: number;
   firstName: string;
@@ -6,6 +8,7 @@ export class Account {
   email: string;
   registrationDate: Date;
   role: string;
+  //image: Image;
   about: string;
   newNotification: boolean;
 
@@ -17,6 +20,7 @@ export class Account {
     this.email = email;
     this.registrationDate = registrationDate;
     this.role = role;
+    //this.image = image;
     this.about = about;
     this.newNotification = newNotification;
   }

@@ -2,6 +2,7 @@ import {Account} from './account.model'
 import {AccountInfo} from './account-info.model'
 import {RouteInfo} from "./route-info.model";
 import {Route} from "./route.model";
+import {Image} from "./image.model";
 
 export class TripDetailsDTO {
   id: number;
@@ -13,11 +14,11 @@ export class TripDetailsDTO {
   creator: Account;
   route: Route;
   subscribers: AccountInfo[];
+  image: Image;
   chatId:number;
 
 
-
-  constructor(id: number, name: string, description: string, creationDate: Date, startDate: Date, self: string, creator: Account, route: Route, subscribers: AccountInfo[], chatId: number) {
+  constructor(id: number, name: string, description: string, creationDate: Date, startDate: Date, self: string, creator: Account, route: Route, subscribers: AccountInfo[], image: Image, chatId: number) {
     this.id = id;
     this.name = name;
     this.description = description;
@@ -27,6 +28,7 @@ export class TripDetailsDTO {
     this.creator = creator;
     this.route = route;
     this.subscribers = subscribers;
+    this.image = image;
     this.chatId = chatId;
   }
 }

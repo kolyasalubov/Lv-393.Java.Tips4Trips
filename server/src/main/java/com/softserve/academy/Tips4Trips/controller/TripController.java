@@ -8,6 +8,9 @@ import com.softserve.academy.Tips4Trips.dto.info.TripInfoDTO;
 import com.softserve.academy.Tips4Trips.entity.administration.Account;
 import com.softserve.academy.Tips4Trips.entity.chat.Chat;
 import com.softserve.academy.Tips4Trips.entity.entertainment.mountains.Trip;
+import com.softserve.academy.Tips4Trips.entity.file.Image;
+import com.softserve.academy.Tips4Trips.exception.DataNotFoundException;
+import com.softserve.academy.Tips4Trips.exception.FileIOException;
 import com.softserve.academy.Tips4Trips.service.AccountService;
 import com.softserve.academy.Tips4Trips.service.ChatService;
 import com.softserve.academy.Tips4Trips.service.TripService;
@@ -19,6 +22,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
@@ -95,6 +100,39 @@ public class TripController {
 
         return new ResponseEntity<>(tripConverter.convertToDTO(trip), HttpStatus.CREATED);
 
+    }
+
+    @PostMapping("/{id}/image")
+    public ResponseEntity<TripInfoDTO> addImage(@PathVariable Long id,
+                                                 @RequestParam("file") MultipartFile file) throws FileIOException {
+        Trip updatedTrip = tripService.createTripImage(file, id);
+        return new ResponseEntity<>(tripConverter
+                .convertToDTO(updatedTrip), HttpStatus.CREATED);
+    }
+
+    @GetMapping("/{id}/image")
+    public RedirectView redirectToImageGet(@PathVariable Long id) {
+        Image image = tripService.findById(id).getImage();
+        Long imageId = image == null ? -1 : image.getId();
+        return new RedirectView("/images/" + imageId);
+    }
+
+    @DeleteMapping("/{id}/image")
+    public void deleteImageById(@PathVariable Long id) throws FileIOException,
+            DataNotFoundException {
+        logger.info("delete image account by id method executing: ");
+        tripService.deleteTripImage(id);
+    }
+
+    @PutMapping("/{id}/image")
+    public ResponseEntity<TripInfoDTO> updateImageById(
+            @PathVariable Long id, @RequestParam("file") MultipartFile file)
+            throws FileIOException, DataNotFoundException {
+
+        logger.info("update image account by id method executing: ");
+        Trip updatedTrip = tripService.updateTripImage(id, file);
+        return new ResponseEntity<>(tripConverter
+                .convertToDTO(updatedTrip), HttpStatus.ACCEPTED);
     }
 
     @DeleteMapping("/delete/{id}")

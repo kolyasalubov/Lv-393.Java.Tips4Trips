@@ -4,6 +4,7 @@ import {TripInfoService} from './trip-info.service'
 import {ActivatedRoute} from "@angular/router";
 import { Location } from '@angular/common';
 import {PlaceInfo} from "../../../model/place-info.model";
+import {Image} from "../../../model/image.model";
 
 @Component({
   selector: 'app-trip-info',
@@ -12,7 +13,7 @@ import {PlaceInfo} from "../../../model/place-info.model";
 })
 export class TripInfoComponent implements OnInit {
 
-  tripDetailsDTO: TripDetailsDTO = new TripDetailsDTO(null,"default",null,null,null,null,null,null,null,null);
+  tripDetailsDTO: TripDetailsDTO = new TripDetailsDTO(null,"default",null,null,null,null,null,null,null,null, null);
 
 
   constructor(private tripInfoService: TripInfoService,    private ngRoute: ActivatedRoute, private location: Location) { }
@@ -47,6 +48,10 @@ export class TripInfoComponent implements OnInit {
 
   goBack(): void {
     this.location.back();
+  }
+
+  getImageString() {
+    return "http://localhost:8080/accounts/2/image";
   }
   }
 

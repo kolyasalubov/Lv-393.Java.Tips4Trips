@@ -1,7 +1,9 @@
 package com.softserve.academy.Tips4Trips.dto.details;
 
+import com.softserve.academy.Tips4Trips.dto.file.ImageDTO;
 import com.softserve.academy.Tips4Trips.dto.info.AccountInfoDTO;
 import com.softserve.academy.Tips4Trips.entity.enums.Role;
+import com.softserve.academy.Tips4Trips.entity.file.Image;
 
 import java.util.Date;
 
@@ -16,6 +18,15 @@ public class AccountDetailsDTO extends AccountInfoDTO {
     private String about;
 
     private Role role;
+//
+//    private ImageDTO image;
+//
+//    public ImageDTO getImage() {
+//        return image;
+//    }
+//    public void setImage(ImageDTO image) {
+//        this.image = image;
+//    }
 
     private Boolean newNotification;
 
