@@ -49,7 +49,7 @@ public class AccountInfoDTO {
     public void setImageUploadDate(Date imageUploadDate) {
         this.imageUploadDate = imageUploadDate;
     }
-    
+
 
     public Long getId() {
         return id;
