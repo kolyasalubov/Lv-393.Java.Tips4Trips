@@ -11,7 +11,7 @@
         <div class="row blog-entries element-animate">
           <div class="col-md-12 col-lg-8 main-content" style="padding-left: 0px;">
             <h1 class="mb-4">Hotel details</h1>
-            <div>
+            <div *ngIf="role === 'ADMIN' || role === 'MODERATOR'">
               <button class="btn submit" routerLink="/hotels/edit/{{hotel.id}}">Edit</button>
               <button class="btn submit" (click)="deletePlace()">Delete</button>
             </div>

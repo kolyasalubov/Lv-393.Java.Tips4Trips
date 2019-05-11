@@ -20,8 +20,8 @@ public class PlaceService {
 
     private static final Logger logger = Logger.getLogger(PlaceService.class);
 
-    PlaceRepository repository;
-    private FileStorageService fileStorageService;
+    private final PlaceRepository repository;
+    private final FileStorageService fileStorageService;
 
     @Autowired
     public PlaceService(PlaceRepository repository,

@@ -19,9 +19,8 @@ import static com.softserve.academy.Tips4Trips.specifications.HotelSpecification
 public class HotelService {
 
     private static final Logger logger = Logger.getLogger(HotelService.class);
-
-    private HotelRepository repository;
-    private CityRepository cityRepository;
+    private final HotelRepository repository;
+    private final CityRepository cityRepository;
 
     @Autowired
     public HotelService(HotelRepository restaurantRepository, CityRepository cityRepository) {

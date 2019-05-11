@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import { HttpClient, HttpResponse, HttpEventType } from '@angular/common/http';
 import { ImageService } from '../../image.service';
 import { ImageDetailsComponent } from '../image-details/image-details.component';
@@ -41,6 +41,8 @@ export class ImageUploadFormComponent implements OnInit {
         }
       }
   }
+  @Output() uploaded: EventEmitter<boolean> = new EventEmitter();
+
 
   constructor(private uploadService: ImageService) { 
   }
@@ -88,6 +90,7 @@ export class ImageUploadFormComponent implements OnInit {
         this.progress.percentage = Math.round(100 * event.loaded / event.total);
       } else if (event instanceof HttpResponse) {
         console.log('File is completely uploaded!');
+        this.uploaded.emit(true);
       }
     });
  

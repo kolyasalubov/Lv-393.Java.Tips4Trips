@@ -115,7 +115,6 @@ export class EditHotelComponent implements OnInit {
       this.photoUrl = 'http://localhost:8080/places/' + this.hotel.id + '/image';
       this.uploadPhoto = true;
     });
-    // setTimeout(() => {window.location.href = '/hotels/' + this.hotel.id;}, 2000);
   }
 
   setWorkingDays(day: string) {
@@ -124,6 +123,10 @@ export class EditHotelComponent implements OnInit {
     } else {
       this.hotel.workingDays.push(day);
     }
+  }
+
+  navigate() {
+    this.router.navigateByUrl('/hotels/' + this.hotel.id);
   }
 
 }

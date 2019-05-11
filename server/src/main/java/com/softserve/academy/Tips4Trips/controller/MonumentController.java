@@ -12,6 +12,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,17 +27,16 @@ public class MonumentController {
 
     private static final Logger logger = Logger.getLogger(MonumentController.class);
 
-    private MonumentConverter monumentConverter;
-    private MonumentService monumentService;
-    private PlaceConverter placeConverter;
-    private CityService cityService;
+    private final MonumentConverter monumentConverter;
+    private final MonumentService monumentService;
+    private final PlaceConverter placeConverter;
 
     @Autowired
-    public MonumentController(MonumentConverter monumentConverter, MonumentService monumentService, PlaceConverter placeConverter, CityService cityService) {
+    public MonumentController(MonumentConverter monumentConverter, MonumentService monumentService,
+                              PlaceConverter placeConverter) {
         this.monumentConverter = monumentConverter;
         this.monumentService = monumentService;
         this.placeConverter = placeConverter;
-        this.cityService = cityService;
     }
 
     @GetMapping("/all")
@@ -46,11 +46,13 @@ public class MonumentController {
                 .convertToInfoDTO(monumentService.findAll()), HttpStatus.OK);
     }
 
+    @PreAuthorize("hasRole('ROLE_MODERATOR')")
     @PostMapping("/create")
     public ResponseEntity<MonumentDetailsDTO> createMonument(@Valid @RequestBody MonumentDetailsDTO monumentDetailsDTO) {
         logger.info("create monument method executing: ");
         Monument monument = monumentConverter.convertToEntity(monumentDetailsDTO);
-        return new ResponseEntity<>(monumentConverter.convertToDTO(monumentService.createMonument(monument)), HttpStatus.CREATED);
+        return new ResponseEntity<>(monumentConverter.convertToDTO(monumentService.createMonument(monument)),
+                HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")
@@ -59,10 +61,12 @@ public class MonumentController {
         return new ResponseEntity<>(monumentConverter.convertToDTO(monumentService.findById(id)), HttpStatus.OK);
     }
 
+    @PreAuthorize("hasRole('ROLE_MODERATOR')")
     @PutMapping("/update")
     public ResponseEntity<MonumentDetailsDTO> update(@Valid @RequestBody MonumentDetailsDTO monumentDetailsDTO) {
         logger.info("update monument method executing: ");
-        return new ResponseEntity<>(monumentConverter.convertToDTO(monumentService.update(monumentConverter.convertToEntity(monumentDetailsDTO))), HttpStatus.OK);
+        return new ResponseEntity<>(monumentConverter.convertToDTO(monumentService.update(monumentConverter
+                .convertToEntity(monumentDetailsDTO))), HttpStatus.OK);
     }
 
     @GetMapping("/city/{id}")
@@ -71,6 +75,7 @@ public class MonumentController {
         return new ResponseEntity<>(placeConverter.convertToInfoDTO(monumentService.findByCity(id)), HttpStatus.OK);
     }
 
+    @PreAuthorize("hasRole('ROLE_MODERATOR')")
     @DeleteMapping("/{id}")
     public ResponseEntity deleteById(@PathVariable Long id) {
         logger.info("delete monument by id method executing: ");

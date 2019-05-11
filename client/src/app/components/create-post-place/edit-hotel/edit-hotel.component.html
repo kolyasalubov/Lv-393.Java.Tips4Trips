@@ -154,7 +154,7 @@
                       <div style="color: salmon; font-style: italic" *ngIf="formGroup.get('workingDays').invalid">Choose at least one day</div>
                   </div>
                 </tr>
-                <app-image-upload-form [multiple]="false" [requestType]="'PUT'" [setStorageURL]="photoUrl" [setUploadedImages]="imageURLs" [UploadStart]="uploadPhoto"></app-image-upload-form>
+                <app-image-upload-form [multiple]="false" [requestType]="'PUT'" [setStorageURL]="photoUrl" [setUploadedImages]="imageURLs" [UploadStart]="uploadPhoto" (uploaded)="navigate()"></app-image-upload-form>
               </table>
               <input *ngIf="formGroup.valid" class="category submit"
                      style="padding: 3%;

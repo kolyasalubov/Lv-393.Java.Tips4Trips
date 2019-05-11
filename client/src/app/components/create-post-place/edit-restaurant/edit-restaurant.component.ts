@@ -119,4 +119,8 @@ export class EditRestaurantComponent implements OnInit {
     }
   }
 
+  navigate() {
+    this.router.navigateByUrl('/restaurants/' + this.restaurant.id);
+  }
+
 }

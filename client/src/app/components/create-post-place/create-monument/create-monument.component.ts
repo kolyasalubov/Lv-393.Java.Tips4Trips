@@ -26,6 +26,7 @@ export class CreateMonumentComponent implements OnInit {
 
   uploadPhoto: boolean = false;
   photoUrl: string = '';
+  uploaded: boolean;
 
   setCoordinates: Function = (x: number, y: number) => {
     this.position.coordinateX = x;
@@ -88,7 +89,10 @@ export class CreateMonumentComponent implements OnInit {
         this.photoUrl = 'http://localhost:8080/places/' + this.monument.id + '/image';
         this.uploadPhoto = true;
       });
-      // setTimeout(() => {window.location.href = '/monuments/' + this.monument.id;}, 2000);
+  }
+
+  navigate() {
+    this.router.navigateByUrl('/monuments/' + this.monument.id);
   }
 
 }
