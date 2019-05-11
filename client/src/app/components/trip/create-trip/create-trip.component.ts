@@ -37,7 +37,8 @@ export class CreateTripComponent implements OnInit {
       null,
       null,
       null,
-      null,null);
+      null,
+      null);
   }
 
   ngOnInit() {

@@ -86,6 +86,13 @@ public class AccountController {
                 .convertToDTO(accountService.findById(id)), HttpStatus.OK);
     }
 
+    @GetMapping("/{id}/check")
+    public ResponseEntity<Boolean> checkNotification(@PathVariable Long id) {
+        logger.info("check notification by id method executing: ");
+        accountService.checkNotification(id);
+        return new ResponseEntity<>(true, HttpStatus.OK);
+    }
+
 
     @PostMapping("/create")
     public ResponseEntity<AccountDetailsDTO> createAccount(@RequestBody AccountDetailsDTO accountDTO) {

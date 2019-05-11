@@ -51,6 +51,7 @@ public class TripConverter implements Converter<Trip, TripDetailsDTO> {
         trip.setDescription(tripDetailsDTO.getDescription());
         trip.setCreationDate(tripDetailsDTO.getCreationDate());
         trip.setStartDate(tripDetailsDTO.getStartDate());
+
         Chat chat = chatService.getChatById(tripDetailsDTO.getChatId());
         trip.setChat(chat);
         Account creator = accountService.findById(tripDetailsDTO.getCreator().getId());

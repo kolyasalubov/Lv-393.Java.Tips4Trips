@@ -187,4 +187,10 @@ public class AccountService {
         account.setImage(image);
         return update(account);
     }
+
+    public void checkNotification(Long id) {
+        Account account = findById(id);
+        account.setNewNotification(false);
+        repository.save(account);
+    }
 }
