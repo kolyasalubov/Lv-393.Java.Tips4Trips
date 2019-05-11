@@ -19,4 +19,8 @@ export class PlaceService {
   getAllByCityId(cityId: number): Observable<PlaceInfo[]> {
     return this.http.get<PlaceInfo[]>(this.baseUrl + "cities/" + cityId + "/places");
   }
+
+  getNamesContaining(name: string): Observable<string[]> {
+    return this.http.get<string[]>(this.baseUrl + "places/names/" + name);
+  }
 }

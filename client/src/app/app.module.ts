@@ -83,6 +83,9 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PlaceInfoComponent } from './components/place-info/place-info.component';
 import { SearchNavbarComponent } from './components/search/search-navbar/search-navbar.component';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material';
 
 
 @NgModule({
@@ -171,7 +174,10 @@ import { SearchNavbarComponent } from './components/search/search-navbar/search-
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatAutocompleteModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [
     httpInterceptorProviders,

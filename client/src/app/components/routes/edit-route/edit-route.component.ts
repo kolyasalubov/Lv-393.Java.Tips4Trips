@@ -5,6 +5,7 @@ import { AccountInfo } from 'src/app/model/account-info.model';
 import { PlaceService } from 'src/app/place.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CustomAuthService } from '../../authentication/custom-auth.service';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-edit-route',
@@ -14,6 +15,9 @@ import { CustomAuthService } from '../../authentication/custom-auth.service';
 export class EditRouteComponent implements OnInit {
   route: Route;
   placeName: string;
+  myControl = new FormControl();
+  filteredOptions: string[];
+  options: string[] = [];
   constructor(
     private routeService: RouteService,
     private placeService: PlaceService,
@@ -37,11 +41,18 @@ export class EditRouteComponent implements OnInit {
           }
       });
     });
+    this.myControl.valueChanges
+      .subscribe(value=> {
+        this.placeName = value;
+        if (value != null && value.trim() != '')
+        this.placeService.getNamesContaining(value).subscribe(data => this.filteredOptions = data);
+      });
   }
 
   addPlace(): void {
     this.placeService.findByName(this.placeName).subscribe(data => {
       if (data.length != 0) {
+        this.myControl.reset();
         if (!this.route.places.map(place => place.id).includes(data[0].id)) {
           this.route.places.push(data[0]);
           this.placeName = null;

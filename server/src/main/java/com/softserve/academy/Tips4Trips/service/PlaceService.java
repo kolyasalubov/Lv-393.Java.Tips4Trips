@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class PlaceService {
@@ -37,6 +38,12 @@ public class PlaceService {
         } else {
             throw new NoSuchElementException();
         }
+    }
+
+    public List<String> findDistinctNamesContaining(String name) {
+        return repository
+                .findTop5ByNameContainingIgnoreCaseOrderByName(name)
+                .stream().map(Place::getName).collect(Collectors.toList());
     }
 
     public List<Place> findByCity(City city) {
