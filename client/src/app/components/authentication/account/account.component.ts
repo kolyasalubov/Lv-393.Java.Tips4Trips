@@ -16,12 +16,12 @@ export class AccountComponent implements OnInit {
 
   accountProfile: Account;
   comments: PageNotificationComment;
-  arecomments: boolean=false;
+  arecomments: boolean = false;
   likes: PageNotificationComment;
-  arelikes: boolean=false;
+  arelikes: boolean = false;
   trip: PageNotificationTrip;
-  areTrips: boolean=false;
-  massage:string='you don\'t have yet';
+  areTrips: boolean = false;
+  massage: string = 'you don\'t have yet';
 
   constructor(private accountService: AccountService,
               private authService: CustomAuthService,
@@ -31,8 +31,17 @@ export class AccountComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.authService.getCurrentUser().subscribe(data => this.accountProfile = data);
-    setTimeout(()=>{ this.getNotific();},500);
+    this.authService.getCurrentUser().subscribe(data => {
+      this.accountProfile = data;
+      // if (data.newNotification) {
+      //   this.accountService.checkNotification(data.id).subscribe(() => {
+      //   });
+      // }
+    });
+
+    setTimeout(() => {
+      this.getNotific();
+    }, 500);
   }
 
 
@@ -51,22 +60,22 @@ export class AccountComponent implements OnInit {
   }
 
   getNotific() {
-    this.postService.getComment(this.accountProfile.id,1).subscribe((data) => {
-      this.comments=data;
-      if(this.comments.content.length==0){
-        this.arecomments=true
+    this.postService.getComment(this.accountProfile.id, 1).subscribe((data) => {
+      this.comments = data;
+      if (this.comments.content.length == 0) {
+        this.arecomments = true
       }
     });
-    this.postService.getLike(this.accountProfile.id,1).subscribe((data) => {
-      this.likes=data;
-      if(this.likes.content.length==0){
-        this.arelikes=true
+    this.postService.getLike(this.accountProfile.id, 1).subscribe((data) => {
+      this.likes = data;
+      if (this.likes.content.length == 0) {
+        this.arelikes = true
       }
     });
-    this.postService.getTrip(this.accountProfile.id,1).subscribe((data) => {
-      this.trip=data;
-      if(this.trip.content.length==0){
-        this.areTrips=true
+    this.postService.getTrip(this.accountProfile.id, 1).subscribe((data) => {
+      this.trip = data;
+      if (this.trip.content.length == 0) {
+        this.areTrips = true
       }
     });
   }

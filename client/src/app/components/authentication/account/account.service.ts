@@ -30,6 +30,10 @@ export class AccountService {
     return this.http.put<Account>(this.baseUrl + "update", myAccount);
   }
 
+  checkNotification(id:number): Observable<boolean> {
+    return this.http.get<boolean>(this.baseUrl +id+ "check");
+  }
+
   deleteAccount(id: number): Observable<Account> {
     return this.http.delete<Account>(this.baseUrl + "delete/" + id);
   }

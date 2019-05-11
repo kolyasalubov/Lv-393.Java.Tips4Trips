@@ -22,7 +22,7 @@ public class Route {
     private String name;
 
     @Column(name = "is_verified")
-    private Boolean verified = false;
+    private boolean verified = false;
 
     @ManyToOne
     @JoinColumn(name = "author_id", referencedColumnName = "id", nullable = false)

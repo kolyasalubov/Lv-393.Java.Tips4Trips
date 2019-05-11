@@ -1,5 +1,5 @@
 import {Component, HostListener, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {CustomAuthService} from "../authentication/custom-auth.service";
 import {Account} from "../../model/account.model";
 
@@ -20,11 +20,12 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private authService: CustomAuthService
+    private authService: CustomAuthService,
+    private activatedRoute: ActivatedRoute
   ) {
     setTimeout(() => {
       this.ngOnInit()
-    }, 200);
+    }, 400);
   }
 
   ngOnInit() {
@@ -32,7 +33,12 @@ export class HeaderComponent implements OnInit {
       this.accountProfile = data;
       if (data.id > 0) {
         this.login = data.email;
-        this.newNotification = data.newNotification;
+        if (this.activatedRoute.snapshot.url[0].path == 'account') {
+          this.newNotification = false;
+        }
+        else {
+          this.newNotification = data.newNotification;
+        }
       }
     });
 
