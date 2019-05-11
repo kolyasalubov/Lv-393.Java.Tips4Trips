@@ -39,6 +39,7 @@ public class AccountConverter implements Converter<Account, AccountDetailsDTO> {
 
 
         accountDetailsDTO.setRole(account.getRole());
+        accountDetailsDTO.setNewNotification(account.isNewNotification());
         return accountDetailsDTO;
     }
 
