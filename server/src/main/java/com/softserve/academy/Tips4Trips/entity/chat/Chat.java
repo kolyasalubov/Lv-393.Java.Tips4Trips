@@ -17,6 +17,7 @@ public class Chat {
 
     public Chat(){}
 
+
     public Chat(List<Message> messages) {
         this.messages = messages;
     }

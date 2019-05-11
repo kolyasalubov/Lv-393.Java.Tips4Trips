@@ -13,10 +13,11 @@ export class TripDetailsDTO {
   creator: Account;
   route: Route;
   subscribers: AccountInfo[];
+  chatId:number;
 
 
 
-  constructor(id: number, name: string, description: string, creationDate: Date, startDate: Date, self: string, creator: Account, route: Route, subscribers: AccountInfo[]) {
+  constructor(id: number, name: string, description: string, creationDate: Date, startDate: Date, self: string, creator: Account, route: Route, subscribers: AccountInfo[], chatId: number) {
     this.id = id;
     this.name = name;
     this.description = description;
@@ -26,5 +27,6 @@ export class TripDetailsDTO {
     this.creator = creator;
     this.route = route;
     this.subscribers = subscribers;
+    this.chatId = chatId;
   }
 }

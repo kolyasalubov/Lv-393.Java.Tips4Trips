@@ -2,12 +2,15 @@ package com.softserve.academy.Tips4Trips.dto.converter;
 
 import com.softserve.academy.Tips4Trips.controller.TripController;
 import com.softserve.academy.Tips4Trips.dto.Page;
+import com.softserve.academy.Tips4Trips.dto.details.RouteDetailsDTO;
 import com.softserve.academy.Tips4Trips.dto.details.TripDetailsDTO;
 import com.softserve.academy.Tips4Trips.dto.info.TripInfoDTO;
 import com.softserve.academy.Tips4Trips.entity.administration.Account;
+import com.softserve.academy.Tips4Trips.entity.chat.Chat;
 import com.softserve.academy.Tips4Trips.entity.entertainment.mountains.Trip;
 import com.softserve.academy.Tips4Trips.entity.Route;
 import com.softserve.academy.Tips4Trips.service.AccountService;
+import com.softserve.academy.Tips4Trips.service.ChatService;
 import com.softserve.academy.Tips4Trips.service.RouteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.mvc.ControllerLinkBuilder;
@@ -24,16 +27,18 @@ public class TripConverter implements Converter<Trip, TripDetailsDTO> {
     private RouteConverter routeConverter;
     private AccountService accountService;
     private RouteService routeService;
+    private ChatService chatService;
 
 
     private final int MAX_DESCRIPTION_LENGTH = 100;
 
     @Autowired
-    public TripConverter(AccountConverter accountConverter, AccountService accountService, RouteService routeService, RouteConverter routeConverter) {
+    public TripConverter(AccountConverter accountConverter, AccountService accountService, RouteService routeService, RouteConverter routeConverter,ChatService chatService) {
         this.accountConverter = accountConverter;
         this.accountService = accountService;
         this.routeService = routeService;
         this.routeConverter = routeConverter;
+        this.chatService = chatService;
     }
 
     @Override
@@ -44,6 +49,8 @@ public class TripConverter implements Converter<Trip, TripDetailsDTO> {
         trip.setDescription(tripDetailsDTO.getDescription());
         trip.setCreationDate(tripDetailsDTO.getCreationDate());
         trip.setStartDate(tripDetailsDTO.getStartDate());
+        Chat chat = chatService.getChatById(tripDetailsDTO.getChatId());
+        trip.setChat(chat);
         Account creator = accountService.findById(tripDetailsDTO.getCreator().getId());
         trip.setCreator(creator);
         Route route = routeService.findById(tripDetailsDTO.getRoute().getId());
@@ -65,11 +72,12 @@ public class TripConverter implements Converter<Trip, TripDetailsDTO> {
         Account creator = trip.getCreator();
         tripDetailsDTO.setCreator(accountConverter.convertToDTO(creator));
         Route route = trip.getRoute();
-        tripDetailsDTO.setRoute(routeConverter.convertToDTO(route));
+        tripDetailsDTO.setRoute(new RouteDetailsDTO());
+//        tripDetailsDTO.setRoute(routeConverter.convertToDTO(route));
 
         List<Account> accountInfoDTOS = trip.getSubscribers();
         tripDetailsDTO.setSubscribers(accountConverter.convertToInfoDTO(accountInfoDTOS));
-
+        tripDetailsDTO.setChatId(trip.getChat().getId());
         return tripDetailsDTO;
     }
 

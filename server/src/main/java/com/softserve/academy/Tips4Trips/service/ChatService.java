@@ -47,5 +47,9 @@ public class ChatService {
 
     }
 
+    public Chat createChat(Chat chat) {
+        return chatRepository.save(chat);
+    }
+
 
 }

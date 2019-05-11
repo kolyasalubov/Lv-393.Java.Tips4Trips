@@ -15,6 +15,8 @@ import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import static java.lang.String.format;
+
 @Controller
 @CrossOrigin
 public class ChatWebSocketController {
@@ -50,7 +52,7 @@ public class ChatWebSocketController {
         message.setContent(chatMessageInfoDTO.getContent());
 
         Message sendBackMessage = messageService.add(message);
-        simpMessagingTemplate.convertAndSend("/topic/messages", modelMapper.map(sendBackMessage,ChatMessageDTO.class));
+        simpMessagingTemplate.convertAndSend(format("/topic/messages/%s",chatMessageInfoDTO.getChatId()), modelMapper.map(sendBackMessage,ChatMessageDTO.class));
 
     }
 

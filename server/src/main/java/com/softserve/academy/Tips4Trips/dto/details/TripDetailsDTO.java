@@ -14,6 +14,16 @@ public class TripDetailsDTO extends TripInfoDTO {
 
     private List<AccountInfoDTO> subscribers;
 
+    private Long chatId;
+
+    public Long getChatId() {
+        return chatId;
+    }
+
+    public void setChatId(Long chatId) {
+        this.chatId = chatId;
+    }
+
     public AccountDetailsDTO getCreator() {
         return creator;
     }

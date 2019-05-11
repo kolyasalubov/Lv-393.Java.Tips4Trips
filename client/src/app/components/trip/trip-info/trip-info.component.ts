@@ -12,7 +12,7 @@ import {PlaceInfo} from "../../../model/place-info.model";
 })
 export class TripInfoComponent implements OnInit {
 
-  tripDetailsDTO: TripDetailsDTO = new TripDetailsDTO(null,"default",null,null,null,null,null,null,null);
+  tripDetailsDTO: TripDetailsDTO = new TripDetailsDTO(null,"default",null,null,null,null,null,null,null,null);
 
 
   constructor(private tripInfoService: TripInfoService,    private ngRoute: ActivatedRoute, private location: Location) { }
@@ -34,6 +34,7 @@ export class TripInfoComponent implements OnInit {
       this.tripDetailsDTO.route = data.route;
       this.tripDetailsDTO.creator = data.creator;
       this.tripDetailsDTO.subscribers = data.subscribers;
+      this.tripDetailsDTO.chatId = data.chatId;
 
     });
     console.log(this.tripDetailsDTO);

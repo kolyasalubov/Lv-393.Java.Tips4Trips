@@ -6,8 +6,10 @@ import com.softserve.academy.Tips4Trips.dto.details.TripDetailsDTO;
 import com.softserve.academy.Tips4Trips.dto.info.AccountInfoDTO;
 import com.softserve.academy.Tips4Trips.dto.info.TripInfoDTO;
 import com.softserve.academy.Tips4Trips.entity.administration.Account;
+import com.softserve.academy.Tips4Trips.entity.chat.Chat;
 import com.softserve.academy.Tips4Trips.entity.entertainment.mountains.Trip;
 import com.softserve.academy.Tips4Trips.service.AccountService;
+import com.softserve.academy.Tips4Trips.service.ChatService;
 import com.softserve.academy.Tips4Trips.service.TripService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,13 +35,15 @@ public class TripController {
     private TripConverter tripConverter;
     private AccountService accountService;
     private AccountConverter accountConverter;
+    private ChatService chatService;
 
     @Autowired
-    public TripController(TripService tripService, TripConverter tripConverter, AccountService accountService, AccountConverter accountConverter) {
+    public TripController(TripService tripService, TripConverter tripConverter, AccountService accountService, AccountConverter accountConverter,ChatService chatService) {
         this.tripService = tripService;
         this.tripConverter = tripConverter;
         this.accountService = accountService;
         this.accountConverter = accountConverter;
+        this.chatService = chatService;
     }
 
     @GetMapping
@@ -61,33 +65,34 @@ public class TripController {
     public Page<TripDetailsDTO> listArticlesPageByPage(@PathVariable("page") int page) {
         PageRequest pageable = PageRequest.of(page - 1, 6);
         Page<Trip> articlePage = tripService.getPaginatedArticles(pageable);
-        Page<TripDetailsDTO> postDetailsDTOS = articlePage.map(trip -> tripConverter.convertToDTO(trip));
-        return postDetailsDTOS;
+        Page<TripDetailsDTO> tripDetailsDTOS = articlePage.map(trip -> tripConverter.convertToDTO(trip));
+        return tripDetailsDTOS;
 
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<TripDetailsDTO> getById(@PathVariable Long id) {
-        logger.info("find group get by id method executing: ");
+        logger.info("trip get by id method executing: ");
         Trip trip = tripService.findById(id);
         if (trip == null) {
             return null;
         }
-        return new ResponseEntity<>(tripConverter
-                .convertToDTO(trip), HttpStatus.OK);
+        return new ResponseEntity<>(tripConverter.convertToDTO(trip), HttpStatus.OK);
     }
 
     @GetMapping("/count")
     public ResponseEntity<Long> getCount() {
-        logger.info("get post by id method executing: ");
+        logger.info("get trip count method executing: ");
         return new ResponseEntity<>(tripService.getCount(), HttpStatus.OK);
     }
 
 
     @PostMapping("/create")
-    public ResponseEntity<TripDetailsDTO> create(@RequestBody TripDetailsDTO findGroupDetailsDTO) {
-        logger.info("find group create post method executing: ");
-        Trip trip = tripService.createTrip(tripConverter.convertToEntity(findGroupDetailsDTO));
+    public ResponseEntity<TripDetailsDTO> create(@RequestBody TripDetailsDTO tripDetailsDTO) {
+        logger.info("trip create post method executing: ");
+//        chatService.createChat(new Chat());
+        Trip trip = tripService.createTrip(tripConverter.convertToEntity(tripDetailsDTO));
+
         return new ResponseEntity<>(tripConverter.convertToDTO(trip), HttpStatus.CREATED);
 
     }
@@ -102,7 +107,7 @@ public class TripController {
     @PutMapping("/update")
     @PreAuthorize("hasRole('ROLE_USER')")
     public ResponseEntity<TripDetailsDTO> update(@RequestBody TripDetailsDTO tripDetailsDTO) {
-        logger.info("find group update post method executing:  ");
+        logger.info("trip update post method executing:  ");
         Trip trip = tripService.update(tripConverter.convertToEntity(tripDetailsDTO));
         return new ResponseEntity<>(tripConverter.convertToDTO(trip), HttpStatus.OK);
     }

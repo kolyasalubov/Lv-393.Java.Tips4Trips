@@ -7,7 +7,7 @@ public class ChatMessageDTO {
 
     private String sendTime;
 
-    private String senderId;
+    private Long senderId;
 
     private String senderFirstName;
 
@@ -18,11 +18,11 @@ public class ChatMessageDTO {
     public ChatMessageDTO() {
     }
 
-    public String getSenderId() {
+    public Long getSenderId() {
         return senderId;
     }
 
-    public void setSenderId(String senderId) {
+    public void setSenderId(Long senderId) {
         this.senderId = senderId;
     }
 
