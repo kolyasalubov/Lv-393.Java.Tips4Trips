@@ -11,14 +11,15 @@
 <!--  <label class='col-sm-10'><small>You can either enter it manually or use the coordinates picker below</small></label>-->
 <!--</div>-->
 
-<div class="col-md-8 coordinates-picker">
+<div class="coordinates-picker">
   <h3>Map coordinates picker</h3>
   <p>Enter any address information in the input fields below. Move the marker to adjust it's location.
     Coordinates will be displayed and sent automatically.</p>
-
+<div class="map-picker-map">
   <agm-map [(latitude)]="location.latitude" [(longitude)]="location.longitude" [(zoom)]="location.zoom" [disableDefaultUI]="true" [zoomControl]="true" [(fitBounds)]='location.viewport'>
     <agm-marker [(latitude)]="location.marker.latitude" [(longitude)]="location.marker.longitude" [markerDraggable]="location.marker.draggable" (dragEnd)='markerDragEnd($event)'></agm-marker>
   </agm-map>
+</div>
   <form id="map-search">
     <div class="form-group" *ngIf="addressSearch">
       <label class='col-sm-2'>Address</label>
