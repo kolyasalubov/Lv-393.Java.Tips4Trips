@@ -2,8 +2,10 @@ package com.softserve.academy.Tips4Trips.dto.converter;
 
 import com.softserve.academy.Tips4Trips.controller.AccountController;
 import com.softserve.academy.Tips4Trips.dto.details.AccountDetailsDTO;
+import com.softserve.academy.Tips4Trips.dto.file.ImageDTO;
 import com.softserve.academy.Tips4Trips.dto.info.AccountInfoDTO;
 import com.softserve.academy.Tips4Trips.entity.administration.Account;
+import com.softserve.academy.Tips4Trips.entity.file.Image;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.mvc.ControllerLinkBuilder;
 import org.springframework.stereotype.Component;
@@ -22,7 +24,7 @@ public class AccountConverter implements Converter<Account, AccountDetailsDTO> {
    //     this.imageConverter = imageConverter;
     //}
 
-    //ImageConverter imageConverter =  new ImageConverter();
+    private ImageConverter imageConverter =  new ImageConverter();
 
     @Override
     public AccountDetailsDTO convertToDTO(Account account) {
@@ -34,9 +36,10 @@ public class AccountConverter implements Converter<Account, AccountDetailsDTO> {
         accountDetailsDTO.setRegistrationDate(account.getRegistrationDate());
         accountDetailsDTO.setAbout(account.getAbout());
 
-        //accountDetailsDTO.setImage( imageConverter.convertToDTO(account.getImage()));
+
 
         accountDetailsDTO.setRole(account.getRole());
+        accountDetailsDTO.setNewNotification(account.isNewNotification());
         return accountDetailsDTO;
     }
 
@@ -52,9 +55,14 @@ public class AccountConverter implements Converter<Account, AccountDetailsDTO> {
         account.setEmail(accountDetailsDTO.getEmail());
         account.setRegistrationDate(accountDetailsDTO.getRegistrationDate());
         account.setAbout(accountDetailsDTO.getAbout());
+        Image image = new Image();
+        image.setId(accountDetailsDTO.getImageId());
+        image.setName(accountDetailsDTO.getImageName());
+        image.setCreator(null);
+        image.setFormat(accountDetailsDTO.getImageFormat());
+        image.setUploadDate(accountDetailsDTO.getImageUploadDate());
+        account.setImage(image);
 
-        //account.setImage( imageConverter
-        //        .convertToEntity(accountDetailsDTO.getImage()));
         account.setRole(accountDetailsDTO.getRole());
         return account;
     }
@@ -80,6 +88,11 @@ public class AccountConverter implements Converter<Account, AccountDetailsDTO> {
         accountInfoDTO.setId(account.getId());
         accountInfoDTO.setFirstName(account.getFirstName());
         accountInfoDTO.setLastName(account.getLastName());
+//        accountInfoDTO.setImage( imageConverter.convertToDTO(account.getImage()));
+        accountInfoDTO.setImageId(account.getImage().getId());
+        accountInfoDTO.setImageFormat(account.getImage().getFormat());
+        accountInfoDTO.setImageName(account.getImage().getName());
+        accountInfoDTO.setImageUploadDate(account.getImage().getUploadDate());
         accountInfoDTO.setSelf(ControllerLinkBuilder
                 .linkTo(ControllerLinkBuilder
                         .methodOn(AccountController.class)

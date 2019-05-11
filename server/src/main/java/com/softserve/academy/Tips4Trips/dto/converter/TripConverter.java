@@ -75,9 +75,9 @@ public class TripConverter implements Converter<Trip, TripDetailsDTO> {
 
         Account creator = trip.getCreator();
         tripDetailsDTO.setCreator(accountConverter.convertToDTO(creator));
-        Route route = trip.getRoute();
-        tripDetailsDTO.setRoute(new RouteDetailsDTO());
-//        tripDetailsDTO.setRoute(routeConverter.convertToDTO(route));
+       // Route route = trip.getRoute();
+       // tripDetailsDTO.setRoute(new RouteDetailsDTO());
+        tripDetailsDTO.setRoute(routeConverter.convertToDTO(trip.getRoute()));
 
         List<Account> accountInfoDTOS = trip.getSubscribers();
         tripDetailsDTO.setSubscribers(accountConverter.convertToInfoDTO(accountInfoDTOS));
