@@ -33,10 +33,10 @@ export class AccountComponent implements OnInit {
   ngOnInit() {
     this.authService.getCurrentUser().subscribe(data => {
       this.accountProfile = data;
-      // if (data.newNotification) {
-      //   this.accountService.checkNotification(data.id).subscribe(() => {
-      //   });
-      // }
+      if (data.newNotification) {
+        this.accountService.checkNotification(data.id).subscribe(() => {
+        });
+      }
     });
 
     setTimeout(() => {
@@ -78,6 +78,9 @@ export class AccountComponent implements OnInit {
         this.areTrips = true
       }
     });
+  }
+  getImageString() {
+    return "http://localhost:8080/accounts/" + this.accountProfile.id + "/image";
   }
 
 }

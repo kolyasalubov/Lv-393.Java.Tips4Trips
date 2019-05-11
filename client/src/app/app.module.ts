@@ -164,7 +164,7 @@ import {MatInputModule} from '@angular/material';
     FeedbackPlaceCreateComponent,
     SocialHandlerComponent,
     PlaceInfoComponent,
-    SearchNavbarComponent
+    SearchNavbarComponent,
   ],
   imports: [
     BrowserModule,

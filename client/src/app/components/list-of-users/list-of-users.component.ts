@@ -46,7 +46,7 @@ export class ListOfUsersComponent implements OnInit {
       null,
       null,
       null,
-      null);
+      null,null,null,null,null);
     this.activatedRoute.paramMap.subscribe(params => {
       this.id = +params.get('id');
     });

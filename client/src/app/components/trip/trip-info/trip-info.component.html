@@ -8,7 +8,7 @@
         <div class="align-self-stretch box p-4 text-center">
           <div class="icon d-flex align-items-center justify-content-center">
             <!--<span class="icon-map-signs"><img src="http://localhost:8080/accounts/2/image"></span>-->
-            <span class="icon-map-signs " >  <app-image-details  [fileUpload]="getImageString()"></app-image-details> </span>
+            <span class="icon-map-signs " >  <app-image-details  [fileUpload]="getImageString(tripDetailsDTO.creator.id)"></app-image-details> </span>
           </div>
           <h3 class="mb-4">{{tripDetailsDTO.creator.firstName}}    {{tripDetailsDTO.creator.lastName}}</h3>
           <p>{{tripDetailsDTO.creator.registrationDate}}</p>
@@ -20,7 +20,7 @@
             <span class="icon-phone2"><img src="../../../../assets/images/round_phone_black_48dp.png"></span>
           </div>
           <h3 class="mb-4">Contact Number</h3>
-          <p><a href="tel://{{tripDetailsDTO.creator.phoneNumber}}0"> {{tripDetailsDTO.creator.phoneNumber}}</a></p>
+          <p><a href="tel://{{tripDetailsDTO.creator.phoneNumber}}"> {{tripDetailsDTO.creator.phoneNumber}}</a></p>
         </div>
       </div>
       <div class="col-md-3 d-flex">
