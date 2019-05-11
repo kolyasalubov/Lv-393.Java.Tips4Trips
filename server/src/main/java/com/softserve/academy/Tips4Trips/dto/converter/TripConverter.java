@@ -101,8 +101,8 @@ public class TripConverter implements Converter<Trip, TripDetailsDTO> {
     }
 
     public Page<TripInfoDTO> convertToInfoDTO(final Page<Trip> tripPage) {
-        List<TripInfoDTO> dtos = convertToInfoDTO(tripPage.getList());
-        return new Page<>(dtos, tripPage.getPage(), tripPage.getTotal());
+        List<TripInfoDTO> dtos = convertToInfoDTO(tripPage.getContent());
+        return new Page<>(dtos, tripPage.getNumber(), tripPage.getTotalPages());
     }
 
 

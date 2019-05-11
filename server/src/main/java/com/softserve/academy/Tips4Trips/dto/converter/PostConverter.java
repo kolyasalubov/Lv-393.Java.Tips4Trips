@@ -88,10 +88,10 @@ public class PostConverter implements Converter<Post, PostDetailsDTO> {
     }
 
     public Page<PostInfoDTO> convertToInfoDTO(final Page<Post> postPage) {
-        List<PostInfoDTO> dtos = postPage.getList().stream()
+        List<PostInfoDTO> dtos = postPage.getContent().stream()
                 .map(post -> modelMapper.map(post, PostInfoDTO.class))
                 .collect(Collectors.toList());
-        return new Page<>(dtos, postPage.getPage(), postPage.getTotal());
+        return new Page<>(dtos, postPage.getNumber(), postPage.getTotalPages());
     }
 
     @Override

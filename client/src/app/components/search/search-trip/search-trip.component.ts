@@ -14,7 +14,7 @@ export class SearchTripComponent {
   total: number;
   page: number;
   queryParams: object = {};
-  trips: TripInfoDTO[];
+  trips: TripInfoDTO[] = [];
   params: TripSearchParams = new TripSearchParams();
   dateDropdownText: string = "Whenever";
 
@@ -58,8 +58,8 @@ export class SearchTripComponent {
   search(seek: string, page: number): void {
     this.params.name = seek;
     this.searchService.findTripsByParams(this.params, page).subscribe(data => { 
-      this.trips = data.list;
-      this.total = data.total;
+      this.trips = data.content;
+      this.total = data.totalPages;
     });
   }
 

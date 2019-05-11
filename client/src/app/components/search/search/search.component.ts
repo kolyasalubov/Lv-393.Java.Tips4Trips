@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
-import { SearchPlaceComponent } from '../search-place/search-place.component';
 import { SearchRouteComponent } from '../search-route/search-route.component';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { SearchPostComponent } from '../search-post/search-post.component';
@@ -15,7 +14,6 @@ export class SearchComponent implements OnInit, AfterViewInit {
   seek: string;
   currCategory: string = "PLACE";
 
-  @ViewChild(SearchPlaceComponent) searchPlace: SearchPlaceComponent;
   @ViewChild(SearchRouteComponent) searchRoute: SearchRouteComponent;
   @ViewChild(SearchPostComponent) searchPost: SearchPostComponent;
   @ViewChild(SearchTripComponent) searchTrip: SearchTripComponent;
@@ -38,14 +36,13 @@ export class SearchComponent implements OnInit, AfterViewInit {
       }
       this.route.queryParams.subscribe(params => {
         this.seek = params['seek'] || '';
-        this.currCategory = params['category'] || 'PLACE';
+        this.currCategory = params['category'] || 'ROUTE';
         if (!categories.includes(this.currCategory.toUpperCase())) {
-          this.currCategory = 'PLACE';
+          this.currCategory = 'ROUTE';
         } else {
           this.currCategory = this.currCategory.toUpperCase();
         }
         this.categoriesComponents = {
-          "PLACE": this.searchPlace,
           "ROUTE": this.searchRoute,
           "POST": this.searchPost,
           "TRIP": this.searchTrip
@@ -53,7 +50,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
         this.categoriesComponents[this.currCategory].init();
         this.categoriesComponents[this.currCategory].search(this.seek, this.page);
       });
-    })
+    });
   }
 
   ngAfterViewInit(): void {
@@ -66,4 +63,4 @@ export class SearchComponent implements OnInit, AfterViewInit {
 
 }
 
-const categories: string[] = ["PLACE", "TRIP", "POST", "ROUTE"];
+const categories: string[] = ["TRIP", "POST", "ROUTE"];

@@ -10,7 +10,6 @@ import com.softserve.academy.Tips4Trips.entity.administration.Account;
 import com.softserve.academy.Tips4Trips.entity.place.Place;
 import com.softserve.academy.Tips4Trips.service.AccountService;
 import com.softserve.academy.Tips4Trips.service.PlaceService;
-import com.softserve.academy.Tips4Trips.service.RouteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.mvc.ControllerLinkBuilder;
 import org.springframework.stereotype.Component;
@@ -42,7 +41,7 @@ public class RouteConverter implements Converter<Route, RouteDetailsDTO> {
     public RouteDetailsDTO convertToDTO(Route route) {
         RouteDetailsDTO routedetailsDTO = (RouteDetailsDTO)
                 toInfoDTO(new RouteDetailsDTO(), route);
-        routedetailsDTO.setVerified(route.isVerified());
+        routedetailsDTO.setVerified((boolean) route.isVerified());
         routedetailsDTO.setPlaces(placeConverter
                 .convertToDTO(route.getListOfPlaces()));
         return routedetailsDTO;
@@ -78,8 +77,8 @@ public class RouteConverter implements Converter<Route, RouteDetailsDTO> {
     }
 
     public Page<RouteInfoDTO> convertToInfoDTO(final Page<Route> routePage) {
-        List<RouteInfoDTO> dtos = convertToInfoDTO(routePage.getList());
-        return new Page<>(dtos, routePage.getPage(), routePage.getTotal());
+        List<RouteInfoDTO> dtos = convertToInfoDTO(routePage.getContent());
+        return new Page<>(dtos, routePage.getNumber(), routePage.getTotalPages());
     }
 
     private RouteInfoDTO toInfoDTO(RouteInfoDTO routeInfoDTO, Route route) {
