@@ -75,4 +75,8 @@ export class ProfileComponent implements OnInit {
     });
     this.tripService.getByCreatorId(id).subscribe(data => this.trips = data);
   }
+
+  getImageString() {
+    return "http://localhost:8080/accounts/" + this.currentProfileId + "/image";
+  }
 }

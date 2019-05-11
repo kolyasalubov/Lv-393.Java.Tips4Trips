@@ -18,9 +18,8 @@
     <div class="row d-flex contact-info">
       <div class="col-md-3 d-flex">
         <div class="align-self-stretch box p-4 text-center">
-          <div class="icon d-flex align-items-center justify-content-center">
-            <span class="icon-map-signs"><img
-              src="../../../../assets/images/round_account_circle_black_48dp.png"></span>
+          <div class="icon d-flex align-items-center justify-content-center"  class="vcard bio">
+            <span class="icon-map-signs" ><app-image-details  [fileUpload]="getImageString()"></app-image-details></span>
           </div>
           <h3 class="mb-4">{{accountProfile.firstName}} {{accountProfile.lastName}}</h3>
           <p>{{accountProfile.registrationDate}}</p>

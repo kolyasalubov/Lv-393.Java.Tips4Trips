@@ -79,5 +79,8 @@ export class AccountComponent implements OnInit {
       }
     });
   }
+  getImageString() {
+    return "http://localhost:8080/accounts/" + this.accountProfile.id + "/image";
+  }
 
 }
