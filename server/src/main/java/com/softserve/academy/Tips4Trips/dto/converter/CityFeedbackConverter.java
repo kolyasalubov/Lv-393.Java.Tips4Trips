@@ -1,18 +1,11 @@
 package com.softserve.academy.Tips4Trips.dto.converter;
 
-import com.softserve.academy.Tips4Trips.controller.CityController;
-import com.softserve.academy.Tips4Trips.dto.CityDTO;
 import com.softserve.academy.Tips4Trips.dto.CityFeedbackDTO;
-import com.softserve.academy.Tips4Trips.entity.Country;
 import com.softserve.academy.Tips4Trips.entity.city.City;
 import com.softserve.academy.Tips4Trips.entity.city.CityFeedback;
 import com.softserve.academy.Tips4Trips.repository.CityRepository;
-import com.softserve.academy.Tips4Trips.repository.CountryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.hateoas.mvc.ControllerLinkBuilder;
 import org.springframework.stereotype.Component;
-
-import java.util.Optional;
 
 @Component
 public class CityFeedbackConverter implements Converter<CityFeedback, CityFeedbackDTO> {
@@ -30,14 +23,15 @@ public class CityFeedbackConverter implements Converter<CityFeedback, CityFeedba
         cityFeedbackDTO.setId(cityFeedback.getId());
         cityFeedbackDTO.setCityId(cityFeedback.getCity().getId());
         cityFeedbackDTO.setContent(cityFeedback.getContent());
-        cityFeedbackDTO.setCreationDate(cityFeedback.getCreationDate());
+        cityFeedbackDTO.setCreationDate(cityFeedback.getDate());
         cityFeedbackDTO.setStatus(cityFeedback.getStatus());
-        cityFeedbackDTO.setAuthor(cityFeedback.getAuthor());
+        cityFeedbackDTO.setAuthor(cityFeedback.getCreatedBy());
         cityFeedbackDTO.setWeatherRating(cityFeedback.getWeatherRating());
         cityFeedbackDTO.setSafetyRating(cityFeedback.getSafetyRating());
         cityFeedbackDTO.setTransportRating(cityFeedback.getTransportRating());
         cityFeedbackDTO.setCostOfLivingRating(cityFeedback.getCostOfLivingRating());
         cityFeedbackDTO.setEntertainmentRating(cityFeedback.getEntertainmentRating());
+        cityFeedbackDTO.setAverageRating(cityFeedback.getAverageRating());
         return cityFeedbackDTO;
     }
 
@@ -48,9 +42,9 @@ public class CityFeedbackConverter implements Converter<CityFeedback, CityFeedba
         City city = cityRepository.findById(cityFeedbackDTO.getCityId()).get();
         cityFeedback.setCity(city);
         cityFeedback.setContent(cityFeedbackDTO.getContent());
-        cityFeedback.setCreationDate(cityFeedbackDTO.getCreationDate());
+        cityFeedback.setDate(cityFeedbackDTO.getCreationDate());
         cityFeedback.setStatus(cityFeedbackDTO.getStatus());
-        cityFeedback.setAuthor(cityFeedbackDTO.getAuthor());
+        cityFeedback.setCreatedBy(cityFeedbackDTO.getAuthor());
         cityFeedback.setWeatherRating(cityFeedbackDTO.getWeatherRating());
         cityFeedback.setSafetyRating(cityFeedbackDTO.getSafetyRating());
         cityFeedback.setTransportRating(cityFeedbackDTO.getTransportRating());

@@ -13,12 +13,12 @@ import { CityFeedback } from 'src/app/model/city-feedback.model';
 })
 export class CityRatingPageComponent implements OnInit {
   id: number;
-  city: City = new City(null, null, null, null, null);
-  cityFeedback: CityFeedback = new CityFeedback(null, null, 0, 0, 0, 0, 0);
+  city: City = new City(0, null, null, 0, null);
+  cityFeedback: CityFeedback = new CityFeedback(0, null, null, null,  0, 0, 0, 0, 0, 0);
   cityFeedbacks: CityFeedback[] = null;
   position: Position = new Position(0, 0);
   closeResult: string;
-  cityRate: number;
+  cityRating: number;
 
 
   constructor(private cityService: CityService,
@@ -34,13 +34,12 @@ export class CityRatingPageComponent implements OnInit {
       this.position = this.city.position;
     });
     this.cityService.getFeedbacks(this.id).subscribe(data => this.cityFeedbacks = data);
-    console.log(this.cityFeedbacks);
+    this.cityService.getCityRating(this.id).subscribe(data => this.cityRating = data);
   }
 
   saveFeedback() {
     console.log('before');
     this.cityFeedback.cityId = this.city.id;
-    // this.cityFeedback.rating1=this.cityRate1;
     this.cityService.saveFeedback(this.cityFeedback);
     console.log(this.cityFeedback);
     window.location.reload();

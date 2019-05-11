@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from "rxjs/index";
 import { City } from '../../model/city.model';
 import { CityFeedback } from 'src/app/model/city-feedback.model';
-
+import { CityRating } from 'src/app/model/city-rating.model';
 
 
 @Injectable({
@@ -43,5 +43,13 @@ export class CityService {
   getFeedbacks(cityId: number): Observable<CityFeedback[]>{
     return this.http.get<CityFeedback[]>(this.url + '/getFeedbacks/' + cityId);
   }
+
+  getCityRating(cityId: number): Observable<number> {
+    return this.http.get<any>(this.url + '/getCityRating/' + cityId);
+  }
+
+  getAllRating(): Observable<CityRating[]>  {
+    return this.http.get<CityRating[]>(this.url + '/getAllRating'); 
+    }
 
 }

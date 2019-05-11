@@ -1,8 +1,10 @@
 package com.softserve.academy.Tips4Trips.entity.city;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 import javax.persistence.*;
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.sql.Date;
 
 @Entity
 @Table(name = "cityFeedback")
@@ -16,9 +18,13 @@ public class CityFeedback implements Serializable {
     @JoinColumn(name = "city_id", referencedColumnName = "id", nullable = false)
     private City city;
     private String content;
-    private LocalDateTime creationDate;
+    private String createdBy;
+
+    @Column(name = "creation_date")
+    @CreationTimestamp
+    private Date date;
+
     private String status;
-    private String author;
     private Integer weatherRating;
     private Integer safetyRating;
     private Integer transportRating;
@@ -28,12 +34,12 @@ public class CityFeedback implements Serializable {
     public CityFeedback() {
     }
 
-    public CityFeedback(City city, String content, LocalDateTime creationDate, String status, String author, Integer weatherRating, Integer safetyRating, Integer transportRating, Integer costOfLivingRating, Integer entertainmentRating) {
+    public CityFeedback(City city, String content, String createdBy, Date date, String status, Integer weatherRating, Integer safetyRating, Integer transportRating, Integer costOfLivingRating, Integer entertainmentRating) {
         this.city = city;
         this.content = content;
-        this.creationDate = creationDate;
+        this.createdBy = createdBy;
+        this.date = date;
         this.status = status;
-        this.author = author;
         this.weatherRating = weatherRating;
         this.safetyRating = safetyRating;
         this.transportRating = transportRating;
@@ -65,12 +71,20 @@ public class CityFeedback implements Serializable {
         this.content = content;
     }
 
-    public LocalDateTime getCreationDate() {
-        return creationDate;
+    public String getCreatedBy() {
+        return createdBy;
     }
 
-    public void setCreationDate(LocalDateTime creationDate) {
-        this.creationDate = creationDate;
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     public String getStatus() {
@@ -79,14 +93,6 @@ public class CityFeedback implements Serializable {
 
     public void setStatus(String status) {
         this.status = status;
-    }
-
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
     }
 
     public Integer getWeatherRating() {
@@ -127,6 +133,15 @@ public class CityFeedback implements Serializable {
 
     public void setEntertainmentRating(Integer entertainmentRating) {
         this.entertainmentRating = entertainmentRating;
+    }
+
+    public double getAverageRating() {
+        double result = costOfLivingRating
+                + entertainmentRating
+                + safetyRating
+                + transportRating
+                + weatherRating;
+        return result / 5.0;
     }
 }
 

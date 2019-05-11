@@ -2,6 +2,7 @@ package com.softserve.academy.Tips4Trips.controller;
 
 import com.softserve.academy.Tips4Trips.dto.CityDTO;
 import com.softserve.academy.Tips4Trips.dto.CityFeedbackDTO;
+import com.softserve.academy.Tips4Trips.dto.CityRatingDTO;
 import com.softserve.academy.Tips4Trips.dto.converter.CityConverter;
 import com.softserve.academy.Tips4Trips.dto.converter.CityFeedbackConverter;
 import com.softserve.academy.Tips4Trips.dto.converter.PlaceConverter;
@@ -53,6 +54,11 @@ public class CityController {
         return new ResponseEntity<>(cityConverter.convertToDTO(cityService.findAll()), HttpStatus.OK);
     }
 
+    @GetMapping("/getAllRating")
+    public ResponseEntity<List<CityRatingDTO>> getAllRating() {
+        return new ResponseEntity<>(cityConverter.convertToRatingDTO(cityService.findAll()), HttpStatus.OK);
+    }
+
     @PostMapping("/addFeedback")
     public ResponseEntity<CityFeedbackDTO> addFeedback(@RequestBody CityFeedbackDTO cityFeedbackDTO) {
         logger.info("add feedback method executing: ");
@@ -60,8 +66,14 @@ public class CityController {
         return new ResponseEntity<>(cityFeedbackConverter.convertToDTO(cityFeedbackService.createCityFeedback(cityFeedback)), HttpStatus.OK);
     }
 
+    @GetMapping("/getCityRating/{id}")
+    public ResponseEntity<Double> getCityRating(@PathVariable Long id) {
+        logger.info("get city rating method executing: ");
+        return new ResponseEntity<>(cityService.getCityRating(id), HttpStatus.OK);
+    }
+
     @GetMapping("/getFeedbacks/{id}")
-    public ResponseEntity<List<CityFeedbackDTO>> getFeedback(@PathVariable Long id) {
+    public ResponseEntity<List<CityFeedbackDTO>> getFeedbacks(@PathVariable Long id) {
         logger.info("get city by id method executing: ");
         return new ResponseEntity<>(cityFeedbackConverter.convertToDTO(cityFeedbackService.findByCityFeedback(id)), HttpStatus.OK);
     }

@@ -10,11 +10,14 @@
       <div class="col-sm-4" *ngFor="let c of cities">
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title">{{c.name}}</h5>
+            <div class="row">
+              <h5 class="card-title" style="margin-top: 10px;">{{c.name}}</h5>
+              <bar-rating theme="fontawesome-o" [(rate)]="c.averageRating" [max]="5"></bar-rating>
+              <h5 class="card-title" style="margin-top: 10px;">({{c.averageRating}})</h5>
+            </div>
             <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
               content. This content is a little bit longer.</p>
-              <!-- <app-map-display [latitude]="0.0" [longitude]="0.0" [zoom]="zoom"></app-map-display> -->
-              <button [routerLink]="['/city-rating/',c.id]" type="button" class="btn btn-primary">Go to the city</button>
+            <button [routerLink]="['/city-rating/',c.id]" type="button" class="btn btn-primary">Go to the city</button>
           </div>
         </div>
       </div>

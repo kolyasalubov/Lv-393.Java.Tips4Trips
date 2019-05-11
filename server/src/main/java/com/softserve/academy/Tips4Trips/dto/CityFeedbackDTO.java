@@ -1,17 +1,16 @@
 package com.softserve.academy.Tips4Trips.dto;
 
-import com.softserve.academy.Tips4Trips.entity.city.City;
-
-import java.time.LocalDateTime;
+import java.sql.Date;
 
 public class CityFeedbackDTO {
 
     private Long id;
     private Long cityId;
     private String content;
-    private LocalDateTime creationDate;
+    private Date creationDate;
     private String status;
     private String author;
+    private Double averageRating;
     private Integer weatherRating;
     private Integer safetyRating;
     private Integer transportRating;
@@ -22,13 +21,25 @@ public class CityFeedbackDTO {
     public CityFeedbackDTO() {
     }
 
-    public CityFeedbackDTO(Long id, Long cityId, String content, LocalDateTime creationDate, String status, String author, Integer weatherRating, Integer safetyRating, Integer transportRating, Integer costOfLivingRating, Integer entertainmentRating) {
+    public CityFeedbackDTO(Long id,
+                           Long cityId,
+                           String content,
+                           Date creationDate,
+                           String status,
+                           String author,
+                           Double averageRating,
+                           Integer weatherRating,
+                           Integer safetyRating,
+                           Integer transportRating,
+                           Integer costOfLivingRating,
+                           Integer entertainmentRating) {
         this.id = id;
         this.cityId = cityId;
         this.content = content;
         this.creationDate = creationDate;
         this.status = status;
         this.author = author;
+        this.averageRating = averageRating;
         this.weatherRating = weatherRating;
         this.safetyRating = safetyRating;
         this.transportRating = transportRating;
@@ -60,11 +71,11 @@ public class CityFeedbackDTO {
         this.content = content;
     }
 
-    public LocalDateTime getCreationDate() {
+    public Date getCreationDate() {
         return creationDate;
     }
 
-    public void setCreationDate(LocalDateTime creationDate) {
+    public void setCreationDate(Date creationDate) {
         this.creationDate = creationDate;
     }
 
@@ -82,6 +93,14 @@ public class CityFeedbackDTO {
 
     public void setAuthor(String author) {
         this.author = author;
+    }
+
+    public Double getAverageRating() {
+        return averageRating;
+    }
+
+    public void setAverageRating(Double averageRating) {
+        this.averageRating = averageRating;
     }
 
     public Integer getWeatherRating() {
