@@ -33,10 +33,10 @@ export class AccountComponent implements OnInit {
   ngOnInit() {
     this.authService.getCurrentUser().subscribe(data => {
       this.accountProfile = data;
-      // if (data.newNotification) {
-      //   this.accountService.checkNotification(data.id).subscribe(() => {
-      //   });
-      // }
+      if (data.newNotification) {
+        this.accountService.checkNotification(data.id).subscribe(() => {
+        });
+      }
     });
 
     setTimeout(() => {

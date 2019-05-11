@@ -13,12 +13,14 @@ export class LittlePostComponent implements OnInit {
   date: number;
   year: number;
   month: any;
-
+  imageURL: string = '';
 
   constructor() {
   }
 
   ngOnInit() {
+    this.imageURL = 'http://localhost:8080/posts/' + this.post.id + '/images';
+    console.log(this.imageURL);
     let input = new Date(this.post.creationDate);
     this.date = input.getDay();
     this.year = input.getFullYear();

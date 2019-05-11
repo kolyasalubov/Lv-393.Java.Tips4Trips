@@ -3,6 +3,7 @@ import {PagelittlepostModel} from '../../../model/pagelittlepost.model';
 import {BlogService} from './blog.service';
 import {ActivatedRoute} from '@angular/router';
 import {LittlepostModel} from "../../../model/littlepost.model";
+import {Image} from "../../../model/image.model";
 
 @Component({
   selector: 'app-blog',
@@ -39,5 +40,9 @@ export class BlogComponent implements OnInit {
       this.getPageClient(this.id);
     });
     
+  }
+  imageURL = 'http://localhost:8080/posts/images/';
+  getImageString(image: Image) {
+    return this.imageURL + image.id;
   }
 }

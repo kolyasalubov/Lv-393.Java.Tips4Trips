@@ -58,11 +58,9 @@ export class CreatePostComponent implements OnInit {
           this.post = result;
           this.url = this.url + this.post.id + '/images';
           this.uploadPhoto = true;
+          window.location.href = 'http://localhost:4200/post/' + this.post.id;
         }
       );
-      // setTimeout(() => {
-      //   window.location.href = 'http://localhost:4200/post/' + this.post.id;
-      // }, 500);
     }
   }
 

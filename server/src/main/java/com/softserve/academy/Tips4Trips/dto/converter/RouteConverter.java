@@ -42,7 +42,7 @@ public class RouteConverter implements Converter<Route, RouteDetailsDTO> {
     public RouteDetailsDTO convertToDTO(Route route) {
         RouteDetailsDTO routedetailsDTO = (RouteDetailsDTO)
                 toInfoDTO(new RouteDetailsDTO(), route);
-        routedetailsDTO.setVerified(route.isVerified());
+        routedetailsDTO.setVerified((boolean) route.isVerified());
         routedetailsDTO.setPlaces(placeConverter
                 .convertToDTO(route.getListOfPlaces()));
         return routedetailsDTO;
