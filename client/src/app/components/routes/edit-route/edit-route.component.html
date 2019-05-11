@@ -32,8 +32,14 @@
                                     </td>
                                     <td>
                                         <div class="form-group d-flex">
-                                            <input type="text" [(ngModel)]="placeName" class="form-control" name="place"
-                                                placeholder="Enter place">
+                                            <input type="text" aria-label="Number" class="form-control" name="place"
+                                                placeholder="Enter place" matInput [formControl]="myControl"
+                                                [matAutocomplete]="auto">
+                                            <mat-autocomplete #auto="matAutocomplete">
+                                                <mat-option *ngFor="let option of filteredOptions" [value]="option">
+                                                    {{option}}
+                                                </mat-option>
+                                            </mat-autocomplete>
                                             <button (click)="addPlace()" class="submit px-3">Add Place</button>
                                         </div>
                                     </td>
@@ -42,10 +48,11 @@
                                     <td></td>
                                     <td>
                                         <div class="card-deck">
-                                                <div class="card" *ngFor="let place of route.places" style="max-width: 18rem; min-width: 18rem; display: inline-block; border: none;" >
-                                                    <app-place-info [place]="place"
-                                                    [displayRemoveButton]="true" (remove)="removePlace(place.id)"></app-place-info>
-                                                </div>
+                                            <div class="card" *ngFor="let place of route.places"
+                                                style="max-width: 18rem; min-width: 18rem; display: inline-block; border: none;">
+                                                <app-place-info [place]="place" [displayRemoveButton]="true"
+                                                    (remove)="removePlace(place.id)"></app-place-info>
+                                            </div>
                                         </div>
                                     </td>
                                 </tr>

@@ -34,7 +34,7 @@ export class CreatePostComponent implements OnInit {
       null,
       null,
       null,
-      null);
+      null,null,null,null,null );
 
     this.authService.getCurrentUser().subscribe(data => {
       this.post.author.id = data.id;

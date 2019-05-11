@@ -11,4 +11,5 @@ import java.util.List;
 public interface PlaceRepository extends JpaRepository<Place, Long> {
     List<Place> findByCity(City city);
     List<Place> findByNameIgnoreCase(String name);
+    List<Place> findTop5ByNameContainingIgnoreCaseOrderByName(String name);
 }

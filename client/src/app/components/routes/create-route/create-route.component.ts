@@ -5,6 +5,8 @@ import { AccountInfo } from 'src/app/model/account-info.model';
 import { PlaceService } from 'src/app/place.service';
 import { Router } from '@angular/router';
 import { CustomAuthService } from '../../authentication/custom-auth.service';
+import { FormControl } from '@angular/forms';
+import { startWith, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-create-post-route',
@@ -15,6 +17,9 @@ export class CreateRouteComponent implements OnInit {
 
   route: Route;
   placeName: string;
+  myControl = new FormControl();
+  filteredOptions: string[];
+  options: string[] = [];
   constructor(
     private routeService: RouteService,
     private placeService: PlaceService,
@@ -33,12 +38,19 @@ export class CreateRouteComponent implements OnInit {
       this.authService.getCurrentUser().subscribe(data => {
         this.route.authorInfo.id = data.id;
       });
+      this.myControl.valueChanges
+      .subscribe(value=> {
+        this.placeName = value;
+        if (value != null && value.trim() != '')
+        this.placeService.getNamesContaining(value).subscribe(data => this.filteredOptions = data);
+      });
     }
   }
 
   addPlace(): void {
     this.placeService.findByName(this.placeName).subscribe(data => {
       if (data.length != 0) {
+        this.myControl.reset();
         if (!this.route.places.map(place => place.id).includes(data[0].id)) {
           this.route.places.push(data[0]);
           this.placeName = null;
@@ -62,5 +74,10 @@ export class CreateRouteComponent implements OnInit {
 
   removePlace(id: number): void {
     this.route.places = this.route.places.filter(p => p.id != id);
+  }
+
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+    return this.options.filter(option => option.toLowerCase().includes(filterValue));
   }
 }
