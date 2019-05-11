@@ -3,6 +3,7 @@ import {TripService} from './trip.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {TripInfoDTO} from 'src/app/model/trip-info';
 import {PageTripsmodel} from "../../../model/pageTripsmodel";
+import {Image} from "../../../model/image.model";
 
 @Component({
   selector: 'app-trip',
@@ -16,6 +17,7 @@ export class TripComponent implements OnInit {
   num: number;
   postP: TripInfoDTO[] = null;
   pagePost: PageTripsmodel = null;
+
 
   constructor(private tripService: TripService, private router: Router, private activatedRoute: ActivatedRoute) {
   }
@@ -38,5 +40,10 @@ export class TripComponent implements OnInit {
       this.id = 1;
     }
     this.getPageTrip(this.id);
+
   }
+
+  //  getImageString(image: Image) {
+  //   return this.imageURL + image.id +  '/image';
+  // }
 }

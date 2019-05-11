@@ -1,6 +1,8 @@
 package com.softserve.academy.Tips4Trips.service;
 
+import com.softserve.academy.Tips4Trips.entity.administration.Account;
 import com.softserve.academy.Tips4Trips.entity.blog.Comment;
+import com.softserve.academy.Tips4Trips.repository.AccountRepository;
 import com.softserve.academy.Tips4Trips.repository.CommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.apache.log4j.Logger;
@@ -14,11 +16,15 @@ public class CommentService {
     private static final Logger logger = Logger.getLogger(CommentService.class);
 
     CommentRepository repository;
-
-    @Autowired
-    public CommentService(CommentRepository repository) {
+    private AccountRepository aRepository;
+@Autowired
+    public CommentService(CommentRepository repository, AccountRepository aRepository) {
         this.repository = repository;
+        this.aRepository = aRepository;
     }
+
+
+
 
     public long countByPostId(Long id) {
         return repository.countByPostId(id);
@@ -30,6 +36,9 @@ public class CommentService {
 
 
     public Comment createComment(Comment comment) {
+        Account acc= aRepository.findById(comment.getPost().getAuthor().getId()).get();
+        acc.setNewNotification(true);
+        aRepository.save(acc);
         return repository.save(comment);
     }
 

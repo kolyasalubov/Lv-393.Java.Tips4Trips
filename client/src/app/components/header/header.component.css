@@ -3,6 +3,22 @@
 
 }
 
+#hov:hover {
+  color: black;
+}
+
+#circle {
+  width: 15px;
+  height: 15px;
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+  border-radius: 25px;
+  background: red;
+  display: table;
+  margin-left: -10px;
+  margin-right: 10px;
+}
+
 .active-cyan input[type=text] {
   border-bottom: 1px solid #4dd0e1;
 
@@ -17,7 +33,7 @@
   margin-top: 10px;
 }
 
-.ftco-navbar-light .navbar-nav > .nav-item > .nav-link:hover,.ftco-navbar-light .navbar-nav > .nav-item > .chosen {
+.ftco-navbar-light .navbar-nav > .nav-item > .nav-link:hover, .ftco-navbar-light .navbar-nav > .nav-item > .chosen {
   color: #ffb400;
 }
 

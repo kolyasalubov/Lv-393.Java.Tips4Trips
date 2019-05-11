@@ -4,6 +4,7 @@ import com.softserve.academy.Tips4Trips.dto.info.AccountInfoDTO;
 import com.softserve.academy.Tips4Trips.dto.info.TripInfoDTO;
 import com.softserve.academy.Tips4Trips.dto.info.RouteInfoDTO;
 
+
 import java.util.List;
 
 public class TripDetailsDTO extends TripInfoDTO {

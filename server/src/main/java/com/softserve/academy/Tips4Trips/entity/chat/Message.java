@@ -19,9 +19,6 @@ public class Message {
     @Column(updatable = false)
     private LocalDateTime sendTime;
 
-//    @UpdateTimestamp
-//    private LocalDateTime lastEditTime;
-
     @ManyToOne
     @JoinColumn(nullable = false)
     private Account sender;

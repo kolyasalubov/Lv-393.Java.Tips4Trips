@@ -28,17 +28,19 @@ public class TripConverter implements Converter<Trip, TripDetailsDTO> {
     private AccountService accountService;
     private RouteService routeService;
     private ChatService chatService;
+    private ImageConverter imageConverter;
 
 
     private final int MAX_DESCRIPTION_LENGTH = 100;
 
     @Autowired
-    public TripConverter(AccountConverter accountConverter, AccountService accountService, RouteService routeService, RouteConverter routeConverter,ChatService chatService) {
+    public TripConverter(AccountConverter accountConverter, AccountService accountService, RouteService routeService, RouteConverter routeConverter,ChatService chatService, ImageConverter imageConverter) {
         this.accountConverter = accountConverter;
         this.accountService = accountService;
         this.routeService = routeService;
         this.routeConverter = routeConverter;
         this.chatService = chatService;
+        this.imageConverter = imageConverter;
     }
 
     @Override
@@ -49,11 +51,14 @@ public class TripConverter implements Converter<Trip, TripDetailsDTO> {
         trip.setDescription(tripDetailsDTO.getDescription());
         trip.setCreationDate(tripDetailsDTO.getCreationDate());
         trip.setStartDate(tripDetailsDTO.getStartDate());
+
         Chat chat = chatService.getChatById(tripDetailsDTO.getChatId());
         trip.setChat(chat);
         Account creator = accountService.findById(tripDetailsDTO.getCreator().getId());
         trip.setCreator(creator);
         Route route = routeService.findById(tripDetailsDTO.getRoute().getId());
+        trip.setImage(imageConverter.convertToEntity(tripDetailsDTO.getImage()));
+
         trip.setRoute(route);
         trip.setSubscribers(tripDetailsDTO.getSubscribers().stream()
                 .map(p -> accountService.findById(p.getId()))
@@ -71,9 +76,9 @@ public class TripConverter implements Converter<Trip, TripDetailsDTO> {
 
         Account creator = trip.getCreator();
         tripDetailsDTO.setCreator(accountConverter.convertToDTO(creator));
-        Route route = trip.getRoute();
-        tripDetailsDTO.setRoute(new RouteDetailsDTO());
-//        tripDetailsDTO.setRoute(routeConverter.convertToDTO(route));
+       // Route route = trip.getRoute();
+       // tripDetailsDTO.setRoute(new RouteDetailsDTO());
+        tripDetailsDTO.setRoute(routeConverter.convertToDTO(trip.getRoute()));
 
         List<Account> accountInfoDTOS = trip.getSubscribers();
         tripDetailsDTO.setSubscribers(accountConverter.convertToInfoDTO(accountInfoDTOS));
@@ -109,7 +114,7 @@ public class TripConverter implements Converter<Trip, TripDetailsDTO> {
         String shortDescription = description.length() > MAX_DESCRIPTION_LENGTH
                 ? description.substring(0, MAX_DESCRIPTION_LENGTH) : description;
         tripInfoDTO.setDescription(shortDescription + "...");
-
+        tripInfoDTO.setImage(imageConverter.convertToDTO(trip.getImage()));
         tripInfoDTO.setDescription(description + "...");
         tripInfoDTO.setCreationDate(trip.getCreationDate());
         tripInfoDTO.setStartDate(trip.getStartDate());

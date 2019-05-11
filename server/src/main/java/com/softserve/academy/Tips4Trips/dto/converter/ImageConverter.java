@@ -22,6 +22,8 @@ public class ImageConverter implements Converter <Image, ImageDTO> {
     private PropertyMap<Image, ImageDTO> imageMap;
     private PropertyMap<ImageDTO, Image> imageDTOMap;
 
+    public ImageConverter(){}
+
     @Autowired
     public ImageConverter(ModelMapper modelmapper,
                           AccountService accountService,
