@@ -13,7 +13,7 @@ export class SearchRouteComponent {
 
   total: number;
   page: number;
-  routes: RouteInfo[];
+  routes: RouteInfo[] = [];
   queryParams: object = {};
   params: RouteSearchParams = new RouteSearchParams();
   dateDropdownText: string = "Whenever";
@@ -59,8 +59,8 @@ export class SearchRouteComponent {
   search(seek: string, page: number): void {
     this.params.name = seek;
     this.searchService.findRoutesByParams(this.params, page).subscribe(data => { 
-      this.routes = data.list;
-      this.total = data.total;
+      this.routes = data.content;
+      this.total = data.totalPages;
     });
   }
 

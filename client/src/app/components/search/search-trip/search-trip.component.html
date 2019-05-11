@@ -29,18 +29,26 @@
     </div>
   </div>
   <form style="display: inline-block;">
-      <div class="form-row">
-          <div class="col">
-            <input type="text" [(ngModel)]="params.routeName" name="routeName" class="form-control trip-input" placeholder="Route">
-          </div>
-          <div class="col">
-            <input type="number" min="0" [(ngModel)]="params.minSubscribersCount" name="minSubscribersCount" class="form-control trip-input" placeholder="Min Subscribers Count">
-          </div>
-        </div>
-  </form>  
+    <div class="form-row">
+      <div class="col">
+        <input type="text" [(ngModel)]="params.routeName" name="routeName" class="form-control trip-input"
+          placeholder="Route">
+      </div>
+      <div class="col">
+        <input type="number" min="0" [(ngModel)]="params.minSubscribersCount" name="minSubscribersCount"
+          class="form-control trip-input" placeholder="Min Subscribers Count">
+      </div>
+    </div>
+  </form>
 </div>
 
 <div class="container mt-5">
   <app-list-trips [trips]="trips"></app-list-trips>
+  <div *ngIf="trips.length == 0" class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="display-4">Not Found!</h1>
+      <p class="lead">No trips were found!</p>
+    </div>
+  </div>
   <app-pagination [number]="page" [link]="'/search/page/'" [total]="total" [queryParams]="queryParams"></app-pagination>
 </div>

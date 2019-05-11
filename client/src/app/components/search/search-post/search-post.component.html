@@ -32,5 +32,11 @@
 
 <div class="container mt-5">
   <app-list-posts [postP]="posts"></app-list-posts>
+  <div *ngIf="posts.length == 0" class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="display-4">Not Found!</h1>
+      <p class="lead">No posts were found!</p>
+    </div>
+  </div>
   <app-pagination [number]="page" [link]="'/search/page/'" [total]="total" [queryParams]="queryParams"></app-pagination>
 </div>

@@ -35,7 +35,6 @@ import { ChangeComponent } from "./components/trip/change/change.component";
 import { ErrorComponent } from "./components/error/error.component";
 import { EditRouteComponent } from './components/routes/edit-route/edit-route.component';
 import { NotVerifiedRoutesPageComponent } from './components/routes/not-verified-routes-page/not-verified-routes-page.component';
-import { SearchPlaceComponent } from './components/search/search-place/search-place.component';
 import { SearchComponent } from './components/search/search/search.component';
 import { NewsComponent } from "./components/news/news.component";
 import { EditRestaurantComponent } from "./components/create-post-place/edit-restaurant/edit-restaurant.component";
@@ -83,8 +82,10 @@ const routes: Routes = [
   { path: 'create_place/monument', component: CreateMonumentComponent },
   { path: 'monuments/:id', component: MonumentDetailsComponent },
   { path: 'routes', component: RoutesPageComponent },
+  { path: 'routes/page/:page', component: RoutesPageComponent },
   { path: 'routes/create', component: CreateRouteComponent },
   { path: 'routes/notverified', component: NotVerifiedRoutesPageComponent },
+  { path: 'routes/notverified/page/:page', component: NotVerifiedRoutesPageComponent },
   { path: 'routes/:id', component: RouteComponent },
   { path: 'routes/:id/edit', component: EditRouteComponent },
   { path: 'post', component: BigPostComponent },

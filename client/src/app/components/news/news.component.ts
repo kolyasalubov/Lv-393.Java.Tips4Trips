@@ -16,27 +16,31 @@ import {Image} from "../../model/image.model";
 })
 export class NewsComponent implements OnInit {
 
-  constructor(private newsService: NewsService, private authService: CustomAuthService ) {
+  constructor(private newsService: NewsService, private authService: CustomAuthService) {
   }
-  currentAccount:Account;
+
+  currentAccount: Account;
   account: AccountFeed;
   followingAccounts: AccountFollowing[];
-  posts: BigPostModel[]=[];
-  more: boolean=false;
+  posts: BigPostModel[] = [];
+  more: boolean = false;
   imageURL = 'http://localhost:8080/posts/images/';
   imageReady = false;
-  readMore(){
-    if(this.more==false){
-      this.more=true;
-    }else{
-      this.more=false;
+
+  readMore() {
+    if (this.more == false) {
+      this.more = true;
+    } else {
+      this.more = false;
     }
   }
-sortPosts(){
-  this.posts.sort(function (a,b) {
-    return a.id-b.id;
-  }).reverse();
-}
+
+  sortPosts() {
+    this.posts.sort(function (a, b) {
+      return a.id - b.id;
+    }).reverse();
+  }
+
   //  myFunction(id:string) {
   //
   //   var dots = document.getElementById("dots"+id);
@@ -53,31 +57,32 @@ sortPosts(){
   //     moreText.style.display = "inline";
   //   }
   // }
-allPosts(){
-   for(let i=0;i<this.followingAccounts.length;i++) {
-    console.log(this.followingAccounts[i].post);
-    for(let j=0;j<this.followingAccounts[i].post.length;j++) {
-  console.log(this.followingAccounts[i].post[j]);
-      this.followingAccounts[i].post[j].lastName=this.followingAccounts[i].lastName;
-      this.followingAccounts[i].post[j].firstName=this.followingAccounts[i].firstName;
-      this.followingAccounts[i].post[j].accountId=this.followingAccounts[i].id;
-      this.posts.push((this.followingAccounts[i].post[j]));
+  allPosts() {
+    for (let i = 0; i < this.followingAccounts.length; i++) {
+      console.log(this.followingAccounts[i].post);
+      for (let j = 0; j < this.followingAccounts[i].post.length; j++) {
+        console.log(this.followingAccounts[i].post[j]);
+        this.followingAccounts[i].post[j].lastName = this.followingAccounts[i].lastName;
+        this.followingAccounts[i].post[j].firstName = this.followingAccounts[i].firstName;
+        this.followingAccounts[i].post[j].accountId = this.followingAccounts[i].id;
+        this.posts.push((this.followingAccounts[i].post[j]));
+      }
     }
   }
-}
+
   ngOnInit() {
     this.authService.getCurrentUser().subscribe(data => {
       console.log(data);
 
-       this.newsService.findById(data.id).subscribe(data => {
-         console.log(data);
-          this.account = data;
-          this.followingAccounts = data.followingAccounts;
-          console.log(this.followingAccounts);
-         this.allPosts();
-         this.sortPosts();
-         this.imageReady = true;
-       });
+      this.newsService.findById(data.id).subscribe(data => {
+        console.log(data);
+        this.account = data;
+        this.followingAccounts = data.followingAccounts;
+        console.log(this.followingAccounts);
+        this.allPosts();
+        this.sortPosts();
+        this.imageReady = true;
+      });
     });
 
 

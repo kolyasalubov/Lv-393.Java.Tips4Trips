@@ -1,0 +1,16 @@
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link" (click)="navigate.emit('ROUTE')" [class.active]="category == 'ROUTE'" >Routes</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" (click)="navigate.emit('POST')" [class.active]="category == 'POST'" >Posts</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" (click)="navigate.emit('TRIP')" [class.active]="category == 'TRIP'" >Trips</a>
+  </li>
+  <div style="margin-left:auto; display:inline;">
+      <ng-content style="margin-left:auto;"></ng-content>
+  </div>
+</ul>
+
+

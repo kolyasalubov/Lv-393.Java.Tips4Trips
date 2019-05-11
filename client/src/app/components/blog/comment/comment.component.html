@@ -1,8 +1,8 @@
 
 <ul *ngFor="let comment of allComments "  class="comment-list">
   <li class="comment">
-    <div class="vcard bio">
-      <img src="../../../assets/images/person_1.jpg" alt="Image placeholder">
+    <div class="vcard bio" style="width: 10%">
+      <app-image-details [fileUpload]="getImageString()"></app-image-details>
     </div>
     <div class="comment-body">
       <h3>{{comment.accountInfo.firstName}} {{comment.accountInfo.lastName}}</h3>

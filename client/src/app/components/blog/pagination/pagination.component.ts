@@ -24,7 +24,6 @@ export class PaginationComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     this.route.params.forEach((params: Params) => {
-      console.log("QWERTY" + "  " + this.number + " "+ this.total);
       this.page = [];
       if (this.number > this.total) {
         this.router.navigate([this.link + '1']);

@@ -26,7 +26,6 @@ export class RouteComponent implements OnInit {
     private location: Location
   ) {
     this.route = new Route();
-    this.route.authorInfo = new AccountInfo();
     this.route.places = [];
   }
 
