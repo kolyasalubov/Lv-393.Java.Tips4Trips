@@ -82,6 +82,7 @@ import { FeedbackPlaceCreateComponent } from './components/feedback/place/feedba
 import { SocialHandlerComponent } from './components/authentication/social-handler/social-handler.component';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { PlaceInfoComponent } from './components/place-info/place-info.component';
 
 
 @NgModule({
@@ -159,7 +160,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ChatComponent,
     FeedbackPlaceComponent,
     FeedbackPlaceCreateComponent,
-    SocialHandlerComponent
+    SocialHandlerComponent,
+    PlaceInfoComponent
   ],
   imports: [
     BrowserModule,
