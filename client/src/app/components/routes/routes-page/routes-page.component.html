@@ -14,7 +14,7 @@
   </div>
 </div>
 
-<section class="ftco-section bg-light">
+<section class="ftco-section bg-light" style="padding-top: 20px;">
   <div class="container">
     <div class="jumbotron">
       <h1 class="display-4">Routes</h1>
@@ -23,10 +23,17 @@
       <!-- <p>It uses utility classes for typography and spacing to space content out within the larger container.</p> -->
 
       <a [routerLink]="['/routes/create']" class="btn btn-primary btn-lg mr-4" role="button">Create New Route</a>
-      <a *ngIf="hasAuthority" [routerLink]="['/routes/notverified']" class="btn btn-primary btn-lg mr-4" role="button">Not
+      <a *ngIf="hasAuthority" [routerLink]="['/routes/notverified']" class="btn btn-primary btn-lg mr-4"
+        role="button">Not
         Verified Routes</a>
     </div>
     <app-list-of-routes [routes]="routes" [displayEditButtons]="hasAuthority"></app-list-of-routes>
+    <div *ngIf="routes.length == 0" class="jumbotron jumbotron-fluid">
+      <div class="container">
+        <h1 class="display-4">Not Found!</h1>
+        <p class="lead">No routes were found!</p>
+      </div>
+    </div>
 
   </div>
 </section>

@@ -35,7 +35,6 @@ import { ChangeComponent } from "./components/trip/change/change.component";
 import { ErrorComponent } from "./components/error/error.component";
 import { EditRouteComponent } from './components/routes/edit-route/edit-route.component';
 import { NotVerifiedRoutesPageComponent } from './components/routes/not-verified-routes-page/not-verified-routes-page.component';
-import { SearchPlaceComponent } from './components/search/search-place/search-place.component';
 import { SearchComponent } from './components/search/search/search.component';
 import { NewsComponent } from "./components/news/news.component";
 import { EditRestaurantComponent } from "./components/create-post-place/edit-restaurant/edit-restaurant.component";

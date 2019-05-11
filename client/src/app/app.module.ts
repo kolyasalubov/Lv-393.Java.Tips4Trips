@@ -60,7 +60,6 @@ import { NewsComponent } from './components/news/news.component';
 import { RoutesPageComponent } from './components/routes/routes-page/routes-page.component';
 import { NotVerifiedRoutesPageComponent } from './components/routes/not-verified-routes-page/not-verified-routes-page.component';
 import { SubscribersComponent } from './components/trip/subscribers/subscribers.component';
-import { SearchPlaceComponent } from './components/search/search-place/search-place.component';
 import { SearchComponent } from './components/search/search/search.component';
 import { SearchRouteComponent } from './components/search/search-route/search-route.component';
 import { ProfileComponent } from "./components/authentication/profile/profile.component";
@@ -83,6 +82,7 @@ import { SocialHandlerComponent } from './components/authentication/social-handl
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PlaceInfoComponent } from './components/place-info/place-info.component';
+import { SearchNavbarComponent } from './components/search/search-navbar/search-navbar.component';
 
 
 @NgModule({
@@ -142,7 +142,6 @@ import { PlaceInfoComponent } from './components/place-info/place-info.component
     RoutesPageComponent,
     NotVerifiedRoutesPageComponent,
     SubscribersComponent,
-    SearchPlaceComponent,
     SearchComponent,
     SearchRouteComponent,
     ProfileComponent,
@@ -161,7 +160,8 @@ import { PlaceInfoComponent } from './components/place-info/place-info.component
     FeedbackPlaceComponent,
     FeedbackPlaceCreateComponent,
     SocialHandlerComponent,
-    PlaceInfoComponent
+    PlaceInfoComponent,
+    SearchNavbarComponent
   ],
   imports: [
     BrowserModule,
