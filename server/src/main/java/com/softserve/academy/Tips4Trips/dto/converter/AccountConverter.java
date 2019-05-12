@@ -19,12 +19,7 @@ import java.util.stream.Collectors;
 @Component
 public class AccountConverter implements Converter<Account, AccountDetailsDTO> {
 
-    ModelMapper modelMapper;
 
-    @Autowired
-    public AccountConverter(ModelMapper modelMapper) {
-        this.modelMapper = modelMapper;
-    }
 
     @Override
     public AccountDetailsDTO convertToDTO(Account account) {
@@ -54,35 +49,16 @@ public class AccountConverter implements Converter<Account, AccountDetailsDTO> {
         account.setRegistrationDate(accountDetailsDTO.getRegistrationDate());
         account.setAbout(accountDetailsDTO.getAbout());
 
-        if (accountDetailsDTO.getImageId() != null) {
-//            ImageDTO imageDTO = new ImageDTO();
-//            imageDTO.setId(accountDetailsDTO.getImageId());
-//            imageDTO.setName(accountDetailsDTO.getImageName());
-//            imageDTO.setCreator(null);
-//            imageDTO.setFormat(accountDetailsDTO.getImageFormat());
-//            imageDTO.setUploadDate(accountDetailsDTO.getImageUploadDate());
-
-            Image image = new Image();
-            image.setId(accountDetailsDTO.getImageId());
-            image.setName(accountDetailsDTO.getImageName());
-            image.setCreator(null);
-            image.setFormat(accountDetailsDTO.getImageFormat());
-            image.setUploadDate(accountDetailsDTO.getImageUploadDate());
-            image.setCreator(account);
-
-            //account.setImage(modelMapper.map(imageDTO, Image.class));
-            account.setImage(image);
-
-        }
+        Image image = new Image();
+        image.setId(accountDetailsDTO.getImageId());
+        image.setName(accountDetailsDTO.getImageName());
+        image.setCreator(null);
+        image.setFormat(accountDetailsDTO.getImageFormat());
+        image.setUploadDate(accountDetailsDTO.getImageUploadDate());
+        //account.setImage(null);
 
 
-//        Image image = new Image();
-//        image.setId(accountDetailsDTO.getImageId());
-//        image.setName(accountDetailsDTO.getImageName());
-//        image.setCreator(null);
-//        image.setFormat(accountDetailsDTO.getImageFormat());
-//        image.setUploadDate(accountDetailsDTO.getImageUploadDate());
-//        account.setImage(image);
+
         account.setRole(accountDetailsDTO.getRole());
         return account;
     }
