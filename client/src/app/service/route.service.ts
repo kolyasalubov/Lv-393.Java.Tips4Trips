@@ -47,4 +47,7 @@ export class RouteService {
   findByName(name: string): Observable<Route> {
     return this.http.get<Route>(this.baseUrl + "name/" + name);
   }
+  getNamesContaining(name: string): Observable<string[]> {
+    return this.http.get<string[]>(this.baseUrl + "names/" + name);
+  }
 }

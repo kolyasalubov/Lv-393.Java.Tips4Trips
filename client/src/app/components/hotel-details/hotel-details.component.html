@@ -112,6 +112,10 @@
             </table>
           </div>
           <div class="col-md-12 col-lg-4 sidebar">
+            <div *ngFor="let feedback of pageFeedbackPlaceModel.content">
+              <app-feedback-place [feedbackPlaceModel]="feedback"></app-feedback-place>
+            </div>
+            <app-feedback-place-create [placeId]="id"></app-feedback-place-create>
           </div>
 
         </div>

@@ -57,7 +57,11 @@
               <div style="height: 350px; width: 100%"><app-map-display [latitude]="monument.position.coordinateX" [longitude]="monument.position.coordinateY" [zoom]="zoom"></app-map-display></div>
             </table>
           </div>
-          <div class="col-md-12 col-lg-4 sidebar">
+          <div class="col-md-12 col-lg-4 sidebar" >
+            <div *ngFor="let feedback of pageFeedbackPlaceModel.content">
+            <app-feedback-place [feedbackPlaceModel]="feedback"></app-feedback-place>
+            </div>
+            <app-feedback-place-create [placeId]="id"></app-feedback-place-create>
           </div>
 
         </div>

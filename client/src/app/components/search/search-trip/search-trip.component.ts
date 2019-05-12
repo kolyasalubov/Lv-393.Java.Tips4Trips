@@ -3,6 +3,8 @@ import { SearchService } from 'src/app/service/search.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { TripInfoDTO } from 'src/app/model/trip-info';
 import { TripSearchParams } from 'src/app/model/search/trip-search-params';
+import { FormControl } from '@angular/forms';
+import { RouteService } from 'src/app/service/route.service';
 
 @Component({
   selector: 'app-search-trip',
@@ -14,12 +16,15 @@ export class SearchTripComponent {
   total: number;
   page: number;
   queryParams: object = {};
+  myControl = new FormControl();
+  filteredOptions: string[];
   trips: TripInfoDTO[] = [];
   params: TripSearchParams = new TripSearchParams();
   dateDropdownText: string = "Whenever";
 
   constructor(
     private searchService: SearchService,
+    private routeService: RouteService,
     private router: Router,
     private route: ActivatedRoute
   ) { }
@@ -44,26 +49,33 @@ export class SearchTripComponent {
       }
       if (this.params.startDate == null && this.params.endDate == null) this.setWheneverOption();
       this.params.routeName = params['routeName'];
+      this.myControl.setValue(this.params.routeName);
       this.params.minSubscribersCount = params['minSubscribersCount'];
     });
     this.route.params.forEach((params: Params) => {
       try {
-        this.page = (params['page']) ? +params['page'] -1 : 0 ;
+        this.page = (params['page']) ? +params['page'] - 1 : 0;
       } catch (err) {
         this.page = 0;
       }
+      this.myControl.valueChanges
+        .subscribe(value => {
+          this.params.routeName = value;
+          if (value != null && value.trim() != '')
+            this.routeService.getNamesContaining(value).subscribe(data => this.filteredOptions = data);
+        });
     });
   }
 
   search(seek: string, page: number): void {
     this.params.name = seek;
-    this.searchService.findTripsByParams(this.params, page).subscribe(data => { 
+    this.searchService.findTripsByParams(this.params, page).subscribe(data => {
       this.trips = data.content;
       this.total = data.totalPages;
     });
   }
 
-  navigate(seek: string) : void {
+  navigate(seek: string): void {
     if (this.params == undefined) this.params = new TripSearchParams();
     let start: Number = (this.params.startDate != null) ? new Date(this.params.startDate).getTime() : null;
     let end: Number = (this.params.endDate != null) ? new Date(this.params.endDate).getTime() : null;
