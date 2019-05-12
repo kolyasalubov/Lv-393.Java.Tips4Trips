@@ -19,9 +19,8 @@ import static com.softserve.academy.Tips4Trips.specifications.RestaurantSpecific
 public class RestaurantService {
 
     private static final Logger logger = Logger.getLogger(RestaurantService.class);
-
-    private RestaurantRepository repository;
-    private CityRepository cityRepository;
+    private final RestaurantRepository repository;
+    private final CityRepository cityRepository;
 
     @Autowired
     public RestaurantService(RestaurantRepository restaurantRepository, CityRepository cityRepository) {

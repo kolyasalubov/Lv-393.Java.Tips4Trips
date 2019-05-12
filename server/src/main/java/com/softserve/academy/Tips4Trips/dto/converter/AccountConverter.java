@@ -6,6 +6,7 @@ import com.softserve.academy.Tips4Trips.dto.file.ImageDTO;
 import com.softserve.academy.Tips4Trips.dto.info.AccountInfoDTO;
 import com.softserve.academy.Tips4Trips.entity.administration.Account;
 import com.softserve.academy.Tips4Trips.entity.file.Image;
+import com.softserve.academy.Tips4Trips.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.mvc.ControllerLinkBuilder;
 import org.springframework.stereotype.Component;
@@ -17,14 +18,6 @@ import java.util.stream.Collectors;
 @Component
 public class AccountConverter implements Converter<Account, AccountDetailsDTO> {
 
-    //private ImageConverter imageConverter;
-
-    //@Autowired
-    //public AccountConverter(ImageConverter imageConverter){
-   //     this.imageConverter = imageConverter;
-    //}
-
-    private ImageConverter imageConverter =  new ImageConverter();
 
     @Override
     public AccountDetailsDTO convertToDTO(Account account) {
@@ -62,7 +55,6 @@ public class AccountConverter implements Converter<Account, AccountDetailsDTO> {
         image.setFormat(accountDetailsDTO.getImageFormat());
         image.setUploadDate(accountDetailsDTO.getImageUploadDate());
         account.setImage(image);
-
         account.setRole(accountDetailsDTO.getRole());
         return account;
     }
@@ -88,13 +80,12 @@ public class AccountConverter implements Converter<Account, AccountDetailsDTO> {
         accountInfoDTO.setId(account.getId());
         accountInfoDTO.setFirstName(account.getFirstName());
         accountInfoDTO.setLastName(account.getLastName());
-//        accountInfoDTO.setImage( imageConverter.convertToDTO(account.getImage()));
-
         if(account.getImage() != null){
             accountInfoDTO.setImageId(account.getImage().getId());
             accountInfoDTO.setImageFormat(account.getImage().getFormat());
             accountInfoDTO.setImageName(account.getImage().getName());
             accountInfoDTO.setImageUploadDate(account.getImage().getUploadDate());
+            accountInfoDTO.setImageCreatorId(account.getImage().getCreator().getId());
         }
 
         accountInfoDTO.setSelf(ControllerLinkBuilder

@@ -34,7 +34,13 @@ export class CityPlacesComponent implements OnInit {
     this.activatedRoute.paramMap.subscribe(params => {
       this.cityId = +params.get('id');
     });
-    this.placeService.getAllByCityId(this.cityId).subscribe(data => this.places = data);
+    this.placeService.getAllByCityId(this.cityId).subscribe(data => {
+      this.places = data;
+
+      for (let place of this.places) {
+        place.imageUrl =  'http://localhost:8080/places/' + place.id + '/image';
+      }
+    });
   }
 
 
@@ -45,16 +51,34 @@ export class CityPlacesComponent implements OnInit {
 
   filterRestaurants() {
     this.restaurantFilter.cityId = this.cityId;
-    this.restaurantService.filter(this.restaurantFilter).subscribe(data => this.categorizedPlaces = data);
+    this.restaurantService.filter(this.restaurantFilter).subscribe(data => {
+      this.categorizedPlaces = data;
+
+      for (let place of this.categorizedPlaces) {
+        place.imageUrl =  'http://localhost:8080/places/' + place.id + '/image';
+      }
+    });
   }
 
   filterHotels() {
     this.hotelFilter.cityId = this.cityId;
-    this.hotelService.filter(this.hotelFilter).subscribe(data => this.categorizedPlaces = data);
+    this.hotelService.filter(this.hotelFilter).subscribe(data => {
+      this.categorizedPlaces = data;
+
+      for (let place of this.categorizedPlaces) {
+        place.imageUrl =  'http://localhost:8080/places/' + place.id + '/image';
+      }
+    });
   }
 
   filterMonuments() {
-    this.monumentService.findByCity(this.cityId).subscribe(data => this.categorizedPlaces = data);
+    this.monumentService.findByCity(this.cityId).subscribe(data => {
+      this.categorizedPlaces = data;
+
+      for (let place of this.categorizedPlaces) {
+        place.imageUrl =  'http://localhost:8080/places/' + place.id + '/image';
+      }
+    });
   }
 
   selectCategory(value: string) {

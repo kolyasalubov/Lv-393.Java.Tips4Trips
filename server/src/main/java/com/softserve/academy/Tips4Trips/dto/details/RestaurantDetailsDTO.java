@@ -17,7 +17,6 @@ public class RestaurantDetailsDTO extends PlaceInfoDTO {
     private String closingTime;
     private String address;
     private Position position;
-    private ImageDTO image;
     private CityDTO cityDTO;
     private Float averageBill;
     private Boolean hasVeganFood;
@@ -76,14 +75,6 @@ public class RestaurantDetailsDTO extends PlaceInfoDTO {
 
     public void setPosition(Position position) {
         this.position = position;
-    }
-
-    public ImageDTO getImage() {
-        return image;
-    }
-
-    public void setImage(ImageDTO image) {
-        this.image = image;
     }
 
     public CityDTO getCityDTO() {

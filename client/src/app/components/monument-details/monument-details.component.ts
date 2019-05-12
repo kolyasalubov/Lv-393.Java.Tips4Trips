@@ -6,6 +6,7 @@ import {Position} from "../../model/position.model";
 import {City} from "../../model/city.model";
 import {TokenStorageService} from "../authentication/token/token-storage.service";
 import {Location} from "@angular/common"
+import {CustomAuthService} from "../authentication/custom-auth.service";
 
 @Component({
   selector: 'app-monument-details',
@@ -15,11 +16,11 @@ import {Location} from "@angular/common"
 export class MonumentDetailsComponent implements OnInit {
 
   constructor(private activatedRoute: ActivatedRoute, private router: Router, private monumentService: MonumentService,
-              private tokenStorageService: TokenStorageService, private location: Location) { }
+              private location: Location, private authService: CustomAuthService) { }
   id: number;
   cityId: number;
   monument: Monument = new Monument(0, '', '', '', new Position(0, 0),
-    '', new City(0, '',new Position(0,0), 0,''));
+    null, new City(0, '',new Position(0,0), 0,''));
 
   role: string;
 
@@ -34,7 +35,7 @@ export class MonumentDetailsComponent implements OnInit {
       this.monument = value;
       this.imageURL = 'http://localhost:8080/places/' + this.monument.id + '/image';
     });
-    this.role = this.tokenStorageService.getAuthorities();
+    this.authService.getCurrentUser().subscribe(data => this.role = data.role);
   }
 
   deletePlace() {

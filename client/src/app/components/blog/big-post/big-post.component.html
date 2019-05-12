@@ -18,7 +18,7 @@
       <div class="col-lg-8 order-md-last ftco-animate">
         <h4 ><a style="color:#4d4d4d" href="/profile/{{post.authorId}}">{{post.authorFirstName}} {{post.authorLastName}}</a></h4>
         <br>
-        <img src="{{post.photoPath}}" alt="photo" class="img-fluid">
+        <app-image-details [fileUpload]="imageURL"></app-image-details>
         <h2 class="mb-3">{{post.name}}</h2>
         <p>{{post.content}}</p>
         <app-like [postid]="post.id"></app-like>

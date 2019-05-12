@@ -20,7 +20,6 @@ export class TripInfoComponent implements OnInit {
 
 
   ngOnInit() {
-    //const id = Number(this.ngRoute.snapshot.paramMap.get('id'));
     const id = Number(this.ngRoute.snapshot.paramMap.get('id'));
     console.log(id);
     this.tripInfoService.findById(id).subscribe(data =>{
@@ -50,8 +49,9 @@ export class TripInfoComponent implements OnInit {
     this.location.back();
   }
 
-  getImageString() {
-    return "http://localhost:8080/accounts/2/image";
+  getImageString(id: number) {
+    return "http://localhost:8080/accounts/" + id + "/image";
+
   }
   }
 

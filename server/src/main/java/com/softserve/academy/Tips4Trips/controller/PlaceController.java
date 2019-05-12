@@ -40,6 +40,12 @@ public class PlaceController {
                 .findByName(name)), HttpStatus.OK);
     }
 
+    @GetMapping("/names/{name}")
+    public ResponseEntity<List<String>> getNamesContaining(@PathVariable String name) {
+        return new ResponseEntity<>(placeService
+                .findDistinctNamesContaining(name), HttpStatus.OK);
+    }
+
     @PostMapping("/{id}/image")
     public ResponseEntity<PlaceInfoDTO> addImage(@PathVariable Long id,
             @RequestParam("file") MultipartFile file) throws FileIOException {

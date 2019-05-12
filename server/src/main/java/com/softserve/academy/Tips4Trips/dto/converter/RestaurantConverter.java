@@ -17,23 +17,17 @@ import java.util.Locale;
 @Component
 public class RestaurantConverter implements Converter<Restaurant, RestaurantDetailsDTO> {
 
-    private RestaurantService restaurantService;
-    private CityService cityService;
-    private CityConverter cityConverter;
-    private PlaceConverter placeConverter;
-    private ImageConverter imageConverter;
+    private final CityService cityService;
+    private final CityConverter cityConverter;
+    private final ImageConverter imageConverter;
     private final SimpleDateFormat formatter = new SimpleDateFormat("HH:mm", Locale.getDefault());
 
     @Autowired
-    public RestaurantConverter(RestaurantService restaurantService,
-                               CityService cityService,
+    public RestaurantConverter(CityService cityService,
                                CityConverter cityConverter,
-                               PlaceConverter placeConverter,
                                ImageConverter imageConverter) {
-        this.restaurantService = restaurantService;
         this.cityService = cityService;
         this.cityConverter = cityConverter;
-        this.placeConverter = placeConverter;
         this.imageConverter = imageConverter;
     }
 

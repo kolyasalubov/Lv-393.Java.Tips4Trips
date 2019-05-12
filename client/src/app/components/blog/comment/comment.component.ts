@@ -6,6 +6,7 @@ import {FormControl, FormGroup, NgForm, Validators} from '@angular/forms';
 
 import {CustomAuthService} from "../../authentication/custom-auth.service";
 import {Router} from "@angular/router";
+import {Image} from "../../../model/image.model";
 
 
 @Component({
@@ -26,6 +27,7 @@ export class CommentComponent implements OnInit {
   noComment = false;
   isButtonDisabled: boolean = false;
   isHidden:boolean=false;
+  imageURL = 'http://localhost:8080/accounts/';
 
   commentProfile: Comment = new Comment(null, null, null, null, null, null, null);
 
@@ -45,7 +47,7 @@ export class CommentComponent implements OnInit {
 
   deleteComment(id:number,comment:Comment){
 
-    var isSubmit= confirm("Do you realy want to delete a comment?");
+    var isSubmit= confirm("Do you really want to delete a comment?");
     console.log(isSubmit);
     if (isSubmit){
       console.log(id);
@@ -54,7 +56,9 @@ export class CommentComponent implements OnInit {
         .splice(this.allComments.indexOf(comment),1)});}
 
   }
-
+  getImageString() {
+    return this.imageURL + this.account.id +'/image';
+  }
   onSubmit(f: NgForm) {
     this.isButtonDisabled = true;
     console.log(this.commentProfile.text);
@@ -62,6 +66,7 @@ export class CommentComponent implements OnInit {
     this.commentProfile.accountInfo = this.account;
     this.commentProfile.creationDate = new Date();
     this.commentProfile.postId = this.postid;
+    console.log(this.account.imageId)
     this.commentService.createComment(this.commentProfile).subscribe(item => {
       this.allComments.push(item);
       f.resetForm();

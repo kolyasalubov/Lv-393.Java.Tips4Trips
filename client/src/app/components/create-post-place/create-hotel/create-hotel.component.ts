@@ -22,7 +22,7 @@ export class CreateHotelComponent implements OnInit {
   city: City[] = null;
   countries: Country[] = null;
 
-  position: Position = new Position(0, 0);
+  position: Position = new Position(null, null);
 
   cityDTO: City = new City(null, '', this.position, 0, '');
   hotel: Hotel = new Hotel(null, '', '', [], '',
@@ -56,13 +56,14 @@ export class CreateHotelComponent implements OnInit {
     ]),
     webSite: new FormControl(null,[
       Validators.required,
-      Validators.minLength(2),
+      Validators.pattern('^(http:\\/\\/www\\.|https:\\/\\/www\\.|http:\\/\\/|https:\\/\\/)?[a-z0-9]+([\\-\\.]{1}[a-z0-9]+)*\\.[a-z]{2,5}(:[0-9]{1,5})?(\\/.*)?$'),
       Validators.maxLength(35)
     ]),
     telephone: new FormControl(null,[
       Validators.required,
-      Validators.minLength(8),
-      Validators.maxLength(15)
+      Validators.pattern('\\+(9[976]\\d|8[987530]\\d|6[987]\\d|5[90]\\d|42\\d|3[875]\\d|\n' +
+        '2[98654321]\\d|9[8543210]|8[6421]|6[6543210]|5[87654321]|\n' +
+        '4[987654310]|3[9643210]|2[70]|7|1)\\d{1,14}$')
     ]),
     openingTime: new FormControl(null,[
       Validators.required
@@ -77,13 +78,13 @@ export class CreateHotelComponent implements OnInit {
     ]),
     minimumPrice: new FormControl(null,[
       Validators.required,
-      Validators.minLength(2),
-      Validators.maxLength(5)
+      Validators.min(10),
+      Validators.max(999999)
     ]),
     maximumPrice: new FormControl(null,[
       Validators.required,
-      Validators.minLength(2),
-      Validators.maxLength(5)
+      Validators.min(100),
+      Validators.max(999999999)
     ]),
     positionX: new FormControl(null,[
       Validators.required
@@ -122,7 +123,6 @@ export class CreateHotelComponent implements OnInit {
       this.photoUrl = 'http://localhost:8080/places/' + this.hotel.id + '/image';
       this.uploadPhoto = true;
     });
-    // setTimeout(() => {window.location.href = '/hotels/' + this.hotel.id;}, 2000);
   }
 
   setWorkingDays(day: string) {
@@ -131,6 +131,10 @@ export class CreateHotelComponent implements OnInit {
     } else {
       this.hotel.workingDays.push(day);
     }
+  }
+
+  navigate() {
+    this.router.navigateByUrl('/hotels/' + this.hotel.id);
   }
 
 }

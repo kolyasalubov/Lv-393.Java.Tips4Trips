@@ -6,8 +6,8 @@
     <meta charset="utf-8">
   </head>
   <body>
-    <div style="height: 500px; width: 500px;">
-   <app-map-display [longitude]="10.465" [latitude]="10.586" [zoom]="zoom"></app-map-display>
+    <div style="height: 1000px; width: 1000px;">
+   <app-map-picker [locationUpdate]="setXY" [addressSearch]="true" [setAddress]="updateAddress"></app-map-picker>
     </div>
   </body>
 </html>

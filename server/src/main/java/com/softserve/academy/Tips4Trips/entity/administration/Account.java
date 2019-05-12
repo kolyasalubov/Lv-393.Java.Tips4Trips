@@ -46,11 +46,11 @@ public class Account {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    @Column(name = "provider", nullable = false)
+    @Column(name = "provider")
     @Enumerated(EnumType.STRING)
     private AuthProvider provider;
 
-    @Column(name = "provider_id", nullable = false)
+    @Column(name = "provider_id")
     private String providerId;
 
     @ManyToOne

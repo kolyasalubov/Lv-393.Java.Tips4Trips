@@ -26,7 +26,7 @@
         <!--<img src="getImageString({{post.images[0]}})" alt="photo" class="img-fluid">-->
           <app-like [postid]="post.id"></app-like>
         <h2 class="mb-3"><a href="/post/{{post.id}}">{{post.name}}</a></h2>
-          <p *ngIf="post.content.length>275 "> {{post.content.substr(0,275)}}<span *ngIf="more==true">{{post.content.substr(275,post.content.length)}}</span><button (click)="readMore()"  class="btn btn-link">...read more/less</button></p>
+          <p align="justify" *ngIf="post.content.length>275 "> {{post.content.substr(0,275)}}<span *ngIf="more==true">{{post.content.substr(275,post.content.length)}}</span><button (click)="readMore()"  class="btn btn-link">...read more/less</button></p>
         <p *ngIf="post.content.length<=275 "> {{post.content}}</p>
 
           <!--<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus imperdiet, nulla-->

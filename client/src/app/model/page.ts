@@ -1,5 +1,5 @@
 export class Page<T> {
-    list: T[];
-    page: number;
-    total: number;
+    content: T[];
+    number: number;
+    totalPages: number;
 }

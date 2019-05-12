@@ -5,6 +5,7 @@ import {HotelService} from "../create-post-place/create-hotel/hotel.service";
 import {Position} from "../../model/position.model";
 import {City} from "../../model/city.model";
 import {Location} from "@angular/common";
+import {CustomAuthService} from "../authentication/custom-auth.service";
 
 @Component({
   selector: 'app-hotel-details',
@@ -14,7 +15,7 @@ import {Location} from "@angular/common";
 export class HotelDetailsComponent implements OnInit {
 
   constructor(private activatedRoute: ActivatedRoute, private router: Router, private hotelService: HotelService,
-              private location: Location) { }
+              private location: Location, private authService: CustomAuthService) { }
   id: number;
   countryId: number;
   cityId: number;
@@ -24,6 +25,7 @@ export class HotelDetailsComponent implements OnInit {
   zoom: number = ZoomLevel.Place;
   daysMap = new Map();
   imageURL: string = '';
+  role: string;
 
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe(params => {
@@ -34,6 +36,8 @@ export class HotelDetailsComponent implements OnInit {
       this.hotel.workingDays.sort((d1, d2) => this.daysMap.get(d1) - this.daysMap.get(d2));
       this.imageURL = 'http://localhost:8080/places/' + this.hotel.id + '/image';
     });
+
+    this.authService.getCurrentUser().subscribe(data => this.role = data.role);
 
     this.daysMap.set("MONDAY", 1);
     this.daysMap.set("TUESDAY", 2);

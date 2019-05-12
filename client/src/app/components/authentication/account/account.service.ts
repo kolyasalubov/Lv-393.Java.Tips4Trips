@@ -31,7 +31,8 @@ export class AccountService {
   }
 
   checkNotification(id:number): Observable<boolean> {
-    return this.http.get<boolean>(this.baseUrl +id+ "check");
+    console.log(this.baseUrl +id+ "/check");
+    return this.http.get<boolean>(this.baseUrl +id+ "/check");
   }
 
   deleteAccount(id: number): Observable<Account> {

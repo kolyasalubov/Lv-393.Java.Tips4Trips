@@ -1,5 +1,6 @@
 import {City} from "./city.model";
 import {Position} from "./position.model";
+import {Image} from "./image.model";
 
 export class Monument {
   id: number;
@@ -7,18 +8,18 @@ export class Monument {
   description: string;
   address: string;
   position: Position;
-  photoPath: string;
+  image: Image;
   cityDTO: City;
   category: string;
 
   constructor(id: number, name: string, description: string, address: string,
-              position: Position, photoPath: string, cityDTO: City) {
+              position: Position, image: Image, cityDTO: City) {
     this.id = id;
     this.name = name;
     this.description = description;
     this.address = address;
     this.position = position;
-    this.photoPath = photoPath;
+    this.image = image;
     this.cityDTO = cityDTO;
     this.category = "HOTELS";
   }

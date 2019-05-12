@@ -10,6 +10,8 @@ import com.softserve.academy.Tips4Trips.repository.PostRepository;
 import com.softserve.academy.Tips4Trips.repository.RouteRepository;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -40,8 +42,16 @@ public class RouteService {
         return repository.findAll();
     }
 
+    public Page<Route> findAll(Pageable pageable) {
+        return repository.findAll(pageable);
+    }
+
     public List<Route> findByVerified(boolean verified) {
         return repository.findByVerified(verified);
+    }
+
+    public Page<Route> findByVerified(boolean verified, Pageable pageable) {
+        return repository.findByVerified(verified, pageable);
     }
 
     public List<Route> findByAuthorId(Long authorId) {

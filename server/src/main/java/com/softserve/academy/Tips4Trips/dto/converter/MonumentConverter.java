@@ -13,23 +13,17 @@ import org.springframework.stereotype.Component;
 @Component
 public class MonumentConverter implements Converter<Monument, MonumentDetailsDTO> {
 
-    private MonumentService monumentService;
-    private CityService cityService;
-    private CityConverter cityConverter;
-    private ImageConverter imageConverter;
     private final int MAX_DESCRIPTION_LENGTH = 100;
-    private PlaceConverter placeConverter;
+    private final CityService cityService;
+    private final CityConverter cityConverter;
+    private final ImageConverter imageConverter;
 
     @Autowired
     public MonumentConverter(ImageConverter imageConverter,
-                             MonumentService monumentService,
                              CityService cityService,
-                             CityConverter cityConverter,
-                             PlaceConverter placeConverter) {
-        this.monumentService = monumentService;
+                             CityConverter cityConverter) {
         this.cityService = cityService;
         this.cityConverter = cityConverter;
-        this.placeConverter = placeConverter;
         this.imageConverter = imageConverter;
     }
 

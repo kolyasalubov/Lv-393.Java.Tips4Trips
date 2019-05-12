@@ -17,7 +17,6 @@ public class HotelDetailsDTO extends PlaceInfoDTO {
     private String closingTime;
     private String address;
     private Position position;
-    private ImageDTO image;
     private CityDTO cityDTO;
     private Float maximumPrice;
     private Float minimumPrice;
@@ -76,14 +75,6 @@ public class HotelDetailsDTO extends PlaceInfoDTO {
 
     public void setPosition(Position position) {
         this.position = position;
-    }
-
-    public ImageDTO getImage() {
-        return image;
-    }
-
-    public void setImage(ImageDTO image) {
-        this.image = image;
     }
 
     public CityDTO getCityDTO() {

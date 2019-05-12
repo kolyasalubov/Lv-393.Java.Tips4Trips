@@ -1,5 +1,6 @@
 package com.softserve.academy.Tips4Trips.dto.info;
 
+import com.softserve.academy.Tips4Trips.dto.file.ImageDTO;
 import com.softserve.academy.Tips4Trips.entity.Position;
 import com.softserve.academy.Tips4Trips.entity.enums.PlaceCategory;
 
@@ -10,6 +11,7 @@ public class PlaceInfoDTO {
     private String self;
     private PlaceCategory category;
     private Position position;
+    private ImageDTO image;
 
     public Long getId() {
         return id;
@@ -57,5 +59,13 @@ public class PlaceInfoDTO {
 
     public void setPosition(Position position) {
         this.position = position;
+    }
+
+    public ImageDTO getImage() {
+        return image;
+    }
+
+    public void setImage(ImageDTO image) {
+        this.image = image;
     }
 }
