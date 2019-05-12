@@ -74,6 +74,9 @@ public class RouteService {
 
     public Route createRoute(Route route) {
         route.setCreationDate(new Date());
+        if (route.getListOfPlaces().size() < 2) {
+            throw new InvalidDataException();
+        }
         route.setVerified(route.getAuthor().getRole().equals(Role.ADMIN)
                 || route.getAuthor().getRole().equals(Role.MODERATOR));
         route.setId(-1L);
@@ -88,6 +91,9 @@ public class RouteService {
             existingRoute.get().setName(route.getName());
             existingRoute.get().setAuthor(route.getAuthor());
             existingRoute.get().setListOfPlaces(route.getListOfPlaces());
+        }
+        if (route.getListOfPlaces().size() < 2) {
+            throw new InvalidDataException();
         }
         return repository.save(existingRoute.get());
     }
