@@ -4,22 +4,16 @@ import com.softserve.academy.Tips4Trips.constants.ExceptionMessages;
 import com.softserve.academy.Tips4Trips.dto.converter.AccountConverter;
 import com.softserve.academy.Tips4Trips.entity.administration.Account;
 import com.softserve.academy.Tips4Trips.entity.administration.User;
-import com.softserve.academy.Tips4Trips.entity.blog.Post;
-import com.softserve.academy.Tips4Trips.entity.entertainment.mountains.Trip;
-import com.softserve.academy.Tips4Trips.exception.DataNotFoundException;
-import com.softserve.academy.Tips4Trips.exception.DuplicateValueException;
 import com.softserve.academy.Tips4Trips.entity.file.Image;
 import com.softserve.academy.Tips4Trips.exception.DataNotFoundException;
+import com.softserve.academy.Tips4Trips.exception.DuplicateValueException;
 import com.softserve.academy.Tips4Trips.exception.FileIOException;
 import com.softserve.academy.Tips4Trips.repository.AccountRepository;
 import com.softserve.academy.Tips4Trips.repository.UserRepository;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -58,7 +52,7 @@ public class AccountService {
     }
 
     public Account findByUser(User user) {
-        Optional<Account> account = repository.findByUsersContains(user);
+        Optional<Account> account = repository.findByUser(user);
         return account.isPresent() ? account.get() : null;
     }
 

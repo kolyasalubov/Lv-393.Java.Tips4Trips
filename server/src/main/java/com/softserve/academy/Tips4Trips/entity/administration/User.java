@@ -19,7 +19,7 @@ public class User {
     @Column(name = "password", length = 65, nullable = false)
     private String password;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "account_id", referencedColumnName = "id", nullable = false)
     private Account account;
 
