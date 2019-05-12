@@ -1,11 +1,10 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import { Route } from 'src/app/model/route.model';
-import { RouteService } from 'src/app/service/route.service';
-import { AccountInfo } from 'src/app/model/account-info.model';
-import { PlaceService } from 'src/app/place.service';
+import { Component, OnInit } from '@angular/core';
+import { Route } from '../../model/route.model';
+import { RouteService } from '../../route.service';
+import { AccountInfo } from '../../model/account-info.model';
+import { PlaceService } from '../../place.service';
 import { Router } from '@angular/router';
-import { CustomAuthService } from '../../authentication/custom-auth.service';
-import {RouteMapComponent} from "../../map/route-map/route-map.component";
+import { AuthService } from '../authentication/auth.service';
 
 @Component({
   selector: 'app-create-post-route',
@@ -14,14 +13,13 @@ import {RouteMapComponent} from "../../map/route-map/route-map.component";
 })
 export class CreateRouteComponent implements OnInit {
 
-  @ViewChild(RouteMapComponent) private child: RouteMapComponent;
   route: Route;
   placeName: string;
   constructor(
     private routeService: RouteService,
     private placeService: PlaceService,
     private router: Router,
-    private authService: CustomAuthService
+    private authService : AuthService
   ) {
     this.route = new Route();
     this.route.authorInfo = new AccountInfo();
@@ -29,13 +27,9 @@ export class CreateRouteComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (!this.authService.checkLoggedUser()) {
-      this.router.navigate(['account']);
-    } else {
-      this.authService.getCurrentUser().subscribe(data => {
-        this.route.authorInfo.id = data.id;
+    this.authService.getCurrentUser().subscribe(data => {
+      this.route.authorInfo.id = data.id;
       });
-    }
   }
 
   addPlace(): void {
@@ -44,8 +38,6 @@ export class CreateRouteComponent implements OnInit {
         if (!this.route.places.map(place => place.id).includes(data[0].id)) {
           this.route.places.push(data[0]);
           this.placeName = null;
-          this.child.placeList = this.route.places;
-          this.child.getDirection();
         }
       }
     });
@@ -53,10 +45,9 @@ export class CreateRouteComponent implements OnInit {
 
   save(): void {
     if (this.validate()) {
-      this.routeService.createRoute(this.route).subscribe(result => {
-        this.route = result;
-        this.router.navigate(['routes/' + result.id]);
-      });
+      //this.route.photoPath="no photo";
+      this.routeService.createRoute(this.route).subscribe(result=>this.route = result);
+      setTimeout(() => {this.router.navigate(['routes']);}, 2000);
     }
   }
 
@@ -66,7 +57,5 @@ export class CreateRouteComponent implements OnInit {
 
   removePlace(id: number): void {
     this.route.places = this.route.places.filter(p => p.id != id);
-    this.child.placeList = this.route.places;
-    this.child.getDirection();
   }
 }

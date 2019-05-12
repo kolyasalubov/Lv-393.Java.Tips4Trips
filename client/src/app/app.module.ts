@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -83,6 +83,8 @@ import { SocialHandlerComponent } from './components/authentication/social-handl
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PlaceInfoComponent } from './components/place-info/place-info.component';
+import {RouteMapComponent} from "./components/map/route-map/route-map.component";
+import {AgmDirectionModule} from "agm-direction";
 
 
 @NgModule({
@@ -161,7 +163,8 @@ import { PlaceInfoComponent } from './components/place-info/place-info.component
     FeedbackPlaceComponent,
     FeedbackPlaceCreateComponent,
     SocialHandlerComponent,
-    PlaceInfoComponent
+    PlaceInfoComponent,
+    RouteMapComponent
   ],
   imports: [
     BrowserModule,
@@ -171,13 +174,15 @@ import { PlaceInfoComponent } from './components/place-info/place-info.component
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    AgmDirectionModule
   ],
   providers: [
     httpInterceptorProviders,
     GoogleMapsAPIWrapper
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule {
 }
