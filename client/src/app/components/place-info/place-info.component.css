@@ -42,3 +42,7 @@ select {
   h3:hover {
     cursor: pointer;
   }
+
+  img {
+    cursor: pointer;
+  }
