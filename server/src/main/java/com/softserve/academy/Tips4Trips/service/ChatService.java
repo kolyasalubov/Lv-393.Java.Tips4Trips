@@ -38,10 +38,9 @@ public class ChatService {
     }
 
 
-    public void isChatExist(Long id) {
-        if (!chatRepository.existsById(id)) {
-            throw new DataNotFoundException(ExceptionMessages.CHAT_BY_THIS_ID_IS_NOT_FOUND);
-        }
+    public boolean isChatExist(Long id) {
+        return chatRepository.existsById(id);
+
     }
 
     public Long getCountOfMessages(Long chatId) {
@@ -55,6 +54,10 @@ public class ChatService {
     }
 
     public Chat createChat(Chat chat) {
+        return chatRepository.save(chat);
+    }
+
+    public Chat createChatbyId(Chat chat) {
         return chatRepository.save(chat);
     }
 

@@ -17,25 +17,19 @@ import java.util.Locale;
 @Component
 public class HotelConverter implements Converter<Hotel, HotelDetailsDTO> {
 
-    private final int MAX_DESCRIPTION_LENGTH = 100;
 
-    private HotelService hotelService;
-    private CityConverter cityConverter;
-    private PlaceConverter placeConverter;
-    private CityService cityService;
-    private ImageConverter imageConverter;
+    private final int MAX_DESCRIPTION_LENGTH = 100;
+    private final CityConverter cityConverter;
+    private final CityService cityService;
+    private final ImageConverter imageConverter;
     private final SimpleDateFormat formatter = new SimpleDateFormat("HH:mm", Locale.getDefault());
 
 
     @Autowired
     public HotelConverter(ImageConverter imageConverter,
-                          HotelService hotelService,
                           CityConverter cityConverter,
-                          PlaceConverter placeConverter,
                           CityService cityService) {
-        this.hotelService = hotelService;
         this.cityConverter = cityConverter;
-        this.placeConverter = placeConverter;
         this.cityService = cityService;
         this.imageConverter = imageConverter;
     }

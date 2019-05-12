@@ -51,14 +51,16 @@ public class TripConverter implements Converter<Trip, TripDetailsDTO> {
         trip.setDescription(tripDetailsDTO.getDescription());
         trip.setCreationDate(tripDetailsDTO.getCreationDate());
         trip.setStartDate(tripDetailsDTO.getStartDate());
-
-        Chat chat = chatService.getChatById(tripDetailsDTO.getChatId());
-        trip.setChat(chat);
+        if(chatService.isChatExist(tripDetailsDTO.getChatId())){
+            Chat chat = chatService.getChatById(tripDetailsDTO.getChatId());
+            trip.setChat(chat);
+        }else {
+            trip.setChat(new Chat());
+        }
         Account creator = accountService.findById(tripDetailsDTO.getCreator().getId());
         trip.setCreator(creator);
         Route route = routeService.findById(tripDetailsDTO.getRoute().getId());
         trip.setImage(imageConverter.convertToEntity(tripDetailsDTO.getImage()));
-
         trip.setRoute(route);
         trip.setSubscribers(tripDetailsDTO.getSubscribers().stream()
                 .map(p -> accountService.findById(p.getId()))

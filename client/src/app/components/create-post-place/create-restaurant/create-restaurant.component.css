@@ -12,10 +12,9 @@
   color: #fff !important;
   margin-bottom: -20px;
   background: #ffb400 !important;
-  border-radius: 5px 5px 5px 5px;
+  border-radius: 0px 5px 5px 0px;
   font-size: 16px;
   border: 1px solid transparent;
-  height: 70px;
 }
 select {
   margin: 15px;
@@ -51,4 +50,16 @@ select {
 .weekDays-selector input[type=checkbox]:checked + mark {
   background: #ffb400;
   color: #ffffff;
+}
+
+.invalid-input {
+  border-left-color: salmon;
+  border-left-width: 3px;
+  border-radius: 5px;
+}
+
+.valid-input {
+  border-left-color: greenyellow;
+  border-left-width: 3px;
+  border-radius: 5px;
 }

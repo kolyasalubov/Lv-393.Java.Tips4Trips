@@ -18,7 +18,7 @@ export class EditMonumentComponent implements OnInit {
 
 
   position: Position = new Position(0, 0);
-  monument: Monument = new Monument(null, '', '', '', null, "photo_path", null);
+  monument: Monument = new Monument(null, '', '', '', null, null, null);
 
   id: number;
 
@@ -78,7 +78,10 @@ export class EditMonumentComponent implements OnInit {
       this.photoUrl = 'http://localhost:8080/places/' + this.monument.id + '/image';
       this.uploadPhoto = true;
     });
-    // setTimeout(() => {window.location.href = '/monuments/' + this.monument.id;}, 2000);
+  }
+
+  navigate() {
+    this.router.navigateByUrl('/monuments/' + this.monument.id);
   }
 
 }

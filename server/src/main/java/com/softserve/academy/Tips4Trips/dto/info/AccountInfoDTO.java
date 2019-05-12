@@ -15,8 +15,16 @@ public class AccountInfoDTO {
     private String imageName;
     private String imageFormat;
     private Date imageUploadDate;
+    private Long imageCreatorId;
 
-    //private ImageDTO image;
+    public Long getImageCreatorId() {
+        return imageCreatorId;
+    }
+
+    public void setImageCreatorId(Long imageCreatorId) {
+        this.imageCreatorId = imageCreatorId;
+    }
+//private ImageDTO image;
 
     public Long getImageId() {
         return imageId;

@@ -16,9 +16,8 @@ import java.util.Optional;
 public class MonumentService {
 
     private static final Logger logger = Logger.getLogger(MonumentService.class);
-
-    private MonumentRepository repository;
-    private CityRepository cityRepository;
+    private final MonumentRepository repository;
+    private final CityRepository cityRepository;
 
     @Autowired
     public MonumentService(MonumentRepository repository,

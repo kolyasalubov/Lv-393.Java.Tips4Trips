@@ -36,7 +36,7 @@ export class FeedbackPlaceCreateComponent implements OnInit {
       null,
       null,
       null,
-      null);
+      null,null,null,null,null);
     this.feedbackPlaceModel.place = new PlaceModel();
     this.feedbackPlaceModel.place.id = this.placeId;
   }

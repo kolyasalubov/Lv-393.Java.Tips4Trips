@@ -9,7 +9,6 @@ public class MonumentDetailsDTO extends PlaceInfoDTO {
 
     private String address;
     private Position position;
-    private ImageDTO image;
     private CityDTO cityDTO;
 
     public String getAddress() {
@@ -26,14 +25,6 @@ public class MonumentDetailsDTO extends PlaceInfoDTO {
 
     public void setPosition(Position position) {
         this.position = position;
-    }
-
-    public ImageDTO getImage() {
-        return image;
-    }
-
-    public void setImage(ImageDTO image) {
-        this.image = image;
     }
 
     public CityDTO getCityDTO() {

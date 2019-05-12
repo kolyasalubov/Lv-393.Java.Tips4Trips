@@ -1,4 +1,5 @@
 import { Component, OnInit, NgZone, ViewChild, Input} from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MapsAPILoader, GoogleMapsAPIWrapper } from '@agm/core/services';
 import { AgmMap } from '@agm/core';
 declare var google: any;
@@ -22,14 +23,13 @@ interface Location {
   styleUrls: ['./map-picker.component.css']
 })
 export class MapPickerComponent implements OnInit {
-
-  @Input() locationUpdate: Function;
   @Input() addressSearch: boolean = false;
   @Input() citySearch: boolean = false;
   @Input() stateSearch: boolean = false;
   @Input() countrySearch: boolean = false;
   @Input() zipSearch: boolean = false;
   @Input() setAddress: Function;
+  @Input() locationUpdate: Function;
 
   geocoder: any;
   public location: Location = {
@@ -46,10 +46,12 @@ export class MapPickerComponent implements OnInit {
 
   constructor(public mapsApiLoader: MapsAPILoader,
               private zone: NgZone,
-              private wrapper: GoogleMapsAPIWrapper) {
+              private wrapper: GoogleMapsAPIWrapper,
+              private formBind: ReactiveFormsModule) {
     this.mapsApiLoader = mapsApiLoader;
     this.zone = zone;
     this.wrapper = wrapper;
+    this.formBind = formBind;
     this.mapsApiLoader.load().then(() => {
     this.geocoder = new google.maps.Geocoder();
     });
@@ -65,9 +67,10 @@ export class MapPickerComponent implements OnInit {
     if (this.location.address_state) full_address = full_address + " " + this.location.address_state;
     if (this.location.address_country) full_address = full_address + " " + this.location.address_country;
 
-    let outputAddress = this.location.address_level_1 + " " + this.location.address_level_2 + " ";
-    outputAddress.trim();
-    this.setAddress(outputAddress);
+    //let outputAddress = this.location.address_level_1 + " " + this.location.address_level_2 + " ";
+    //outputAddress.trim();
+    //outputAddress.replace('undefined', '');
+    //this.setAddress(outputAddress);
     this.findLocation(full_address);
   }
 
@@ -77,8 +80,6 @@ export class MapPickerComponent implements OnInit {
       'address': address
     }, (results, status) => {
       console.log(results);
-
-      let outputAddress = "";
 
       if (status == google.maps.GeocoderStatus.OK) {
         for (var i = 0; i < results[0].address_components.length; i++) {
@@ -96,8 +97,7 @@ export class MapPickerComponent implements OnInit {
           if (types.indexOf('administrative_area_level_1') != -1) {
             this.location.address_state = results[0].address_components[i].long_name;
           }
-        }
-
+        } 
         if (results[0].geometry.location) {
           this.location.latitude = results[0].geometry.location.lat();
           this.location.longitude = results[0].geometry.location.lng();
@@ -109,13 +109,18 @@ export class MapPickerComponent implements OnInit {
         this.map.triggerResize();
         this.locationUpdate(this.location.marker.latitude,
           this.location.marker.longitude);
+        let outputAddress= this.location.address_level_1;
+        outputAddress.trim();
+        outputAddress.replace('undefined', '');
+        this.setAddress(outputAddress);
+        outputAddress= undefined;
       } else {
-        alert("Sorry, this search produced no results.");
+        alert('Sorry, this search produced no results.');
       }
     });
   }
 
-  markerDragEnd(m: any) {
+  markerDragEnd(m: any, $event: any) {
     this.location.marker.latitude = m.coords.lat;
     this.location.marker.longitude = m.coords.lng;
     this.locationUpdate(this.location.marker.latitude,
@@ -134,8 +139,8 @@ export class MapPickerComponent implements OnInit {
     });
   }
 
-  decomposeAddressComponents(addressArray) {
-    let outputAddress = "";
+  decomposeAddressComponents = (addressArray) => {
+    let outputAddress = '';
     if (addressArray.length == 0) return false;
     let address = addressArray[0].address_components;
  
@@ -145,13 +150,13 @@ export class MapPickerComponent implements OnInit {
  
       if (element['types'].indexOf('street_number') > -1) {
         this.location.address_level_1 = element['long_name'];
-        outputAddress += this.location.address_level_1 + " ";
+        //outputAddress += this.location.address_level_1 + " ";
         continue;
       }
       if (element['types'].indexOf('route') > -1) {
-        let location_1_before = this.location.address_level_1;
+        //const location_1_before = this.location.address_level_1;
         this.location.address_level_1 += ', ' + element['long_name'];
-        outputAddress = outputAddress.replace(location_1_before, this.location.address_level_1);
+        // = outputAddress.replace(location_1_before, this.location.address_level_1);
         continue;
       }
       if (element['types'].indexOf('locality') > -1) {
@@ -170,10 +175,12 @@ export class MapPickerComponent implements OnInit {
         this.location.address_zip = element['long_name'];
         continue;
       }
-
-      outputAddress.trim();
-      this.setAddress(outputAddress);
     }
+    outputAddress= this.location.address_level_1;
+    outputAddress.trim();
+    outputAddress.replace('undefined', '');
+    this.setAddress(outputAddress);
+    outputAddress= undefined;
   }
 
 }

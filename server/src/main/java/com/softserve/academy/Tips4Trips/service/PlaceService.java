@@ -14,14 +14,15 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class PlaceService {
 
     private static final Logger logger = Logger.getLogger(PlaceService.class);
 
-    PlaceRepository repository;
-    private FileStorageService fileStorageService;
+    private final PlaceRepository repository;
+    private final FileStorageService fileStorageService;
 
     @Autowired
     public PlaceService(PlaceRepository repository,
@@ -37,6 +38,12 @@ public class PlaceService {
         } else {
             throw new NoSuchElementException();
         }
+    }
+
+    public List<String> findDistinctNamesContaining(String name) {
+        return repository
+                .findTop5ByNameContainingIgnoreCaseOrderByName(name)
+                .stream().map(Place::getName).collect(Collectors.toList());
     }
 
     public List<Place> findByCity(City city) {

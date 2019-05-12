@@ -19,12 +19,14 @@ export class CreateMonumentComponent implements OnInit {
   city: City[] = null;
   countries: Country[] = null;
 
-  position: Position = new Position(0, 0);
+  position: Position = new Position(null, null);
+
   cityDTO: City = new City(null, '', this.position, 0, '');
-  monument: Monument = new Monument(null, '', '', '', this.position, "photo_path", this.cityDTO);
+  monument: Monument = new Monument(null, '', '', '', this.position, null, this.cityDTO);
 
   uploadPhoto: boolean = false;
   photoUrl: string = '';
+  uploaded: boolean;
 
   setCoordinates: Function = (x: number, y: number) => {
     this.position.coordinateX = x;
@@ -87,7 +89,10 @@ export class CreateMonumentComponent implements OnInit {
         this.photoUrl = 'http://localhost:8080/places/' + this.monument.id + '/image';
         this.uploadPhoto = true;
       });
-      // setTimeout(() => {window.location.href = '/monuments/' + this.monument.id;}, 2000);
+  }
+
+  navigate() {
+    this.router.navigateByUrl('/monuments/' + this.monument.id);
   }
 
 }
