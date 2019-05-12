@@ -31,7 +31,6 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     this.authService.getCurrentUser().subscribe(data => {
       this.accountProfile = data;
-      console.log(data);
       if (data.id > 0) {
         this.login = data.email;
         if (this.activatedRoute.snapshot.url[0].path == 'account') {

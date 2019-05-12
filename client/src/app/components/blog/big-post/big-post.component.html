@@ -1,6 +1,6 @@
 <app-header></app-header>
 
-<section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('../../../assets/images/bg_2.jpg');"
+<section class="hero-wrap hero-wrap-2 js-fullheight" style="height: 50%;background-image: url('../../../assets/images/bg_2.jpg');"
          data-stellar-background-ratio="0.5">
   <div class="container">
     <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-center">
@@ -16,10 +16,15 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-8 order-md-last ftco-animate">
-        <h4 ><a style="color:#4d4d4d" href="/profile/{{post.authorId}}">{{post.authorFirstName}} {{post.authorLastName}}</a></h4>
+        <h4><a style="color:#4d4d4d" href="/profile/{{post.authorId}}">{{post.authorFirstName}}
+          {{post.authorLastName}}</a></h4>
         <br>
-        <app-image-details [fileUpload]="imageURL"></app-image-details>
+
         <h2 class="mb-3">{{post.name}}</h2>
+        <div *ngFor=" let img of post.images">
+          <app-image-details [fileUpload]="imageURL+img.id"></app-image-details>
+          <p>{{imageURL+img.id}}</p>
+        </div>
         <p>{{post.content}}</p>
         <app-like [postid]="post.id"></app-like>
         <div class="pt-5 mt-5">
