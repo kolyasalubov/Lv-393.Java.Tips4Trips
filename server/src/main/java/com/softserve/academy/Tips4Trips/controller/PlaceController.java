@@ -2,6 +2,7 @@ package com.softserve.academy.Tips4Trips.controller;
 
 import com.softserve.academy.Tips4Trips.dto.converter.PlaceConverter;
 import com.softserve.academy.Tips4Trips.dto.info.PlaceInfoDTO;
+import com.softserve.academy.Tips4Trips.entity.administration.Account;
 import com.softserve.academy.Tips4Trips.entity.file.Image;
 import com.softserve.academy.Tips4Trips.entity.place.Place;
 import com.softserve.academy.Tips4Trips.exception.DataNotFoundException;

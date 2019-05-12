@@ -1,8 +1,10 @@
 package com.softserve.academy.Tips4Trips.dto.info;
 
+import com.softserve.academy.Tips4Trips.dto.file.ImageDTO;
 import com.softserve.academy.Tips4Trips.dto.info.AccountInfoDTO;
 
 import java.util.Date;
+import java.util.List;
 
 public class PostInfoDTO {
 
@@ -11,8 +13,16 @@ public class PostInfoDTO {
     private Date creationDate;
     private String content;
     private String photoPath;
-
+    private List<ImageDTO> images;
     public PostInfoDTO() {
+    }
+
+    public List<ImageDTO> getImages() {
+        return images;
+    }
+
+    public void setImages(List<ImageDTO> images) {
+        this.images = images;
     }
 
     public String getPhotoPath() {

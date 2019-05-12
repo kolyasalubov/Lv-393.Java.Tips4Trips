@@ -48,10 +48,7 @@ export class CommentComponent implements OnInit {
   deleteComment(id:number,comment:Comment){
 
     var isSubmit= confirm("Do you really want to delete a comment?");
-    console.log(isSubmit);
     if (isSubmit){
-      console.log(id);
-      console.log(comment.accountInfo.id);
       this.commentService.deleteComment(id,this.account.id).subscribe(item=>{this.allComments
         .splice(this.allComments.indexOf(comment),1)});}
 
@@ -61,12 +58,10 @@ export class CommentComponent implements OnInit {
   }
   onSubmit(f: NgForm) {
     this.isButtonDisabled = true;
-    console.log(this.commentProfile.text);
     //setTimeout(()=>{ this.showComments() },400 )
     this.commentProfile.accountInfo = this.account;
     this.commentProfile.creationDate = new Date();
     this.commentProfile.postId = this.postid;
-    console.log(this.account.imageId)
     this.commentService.createComment(this.commentProfile).subscribe(item => {
       this.allComments.push(item);
       f.resetForm();
@@ -77,7 +72,6 @@ export class CommentComponent implements OnInit {
 
   ngOnInit() {
     this.authService.getCurrentUser().subscribe(data => {
-      console.log(data);
       this.account.id = data.id;
       this.account.firstName = data.firstName;
       this.account.lastName = data.lastName;

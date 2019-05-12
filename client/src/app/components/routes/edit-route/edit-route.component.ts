@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import { Route } from 'src/app/model/route.model';
 import { RouteService } from 'src/app/service/route.service';
 import { AccountInfo } from 'src/app/model/account-info.model';
@@ -6,6 +6,7 @@ import { PlaceService } from 'src/app/place.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CustomAuthService } from '../../authentication/custom-auth.service';
 import { FormControl } from '@angular/forms';
+import {RouteMapComponent} from "../../map/route-map/route-map.component";
 
 @Component({
   selector: 'app-edit-route',
@@ -13,6 +14,7 @@ import { FormControl } from '@angular/forms';
   styleUrls: ['./edit-route.component.css']
 })
 export class EditRouteComponent implements OnInit {
+  @ViewChild(RouteMapComponent) private child: RouteMapComponent;
   route: Route;
   placeName: string;
   myControl = new FormControl();
@@ -34,6 +36,8 @@ export class EditRouteComponent implements OnInit {
     const id = Number(this.ngRoute.snapshot.paramMap.get('id'));
     this.routeService.findById(id).subscribe(data => {
       this.route = data;
+      this.child.placeList = this.route.places;
+      this.child.getDirection();
       this.authService.getCurrentUser().subscribe(account => {
         if (!(account.role.toLowerCase() == "admin" || account.role.toLowerCase() == "moderator"
           || (!this.route.verified && this.route.authorInfo.id == account.id))) {
@@ -56,6 +60,8 @@ export class EditRouteComponent implements OnInit {
         if (!this.route.places.map(place => place.id).includes(data[0].id)) {
           this.route.places.push(data[0]);
           this.placeName = null;
+          this.child.placeList = this.route.places;
+          this.child.getDirection();
         }
       }
     });
@@ -76,6 +82,8 @@ export class EditRouteComponent implements OnInit {
 
   removePlace(id: number): void {
     this.route.places = this.route.places.filter(p => p.id != id);
+    this.child.placeList = this.route.places;
+    this.child.getDirection();
   }
 
 }

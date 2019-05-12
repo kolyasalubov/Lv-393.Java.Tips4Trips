@@ -7,6 +7,7 @@ import {CustomAuthService} from "../../authentication/custom-auth.service";
 import {Account} from "../../../model/account.model";
 import {ImageUploadFormComponent} from "../../image-upload-form/image-upload-form.component";
 import {ImageService} from "../../../image.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-create-post',
@@ -21,7 +22,7 @@ export class CreatePostComponent implements OnInit {
   uploadPhoto: boolean = false;
 
   constructor(private routeService: RouteService, private postService: PostService,
-              private authService: CustomAuthService) {
+              private authService: CustomAuthService, private router: Router,) {
   }
 
   ngOnInit() {
@@ -34,7 +35,11 @@ export class CreatePostComponent implements OnInit {
       null,
       null,
       null,
-      null,null,null,null,null );
+      null,
+      null,
+      null,
+      null,
+      null);
 
     this.authService.getCurrentUser().subscribe(data => {
       this.post.author.id = data.id;
@@ -58,10 +63,14 @@ export class CreatePostComponent implements OnInit {
           this.post = result;
           this.url = this.url + this.post.id + '/images';
           this.uploadPhoto = true;
-          window.location.href = 'http://localhost:4200/post/' + this.post.id;
+          // window.location.href = 'http://localhost:4200/post/' + this.post.id;
         }
       );
     }
+  }
+
+  navigate() {
+    this.router.navigateByUrl('/post/' + this.post.id);
   }
 
   validate(): boolean {

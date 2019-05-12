@@ -1,7 +1,6 @@
 package com.softserve.academy.Tips4Trips.service;
 
-import com.softserve.academy.Tips4Trips.dto.converter.ImageConverter;
-import com.softserve.academy.Tips4Trips.entity.City;
+import com.softserve.academy.Tips4Trips.entity.city.City;
 import com.softserve.academy.Tips4Trips.entity.place.Monument;
 import com.softserve.academy.Tips4Trips.repository.CityRepository;
 import com.softserve.academy.Tips4Trips.repository.MonumentRepository;
@@ -21,7 +20,7 @@ public class MonumentService {
 
     @Autowired
     public MonumentService(MonumentRepository repository,
-                           CityRepository cityRepository){
+                           CityRepository cityRepository) {
         this.repository = repository;
         this.cityRepository = cityRepository;
     }

@@ -136,7 +136,7 @@ public class TripController {
     }
 
     @DeleteMapping("/delete/{id}")
-    //@PreAuthorize("hasRole('ROLE_USER')")
+        //@PreAuthorize("hasRole('ROLE_USER')")
     public void deleteById(@PathVariable Long id) {
         logger.info("trips delete by id method executing: ");
         tripService.delete(id);

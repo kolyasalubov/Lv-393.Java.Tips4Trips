@@ -1,0 +1,54 @@
+<section class="ftco-section contact-section">
+  <div class="container">
+    <div class="col-md-12 col-lg-12 main-content">
+      <h1 class="mb-4">City edit</h1>
+      <form (ngSubmit)="create()" method="post" enctype="multipart/form-data">
+        <table style="width: 100%;margin-top: 5%;">
+          <tr>
+            <td>
+              <h4>
+                Name
+              </h4>
+            </td>
+            <td>
+              <input class="form-control" style="width: 100%;" type="text" placeholder="Name" name="name" maxlength="35"
+                [(ngModel)]="city.name"></td>
+          </tr>
+          <tr>
+            <td>
+              <h4 style="margin-top: -20px;">
+                Position
+              </h4>
+            </td>
+            <td>
+              <div style="height: 200px; width: 400px">
+                <app-map-display [latitude]="position.coordinateX" [longitude]="position.coordinateY"
+                  [zoom]="zoom"></app-map-display>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <h4 style="margin-top: -20px;">
+                Country
+              </h4>
+            </td>
+            <td>
+              <div>
+                <select style="width: 100%" (change)="setCountryId($event.target.value)">
+                  <option disabled>Select country</option>
+                  <option *ngFor="let c of countries" value={{c.id}}>{{c.name}}</option>
+                </select>
+              </div>
+            </td>
+          </tr>
+        </table>
+        <input class="btn btn-primary btn-lg" type="submit" (click)="save();" value="Update"><br>
+      </form>
+    </div>
+    <div>
+      {{ resultText }}
+    </div>
+  </div>
+</section>
+<script src="../../../../assets/js/main.js"></script>

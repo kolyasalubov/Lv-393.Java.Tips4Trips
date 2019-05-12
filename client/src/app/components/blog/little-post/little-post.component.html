@@ -1,5 +1,5 @@
  <a href="post/{{post.id}}" id="block" class="block-20" >
-   <app-image-details [fileUpload]="imageURL"></app-image-details>
+   <app-image-details [fileUpload]="imageURL+post.images[0].id"></app-image-details>
   </a>
 
   <div class="text mt-3 float-right d-block">

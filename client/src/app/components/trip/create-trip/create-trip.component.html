@@ -1,4 +1,3 @@
-<app-header></app-header>
 <div class="hero-wrap js-fullheight"
      style="background-image: url('../../../assets/images/bg_1.jpg'); padding-bottom: 5%;"
      data-stellar-background-ratio="0.5">
@@ -24,8 +23,9 @@
               <div class="col-md-8 col-lg-6 main-content">
                 <img src="" alt="Image" class="img-fluid mb-5">
 
-                <input class="ion-android-radio-button-off" name="image_uploads" type="file"
-                       accept=".jpg, .jpeg, .png" style="margin: 5%;margin-left: 0;"><br>
+                <app-image-upload-form [multiple]="true" [requestType]="'POST'" [setStorageURL]="url"
+                                       [UploadStart]="uploadPhoto" (noAction)="navigate()"></app-image-upload-form>
+                <br>
                 <p>*File have to be less than 5 MB</p>
               </div>
               <table style="width: 100%;margin-top: 5%;">
@@ -104,4 +104,4 @@
 </section>
 
 <section class="ftco-subscribe" style="background-image: url(../../../assets/images/bg_1.jpg);"></section>
-<app-footer></app-footer>
+

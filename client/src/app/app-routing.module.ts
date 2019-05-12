@@ -43,7 +43,13 @@ import { EditMonumentComponent } from "./components/create-post-place/edit-monum
 import { ImagetestComponent } from './components/imagetest/imagetest.component';
 import { MaptestComponent } from './components/maptest/maptest.component';
 import { MapPickerComponent } from './components/map/map-picker/map-picker.component';
-import {ChatComponent} from "./components/chat/chat.component";
+import { ChatComponent } from "./components/chat/chat.component";
+import { CountryListComponent } from './components/country-list/country-list.component';
+import { CountryEditComponent } from './components/country-edit/country-edit.component';
+import { CityListComponent } from './components/city-list/city-list.component';
+import { CityEditComponent } from './components/city-edit/city-edit.component';
+import { CityRatingComponent } from './components/city-rating/city-rating.component';
+import { CityRatingPageComponent } from './components/city-rating-page/city-rating-page.component';
 import { SocialHandlerComponent } from './components/authentication/social-handler/social-handler.component';
 
 const routes: Routes = [
@@ -104,6 +110,12 @@ const routes: Routes = [
   { path: 'monuments/edit/:id', component: EditMonumentComponent },
   { path: 'hotels/edit/:id', component: EditHotelComponent },
   { path: 'maptest', component: MapPickerComponent },
+  { path: 'countries', component: CountryListComponent },
+  { path: 'country/:id', component: CountryEditComponent },
+  { path: 'cities', component: CityListComponent },
+  { path: 'city/:id', component: CityEditComponent },
+  { path: 'city-rating', component: CityRatingComponent },
+  { path: 'city-rating/:id', component: CityRatingPageComponent },
   { path: '404', component: ErrorComponent },
   { path: 'chat', component: ChatComponent },
   { path: '**', redirectTo: '/404' }
