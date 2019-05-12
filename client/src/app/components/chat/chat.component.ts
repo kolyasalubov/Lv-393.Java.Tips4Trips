@@ -98,5 +98,9 @@ export class ChatComponent implements OnInit, AfterViewChecked  {
 
   }
 
+  getImageString(id: number) {
+    return "http://localhost:8080/accounts/" + id + "/image";
+  }
+
 
 }
