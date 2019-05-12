@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
- 
 import { CustomAuthService } from '../custom-auth.service';
 import { TokenStorageService } from '../token/token-storage.service';
 import { SignInForm } from '../../../model/authentication/signin-form.model';
 import { Router } from "@angular/router";
-import {GOOGLE_AUTH_URL} from '../../../constants';
+import {GOOGLE_AUTH_URL, FACEBOOK_AUTH_URL} from '../../../constants';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-login',
@@ -22,6 +22,7 @@ export class LoginComponent implements OnInit {
     private router: Router) { }
  
   ngOnInit() {
+    this.fullHeight(5);
   }
  
   onSubmit() {
@@ -35,7 +36,7 @@ this.authService.attemptAuth(this.loginInfo).subscribe(
       
         this.tokenStorage.saveToken(data);
         this.authService.getCurrentUser().subscribe(
-          user => this.tokenStorage.saveAuthorities(user.role))
+          user => this.tokenStorage.saveAuthorities(user.role));
 
         this.isLoginFailed = false;
         this.isLoggedIn = true;
@@ -61,8 +62,17 @@ this.authService.attemptAuth(this.loginInfo).subscribe(
   }
 
   googleSignIn(){
-   
     window.location.href=GOOGLE_AUTH_URL;
   }
 
+  facebookSignIn(){
+    window.location.href=FACEBOOK_AUTH_URL;
+  }
+
+  fullHeight = function(divide) {
+		$('.js-fullheight').css('height', $(window).height()/divide);
+		$(window).resize(function(){
+			$('.js-fullheight').css('height', $(window).height());
+		});
+    };
 }
