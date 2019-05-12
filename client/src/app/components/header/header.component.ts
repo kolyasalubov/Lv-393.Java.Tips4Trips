@@ -34,7 +34,7 @@ export class HeaderComponent implements OnInit {
       console.log(data);
       if (data.id > 0) {
         this.login = data.email;
-        if (this.activatedRoute.snapshot.url[0].path == 'account') {
+        if (this.activatedRoute.snapshot.url[0] != undefined && this.activatedRoute.snapshot.url[0].path == 'account') {
           this.newNotification = false;
         }
         else {
