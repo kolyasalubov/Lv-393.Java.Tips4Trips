@@ -84,11 +84,12 @@ export class FeedbackPlaceCreateComponent implements OnInit {
   }
 
   save() {
-    this.authService.getCurrentUser().subscribe(data => {
-      this.feedbackPlaceModel.creator.id = data.id;
-    });
+    // this.authService.getCurrentUser().subscribe(data => {
+    //   this.feedbackPlaceModel.creator.id = data.id;
+      this.feedbackPlaceModel.creator.id = 1;
+    // });
     if (this.valid()) {
-      this.service.create(this.feedbackPlaceModel);
+      this.service.create(this.feedbackPlaceModel).subscribe(data=>{console.log(data)});
     }
   }
 
