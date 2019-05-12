@@ -82,7 +82,7 @@ export class CreateTripComponent implements OnInit {
         this.trip = result;
         this.url = this.url + this.trip.id + '/images';
         this.uploadPhoto = true;
-        window.location.href = 'http://localhost:4200/trip/' + this.trip.id;
+        //window.location.href = 'http://localhost:4200/trip/' + this.trip.id;
       });
     }
   }
