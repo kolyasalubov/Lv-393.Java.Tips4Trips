@@ -18,6 +18,8 @@ export class CreateTripComponent implements OnInit {
   trip: TripDetailsDTO;
   routeName: string;
   subscribers: AccountInfo[] = [];
+  url: string = 'http://localhost:8080/trips/';
+  uploadPhoto: boolean = false;
 
   constructor(
     private routeService: RouteService,
@@ -51,7 +53,7 @@ export class CreateTripComponent implements OnInit {
         null,
         null,
         null,
-        null,null,null,null,null);
+        null, null, null, null, null);
       this.subscribers[0] = new AccountInfo();
       this.trip.creator = data;
       this.trip.subscribers = this.subscribers;
@@ -76,12 +78,12 @@ export class CreateTripComponent implements OnInit {
   save(): void {
     if (this.validate()) {
       this.trip.creationDate = new Date();
-      console.log(this.trip);
-
-      this.tripService.createTrip(this.trip).subscribe(result => this.trip = result);
-      setTimeout(() => {
-        window.location.href = 'http://localhost:4200/trip/page';
-      }, 100);
+      this.tripService.createTrip(this.trip).subscribe(result => {
+        this.trip = result;
+        this.url = this.url + this.trip.id + '/images';
+        this.uploadPhoto = true;
+        window.location.href = 'http://localhost:4200/trip/' + this.trip.id;
+      });
     }
   }
 

@@ -24,8 +24,8 @@
               <div class="col-md-8 col-lg-6 main-content">
                 <img src="" alt="Image" class="img-fluid mb-5">
 
-                <input class="ion-android-radio-button-off" name="image_uploads" type="file"
-                       accept=".jpg, .jpeg, .png" style="margin: 5%;margin-left: 0;"><br>
+                <app-image-upload-form [multiple]="true" [requestType]="'POST'" [setStorageURL]="url" [UploadStart]="uploadPhoto"></app-image-upload-form>
+                <br>
                 <p>*File have to be less than 5 MB</p>
               </div>
               <table style="width: 100%;margin-top: 5%;">
