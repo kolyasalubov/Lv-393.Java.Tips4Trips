@@ -41,8 +41,7 @@ export class ImageUploadFormComponent implements OnInit {
         }
       }
   }
-  @Output() uploaded: EventEmitter<boolean> = new EventEmitter();
-
+  @Output() noAction: EventEmitter<boolean> = new EventEmitter();
 
   constructor(private uploadService: ImageService) { 
   }
@@ -78,8 +77,10 @@ export class ImageUploadFormComponent implements OnInit {
 
   upload() {
     console.log(11111111111111111111);
-    if (this.selectedFiles == null)
+    if (this.selectedFiles == null) {
+      this.noAction.emit(true);
       return;
+    }
     this.progress.percentage = 0;
  
     this.currentFileUpload = this.selectedFiles.item(0);
@@ -90,7 +91,7 @@ export class ImageUploadFormComponent implements OnInit {
         this.progress.percentage = Math.round(100 * event.loaded / event.total);
       } else if (event instanceof HttpResponse) {
         console.log('File is completely uploaded!');
-        this.uploaded.emit(true);
+        this.noAction.emit(true);
       }
     });
  
