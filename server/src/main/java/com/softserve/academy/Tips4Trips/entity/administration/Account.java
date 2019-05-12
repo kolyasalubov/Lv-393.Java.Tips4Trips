@@ -66,8 +66,8 @@ public class Account {
         inverseJoinColumns = {@JoinColumn(name = "subscriber_id", referencedColumnName = "id")})
     private List<Account> subscribers;
 
-    @OneToMany(mappedBy = "account", cascade = CascadeType.REMOVE)
-    private List<User> users;
+    @OneToOne(mappedBy = "account", cascade = CascadeType.REMOVE)
+    private User user;
 
     @OneToMany(mappedBy = "creator", cascade = CascadeType.REMOVE)
     private List<Sale> sales;
@@ -182,12 +182,20 @@ public class Account {
         this.subscribers = subscribers;
     }
 
-    public List<User> getUsers() {
-        return users;
+    public User getUser() {
+        return user;
     }
 
-    public void setUsers(List<User> users) {
-        this.users = users;
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Boolean getNewNotification() {
+        return newNotification;
+    }
+
+    public void setNewNotification(Boolean newNotification) {
+        this.newNotification = newNotification;
     }
 
     public List<Sale> getSales() {
