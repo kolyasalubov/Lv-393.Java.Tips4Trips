@@ -60,6 +60,7 @@ export class RouteMapComponent implements OnInit {
   private markerOptions: any;
   private waypointMarkers: MarkerOption;
   private visible: boolean = false;
+  travelMode = 'WALKING';
   
   ngOnInit() {
     this.getDirection();

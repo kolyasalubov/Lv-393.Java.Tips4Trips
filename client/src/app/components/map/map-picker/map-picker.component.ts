@@ -30,6 +30,8 @@ export class MapPickerComponent implements OnInit {
   @Input() zipSearch: boolean = false;
   @Input() setAddress: Function;
   @Input() locationUpdate: Function;
+  @Input() initialX = 0;
+  @Input() initialY = 0;
 
   geocoder: any;
   public location: Location = {
@@ -53,8 +55,10 @@ export class MapPickerComponent implements OnInit {
     this.wrapper = wrapper;
     this.formBind = formBind;
     this.mapsApiLoader.load().then(() => {
-    this.geocoder = new google.maps.Geocoder();
+      this.geocoder = new google.maps.Geocoder();
     });
+    this.location.latitude= this.initialX;
+    this.location.longitude= this.initialX;
   }
 
   ngOnInit() {
