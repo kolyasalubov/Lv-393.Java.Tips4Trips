@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import { Route } from 'src/app/model/route.model';
 import { RouteService } from 'src/app/service/route.service';
 import { AccountInfo } from 'src/app/model/account-info.model';
@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { CustomAuthService } from '../../authentication/custom-auth.service';
 import { FormControl } from '@angular/forms';
 import { startWith, map } from 'rxjs/operators';
+import {RouteMapComponent} from "../../map/route-map/route-map.component";
 
 @Component({
   selector: 'app-create-post-route',
@@ -15,6 +16,7 @@ import { startWith, map } from 'rxjs/operators';
 })
 export class CreateRouteComponent implements OnInit {
 
+  @ViewChild(RouteMapComponent) private child: RouteMapComponent;
   route: Route;
   placeName: string;
   myControl = new FormControl();
@@ -54,6 +56,8 @@ export class CreateRouteComponent implements OnInit {
         if (!this.route.places.map(place => place.id).includes(data[0].id)) {
           this.route.places.push(data[0]);
           this.placeName = null;
+          this.child.placeList = this.route.places;
+          this.child.getDirection();
         }
       }
     });
@@ -74,6 +78,8 @@ export class CreateRouteComponent implements OnInit {
 
   removePlace(id: number): void {
     this.route.places = this.route.places.filter(p => p.id != id);
+    this.child.placeList = this.route.places;
+    this.child.getDirection();
   }
 
   private _filter(value: string): string[] {
