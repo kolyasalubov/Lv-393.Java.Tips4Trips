@@ -2,7 +2,6 @@ package com.softserve.academy.Tips4Trips.dto.converter;
 
 import com.softserve.academy.Tips4Trips.controller.RestaurantController;
 import com.softserve.academy.Tips4Trips.dto.details.RestaurantDetailsDTO;
-import com.softserve.academy.Tips4Trips.entity.City;
 import com.softserve.academy.Tips4Trips.entity.place.Restaurant;
 import com.softserve.academy.Tips4Trips.service.CityService;
 import com.softserve.academy.Tips4Trips.service.RestaurantService;

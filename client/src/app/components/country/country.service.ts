@@ -7,9 +7,9 @@ import { Country } from '../../model/country.model';
     providedIn: 'root'
 })
 export class CountryService {
-  
+
     url: string = "http://localhost:8080/countries";
-    
+
     constructor(private http: HttpClient) { }
 
     createCountry(country: Country): Observable<Country> {
@@ -19,5 +19,18 @@ export class CountryService {
     getAll(): Observable<Country[]> {
         return this.http.get<Country[]>(this.url);
     }
+
+    deleteById(id: number) {
+        this.http.delete(this.url + '/delete/' + id).subscribe((s) => {});
+    }
+
+    getById(id: number): Observable<Country> {
+        return this.http.get<Country>(this.url + '/' + id);
+    }
+
+    updateCountry(country: Country) {
+        this.http.put(this.url + '/update', country).subscribe((s) => {console.log(s)});
+    }
+
 
 }

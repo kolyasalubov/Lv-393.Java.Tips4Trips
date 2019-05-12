@@ -6,7 +6,7 @@
     <div class="row d-flex contact-info">
       <div class="col-md-3 d-flex">
         <div class="align-self-stretch box p-4 text-center">
-          <div class="icon d-flex align-items-center justify-content-center">
+          <div class="icon d-flex align-items-center justify-content-center"  class="vcard bio">
             <!--<span class="icon-map-signs"><img src="http://localhost:8080/accounts/2/image"></span>-->
             <span class="icon-map-signs " >  <app-image-details  [fileUpload]="getImageString(tripDetailsDTO.creator.id)"></app-image-details> </span>
           </div>
@@ -14,6 +14,7 @@
           <p>{{tripDetailsDTO.creator.registrationDate}}</p>
         </div>
       </div>
+
       <div class="col-md-3 d-flex">
         <div class="align-self-stretch box p-4 text-center">
           <div class="icon d-flex align-items-center justify-content-center">
@@ -58,15 +59,14 @@
   <div class="container">
     <div class="row justify-content-center pb-5">
       <div class="col-md-12 heading-section text-center ftco-animate">
-        <h2 class="mb-4">Best Place to Travel</h2>
-        <p>Trip places</p>
+        <h2 class="mb-4">Trip places</h2>
       </div>
     </div>
     <div class="row"   >
       <div class="col-md-6 col-lg-3 ftco-animate" *ngFor="let place of tripDetailsDTO.route.places">
         <div class="project">
           <div class="img" >
-            <img  src="../../../../assets/images/destination-1.jpg" class="img-fluid" alt="Colorlib Template">
+            <img  src= "http://localhost:8080/places/2/image" class="img-fluid" alt="Colorlib Template">
           </div>
           <div class="text">
             <h4 class="price">{{place.id}}</h4>

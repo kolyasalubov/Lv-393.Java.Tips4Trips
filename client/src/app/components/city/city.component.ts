@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { City } from '../../model/city.model';
-import { Country } from '../../model/country.model';
 import { Position } from "../../model/position.model";
-import { CityService } from '../create-post-place/city.service'
+import { CityService } from './city.service';
 import { CountryService } from '../country/country.service';
+import { Country } from 'src/app/model/country.model';
 
 @Component({
   selector: 'app-city',
@@ -17,7 +17,7 @@ export class CityComponent implements OnInit {
   countries: Country[] = null;
   resultText: string = '';
 
-  constructor(private cityService: CityService,
+  constructor(private cityService: CityService, 
     private countryService: CountryService) { }
 
   ngOnInit() {
@@ -33,6 +33,11 @@ export class CityComponent implements OnInit {
 
   setCountryId(value) {
     this.city.countryId = value;
+  }
+
+  setCoordinates: Function = (x: number, y: number) => {
+    this.position.coordinateX = x;
+    this.position.coordinateY = y;
   }
 
 }
