@@ -1,7 +1,7 @@
 
 
 <section class="hero-wrap hero-wrap-2 js-fullheight"
-         style="background-image: url('../../../../assets/images/bg_1.jpg'); padding-bottom: 5%;"
+         style="height: 30%;background-image: url('../../../../assets/images/bg_1.jpg'); padding-bottom: 5%;"
          data-stellar-background-ratio="0.5">
   <div class="container">
     <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-center">
@@ -67,7 +67,7 @@
             <h1 class="mb-4">About</h1>
             <h2> {{accountProfile.about}} </h2>
             <br><br>
-            <div class="btn-group" role="group">
+            <div class="btn-group" role="group" *ngIf="role === 'ADMIN' || role === 'MODERATOR'">
               <a class="btn btn-info" href="/country">Create country</a>
               <a class="btn btn-info" href="/city">Create city</a>
               <span class="btn btn-info" routerLink="/create_place">Create place</span>

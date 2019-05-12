@@ -57,6 +57,7 @@ export class CreatePostComponent implements OnInit {
       this.postService.createTrip(this.post).subscribe(result => {
           this.post = result;
           this.url = this.url + this.post.id + '/images';
+          console.log(this.url);
           this.uploadPhoto = true;
           window.location.href = 'http://localhost:4200/post/' + this.post.id;
         }

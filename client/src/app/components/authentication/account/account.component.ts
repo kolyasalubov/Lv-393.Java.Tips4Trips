@@ -22,6 +22,7 @@ export class AccountComponent implements OnInit {
   trip: PageNotificationTrip;
   areTrips: boolean = false;
   massage: string = 'you don\'t have yet';
+  role: string;
 
   constructor(private accountService: AccountService,
               private authService: CustomAuthService,
@@ -37,6 +38,7 @@ export class AccountComponent implements OnInit {
         this.accountService.checkNotification(data.id).subscribe(() => {
         });
       }
+      this.role = data.role;
     });
 
     setTimeout(() => {
