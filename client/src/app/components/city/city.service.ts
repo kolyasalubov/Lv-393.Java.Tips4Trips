@@ -40,7 +40,7 @@ export class CityService {
     this.http.post(this.url + '/addFeedback', cityFeedback).subscribe((s) => { console.log(s) });
   }
 
-  getFeedbacks(cityId: number): Observable<CityFeedback[]>{
+  getFeedbacks(cityId: number): Observable<CityFeedback[]> {
     return this.http.get<CityFeedback[]>(this.url + '/getFeedbacks/' + cityId);
   }
 
@@ -48,8 +48,12 @@ export class CityService {
     return this.http.get<any>(this.url + '/getCityRating/' + cityId);
   }
 
-  getAllRating(): Observable<CityRating[]>  {
-    return this.http.get<CityRating[]>(this.url + '/getAllRating'); 
-    }
+  getAllRating(): Observable<CityRating[]> {
+    return this.http.get<CityRating[]>(this.url + '/getAllRating');
+  }
+
+  getAllRatingByCountryId(countryId: number): Observable<CityRating[]> {
+    return this.http.get<CityRating[]>("http://localhost:8080/cities/getAllRating/" + countryId);
+  }
 
 }

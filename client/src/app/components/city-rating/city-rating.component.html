@@ -1,11 +1,16 @@
-<app-header></app-header>
-<section class="hero-wrap hero-wrap-2 js-fullheight"
-  style="background-image: url('../../../../assets/images/bg_2.jpg');" data-stellar-background-ratio="0.5">
-  <div class="overlay" style="background:white;"></div>
-</section>
-
 <section class="ftco-section contact-section" style="margin-bottom: 90px;">
   <div class="container">
+    <div class="row justify-content-md-center">
+      <div class="col-sm-6">
+        <select style="width:100%" (change)="loadCitiesByCountry($event.target.value)">
+          <option disabled>Select country</option>
+          <option *ngFor="let c of countries" value={{c.id}}>{{c.name}}</option>
+        </select>
+      </div>
+      <div class="col-sm-1">
+        <button type="button" class="btn btn-primary btn-sm btn-block btn-res" (click)="resetCountry()">Reset</button>
+      </div>
+    </div>
     <div class="row">
       <div class="col-sm-4" *ngFor="let c of cities">
         <div class="card">
@@ -15,8 +20,10 @@
               <bar-rating theme="fontawesome-o" [(rate)]="c.averageRating" [max]="5"></bar-rating>
               <h5 class="card-title" style="margin-top: 10px;">({{c.averageRating}})</h5>
             </div>
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-              content. This content is a little bit longer.</p>
+            <div style="height: 200px; width: 320px">
+              <app-map-display [latitude]="c.position.coordinateX" [longitude]="c.position.coordinateY" [zoom]="zoom">
+              </app-map-display>
+            </div>
             <button [routerLink]="['/city-rating/',c.id]" type="button" class="btn btn-primary">Go to the city</button>
           </div>
         </div>
@@ -24,23 +31,4 @@
     </div>
   </div>
 </section>
-
-<!-- <section class="ftco-section">
-
-
-  <tr *ngFor="let c of cities">
-    <td>{{c.name}}</td>
-    <h1>City name</h1>
-  </tr>
-  <tr *ngFor="let c of countries">
-    <td>{{c.name}}</td>
-    <h1>County name</h1>
-  </tr>
-  <div class="pt-5 mt-5">
-  </div>
-  </div>
-  </div>
-</section> -->
-
-<app-footer></app-footer>
 <script src="../../../../assets/js/main.js"></script>

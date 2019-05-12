@@ -14,6 +14,7 @@ export class CountryEditComponent implements OnInit {
   id: number;
   country: Country = new Country(null, null, null);
   position: Position = new Position(0, 0);
+  zoom: number = ZoomLevel.Country;
 
   constructor(private countryService: CountryService,
     private router: Router,
@@ -31,9 +32,13 @@ export class CountryEditComponent implements OnInit {
 
   save(): void {
     this.country.position = this.position;
-      this.countryService.updateCountry(this.country);
-      this.router.navigate(['/countries']);
-      
+    this.countryService.updateCountry(this.country);
+    this.router.navigate(['/countries']);
+  }
+
+  setCoordinates: Function = (x: number, y: number) => {
+    this.position.coordinateX = x;
+    this.position.coordinateY = y;
   }
 
 }

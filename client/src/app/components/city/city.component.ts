@@ -35,6 +35,9 @@ export class CityComponent implements OnInit {
     this.city.countryId = value;
   }
 
-  
+  setCoordinates: Function = (x: number, y: number) => {
+    this.position.coordinateX = x;
+    this.position.coordinateY = y;
+  }
 
 }

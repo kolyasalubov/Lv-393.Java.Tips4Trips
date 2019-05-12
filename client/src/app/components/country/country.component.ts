@@ -27,4 +27,9 @@ export class CountryComponent implements OnInit {
     this.resultText = 'Country created';
   }
 
+  setCoordinates: Function = (x: number, y: number) => {
+    this.position.coordinateX = x;
+    this.position.coordinateY = y;
+  }
+
 }

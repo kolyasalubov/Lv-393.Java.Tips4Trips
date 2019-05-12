@@ -18,7 +18,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @CrossOrigin
@@ -56,7 +58,14 @@ public class CityController {
 
     @GetMapping("/getAllRating")
     public ResponseEntity<List<CityRatingDTO>> getAllRating() {
-        return new ResponseEntity<>(cityConverter.convertToRatingDTO(cityService.findAll()), HttpStatus.OK);
+        List<CityRatingDTO> cityRatingDTOS = cityConverter.convertToRatingDTO(cityService.findAll());
+        return new ResponseEntity<>(sortByRating(cityRatingDTOS), HttpStatus.OK);
+    }
+
+    @GetMapping("/getAllRating/{countryId}")
+    public ResponseEntity<List<CityRatingDTO>> getAllRatingByCityId(@PathVariable Long countryId) {
+        List<CityRatingDTO> cityRatingDTOS = cityConverter.convertToRatingDTO(cityService.findByCountryId(countryId));
+        return new ResponseEntity<>(sortByRating(cityRatingDTOS), HttpStatus.OK);
     }
 
     @PostMapping("/addFeedback")
@@ -116,6 +125,12 @@ public class CityController {
     public void deleteById(@PathVariable Long id) {
         logger.info("delete city by id method executing: ");
         cityService.deleteById(id);
+    }
+
+    private List<CityRatingDTO> sortByRating(List<CityRatingDTO> cityRatingDTOS) {
+        return cityRatingDTOS.stream()
+                .sorted(Comparator.comparing(CityRatingDTO::getAverageRating).reversed())
+                .collect(Collectors.toList());
     }
 
 }

@@ -38,6 +38,10 @@ public class CityService {
         return cityRepository.findAll();
     }
 
+    public List<City> findByCountryId(Long countryId) {
+        return cityRepository.findByCountryId(countryId);
+    }
+
     public void deleteById(Long id) {
         cityRepository.findById(id).ifPresent(cityRepository::delete);
     }
@@ -60,10 +64,13 @@ public class CityService {
     public double getCityRating(Long id) {
         List<CityFeedback> feedbacks = cityFeedbackRepository.findByCityId(id);
         double avgRating = 0;
-        for (CityFeedback feedback : feedbacks) {
-            double averageRating = feedback.getAverageRating();
-            avgRating += averageRating;
+        if (feedbacks != null && !feedbacks.isEmpty()) {
+            for (CityFeedback feedback : feedbacks) {
+                double averageRating = feedback.getAverageRating();
+                avgRating += averageRating;
+            }
+            avgRating /= feedbacks.size();
         }
-        return avgRating / feedbacks.size();
+        return avgRating;
     }
 }

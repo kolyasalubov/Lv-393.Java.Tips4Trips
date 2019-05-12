@@ -15,6 +15,7 @@ export class CityRatingComponent implements OnInit {
   countries: Country[] = null;
   cities: CityRating[] = null;
   closeResult: string;
+  zoom: number = ZoomLevel.City;
   
 
   constructor(private cityService: CityService,
@@ -24,6 +25,14 @@ export class CityRatingComponent implements OnInit {
   ngOnInit() {
     this.cityService.getAllRating().subscribe(data => this.cities = data);
     this.countryService.getAll().subscribe(data => this.countries = data);
+  }
+
+  loadCitiesByCountry(countryId:number) {
+    this.cityService.getAllRatingByCountryId(countryId).subscribe(data => this.cities = data);
+  }
+
+  resetCountry() {
+    window.location.reload();
   }
 
 }

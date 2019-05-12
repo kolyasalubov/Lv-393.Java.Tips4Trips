@@ -19,7 +19,7 @@ export class CityRatingPageComponent implements OnInit {
   position: Position = new Position(0, 0);
   closeResult: string;
   cityRating: number;
-
+  zoom: number = ZoomLevel.City;
 
   constructor(private cityService: CityService,
     private activatedRoute: ActivatedRoute,
@@ -43,6 +43,11 @@ export class CityRatingPageComponent implements OnInit {
     this.cityService.saveFeedback(this.cityFeedback);
     console.log(this.cityFeedback);
     window.location.reload();
+  }
+
+  setCoordinates: Function = (x: number, y: number) => {
+    this.position.coordinateX = x;
+    this.position.coordinateY = y;
   }
 
 }
