@@ -1,4 +1,4 @@
-<app-header></app-header>
+
 <div class="hero-wrap js-fullheight"
   style="background-image: url('../../../assets/images/bg_1.jpg'); padding-bottom: 5%;"
   data-stellar-background-ratio="0.5">
@@ -13,12 +13,16 @@
     </div>
   </div>
 </div>
+
 <section class="ftco-section bg-light">
   <div style="text-align:center; width:70%; margin: auto;">
     <h1 style="text-align: center;">{{route.name}}</h1>
     <div style="display: inline-block; margin:auto;">
       <h4>Creation Date: {{route.creationDate}}</h4>
       <h6 *ngIf="route.verified">verified</h6>
+      <div style="margin:auto; height: 35em; width: 100%; padding: 2%;">
+        <app-route-map [places]="route.places"></app-route-map>
+      </div>
       <h4 style="text-align: left;">Places: </h4>
       <div class="card-deck mt-2">
           <div class="card" *ngFor="let place of route.places" style="background: #f8f9fa !important; max-width: 18rem; min-width: 18rem; display: inline-block; border: none;" >
@@ -34,7 +38,6 @@
     </div>
   </div>
 </section>
-
 <section class="ftco-subscribe" style="background-image: url(../../../assets/images/bg_1.jpg);">
 </section>
-<app-footer></app-footer>
+

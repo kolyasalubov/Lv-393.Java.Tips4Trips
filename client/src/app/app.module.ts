@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -86,6 +86,8 @@ import { SearchNavbarComponent } from './components/search/search-navbar/search-
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material';
+import {RouteMapComponent} from "./components/map/route-map/route-map.component";
+import {AgmDirectionModule} from "agm-direction";
 
 
 @NgModule({
@@ -165,6 +167,7 @@ import {MatInputModule} from '@angular/material';
     SocialHandlerComponent,
     PlaceInfoComponent,
     SearchNavbarComponent,
+    RouteMapComponent
   ],
   imports: [
     BrowserModule,
@@ -177,13 +180,15 @@ import {MatInputModule} from '@angular/material';
     BrowserAnimationsModule,
     MatAutocompleteModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    AgmDirectionModule
   ],
   providers: [
     httpInterceptorProviders,
     GoogleMapsAPIWrapper
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule {
 }

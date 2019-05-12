@@ -10,20 +10,16 @@ import {Router} from '@angular/router';
 })
 export class BigPostService {
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(private http: HttpClient) {
   }
 
   private urlPage = 'http://localhost:8080/posts/';
 
 
   getPost(page: number): Observable<BigPostModel> {
-    let url = this.urlPage;
-    url = url + page;
-    return this.http.get<BigPostModel>(url)
+    return this.http.get<BigPostModel>(this.urlPage + page)
       .pipe(map(response => {
-          const data = response;
-          console.log(data);
-          return data;
-        }));
+        return response;
+      }));
   }
 }

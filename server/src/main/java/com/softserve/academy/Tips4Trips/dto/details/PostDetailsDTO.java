@@ -7,7 +7,7 @@ import com.softserve.academy.Tips4Trips.dto.info.RouteInfoDTO;
 import java.util.List;
 
 public class PostDetailsDTO extends PostInfoDTO {
-    private List<ImageDTO> images;
+
     private String content;
     private RouteInfoDTO routeInfo;
     private String likes;
@@ -16,14 +16,6 @@ public class PostDetailsDTO extends PostInfoDTO {
     private Long authorId;
     private String authorFirstName;
     private String authorLastName;
-
-    public List<ImageDTO> getImages() {
-        return images;
-    }
-
-    public void setImages(List<ImageDTO> images) {
-        this.images = images;
-    }
 
     public String getContent() {
         return content;

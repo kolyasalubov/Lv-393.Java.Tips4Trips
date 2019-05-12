@@ -1,4 +1,4 @@
-<app-header></app-header>
+
 <section class="hero-wrap hero-wrap-2 js-fullheight"
   style="background-image: url('../../../../assets/images/bg_2.jpg'); padding-bottom: 40%;"
   data-stellar-background-ratio="0.5">
@@ -12,12 +12,12 @@
             Sign In With
           </span>
           
-          <a href="#" style='display: inline-block; margin-right: 20px' class="btn-face m-b-20">
+          <button style='display: inline-block; margin-right: 20px' class="btn-face m-b-20" (click)='facebookSignIn()'>
             <i class="fa fa-facebook-official"></i>
             Facebook
-          </a>
+          </button>
 
-          <button style='display: inline-block;' (click)='googleSignIn()' class="btn-google m-b-20">
+          <button style='display: inline-block;' class="btn-google m-b-20" (click)='googleSignIn()'>
             <img src="../../../../assets/images/icons/icon-google.png" alt="GOOGLE">
             Google
           </button>
@@ -88,5 +88,5 @@
 <!--===============================================================================================-->
 <script src="../../../../assets/js/login.js"></script>
 
-<app-footer></app-footer>
+
 <script src="../../../../assets/js/main.js"></script>

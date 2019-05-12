@@ -1,4 +1,4 @@
-<app-header></app-header>
+
 <section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('../../../../assets/images/bg_2.jpg');"
          data-stellar-background-ratio="0.5">
   <div class="overlay" style="background:white;"></div>
@@ -154,7 +154,7 @@
                       <div style="color: salmon; font-style: italic" *ngIf="formGroup.get('workingDays').invalid">Choose at least one day</div>
                   </div>
                 </tr>
-                <app-image-upload-form [multiple]="false" [requestType]="'PUT'" [setStorageURL]="photoUrl" [setUploadedImages]="imageURLs" [UploadStart]="uploadPhoto" (uploaded)="navigate()"></app-image-upload-form>
+                <app-image-upload-form [multiple]="false" [requestType]="'PUT'" [setStorageURL]="photoUrl" [setUploadedImages]="imageURLs" [UploadStart]="uploadPhoto" (noAction)="navigate()"></app-image-upload-form>
               </table>
               <input *ngIf="formGroup.valid" class="category submit"
                      style="padding: 3%;
@@ -174,5 +174,5 @@
   </div>
 </section>
 
-<app-footer></app-footer>
+
 <script src="../../../../assets/js/main.js"></script>
