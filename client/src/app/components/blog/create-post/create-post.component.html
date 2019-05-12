@@ -1,6 +1,5 @@
-
 <section class="hero-wrap hero-wrap-2 js-fullheight"
-         style="background-image: url('../../../../assets/images/bg_1.jpg'); padding-bottom: 30%;"
+         style="height:15%;background-image: url('../../../../assets/images/bg_1.jpg'); padding-bottom: 30%;"
          data-stellar-background-ratio="0.5">
 </section>
 
@@ -14,7 +13,8 @@
               <h1 class="mb-4">Create a new post</h1>
               <div class="col-md-8 col-lg-6 main-content">
                 <img src="" alt="Image" class="img-fluid mb-5">
-                <app-image-upload-form [multiple]="true" [requestType]="'POST'" [setStorageURL]="url" [UploadStart]="uploadPhoto"></app-image-upload-form>
+                <app-image-upload-form [multiple]="true" [requestType]="'POST'" [setStorageURL]="url"
+                                       [UploadStart]="uploadPhoto" (noAction)="navigate()"></app-image-upload-form>
                 <p>*File have to be less than 5 MB</p>
               </div>
               <table style="width: 100%;margin-top: 5%;">
