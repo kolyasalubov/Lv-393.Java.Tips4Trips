@@ -9,7 +9,7 @@
             <section class="container">
                 <div class="row blog-entries element-animate">
                     <div class="col-md-12 col-lg-8 main-content" style="padding-left: 0px;">
-                        <form enctype="multipart/form-data">
+                        <form enctype="multipart/form-data" [formGroup]="formGroup">
                             <h1 class="mb-4">Edit route</h1>
                             <table style="width: 100%;margin-top: 5%;">
                                 <tr>
@@ -20,8 +20,10 @@
                                     </td>
                                     <td>
                                         <input class="form-control" style="width: 100%;" type="text"
-                                            [(ngModel)]="route.name" placeholder="Name" value="{{route.name}}"
-                                            name="name" maxlength="26"></td>
+                                            [(ngModel)]="route.name" formControlName="name" placeholder="Name"
+                                            value="{{route.name}}" name="name" maxlength="35"
+                                            [ngClass]="formGroup.get('name').invalid ? 'invalid-input' : 'valid-input'">
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>
@@ -41,6 +43,14 @@
                                             </mat-autocomplete>
                                             <button (click)="addPlace()" class="submit px-3">Add Place</button>
                                         </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        <p *ngFor="let alert of alerts">
+                                            <ngb-alert type='danger' (close)="close(alert)">{{ alert }}</ngb-alert>
+                                        </p>
                                     </td>
                                 </tr>
                                 <tr>
