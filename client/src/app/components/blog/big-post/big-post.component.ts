@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {BigPostService} from './big-post.service';
 import {BigPostModel} from '../../../model/big-post.model';
-import {forEach} from "@angular/router/src/utils/collection";
 
 @Component({
   selector: 'app-big-post',
