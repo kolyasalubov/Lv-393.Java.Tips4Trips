@@ -16,7 +16,8 @@ export class FeedbackPlaceService {
   private urlPage = 'http://localhost:8080/feedback/';
 
   create(feedback: FeedbackPlaceModel): Observable<FeedbackPlaceModel> {
-    return this.http.post<FeedbackPlaceModel>(this.urlPage + 'create/', feedback);
+    console.log(feedback);
+    return this.http.post<FeedbackPlaceModel>('http://localhost:8080/feedback/create', feedback);
   }
 
   getByPlaceIdAndPage(placeId: number, page: number): Observable<PageFeedbackPlaceModel> {
