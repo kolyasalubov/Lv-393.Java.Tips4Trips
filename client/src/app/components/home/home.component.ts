@@ -27,8 +27,7 @@ export class HomeComponent implements OnInit {
   title = 'tips4trips-app';
   pagePost: PagelittlepostModel;
 
-  constructor(private blogserv: BlogService, private router: Router,
-    private authenticationService: CustomAuthService) {
+  constructor(private blogserv: BlogService) {
   }
 
   ngOnInit() {
@@ -36,8 +35,5 @@ export class HomeComponent implements OnInit {
       .subscribe(data => {
         this.pagePost = data;
       });
-    this.authenticationService.getCurrentUser().subscribe(
-      data => console.log(data)
-    );
   };
 }
