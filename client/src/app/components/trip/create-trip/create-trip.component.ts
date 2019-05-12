@@ -87,6 +87,10 @@ export class CreateTripComponent implements OnInit {
     }
   }
 
+  navigate() {
+    this.router.navigateByUrl('/trip/' + this.trip.id);
+  }
+
   validate(): boolean {
     return this.trip.route != null &&
       this.trip.name != null &&
