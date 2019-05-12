@@ -18,6 +18,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class RouteService {
@@ -52,6 +53,12 @@ public class RouteService {
 
     public Page<Route> findByVerified(boolean verified, Pageable pageable) {
         return repository.findByVerified(verified, pageable);
+    }
+
+    public List<String> findDistinctNamesContaining(String name) {
+        return repository
+                .findTop5ByNameContainingIgnoreCaseOrderByName(name)
+                .stream().map(Route::getName).collect(Collectors.toList());
     }
 
     public List<Route> findByAuthorId(Long authorId) {

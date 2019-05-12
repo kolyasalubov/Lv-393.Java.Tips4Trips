@@ -21,5 +21,8 @@ export class RouteService {
   createRoute(route: Route): Observable<Route> {
     return this.http.post<Route>(this.baseUrl + "create", route);
   }
+  getNamesContaining(name: string): Observable<string[]> {
+    return this.http.get<string[]>(this.baseUrl + "names/" + name);
+  }
 
 }
