@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import { RouteService } from 'src/app/service/route.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Route } from 'src/app/model/route.model';
@@ -7,6 +7,7 @@ import { Location } from '@angular/common';
 import { PlaceInfo } from 'src/app/model/place-info.model';
 import { CustomAuthService } from '../../authentication/custom-auth.service';
 import { Account } from '../../../model/account.model';
+import {RouteMapComponent} from "../../map/route-map/route-map.component";
 
 @Component({
   selector: 'app-route',
@@ -14,7 +15,7 @@ import { Account } from '../../../model/account.model';
   styleUrls: ['./route.component.css']
 })
 export class RouteComponent implements OnInit {
-
+  //@ViewChild(RouteMapComponent) child: RouteMapComponent;
   route: Route;
   hasAuthority: boolean = false;
   currUser: Account;
@@ -42,6 +43,9 @@ export class RouteComponent implements OnInit {
         this.hasAuthority = true;
       }
     });
+  }
+
+  ngAfterViewInit() {
   }
 
   goBack(): void {
