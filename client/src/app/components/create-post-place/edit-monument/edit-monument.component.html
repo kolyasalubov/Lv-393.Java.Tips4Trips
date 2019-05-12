@@ -79,7 +79,7 @@
                     </div>
                   </td>
                 </tr>
-                <app-image-upload-form [multiple]="false" [requestType]="'PUT'" [setStorageURL]="photoUrl" [setUploadedImages]="imageURLs" [UploadStart]="uploadPhoto" (uploaded)="navigate()"></app-image-upload-form>
+                <app-image-upload-form [multiple]="false" [requestType]="'PUT'" [setStorageURL]="photoUrl" [setUploadedImages]="imageURLs" [UploadStart]="uploadPhoto" (noAction)="navigate()"></app-image-upload-form>
               </table>
               <input *ngIf="formGroup.valid" class="category submit"
                      style="padding: 3%;
