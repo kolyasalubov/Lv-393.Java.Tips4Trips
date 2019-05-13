@@ -67,4 +67,7 @@ public class UserService {
         }
         return repository.save(user);
     }
+    public void updatePassword(String password, Long userId) {
+        repository.updatePassword(password, userId);
+    }
 }

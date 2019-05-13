@@ -5,7 +5,10 @@ import {SignInForm} from '../../model/authentication/signin-form.model';
 import {SignUpForm} from '../../model/authentication/signup-form.model';
 import {AccountDTO} from '../../model/account.model';
 import { TokenStorageService } from './token/token-storage.service';
-import {SIGNIN_URL, SIGNUP_URL, CURRENT_USER_URL, ACCESS_TOKEN, LOGOUT_URL} from '../../constants';
+import {SIGNIN_URL, SIGNUP_URL, CURRENT_USER_URL, ACCESS_TOKEN, 
+  LOGOUT_URL, FORGOT_PASSWORD_URL, RESET_PASSWORD_URL} from '../../constants';
+import { ForgotPasswordForm } from './forgot-password/forgot-password-form.model';
+import { ResetPasswordForm } from './reset-password/reset-password-form.model';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +25,15 @@ export class CustomAuthService {
 
   signUp(info: SignUpForm): Observable<any> {
     return this.http.post(SIGNUP_URL, info, {responseType : 'text'});
+  }
+
+  forgotPassword(info: ForgotPasswordForm): Observable<any> {
+    return this.http.post(FORGOT_PASSWORD_URL, info);
+  }
+
+  resetPassword(info: ResetPasswordForm): Observable<any> {
+    console.log(this.http.post(RESET_PASSWORD_URL, info));
+    return this.http.post(RESET_PASSWORD_URL, info);
   }
 
   getCurrentUser(): Observable<AccountDTO> {

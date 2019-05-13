@@ -422,3 +422,16 @@ display-flex, .display-flex, .display-flex-center {
     opacity: 1;
   }
   .m-t-17 {margin-top: 17px;}
+
+  
+.invalid-input {
+  border-left-color: salmon;
+  border-left-width: 3px;
+  border-radius: 5px;
+}
+
+.valid-input {
+  border-left-color: greenyellow;
+  border-left-width: 3px;
+  border-radius: 5px;
+}

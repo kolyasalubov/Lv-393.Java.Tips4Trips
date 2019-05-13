@@ -97,6 +97,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material';
 import {RouteMapComponent} from "./components/map/route-map/route-map.component";
 import {AgmDirectionModule} from "agm-direction";
+import { ForgotPasswordComponent } from './components/authentication/forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './components/authentication/reset-password/reset-password.component';
 
 @NgModule({
   declarations: [
@@ -182,7 +184,9 @@ import {AgmDirectionModule} from "agm-direction";
     SocialHandlerComponent,
     PlaceInfoComponent,
     SearchNavbarComponent,
-    RouteMapComponent
+    RouteMapComponent,
+    ForgotPasswordComponent,
+    ResetPasswordComponent
   ],
   imports: [
     BrowserModule,

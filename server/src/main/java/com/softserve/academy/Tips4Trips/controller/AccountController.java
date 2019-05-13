@@ -2,6 +2,7 @@ package com.softserve.academy.Tips4Trips.controller;
 
 
 import com.softserve.academy.Tips4Trips.annotations.CurrentUser;
+import com.softserve.academy.Tips4Trips.dto.AccountPhoneNumberDTO;
 import com.softserve.academy.Tips4Trips.dto.AccountRoleDTO;
 import com.softserve.academy.Tips4Trips.dto.News.AccountFeedDTO;
 import com.softserve.academy.Tips4Trips.dto.News.AccountFollowingDTO;
@@ -23,7 +24,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.view.RedirectView;
@@ -107,6 +107,17 @@ public class AccountController {
         logger.info("update account method executing: ");
         Account account = accountService.update(accountConverter.convertToEntity(accountDTO));
         return new ResponseEntity<>(accountConverter.convertToDTO(account), HttpStatus.ACCEPTED);
+
+    }
+
+    @PutMapping("/update/phonenumber")
+    public ResponseEntity<AccountDetailsDTO> updateAccount(@RequestBody AccountPhoneNumberDTO newAccount) {
+        logger.info("update account method executing: ");
+        Account account = accountService.findById(newAccount.getId());
+        account.setPhoneNumber(newAccount.getPhoneNumber());
+        account = accountService.update(account);
+        return new ResponseEntity<>(accountConverter.convertToDTO(account),
+                HttpStatus.ACCEPTED);
 
     }
 

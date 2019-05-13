@@ -2,13 +2,12 @@ package com.softserve.academy.Tips4Trips.dto.converter;
 
 import com.softserve.academy.Tips4Trips.controller.TripController;
 import com.softserve.academy.Tips4Trips.dto.Page;
-import com.softserve.academy.Tips4Trips.dto.details.RouteDetailsDTO;
 import com.softserve.academy.Tips4Trips.dto.details.TripDetailsDTO;
 import com.softserve.academy.Tips4Trips.dto.info.TripInfoDTO;
+import com.softserve.academy.Tips4Trips.entity.Route;
 import com.softserve.academy.Tips4Trips.entity.administration.Account;
 import com.softserve.academy.Tips4Trips.entity.chat.Chat;
 import com.softserve.academy.Tips4Trips.entity.entertainment.mountains.Trip;
-import com.softserve.academy.Tips4Trips.entity.Route;
 import com.softserve.academy.Tips4Trips.service.AccountService;
 import com.softserve.academy.Tips4Trips.service.ChatService;
 import com.softserve.academy.Tips4Trips.service.RouteService;
