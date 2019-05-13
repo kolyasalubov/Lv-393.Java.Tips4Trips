@@ -53,12 +53,11 @@ export class CommentComponent implements OnInit {
         .splice(this.allComments.indexOf(comment),1)});}
 
   }
-  getImageString() {
-    return this.imageURL + this.account.id +'/image';
+  getImageString(id:number) {
+    return this.imageURL + id+'/image';
   }
   onSubmit(f: NgForm) {
     this.isButtonDisabled = true;
-    //setTimeout(()=>{ this.showComments() },400 )
     this.commentProfile.accountInfo = this.account;
     this.commentProfile.creationDate = new Date();
     this.commentProfile.postId = this.postid;

@@ -2,7 +2,7 @@
 <ul *ngFor="let comment of allComments "  class="comment-list">
   <li class="comment">
     <div class="vcard bio" style="width: 10%">
-      <app-image-details [fileUpload]="getImageString()"></app-image-details>
+      <app-image-details [fileUpload]="getImageString(comment.accountInfo.id)"></app-image-details>
     </div>
     <div class="comment-body">
       <h3>{{comment.accountInfo.firstName}} {{comment.accountInfo.lastName}}</h3>
@@ -11,7 +11,6 @@
 
       <p style="font-size: 16px; text-align: justify ">{{comment.text}}</p>
       <p class="pointer">
-        <!--<button *ngIf="account.id==comment.accountInfo.id" [hidden]="isHidden" (click)="deleteComment(comment.id,comment)" class="reply" >Delete</button>-->
         <a *ngIf="account.id==comment.accountInfo.id" [hidden]="isHidden" (click)="deleteComment(comment.id,comment)" class="reply" >Delete</a>
 
       </p>
@@ -19,8 +18,7 @@
   </li>
 </ul>
 
-<!--<td><button type="submit" >delete</button></td>-->
-<!--<td><a href="{{comment.self}}">...read more</a> </td>-->
+
 <div class="comment-form-wrap pt-5">
   <div *ngIf="!noComment">
     <h3 class="mb-5">Leave a comment</h3>
