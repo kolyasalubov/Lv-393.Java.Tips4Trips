@@ -20,7 +20,6 @@ import java.util.stream.Collectors;
 public class AccountConverter implements Converter<Account, AccountDetailsDTO> {
 
 
-
     @Override
     public AccountDetailsDTO convertToDTO(Account account) {
 
@@ -50,18 +49,16 @@ public class AccountConverter implements Converter<Account, AccountDetailsDTO> {
         account.setAbout(accountDetailsDTO.getAbout());
 
 
-                if (accountDetailsDTO.getImageId() != null) {
+        if (accountDetailsDTO.getImageId() != null) {
             ImageDTO imageDTO = new ImageDTO();
             imageDTO.setId(accountDetailsDTO.getImageId());
             imageDTO.setName(accountDetailsDTO.getImageName());
             imageDTO.setCreator(null);
             imageDTO.setFormat(accountDetailsDTO.getImageFormat());
             imageDTO.setUploadDate(accountDetailsDTO.getImageUploadDate());
-           // account.setImage(modelMapper.map(imageDTO, Image.class));
+            // account.setImage(modelMapper.map(imageDTO, Image.class));
 
         }
-
-
 
 
         Image image = new Image();
@@ -71,7 +68,6 @@ public class AccountConverter implements Converter<Account, AccountDetailsDTO> {
         image.setFormat(accountDetailsDTO.getImageFormat());
         image.setUploadDate(accountDetailsDTO.getImageUploadDate());
         //account.setImage(null);
-
 
 
         account.setRole(accountDetailsDTO.getRole());

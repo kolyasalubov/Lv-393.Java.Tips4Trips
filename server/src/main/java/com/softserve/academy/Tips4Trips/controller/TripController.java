@@ -95,7 +95,6 @@ public class TripController {
     @PostMapping("/create")
     public ResponseEntity<TripDetailsDTO> create(@RequestBody TripDetailsDTO tripDetailsDTO) {
         logger.info("trip create post method executing: ");
-//        chatService.createChat(new Chat());
         Trip trip = tripService.createTrip(tripConverter.convertToEntity(tripDetailsDTO));
 
         return new ResponseEntity<>(tripConverter.convertToDTO(trip), HttpStatus.CREATED);
