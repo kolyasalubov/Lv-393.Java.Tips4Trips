@@ -1,10 +1,10 @@
 import {PlaceModel} from "./place.model";
-import {Account} from "./account.model";
+import {AccountDTO} from "./account.model";
 
 export class FeedbackPlaceModel {
   id: number;
   place: PlaceModel;
-  creator: Account;
+  creator: AccountDTO;
   date: Date;
   mark: number;
   comment: string

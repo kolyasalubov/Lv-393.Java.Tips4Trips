@@ -148,6 +148,7 @@ public class AccountService {
         }
         return isFollowing;
     }
+    @Transactional
     public Account createImageForAccount(MultipartFile image, Long id)
             throws FileIOException {
         Account account = findById(id);
@@ -159,7 +160,7 @@ public class AccountService {
         account.setImage(newImage);
         return update(account);
     }
-
+    @Transactional
     public void deleteAccountImage(Long id) throws FileIOException,
             DataNotFoundException {
         try {
@@ -172,10 +173,10 @@ public class AccountService {
             throw new DataNotFoundException("Image doesn't exist");
         }
     }
-
+    @Transactional
     public Account updateAccountImage(Long id, MultipartFile newImage)
             throws FileIOException, DataNotFoundException {
-        deleteAccountImage(id);
+        //deleteAccountImage(id);
         Image image = fileStorageService.store(newImage);
         Account account = findById(id);
         account.setImage(image);

@@ -33,7 +33,7 @@ public class Image implements Serializable {
     @Temporal(value = TemporalType.DATE)
     private Date uploadDate;
 
-    @NotNull
+
     @ManyToOne
     @JoinColumn(name = "account_id", referencedColumnName = "id")
     private Account creator;

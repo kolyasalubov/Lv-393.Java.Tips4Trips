@@ -3,7 +3,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {SignInForm} from '../../model/authentication/signin-form.model';
 import {SignUpForm} from '../../model/authentication/signup-form.model';
-import {Account} from '../../model/account.model';
+import {AccountDTO} from '../../model/account.model';
 import { TokenStorageService } from './token/token-storage.service';
 import {SIGNIN_URL, SIGNUP_URL, CURRENT_USER_URL, ACCESS_TOKEN, LOGOUT_URL} from '../../constants';
 
@@ -24,8 +24,8 @@ export class CustomAuthService {
     return this.http.post(SIGNUP_URL, info, {responseType : 'text'});
   }
 
-  getCurrentUser(): Observable<Account> {
-    return this.http.get<Account>(CURRENT_USER_URL);
+  getCurrentUser(): Observable<AccountDTO> {
+    return this.http.get<AccountDTO>(CURRENT_USER_URL);
   }
   
   checkLoggedUser(): boolean {

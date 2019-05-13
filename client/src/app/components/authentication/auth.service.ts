@@ -3,7 +3,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {SignInForm} from '../../model/authentication/signin-form.model';
 import {SignUpForm} from '../../model/authentication/signup-form.model';
-import {Account} from '../../model/account.model';
+import {AccountDTO} from '../../model/account.model';
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 import { stringify } from '@angular/core/src/render3/util';
 import { UserAccount } from '../../model/useraccount.model';
@@ -36,8 +36,8 @@ export class AuthService {
     return this.http.post(this.signupUrl, info, {responseType : 'text'});
   }
 
-  getCurrentUser(): Observable<Account> {
-    return this.http.get<Account>(this.currentUserUrl);
+  getCurrentUser(): Observable<AccountDTO> {
+    return this.http.get<AccountDTO>(this.currentUserUrl);
   }
   
   checkLoggedUser(): boolean {

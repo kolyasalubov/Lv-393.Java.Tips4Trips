@@ -84,6 +84,12 @@ public class RouteController {
                 convertToDTO(routeService.findByName(name)), HttpStatus.OK);
     }
 
+    @GetMapping("/names/{name}")
+    public ResponseEntity<List<String>> getNamesContaining(@PathVariable String name) {
+        return new ResponseEntity<>(routeService
+                .findDistinctNamesContaining(name), HttpStatus.OK);
+    }
+
     @GetMapping("/author/{id}")
     public ResponseEntity<List<RouteInfoDTO>> getByAuthor(@PathVariable Long id) {
         logger.info("get route by author method executing: ");

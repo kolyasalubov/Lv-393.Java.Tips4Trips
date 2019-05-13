@@ -3,7 +3,7 @@ import { CustomAuthService } from '../custom-auth.service';
 import { TokenStorageService } from '../token/token-storage.service';
 import { SignUpForm } from '../../../model/authentication/signup-form.model';
 import { User } from '../../../model/user.model';
-import { Account } from '../../../model/account.model';
+import { AccountDTO } from '../../../model/account.model';
 import { Router } from "@angular/router";
 
 @Component({

@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FeedbackPlaceModel} from "../../../../model/feedback-place.model";
-import {Account} from "../../../../model/account.model";
+import {AccountDTO} from "../../../../model/account.model";
 import {FeedbackPlaceService} from "../../feedback-place.service";
 import {PlaceModel} from "../../../../model/place.model";
 import {CustomAuthService} from "../../../authentication/custom-auth.service";
@@ -27,7 +27,7 @@ export class FeedbackPlaceCreateComponent implements OnInit {
 
   ngOnInit() {
     this.feedbackPlaceModel = new FeedbackPlaceModel();
-    this.feedbackPlaceModel.creator = new Account(
+    this.feedbackPlaceModel.creator = new AccountDTO(
       null,
       null,
       null,
@@ -84,11 +84,12 @@ export class FeedbackPlaceCreateComponent implements OnInit {
   }
 
   save() {
-    this.authService.getCurrentUser().subscribe(data => {
-      this.feedbackPlaceModel.creator.id = data.id;
-    });
+    // this.authService.getCurrentUser().subscribe(data => {
+    //   this.feedbackPlaceModel.creator.id = data.id;
+      this.feedbackPlaceModel.creator.id = 1;
+    // });
     if (this.valid()) {
-      this.service.create(this.feedbackPlaceModel);
+      this.service.create(this.feedbackPlaceModel).subscribe(data=>{console.log(data)});
     }
   }
 

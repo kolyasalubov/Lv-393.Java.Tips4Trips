@@ -6,6 +6,8 @@ import {Position} from "../../model/position.model";
 import {City} from "../../model/city.model";
 import {Location} from "@angular/common";
 import {CustomAuthService} from "../authentication/custom-auth.service";
+import {PageFeedbackPlaceModel} from "../../model/page-feedback-place.model";
+import {FeedbackPlaceService} from "../feedback/feedback-place.service";
 
 @Component({
   selector: 'app-restaurant-details',
@@ -16,7 +18,7 @@ export class RestaurantDetailsComponent implements OnInit {
 
   constructor(private activatedRoute: ActivatedRoute, private router: Router,
               private restaurantService: RestaurantService, private location: Location,
-              private authService: CustomAuthService) { }
+              private authService: CustomAuthService,private feedbackService:FeedbackPlaceService) { }
   id: number;
   countryId: number;
   cityId: number;
@@ -28,6 +30,7 @@ export class RestaurantDetailsComponent implements OnInit {
   daysMap = new Map();
   imageURL: string = '';
   role: string;
+  pageFeedbackPlaceModel:PageFeedbackPlaceModel;
 
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe(params => {
@@ -49,6 +52,9 @@ export class RestaurantDetailsComponent implements OnInit {
     this.daysMap.set("FRIDAY", 5);
     this.daysMap.set("SATURDAY", 6);
     this.daysMap.set("SUNDAY", 7);
+    this.feedbackService.getByPlaceIdAndPage(this.id,1).subscribe(data=>{
+      this.pageFeedbackPlaceModel=data;
+    });
   }
 
   deletePlace() {

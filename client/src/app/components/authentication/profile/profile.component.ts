@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
-import {Account} from 'src/app/model/account.model';
+import {AccountDTO} from 'src/app/model/account.model';
 import {ProfileService} from './profile.service';
 import {NewsService} from "../../news/news.service";
 import {AccountFeed} from "../../../model/account-feed";
@@ -19,7 +19,7 @@ import {TripService} from "../../trip/trip/trip.service";
 })
 export class ProfileComponent implements OnInit {
 
-  accountProfile: Account;
+  accountProfile: AccountDTO;
   currentProfileId: number;
   accountFeed: AccountFeed;
   isFollowing: boolean = false;

@@ -1,7 +1,7 @@
 import {Component, HostListener, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {CustomAuthService} from "../authentication/custom-auth.service";
-import {Account} from "../../model/account.model";
+import {AccountDTO} from "../../model/account.model";
 
 @Component({
   selector: 'app-header',
@@ -13,10 +13,10 @@ export class HeaderComponent implements OnInit {
   show: boolean = false;
   seek: string;
 
-  accountProfile: Account;
+  accountProfile: AccountDTO;
   newNotification: boolean = false;
 
-  login: string = "My Account";
+  login: string = "My AccountDTO";
 
   constructor(
     private router: Router,
