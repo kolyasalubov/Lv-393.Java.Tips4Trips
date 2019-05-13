@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {AccountFeed} from "../../model/account-feed";
-import {Account} from "../../model/account.model";
+import {AccountDTO} from "../../model/account.model";
 
 @Injectable({
   providedIn: 'root'

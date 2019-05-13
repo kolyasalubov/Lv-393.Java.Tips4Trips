@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Account} from 'src/app/model/account.model';
+import {AccountDTO} from 'src/app/model/account.model';
 import {AccountService} from 'src/app/components/authentication/account/account.service';
 import {Router} from '@angular/router';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
@@ -11,7 +11,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 })
 export class AccountEditComponent implements OnInit {
 
-  accountProfile: Account = new Account(
+  accountProfile: AccountDTO = new AccountDTO(
     null,
     null,
     null,
@@ -64,20 +64,24 @@ export class AccountEditComponent implements OnInit {
 
   ngOnInit() {
     //this.accountService.findById(1).subscribe(data => this.accountProfile = data);
-    this.accountService.getCurrentUser().subscribe(data => this.accountProfile = data);
+    this.accountService.getCurrentUser().subscribe(data => {
+      this.accountProfile = data;
+      this.imageURLs.push('http://localhost:8080/accounts/' + data.id + '/image');
+    });
+
   }
 
   update() {
 
     this.accountService.updateAccount(this.accountProfile).subscribe(data => {
-      this.accountProfile = data;
+      console.log(data);
       this.photoUrl = 'http://localhost:8080/accounts/' + this.accountProfile.id + '/image';
       this.uploadPhoto = true;
     });
 
-    setTimeout(() => {
-      this.router.navigate(['account']);
-    }, 800);
+    // setTimeout(() => {
+    //   this.router.navigate(['account']);
+    // }, 800);
   }
 
   navigateToAccount() {

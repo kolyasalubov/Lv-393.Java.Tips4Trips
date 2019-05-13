@@ -49,6 +49,21 @@ public class AccountConverter implements Converter<Account, AccountDetailsDTO> {
         account.setRegistrationDate(accountDetailsDTO.getRegistrationDate());
         account.setAbout(accountDetailsDTO.getAbout());
 
+
+                if (accountDetailsDTO.getImageId() != null) {
+            ImageDTO imageDTO = new ImageDTO();
+            imageDTO.setId(accountDetailsDTO.getImageId());
+            imageDTO.setName(accountDetailsDTO.getImageName());
+            imageDTO.setCreator(null);
+            imageDTO.setFormat(accountDetailsDTO.getImageFormat());
+            imageDTO.setUploadDate(accountDetailsDTO.getImageUploadDate());
+           // account.setImage(modelMapper.map(imageDTO, Image.class));
+
+        }
+
+
+
+
         Image image = new Image();
         image.setId(accountDetailsDTO.getImageId());
         image.setName(accountDetailsDTO.getImageName());

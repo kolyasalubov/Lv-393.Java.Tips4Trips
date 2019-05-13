@@ -6,7 +6,7 @@ import { AccountInfo } from 'src/app/model/account-info.model';
 import { Location } from '@angular/common';
 import { PlaceInfo } from 'src/app/model/place-info.model';
 import { CustomAuthService } from '../../authentication/custom-auth.service';
-import { Account } from '../../../model/account.model';
+import { AccountDTO } from '../../../model/account.model';
 import {RouteMapComponent} from "../../map/route-map/route-map.component";
 
 @Component({
@@ -18,7 +18,7 @@ export class RouteComponent implements OnInit {
   //@ViewChild(RouteMapComponent) child: RouteMapComponent;
   route: Route;
   hasAuthority: boolean = false;
-  currUser: Account;
+  currUser: AccountDTO;
   constructor(
     private routeService: RouteService,
     private authService: CustomAuthService,

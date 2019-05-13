@@ -4,7 +4,7 @@ import {PostDetailsModel} from "../../../model/postDetails.model";
 import {PostCreateModel} from "../../../model/postCreate.model";
 import {PostService} from "../post.service";
 import {CustomAuthService} from "../../authentication/custom-auth.service";
-import {Account} from "../../../model/account.model";
+import {AccountDTO} from "../../../model/account.model";
 import {ImageUploadFormComponent} from "../../image-upload-form/image-upload-form.component";
 import {ImageService} from "../../../image.service";
 import {Router} from "@angular/router";
@@ -27,7 +27,7 @@ export class CreatePostComponent implements OnInit {
 
   ngOnInit() {
     this.post = new PostCreateModel();
-    this.post.author = new Account(null,
+    this.post.author = new AccountDTO(null,
       null,
       null,
       null,

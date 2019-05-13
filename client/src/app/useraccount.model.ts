@@ -1,11 +1,11 @@
-import { Account } from "./model/account.model";
+import { AccountDTO } from "./model/account.model";
 import { User } from "./model/user.model";
 
 export class UserAccount {
-    account: Account;
+    account: AccountDTO;
     user: User;
 
-    constructor(account: Account, user: User) {
+    constructor(account: AccountDTO, user: User) {
         this.account = account;
         this.user = user;
     }

@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Account} from "../../../model/account.model";
+import {AccountDTO} from "../../../model/account.model";
 import {Observable} from "rxjs/index";
 import {ApiResponse} from "../../../model/api.response";
 
@@ -16,18 +16,18 @@ export class AccountService {
   baseUrl: string = 'http://localhost:8080/accounts/';
 
 
-  findById(id: number): Observable<Account> {
-    return this.http.get<Account>(this.baseUrl + id);
+  findById(id: number): Observable<AccountDTO> {
+    return this.http.get<AccountDTO>(this.baseUrl + id);
   }
 
 
-  createAccount(account: Account): Observable<Account> {
-    return this.http.post<Account>(this.baseUrl + "create", account);
+  createAccount(account: AccountDTO): Observable<AccountDTO> {
+    return this.http.post<AccountDTO>(this.baseUrl + "create", account);
   }
 
-  updateAccount(myAccount: Account): Observable<Account> {
+  updateAccount(myAccount: AccountDTO): Observable<AccountDTO> {
     console.log(myAccount);
-    return this.http.put<Account>(this.baseUrl + "update", myAccount);
+    return this.http.put<AccountDTO>(this.baseUrl + "update", myAccount);
   }
 
   checkNotification(id:number): Observable<boolean> {
@@ -35,15 +35,15 @@ export class AccountService {
     return this.http.get<boolean>(this.baseUrl +id+ "/check");
   }
 
-  deleteAccount(id: number): Observable<Account> {
-    return this.http.delete<Account>(this.baseUrl + "delete/" + id);
+  deleteAccount(id: number): Observable<AccountDTO> {
+    return this.http.delete<AccountDTO>(this.baseUrl + "delete/" + id);
   }
 
-  updateAccountRole(myAccount: Account): Observable<Account> {
-    return this.http.put<Account>(this.baseUrl + "update/role", myAccount);
+  updateAccountRole(myAccount: AccountDTO): Observable<AccountDTO> {
+    return this.http.put<AccountDTO>(this.baseUrl + "update/role", myAccount);
   }
 
-  getCurrentUser(): Observable<Account> {
-    return this.http.get<Account>(this.baseUrl + "me");
+  getCurrentUser(): Observable<AccountDTO> {
+    return this.http.get<AccountDTO>(this.baseUrl + "me");
   }
 }

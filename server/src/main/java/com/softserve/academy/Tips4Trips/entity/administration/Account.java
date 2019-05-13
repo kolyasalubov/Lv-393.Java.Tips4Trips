@@ -27,7 +27,7 @@ public class Account {
     private String lastName;
 
     @NotNull
-    @Column(name = "phone_number", length = 12, unique = true)
+    @Column(name = "phone_number", length = 15, unique = true)
     private String phoneNumber;
 
     @NotNull
