@@ -47,11 +47,7 @@ public class CommentController {
     @DeleteMapping("/delete/{accountId}/{commentId}")
     public ResponseEntity deleteComment(@PathVariable Long accountId, @PathVariable Long commentId) {
         logger.info("deleteComment method executing: ");
-        if (commentService.existsByCommentedByIdAndId(accountId, commentId)) {
-            commentService.deleteComment(commentId);
-        } else {
-            throw new NoSuchElementException();
-        }
+        commentService.deleteComment(accountId, commentId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }
