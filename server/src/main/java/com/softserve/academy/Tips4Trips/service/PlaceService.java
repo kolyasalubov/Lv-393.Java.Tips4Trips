@@ -90,7 +90,6 @@ public class PlaceService {
             deletePlaceImage(id);
         }
         Image image = fileStorageService.store(newImage);
-        Place place = findById(id);
         place.setImage(image);
         return update(place);
     }
