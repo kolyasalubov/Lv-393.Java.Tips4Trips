@@ -85,7 +85,10 @@ public class PlaceService {
 
     public Place updatePlaceImage(Long id, MultipartFile newImage)
             throws FileIOException, DataNotFoundException {
-        deletePlaceImage(id);
+        Place place = findById(id);
+        if (place.getImage() != null) {
+            deletePlaceImage(id);
+        }
         Image image = fileStorageService.store(newImage);
         Place place = findById(id);
         place.setImage(image);

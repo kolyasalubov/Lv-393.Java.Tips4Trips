@@ -137,7 +137,10 @@ public class PostService {
 
     public Post updatePostImages(Long id, MultipartFile[] newImages)
             throws FileIOException, DataNotFoundException {
-        deletePostImages(id);
+        Post post = repository.getOne(id);
+        if (post.getImages() != null) {
+            deletePostImages(id);
+        }
         return addImagesToStorage(repository.getOne(id), newImages);
     }
 

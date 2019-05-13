@@ -176,9 +176,11 @@ public class AccountService {
     @Transactional
     public Account updateAccountImage(Long id, MultipartFile newImage)
             throws FileIOException, DataNotFoundException {
-        //deleteAccountImage(id);
-        Image image = fileStorageService.store(newImage);
         Account account = findById(id);
+        if (account.getImage() != null) {
+            deleteAccountImage(id);
+        }
+        Image image = fileStorageService.store(newImage);
         account.setImage(image);
         return update(account);
     }
