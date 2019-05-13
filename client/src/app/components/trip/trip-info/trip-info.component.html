@@ -66,7 +66,7 @@
       <div class="col-md-6 col-lg-3 ftco-animate" *ngFor="let place of tripDetailsDTO.route.places">
         <div class="project">
           <div class="img" >
-            <img  src= "http://localhost:8080/places/2/image" class="img-fluid" alt="Colorlib Template">
+            <img [src]="getPlaceImageString(place.id)" class="img-fluid" alt="Colorlib Template">
           </div>
           <div class="text">
             <h4 class="price">{{place.id}}</h4>
@@ -93,6 +93,12 @@
       </div>
     </div>
   </div>
+
+  <div style="margin:auto; height: 28em; width: 100%; padding: 2%;">
+    <app-route-map [places]="tripDetailsDTO.route.places"></app-route-map>
+  </div>
+
+
 </section>
 
 

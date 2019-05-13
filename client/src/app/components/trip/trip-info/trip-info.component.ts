@@ -53,6 +53,10 @@ export class TripInfoComponent implements OnInit {
     return "http://localhost:8080/accounts/" + id + "/image";
   }
 
+  getPlaceImageString(id: number) {
+    return "http://localhost:8080/places/" + id + "/image";
+  }
+
 
   }
 
