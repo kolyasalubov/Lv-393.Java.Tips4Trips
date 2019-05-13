@@ -76,7 +76,7 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
         account.setLastName(names[1]);
         account.setPhoneNumber("tmp" + account.getId());
         account.setRegistrationDate(new Date());
-        account.setRole(Role.ADMIN);
+        account.setRole(Role.USER);
 
         return accountRepository.save(account);
     }
