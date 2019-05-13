@@ -41,11 +41,11 @@
       <button type="submit" (click)="saveFeedback()" style="float:right" class="btn btn-primary">Save</button>
     </form>
 
-    <div class="col-sm-6" *ngFor="let feedback of cityFeedbacks">
+    <div class="col-md-8" *ngFor="let feedback of cityFeedbacks">
       <div class="card">
         <div class="card-header">
           <div class="row">
-            <bar-rating style="margin-right: 200px" theme="fontawesome-o" [(rate)]="feedback.averageRating" [max]="5">
+            <bar-rating style="margin-right: 210px" theme="fontawesome-o" [(rate)]="feedback.averageRating" [max]="5">
             </bar-rating>
             <h5 class="card-title">{{feedback.author}} </h5>
             &nbsp;

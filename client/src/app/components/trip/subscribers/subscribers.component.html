@@ -4,7 +4,7 @@
         <div class="col-md-3 d-flex">
           <div class="align-self-stretch box p-4 text-center">
             <div class="icon d-flex align-items-center justify-content-center">
-              <span class="icon-map-signs"><img src="../../../../assets/images/round_perm_identity_black_48dp.png"></span>
+              <span class="icon-map-signs"> <app-image-details  [fileUpload]="getImageString(subscriber.id)"></app-image-details></span>
             </div>
             <h3 class="mb-4"><a [href]="getSelfLink(subscriber)">{{subscriber.firstName}}    {{subscriber.lastName}}</a></h3>
             <p align="center"  >subscribed</p>
