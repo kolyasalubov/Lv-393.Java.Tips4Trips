@@ -4,7 +4,7 @@ import { RouteService } from '../../route.service';
 import { AccountInfo } from '../../model/account-info.model';
 import { PlaceService } from '../../place.service';
 import { Router } from '@angular/router';
-import { AuthService } from '../authentication/auth.service';
+import { CustomAuthService } from '../authentication/custom-auth.service';
 
 @Component({
   selector: 'app-create-post-route',
@@ -19,7 +19,7 @@ export class CreateRouteComponent implements OnInit {
     private routeService: RouteService,
     private placeService: PlaceService,
     private router: Router,
-    private authService : AuthService
+    private authService : CustomAuthService
   ) {
     this.route = new Route();
     this.route.authorInfo = new AccountInfo();

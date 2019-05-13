@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Account} from "../../../model/account.model";
 import {Observable} from "rxjs/index";
 import {ApiResponse} from "../../../model/api.response";
+import { AccountPhoneInfo } from 'src/app/model/account-phone-info.model';
 
 
 @Injectable({
@@ -28,6 +29,10 @@ export class AccountService {
   updateAccount(myAccount: Account): Observable<Account> {
     console.log(myAccount);
     return this.http.put<Account>(this.baseUrl + "update", myAccount);
+  }
+
+  updateAccountNumber(myAccount: AccountPhoneInfo): Observable<Account> {
+    return this.http.put<Account>(this.baseUrl + "update/phonenumber", myAccount);
   }
 
   checkNotification(id:number): Observable<boolean> {

@@ -12,3 +12,6 @@ export const CURRENT_USER_URL = API_BASE_URL + '/accounts/me';
 export const SIGNIN_URL = API_BASE_URL + '/authentication/signin';
 export const SIGNUP_URL = API_BASE_URL + '/authentication/signup';
 export const LOGOUT_URL = API_BASE_URL + '/authentication/logout';
+
+export const FORGOT_PASSWORD_URL = API_BASE_URL + '/authentication/forgot-password';
+export const RESET_PASSWORD_URL = API_BASE_URL + '/authentication/reset-password';

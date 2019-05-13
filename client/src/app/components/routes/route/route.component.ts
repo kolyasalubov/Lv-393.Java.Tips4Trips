@@ -34,6 +34,9 @@ export class RouteComponent implements OnInit {
     const id = Number(this.ngRoute.snapshot.paramMap.get('id'));
     this.routeService.findById(id).subscribe(data => {
       this.route = data;
+      for (let place of this.route.places) {
+        place.imageUrl =  'http://localhost:8080/places/' + place.id + '/image';
+      }
       this.route.authorInfo = data.authorInfo;
       this.route.places = data.places;
     });

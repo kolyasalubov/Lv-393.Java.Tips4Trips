@@ -51,6 +51,7 @@ export class CreateRouteComponent implements OnInit {
 
   addPlace(): void {
     this.placeService.findByName(this.placeName).subscribe(data => {
+      data[0].imageUrl =  'http://localhost:8080/places/' + data[0].id + '/image';
       if (data.length != 0) {
         this.myControl.reset();
         if (!this.route.places.map(place => place.id).includes(data[0].id)) {

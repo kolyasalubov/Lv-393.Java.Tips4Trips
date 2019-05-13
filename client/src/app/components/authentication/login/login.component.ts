@@ -72,7 +72,7 @@ this.authService.attemptAuth(this.loginInfo).subscribe(
   fullHeight = function(divide) {
 		$('.js-fullheight').css('height', $(window).height()/divide);
 		$(window).resize(function(){
-			$('.js-fullheight').css('height', $(window).height());
+			$('.js-fullheight').css('height', $(window).height()/divide);
 		});
     };
 }

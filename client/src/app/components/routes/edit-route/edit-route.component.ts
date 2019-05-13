@@ -36,6 +36,9 @@ export class EditRouteComponent implements OnInit {
     const id = Number(this.ngRoute.snapshot.paramMap.get('id'));
     this.routeService.findById(id).subscribe(data => {
       this.route = data;
+      for (let place of this.route.places) {
+        place.imageUrl =  'http://localhost:8080/places/' + place.id + '/image';
+      }
       this.child.placeList = this.route.places;
       this.child.getDirection();
       this.authService.getCurrentUser().subscribe(account => {
@@ -55,6 +58,7 @@ export class EditRouteComponent implements OnInit {
 
   addPlace(): void {
     this.placeService.findByName(this.placeName).subscribe(data => {
+      data[0].imageUrl =  'http://localhost:8080/places/' + data[0].id + '/image';
       if (data.length != 0) {
         this.myControl.reset();
         if (!this.route.places.map(place => place.id).includes(data[0].id)) {

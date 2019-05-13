@@ -45,6 +45,8 @@ import { MaptestComponent } from './components/maptest/maptest.component';
 import { MapPickerComponent } from './components/map/map-picker/map-picker.component';
 import {ChatComponent} from "./components/chat/chat.component";
 import { SocialHandlerComponent } from './components/authentication/social-handler/social-handler.component';
+import { ForgotPasswordComponent } from './components/authentication/forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './components/authentication/reset-password/reset-password.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -54,6 +56,8 @@ const routes: Routes = [
   { path: 'like', component: LikeComponent },
   { path: 'comment', component: CommentComponent },
   { path: 'account', component: AccountComponent, canActivate: [AuthGuard] },
+  { path: 'forgot-password', component: ForgotPasswordComponent },
+  { path: 'reset-password', component: ResetPasswordComponent },
   { path: 'oauth2/redirect', component: SocialHandlerComponent},
   { path: 'account_edit', component: AccountEditComponent },
   { path: 'city', component: CityComponent },
