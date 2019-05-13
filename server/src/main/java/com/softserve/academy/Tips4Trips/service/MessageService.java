@@ -39,4 +39,14 @@ public class MessageService {
     public List<Message> getMessagesByChatId(Long chatId) {
         return messageRepository.findAllByChatId(chatId);
     }
+
+    public Message getMessageById(Long id) {
+
+       Optional<Message> optionalMessage = messageRepository.findById(id);
+        if(optionalMessage.isPresent()){
+            return optionalMessage.get();
+        }else {
+            throw new DataNotFoundException(ExceptionMessages.MESSAGE_IS_NOT_FOUND);
+        }
+    }
 }

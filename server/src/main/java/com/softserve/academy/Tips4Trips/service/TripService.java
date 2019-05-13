@@ -29,11 +29,8 @@ public class TripService {
 
     private static final Logger logger = Logger.getLogger(TripService.class);
 
-    @PersistenceContext
-    private EntityManager em;
-
-    TripRepository repository;
-    AccountService accountService;
+    private TripRepository repository;
+    private AccountService accountService;
     private FileStorageService fileStorageService;
     @Autowired
     public TripService(TripRepository repository, AccountService accountService, FileStorageService fileStorageService) {
@@ -42,14 +39,8 @@ public class TripService {
         this.fileStorageService = fileStorageService;
     }
 
-    public List<Trip> searchByName(String name) {
-        return repository.findByNameContainingIgnoreCase(name);
-    }
 
-    public List<Trip> findByCreator(Account author) {
-        return repository.findByCreator(author);
-    }
-
+    @Transactional
     public Trip findById(Long tripId) {
         Optional<Trip> i = repository.findById(tripId);
         if (i.isPresent()) {
@@ -59,18 +50,19 @@ public class TripService {
         }
     }
 
+    @Transactional
     public Trip createTripImage(MultipartFile image, Long id)
             throws FileIOException {
         Trip trip = findById(id);
         if (trip.getImage() != null) {
-            throw new FileIOException("Trip image already exists! Try " +
-                    "updating it.");
+            throw new FileIOException(ExceptionMessages.TRIP_IMAGE_ALREADY_EXISTS);
         }
         Image newImage = fileStorageService.store(image);
         trip.setImage(newImage);
         return update(trip);
     }
 
+    @Transactional
     public void deleteTripImage(Long id) throws FileIOException,
             DataNotFoundException {
         try {
@@ -80,10 +72,11 @@ public class TripService {
             update(trip);
             fileStorageService.deleteFile(imageId);
         } catch (NullPointerException e) {
-            throw new DataNotFoundException("Image doesn't exist");
+            throw new DataNotFoundException(ExceptionMessages.IMAGE_DOES_NOT_EXIST);
         }
     }
 
+    @Transactional
     public Trip updateTripImage(Long id, MultipartFile newImage)
             throws FileIOException, DataNotFoundException {
         deleteTripImage(id);
@@ -133,7 +126,7 @@ public class TripService {
         }
     }
 
-
+    @Transactional
     public void delete(Trip trip) {
 
         Optional<Trip> tripOptional = repository.findById(trip.getId());
@@ -147,14 +140,7 @@ public class TripService {
         repository.delete(trip);
     }
 
-    public List<Trip> findByRoute(Route route) {
-        return repository.findByRoute(route);
-    }
-
-    public List<Trip> findAll() {
-        return repository.findAll();
-    }
-
+    @Transactional
     public void delete(Long id) {
         Optional<Trip> tripOptional = repository.findById(id);
 
@@ -164,6 +150,23 @@ public class TripService {
             throw new DataNotFoundException(ExceptionMessages.TRIP_BY_THIS_ID_IS_NOT_FOUND);
         }
     }
+
+    public List<Trip> searchByName(String name) {
+        return repository.findByNameContainingIgnoreCase(name);
+    }
+
+    public List<Trip> findByCreator(Account author) {
+        return repository.findByCreator(author);
+    }
+
+    public List<Trip> findByRoute(Route route) {
+        return repository.findByRoute(route);
+    }
+
+    public List<Trip> findAll() {
+        return repository.findAll();
+    }
+
 
     public Trip createTrip(Trip trip) {
         return repository.save(trip);

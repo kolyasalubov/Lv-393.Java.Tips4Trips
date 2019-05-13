@@ -24,6 +24,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.view.RedirectView;
@@ -112,6 +113,7 @@ public class AccountController {
 
     @PutMapping("/update/phonenumber")
     public ResponseEntity<AccountDetailsDTO> updateAccount(@RequestBody AccountPhoneNumberDTO newAccount) {
+
         logger.info("update account method executing: ");
         Account account = accountService.findById(newAccount.getId());
         account.setPhoneNumber(newAccount.getPhoneNumber());
@@ -122,7 +124,7 @@ public class AccountController {
     }
 
     @PutMapping("/update/role")
-//    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<AccountDetailsDTO> updateAccountRole(@RequestBody AccountDetailsDTO accountDTO) {
         logger.info("update account method executing: ");
         Account account = accountService.findById(accountDTO.getId());
@@ -134,6 +136,7 @@ public class AccountController {
 
     @DeleteMapping("/delete/{id}")
     public void deleteById(@PathVariable Long id) {
+
         logger.info("delete by id method executing: ");
         accountService.deleteById(id);
     }
@@ -163,6 +166,7 @@ public class AccountController {
 
     @GetMapping("/{id}/news")
     public ResponseEntity<AccountFeedDTO> getAccountFeedById(@PathVariable Long id) {
+
         logger.info("getAccountFeedById method executing: ");
         Account account = accountService.findById(id);
 
@@ -189,6 +193,7 @@ public class AccountController {
     @PostMapping("/{id}/image")
     public ResponseEntity<AccountDetailsDTO> addImage(@PathVariable Long id,
             @RequestParam("file") MultipartFile file) throws FileIOException {
+
         Account updatedAccount = accountService.createImageForAccount(file, id);
         return new ResponseEntity<>(accountConverter
                 .convertToDTO(updatedAccount), HttpStatus.CREATED);

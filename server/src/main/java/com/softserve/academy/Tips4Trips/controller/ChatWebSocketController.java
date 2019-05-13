@@ -1,5 +1,7 @@
 package com.softserve.academy.Tips4Trips.controller;
 
+import com.softserve.academy.Tips4Trips.dto.chat.DeleteMessageDTO;
+import com.softserve.academy.Tips4Trips.dto.chat.DeleteMessageInfoDTO;
 import com.softserve.academy.Tips4Trips.dto.details.ChatMessageDTO;
 import com.softserve.academy.Tips4Trips.dto.info.ChatMessageInfoDTO;
 import com.softserve.academy.Tips4Trips.entity.chat.Message;
@@ -53,6 +55,21 @@ public class ChatWebSocketController {
 
         Message sendBackMessage = messageService.add(message);
         simpMessagingTemplate.convertAndSend(format("/topic/messages/%s",chatMessageInfoDTO.getChatId()), modelMapper.map(sendBackMessage,ChatMessageDTO.class));
+
+    }
+
+    @MessageMapping(value = "/delete/message")
+    public void deleteMessage(@Payload DeleteMessageInfoDTO deleteMessageInfoDTO) {
+
+        Message message = messageService.getMessageById(deleteMessageInfoDTO.getMessageId());
+
+        DeleteMessageDTO deleteMessageDto = new DeleteMessageDTO();
+        deleteMessageDto.setId(message.getId());
+        deleteMessageDto.setAccountId(message.getSender().getId());
+        deleteMessageDto.setStatus("DELETED");
+
+        messageService.delete(deleteMessageInfoDTO.getMessageId());
+        simpMessagingTemplate.convertAndSend(format("/topic/messages/%s",message.getChat().getId()),deleteMessageDto );
 
     }
 
