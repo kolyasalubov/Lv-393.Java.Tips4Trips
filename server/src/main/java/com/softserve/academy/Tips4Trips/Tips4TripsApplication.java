@@ -39,7 +39,7 @@ public class Tips4TripsApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... arg) throws Exception {
-		imageService.init();
+//		imageService.init();
 	}
 
 }
