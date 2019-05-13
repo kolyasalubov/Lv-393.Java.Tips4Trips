@@ -36,8 +36,8 @@ export class CustomAuthService {
     return this.http.post(RESET_PASSWORD_URL, info);
   }
 
-  getCurrentUser(): Observable<Account> {
-    return this.http.get<Account>(CURRENT_USER_URL);
+  getCurrentUser(): Observable<AccountDTO> {
+    return this.http.get<AccountDTO>(CURRENT_USER_URL);
   }
   
   checkLoggedUser(): boolean {
