@@ -116,6 +116,11 @@
 			<version>17.0.0</version>
 			<scope>compile</scope>
 		</dependency>
+		<dependency>
+			<groupId>com.amazonaws</groupId>
+			<artifactId>aws-java-sdk</artifactId>
+			<version>1.11.550</version>
+		</dependency>
     </dependencies>
 
 	<build>

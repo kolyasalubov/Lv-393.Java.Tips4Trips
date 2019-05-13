@@ -1,6 +1,10 @@
 package com.softserve.academy.Tips4Trips.service;
 
-import com.softserve.academy.Tips4Trips.Tips4TripsApplication;
+import com.amazonaws.AmazonServiceException;
+import com.amazonaws.auth.AWSStaticCredentialsProvider;
+import com.amazonaws.auth.BasicAWSCredentials;
+import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.AmazonS3Client;
 import com.softserve.academy.Tips4Trips.entity.administration.Account;
 import com.softserve.academy.Tips4Trips.entity.file.Image;
 import com.softserve.academy.Tips4Trips.exception.DataNotFoundException;
@@ -8,29 +12,28 @@ import com.softserve.academy.Tips4Trips.exception.FileIOException;
 import com.softserve.academy.Tips4Trips.repository.AccountRepository;
 
 import com.softserve.academy.Tips4Trips.repository.UserRepository;
-import com.softserve.academy.Tips4Trips.security.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
 import java.net.MalformedURLException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Date;
 
 @Service
 public class FileStorageService {
 
-    private final String IMAGES_DIRECTORY = "images";
-    private final String DEFAULT_IMAGE = "default_image.png";
+    private final String BUCKET_NAME = "images-t4t";
+    private final String BUCKET_URL = "https://s3.us-east-2.amazonaws.com/images-t4t/";
+    private final BasicAWSCredentials awsCredentials = new BasicAWSCredentials("accessKey",
+            "secretKey");
+    private final AmazonS3 s3 = AmazonS3Client.builder()
+            .withRegion("us-east-2")
+            .withCredentials(new AWSStaticCredentialsProvider(awsCredentials))
+            .build();
 
-    private Path rootLocation;
+    private final String DEFAULT_IMAGE = "default_image.png";
 
     private ImageService imageService;
     private AccountRepository accountRepository;
@@ -40,11 +43,6 @@ public class FileStorageService {
     public FileStorageService(ImageService imageService,
                               AccountRepository accountRepository,
                               UserRepository userRepository) {
-        String path = Tips4TripsApplication.class.getProtectionDomain()
-                .getCodeSource().getLocation().getPath();
-        path = path.substring(1, path.lastIndexOf("/"));
-        path = path.substring(0, path.lastIndexOf("/") + 1);
-        rootLocation = Paths.get(path, IMAGES_DIRECTORY);
         this.imageService = imageService;
         this.accountRepository = accountRepository;
         this.userRepository = userRepository;
@@ -55,8 +53,7 @@ public class FileStorageService {
             String fileName = file.getOriginalFilename();
             Image image = createImage(fileName, getImageCreator());
             String filepath = image.getId() + image.getFormat();
-            Files.copy(file.getInputStream(), Paths.get(rootLocation.toString(),
-                    filepath));
+            s3.putObject(BUCKET_NAME, filepath, file.getInputStream(), null);
             return image;
         } catch (Exception e) {
             throw new FileIOException("Failed to save file!");
@@ -72,8 +69,7 @@ public class FileStorageService {
             } catch (DataNotFoundException e) {
                 path = DEFAULT_IMAGE;
             }
-            Path file = Paths.get(rootLocation.toString(), path);
-            Resource resource = new UrlResource(file.toUri());
+            Resource resource = new UrlResource(BUCKET_URL + path);
             if (resource.exists() || resource.isReadable()) {
                 return resource;
             } else {
@@ -88,20 +84,10 @@ public class FileStorageService {
             throws FileIOException, DataNotFoundException {
         try {
             String imageName = id + imageService.getImageById(id).getFormat();
-            Files.delete(Paths.get(rootLocation.toString(), imageName));
+            s3.deleteObject(BUCKET_NAME, imageName);
             imageService.deleteImage(id);
-        } catch (IOException e) {
+        } catch (AmazonServiceException e) {
             throw new FileIOException("No such file!");
-        }
-    }
-
-    public void init() throws FileIOException {
-        try {
-            if(!Files.exists(rootLocation)) {
-                Files.createDirectory(rootLocation);
-            }
-        } catch (IOException e) {
-            throw new FileIOException("Could not initialize storage!");
         }
     }
 
