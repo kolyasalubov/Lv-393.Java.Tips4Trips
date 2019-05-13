@@ -1,4 +1,4 @@
-import {Account} from './account.model'
+import {AccountDTO} from './account.model'
 import {AccountInfo} from './account-info.model'
 import {RouteInfo} from "./route-info.model";
 import {Route} from "./route.model";
@@ -11,14 +11,14 @@ export class TripDetailsDTO {
   creationDate: Date;
   startDate: Date;
   self: string;
-  creator: Account;
+  creator: AccountDTO;
   route: Route;
   subscribers: AccountInfo[];
   image: Image;
   chatId:number;
 
 
-  constructor(id: number, name: string, description: string, creationDate: Date, startDate: Date, self: string, creator: Account, route: Route, subscribers: AccountInfo[], image: Image, chatId: number) {
+  constructor(id: number, name: string, description: string, creationDate: Date, startDate: Date, self: string, creator: AccountDTO, route: Route, subscribers: AccountInfo[], image: Image, chatId: number) {
     this.id = id;
     this.name = name;
     this.description = description;

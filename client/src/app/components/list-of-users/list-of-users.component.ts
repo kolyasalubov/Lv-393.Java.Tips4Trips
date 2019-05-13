@@ -7,7 +7,7 @@ import {BlogService} from "../blog/blog/blog.service";
 import {ActivatedRoute} from "@angular/router";
 import {ListUsersService} from "./listUsers.service";
 import {AccountService} from "../authentication/account/account.service";
-import {Account} from "../../model/account.model";
+import {AccountDTO} from "../../model/account.model";
 
 @Component({
   selector: 'app-list-of-users',
@@ -22,7 +22,7 @@ export class ListOfUsersComponent implements OnInit {
   postP: AccountRoleModel[] = null;
   pagePost: PageAccountRoleModel = null;
 
-  accForUpdate: Account;
+  accForUpdate: AccountDTO;
 
   constructor(private listServ: ListUsersService, private activatedRoute: ActivatedRoute, private accountService: AccountService) {
   }
@@ -38,7 +38,7 @@ export class ListOfUsersComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.accForUpdate = new Account(null,
+    this.accForUpdate = new AccountDTO(null,
       null,
       null,
       null,

@@ -1,5 +1,5 @@
 import {Route} from "./route.model";
-import {Account} from "./account.model";
+import {AccountDTO} from "./account.model";
 
 export class PostCreateModel {
   id: number;
@@ -7,5 +7,5 @@ export class PostCreateModel {
   content: String;
   photoPath: String;
   routeInfo: Route;
-  author: Account;
+  author: AccountDTO;
 }

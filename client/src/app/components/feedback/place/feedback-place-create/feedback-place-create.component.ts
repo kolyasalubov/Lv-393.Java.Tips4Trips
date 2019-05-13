@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FeedbackPlaceModel} from "../../../../model/feedback-place.model";
-import {Account} from "../../../../model/account.model";
+import {AccountDTO} from "../../../../model/account.model";
 import {FeedbackPlaceService} from "../../feedback-place.service";
 import {PlaceModel} from "../../../../model/place.model";
 import {CustomAuthService} from "../../../authentication/custom-auth.service";
@@ -27,7 +27,7 @@ export class FeedbackPlaceCreateComponent implements OnInit {
 
   ngOnInit() {
     this.feedbackPlaceModel = new FeedbackPlaceModel();
-    this.feedbackPlaceModel.creator = new Account(
+    this.feedbackPlaceModel.creator = new AccountDTO(
       null,
       null,
       null,

@@ -1,6 +1,6 @@
 import {Image} from "./image.model";
 
-export class Account {
+export class AccountDTO {
   id: number;
   firstName: string;
   lastName: string;

@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Account} from 'src/app/model/account.model';
+import {AccountDTO} from 'src/app/model/account.model';
 import {AccountService} from './account.service';
 import {Router} from '@angular/router';
 import {CustomAuthService} from '../custom-auth.service';
@@ -14,7 +14,7 @@ import {PageNotificationTrip} from "../../../model/page-notification-trip";
 })
 export class AccountComponent implements OnInit {
 
-  accountProfile: Account;
+  accountProfile: AccountDTO;
   comments: PageNotificationComment;
   arecomments: boolean = false;
   likes: PageNotificationComment;
@@ -52,7 +52,7 @@ export class AccountComponent implements OnInit {
     this.router.navigate(['home']);
   }
 
-  initAcc(accountProfile: Account) {
+  initAcc(accountProfile: AccountDTO) {
     this.accountProfile = accountProfile;
   }
 
