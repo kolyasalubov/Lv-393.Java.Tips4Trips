@@ -1,5 +1,7 @@
 package com.softserve.academy.Tips4Trips.entity;
 
+import com.softserve.academy.Tips4Trips.entity.city.City;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -24,8 +26,7 @@ public class Country implements Serializable {
     @Column(nullable = false)
     private Position position;
 
-    @OneToMany(mappedBy="country", cascade = CascadeType.ALL,
-            orphanRemoval = true)
+    @OneToMany(mappedBy="country", cascade = CascadeType.ALL)
     private List<City> listOfCities;
 
     public Country() {}

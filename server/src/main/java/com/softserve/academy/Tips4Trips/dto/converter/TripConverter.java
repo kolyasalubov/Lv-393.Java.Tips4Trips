@@ -34,7 +34,7 @@ public class TripConverter implements Converter<Trip, TripDetailsDTO> {
     private final int MAX_DESCRIPTION_LENGTH = 100;
 
     @Autowired
-    public TripConverter(AccountConverter accountConverter, AccountService accountService, RouteService routeService, RouteConverter routeConverter,ChatService chatService, ImageConverter imageConverter) {
+    public TripConverter(AccountConverter accountConverter, AccountService accountService, RouteService routeService, RouteConverter routeConverter, ChatService chatService, ImageConverter imageConverter) {
         this.accountConverter = accountConverter;
         this.accountService = accountService;
         this.routeService = routeService;
@@ -51,12 +51,7 @@ public class TripConverter implements Converter<Trip, TripDetailsDTO> {
         trip.setDescription(tripDetailsDTO.getDescription());
         trip.setCreationDate(tripDetailsDTO.getCreationDate());
         trip.setStartDate(tripDetailsDTO.getStartDate());
-        if(chatService.isChatExist(tripDetailsDTO.getChatId())){
-            Chat chat = chatService.getChatById(tripDetailsDTO.getChatId());
-            trip.setChat(chat);
-        }else {
-            trip.setChat(new Chat());
-        }
+        trip.setChat(new Chat());
         Account creator = accountService.findById(tripDetailsDTO.getCreator().getId());
         trip.setCreator(creator);
         Route route = routeService.findById(tripDetailsDTO.getRoute().getId());
@@ -78,8 +73,6 @@ public class TripConverter implements Converter<Trip, TripDetailsDTO> {
 
         Account creator = trip.getCreator();
         tripDetailsDTO.setCreator(accountConverter.convertToDTO(creator));
-       // Route route = trip.getRoute();
-       // tripDetailsDTO.setRoute(new RouteDetailsDTO());
         tripDetailsDTO.setRoute(routeConverter.convertToDTO(trip.getRoute()));
 
         List<Account> accountInfoDTOS = trip.getSubscribers();

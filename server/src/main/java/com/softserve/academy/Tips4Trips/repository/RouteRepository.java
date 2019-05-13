@@ -20,6 +20,8 @@ public interface RouteRepository
 
     Page<Route> findByVerified(boolean verified, Pageable pageable);
 
+    List<Route> findTop5ByNameContainingIgnoreCaseOrderByName(String name);
+
     Page<Route> findAll(Pageable pageable);
 
     Optional<Route> findByName(String name);

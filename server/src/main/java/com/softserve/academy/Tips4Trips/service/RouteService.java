@@ -18,6 +18,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class RouteService {
@@ -54,6 +55,12 @@ public class RouteService {
         return repository.findByVerified(verified, pageable);
     }
 
+    public List<String> findDistinctNamesContaining(String name) {
+        return repository
+                .findTop5ByNameContainingIgnoreCaseOrderByName(name)
+                .stream().map(Route::getName).collect(Collectors.toList());
+    }
+
     public List<Route> findByAuthorId(Long authorId) {
         Optional<Account> author = accountRepository.findById(authorId);
         if (author.isPresent()) {
@@ -74,6 +81,9 @@ public class RouteService {
 
     public Route createRoute(Route route) {
         route.setCreationDate(new Date());
+        if (route.getListOfPlaces().size() < 2) {
+            throw new InvalidDataException();
+        }
         route.setVerified(route.getAuthor().getRole().equals(Role.ADMIN)
                 || route.getAuthor().getRole().equals(Role.MODERATOR));
         route.setId(-1L);
@@ -88,6 +98,9 @@ public class RouteService {
             existingRoute.get().setName(route.getName());
             existingRoute.get().setAuthor(route.getAuthor());
             existingRoute.get().setListOfPlaces(route.getListOfPlaces());
+        }
+        if (route.getListOfPlaces().size() < 2) {
+            throw new InvalidDataException();
         }
         return repository.save(existingRoute.get());
     }

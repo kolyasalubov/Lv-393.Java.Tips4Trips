@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FeedbackPlaceModel} from "../../../../model/feedback-place.model";
-import {Account} from "../../../../model/account.model";
+import {AccountDTO} from "../../../../model/account.model";
 import {FeedbackPlaceService} from "../../feedback-place.service";
 import {PlaceModel} from "../../../../model/place.model";
 

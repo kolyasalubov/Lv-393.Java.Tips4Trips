@@ -5,7 +5,7 @@ import { AccountInfo } from 'src/app/model/account-info.model';
 import { PlaceService } from 'src/app/place.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CustomAuthService } from '../../authentication/custom-auth.service';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {RouteMapComponent} from "../../map/route-map/route-map.component";
 
 @Component({
@@ -20,6 +20,14 @@ export class EditRouteComponent implements OnInit {
   myControl = new FormControl();
   filteredOptions: string[];
   options: string[] = [];
+  alerts: string[] = [];
+  formGroup: FormGroup = new FormGroup({
+    name: new FormControl(null,[
+      Validators.required,
+      Validators.minLength(6),
+      Validators.maxLength(35)
+    ])
+  });
   constructor(
     private routeService: RouteService,
     private placeService: PlaceService,
@@ -81,13 +89,34 @@ export class EditRouteComponent implements OnInit {
   }
 
   validate(): boolean {
-    return this.route.places.length > 0 && this.route.name != null && this.route.name.length > 5;
+    this.resetAlerts();
+    let valid = true;
+    if (this.route.name == null || this.route.name.length < 6) {
+      this.alerts.push("Route name has to be at least 6 characters!");
+      valid = false;
+    } else if (this.route.name.length > 30) {
+      this.alerts.push("Route has to be less than 35 characters!");
+      valid = false;
+    }
+    if (this.route.places.length < 2) {
+      this.alerts.push("Route must include at least 2 places!");
+      valid = false;
+    }
+    return valid;
   }
 
   removePlace(id: number): void {
     this.route.places = this.route.places.filter(p => p.id != id);
     this.child.placeList = this.route.places;
     this.child.getDirection();
+  }
+
+  close(alert: string) {
+    this.alerts.splice(this.alerts.indexOf(alert), 1);
+  }
+
+  resetAlerts() {
+    this.alerts = [];
   }
 
 }

@@ -78,6 +78,15 @@ import { MapPickerComponent } from './components/map/map-picker/map-picker.compo
 import { ChatComponent } from './components/chat/chat.component';
 import { FeedbackPlaceComponent } from './components/feedback/place/feedback-place/feedback-place.component';
 import { FeedbackPlaceCreateComponent } from './components/feedback/place/feedback-place-create/feedback-place-create.component';
+import { CountryListComponent } from './components/country-list/country-list.component';
+import { CountryEditComponent } from './components/country-edit/country-edit.component';
+import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
+import { ConfirmationDialogService } from './components/confirmation-dialog/confirmation-dialog.service';
+import { CityListComponent } from './components/city-list/city-list.component';
+import { CityEditComponent } from './components/city-edit/city-edit.component';
+import { CityRatingComponent } from './components/city-rating/city-rating.component';
+import { CityRatingPageComponent } from './components/city-rating-page/city-rating-page.component';
+import { BarRatingModule } from 'ngx-bar-rating'
 import { SocialHandlerComponent } from './components/authentication/social-handler/social-handler.component';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -90,7 +99,6 @@ import {RouteMapComponent} from "./components/map/route-map/route-map.component"
 import {AgmDirectionModule} from "agm-direction";
 import { ForgotPasswordComponent } from './components/authentication/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './components/authentication/reset-password/reset-password.component';
-
 
 @NgModule({
   declarations: [
@@ -145,6 +153,13 @@ import { ResetPasswordComponent } from './components/authentication/reset-passwo
     ActiveTripComponent,
     LikeAccountComponent,
     CommentAccountComponent,
+    CountryListComponent,
+    CountryEditComponent,
+    ConfirmationDialogComponent,
+    CityListComponent,
+    CityEditComponent,
+    CityRatingComponent,
+    CityRatingPageComponent,
     NewsComponent,
     RoutesPageComponent,
     NotVerifiedRoutesPageComponent,
@@ -182,6 +197,7 @@ import { ResetPasswordComponent } from './components/authentication/reset-passwo
     ReactiveFormsModule,
     NgbModule,
     BrowserAnimationsModule,
+    BarRatingModule,
     MatAutocompleteModule,
     MatFormFieldModule,
     MatInputModule,
@@ -189,8 +205,9 @@ import { ResetPasswordComponent } from './components/authentication/reset-passwo
   ],
   providers: [
     httpInterceptorProviders,
-    GoogleMapsAPIWrapper
-  ],
+    GoogleMapsAPIWrapper,
+    ConfirmationDialogService],
+  entryComponents: [ConfirmationDialogComponent],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

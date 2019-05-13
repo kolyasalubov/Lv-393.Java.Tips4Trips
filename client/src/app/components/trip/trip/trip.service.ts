@@ -7,7 +7,7 @@ import {ApiResponse} from "../../../model/api.response";
 import {PagelittlepostModel} from "../../../model/pagelittlepost.model";
 import {map} from "rxjs/operators";
 import {PageTripsmodel} from "../../../model/pageTripsmodel";
-import {Account} from "../../../model/account.model";
+import {AccountDTO} from "../../../model/account.model";
 
 @Injectable({
   providedIn: 'root'

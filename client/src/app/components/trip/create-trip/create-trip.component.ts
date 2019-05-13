@@ -6,7 +6,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {CustomAuthService} from "../../authentication/custom-auth.service";
 import {AccountInfo} from "../../../model/account-info.model";
 import {TripDetailsDTO} from "../../../model/trip-details";
-import {Account} from "../../../model/account.model";
+import {AccountDTO} from "../../../model/account.model";
 import {TripService} from "../trip/trip.service";
 
 @Component({
@@ -45,7 +45,7 @@ export class CreateTripComponent implements OnInit {
 
   ngOnInit() {
     this.authService.getCurrentUser().subscribe(data => {
-      this.trip.creator = new Account(null,
+      this.trip.creator = new AccountDTO(null,
         null,
         null,
         null,

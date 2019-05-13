@@ -68,7 +68,7 @@ public class CountryController {
     @PutMapping("/update")
     public ResponseEntity<CountryDTO> update(@RequestBody CountryDTO countryDTO) {
         logger.info("update country method executing: ");
-        Country country = countryConverter.convertToEntity(countryDTO);
+        Country country = countryService.update(countryConverter.convertToEntity(countryDTO));
         return new ResponseEntity<>(countryConverter.convertToDTO(countryService.update(country)), HttpStatus.OK);
     }
 

@@ -15,7 +15,7 @@
           <span class="time_date"> {{mes.sendTime.substr(11,5)}}</span> </div>
       </div>
       <div class="incoming_msg" *ngIf="mes.senderId != currentAccountId">
-        <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+        <div class="incoming_msg_img"> <app-image-details  [fileUpload]="getImageString(mes.senderId)"></app-image-details> </div>
         <div class="received_msg">
           <div class="received_withd_msg">
             <p>{{mes.content}}</p>
@@ -24,8 +24,6 @@
       </div>
     </div>
 </div>
-      <!--<p class="text-center top_spac"> Design by <a target="_blank" href="https://github.com/VolodymyrPaziuk">Volodymyr Paziuk</a></p>-->
-
     </div></div>
 
   </div>
@@ -41,12 +39,7 @@
 
   <div class="container justify-content-center" style="height: 100%;">
     <div class="d-flex flex-column" style="height: 100%; max-height: 812px;">
-      <h2 class="p-2">Chat</h2>
       <div class="p-2 chat"></div>
-      <!--<input id="input" type="text" class="p-2 mt-auto input-group border border-success rounded"-->
-             <!--#input-->
-             <!--(keyup.enter)="sendMessage(input.value)"/>-->
-    <!--</div>-->
   </div>
 </div>
 </div>

@@ -79,4 +79,8 @@ export class SubscribersComponent implements OnInit {
     return url[url.length-2] + "/" + url[url.length - 1];
   }
 
+  getImageString(id: number) {
+    return "http://localhost:8080/accounts/" + id + "/image";
+  }
+
 }

@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TokenStorageService } from '../token/token-storage.service';
 import {ACCESS_TOKEN} from '../../../constants'
 import { from } from 'rxjs';
-import { Account } from 'src/app/model/account.model';
+import { AccountDTO } from 'src/app/model/account.model';
 import { CustomAuthService } from '../custom-auth.service';
 import { AccountService } from '../account/account.service';
 import * as $ from 'jquery';
@@ -16,7 +16,7 @@ import { AccountPhoneInfo } from 'src/app/model/account-phone-info.model';
 })
 export class SocialHandlerComponent implements OnInit {
 
-  private account:  Account;
+  private account:  AccountDTO;
   infoForm: string;
   private phoneNumber:  string;
   private accountPhoneNumber: AccountPhoneInfo;
