@@ -17,3 +17,15 @@
   border: 1px solid transparent;
   height: 70px;
 }
+
+.invalid-input {
+  border-left-color: salmon;
+  border-left-width: 3px;
+  border-radius: 5px;
+}
+
+.valid-input {
+  border-left-color: greenyellow;
+  border-left-width: 3px;
+  border-radius: 5px;
+}

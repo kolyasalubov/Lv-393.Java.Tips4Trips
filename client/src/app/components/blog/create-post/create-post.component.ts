@@ -8,6 +8,7 @@ import {AccountDTO} from "../../../model/account.model";
 import {ImageUploadFormComponent} from "../../image-upload-form/image-upload-form.component";
 import {ImageService} from "../../../image.service";
 import {Router} from "@angular/router";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-create-post',
@@ -18,12 +19,25 @@ export class CreatePostComponent implements OnInit {
 
   routeName: string;
   post: PostCreateModel;
-  url: string = 'http://localhost:8080/posts/';
-  uploadPhoto: boolean = false;
+  url = 'http://localhost:8080/posts/';
+  uploadPhoto = false;
 
   constructor(private routeService: RouteService, private postService: PostService,
               private authService: CustomAuthService, private router: Router,) {
   }
+
+  formGroup: FormGroup = new FormGroup({
+    name: new FormControl(null, [
+      Validators.required,
+      Validators.minLength(2),
+      Validators.maxLength(35)
+    ]),
+    content: new FormControl(null, [
+      Validators.required,
+      Validators.minLength(10),
+      Validators.maxLength(510)
+    ])
+  });
 
   ngOnInit() {
     this.post = new PostCreateModel();
@@ -75,8 +89,6 @@ export class CreatePostComponent implements OnInit {
 
   validate(): boolean {
     return this.post.routeInfo != null &&
-      this.post.name != null &&
-      this.post.content != null &&
       this.post.author.id != null;
   }
 

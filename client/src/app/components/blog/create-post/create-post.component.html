@@ -1,26 +1,13 @@
-<div class="hero-wrap js-fullheight" style="height:30%;background-image: url('../../../assets/images/bg_1.jpg'); padding-bottom: 5%;"
-     data-stellar-background-ratio="0.5">
-  <div class="container">
-    <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-end"
-         data-scrollax-parent="true">
-      <div class="col-md-7 ftco-animate mt-5" data-scrollax=" properties: { translateY: '70%' }" >
-        <h1 class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }" style="margin-top: 10%;">Blog
-        </h1>
-      </div>
-    </div>
-  </div>
-</div>
-
+<app-under str="Create post"></app-under>
 <section class="ftco-section contact-section" style="margin-bottom: 90px;">
   <div class="container">
     <div class="row block-9">
       <section class="container">
         <div class="row blog-entries element-animate">
           <div class="col-md-12 col-lg-8 main-content" style="padding-left: 0px;">
-            <form action="#" method="post" enctype="multipart/form-data">
+            <form action="#" method="post" enctype="multipart/form-data" [formGroup]="formGroup">
               <h1 class="mb-4">Create a new post</h1>
               <div class="col-md-8 col-lg-6 main-content">
-                <img src="" alt="Image" class="img-fluid mb-5">
                 <app-image-upload-form [multiple]="true" [requestType]="'POST'" [setStorageURL]="url"
                                        [UploadStart]="uploadPhoto" (noAction)="navigate()"></app-image-upload-form>
                 <p>*File have to be less than 5 MB</p>
@@ -36,7 +23,10 @@
                            placeholder="Topic of post"
                            name="topic"
                            minlength="4"
-                           maxlength="26"></td>
+                           maxlength="26"
+                           formControlName="name"
+                           [ngClass]="formGroup.get('name').invalid ? 'invalid-input' : 'valid-input'"
+                    ></td>
                 </tr>
                 <tr>
                   <td><h4>
@@ -48,7 +38,10 @@
                                         width: 100%;"
                              value="{{post.content}}"
                              placeholder="Something about it"
-                             name="about"></textarea>
+                             name="about"
+                             formControlName="content"
+                             [ngClass]="formGroup.get('content').invalid ? 'invalid-input' : 'valid-input'"
+                   ></textarea>
                   </td>
                 </tr>
                 <tr>
