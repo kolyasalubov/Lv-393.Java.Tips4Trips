@@ -47,9 +47,15 @@ public class FeedbackPlaceController {
     public Page<FeedbackPlaceDTO> getByPlace(@PathVariable("id") Long id, @PathVariable("page") int page) {
         logger.info("create feedback method executing: ");
         PageRequest pageable = PageRequest.of(page - 1, 6);
-        Page<FeedbackPlace> feedbackPlaces = service.getByPalce(id, pageable);
+        Page<FeedbackPlace> feedbackPlaces = service.getByPlace(id, pageable);
         Page<FeedbackPlaceDTO> feedbackPlaceDTOPage = feedbackPlaces.map(feedbackPlace -> modelMapper.map(feedbackPlace, FeedbackPlaceDTO.class));
         return feedbackPlaceDTOPage;
+    }
+
+    @GetMapping("/{id}/id_user/{user}")
+    public ResponseEntity<Boolean> check(@PathVariable("id") Long postId, @PathVariable("user") Long userId) {
+        logger.info("create feedback method executing: ");
+        return new ResponseEntity<>(service.check(postId,userId), HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{id}")

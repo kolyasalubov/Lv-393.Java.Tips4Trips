@@ -23,4 +23,8 @@ export class FeedbackPlaceService {
   getByPlaceIdAndPage(placeId: number, page: number): Observable<PageFeedbackPlaceModel> {
     return this.http.get<PageFeedbackPlaceModel>(this.urlPage + placeId + '/' + page);
   }
+
+  check(placeId: number, user: number): Observable<boolean> {
+    return this.http.get<boolean>(this.urlPage + placeId + '/id_user/' + user);
+  }
 }

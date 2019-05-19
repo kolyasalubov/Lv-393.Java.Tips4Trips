@@ -52,7 +52,10 @@
                   </td>
                   <td>
                     <div class="form-group d-flex">
-                      <input type="text" [(ngModel)]="routeName" class="form-control" name="place"
+                      <input formControlName="route" type="text" [(ngModel)]="this.routeName"
+                             value="{{routeName}}"
+                             class="form-control"
+                             name="place"
                              placeholder="Enter route" required>
                       <button (click)="addRoute()" class="submit px-3">Add Route</button>
                     </div>
@@ -63,7 +66,7 @@
                   <td style="display:grid; grid-gap:20px 10px;
                                     grid-template-columns: auto auto auto;">
                     <div class="blog-entry justify-content-end" style="width: 100%;">
-                      <app-little-route [route]="post.routeInfo"></app-little-route>
+                      {{post.routeInfo.name}} add
                     </div>
                   </td>
                 </tr>

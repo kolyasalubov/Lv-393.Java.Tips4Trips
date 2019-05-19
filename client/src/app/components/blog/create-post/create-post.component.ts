@@ -17,13 +17,13 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 })
 export class CreatePostComponent implements OnInit {
 
-  routeName: string;
+  routeName = '';
   post: PostCreateModel;
   url = 'http://localhost:8080/posts/';
   uploadPhoto = false;
 
   constructor(private routeService: RouteService, private postService: PostService,
-              private authService: CustomAuthService, private router: Router,) {
+              private authService: CustomAuthService, private router: Router) {
   }
 
   formGroup: FormGroup = new FormGroup({
@@ -36,6 +36,9 @@ export class CreatePostComponent implements OnInit {
       Validators.required,
       Validators.minLength(10),
       Validators.maxLength(510)
+    ]),
+    route: new FormControl(null, [
+      Validators.required
     ])
   });
 
@@ -75,6 +78,7 @@ export class CreatePostComponent implements OnInit {
     if (this.validate()) {
       this.postService.createTrip(this.post).subscribe(result => {
           this.post = result;
+          console.log(result);
           this.url = this.url + this.post.id + '/images';
           this.uploadPhoto = true;
           // window.location.href = 'http://localhost:4200/post/' + this.post.id;
