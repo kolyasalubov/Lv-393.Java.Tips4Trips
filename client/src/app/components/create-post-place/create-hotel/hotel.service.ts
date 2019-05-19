@@ -13,7 +13,7 @@ export class HotelService {
   constructor(private http: HttpClient) { }//todo country id as 1
   private _countryId;
   private _cityId;
-  baseUrl: string = "http://localhost:8080/places/hotels/"; //todo URL
+  baseUrl: string = "http://test2-env.2hvwm638dp.us-east-2.elasticbeanstalk.com/places/hotels/"; //todo URL
   //Todo all methods
 
   get countryId() {

@@ -9,7 +9,7 @@ import {AccountInfo} from "../../../model/account-info.model";
 export class SubscribersService {
 
   constructor(private http: HttpClient) { }
-  baseUrl: string = 'http://localhost:8080/trips/';
+  baseUrl: string = 'http://test2-env.2hvwm638dp.us-east-2.elasticbeanstalk.com/trips/';
 
    findByTripId(id: number): Observable<AccountInfo[]> {
      return this.http.get<AccountInfo[]>(this.baseUrl + id + "/subscribers");

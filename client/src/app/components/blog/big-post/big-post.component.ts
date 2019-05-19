@@ -15,14 +15,14 @@ export class BigPostComponent implements OnInit {
 
   post: BigPostModel;
   id: number;
-  imageURL: string = 'http://localhost:8080/posts/images/';
+  imageURL: string = 'http://test2-env.2hvwm638dp.us-east-2.elasticbeanstalk.com/posts/images/';
   img: any[];
 
   getPageClient(page: number): void {
     this.bigserv.getPost(page)
       .subscribe(data => {
         this.post = data;
-      }, err => window.location.href = 'http://localhost:4200/404');
+      }, err => window.location.href = 'http://test234324.s3-website.us-east-2.amazonaws.com/404');
   }
 
   ngOnInit() {

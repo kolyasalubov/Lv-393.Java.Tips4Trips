@@ -13,11 +13,11 @@ export class FeedbackPlaceService {
   constructor(private http: HttpClient) {
   }
 
-  private urlPage = 'http://localhost:8080/feedback/';
+  private urlPage = 'http://test2-env.2hvwm638dp.us-east-2.elasticbeanstalk.com/feedback/';
 
   create(feedback: FeedbackPlaceModel): Observable<FeedbackPlaceModel> {
     console.log(feedback);
-    return this.http.post<FeedbackPlaceModel>('http://localhost:8080/feedback/create', feedback);
+    return this.http.post<FeedbackPlaceModel>('http://test2-env.2hvwm638dp.us-east-2.elasticbeanstalk.com/feedback/create', feedback);
   }
 
   getByPlaceIdAndPage(placeId: number, page: number): Observable<PageFeedbackPlaceModel> {

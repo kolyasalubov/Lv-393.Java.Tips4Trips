@@ -13,7 +13,7 @@ export class LittlePostComponent implements OnInit {
   date: number;
   year: number;
   month: any;
-  imageURL: string = 'http://localhost:8080/posts/images/';
+  imageURL: string = 'http://test2-env.2hvwm638dp.us-east-2.elasticbeanstalk.com/posts/images/';
 
   constructor() {
   }

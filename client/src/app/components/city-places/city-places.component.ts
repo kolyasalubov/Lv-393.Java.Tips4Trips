@@ -38,7 +38,7 @@ export class CityPlacesComponent implements OnInit {
       this.places = data;
 
       for (let place of this.places) {
-        place.imageUrl =  'http://localhost:8080/places/' + place.id + '/image';
+        place.imageUrl =  'http://test2-env.2hvwm638dp.us-east-2.elasticbeanstalk.com/places/' + place.id + '/image';
       }
     });
   }
@@ -55,7 +55,7 @@ export class CityPlacesComponent implements OnInit {
       this.categorizedPlaces = data;
 
       for (let place of this.categorizedPlaces) {
-        place.imageUrl =  'http://localhost:8080/places/' + place.id + '/image';
+        place.imageUrl =  'http://test2-env.2hvwm638dp.us-east-2.elasticbeanstalk.com/places/' + place.id + '/image';
       }
     });
   }
@@ -66,7 +66,7 @@ export class CityPlacesComponent implements OnInit {
       this.categorizedPlaces = data;
 
       for (let place of this.categorizedPlaces) {
-        place.imageUrl =  'http://localhost:8080/places/' + place.id + '/image';
+        place.imageUrl =  'http://test2-env.2hvwm638dp.us-east-2.elasticbeanstalk.com/places/' + place.id + '/image';
       }
     });
   }
@@ -76,7 +76,7 @@ export class CityPlacesComponent implements OnInit {
       this.categorizedPlaces = data;
 
       for (let place of this.categorizedPlaces) {
-        place.imageUrl =  'http://localhost:8080/places/' + place.id + '/image';
+        place.imageUrl =  'http://test2-env.2hvwm638dp.us-east-2.elasticbeanstalk.com/places/' + place.id + '/image';
       }
     });
   }

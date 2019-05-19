@@ -17,7 +17,7 @@ export class ChatComponent implements OnInit, AfterViewChecked  {
 
   @ViewChild('content') content: ElementRef;
 
-  serverUrl = "http://localhost:8080/ws/";
+  serverUrl = "http://test2-env.2hvwm638dp.us-east-2.elasticbeanstalk.com/ws/";
   private stompClient;
   currentAccountId: number;
   msg: String;
@@ -99,7 +99,7 @@ export class ChatComponent implements OnInit, AfterViewChecked  {
   }
 
   getImageString(id: number) {
-    return "http://localhost:8080/accounts/" + id + "/image";
+    return "http://test2-env.2hvwm638dp.us-east-2.elasticbeanstalk.com/accounts/" + id + "/image";
   }
 
 

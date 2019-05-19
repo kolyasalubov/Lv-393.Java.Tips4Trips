@@ -13,11 +13,13 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication(exclude = { SecurityAutoConfiguration.class })
 
-public class Tips4TripsApplication implements CommandLineRunner {
+public class Tips4TripsApplication extends SpringBootServletInitializer implements CommandLineRunner {
 
 	@Autowired
 	FileStorageService imageService;
@@ -42,4 +44,8 @@ public class Tips4TripsApplication implements CommandLineRunner {
 //		imageService.init();
 	}
 
+	@Override
+	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+		return builder.sources(Tips4TripsApplication.class);
+	}
 }

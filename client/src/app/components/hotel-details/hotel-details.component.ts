@@ -37,7 +37,7 @@ export class HotelDetailsComponent implements OnInit {
     this.hotelService.findById(this.id).subscribe(value => {
       this.hotel = value;
       this.hotel.workingDays.sort((d1, d2) => this.daysMap.get(d1) - this.daysMap.get(d2));
-      this.imageURL = 'http://localhost:8080/places/' + this.hotel.id + '/image';
+      this.imageURL = 'http://test2-env.2hvwm638dp.us-east-2.elasticbeanstalk.com/places/' + this.hotel.id + '/image';
     });
 
     this.authService.getCurrentUser().subscribe(data => this.role = data.role);

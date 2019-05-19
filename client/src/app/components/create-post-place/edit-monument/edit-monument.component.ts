@@ -67,7 +67,7 @@ export class EditMonumentComponent implements OnInit {
     });
     this.monumentService.findById(this.id).subscribe(data => {this.monument = data;
       this.position = data.position;
-      this.imageURLs.push('http://localhost:8080/places/' + this.monument.id + '/image');
+      this.imageURLs.push('http://test2-env.2hvwm638dp.us-east-2.elasticbeanstalk.com/places/' + this.monument.id + '/image');
     });
   }
 
@@ -75,7 +75,7 @@ export class EditMonumentComponent implements OnInit {
     this.monument.position = this.position;
     this.monumentService.update(this.monument).subscribe(data => {
       this.monument = data;
-      this.photoUrl = 'http://localhost:8080/places/' + this.monument.id + '/image';
+      this.photoUrl = 'http://test2-env.2hvwm638dp.us-east-2.elasticbeanstalk.com/places/' + this.monument.id + '/image';
       this.uploadPhoto = true;
     });
   }

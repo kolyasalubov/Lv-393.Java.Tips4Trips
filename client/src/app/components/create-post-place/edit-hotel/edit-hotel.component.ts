@@ -104,7 +104,7 @@ export class EditHotelComponent implements OnInit {
     this.hotelService.findById(this.id).subscribe(data => {
       this.hotel = data;
       this.position = data.position;
-      this.imageURLs.push('http://localhost:8080/places/' + this.hotel.id + '/image');
+      this.imageURLs.push('http://test2-env.2hvwm638dp.us-east-2.elasticbeanstalk.com/places/' + this.hotel.id + '/image');
     });
   }
 
@@ -112,7 +112,7 @@ export class EditHotelComponent implements OnInit {
     this.hotel.position = this.position;
     this.hotelService.update(this.hotel).subscribe(data => {
       this.hotel = data;
-      this.photoUrl = 'http://localhost:8080/places/' + this.hotel.id + '/image';
+      this.photoUrl = 'http://test2-env.2hvwm638dp.us-east-2.elasticbeanstalk.com/places/' + this.hotel.id + '/image';
       this.uploadPhoto = true;
     });
   }

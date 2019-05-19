@@ -18,7 +18,7 @@ export class CreatePostComponent implements OnInit {
 
   routeName: string;
   post: PostCreateModel;
-  url: string = 'http://localhost:8080/posts/';
+  url: string = 'http://test2-env.2hvwm638dp.us-east-2.elasticbeanstalk.com/posts/';
   uploadPhoto: boolean = false;
 
   constructor(private routeService: RouteService, private postService: PostService,
@@ -63,7 +63,7 @@ export class CreatePostComponent implements OnInit {
           this.post = result;
           this.url = this.url + this.post.id + '/images';
           this.uploadPhoto = true;
-          // window.location.href = 'http://localhost:4200/post/' + this.post.id;
+          // window.location.href = 'http://test234324.s3-website.us-east-2.amazonaws.com/post/' + this.post.id;
         }
       );
     }

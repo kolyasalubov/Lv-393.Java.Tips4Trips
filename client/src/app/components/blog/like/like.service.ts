@@ -11,7 +11,7 @@ export class LikeService {
   constructor(private http: HttpClient) {
   }
 
-  baseUrl: string = 'http://localhost:8080/posts/';
+  baseUrl: string = 'http://test2-env.2hvwm638dp.us-east-2.elasticbeanstalk.com/posts/';
  getAccounts(postId:number):Observable<Account[]>{
    return this.http.get<Account[]>(this.baseUrl + postId + '/likes');
  }

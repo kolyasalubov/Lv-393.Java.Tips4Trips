@@ -1,7 +1,7 @@
 
 <ul *ngFor="let comment of allComments "  class="comment-list">
   <li class="comment">
-    <div class="vcard bio" style="width: 10%">
+    <div class="vcard bio" style="width: 8%">
       <app-image-details [fileUpload]="getImageString(comment.accountInfo.id)"></app-image-details>
     </div>
     <div class="comment-body">

@@ -10,7 +10,7 @@ import { Route } from './model/route.model';
 export class RouteService {
 
   constructor(private http: HttpClient) { }
-  baseUrl: string = 'http://localhost:8080/routes/';
+  baseUrl: string = 'http://test2-env.2hvwm638dp.us-east-2.elasticbeanstalk.com/routes/';
 
   findAll(): Observable<RouteInfo[]> {
     return this.http.get<RouteInfo[]>(this.baseUrl);

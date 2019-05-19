@@ -17,7 +17,7 @@ export class SearchService {
   constructor(private http: HttpClient) {
   }
 
-  baseUrl: string = 'http://localhost:8080/search/';
+  baseUrl: string = 'http://test2-env.2hvwm638dp.us-east-2.elasticbeanstalk.com/search/';
 
   findRoutesByParams(params: RouteSearchParams, page: number): Observable<Page<RouteInfo>> {
     return this.http.post<Page<RouteInfo>>(this.baseUrl + "routes" + "?page=" + page, params );

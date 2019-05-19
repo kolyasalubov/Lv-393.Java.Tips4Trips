@@ -12,7 +12,7 @@ export class CityService {
   constructor(private http: HttpClient) {
   }
 
-  baseUrl: string = 'http://localhost:8080';
+  baseUrl: string = 'http://test2-env.2hvwm638dp.us-east-2.elasticbeanstalk.com';
 
   getAll(): Observable<City[]> {
     return this.http.get<City[]>(this.baseUrl);
@@ -23,7 +23,7 @@ export class CityService {
   }
 
   getAllByCountryId(id: number): Observable<City[]> {
-    return this.http.get<City[]>("http://localhost:8080/countries/" + id + "/cities/");
+    return this.http.get<City[]>("http://test2-env.2hvwm638dp.us-east-2.elasticbeanstalk.com/countries/" + id + "/cities/");
   }
 
   createCity(city: City): Observable<City> {

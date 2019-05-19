@@ -97,7 +97,7 @@ export class EditRestaurantComponent implements OnInit {
     this.restaurantService.findById(this.id).subscribe(data => {
       this.restaurant = data;
       this.position = data.position;
-      this.imageURLs.push('http://localhost:8080/places/' + this.restaurant.id + '/image');
+      this.imageURLs.push('http://test2-env.2hvwm638dp.us-east-2.elasticbeanstalk.com/places/' + this.restaurant.id + '/image');
     });
   }
 
@@ -105,7 +105,7 @@ export class EditRestaurantComponent implements OnInit {
     this.restaurant.position = this.position;
     this.restaurantService.update(this.restaurant).subscribe(data => {
       this.restaurant = data;
-      this.photoUrl = 'http://localhost:8080/places/' + this.restaurant.id + '/image';
+      this.photoUrl = 'http://test2-env.2hvwm638dp.us-east-2.elasticbeanstalk.com/places/' + this.restaurant.id + '/image';
       this.uploadPhoto = true;
     });
     // setTimeout(() => {window.location.href = '/restaurants/' + this.restaurant.id;}, 2000);

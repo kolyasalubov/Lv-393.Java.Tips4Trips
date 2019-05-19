@@ -86,7 +86,7 @@ export class CreateMonumentComponent implements OnInit {
       this.monument.position = this.position;
       this.monumentService.createMonument(this.monument).subscribe(data => {
         this.monument = data;
-        this.photoUrl = 'http://localhost:8080/places/' + this.monument.id + '/image';
+        this.photoUrl = 'http://test2-env.2hvwm638dp.us-east-2.elasticbeanstalk.com/places/' + this.monument.id + '/image';
         this.uploadPhoto = true;
       });
   }

@@ -82,7 +82,7 @@ export class AccountComponent implements OnInit {
     });
   }
   getImageString() {
-    return "http://localhost:8080/accounts/" + this.accountProfile.id + "/image";
+    return "http://test2-env.2hvwm638dp.us-east-2.elasticbeanstalk.com/accounts/" + this.accountProfile.id + "/image";
   }
 
 }

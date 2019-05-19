@@ -39,7 +39,7 @@ export class RestaurantDetailsComponent implements OnInit {
     this.restaurantService.findById(this.id).subscribe(value => {
       this.restaurant = value;
       this.restaurant.workingDays.sort((d1, d2) => this.daysMap.get(d1) - this.daysMap.get(d2));
-      this.imageURL = 'http://localhost:8080/places/' + this.restaurant.id + '/image';
+      this.imageURL = 'http://test2-env.2hvwm638dp.us-east-2.elasticbeanstalk.com/places/' + this.restaurant.id + '/image';
       this.hasVeganFood = this.restaurant.hasVeganFood ? 'YES' : 'NO';
     });
 

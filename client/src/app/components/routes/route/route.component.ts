@@ -35,7 +35,7 @@ export class RouteComponent implements OnInit {
     this.routeService.findById(id).subscribe(data => {
       this.route = data;
       for (let place of this.route.places) {
-        place.imageUrl =  'http://localhost:8080/places/' + place.id + '/image';
+        place.imageUrl =  'http://test2-env.2hvwm638dp.us-east-2.elasticbeanstalk.com/places/' + place.id + '/image';
       }
       this.route.authorInfo = data.authorInfo;
       this.route.places = data.places;

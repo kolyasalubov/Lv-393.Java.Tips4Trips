@@ -17,7 +17,7 @@ export class TripService {
   constructor(private http: HttpClient) {
   }
 
-  baseUrl: string = 'http://localhost:8080/trips/';
+  baseUrl: string = 'http://test2-env.2hvwm638dp.us-east-2.elasticbeanstalk.com/trips/';
 
   getAll(): Observable<TripInfoDTO[]> {
     return this.http.get<TripInfoDTO[]>(this.baseUrl);

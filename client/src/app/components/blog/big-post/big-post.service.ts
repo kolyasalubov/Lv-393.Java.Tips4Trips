@@ -13,7 +13,7 @@ export class BigPostService {
   constructor(private http: HttpClient) {
   }
 
-  private urlPage = 'http://localhost:8080/posts/';
+  private urlPage = 'http://test2-env.2hvwm638dp.us-east-2.elasticbeanstalk.com/posts/';
 
 
   getPost(page: number): Observable<BigPostModel> {

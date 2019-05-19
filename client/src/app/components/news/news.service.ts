@@ -11,7 +11,7 @@ export class NewsService {
 
   constructor(private http: HttpClient) { }
 
-  baseUrl: string = 'http://localhost:8080/accounts/';
+  baseUrl: string = 'http://test2-env.2hvwm638dp.us-east-2.elasticbeanstalk.com/accounts/';
 
   findById(id: number): Observable<AccountFeed> {
     return this.http.get<AccountFeed>(this.baseUrl + id + '/news');

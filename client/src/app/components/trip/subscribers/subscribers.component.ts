@@ -80,7 +80,7 @@ export class SubscribersComponent implements OnInit {
   }
 
   getImageString(id: number) {
-    return "http://localhost:8080/accounts/" + id + "/image";
+    return "http://test2-env.2hvwm638dp.us-east-2.elasticbeanstalk.com/accounts/" + id + "/image";
   }
 
 }

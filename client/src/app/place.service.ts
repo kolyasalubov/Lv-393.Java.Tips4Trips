@@ -10,7 +10,7 @@ export class PlaceService {
 
   constructor(private http:HttpClient) { }
 
-  baseUrl: string = 'http://localhost:8080/';
+  baseUrl: string = 'http://test2-env.2hvwm638dp.us-east-2.elasticbeanstalk.com/';
 
   findByName(name:string): Observable<PlaceInfo[]> {
     return this.http.get<PlaceInfo[]>(this.baseUrl + "places/name/" + name);

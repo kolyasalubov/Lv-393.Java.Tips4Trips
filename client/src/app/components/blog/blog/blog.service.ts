@@ -11,7 +11,7 @@ export class BlogService {
 
   constructor(private http: HttpClient) { }
 
-  private urlPage = 'http://localhost:8080/blog/';
+  private urlPage = 'http://test2-env.2hvwm638dp.us-east-2.elasticbeanstalk.com/blog/';
 
   getPosts(page: number): Observable<PagelittlepostModel> {
     return this.http.get<PagelittlepostModel>(this.urlPage+page)

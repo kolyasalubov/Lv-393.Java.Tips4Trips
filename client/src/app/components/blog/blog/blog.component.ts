@@ -28,7 +28,7 @@ export class BlogComponent implements OnInit {
         this.max = this.pagePost.totalPages;
         this.num = this.pagePost.number;
         this.postP=this.pagePost.content;
-      },err => window.location.href = 'http://localhost:4200/404');
+      },err => window.location.href = 'http://test234324.s3-website.us-east-2.amazonaws.com/404');
   }
 
   ngOnInit() {
@@ -41,7 +41,7 @@ export class BlogComponent implements OnInit {
     });
     
   }
-  imageURL = 'http://localhost:8080/posts/images/';
+  imageURL = 'http://test2-env.2hvwm638dp.us-east-2.elasticbeanstalk.com/posts/images/';
   getImageString(image: Image) {
     return this.imageURL + image.id;
   }

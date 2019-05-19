@@ -26,8 +26,8 @@ public class FileStorageService {
 
     private final String BUCKET_NAME = "images-t4t";
     private final String BUCKET_URL = "https://s3.us-east-2.amazonaws.com/images-t4t/";
-    private final BasicAWSCredentials awsCredentials = new BasicAWSCredentials("accessKey",
-            "secretKey");
+    private final BasicAWSCredentials awsCredentials = new BasicAWSCredentials("AKIAI26Z2P7C4XVURV4Q",
+            "0PAkAiejaj34Spz5OJ3bQUexabTOiQNEG3nqn4BC");
     private final AmazonS3 s3 = AmazonS3Client.builder()
             .withRegion("us-east-2")
             .withCredentials(new AWSStaticCredentialsProvider(awsCredentials))

@@ -57,7 +57,7 @@ public class PasswordForgotController {
         model.put("account", account);
         model.put("signature", "https://tips4trips.com");
         //String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
-        String url = "http://localhost:4200";
+        String url = "http://test234324.s3-website.us-east-2.amazonaws.com";
         model.put("resetUrl", url + "/reset-password?token=" + token.getToken());
         mail.setModel(model);
         emailService.sendEmail(mail);

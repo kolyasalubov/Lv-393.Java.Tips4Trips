@@ -18,7 +18,7 @@ export class CreateTripComponent implements OnInit {
   trip: TripDetailsDTO;
   routeName: string;
   subscribers: AccountInfo[] = [];
-  url: string = 'http://localhost:8080/trips/';
+  url: string = 'http://test2-env.2hvwm638dp.us-east-2.elasticbeanstalk.com/trips/';
   uploadPhoto: boolean = false;
 
   constructor(
@@ -82,7 +82,7 @@ export class CreateTripComponent implements OnInit {
         this.trip = result;
         this.url = this.url + this.trip.id + '/images';
         this.uploadPhoto = true;
-        //window.location.href = 'http://localhost:4200/trip/' + this.trip.id;
+        //window.location.href = 'http://test234324.s3-website.us-east-2.amazonaws.com/trip/' + this.trip.id;
       });
     }
   }
