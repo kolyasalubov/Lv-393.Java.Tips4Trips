@@ -14,7 +14,7 @@ export class AccountService {
   constructor(private http: HttpClient) {
   }
 
-  baseUrl: string = 'http://test2-env.2hvwm638dp.us-east-2.elasticbeanstalk.com/accounts/';
+  baseUrl: string = 'http://localhost:8080/accounts/';
 
 
   findById(id: number): Observable<AccountDTO> {

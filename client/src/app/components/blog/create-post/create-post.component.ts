@@ -8,6 +8,7 @@ import {AccountDTO} from "../../../model/account.model";
 import {ImageUploadFormComponent} from "../../image-upload-form/image-upload-form.component";
 import {ImageService} from "../../../image.service";
 import {Router} from "@angular/router";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-create-post',
@@ -16,14 +17,30 @@ import {Router} from "@angular/router";
 })
 export class CreatePostComponent implements OnInit {
 
-  routeName: string;
+  routeName = '';
   post: PostCreateModel;
-  url: string = 'http://test2-env.2hvwm638dp.us-east-2.elasticbeanstalk.com/posts/';
-  uploadPhoto: boolean = false;
+  url = 'http://localhost:8080/posts/';
+  uploadPhoto = false;
 
   constructor(private routeService: RouteService, private postService: PostService,
-              private authService: CustomAuthService, private router: Router,) {
+              private authService: CustomAuthService, private router: Router) {
   }
+
+  formGroup: FormGroup = new FormGroup({
+    name: new FormControl(null, [
+      Validators.required,
+      Validators.minLength(2),
+      Validators.maxLength(35)
+    ]),
+    content: new FormControl(null, [
+      Validators.required,
+      Validators.minLength(10),
+      Validators.maxLength(510)
+    ]),
+    route: new FormControl(null, [
+      Validators.required
+    ])
+  });
 
   ngOnInit() {
     this.post = new PostCreateModel();
@@ -61,9 +78,10 @@ export class CreatePostComponent implements OnInit {
     if (this.validate()) {
       this.postService.createTrip(this.post).subscribe(result => {
           this.post = result;
+          console.log(result);
           this.url = this.url + this.post.id + '/images';
           this.uploadPhoto = true;
-          // window.location.href = 'http://test234324.s3-website.us-east-2.amazonaws.com/post/' + this.post.id;
+          // window.location.href = 'http://localhost:4200/post/' + this.post.id;
         }
       );
     }
@@ -75,8 +93,6 @@ export class CreatePostComponent implements OnInit {
 
   validate(): boolean {
     return this.post.routeInfo != null &&
-      this.post.name != null &&
-      this.post.content != null &&
       this.post.author.id != null;
   }
 

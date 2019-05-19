@@ -23,7 +23,7 @@ export class NewsComponent implements OnInit {
   followingAccounts: AccountFollowing[];
   posts: BigPostModel[] = [];
   more: boolean = false;
-  imageURL = 'http://test2-env.2hvwm638dp.us-east-2.elasticbeanstalk.com/posts/images/';
+  imageURL = 'http://localhost:8080/posts/images/';
   imageReady = false;
 
   readMore() {

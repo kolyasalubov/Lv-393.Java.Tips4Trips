@@ -12,7 +12,7 @@ export class ChatService {
   constructor(private http: HttpClient) {
   }
 
-  baseUrl: string = 'http://test2-env.2hvwm638dp.us-east-2.elasticbeanstalk.com/messages/';
+  baseUrl: string = 'http://localhost:8080/messages/';
 
   getMessagesByChatId(id: number): Observable<Message[]> {
     return this.http.get<Message[]>(this.baseUrl + id);

@@ -19,7 +19,6 @@ import java.util.stream.Collectors;
 @Component
 public class AccountConverter implements Converter<Account, AccountDetailsDTO> {
 
-
     @Override
     public AccountDetailsDTO convertToDTO(Account account) {
 
@@ -29,16 +28,14 @@ public class AccountConverter implements Converter<Account, AccountDetailsDTO> {
         accountDetailsDTO.setEmail(account.getEmail());
         accountDetailsDTO.setRegistrationDate(account.getRegistrationDate());
         accountDetailsDTO.setAbout(account.getAbout());
-
-
         accountDetailsDTO.setRole(account.getRole());
         accountDetailsDTO.setNewNotification(account.isNewNotification());
         return accountDetailsDTO;
     }
 
-
     @Override
     public Account convertToEntity(AccountDetailsDTO accountDetailsDTO) {
+
         Account account = new Account();
         account.setId(accountDetailsDTO.getId());
         account.setFirstName(accountDetailsDTO.getFirstName());
@@ -48,7 +45,6 @@ public class AccountConverter implements Converter<Account, AccountDetailsDTO> {
         account.setRegistrationDate(accountDetailsDTO.getRegistrationDate());
         account.setAbout(accountDetailsDTO.getAbout());
 
-
         if (accountDetailsDTO.getImageId() != null) {
             ImageDTO imageDTO = new ImageDTO();
             imageDTO.setId(accountDetailsDTO.getImageId());
@@ -56,10 +52,7 @@ public class AccountConverter implements Converter<Account, AccountDetailsDTO> {
             imageDTO.setCreator(null);
             imageDTO.setFormat(accountDetailsDTO.getImageFormat());
             imageDTO.setUploadDate(accountDetailsDTO.getImageUploadDate());
-            // account.setImage(modelMapper.map(imageDTO, Image.class));
-
         }
-
 
         Image image = new Image();
         image.setId(accountDetailsDTO.getImageId());
@@ -67,9 +60,6 @@ public class AccountConverter implements Converter<Account, AccountDetailsDTO> {
         image.setCreator(null);
         image.setFormat(accountDetailsDTO.getImageFormat());
         image.setUploadDate(accountDetailsDTO.getImageUploadDate());
-        //account.setImage(null);
-
-
         account.setRole(accountDetailsDTO.getRole());
         return account;
     }
@@ -77,7 +67,6 @@ public class AccountConverter implements Converter<Account, AccountDetailsDTO> {
     public AccountInfoDTO convertToInfoDTO(Account account) {
         return toInfoDTO(new AccountInfoDTO(), account);
     }
-
 
     public List<AccountInfoDTO> convertToInfoDTO(final List<Account> accounts) {
         List<AccountInfoDTO> dtos = new ArrayList<>();
@@ -87,8 +76,8 @@ public class AccountConverter implements Converter<Account, AccountDetailsDTO> {
         return dtos;
     }
 
-
     private AccountInfoDTO toInfoDTO(AccountInfoDTO accountInfoDTO, Account account) {
+
         accountInfoDTO.setId(account.getId());
         accountInfoDTO.setFirstName(account.getFirstName());
         accountInfoDTO.setLastName(account.getLastName());

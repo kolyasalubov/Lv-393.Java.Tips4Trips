@@ -22,7 +22,7 @@ export class AuthInterceptor implements HttpInterceptor {
       req = req.clone({headers: req.headers.set(TOKEN_HEADER_KEY, token)});
     }
   }
-    req = req.clone({headers: req.headers.set('Access-Control-Allow-Origin',"http://test2-env.2hvwm638dp.us-east-2.elasticbeanstalk.com/")});
+    req = req.clone({headers: req.headers.set('Access-Control-Allow-Origin',"http://localhost:8080/")});
     return next.handle(req);
   }
 }

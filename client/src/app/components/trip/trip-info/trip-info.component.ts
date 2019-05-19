@@ -50,11 +50,11 @@ export class TripInfoComponent implements OnInit {
   }
 
   getImageString(id: number) {
-    return "http://test2-env.2hvwm638dp.us-east-2.elasticbeanstalk.com/accounts/" + id + "/image";
+    return "http://localhost:8080/accounts/" + id + "/image";
   }
 
   getPlaceImageString(id: number) {
-    return "http://test2-env.2hvwm638dp.us-east-2.elasticbeanstalk.com/places/" + id + "/image";
+    return "http://localhost:8080/places/" + id + "/image";
   }
 
 

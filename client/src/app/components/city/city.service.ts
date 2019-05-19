@@ -14,7 +14,7 @@ export class CityService {
   constructor(private http: HttpClient) {
   }
 
-  url: string = 'http://test2-env.2hvwm638dp.us-east-2.elasticbeanstalk.com/cities';
+  url: string = 'http://localhost:8080/cities';
 
   getAll(): Observable<City[]> {
     return this.http.get<City[]>(this.url);
@@ -53,7 +53,7 @@ export class CityService {
   }
 
   getAllRatingByCountryId(countryId: number): Observable<CityRating[]> {
-    return this.http.get<CityRating[]>("http://test2-env.2hvwm638dp.us-east-2.elasticbeanstalk.com/cities/getAllRating/" + countryId);
+    return this.http.get<CityRating[]>("http://localhost:8080/cities/getAllRating/" + countryId);
   }
 
 }

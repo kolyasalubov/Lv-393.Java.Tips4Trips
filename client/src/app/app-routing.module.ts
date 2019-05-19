@@ -24,7 +24,6 @@ import { CreateMonumentComponent } from "./components/create-post-place/create-m
 import { MonumentDetailsComponent } from "./components/monument-details/monument-details.component";
 import { TripComponent } from './components/trip/trip/trip.component';
 import { TripInfoComponent } from './components/trip/trip-info/trip-info.component';
-import { TestComponent } from './components/test/test.component';
 import { AuthGuard } from './components/authentication/guards/auth.guard';
 import { HotelDetailsComponent } from "./components/hotel-details/hotel-details.component";
 import { CityPlacesComponent } from "./components/city-places/city-places.component";
@@ -105,7 +104,6 @@ const routes: Routes = [
   { path: 'trip/:id', component: TripInfoComponent },
   { path: 'create_trip', component: CreateTripComponent },
   { path: 'edit_trip/:id', component: ChangeComponent },
-  { path: 'test', component: TestComponent },
   { path: 'profile/:id', component: ProfileComponent },
   { path: 'search', component: SearchComponent },
   { path: 'search/page/:page', component: SearchComponent },

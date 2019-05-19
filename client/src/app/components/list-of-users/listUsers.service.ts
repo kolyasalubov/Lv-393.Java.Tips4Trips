@@ -11,7 +11,7 @@ export class ListUsersService {
 
   constructor(private http: HttpClient) { }
 
-  private urlPage = 'http://test2-env.2hvwm638dp.us-east-2.elasticbeanstalk.com/accounts/page/';
+  private urlPage = 'http://localhost:8080/accounts/page/';
 
   getPosts(page: number): Observable<PageAccountRoleModel> {
     return this.http.get<PageAccountRoleModel>(this.urlPage+page)

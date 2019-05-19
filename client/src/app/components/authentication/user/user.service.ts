@@ -11,10 +11,10 @@ import { catchError } from 'rxjs/operators';
 export class UserService {
 
   constructor(private http: HttpClient) { }
-  baseUrl: string = '//test2-env.2hvwm638dp.us-east-2.elasticbeanstalk.com/users/';
+  baseUrl: string = '//localhost:8080/users/';
 
   login(loginPayload) : Observable<ApiResponse> {
-    return this.http.post<ApiResponse>('//test2-env.2hvwm638dp.us-east-2.elasticbeanstalk.com/'+ 'token/generate-token', loginPayload)
+    return this.http.post<ApiResponse>('//localhost:8080/'+ 'token/generate-token', loginPayload)
 
 };
 

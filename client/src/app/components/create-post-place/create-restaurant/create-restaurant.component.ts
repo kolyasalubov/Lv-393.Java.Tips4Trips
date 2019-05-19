@@ -119,7 +119,7 @@ export class CreateRestaurantComponent implements OnInit {
     this.restaurant.position = this.position;
     this.restaurantService.createRestaurant(this.restaurant).subscribe(data => {
       this.restaurant = data;
-      this.photoUrl = 'http://test2-env.2hvwm638dp.us-east-2.elasticbeanstalk.com/places/' + this.restaurant.id + '/image';
+      this.photoUrl = 'http://localhost:8080/places/' + this.restaurant.id + '/image';
       this.uploadPhoto = true;
     });
   }

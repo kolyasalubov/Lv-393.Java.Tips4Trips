@@ -36,7 +36,7 @@ export class MonumentDetailsComponent implements OnInit {
     });
     this.monumentService.findById(this.id).subscribe(value => {
       this.monument = value;
-      this.imageURL = 'http://test2-env.2hvwm638dp.us-east-2.elasticbeanstalk.com/places/' + this.monument.id + '/image';
+      this.imageURL = 'http://localhost:8080/places/' + this.monument.id + '/image';
     });
     this.authService.getCurrentUser().subscribe(data => this.role = data.role);
     this.feedbackService.getByPlaceIdAndPage(this.id,1).subscribe(data=>{

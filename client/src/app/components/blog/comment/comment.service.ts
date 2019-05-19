@@ -11,7 +11,7 @@ export class CommentService {
   constructor(private http: HttpClient) {
   }
 
-  baseUrl: string = 'http://test2-env.2hvwm638dp.us-east-2.elasticbeanstalk.com/comment';
+  baseUrl: string = 'http://localhost:8080/comment';
 
   createComment(comment: Comment): Observable<Comment> {
     return this.http.post<Comment>(this.baseUrl + '/create', comment);

@@ -45,7 +45,7 @@ export class EditRouteComponent implements OnInit {
     this.routeService.findById(id).subscribe(data => {
       this.route = data;
       for (let place of this.route.places) {
-        place.imageUrl =  'http://test2-env.2hvwm638dp.us-east-2.elasticbeanstalk.com/places/' + place.id + '/image';
+        place.imageUrl =  'http://localhost:8080/places/' + place.id + '/image';
       }
       this.child.placeList = this.route.places;
       this.child.getDirection();
@@ -66,7 +66,7 @@ export class EditRouteComponent implements OnInit {
 
   addPlace(): void {
     this.placeService.findByName(this.placeName).subscribe(data => {
-      data[0].imageUrl =  'http://test2-env.2hvwm638dp.us-east-2.elasticbeanstalk.com/places/' + data[0].id + '/image';
+      data[0].imageUrl =  'http://localhost:8080/places/' + data[0].id + '/image';
       if (data.length != 0) {
         this.myControl.reset();
         if (!this.route.places.map(place => place.id).includes(data[0].id)) {

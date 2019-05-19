@@ -21,15 +21,6 @@ public class ChatController {
     public ChatController(ChatService chatService){
         this.chatService = chatService;
     }
-//
-//    @PostMapping(value = "/chats")
-//    @PreAuthorize("hasRole=('USER')")
-//    @ResponseStatus(HttpStatus.CREATED)
-//    public void addChatToTrip(@Validated @RequestBody AddChatDto addChatDto) {
-//
-//        Chat chat = chatService.addChat(addChatDto.getChatType());
-//        return new IdDto(chat.getId());
-//    }
 
     @GetMapping(value = "/chats/{chatId}/count")
     @ResponseStatus(HttpStatus.OK)

@@ -10,7 +10,7 @@ import {Country} from "./model/country.model";
 export class CountryService {
 
   constructor(private http: HttpClient) { }
-  baseUrl: string = 'http://test2-env.2hvwm638dp.us-east-2.elasticbeanstalk.com/countries/';
+  baseUrl: string = 'http://localhost:8080/countries/';
 
 
   getAll(): Observable<Country[]> {

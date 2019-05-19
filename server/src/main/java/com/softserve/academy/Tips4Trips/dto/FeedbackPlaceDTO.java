@@ -1,7 +1,6 @@
 package com.softserve.academy.Tips4Trips.dto;
 
 import com.softserve.academy.Tips4Trips.dto.details.AccountDetailsDTO;
-import com.softserve.academy.Tips4Trips.entity.enums.FeedbackMark;
 
 import java.util.Date;
 
@@ -11,7 +10,7 @@ public class FeedbackPlaceDTO {
     private MiniPlaceDTO place;
     private AccountDetailsDTO creator;
     private Date date;
-    private FeedbackMark mark;
+    private Integer mark;
     private String comment;
 
     public Long getId() {
@@ -46,11 +45,11 @@ public class FeedbackPlaceDTO {
         this.date = date;
     }
 
-    public FeedbackMark getMark() {
+    public Integer getMark() {
         return mark;
     }
 
-    public void setMark(FeedbackMark mark) {
+    public void setMark(Integer mark) {
         this.mark = mark;
     }
 

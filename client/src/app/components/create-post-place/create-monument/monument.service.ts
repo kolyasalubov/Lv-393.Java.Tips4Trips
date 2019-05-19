@@ -11,7 +11,7 @@ export class MonumentService {
   constructor(private http: HttpClient) { }//todo country id as 1
   private _countryId;
   private _cityId;
-  baseUrl: string = "http://test2-env.2hvwm638dp.us-east-2.elasticbeanstalk.com/places/monuments/"; //todo URL
+  baseUrl: string = "http://localhost:8080/places/monuments/"; //todo URL
   //Todo all methods
 
   get countryId() {

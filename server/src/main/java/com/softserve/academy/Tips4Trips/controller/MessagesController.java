@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @CrossOrigin
-//@CrossOrigin(origins = "http://test234324.s3-website.us-east-2.amazonaws.com", maxAge = 3600)
+//@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 //@RequestMapping("/")
 public class MessagesController {
 

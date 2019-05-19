@@ -14,7 +14,7 @@ export class AboutComponent implements OnInit {
   post:number=0;
   aa:number=0;
 
-  private urlPage = 'http://test2-env.2hvwm638dp.us-east-2.elasticbeanstalk.com/';
+  private urlPage = 'http://localhost:8080/';
 
   constructor(private http: HttpClient) {
   }

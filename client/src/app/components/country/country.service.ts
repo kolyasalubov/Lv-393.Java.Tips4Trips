@@ -8,7 +8,7 @@ import { Country } from '../../model/country.model';
 })
 export class CountryService {
 
-    url: string = "http://test2-env.2hvwm638dp.us-east-2.elasticbeanstalk.com/countries";
+    url: string = "http://localhost:8080/countries";
 
     constructor(private http: HttpClient) { }
 

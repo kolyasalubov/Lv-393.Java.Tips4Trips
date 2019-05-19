@@ -27,7 +27,7 @@ export class CommentComponent implements OnInit {
   noComment = false;
   isButtonDisabled: boolean = false;
   isHidden:boolean=false;
-  imageURL = 'http://test2-env.2hvwm638dp.us-east-2.elasticbeanstalk.com/accounts/';
+  imageURL = 'http://localhost:8080/accounts/';
 
   commentProfile: Comment = new Comment(null, null, null, null, null, null, null);
 

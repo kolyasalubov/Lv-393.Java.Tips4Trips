@@ -66,7 +66,7 @@ export class AccountEditComponent implements OnInit {
     //this.accountService.findById(1).subscribe(data => this.accountProfile = data);
     this.accountService.getCurrentUser().subscribe(data => {
       this.accountProfile = data;
-      this.imageURLs.push('http://test2-env.2hvwm638dp.us-east-2.elasticbeanstalk.com/accounts/' + data.id + '/image');
+      this.imageURLs.push('http://localhost:8080/accounts/' + data.id + '/image');
     });
 
   }
@@ -75,7 +75,7 @@ export class AccountEditComponent implements OnInit {
 
     this.accountService.updateAccount(this.accountProfile).subscribe(data => {
       console.log(data);
-      this.photoUrl = 'http://test2-env.2hvwm638dp.us-east-2.elasticbeanstalk.com/accounts/' + this.accountProfile.id + '/image';
+      this.photoUrl = 'http://localhost:8080/accounts/' + this.accountProfile.id + '/image';
       this.uploadPhoto = true;
     });
 

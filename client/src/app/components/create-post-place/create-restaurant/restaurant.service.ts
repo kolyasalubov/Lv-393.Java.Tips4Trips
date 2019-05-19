@@ -12,7 +12,7 @@ export class RestaurantService {
   constructor(private http: HttpClient) { }//todo country id as 1
   private _countryId;
   private _cityId;
-  baseUrl: string = "http://test2-env.2hvwm638dp.us-east-2.elasticbeanstalk.com/places/restaurants/"; //todo URL
+  baseUrl: string = "http://localhost:8080/places/restaurants/"; //todo URL
   //Todo all methods
 
   get countryId() {

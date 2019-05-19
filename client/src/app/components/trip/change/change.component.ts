@@ -33,12 +33,12 @@ export class ChangeComponent implements OnInit {
           console.log('null')
         }
         else {
-          window.location.href = 'http://test234324.s3-website.us-east-2.amazonaws.com/trip/page';
+          window.location.href = 'http://localhost:4200/trip/page';
         }
       });
     }
     else {
-      window.location.href = 'http://test234324.s3-website.us-east-2.amazonaws.com/trip/page';
+      window.location.href = 'http://localhost:4200/trip/page';
     }
   }
 
@@ -59,7 +59,7 @@ export class ChangeComponent implements OnInit {
       console.log(this.trip);
       this.tripService.update(this.trip).subscribe(result => this.trip = result);
       setTimeout(() => {
-        window.location.href = 'http://test234324.s3-website.us-east-2.amazonaws.com/trip/' + this.id;
+        window.location.href = 'http://localhost:4200/trip/' + this.id;
       }, 100);
     }
   }
@@ -75,7 +75,7 @@ export class ChangeComponent implements OnInit {
   removePlace(): void {
     this.tripService.deleteTrip(this.trip.id).subscribe(result => {
     });
-    window.location.href = 'http://test234324.s3-website.us-east-2.amazonaws.com/trip/page';
+    window.location.href = 'http://localhost:4200/trip/page';
   }
 }
 

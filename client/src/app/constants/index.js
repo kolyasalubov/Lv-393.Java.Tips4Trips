@@ -1,7 +1,7 @@
-export const API_BASE_URL = 'http://test2-env.2hvwm638dp.us-east-2.elasticbeanstalk.com';
+export const API_BASE_URL = 'http://localhost:8080';
 export const ACCESS_TOKEN = 'accessToken';
 
-export const OAUTH2_REDIRECT_URI = 'http://test234324.s3-website.us-east-2.amazonaws.com/oauth2/redirect'
+export const OAUTH2_REDIRECT_URI = 'http://localhost:4200/oauth2/redirect'
 
 export const GOOGLE_AUTH_URL = API_BASE_URL + '/oauth2/authorize/google?redirect_uri=' + OAUTH2_REDIRECT_URI;
 export const FACEBOOK_AUTH_URL = API_BASE_URL + '/oauth2/authorize/facebook?redirect_uri=' + OAUTH2_REDIRECT_URI;
