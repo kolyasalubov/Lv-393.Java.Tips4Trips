@@ -40,7 +40,6 @@ import { TripInfoComponent } from './components/trip/trip-info/trip-info.compone
 import { RestaurantDetailsComponent } from "./components/restaurant-details/restaurant-details.component";
 import { CreateMonumentComponent } from "./components/create-post-place/create-monument/create-monument.component";
 import { MonumentDetailsComponent } from "./components/monument-details/monument-details.component";
-import { TestComponent } from './components/test/test.component';
 import { HotelDetailsComponent } from './components/hotel-details/hotel-details.component';
 import { CityPlacesComponent } from './components/city-places/city-places.component';
 import { CityComponent } from './components/city/city.component';
@@ -99,6 +98,7 @@ import {RouteMapComponent} from "./components/map/route-map/route-map.component"
 import {AgmDirectionModule} from "agm-direction";
 import { ForgotPasswordComponent } from './components/authentication/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './components/authentication/reset-password/reset-password.component';
+import { UnderComponent } from './components/header/under/under.component';
 
 @NgModule({
   declarations: [
@@ -137,7 +137,6 @@ import { ResetPasswordComponent } from './components/authentication/reset-passwo
     RouteComponent,
     TripComponent,
     TripInfoComponent,
-    TestComponent,
     HotelDetailsComponent,
     CityPlacesComponent,
     CityComponent,
@@ -186,7 +185,8 @@ import { ResetPasswordComponent } from './components/authentication/reset-passwo
     SearchNavbarComponent,
     RouteMapComponent,
     ForgotPasswordComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    UnderComponent,
   ],
   imports: [
     BrowserModule,

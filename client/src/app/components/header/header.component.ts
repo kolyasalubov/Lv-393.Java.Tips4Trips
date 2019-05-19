@@ -10,13 +10,13 @@ import {AccountDTO} from "../../model/account.model";
 })
 export class HeaderComponent implements OnInit {
 
-  show: boolean = false;
+  show = false;
   seek: string;
 
   accountProfile: AccountDTO;
-  newNotification: boolean = false;
-
-  login: string = "My AccountDTO";
+  newNotification = false;
+  scrWidth: number;
+  login = 'My AccountDTO';
 
   constructor(
     private router: Router,
@@ -24,7 +24,7 @@ export class HeaderComponent implements OnInit {
     private activatedRoute: ActivatedRoute
   ) {
     setTimeout(() => {
-      this.ngOnInit()
+      this.ngOnInit();
     }, 400);
   }
 
@@ -33,27 +33,23 @@ export class HeaderComponent implements OnInit {
       this.accountProfile = data;
       if (data.id > 0) {
         this.login = data.email;
-        if (this.activatedRoute.snapshot.url[0] != undefined && this.activatedRoute.snapshot.url[0].path == 'account') {
+        if (this.activatedRoute.snapshot.url[0] !== undefined && this.activatedRoute.snapshot.url[0].path === 'account') {
           this.newNotification = false;
-        }
-        else {
+        } else {
           this.newNotification = data.newNotification;
         }
       }
     });
-
-    this.getScreenSize()
+    this.getScreenSize();
   }
 
-  scrWidth: number;
 
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?) {
     this.scrWidth = window.innerWidth;
     if (this.scrWidth > 1000) {
       this.show = true;
-    }
-    else {
+    } else {
       this.show = false;
     }
   }

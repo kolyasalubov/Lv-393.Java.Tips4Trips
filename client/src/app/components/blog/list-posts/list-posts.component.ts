@@ -8,9 +8,10 @@ import {LittlepostModel} from "../../../model/littlepost.model";
 })
 export class ListPostsComponent implements OnInit {
 
-  @Input() postP:LittlepostModel[]=null;
+  @Input() postP: LittlepostModel[] = null;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }
