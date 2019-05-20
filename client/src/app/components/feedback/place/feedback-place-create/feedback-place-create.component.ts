@@ -12,11 +12,12 @@ import {CustomAuthService} from "../../../authentication/custom-auth.service";
 })
 export class FeedbackPlaceCreateComponent implements OnInit {
 
+  @Input() content: FeedbackPlaceModel[];
   @Input() placeId: number;
 
   feedbackPlaceModel: FeedbackPlaceModel;
 
-  show = true;
+  show = false;
 
   one: string;
   two: string;
@@ -95,6 +96,7 @@ export class FeedbackPlaceCreateComponent implements OnInit {
   save() {
     if (this.valid()) {
       this.service.create(this.feedbackPlaceModel).subscribe(data => {
+        window.location.reload();
         console.log(data);
       });
     }

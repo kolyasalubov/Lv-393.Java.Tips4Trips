@@ -26,7 +26,10 @@ public class FeedbackPlaceService {
 
 
     public FeedbackPlace createFeedbackPlace(FeedbackPlace feedbackPlace) {
-        return repository.save(feedbackPlace);
+        if (repository.existsByPlaceIdAndAndCreatorId(feedbackPlace.getPlace().getId(), feedbackPlace.getCreator().getId())) {
+            return repository.save(feedbackPlace);
+        }
+        return null;
     }
 
     public void deleteFeedbackPlaceById(Long id) {
