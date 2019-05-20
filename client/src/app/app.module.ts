@@ -99,6 +99,7 @@ import {AgmDirectionModule} from "agm-direction";
 import { ForgotPasswordComponent } from './components/authentication/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './components/authentication/reset-password/reset-password.component';
 import { UnderComponent } from './components/header/under/under.component';
+import { ListPlaceFeedbackComponent } from './components/feedback/place/list-place-feedback/list-place-feedback.component';
 
 @NgModule({
   declarations: [
@@ -187,6 +188,7 @@ import { UnderComponent } from './components/header/under/under.component';
     ForgotPasswordComponent,
     ResetPasswordComponent,
     UnderComponent,
+    ListPlaceFeedbackComponent,
   ],
   imports: [
     BrowserModule,

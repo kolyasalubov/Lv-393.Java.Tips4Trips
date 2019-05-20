@@ -1,0 +1,6 @@
+<div style="max-height: 160px;
+  overflow-y: scroll;" ><!--(scroll)="scrollHandler($event)"-->
+  <div *ngFor="let feedback of feedbacks">
+    <app-feedback-place [feedbackPlaceModel]="feedback"></app-feedback-place>
+  </div>
+</div>
