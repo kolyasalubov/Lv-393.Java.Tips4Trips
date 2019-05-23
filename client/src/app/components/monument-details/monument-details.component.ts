@@ -7,8 +7,6 @@ import {City} from "../../model/city.model";
 import {TokenStorageService} from "../authentication/token/token-storage.service";
 import {Location} from "@angular/common"
 import {CustomAuthService} from "../authentication/custom-auth.service";
-import {FeedbackPlaceService} from "../feedback/feedback-place.service";
-import {PageFeedbackPlaceModel} from "../../model/page-feedback-place.model";
 
 @Component({
   selector: 'app-monument-details',

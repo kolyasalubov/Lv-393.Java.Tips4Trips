@@ -17,7 +17,7 @@ import {PageFeedbackPlaceModel} from "../../model/page-feedback-place.model";
 export class HotelDetailsComponent implements OnInit {
 
   constructor(private activatedRoute: ActivatedRoute, private router: Router, private hotelService: HotelService,
-              private location: Location, private authService: CustomAuthService,private feedbackService:FeedbackPlaceService) { }
+              private location: Location, private authService: CustomAuthService) { }
   id: number;
   countryId: number;
   cityId: number;
@@ -28,7 +28,6 @@ export class HotelDetailsComponent implements OnInit {
   daysMap = new Map();
   imageURL: string = '';
   role: string;
-  pageFeedbackPlaceModel:PageFeedbackPlaceModel;
 
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe(params => {
@@ -49,9 +48,6 @@ export class HotelDetailsComponent implements OnInit {
     this.daysMap.set("FRIDAY", 5);
     this.daysMap.set("SATURDAY", 6);
     this.daysMap.set("SUNDAY", 7);
-    this.feedbackService.getByPlaceIdAndPage(this.id,1).subscribe(data=>{
-      this.pageFeedbackPlaceModel=data;
-    });
   }
 
   deletePlace() {
