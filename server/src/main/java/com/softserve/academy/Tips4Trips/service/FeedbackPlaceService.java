@@ -41,7 +41,7 @@ public class FeedbackPlaceService {
     }
 
     public Page<FeedbackPlace> getByPlace(Long place, PageRequest pageable) {
-        return repository.findAllByPlaceIdOrderByDateDesc(place,pageable);
+        return repository.findAllByPlaceIdOrderById(place,pageable);
     }
 
     public Boolean check(Long postId, Long userId) {

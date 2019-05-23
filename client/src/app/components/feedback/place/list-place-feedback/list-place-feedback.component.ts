@@ -15,21 +15,25 @@ export class ListPlaceFeedbackComponent implements OnInit {
 
   feedbacks: FeedbackPlaceModel[];
   page = 1;
-  last
+  last = false;
 
   constructor(private feedbackService: FeedbackPlaceService) {
   }
 
+  onScrollDown() {
+    if (!this.last) {
+      this.feedbackService.getByPlaceIdAndPage(this.id, this.page).subscribe(data => {
+        Array.prototype.push.apply(this.feedbacks, data.content);
+        this.last = data.last;
+        this.page = data.number + 2;
+      });
+    }
+  }
   ngOnInit() {
     this.feedbackService.getByPlaceIdAndPage(this.id, this.page).subscribe(data => {
       this.feedbacks = data.content;
       this.last = data.last;
-      this.page = this.page++;
+      this.page = 2;
     });
   }
-  // @HostListener('scroll', ['$event'])
-  // scrollHandler() {
-  //   console.log(22222222222222222);
-  // }
-
 }
