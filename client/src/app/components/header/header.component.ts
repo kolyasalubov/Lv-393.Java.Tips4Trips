@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit {
   accountProfile: AccountDTO;
   newNotification = false;
   scrWidth: number;
-  login = 'My AccountDTO';
+  login = 'My Account';
 
   constructor(
     private router: Router,
