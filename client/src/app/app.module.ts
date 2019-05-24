@@ -101,6 +101,7 @@ import { ResetPasswordComponent } from './components/authentication/reset-passwo
 import { UnderComponent } from './components/header/under/under.component';
 import { ListPlaceFeedbackComponent } from './components/feedback/place/list-place-feedback/list-place-feedback.component';
 import {InfiniteScrollModule} from "ngx-infinite-scroll";
+import { ErrorMessageComponent } from './components/error/error-message/error-message.component';
 
 @NgModule({
   declarations: [
@@ -189,7 +190,8 @@ import {InfiniteScrollModule} from "ngx-infinite-scroll";
     ForgotPasswordComponent,
     ResetPasswordComponent,
     UnderComponent,
-    ListPlaceFeedbackComponent
+    ListPlaceFeedbackComponent,
+    ErrorMessageComponent
   ],
   imports: [
     BrowserModule,

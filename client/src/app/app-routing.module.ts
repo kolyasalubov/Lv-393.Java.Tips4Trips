@@ -53,6 +53,7 @@ import { SocialHandlerComponent } from './components/authentication/social-handl
 import { ForgotPasswordComponent } from './components/authentication/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './components/authentication/reset-password/reset-password.component';
 import {AuthAdminGuard} from "./components/authentication/guards/auth.admin.guard";
+import {ErrorMessageComponent} from "./components/error/error-message/error-message.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -119,6 +120,7 @@ const routes: Routes = [
   { path: 'city-rating', component: CityRatingComponent },
   { path: 'city-rating/:id', component: CityRatingPageComponent },
   { path: '404', component: ErrorComponent },
+  { path: 'error/:string', component: ErrorMessageComponent },
   { path: 'chat', component: ChatComponent },
   { path: '**', redirectTo: '/404' }
 ];
