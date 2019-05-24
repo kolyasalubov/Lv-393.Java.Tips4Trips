@@ -102,7 +102,7 @@ import { UnderComponent } from './components/header/under/under.component';
 import { ListPlaceFeedbackComponent } from './components/feedback/place/list-place-feedback/list-place-feedback.component';
 import {InfiniteScrollModule} from "ngx-infinite-scroll";
 import { ErrorMessageComponent } from './components/error/error-message/error-message.component';
-import {HttpErrorInterceptor} from "./error-handling/http-error.interceptor";
+import {HttpErrorInterceptor} from "./components/error/error-message/http-error.interceptor";
 
 @NgModule({
   declarations: [
