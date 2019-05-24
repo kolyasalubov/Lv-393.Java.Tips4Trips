@@ -1,8 +1,10 @@
 package com.softserve.academy.Tips4Trips.service;
 
+import com.softserve.academy.Tips4Trips.constants.ExceptionMessages;
 import com.softserve.academy.Tips4Trips.dto.search.HotelSearchCriteria;
 import com.softserve.academy.Tips4Trips.entity.city.City;
 import com.softserve.academy.Tips4Trips.entity.place.Hotel;
+import com.softserve.academy.Tips4Trips.exception.DataNotFoundException;
 import com.softserve.academy.Tips4Trips.repository.CityRepository;
 import com.softserve.academy.Tips4Trips.repository.HotelRepository;
 import org.apache.log4j.Logger;
@@ -10,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,44 +23,39 @@ public class HotelService {
 
     private static final Logger logger = Logger.getLogger(HotelService.class);
     private final HotelRepository repository;
-    private final CityRepository cityRepository;
 
     @Autowired
-    public HotelService(HotelRepository restaurantRepository, CityRepository cityRepository) {
+    public HotelService(HotelRepository restaurantRepository) {
         this.repository = restaurantRepository;
-        this.cityRepository = cityRepository;
     }
 
     public List<Hotel> findAll() {
-        return repository.findAll();
+        if (!repository.findAll().isEmpty()) {
+            return repository.findAll();
+        } else {
+            throw new DataNotFoundException(ExceptionMessages.HOTELS_DO_NOT_EXIST);
+        }
     }
 
     public Hotel findById(Long id) {
-        Optional<Hotel> hotel = repository.findById(id);
-        if (hotel.isPresent()) {
-            return hotel.get();
-        } else {
-            return null;
-        }
+        return repository.findById(id).orElseThrow(() ->
+                new DataNotFoundException(ExceptionMessages.HOTEL_BY_THIS_ID_IS_NOT_FOUND));
     }
 
     public List<Hotel> findByName(String name) {
-        return repository.findByName(name);
-    }
-
-    public List<Hotel> findByCity(String name){
-        Optional<City> city = cityRepository.findByName(name);
-        if (city.isPresent()) {
-            return repository.findByCity(city.get());
+        if (!repository.findByName(name).isEmpty()) {
+            return repository.findByName(name);
         } else {
-            return null;
+            throw new DataNotFoundException(ExceptionMessages.HOTEL_WITH_SUCH_NAME_DO_NOT_EXIST);
         }
     }
 
+    @Transactional
     public Hotel createHotel(Hotel hotel) {
         return repository.save(hotel);
     }
 
+    @Transactional
     public Hotel update(Hotel hotel) {
         return repository.save(hotel);
     }

@@ -10,11 +10,10 @@ import {HotelSearchCriteria} from "../../city-places/hotel-search-criteria.model
 })
 export class HotelService {
 
-  constructor(private http: HttpClient) { }//todo country id as 1
+  constructor(private http: HttpClient) { }
   private _countryId;
   private _cityId;
-  baseUrl: string = "http://localhost:8080/places/hotels/"; //todo URL
-  //Todo all methods
+  baseUrl: string = "http://localhost:8080/places/hotels/";
 
   get countryId() {
     return this._countryId;
