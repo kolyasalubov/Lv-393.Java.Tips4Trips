@@ -13,6 +13,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -37,6 +38,7 @@ public class FeedbackPlaceController {
     }
 
     @PostMapping("/create")
+    @PreAuthorize("hasRole('ROLE_USER')")
     public ResponseEntity<FeedbackPlaceDTO> create(@RequestBody FeedbackPlaceDTO feedbackPlaceDTO) {
         logger.info("create feedback method executing: ");
         return new ResponseEntity<>(modelMapper.map(service.createFeedbackPlace(toEn(feedbackPlaceDTO)),
@@ -59,12 +61,14 @@ public class FeedbackPlaceController {
     }
 
     @DeleteMapping("/delete/{id}")
+    @PreAuthorize("hasRole('ROLE_USER')")
     public void deleteById(@PathVariable Long id) {
         logger.info("delete post by id method executing: ");
         service.deleteFeedbackPlaceById(id);
     }
 
     @PutMapping("/update")
+    @PreAuthorize("hasRole('ROLE_USER')")
     public ResponseEntity<FeedbackPlaceDTO> update(@RequestBody FeedbackPlaceDTO feedbackPlaceDTO) {
         logger.info("post update method executing: ");
         return new ResponseEntity<>(modelMapper.map(service.updateFeedbackPlace(toEn(feedbackPlaceDTO)),

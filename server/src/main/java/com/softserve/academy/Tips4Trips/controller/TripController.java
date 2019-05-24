@@ -93,6 +93,7 @@ public class TripController {
 
 
     @PostMapping("/create")
+    @PreAuthorize("hasRole('ROLE_USER')")
     public ResponseEntity<TripDetailsDTO> create(@RequestBody TripDetailsDTO tripDetailsDTO) {
 
         logger.info("trip create post method executing: ");
@@ -102,6 +103,7 @@ public class TripController {
     }
 
     @PostMapping("/{id}/image")
+    @PreAuthorize("hasRole('ROLE_USER')")
     public ResponseEntity<TripInfoDTO> addImage(@PathVariable Long id,
                                                 @RequestParam("file") MultipartFile file) throws FileIOException {
 
@@ -119,6 +121,7 @@ public class TripController {
     }
 
     @DeleteMapping("/{id}/image")
+    @PreAuthorize("hasRole('ROLE_USER')")
     public void deleteImageById(@PathVariable Long id) throws FileIOException,
             DataNotFoundException {
 
@@ -127,6 +130,7 @@ public class TripController {
     }
 
     @PutMapping("/{id}/image")
+    @PreAuthorize("hasRole('ROLE_USER')")
     public ResponseEntity<TripInfoDTO> updateImageById(
             @PathVariable Long id, @RequestParam("file") MultipartFile file)
             throws FileIOException, DataNotFoundException {
