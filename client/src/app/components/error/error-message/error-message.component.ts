@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-error-message',
@@ -8,7 +9,7 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class ErrorMessageComponent implements OnInit {
 
-  constructor(private activatedRoute: ActivatedRoute) {
+  constructor(private activatedRoute: ActivatedRoute, private location: Location) {
   }
 
   message: string;
@@ -19,4 +20,7 @@ export class ErrorMessageComponent implements OnInit {
     });
   }
 
+  backClicked() {
+    this.location.back();
+  }
 }
