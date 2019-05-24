@@ -55,21 +55,7 @@ public class RestaurantService {
     }
 
     public Restaurant update(Restaurant restaurant) {
-        Restaurant restaurantToUpdate = repository.getOne(restaurant.getId());
-        restaurantToUpdate.setId(restaurant.getId());
-        restaurantToUpdate.setName(restaurant.getName());
-        restaurantToUpdate.setDescription(restaurant.getDescription());
-        restaurantToUpdate.setAddress(restaurant.getAddress());
-        restaurantToUpdate.setPosition(restaurant.getPosition());
-        restaurantToUpdate.setImage(restaurant.getImage());
-        restaurantToUpdate.setCity(restaurant.getCity());
-        restaurantToUpdate.setWorkingDays(restaurant.getWorkingDays());
-        restaurantToUpdate.setWebSite(restaurant.getWebSite());
-        restaurantToUpdate.setOpeningTime(restaurant.getOpeningTime());
-        restaurantToUpdate.setClosingTime(restaurant.getClosingTime());
-        restaurantToUpdate.setAverageBill(restaurant.getAverageBill());
-        restaurantToUpdate.setHasVeganFood(restaurant.getHasVeganFood());
-        return repository.save(restaurantToUpdate);
+        return repository.save(restaurant);
     }
 
     public List<Restaurant> filter(RestaurantSearchCriteria criteria) {

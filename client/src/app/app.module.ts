@@ -102,6 +102,7 @@ import { UnderComponent } from './components/header/under/under.component';
 import { ListPlaceFeedbackComponent } from './components/feedback/place/list-place-feedback/list-place-feedback.component';
 import {InfiniteScrollModule} from "ngx-infinite-scroll";
 import { ErrorMessageComponent } from './components/error/error-message/error-message.component';
+import {HttpErrorInterceptor} from "./error-handling/http-error.interceptor";
 
 @NgModule({
   declarations: [
@@ -212,7 +213,12 @@ import { ErrorMessageComponent } from './components/error/error-message/error-me
   providers: [
     httpInterceptorProviders,
     GoogleMapsAPIWrapper,
-    ConfirmationDialogService],
+    ConfirmationDialogService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpErrorInterceptor,
+      multi: true
+    }],
   entryComponents: [ConfirmationDialogComponent],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

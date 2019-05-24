@@ -17,15 +17,17 @@ export class AuthAdminGuard implements CanActivate {
 
   async canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     const currentUser = this.authenticationService.checkLoggedUser();
-    this.account = await this.authenticationService.getCurrentUser().toPromise();
     if (currentUser) {
+      this.account = await this.authenticationService.getCurrentUser().toPromise();
       if (this.account.role === 'MODERATOR' || this.account.role === 'ADMIN') {
         return true;
       } else {
         this.router.navigate(['/home']);
         return false;
       }
+    } else {
+      this.router.navigate(['/login']);
+      return false;
     }
-
   }
 }
