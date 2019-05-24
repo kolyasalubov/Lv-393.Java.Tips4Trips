@@ -52,6 +52,7 @@ import { CityRatingPageComponent } from './components/city-rating-page/city-rati
 import { SocialHandlerComponent } from './components/authentication/social-handler/social-handler.component';
 import { ForgotPasswordComponent } from './components/authentication/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './components/authentication/reset-password/reset-password.component';
+import {AuthAdminGuard} from "./components/authentication/guards/auth.admin.guard";
 import {ErrorMessageComponent} from "./components/error/error-message/error-message.component";
 
 const routes: Routes = [
@@ -68,13 +69,12 @@ const routes: Routes = [
   { path: 'account_edit', component: AccountEditComponent },
   { path: 'city', component: CityComponent },
   { path: 'country', component: CountryComponent },
-  //  { path: 'create-place', component: CreatePostPlaceComponent },
-  { path: 'create_place', component: CreatePostPlaceComponent },
-  { path: 'create_place/restaurant', component: CreateRestaurantComponent },
+  { path: 'create_place', component: CreatePostPlaceComponent, canActivate: [AuthAdminGuard] },
+  { path: 'create_place/restaurant', component: CreateRestaurantComponent, canActivate: [AuthAdminGuard] },
   { path: 'restaurants/:id', component: RestaurantDetailsComponent },
-  { path: 'create_place/hotel', component: CreateHotelComponent },
+  { path: 'create_place/hotel', component: CreateHotelComponent, canActivate: [AuthAdminGuard] },
   { path: 'hotels/:id', component: HotelDetailsComponent },
-  { path: 'create_place/monument', component: CreateMonumentComponent },
+  { path: 'create_place/monument', component: CreateMonumentComponent, canActivate: [AuthAdminGuard] },
   { path: 'monuments/:id', component: MonumentDetailsComponent },
   { path: 'city_places/:id', component: CityPlacesComponent },
   { path: 'create_post', component: CreatePostComponent, canActivate: [AuthGuard]},
@@ -109,9 +109,9 @@ const routes: Routes = [
   { path: 'search', component: SearchComponent },
   { path: 'search/page/:page', component: SearchComponent },
   { path: 'news', component: NewsComponent },
-  { path: 'restaurants/edit/:id', component: EditRestaurantComponent },
-  { path: 'monuments/edit/:id', component: EditMonumentComponent },
-  { path: 'hotels/edit/:id', component: EditHotelComponent },
+  { path: 'restaurants/edit/:id', component: EditRestaurantComponent, canActivate: [AuthAdminGuard] },
+  { path: 'monuments/edit/:id', component: EditMonumentComponent, canActivate: [AuthAdminGuard] },
+  { path: 'hotels/edit/:id', component: EditHotelComponent, canActivate: [AuthAdminGuard] },
   { path: 'maptest', component: MapPickerComponent },
   { path: 'countries', component: CountryListComponent },
   { path: 'country/:id', component: CountryEditComponent },

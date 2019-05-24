@@ -9,11 +9,10 @@ import {RestaurantSearchCriteria} from "../../city-places/restaurant-search-crit
 })
 export class RestaurantService {
 
-  constructor(private http: HttpClient) { }//todo country id as 1
+  constructor(private http: HttpClient) { }
   private _countryId;
   private _cityId;
-  baseUrl: string = "http://localhost:8080/places/restaurants/"; //todo URL
-  //Todo all methods
+  baseUrl: string = "http://localhost:8080/places/restaurants/";
 
   get countryId() {
     return this._countryId;
