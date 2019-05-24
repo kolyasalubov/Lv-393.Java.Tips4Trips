@@ -44,13 +44,16 @@ public class PostController {
 
     @GetMapping("/count")
     public ResponseEntity<Long> getCount() {
-        logger.info("get post by id method executing: ");
+        logger.info("get count of posts method executing: ");
         return new ResponseEntity<>(postService.getCount(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<PostDetailsDTO> getById(@PathVariable Long id) {
         logger.info("get post by id method executing: ");
+        if (id < 1) {
+            return null;
+        }
         return new ResponseEntity<>(postConverter
                 .convertToDTO(postService.findById(id)), HttpStatus.OK);
     }
@@ -80,6 +83,9 @@ public class PostController {
     @PreAuthorize("hasRole('ROLE_USER')")
     public void deleteById(@PathVariable Long id) {
         logger.info("delete post by id method executing: ");
+        if (id < 1) {
+            return;
+        }
         postService.deleteById(id);
     }
 
@@ -87,23 +93,34 @@ public class PostController {
     @PostMapping("/{id}/images")
     @PreAuthorize("hasRole('ROLE_USER')")
     public ResponseEntity<PostDetailsDTO> addImage(@PathVariable Long id,
-            @RequestParam("files") MultipartFile[] files)
+                                                   @RequestParam("files") MultipartFile[] files)
             throws FileIOException {
-        System.out.println(files);
-        Post updatedPost = postService.createImagesForPost(files, id);
-        return new ResponseEntity<>(postConverter
-                .convertToDTO(updatedPost), HttpStatus.CREATED);
+        logger.info("create photo by post method executing: ");
+        if (id < 1) {
+            return null;
+        }
+        return new ResponseEntity<>(postConverter.convertToDTO(
+                postService.createImagesForPost(files, id)),
+                HttpStatus.CREATED);
     }
 
     @GetMapping("/images/{imageId}")
     public RedirectView redirectToImageGet(@PathVariable Long imageId) {
+        logger.info("get photo by id method executing: ");
+        if (imageId < 1) {
+            return null;
+        }
         return new RedirectView("/images/" + imageId);
     }
 
     @DeleteMapping("/{id}/images")
     @PreAuthorize("hasRole('ROLE_USER')")
-    public void deleteImageById(@PathVariable Long id) throws FileIOException,
-            DataNotFoundException {
+    public void deleteImageById(@PathVariable Long id)
+            throws FileIOException, DataNotFoundException {
+        logger.info("delete photo by id method executing: ");
+        if (id < 1) {
+            return;
+        }
         postService.deletePostImages(id);
     }
 
@@ -112,9 +129,11 @@ public class PostController {
     public ResponseEntity<PostDetailsDTO> updateImageById(
             @PathVariable Long id, @RequestParam("file") MultipartFile[] file)
             throws FileIOException, DataNotFoundException {
-
-        Post updatedPost = postService.updatePostImages(id, file);
-        return new ResponseEntity<>(postConverter
-                .convertToDTO(updatedPost), HttpStatus.ACCEPTED);
+        logger.info("update photo by id method executing: ");
+        if (id < 1) {
+            return null;
+        }
+        return new ResponseEntity<>(postConverter.convertToDTO(
+                postService.updatePostImages(id, file)), HttpStatus.ACCEPTED);
     }
 }
