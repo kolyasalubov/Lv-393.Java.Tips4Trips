@@ -39,6 +39,8 @@ export class AccountComponent implements OnInit {
         });
       }
       this.role = data.role;
+    }, err => {
+      this.logout();
     });
 
     setTimeout(() => {

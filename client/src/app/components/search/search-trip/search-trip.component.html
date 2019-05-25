@@ -31,7 +31,7 @@
   <form style="display: inline-block;">
     <div class="form-row">
       <div class="col">
-        <input type="text" aria-label="Number" class="form-control" name="routeName" placeholder="Route" matInput
+        <input type="text" aria-label="Number" class="form-control blue-input" name="routeName" placeholder="Route" matInput
           [formControl]="myControl" [matAutocomplete]="auto">
         <mat-autocomplete #auto="matAutocomplete">
           <mat-option *ngFor="let option of filteredOptions" [value]="option">
@@ -41,7 +41,7 @@
       </div>
       <div class="col">
         <input type="number" min="0" [(ngModel)]="params.minSubscribersCount" name="minSubscribersCount"
-          class="form-control trip-input" placeholder="Min Subscribers Count">
+          class="form-control blue-input" placeholder="Min Subscribers Count">
       </div>
     </div>
   </form>
