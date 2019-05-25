@@ -1,7 +1,7 @@
 package com.softserve.academy.Tips4Trips.controller;
 
-import com.softserve.academy.Tips4Trips.dto.chat.DeleteMessageDTO;
 import com.softserve.academy.Tips4Trips.dto.chat.DeleteMessageInfoDTO;
+import com.softserve.academy.Tips4Trips.dto.chat.DeletedMessageDTO;
 import com.softserve.academy.Tips4Trips.dto.details.ChatMessageDTO;
 import com.softserve.academy.Tips4Trips.dto.info.ChatMessageInfoDTO;
 import com.softserve.academy.Tips4Trips.entity.chat.Message;
@@ -46,7 +46,7 @@ public class ChatWebSocketController {
     public void sendMessage(@Payload ChatMessageInfoDTO chatMessageInfoDTO) {
 
         logger.info("ChatWebsocketController send message");
-
+        logger.info(chatMessageInfoDTO.getChatId() + "    " + chatMessageInfoDTO.getContent());
         Message message = new Message();
 
         message.setSender(accountService.findById(chatMessageInfoDTO.getAccountId()));
@@ -58,18 +58,17 @@ public class ChatWebSocketController {
 
     }
 
-    @MessageMapping(value = "/delete/message")
+    @MessageMapping("/delete/message")
     public void deleteMessage(@Payload DeleteMessageInfoDTO deleteMessageInfoDTO) {
 
-        Message message = messageService.getMessageById(deleteMessageInfoDTO.getMessageId());
-
-        DeleteMessageDTO deleteMessageDto = new DeleteMessageDTO();
-        deleteMessageDto.setId(message.getId());
-        deleteMessageDto.setAccountId(message.getSender().getId());
-        deleteMessageDto.setStatus("DELETED");
+        logger.info("ChatWebsocketController delete message");
 
         messageService.delete(deleteMessageInfoDTO.getMessageId());
-        simpMessagingTemplate.convertAndSend(format("/topic/messages/%s",message.getChat().getId()),deleteMessageDto );
+
+        DeletedMessageDTO deletedMessageDTO = new DeletedMessageDTO();
+        deletedMessageDTO.setMessageId(deleteMessageInfoDTO.getMessageId());
+        deletedMessageDTO.setStatus("deleted");
+        simpMessagingTemplate.convertAndSend(format("/topic/messages/%s",deleteMessageInfoDTO.getChatId()),deletedMessageDTO);
 
     }
 

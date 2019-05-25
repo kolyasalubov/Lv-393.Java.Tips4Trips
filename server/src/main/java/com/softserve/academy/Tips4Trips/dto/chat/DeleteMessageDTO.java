@@ -4,10 +4,10 @@ import javax.validation.constraints.Positive;
 
 public class DeleteMessageDTO {
     @Positive
-    Long accountId;
+    private Long accountId;
 
     @Positive
-    Long id;
+    private Long id;
 
     private String status;
 
