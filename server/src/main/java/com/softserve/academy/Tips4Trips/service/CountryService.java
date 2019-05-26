@@ -42,4 +42,8 @@ public class CountryService {
     public Country findById(Long id) {
         return countryRepository.findById(id).get();
     }
+
+    public Country findByName(String name) {
+        return countryRepository.findByName(name).orElse(null);
+    }
 }

@@ -40,6 +40,9 @@ public class CityConverter implements Converter<City, CityDTO> {
 
     @Override
     public CityDTO convertToDTO(City city) {
+        if (city == null) {
+            return null;
+        }
         CityDTO cityDTO = new CityDTO();
         cityDTO.setId(city.getId());
         cityDTO.setName(city.getName());
