@@ -14,8 +14,12 @@ import com.softserve.academy.Tips4Trips.service.CityService;
 import com.softserve.academy.Tips4Trips.service.PlaceService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Comparator;
@@ -56,16 +60,31 @@ public class CityController {
         return new ResponseEntity<>(cityConverter.convertToDTO(cityService.findAll()), HttpStatus.OK);
     }
 
-    @GetMapping("/getAllRating")
-    public ResponseEntity<List<CityRatingDTO>> getAllRating() {
-        List<CityRatingDTO> cityRatingDTOS = cityConverter.convertToRatingDTO(cityService.findAll());
+    @GetMapping({"/getAllRating/page/{page}/country/{countryId}", "/getAllRating/page/{page}"})
+    public ResponseEntity<List<CityRatingDTO>> getAllRatingByCityId(@PathVariable Integer page,
+                                                                    @PathVariable(required = false) Long countryId) {
+        Pageable pageable = PageRequest.of(page -1, 6);
+        Page<City> cities;
+        if (countryId != null) {
+            cities = cityService.findByCountryId(countryId, pageable);
+        } else {
+            cities = cityService.findAll(pageable);
+        }
+        List<CityRatingDTO> cityRatingDTOS = cities.get().map(cityConverter::convertToRatingDTO).collect(Collectors.toList());
         return new ResponseEntity<>(sortByRating(cityRatingDTOS), HttpStatus.OK);
+
     }
 
-    @GetMapping("/getAllRating/{countryId}")
-    public ResponseEntity<List<CityRatingDTO>> getAllRatingByCityId(@PathVariable Long countryId) {
-        List<CityRatingDTO> cityRatingDTOS = cityConverter.convertToRatingDTO(cityService.findByCountryId(countryId));
-        return new ResponseEntity<>(sortByRating(cityRatingDTOS), HttpStatus.OK);
+    @GetMapping({"/countAllRating/country/{countryId}", "/countAllRating/"})
+    public ResponseEntity<Long> countAllRatingByCityId(@PathVariable(required = false) Long countryId) {
+        long count;
+        if (countryId != null) {
+            count = cityService.getCountByCountryId(countryId);
+        } else {
+            count = cityService.getCount();
+        }
+        return new ResponseEntity<>(count, HttpStatus.OK);
+
     }
 
     @PostMapping("/addFeedback")
@@ -87,6 +106,7 @@ public class CityController {
         return new ResponseEntity<>(cityFeedbackConverter.convertToDTO(cityFeedbackService.findByCityFeedback(id)), HttpStatus.OK);
     }
 
+    @PreAuthorize("hasRole('ROLE_MODERATOR')")
     @PostMapping("/create")
     public ResponseEntity<CityDTO> createCity(@RequestBody CityDTO cityDTO) {
         logger.info("create city method executing: ");
@@ -114,6 +134,7 @@ public class CityController {
                 .findByCity(city)), HttpStatus.OK);
     }
 
+    @PreAuthorize("hasRole('ROLE_MODERATOR')")
     @PutMapping("/update")
     public ResponseEntity<CityDTO> update(@RequestBody CityDTO cityDTO) {
         logger.info("update city method executing: ");
@@ -121,10 +142,17 @@ public class CityController {
         return new ResponseEntity<>(cityConverter.convertToDTO(cityService.update(city)), HttpStatus.OK);
     }
 
+    @PreAuthorize("hasRole('ROLE_MODERATOR')")
     @DeleteMapping("/delete/{id}")
     public void deleteById(@PathVariable Long id) {
         logger.info("delete city by id method executing: ");
         cityService.deleteById(id);
+    }
+
+    @GetMapping("/findByName/{name}")
+    public ResponseEntity<CityDTO> findByName(@PathVariable String name) {
+        logger.info("get by city name method executing: ");
+        return new ResponseEntity<>(cityConverter.convertToDTO(cityService.findByName(name)), HttpStatus.OK);
     }
 
     private List<CityRatingDTO> sortByRating(List<CityRatingDTO> cityRatingDTOS) {

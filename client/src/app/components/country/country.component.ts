@@ -21,10 +21,16 @@ export class CountryComponent implements OnInit {
   }
 
   create() {
-    this.country.id = null;
-    this.country.position = this.position;
-    this.countryService.createCountry(this.country).subscribe(data => this.country = data);
-    this.resultText = 'Country created';
+    this.countryService.findByName(this.country.name).subscribe(country => {
+      if (country === null) {
+        this.country.id = null;
+        this.country.position = this.position;
+        this.countryService.createCountry(this.country).subscribe(data => this.country = data);
+        this.router.navigate(['account']);
+      } else {
+        this.resultText = 'Country with name "' + this.country.name + '" already exists!';
+      }
+    });
   }
 
   setCoordinates: Function = (x: number, y: number) => {

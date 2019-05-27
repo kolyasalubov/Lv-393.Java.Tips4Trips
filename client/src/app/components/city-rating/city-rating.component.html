@@ -2,8 +2,8 @@
   <div class="container">
     <div class="row justify-content-md-center">
       <div class="col-sm-6">
-        <select style="width:100%" (change)="loadCitiesByCountry($event.target.value)">
-          <option disabled>Select country</option>
+        <select style="width:100%" (change)="setCountryId($event.target.value)" [(ngModel)]="countryId">
+          <option value="-1">Select country</option>
           <option *ngFor="let c of countries" value={{c.id}}>{{c.name}}</option>
         </select>
       </div>
@@ -18,17 +18,26 @@
             <div class="row">
               <h5 class="card-title" style="margin-top: 10px;">{{c.name}}</h5>
               <bar-rating theme="fontawesome-o" [(rate)]="c.averageRating" [max]="5"></bar-rating>
-              <h5 class="card-title" style="margin-top: 10px;">({{c.averageRating}})</h5>
+              <h5 class="card-title" style="margin-top: 10px;">({{c.averageRating | number:'1.2-2'}})</h5>
             </div>
-            <div style="height: 200px; width: 320px">
+            <div style="height: 200px; width: 100%">
               <app-map-display [latitude]="c.position.coordinateX" [longitude]="c.position.coordinateY" [zoom]="zoom">
               </app-map-display>
             </div>
-            <button [routerLink]="['/city-rating/',c.id]" type="button" class="btn btn-primary">Go to the city</button>
+            <button [routerLink]="['/city-rating-view/',c.id]" type="button" class="btn btn-primary">Go to the city</button>
           </div>
         </div>
       </div>
     </div>
+    <nav aria-label="Page navigation example">
+      <ul class="pagination justify-content-center">
+        <li class="page-item"><a class="page-link" [routerLink]="['/city-rating/',prevPage]">Previous</a></li>
+        <li class="page-item" *ngFor="let pg of pagesBefore"><a class="page-link" [routerLink]="['/city-rating/',pg]">{{pg}}</a></li>
+        <li class="page-item active"><a class="page-link" [routerLink]="['/city-rating/',page]">{{page}}</a></li>
+        <li class="page-item" *ngFor="let pg of pagesAfter"><a class="page-link" [routerLink]="['/city-rating/',pg]">{{pg}}</a></li>
+        <li class="page-item"><a class="page-link" [routerLink]="['/city-rating/',nextPage]">Next</a></li>
+      </ul>
+    </nav>
   </div>
 </section>
 <script src="../../../../assets/js/main.js"></script>

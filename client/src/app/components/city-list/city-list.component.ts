@@ -30,6 +30,9 @@ export class CityListComponent implements OnInit {
       .then((confirmed) => {
         if (confirmed) {
           this.deleteById(city.id);
+          setTimeout(() => {
+            this.ngOnInit();
+          }, 500);
         }
       })
       .catch(() => console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'));

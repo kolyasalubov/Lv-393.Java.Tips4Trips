@@ -32,5 +32,7 @@ export class CountryService {
         this.http.put(this.url + '/update', country).subscribe((s) => {console.log(s)});
     }
 
-
+    findByName(name: string): Observable<Country> {
+        return this.http.get<Country>(this.url + '/findByName/' + name);
+    }
 }

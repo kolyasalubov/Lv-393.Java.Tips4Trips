@@ -48,12 +48,24 @@ export class CityService {
     return this.http.get<any>(this.url + '/getCityRating/' + cityId);
   }
 
-  getAllRating(): Observable<CityRating[]> {
-    return this.http.get<CityRating[]>(this.url + '/getAllRating');
+  getAllRating(page: number): Observable<CityRating[]> {
+    return this.http.get<CityRating[]>(this.url + '/getAllRating/page/' + page);
   }
 
-  getAllRatingByCountryId(countryId: number): Observable<CityRating[]> {
-    return this.http.get<CityRating[]>("http://localhost:8080/cities/getAllRating/" + countryId);
+  getAllRatingByCountryId(page: number, countryId: number): Observable<CityRating[]> {
+    return this.http.get<CityRating[]>(this.url + '/getAllRating/page/' + page + '/country/' + countryId);
+  }
+
+  countAllRating(): Observable<number> {
+    return this.http.get<number>(this.url + '/countAllRating/');
+  }
+
+  countAllRatingByCountryId(countryId: number): Observable<number> {
+    return this.http.get<number>(this.url + '/countAllRating/country/' + countryId);
+  }
+
+  findByName(name: string): Observable<City> {
+    return this.http.get<City>(this.url + '/findByName/' + name);
   }
 
 }
