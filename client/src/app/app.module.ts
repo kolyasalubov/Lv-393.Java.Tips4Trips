@@ -98,6 +98,7 @@ import {RouteMapComponent} from "./components/map/route-map/route-map.component"
 import {AgmDirectionModule} from "agm-direction";
 import { ForgotPasswordComponent } from './components/authentication/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './components/authentication/reset-password/reset-password.component';
+import { MustMatchDirective } from './components/authentication/must-match.directive';
 import { UnderComponent } from './components/header/under/under.component';
 import { ListPlaceFeedbackComponent } from './components/feedback/place/list-place-feedback/list-place-feedback.component';
 import {InfiniteScrollModule} from "ngx-infinite-scroll";
@@ -190,6 +191,7 @@ import {HttpErrorInterceptor} from "./components/error/error-message/http-error.
     RouteMapComponent,
     ForgotPasswordComponent,
     ResetPasswordComponent,
+    MustMatchDirective,
     UnderComponent,
     ListPlaceFeedbackComponent,
     ErrorMessageComponent
