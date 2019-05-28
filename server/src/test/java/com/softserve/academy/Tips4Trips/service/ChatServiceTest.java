@@ -111,13 +111,6 @@ public class ChatServiceTest {
         assertThat(found).isNull();
     }
 
-//    @Test
-//    public void whenAddChat_thenChatShouldBeReturned(){
-//        Chat chat = chatService.addChat("event");
-//        assertThat(chat).isEqualTo(chat);
-//    }
-
-
     private void verifyFindByIdIsCalledOnce() {
         Mockito.verify(chatRepository, VerificationModeFactory.times(1)).findById(Mockito.anyLong());
         Mockito.reset(chatRepository);
