@@ -15,6 +15,7 @@ import com.softserve.academy.Tips4Trips.service.AccountService;
 import com.softserve.academy.Tips4Trips.service.ChatService;
 import com.softserve.academy.Tips4Trips.service.TripService;
 import org.apache.log4j.Logger;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -40,45 +41,54 @@ public class TripController {
     private TripConverter tripConverter;
     private AccountService accountService;
     private AccountConverter accountConverter;
+    private ModelMapper modelMapper;
     private ChatService chatService;
 
     @Autowired
-    public TripController(TripService tripService, TripConverter tripConverter, AccountService accountService, AccountConverter accountConverter, ChatService chatService) {
+    public TripController(TripService tripService, TripConverter tripConverter, AccountService accountService, AccountConverter accountConverter, ModelMapper modelMapper, ChatService chatService) {
         this.tripService = tripService;
         this.tripConverter = tripConverter;
         this.accountService = accountService;
         this.accountConverter = accountConverter;
+        this.modelMapper = modelMapper;
         this.chatService = chatService;
     }
 
     @GetMapping
     public ResponseEntity<List<TripInfoDTO>> getAll() {
         logger.info("trips get all method executing: ");
-        return new ResponseEntity<>(tripConverter
-                .convertToInfoDTO(tripService.findAll()), HttpStatus.OK);
+        return new ResponseEntity<>(tripConverter.convertToInfoDTO(
+                tripService.findAll()), HttpStatus.OK);
     }
 
     @GetMapping("/creator/{id}")
     public ResponseEntity<List<TripInfoDTO>> getTripsByCreatorId(@PathVariable Long id) {
-
-        logger.info("trips get by creator id method executing: ");
-        return new ResponseEntity<>(tripConverter
-                .convertToInfoDTO(tripService.findByCreator(accountService.findById(id))), HttpStatus.OK);
+        logger.info("create trip method executing: ");
+        if (id < 1) {
+            return null;
+        }
+        return new ResponseEntity<>(tripConverter.convertToInfoDTO(
+                tripService.findByCreator(accountService.findById(id))), HttpStatus.OK);
     }
 
 
     @RequestMapping(value = "/page/{page}", method = RequestMethod.GET)
     public Page<TripDetailsDTO> listTripsPageByPage(@PathVariable("page") int page) {
-
-        PageRequest pageable = PageRequest.of(page - 1, 6);
-        Page<Trip> articlePage = tripService.getPaginatedArticles(pageable);
+        logger.info("trips page get by creator id method executing: ");
+        if (page < 1) {
+            return null;
+        }
+        Page<Trip> articlePage = tripService.getPaginatedArticles(PageRequest.of(page - 1, 6));
         return articlePage.map(trip -> tripConverter.convertToDTO(trip));
 
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<TripDetailsDTO> getById(@PathVariable Long id) {
-
+        logger.info("trips get by creator id method executing: ");
+        if (id < 1) {
+            return null;
+        }
         logger.info("trip get by id method executing: ");
         Trip trip = tripService.findById(id);
         return new ResponseEntity<>(tripConverter.convertToDTO(trip), HttpStatus.OK);
@@ -86,43 +96,50 @@ public class TripController {
 
     @GetMapping("/count")
     public ResponseEntity<Long> getCount() {
-
         logger.info("get trip count method executing: ");
         return new ResponseEntity<>(tripService.getCount(), HttpStatus.OK);
     }
 
 
     @PostMapping("/create")
+    @PreAuthorize("hasRole('ROLE_USER')")
     public ResponseEntity<TripDetailsDTO> create(@RequestBody TripDetailsDTO tripDetailsDTO) {
-
         logger.info("trip create post method executing: ");
-        Trip trip = tripService.createTrip(tripConverter.convertToEntity(tripDetailsDTO));
-        return new ResponseEntity<>(tripConverter.convertToDTO(trip), HttpStatus.CREATED);
+        return new ResponseEntity<>(modelMapper.map(
+                tripService.createTrip(tripConverter.convertToEntity(tripDetailsDTO)), TripDetailsDTO.class), HttpStatus.CREATED);
 
     }
 
     @PostMapping("/{id}/image")
     public ResponseEntity<TripInfoDTO> addImage(@PathVariable Long id,
-                                                @RequestParam("file") MultipartFile file) throws FileIOException {
-
+                                                @RequestParam("file") MultipartFile file)
+            throws FileIOException {
         logger.info("trip add image post method executing: ");
-        Trip updatedTrip = tripService.createTripImage(file, id);
-        return new ResponseEntity<>(tripConverter
-                .convertToDTO(updatedTrip), HttpStatus.CREATED);
+        if (id < 1) {
+            return null;
+        }
+        return new ResponseEntity<>(modelMapper.map(
+                tripService.createTripImage(file, id), TripInfoDTO.class),
+                HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}/image")
     public RedirectView redirectToImageGet(@PathVariable Long id) {
+        if (id < 1) {
+            return null;
+        }
         Image image = tripService.findById(id).getImage();
         Long imageId = image == null ? -1 : image.getId();
         return new RedirectView("/images/" + imageId);
     }
 
     @DeleteMapping("/{id}/image")
-    public void deleteImageById(@PathVariable Long id) throws FileIOException,
-            DataNotFoundException {
-
+    public void deleteImageById(@PathVariable Long id)
+            throws FileIOException, DataNotFoundException {
         logger.info("delete image account by id method executing: ");
+        if (id < 1) {
+            return;
+        }
         tripService.deleteTripImage(id);
     }
 
@@ -130,37 +147,44 @@ public class TripController {
     public ResponseEntity<TripInfoDTO> updateImageById(
             @PathVariable Long id, @RequestParam("file") MultipartFile file)
             throws FileIOException, DataNotFoundException {
-
         logger.info("update image account by id method executing: ");
-        Trip updatedTrip = tripService.updateTripImage(id, file);
+        if (id < 1) {
+            return null;
+        }
         return new ResponseEntity<>(tripConverter
-                .convertToDTO(updatedTrip), HttpStatus.ACCEPTED);
+                .convertToDTO(
+                        tripService.updateTripImage(id, file)
+                ), HttpStatus.ACCEPTED);
     }
 
     @DeleteMapping("/delete/{id}")
     @PreAuthorize("hasRole('ROLE_USER')")
     public void deleteById(@PathVariable Long id) {
-
         logger.info("trips delete by id method executing: ");
+        if (id < 1) {
+            return;
+        }
         tripService.delete(id);
     }
 
     @PutMapping("/update")
     @PreAuthorize("hasRole('ROLE_USER')")
     public ResponseEntity<TripDetailsDTO> update(@RequestBody TripDetailsDTO tripDetailsDTO) {
-
         logger.info("trip update post method executing:  ");
-        Trip trip = tripService.update(tripConverter.convertToEntity(tripDetailsDTO));
-        return new ResponseEntity<>(tripConverter.convertToDTO(trip), HttpStatus.OK);
+        return new ResponseEntity<>(tripConverter.convertToDTO(
+                tripService.update(tripConverter.convertToEntity(tripDetailsDTO))
+        ), HttpStatus.OK);
     }
 
     @GetMapping("/{tripId}/subscribers")
     @PreAuthorize("hasRole('ROLE_USER')")
     public ResponseEntity<List<AccountInfoDTO>> getSubscribers(@PathVariable Long tripId) {
-
         logger.info("trip getSubscribers method executing: ");
-        List<AccountInfoDTO> accountInfoDTOS = accountConverter.convertToInfoDTO(tripService.getSubscribers(tripId));
-        return new ResponseEntity<>(accountInfoDTOS, HttpStatus.OK);
+        if (tripId < 1) {
+            return null;
+        }
+        return new ResponseEntity<>(accountConverter.convertToInfoDTO(
+                tripService.getSubscribers(tripId)), HttpStatus.OK);
     }
 
 
@@ -169,16 +193,15 @@ public class TripController {
     public ResponseEntity<AccountInfoDTO> subscribeAccountById(
             @PathVariable(value = "tripId") @NotNull @Positive Long tripId,
             @PathVariable(value = "accountId") @NotNull @Positive Long accountId) {
-
         logger.info("trip subscribe post method executing:  ");
-        return new ResponseEntity<>(accountConverter.convertToInfoDTO(tripService.subscribe(tripId, accountId)), HttpStatus.OK);
+        return new ResponseEntity<>(accountConverter.convertToInfoDTO(
+                tripService.subscribe(tripId, accountId)), HttpStatus.OK);
     }
 
     @DeleteMapping("/{tripId}/unsubscribe/{accountId}")
     @PreAuthorize("hasRole('ROLE_USER')")
     public ResponseEntity unSubscribeAccountById(@PathVariable(value = "tripId") @NotNull @Positive Long tripId,
                                                  @PathVariable(value = "accountId") @NotNull @Positive Long accountId) {
-
         logger.info("trip unSubscribe post method executing:  ");
         tripService.unSubscribe(tripId, accountId);
         return new ResponseEntity<>(HttpStatus.OK);

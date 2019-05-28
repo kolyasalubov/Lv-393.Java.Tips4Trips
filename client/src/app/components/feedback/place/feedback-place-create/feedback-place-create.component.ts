@@ -12,9 +12,12 @@ import {CustomAuthService} from "../../../authentication/custom-auth.service";
 })
 export class FeedbackPlaceCreateComponent implements OnInit {
 
+  @Input() content: FeedbackPlaceModel[];
   @Input() placeId: number;
 
   feedbackPlaceModel: FeedbackPlaceModel;
+
+  show = false;
 
   one: string;
   two: string;
@@ -26,6 +29,7 @@ export class FeedbackPlaceCreateComponent implements OnInit {
   }
 
   ngOnInit() {
+
     this.feedbackPlaceModel = new FeedbackPlaceModel();
     this.feedbackPlaceModel.creator = new AccountDTO(
       null,
@@ -36,9 +40,15 @@ export class FeedbackPlaceCreateComponent implements OnInit {
       null,
       null,
       null,
-      null,null,null,null,null);
+      null, null, null, null, null);
     this.feedbackPlaceModel.place = new PlaceModel();
     this.feedbackPlaceModel.place.id = this.placeId;
+    this.authService.getCurrentUser().subscribe(data => {
+      this.feedbackPlaceModel.creator.id = data.id;
+      this.service.check(this.placeId, this.feedbackPlaceModel.creator.id).subscribe(data1 => {
+        this.show = !data1;
+      });
+    });
   }
 
   oneF() {
@@ -84,18 +94,17 @@ export class FeedbackPlaceCreateComponent implements OnInit {
   }
 
   save() {
-    // this.authService.getCurrentUser().subscribe(data => {
-    //   this.feedbackPlaceModel.creator.id = data.id;
-      this.feedbackPlaceModel.creator.id = 1;
-    // });
     if (this.valid()) {
-      this.service.create(this.feedbackPlaceModel).subscribe(data=>{console.log(data)});
+      this.service.create(this.feedbackPlaceModel).subscribe(data => {
+        window.location.reload();
+        console.log(data);
+      });
     }
   }
 
   valid(): boolean {
     return this.feedbackPlaceModel.comment != null &&
-      this.feedbackPlaceModel.comment != '' &&
+      this.feedbackPlaceModel.comment !== '' &&
       this.feedbackPlaceModel.creator.id > 0 &&
       this.feedbackPlaceModel.mark < 6 &&
       this.feedbackPlaceModel.mark > 0;

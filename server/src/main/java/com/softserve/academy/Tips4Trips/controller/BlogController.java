@@ -29,11 +29,11 @@ public class BlogController {
 
     @RequestMapping(value = "/{page}", method = RequestMethod.GET)
     public Page<PostInfoDTO> listArticlesPageByPage(@PathVariable("page") int page) {
-        PageRequest pageable = PageRequest.of(page - 1, 6);
-        Page<Post> articlePage = postService.getPaginatedArticles(pageable);
-        Page<PostInfoDTO> postDetailsDTOS = articlePage.map(post -> modelMapper.map(post, PostInfoDTO.class));
-
-        return postDetailsDTOS;
-
+        logger.info("get list of post method executing: " + page);
+        if (page < 1) {
+            return null;
+        }
+        Page<Post> articlePage = postService.getPaginatedArticles(PageRequest.of(page - 1, 6));
+        return articlePage.map(post -> modelMapper.map(post, PostInfoDTO.class));
     }
 }

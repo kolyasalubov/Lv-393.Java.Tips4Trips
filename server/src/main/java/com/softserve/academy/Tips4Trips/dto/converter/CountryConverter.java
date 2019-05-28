@@ -22,6 +22,9 @@ public class CountryConverter implements Converter<Country, CountryDTO> {
 
     @Override
     public CountryDTO convertToDTO(Country country) {
+        if (country == null) {
+            return null;
+        }
         CountryDTO countryDTO = new CountryDTO();
         countryDTO.setId(country.getId());
         countryDTO.setName(country.getName());

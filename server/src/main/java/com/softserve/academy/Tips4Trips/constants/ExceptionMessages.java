@@ -9,5 +9,8 @@ public class ExceptionMessages {
     public static final String MESSAGE_IS_NOT_FOUND = "Message is not found";
     public static final String TRIP_IMAGE_ALREADY_EXISTS = "Trip image already exists! Try updating it.";
     public static final String IMAGE_DOES_NOT_EXIST = "Image doesn't exist";
+    public static final String HOTEL_BY_THIS_ID_IS_NOT_FOUND = "Hotel by this id is not found";
+    public static final String HOTELS_DO_NOT_EXIST = "Hotels don't exist";
+    public static final String HOTEL_WITH_SUCH_NAME_DO_NOT_EXIST = "Hotel doesn't exist";
 
 }

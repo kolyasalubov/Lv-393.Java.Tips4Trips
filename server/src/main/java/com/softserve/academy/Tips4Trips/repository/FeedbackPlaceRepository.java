@@ -9,5 +9,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface FeedbackPlaceRepository extends JpaRepository<FeedbackPlace, Long> {
-    Page<FeedbackPlace> findAllByPlaceIdOrderByDateDesc(Long place, Pageable pageable);
+    Page<FeedbackPlace> findAllByPlaceIdOrderById(Long place, Pageable pageable);
+
+    Boolean existsByPlaceIdAndAndCreatorId(Long postId, Long userId);
 }

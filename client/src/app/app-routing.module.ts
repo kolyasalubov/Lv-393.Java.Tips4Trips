@@ -24,7 +24,6 @@ import { CreateMonumentComponent } from "./components/create-post-place/create-m
 import { MonumentDetailsComponent } from "./components/monument-details/monument-details.component";
 import { TripComponent } from './components/trip/trip/trip.component';
 import { TripInfoComponent } from './components/trip/trip-info/trip-info.component';
-import { TestComponent } from './components/test/test.component';
 import { AuthGuard } from './components/authentication/guards/auth.guard';
 import { HotelDetailsComponent } from "./components/hotel-details/hotel-details.component";
 import { CityPlacesComponent } from "./components/city-places/city-places.component";
@@ -53,6 +52,8 @@ import { CityRatingPageComponent } from './components/city-rating-page/city-rati
 import { SocialHandlerComponent } from './components/authentication/social-handler/social-handler.component';
 import { ForgotPasswordComponent } from './components/authentication/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './components/authentication/reset-password/reset-password.component';
+import {AuthAdminGuard} from "./components/authentication/guards/auth.admin.guard";
+import {ErrorMessageComponent} from "./components/error/error-message/error-message.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -66,22 +67,21 @@ const routes: Routes = [
   { path: 'reset-password', component: ResetPasswordComponent },
   { path: 'oauth2/redirect', component: SocialHandlerComponent},
   { path: 'account_edit', component: AccountEditComponent },
-  { path: 'city', component: CityComponent },
-  { path: 'country', component: CountryComponent },
-  //  { path: 'create-place', component: CreatePostPlaceComponent },
-  { path: 'create_place', component: CreatePostPlaceComponent },
-  { path: 'create_place/restaurant', component: CreateRestaurantComponent },
+  { path: 'city', component: CityComponent, canActivate: [AuthAdminGuard] },
+  { path: 'country', component: CountryComponent, canActivate: [AuthAdminGuard] },
+  { path: 'create_place', component: CreatePostPlaceComponent, canActivate: [AuthAdminGuard] },
+  { path: 'create_place/restaurant', component: CreateRestaurantComponent, canActivate: [AuthAdminGuard] },
   { path: 'restaurants/:id', component: RestaurantDetailsComponent },
-  { path: 'create_place/hotel', component: CreateHotelComponent },
+  { path: 'create_place/hotel', component: CreateHotelComponent, canActivate: [AuthAdminGuard] },
   { path: 'hotels/:id', component: HotelDetailsComponent },
-  { path: 'create_place/monument', component: CreateMonumentComponent },
+  { path: 'create_place/monument', component: CreateMonumentComponent, canActivate: [AuthAdminGuard] },
   { path: 'monuments/:id', component: MonumentDetailsComponent },
   { path: 'city_places/:id', component: CityPlacesComponent },
-  { path: 'create_post', component: CreatePostComponent },
+  { path: 'create_post', component: CreatePostComponent, canActivate: [AuthGuard]},
   { path: 'create_route', component: CreateRouteComponent },
-  { path: 'trips/create', component: CreateRouteComponent },
-  { path: 'list_of_users', component: ListOfUsersComponent },
-  { path: 'list_of_users/:id', component: ListOfUsersComponent },
+  // { path: 'trips/create', component: CreateRouteComponent },
+  { path: 'list_of_users', component: ListOfUsersComponent , canActivate: [AuthAdminGuard]},
+  { path: 'list_of_users/:id', component: ListOfUsersComponent , canActivate: [AuthAdminGuard]},
   { path: 'blog', component: BlogComponent },
   { path: 'blog/:id', component: BlogComponent },
   { path: 'about', component: AboutePageComponent },
@@ -103,24 +103,24 @@ const routes: Routes = [
   { path: 'trip/page', component: TripComponent },
   { path: 'trip/page/:page', component: TripComponent },
   { path: 'trip/:id', component: TripInfoComponent },
-  { path: 'create_trip', component: CreateTripComponent },
+  { path: 'create_trip', component: CreateTripComponent , canActivate: [AuthGuard]},
   { path: 'edit_trip/:id', component: ChangeComponent },
-  { path: 'test', component: TestComponent },
   { path: 'profile/:id', component: ProfileComponent },
   { path: 'search', component: SearchComponent },
   { path: 'search/page/:page', component: SearchComponent },
   { path: 'news', component: NewsComponent },
-  { path: 'restaurants/edit/:id', component: EditRestaurantComponent },
-  { path: 'monuments/edit/:id', component: EditMonumentComponent },
-  { path: 'hotels/edit/:id', component: EditHotelComponent },
+  { path: 'restaurants/edit/:id', component: EditRestaurantComponent, canActivate: [AuthAdminGuard] },
+  { path: 'monuments/edit/:id', component: EditMonumentComponent, canActivate: [AuthAdminGuard] },
+  { path: 'hotels/edit/:id', component: EditHotelComponent, canActivate: [AuthAdminGuard] },
   { path: 'maptest', component: MapPickerComponent },
-  { path: 'countries', component: CountryListComponent },
-  { path: 'country/:id', component: CountryEditComponent },
-  { path: 'cities', component: CityListComponent },
-  { path: 'city/:id', component: CityEditComponent },
-  { path: 'city-rating', component: CityRatingComponent },
-  { path: 'city-rating/:id', component: CityRatingPageComponent },
+  { path: 'countries', component: CountryListComponent, canActivate: [AuthAdminGuard] },
+  { path: 'country/:id', component: CountryEditComponent, canActivate: [AuthAdminGuard] },
+  { path: 'cities', component: CityListComponent, canActivate: [AuthAdminGuard] },
+  { path: 'city/:id', component: CityEditComponent, canActivate: [AuthAdminGuard] },
+  { path: 'city-rating/:page', component: CityRatingComponent },
+  { path: 'city-rating-view/:id', component: CityRatingPageComponent },
   { path: '404', component: ErrorComponent },
+  { path: 'error/:string', component: ErrorMessageComponent },
   { path: 'chat', component: ChatComponent },
   { path: '**', redirectTo: '/404' }
 ];

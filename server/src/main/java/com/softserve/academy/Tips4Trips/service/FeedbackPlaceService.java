@@ -26,7 +26,10 @@ public class FeedbackPlaceService {
 
 
     public FeedbackPlace createFeedbackPlace(FeedbackPlace feedbackPlace) {
-        return repository.save(feedbackPlace);
+        if (repository.existsByPlaceIdAndAndCreatorId(feedbackPlace.getPlace().getId(), feedbackPlace.getCreator().getId())) {
+            return repository.save(feedbackPlace);
+        }
+        return null;
     }
 
     public void deleteFeedbackPlaceById(Long id) {
@@ -37,7 +40,11 @@ public class FeedbackPlaceService {
         return repository.save(feedbackPlace);
     }
 
-    public Page<FeedbackPlace> getByPalce(Long place, PageRequest pageable) {
-        return repository.findAllByPlaceIdOrderByDateDesc(place,pageable);
+    public Page<FeedbackPlace> getByPlace(Long place, PageRequest pageable) {
+        return repository.findAllByPlaceIdOrderById(place,pageable);
+    }
+
+    public Boolean check(Long postId, Long userId) {
+        return repository.existsByPlaceIdAndAndCreatorId( postId, userId);
     }
 }

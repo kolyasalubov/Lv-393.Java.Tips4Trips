@@ -33,7 +33,9 @@ export class CountryEditComponent implements OnInit {
   save(): void {
     this.country.position = this.position;
     this.countryService.updateCountry(this.country);
-    this.router.navigate(['/countries']);
+    setTimeout(() => {
+      this.router.navigate(['/countries']);
+    }, 500);
   }
 
   setCoordinates: Function = (x: number, y: number) => {

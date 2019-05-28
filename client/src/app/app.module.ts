@@ -40,7 +40,6 @@ import { TripInfoComponent } from './components/trip/trip-info/trip-info.compone
 import { RestaurantDetailsComponent } from "./components/restaurant-details/restaurant-details.component";
 import { CreateMonumentComponent } from "./components/create-post-place/create-monument/create-monument.component";
 import { MonumentDetailsComponent } from "./components/monument-details/monument-details.component";
-import { TestComponent } from './components/test/test.component';
 import { HotelDetailsComponent } from './components/hotel-details/hotel-details.component';
 import { CityPlacesComponent } from './components/city-places/city-places.component';
 import { CityComponent } from './components/city/city.component';
@@ -100,6 +99,11 @@ import {AgmDirectionModule} from "agm-direction";
 import { ForgotPasswordComponent } from './components/authentication/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './components/authentication/reset-password/reset-password.component';
 import { MustMatchDirective } from './components/authentication/must-match.directive';
+import { UnderComponent } from './components/header/under/under.component';
+import { ListPlaceFeedbackComponent } from './components/feedback/place/list-place-feedback/list-place-feedback.component';
+import {InfiniteScrollModule} from "ngx-infinite-scroll";
+import { ErrorMessageComponent } from './components/error/error-message/error-message.component';
+import {HttpErrorInterceptor} from "./components/error/error-message/http-error.interceptor";
 
 @NgModule({
   declarations: [
@@ -138,7 +142,6 @@ import { MustMatchDirective } from './components/authentication/must-match.direc
     RouteComponent,
     TripComponent,
     TripInfoComponent,
-    TestComponent,
     HotelDetailsComponent,
     CityPlacesComponent,
     CityComponent,
@@ -188,7 +191,10 @@ import { MustMatchDirective } from './components/authentication/must-match.direc
     RouteMapComponent,
     ForgotPasswordComponent,
     ResetPasswordComponent,
-    MustMatchDirective
+    MustMatchDirective,
+    UnderComponent,
+    ListPlaceFeedbackComponent,
+    ErrorMessageComponent
   ],
   imports: [
     BrowserModule,
@@ -203,12 +209,18 @@ import { MustMatchDirective } from './components/authentication/must-match.direc
     MatAutocompleteModule,
     MatFormFieldModule,
     MatInputModule,
-    AgmDirectionModule
+    AgmDirectionModule,
+    InfiniteScrollModule
   ],
   providers: [
     httpInterceptorProviders,
     GoogleMapsAPIWrapper,
-    ConfirmationDialogService],
+    ConfirmationDialogService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpErrorInterceptor,
+      multi: true
+    }],
   entryComponents: [ConfirmationDialogComponent],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

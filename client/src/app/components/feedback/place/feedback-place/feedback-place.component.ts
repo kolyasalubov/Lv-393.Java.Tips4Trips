@@ -22,6 +22,7 @@ export class FeedbackPlaceComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(this.feedbackPlaceModel.mark);
     if (this.feedbackPlaceModel.mark > 1) {
       this.two = ' checked';
     }
@@ -31,7 +32,7 @@ export class FeedbackPlaceComponent implements OnInit {
     if (this.feedbackPlaceModel.mark > 3) {
       this.four = ' checked';
     }
-    if (this.feedbackPlaceModel.mark > 5) {
+    if (this.feedbackPlaceModel.mark > 4) {
       this.five = ' checked';
     }
   }

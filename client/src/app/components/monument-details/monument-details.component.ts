@@ -7,8 +7,6 @@ import {City} from "../../model/city.model";
 import {TokenStorageService} from "../authentication/token/token-storage.service";
 import {Location} from "@angular/common"
 import {CustomAuthService} from "../authentication/custom-auth.service";
-import {FeedbackPlaceService} from "../feedback/feedback-place.service";
-import {PageFeedbackPlaceModel} from "../../model/page-feedback-place.model";
 
 @Component({
   selector: 'app-monument-details',
@@ -18,17 +16,19 @@ import {PageFeedbackPlaceModel} from "../../model/page-feedback-place.model";
 export class MonumentDetailsComponent implements OnInit {
 
   constructor(private activatedRoute: ActivatedRoute, private router: Router, private monumentService: MonumentService,
-              private location: Location, private authService: CustomAuthService,private feedbackService:FeedbackPlaceService) { }
+              private location: Location, private authService: CustomAuthService) {
+  }
+
   id: number;
   cityId: number;
   monument: Monument = new Monument(0, '', '', '', new Position(0, 0),
-    null, new City(0, '',new Position(0,0), 0,''));
+    null, new City(0, '', new Position(0, 0), 0, ''));
 
   role: string;
 
   zoom: number = ZoomLevel.Place;
   imageURL: string = '';
-  pageFeedbackPlaceModel:PageFeedbackPlaceModel;
+
 
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe(params => {
@@ -39,9 +39,7 @@ export class MonumentDetailsComponent implements OnInit {
       this.imageURL = 'http://localhost:8080/places/' + this.monument.id + '/image';
     });
     this.authService.getCurrentUser().subscribe(data => this.role = data.role);
-    this.feedbackService.getByPlaceIdAndPage(this.id,1).subscribe(data=>{
-      this.pageFeedbackPlaceModel=data;
-    });
+
   }
 
   deletePlace() {

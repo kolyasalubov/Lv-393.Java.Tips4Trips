@@ -8,11 +8,10 @@ import {Monument} from "../../../model/monument.model";
 })
 export class MonumentService {
 
-  constructor(private http: HttpClient) { }//todo country id as 1
+  constructor(private http: HttpClient) { }
   private _countryId;
   private _cityId;
-  baseUrl: string = "http://localhost:8080/places/monuments/"; //todo URL
-  //Todo all methods
+  baseUrl: string = "http://localhost:8080/places/monuments/";
 
   get countryId() {
     return this._countryId;

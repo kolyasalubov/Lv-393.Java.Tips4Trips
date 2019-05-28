@@ -18,7 +18,7 @@ export class RestaurantDetailsComponent implements OnInit {
 
   constructor(private activatedRoute: ActivatedRoute, private router: Router,
               private restaurantService: RestaurantService, private location: Location,
-              private authService: CustomAuthService,private feedbackService:FeedbackPlaceService) { }
+              private authService: CustomAuthService) { }
   id: number;
   countryId: number;
   cityId: number;
@@ -30,7 +30,6 @@ export class RestaurantDetailsComponent implements OnInit {
   daysMap = new Map();
   imageURL: string = '';
   role: string;
-  pageFeedbackPlaceModel:PageFeedbackPlaceModel;
 
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe(params => {
@@ -52,9 +51,6 @@ export class RestaurantDetailsComponent implements OnInit {
     this.daysMap.set("FRIDAY", 5);
     this.daysMap.set("SATURDAY", 6);
     this.daysMap.set("SUNDAY", 7);
-    this.feedbackService.getByPlaceIdAndPage(this.id,1).subscribe(data=>{
-      this.pageFeedbackPlaceModel=data;
-    });
   }
 
   deletePlace() {

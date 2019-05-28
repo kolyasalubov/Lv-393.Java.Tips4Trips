@@ -6,6 +6,15 @@ public class PostSearchParams {
     private String name;
     private Date startDate;
     private Date endDate;
+    private long minLikesCount;
+
+    public long getMinLikesCount() {
+        return minLikesCount;
+    }
+
+    public void setMinLikesCount(long minLikesCount) {
+        this.minLikesCount = minLikesCount;
+    }
 
     public String getName() {
         return name;

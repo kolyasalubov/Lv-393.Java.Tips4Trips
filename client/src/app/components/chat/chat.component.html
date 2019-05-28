@@ -10,8 +10,8 @@
   <div class="msg_history"  #scrollMe   >
     <div  *ngFor="let mes of messages">
       <div class="outgoing_msg"  *ngIf="mes.senderId == currentAccountId">
-        <div class="sent_msg">
-          <p>{{mes.content}}</p>
+        <div class="sent_msg"  >
+          <p  (click)="deleteMessage(mes); "  >{{mes.content}}</p>
           <span class="time_date"> {{mes.sendTime.substr(11,5)}}</span> </div>
       </div>
       <div class="incoming_msg" *ngIf="mes.senderId != currentAccountId">

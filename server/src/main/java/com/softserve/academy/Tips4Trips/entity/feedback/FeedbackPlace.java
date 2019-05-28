@@ -1,7 +1,6 @@
 package com.softserve.academy.Tips4Trips.entity.feedback;
 
 import com.softserve.academy.Tips4Trips.entity.administration.Account;
-import com.softserve.academy.Tips4Trips.entity.enums.FeedbackMark;
 import com.softserve.academy.Tips4Trips.entity.place.Place;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -34,7 +33,7 @@ public class FeedbackPlace {
 
     @NotNull
     @Column(name = "mark",nullable = false)
-    private FeedbackMark mark;
+    private Integer mark;
 
     @NotNull
     @Size(max = 255)
@@ -73,11 +72,11 @@ public class FeedbackPlace {
         this.date = date;
     }
 
-    public FeedbackMark getMark() {
+    public Integer getMark() {
         return mark;
     }
 
-    public void setMark(FeedbackMark mark) {
+    public void setMark(Integer mark) {
         this.mark = mark;
     }
 

@@ -11,6 +11,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -43,7 +44,7 @@ public class CountryController {
     public ResponseEntity<List<CountryDTO>> getAll() {
         return new ResponseEntity<>(countryConverter.convertToDTO(countryService.findAll()), HttpStatus.OK);
     }
-
+    @PreAuthorize("hasRole('ROLE_MODERATOR')")
     @PostMapping("/create")
     public ResponseEntity<CountryDTO> createCountry(@RequestBody CountryDTO countryDTO) {
         logger.info("create country method executing: ");
@@ -64,7 +65,7 @@ public class CountryController {
         return new ResponseEntity<>(cityConverter.convertToDTO(cityService
                 .findByCountry(country)), HttpStatus.OK);
     }
-
+    @PreAuthorize("hasRole('ROLE_MODERATOR')")
     @PutMapping("/update")
     public ResponseEntity<CountryDTO> update(@RequestBody CountryDTO countryDTO) {
         logger.info("update country method executing: ");
@@ -72,10 +73,17 @@ public class CountryController {
         return new ResponseEntity<>(countryConverter.convertToDTO(countryService.update(country)), HttpStatus.OK);
     }
 
+    @PreAuthorize("hasRole('ROLE_MODERATOR')")
     @DeleteMapping("/delete/{id}")
     public void deleteById(@PathVariable Long id) {
         logger.info("delete country by id method executing: ");
         countryService.deleteById(id);
+    }
+
+    @GetMapping("/findByName/{name}")
+    public ResponseEntity<CountryDTO> findByName(@PathVariable String name) {
+        logger.info("get by city name method executing: ");
+        return new ResponseEntity<>(countryConverter.convertToDTO(countryService.findByName(name)), HttpStatus.OK);
     }
 
 }

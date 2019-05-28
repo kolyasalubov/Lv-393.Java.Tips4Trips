@@ -7,6 +7,7 @@ import com.softserve.academy.Tips4Trips.entity.Route;
 import com.softserve.academy.Tips4Trips.service.RouteService;
 import org.apache.log4j.Logger;
 import org.jetbrains.annotations.NotNull;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -27,13 +28,13 @@ public class RouteController {
 
     private RouteService routeService;
     private RouteConverter routeConverter;
+    private ModelMapper modelMapper;
     public final int DEFAULT_PAGE_SIZE = 6;
-
-    @Autowired
-    public RouteController(RouteService routeService,
-                           RouteConverter routeConverter) {
+@Autowired
+    public RouteController(RouteService routeService, RouteConverter routeConverter, ModelMapper modelMapper) {
         this.routeService = routeService;
         this.routeConverter = routeConverter;
+        this.modelMapper = modelMapper;
     }
 
     @GetMapping
@@ -80,8 +81,7 @@ public class RouteController {
     @GetMapping("/name/{name}")
     public ResponseEntity<RouteDetailsDTO> getByName(@PathVariable String name) {
         logger.info("get route by id method executing: ");
-        return new ResponseEntity<>(routeConverter.
-                convertToDTO(routeService.findByName(name)), HttpStatus.OK);
+        return new ResponseEntity<>(modelMapper.map(routeService.findByName(name),RouteDetailsDTO.class), HttpStatus.OK);
     }
 
     @GetMapping("/names/{name}")
