@@ -23,7 +23,6 @@ export class ConfirmationDialogComponent implements OnInit {
 
   public accept() {
     this.activeModal.close(true);
-    window.location.reload();
   }
 
   public dismiss() {

@@ -39,7 +39,9 @@ export class CityEditComponent implements OnInit {
   save(): void {
     this.city.position = this.position;
       this.cityService.updateCity(this.city);
-      this.router.navigate(['/cities']);
+      setTimeout(() => {
+        this.router.navigate(['/cities']);
+      }, 500);
       
   }
 

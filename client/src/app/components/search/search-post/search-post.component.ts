@@ -43,6 +43,7 @@ export class SearchPostComponent {
         this.dateDropdownText = this.formatDate(this.params.startDate) + ' - ' + this.formatDate(this.params.endDate);
       }
       if (this.params.startDate == null && this.params.endDate == null) this.setWheneverOption();
+      this.params.minLikesCount = params['minLikesCount'];
     });
     this.route.params.forEach((params: Params) => {
       try {
@@ -70,7 +71,8 @@ export class SearchPostComponent {
         seek: seek, category: 'post',
         startDate: start,
         endDate: end,
-        dateOption: this.dateDropdownText
+        dateOption: this.dateDropdownText,
+        minLikesCount: this.params.minLikesCount
       }
     });
   }

@@ -1,7 +1,7 @@
-.trip-input {
-    height: auto !important; 
-    border-color: #007bff; 
-    color: #007bff;
+.blue-input {
+  height: auto !important; 
+  border-color: #007bff; 
+  color: #007bff;
 }
 /* .trip-input::placeholder { 
     color: #007bff;

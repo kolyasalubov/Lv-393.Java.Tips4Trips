@@ -5,10 +5,10 @@
   <div class="container">
     <div class=" size btn-group " role="group" style="margin-bottom: 30px;"
          *ngIf="role === 'ADMIN' || role === 'MODERATOR'">
-      <a class="btn btn-info size" href="/country">Create country</a>
-      <a class="btn btn-info size" href="/city">Create city</a>
-      <a class="btn btn-info size" href="/countries">Edit country</a>
-      <a class="btn btn-info size" href="/cities">Edit city</a>
+      <a class="btn btn-info size" routerLink="/country">Create country</a>
+      <a class="btn btn-info size" routerLink="/city">Create city</a>
+      <a class="btn btn-info size" routerLink="/countries">Edit country</a>
+      <a class="btn btn-info size" routerLink="/cities">Edit city</a>
       <a class="btn btn-info size" routerLink="/create_place">Create place</a>
     </div>
     <div class=" size btn-group " role="group" style="margin-left: -3px;margin-bottom: 30px;"

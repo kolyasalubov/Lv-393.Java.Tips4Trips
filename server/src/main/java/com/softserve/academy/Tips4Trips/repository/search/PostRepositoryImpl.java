@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
@@ -32,7 +33,10 @@ public class PostRepositoryImpl implements SearchRepository<Post, PostSearchPara
         CriteriaQuery<Post> cq = cb.createQuery(Post.class);
         Root<Post> post = cq.from(Post.class);
         List<Predicate> wherePredicates = getWherePredicates(searchParams, post);
-        cq.where(wherePredicates.toArray(new Predicate[0]));
+        List<Predicate> havingPredicates = getHavingPredicates(searchParams, post);
+        cq.where(wherePredicates.toArray(new Predicate[0]))
+                .groupBy(post)
+                .having(havingPredicates.toArray(new Predicate[0]));
         long count = getCountByParams(searchParams);
         long total = (count % size == 0) ? count / size : count / size + 1;
         List<Post> result = em.createQuery(cq)
@@ -45,9 +49,16 @@ public class PostRepositoryImpl implements SearchRepository<Post, PostSearchPara
         CriteriaQuery<Long> cq = cb.createQuery(Long.class);
         Root<Post> from = cq.from(Post.class);
         List<Predicate> wherePredicates = getWherePredicates(searchParams, from);
+        List<Predicate> havingPredicates = getHavingPredicates(searchParams, from);
         cq.select(cb.count(from))
-                .where(wherePredicates.toArray(new Predicate[0]));
-        return em.createQuery(cq).getSingleResult();
+                .where(wherePredicates.toArray(new Predicate[0]))
+                .groupBy(from)
+                .having(havingPredicates.toArray(new Predicate[0]));
+        try {
+            return em.createQuery(cq).getSingleResult();
+        } catch (NoResultException ex) {
+            return 0;
+        }
     }
 
     private List<Predicate> getWherePredicates(PostSearchParams searchParams, Root<Post> post) {
@@ -63,5 +74,16 @@ public class PostRepositoryImpl implements SearchRepository<Post, PostSearchPara
             predicates.add(cb.lessThanOrEqualTo(post.get("creationDate"), searchParams.getEndDate()));
         }
         return predicates;
+    }
+
+    private List<Predicate> getHavingPredicates(PostSearchParams searchParams, Root<Post> post) {
+        List<Predicate> havingPredicates = new LinkedList<>();
+        if (searchParams.getMinLikesCount() > 0) {
+            havingPredicates.add(cb
+                    .greaterThanOrEqualTo(cb
+                            .count(post.join("likes")), searchParams
+                            .getMinLikesCount()));
+        }
+        return havingPredicates;
     }
 }

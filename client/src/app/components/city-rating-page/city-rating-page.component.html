@@ -5,7 +5,7 @@
       <div class="stars">
         <bar-rating theme="fontawesome-o" [(rate)]="cityRating" [max]="5"></bar-rating>
       </div>
-      <h5 style="margin-top: 10px;">({{cityRating}})</h5>
+      <h5 style="margin-top: 10px;">({{cityRating | number:'1.2-2'}})</h5>
     </div>
     <div style="height: 200px; width: 400px; margin-left:-15px;">
       <app-map-display [latitude]="position.coordinateX" [longitude]="position.coordinateY" [zoom]="zoom">

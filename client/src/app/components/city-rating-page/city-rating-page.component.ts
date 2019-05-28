@@ -14,7 +14,7 @@ import { CityFeedback } from 'src/app/model/city-feedback.model';
 export class CityRatingPageComponent implements OnInit {
   id: number;
   city: City = new City(0, null, null, 0, null);
-  cityFeedback: CityFeedback = new CityFeedback(0, null, null, null,  0, 0, 0, 0, 0, 0);
+  cityFeedback: CityFeedback = new CityFeedback(0, null, null, null, 0, 0, 0, 0, 0, 0);
   cityFeedbacks: CityFeedback[] = null;
   position: Position = new Position(0, 0);
   closeResult: string;
@@ -42,7 +42,15 @@ export class CityRatingPageComponent implements OnInit {
     this.cityFeedback.cityId = this.city.id;
     this.cityService.saveFeedback(this.cityFeedback);
     console.log(this.cityFeedback);
-    window.location.reload();
+    setTimeout(() => {
+      this.redirectTo('/city-rating-view/' + this.id)
+    }, 500);
+
+  }
+
+  redirectTo(uri: string) {
+    this.router.navigateByUrl('/Component', { skipLocationChange: true }).then(() =>
+      this.router.navigate([uri]));
   }
 
   setCoordinates: Function = (x: number, y: number) => {

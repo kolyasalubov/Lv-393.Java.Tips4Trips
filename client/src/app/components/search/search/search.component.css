@@ -28,3 +28,9 @@ ul {
     color: white;
     background-color: #4CAF50;
   }
+
+  .blue-input {
+    height: auto !important; 
+    border-color: #007bff; 
+    color: #007bff;
+  }

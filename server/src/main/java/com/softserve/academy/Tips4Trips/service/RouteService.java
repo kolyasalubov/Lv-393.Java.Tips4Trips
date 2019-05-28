@@ -96,7 +96,6 @@ public class RouteService {
             throw new DataNotFoundException();
         } else {
             existingRoute.get().setName(route.getName());
-            existingRoute.get().setAuthor(route.getAuthor());
             existingRoute.get().setListOfPlaces(route.getListOfPlaces());
         }
         if (route.getListOfPlaces().size() < 2) {
