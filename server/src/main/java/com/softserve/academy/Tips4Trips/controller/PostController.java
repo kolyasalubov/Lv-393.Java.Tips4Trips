@@ -13,6 +13,7 @@ import com.softserve.academy.Tips4Trips.exception.FileIOException;
 import com.softserve.academy.Tips4Trips.service.AccountService;
 import com.softserve.academy.Tips4Trips.service.PostService;
 import org.apache.log4j.Logger;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,12 +35,13 @@ public class PostController {
 
     private PostService postService;
     private PostConverter postConverter;
+    private ModelMapper modelMapper;
 
     @Autowired
-    public PostController(PostService postService,
-                          PostConverter postConverter) {
+    public PostController(PostService postService, PostConverter postConverter, ModelMapper modelMapper) {
         this.postService = postService;
         this.postConverter = postConverter;
+        this.modelMapper = modelMapper;
     }
 
     @GetMapping("/count")
@@ -91,7 +93,6 @@ public class PostController {
 
 
     @PostMapping("/{id}/images")
-    @PreAuthorize("hasRole('ROLE_USER')")
     public ResponseEntity<PostDetailsDTO> addImage(@PathVariable Long id,
                                                    @RequestParam("files") MultipartFile[] files)
             throws FileIOException {
@@ -114,7 +115,6 @@ public class PostController {
     }
 
     @DeleteMapping("/{id}/images")
-    @PreAuthorize("hasRole('ROLE_USER')")
     public void deleteImageById(@PathVariable Long id)
             throws FileIOException, DataNotFoundException {
         logger.info("delete photo by id method executing: ");
@@ -125,7 +125,6 @@ public class PostController {
     }
 
     @PutMapping("/{id}/image")
-    @PreAuthorize("hasRole('ROLE_USER')")
     public ResponseEntity<PostDetailsDTO> updateImageById(
             @PathVariable Long id, @RequestParam("file") MultipartFile[] file)
             throws FileIOException, DataNotFoundException {

@@ -12,7 +12,6 @@ public class PostInfoDTO {
     private String name;
     private Date creationDate;
     private String content;
-    private String photoPath;
     private List<ImageDTO> images;
     public PostInfoDTO() {
     }
@@ -23,14 +22,6 @@ public class PostInfoDTO {
 
     public void setImages(List<ImageDTO> images) {
         this.images = images;
-    }
-
-    public String getPhotoPath() {
-        return photoPath;
-    }
-
-    public void setPhotoPath(String photoPath) {
-        this.photoPath = photoPath;
     }
 
     public Long getId() {

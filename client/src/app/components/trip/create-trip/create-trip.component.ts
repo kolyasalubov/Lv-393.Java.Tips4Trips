@@ -80,14 +80,14 @@ export class CreateTripComponent implements OnInit {
       this.trip.creationDate = new Date();
       this.tripService.createTrip(this.trip).subscribe(result => {
         this.trip = result;
-        this.url = this.url + this.trip.id + '/images';
+        this.url = this.url + this.trip.id + '/image';
         this.uploadPhoto = true;
-        //window.location.href = 'http://localhost:4200/trip/' + this.trip.id;
       });
     }
   }
 
   navigate() {
+    console.log('tete');
     this.router.navigateByUrl('/trip/' + this.trip.id);
   }
 
@@ -98,10 +98,5 @@ export class CreateTripComponent implements OnInit {
       this.trip.startDate != null &&
       this.trip.creator.id != null;
   }
-
-  //
-  // removePlace(id: number): void {
-  //   this.route.places = this.route.places.filter(p => p.id != id);
-  // }
 
 }

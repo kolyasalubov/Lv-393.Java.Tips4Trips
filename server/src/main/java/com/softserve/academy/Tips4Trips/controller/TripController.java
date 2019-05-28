@@ -15,6 +15,7 @@ import com.softserve.academy.Tips4Trips.service.AccountService;
 import com.softserve.academy.Tips4Trips.service.ChatService;
 import com.softserve.academy.Tips4Trips.service.TripService;
 import org.apache.log4j.Logger;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -40,14 +41,16 @@ public class TripController {
     private TripConverter tripConverter;
     private AccountService accountService;
     private AccountConverter accountConverter;
+    private ModelMapper modelMapper;
     private ChatService chatService;
 
     @Autowired
-    public TripController(TripService tripService, TripConverter tripConverter, AccountService accountService, AccountConverter accountConverter, ChatService chatService) {
+    public TripController(TripService tripService, TripConverter tripConverter, AccountService accountService, AccountConverter accountConverter, ModelMapper modelMapper, ChatService chatService) {
         this.tripService = tripService;
         this.tripConverter = tripConverter;
         this.accountService = accountService;
         this.accountConverter = accountConverter;
+        this.modelMapper = modelMapper;
         this.chatService = chatService;
     }
 
@@ -102,14 +105,12 @@ public class TripController {
     @PreAuthorize("hasRole('ROLE_USER')")
     public ResponseEntity<TripDetailsDTO> create(@RequestBody TripDetailsDTO tripDetailsDTO) {
         logger.info("trip create post method executing: ");
-        return new ResponseEntity<>(tripConverter.convertToDTO(
-                tripService.createTrip(tripConverter.convertToEntity(tripDetailsDTO))
-        ), HttpStatus.CREATED);
+        return new ResponseEntity<>(modelMapper.map(
+                tripService.createTrip(tripConverter.convertToEntity(tripDetailsDTO)), TripDetailsDTO.class), HttpStatus.CREATED);
 
     }
 
     @PostMapping("/{id}/image")
-    @PreAuthorize("hasRole('ROLE_USER')")
     public ResponseEntity<TripInfoDTO> addImage(@PathVariable Long id,
                                                 @RequestParam("file") MultipartFile file)
             throws FileIOException {
@@ -117,9 +118,9 @@ public class TripController {
         if (id < 1) {
             return null;
         }
-        return new ResponseEntity<>(tripConverter.convertToDTO(
-                tripService.createTripImage(file, id)
-        ), HttpStatus.CREATED);
+        return new ResponseEntity<>(modelMapper.map(
+                tripService.createTripImage(file, id), TripInfoDTO.class),
+                HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}/image")
@@ -133,7 +134,6 @@ public class TripController {
     }
 
     @DeleteMapping("/{id}/image")
-    @PreAuthorize("hasRole('ROLE_USER')")
     public void deleteImageById(@PathVariable Long id)
             throws FileIOException, DataNotFoundException {
         logger.info("delete image account by id method executing: ");
@@ -144,7 +144,6 @@ public class TripController {
     }
 
     @PutMapping("/{id}/image")
-    @PreAuthorize("hasRole('ROLE_USER')")
     public ResponseEntity<TripInfoDTO> updateImageById(
             @PathVariable Long id, @RequestParam("file") MultipartFile file)
             throws FileIOException, DataNotFoundException {
