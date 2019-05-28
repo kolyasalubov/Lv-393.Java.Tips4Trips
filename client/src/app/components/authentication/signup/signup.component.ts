@@ -13,7 +13,7 @@ import { Router } from "@angular/router";
 })
 export class SignupComponent implements OnInit {
 
-  signUpForm: any = {};
+  model: any = {};
   isLoggedIn = false;
   isLoginFailed = false;
   errorMessage = '';
@@ -28,9 +28,10 @@ export class SignupComponent implements OnInit {
 
   onSubmit() {
 
-    this.signupInfo = new SignUpForm(this.signUpForm.login, this.signUpForm.firstName,
-      this.signUpForm.lastName, this.signUpForm.phoneNumber,
-      this.signUpForm.email, this.signUpForm.password, this.signUpForm.about);
+    alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.model));
+    this.signupInfo = new SignUpForm(this.model.login, this.model.firstName,
+      this.model.lastName, this.model.phoneNumber,
+      this.model.email, this.model.password, this.model.about);
     
       this.authService.signUp(this.signupInfo).subscribe(
         data => {

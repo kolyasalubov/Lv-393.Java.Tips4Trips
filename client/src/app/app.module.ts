@@ -99,6 +99,7 @@ import {RouteMapComponent} from "./components/map/route-map/route-map.component"
 import {AgmDirectionModule} from "agm-direction";
 import { ForgotPasswordComponent } from './components/authentication/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './components/authentication/reset-password/reset-password.component';
+import { MustMatchDirective } from './components/authentication/must-match.directive';
 
 @NgModule({
   declarations: [
@@ -186,7 +187,8 @@ import { ResetPasswordComponent } from './components/authentication/reset-passwo
     SearchNavbarComponent,
     RouteMapComponent,
     ForgotPasswordComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    MustMatchDirective
   ],
   imports: [
     BrowserModule,
