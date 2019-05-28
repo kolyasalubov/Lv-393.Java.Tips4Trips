@@ -8,3 +8,10 @@ select {
   font-size: 17px;
   border: 1px solid transparent;
 }
+button {
+  color: #fff !important;
+  background: #ffb400 !important;
+  border-radius: 0px 5px 5px 0px;
+  font-size: 17px;
+  border: 1px solid transparent;
+}

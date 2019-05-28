@@ -47,7 +47,9 @@ export class RouteMapComponent implements OnInit {
     console.log(this.placeList);
     this.getDirection();
   }
+
   public placeList: PlaceInfo[];
+  public newPlaceList: PlaceInfo[] =[];
   private lat: Number = 0;
   private lng: Number = 0;
   private icon = 'http://i.imgur.com/7teZKif.png';
@@ -61,6 +63,9 @@ export class RouteMapComponent implements OnInit {
   private waypointMarkers: MarkerOption;
   private visible: boolean = false;
   travelMode = 'WALKING';
+
+  private optimizationDestination: PositionModel;
+  private optimizationWaypoint: PositionModel;
   
   ngOnInit() {
     this.getDirection();
@@ -115,6 +120,46 @@ export class RouteMapComponent implements OnInit {
         destination: destinationMarker
       };
     }
+  }
+
+  optimize() {
+    const map = new Map<number,PlaceInfo>();
+
+    let length = this.placeList.length;
+    map.set(0, this.placeList[0]);
+    const destination = this.placeList[0];
+
+    for(let i=1; i<length; i++) {
+      map.set(this.decartLength(destination, this.placeList[i]),
+        this.placeList[i]);
+    }
+
+    let mapkeys = [];
+    map.forEach((value: PlaceInfo,key: number) => {
+      mapkeys.push(key);
+    });
+
+    mapkeys.sort((n1,n2)=> {
+      if (n1 > n2) return 1;
+      else if (n1 == n2) return 0;
+      else return -1;
+    });
+
+    this.newPlaceList = [];
+    for(let key of mapkeys) {
+      this.newPlaceList.push(map.get(key));
+    }
+  }
+
+  decartLength(destination: PlaceInfo, waypoint: PlaceInfo) {
+    this.optimizationDestination = <PositionModel> (<unknown> destination.position);
+    this.optimizationWaypoint = <PositionModel> (<unknown> waypoint.position);
+
+    let lang = Math.pow(this.optimizationDestination.coordinateX -
+        this.optimizationWaypoint.coordinateX, 2) +
+      Math.pow(this.optimizationDestination.coordinateX -
+        this.optimizationWaypoint.coordinateX, 2);
+    return Math.sqrt(lang);
   }
 }
 

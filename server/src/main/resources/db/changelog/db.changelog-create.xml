@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
-    <changeSet author="Dell (generated)" id="1557708078625-1">
+    <changeSet author="User (generated)" id="1559043402760-1">
         <createTable tableName="accounts">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints primaryKey="true"/>
@@ -28,7 +28,7 @@
             <column name="image_id" type="BIGINT"/>
         </createTable>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-2">
+    <changeSet author="User (generated)" id="1559043402760-2">
         <createTable tableName="accounts_subscribers">
             <column name="account_id" type="BIGINT">
                 <constraints nullable="false"/>
@@ -38,7 +38,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-3">
+    <changeSet author="User (generated)" id="1559043402760-3">
         <createTable tableName="building_working_days">
             <column name="building_id" type="BIGINT">
                 <constraints nullable="false"/>
@@ -48,14 +48,14 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-4">
+    <changeSet author="User (generated)" id="1559043402760-4">
         <createTable tableName="chats">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints primaryKey="true"/>
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-5">
+    <changeSet author="User (generated)" id="1559043402760-5">
         <createTable tableName="cities">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints primaryKey="true"/>
@@ -74,7 +74,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-6">
+    <changeSet author="User (generated)" id="1559043402760-6">
         <createTable tableName="city_feedback">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints primaryKey="true"/>
@@ -93,7 +93,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-7">
+    <changeSet author="User (generated)" id="1559043402760-7">
         <createTable tableName="comments">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints primaryKey="true"/>
@@ -112,7 +112,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-8">
+    <changeSet author="User (generated)" id="1559043402760-8">
         <createTable tableName="countries">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints primaryKey="true"/>
@@ -128,7 +128,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-9">
+    <changeSet author="User (generated)" id="1559043402760-9">
         <createTable tableName="feedback_place">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints primaryKey="true"/>
@@ -148,7 +148,12 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-10">
+    <changeSet author="User (generated)" id="1559043402760-10">
+        <createTable tableName="hibernate_sequence">
+            <column name="next_val" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="User (generated)" id="1559043402760-11">
         <createTable tableName="hotels">
             <column name="id" type="BIGINT">
                 <constraints nullable="false"/>
@@ -178,7 +183,7 @@
             <column name="minimum_price" type="FLOAT(12)"/>
         </createTable>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-11">
+    <changeSet author="User (generated)" id="1559043402760-12">
         <createTable tableName="images">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints primaryKey="true"/>
@@ -195,7 +200,7 @@
             <column name="account_id" type="BIGINT"/>
         </createTable>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-12">
+    <changeSet author="User (generated)" id="1559043402760-13">
         <createTable tableName="key_generator">
             <column name="sequence_name" type="VARCHAR(255)">
                 <constraints nullable="false"/>
@@ -203,7 +208,7 @@
             <column name="next_val" type="BIGINT"/>
         </createTable>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-13">
+    <changeSet author="User (generated)" id="1559043402760-14">
         <createTable tableName="likes">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints primaryKey="true"/>
@@ -216,7 +221,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-14">
+    <changeSet author="User (generated)" id="1559043402760-15">
         <createTable tableName="messages">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints primaryKey="true"/>
@@ -231,7 +236,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-15">
+    <changeSet author="User (generated)" id="1559043402760-16">
         <createTable tableName="monuments">
             <column name="id" type="BIGINT">
                 <constraints nullable="false"/>
@@ -255,7 +260,23 @@
             <column name="image_id" type="BIGINT"/>
         </createTable>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-16">
+    <changeSet author="User (generated)" id="1559043402760-17">
+        <createTable tableName="password_reset_token">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="expiry_date" type="datetime(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="token" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="account_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="User (generated)" id="1559043402760-18">
         <createTable tableName="posts">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints primaryKey="true"/>
@@ -275,7 +296,7 @@
             <column name="route_id" type="BIGINT"/>
         </createTable>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-17">
+    <changeSet author="User (generated)" id="1559043402760-19">
         <createTable tableName="posts_images">
             <column name="post_id" type="BIGINT">
                 <constraints nullable="false"/>
@@ -285,7 +306,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-18">
+    <changeSet author="User (generated)" id="1559043402760-20">
         <createTable tableName="restaurants">
             <column name="id" type="BIGINT">
                 <constraints nullable="false"/>
@@ -315,7 +336,7 @@
             <column name="has_vegan_food" type="BIT(1)"/>
         </createTable>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-19">
+    <changeSet author="User (generated)" id="1559043402760-21">
         <createTable tableName="routes">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints primaryKey="true"/>
@@ -332,7 +353,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-20">
+    <changeSet author="User (generated)" id="1559043402760-22">
         <createTable tableName="routes_places">
             <column name="route_id" type="BIGINT">
                 <constraints nullable="false"/>
@@ -342,7 +363,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-21">
+    <changeSet author="User (generated)" id="1559043402760-23">
         <createTable tableName="sales">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints primaryKey="true"/>
@@ -365,7 +386,7 @@
             <column name="image_id" type="BIGINT"/>
         </createTable>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-22">
+    <changeSet author="User (generated)" id="1559043402760-24">
         <createTable tableName="subscriber_group">
             <column name="group_id" type="BIGINT">
                 <constraints nullable="false"/>
@@ -375,7 +396,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-23">
+    <changeSet author="User (generated)" id="1559043402760-25">
         <createTable tableName="trips">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints primaryKey="true"/>
@@ -402,7 +423,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-24">
+    <changeSet author="User (generated)" id="1559043402760-26">
         <createTable tableName="users">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints primaryKey="true"/>
@@ -418,297 +439,311 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-25">
+    <changeSet author="User (generated)" id="1559043402760-27">
         <addPrimaryKey columnNames="id" constraintName="PRIMARY" tableName="hotels"/>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-26">
+    <changeSet author="User (generated)" id="1559043402760-28">
         <addPrimaryKey columnNames="sequence_name" constraintName="PRIMARY" tableName="key_generator"/>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-27">
+    <changeSet author="User (generated)" id="1559043402760-29">
         <addPrimaryKey columnNames="id" constraintName="PRIMARY" tableName="monuments"/>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-28">
+    <changeSet author="User (generated)" id="1559043402760-30">
+        <addPrimaryKey columnNames="id" constraintName="PRIMARY" tableName="password_reset_token"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1559043402760-31">
         <addPrimaryKey columnNames="id" constraintName="PRIMARY" tableName="restaurants"/>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-29">
+    <changeSet author="User (generated)" id="1559043402760-32">
         <addUniqueConstraint columnNames="phone_number" constraintName="UK_aien07q29q89wriyl53yj841h" tableName="accounts"/>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-30">
+    <changeSet author="User (generated)" id="1559043402760-33">
+        <addUniqueConstraint columnNames="token" constraintName="UK_g0guo4k8krgpwuagos61oc06j" tableName="password_reset_token"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1559043402760-34">
         <addUniqueConstraint columnNames="email" constraintName="UK_n7ihswpy07ci568w34q0oi8he" tableName="accounts"/>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-31">
+    <changeSet author="User (generated)" id="1559043402760-35">
         <addUniqueConstraint columnNames="login" constraintName="UK_ow0gan20590jrb00upg3va2fn" tableName="users"/>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-32">
+    <changeSet author="User (generated)" id="1559043402760-36">
         <createIndex indexName="FK15oj6csyeqyebrj3pag7luduo" tableName="accounts">
             <column name="image_id"/>
         </createIndex>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-33">
+    <changeSet author="User (generated)" id="1559043402760-37">
         <createIndex indexName="FK3ioqgbhlnsdpr0tdukxyaicsf" tableName="trips">
             <column name="chat_id"/>
         </createIndex>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-34">
+    <changeSet author="User (generated)" id="1559043402760-38">
         <createIndex indexName="FK3nsw69j6l8kkmcye9eb5wfpxf" tableName="comments">
             <column name="commented_by"/>
         </createIndex>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-35">
+    <changeSet author="User (generated)" id="1559043402760-39">
         <createIndex indexName="FK64w44ngcpqp99ptcb9werdfmb" tableName="messages">
             <column name="chat_id"/>
         </createIndex>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-36">
+    <changeSet author="User (generated)" id="1559043402760-40">
         <createIndex indexName="FK6gatmv9dwedve82icy8wrkdmk" tableName="cities">
             <column name="country_id"/>
         </createIndex>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-37">
+    <changeSet author="User (generated)" id="1559043402760-41">
+        <createIndex indexName="FK76a4o6jaqpn5s2gji7q8aaxvg" tableName="password_reset_token">
+            <column name="account_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="User (generated)" id="1559043402760-42">
         <createIndex indexName="FK7q9u2nkhx1wyibu3w6jv7kty9" tableName="messages">
             <column name="sender_id"/>
         </createIndex>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-38">
+    <changeSet author="User (generated)" id="1559043402760-43">
         <createIndex indexName="FK_1ihythtjluu9omkwor0vcor8i" tableName="hotels">
             <column name="city_id"/>
         </createIndex>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-39">
+    <changeSet author="User (generated)" id="1559043402760-44">
         <createIndex indexName="FK_33ch33etllr7cjusd0gtre7xm" tableName="monuments">
             <column name="city_id"/>
         </createIndex>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-40">
+    <changeSet author="User (generated)" id="1559043402760-45">
         <createIndex indexName="FK_8mu7s4eb1cka0107oo4kj4igg" tableName="restaurants">
             <column name="image_id"/>
         </createIndex>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-41">
+    <changeSet author="User (generated)" id="1559043402760-46">
         <createIndex indexName="FK_bj2mb0xtfsym3va5ujfk4uff8" tableName="hotels">
             <column name="image_id"/>
         </createIndex>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-42">
+    <changeSet author="User (generated)" id="1559043402760-47">
         <createIndex indexName="FK_i2df8v2h84eg1kvvi9scd9r7f" tableName="restaurants">
             <column name="city_id"/>
         </createIndex>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-43">
+    <changeSet author="User (generated)" id="1559043402760-48">
         <createIndex indexName="FK_i69hoafw799mkub94er2456xm" tableName="monuments">
             <column name="image_id"/>
         </createIndex>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-44">
+    <changeSet author="User (generated)" id="1559043402760-49">
         <createIndex indexName="FKb2b5nceol3ofbvw302smcde7m" tableName="subscriber_group">
             <column name="group_id"/>
         </createIndex>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-45">
+    <changeSet author="User (generated)" id="1559043402760-50">
         <createIndex indexName="FKbjyldhlw3nsjuhl4n5orxtwv4" tableName="feedback_place">
             <column name="creator_id"/>
         </createIndex>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-46">
+    <changeSet author="User (generated)" id="1559043402760-51">
         <createIndex indexName="FKddl7747epwheh9umkc38f5688" tableName="accounts_subscribers">
             <column name="subscriber_id"/>
         </createIndex>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-47">
+    <changeSet author="User (generated)" id="1559043402760-52">
         <createIndex indexName="FKe21gm4ia851bfavsak0fea92t" tableName="images">
             <column name="account_id"/>
         </createIndex>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-48">
+    <changeSet author="User (generated)" id="1559043402760-53">
         <createIndex indexName="FKf9l8slr2hdv6us03g5fkn5tcd" tableName="posts">
             <column name="account_id"/>
         </createIndex>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-49">
+    <changeSet author="User (generated)" id="1559043402760-54">
         <createIndex indexName="FKfdermq8lkpd7ct4uaxfxj08l4" tableName="routes">
             <column name="author_id"/>
         </createIndex>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-50">
+    <changeSet author="User (generated)" id="1559043402760-55">
         <createIndex indexName="FKfm8rm8ks0kgj4fhlmmljkj17x" tableName="users">
             <column name="account_id"/>
         </createIndex>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-51">
+    <changeSet author="User (generated)" id="1559043402760-56">
         <createIndex indexName="FKh4c7lvsc298whoyd4w9ta25cr" tableName="comments">
             <column name="post_id"/>
         </createIndex>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-52">
+    <changeSet author="User (generated)" id="1559043402760-57">
         <createIndex indexName="FKhdb3v0c0nicxanvxl8je63062" tableName="accounts_subscribers">
             <column name="account_id"/>
         </createIndex>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-53">
+    <changeSet author="User (generated)" id="1559043402760-58">
         <createIndex indexName="FKhyokhj94vfhxityhbeeb51pmb" tableName="posts_images">
             <column name="image_id"/>
         </createIndex>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-54">
+    <changeSet author="User (generated)" id="1559043402760-59">
         <createIndex indexName="FKiv38krdjqcox5qxowf7mmp2vd" tableName="posts">
             <column name="route_id"/>
         </createIndex>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-55">
+    <changeSet author="User (generated)" id="1559043402760-60">
         <createIndex indexName="FKk2xb37wdqvjyilf5uskxvgj0h" tableName="city_feedback">
             <column name="city_id"/>
         </createIndex>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-56">
+    <changeSet author="User (generated)" id="1559043402760-61">
         <createIndex indexName="FKm7ci3blm9wj2k0d94chu18y7s" tableName="trips">
             <column name="route_id"/>
         </createIndex>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-57">
+    <changeSet author="User (generated)" id="1559043402760-62">
         <createIndex indexName="FKmo8v5mbqcoo4xaxtb496v2ldj" tableName="likes">
             <column name="liked_by"/>
         </createIndex>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-58">
+    <changeSet author="User (generated)" id="1559043402760-63">
         <createIndex indexName="FKn1q4ikk0ro1o6t1h3aw1tj0sf" tableName="routes_places">
             <column name="route_id"/>
         </createIndex>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-59">
+    <changeSet author="User (generated)" id="1559043402760-64">
         <createIndex indexName="FKn610r4xnyxqgsnaoecfwrg6bw" tableName="subscriber_group">
             <column name="subscriber_id"/>
         </createIndex>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-60">
+    <changeSet author="User (generated)" id="1559043402760-65">
         <createIndex indexName="FKoymoi02qb97svxsda6srb6q4u" tableName="sales">
             <column name="creator_id"/>
         </createIndex>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-61">
+    <changeSet author="User (generated)" id="1559043402760-66">
         <createIndex indexName="FKq2788i1grxwxhamxblohgps3c" tableName="trips">
             <column name="image_id"/>
         </createIndex>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-62">
+    <changeSet author="User (generated)" id="1559043402760-67">
         <createIndex indexName="FKqsh2kexqio93kbhkkoloaev0l" tableName="sales">
             <column name="image_id"/>
         </createIndex>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-63">
+    <changeSet author="User (generated)" id="1559043402760-68">
         <createIndex indexName="FKr315ebcveolhvos3mj05cqmit" tableName="posts_images">
             <column name="post_id"/>
         </createIndex>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-64">
+    <changeSet author="User (generated)" id="1559043402760-69">
         <createIndex indexName="FKry8tnr4x2vwemv2bb0h5hyl0x" tableName="likes">
             <column name="post_id"/>
         </createIndex>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-65">
+    <changeSet author="User (generated)" id="1559043402760-70">
         <createIndex indexName="FKt9p7k1j65aj1add9ufjtgx25b" tableName="trips">
             <column name="creator_id"/>
         </createIndex>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-66">
+    <changeSet author="User (generated)" id="1559043402760-71">
         <addForeignKeyConstraint baseColumnNames="image_id" baseTableName="accounts" constraintName="FK15oj6csyeqyebrj3pag7luduo" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="images"/>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-67">
+    <changeSet author="User (generated)" id="1559043402760-72">
         <addForeignKeyConstraint baseColumnNames="chat_id" baseTableName="trips" constraintName="FK3ioqgbhlnsdpr0tdukxyaicsf" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="chats"/>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-68">
+    <changeSet author="User (generated)" id="1559043402760-73">
         <addForeignKeyConstraint baseColumnNames="commented_by" baseTableName="comments" constraintName="FK3nsw69j6l8kkmcye9eb5wfpxf" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="accounts"/>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-69">
+    <changeSet author="User (generated)" id="1559043402760-74">
         <addForeignKeyConstraint baseColumnNames="chat_id" baseTableName="messages" constraintName="FK64w44ngcpqp99ptcb9werdfmb" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="chats"/>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-70">
+    <changeSet author="User (generated)" id="1559043402760-75">
         <addForeignKeyConstraint baseColumnNames="country_id" baseTableName="cities" constraintName="FK6gatmv9dwedve82icy8wrkdmk" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="countries"/>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-71">
+    <changeSet author="User (generated)" id="1559043402760-76">
+        <addForeignKeyConstraint baseColumnNames="account_id" baseTableName="password_reset_token" constraintName="FK76a4o6jaqpn5s2gji7q8aaxvg" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="accounts"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1559043402760-77">
         <addForeignKeyConstraint baseColumnNames="sender_id" baseTableName="messages" constraintName="FK7q9u2nkhx1wyibu3w6jv7kty9" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="accounts"/>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-72">
+    <changeSet author="User (generated)" id="1559043402760-78">
         <addForeignKeyConstraint baseColumnNames="city_id" baseTableName="hotels" constraintName="FK_1ihythtjluu9omkwor0vcor8i" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="cities"/>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-73">
+    <changeSet author="User (generated)" id="1559043402760-79">
         <addForeignKeyConstraint baseColumnNames="city_id" baseTableName="monuments" constraintName="FK_33ch33etllr7cjusd0gtre7xm" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="cities"/>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-74">
+    <changeSet author="User (generated)" id="1559043402760-80">
         <addForeignKeyConstraint baseColumnNames="image_id" baseTableName="restaurants" constraintName="FK_8mu7s4eb1cka0107oo4kj4igg" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="images"/>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-75">
+    <changeSet author="User (generated)" id="1559043402760-81">
         <addForeignKeyConstraint baseColumnNames="image_id" baseTableName="hotels" constraintName="FK_bj2mb0xtfsym3va5ujfk4uff8" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="images"/>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-76">
+    <changeSet author="User (generated)" id="1559043402760-82">
         <addForeignKeyConstraint baseColumnNames="city_id" baseTableName="restaurants" constraintName="FK_i2df8v2h84eg1kvvi9scd9r7f" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="cities"/>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-77">
+    <changeSet author="User (generated)" id="1559043402760-83">
         <addForeignKeyConstraint baseColumnNames="image_id" baseTableName="monuments" constraintName="FK_i69hoafw799mkub94er2456xm" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="images"/>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-78">
+    <changeSet author="User (generated)" id="1559043402760-84">
         <addForeignKeyConstraint baseColumnNames="group_id" baseTableName="subscriber_group" constraintName="FKb2b5nceol3ofbvw302smcde7m" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="trips"/>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-79">
+    <changeSet author="User (generated)" id="1559043402760-85">
         <addForeignKeyConstraint baseColumnNames="creator_id" baseTableName="feedback_place" constraintName="FKbjyldhlw3nsjuhl4n5orxtwv4" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="accounts"/>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-80">
+    <changeSet author="User (generated)" id="1559043402760-86">
         <addForeignKeyConstraint baseColumnNames="subscriber_id" baseTableName="accounts_subscribers" constraintName="FKddl7747epwheh9umkc38f5688" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="accounts"/>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-81">
+    <changeSet author="User (generated)" id="1559043402760-87">
         <addForeignKeyConstraint baseColumnNames="account_id" baseTableName="images" constraintName="FKe21gm4ia851bfavsak0fea92t" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="accounts"/>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-82">
+    <changeSet author="User (generated)" id="1559043402760-88">
         <addForeignKeyConstraint baseColumnNames="account_id" baseTableName="posts" constraintName="FKf9l8slr2hdv6us03g5fkn5tcd" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="accounts"/>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-83">
+    <changeSet author="User (generated)" id="1559043402760-89">
         <addForeignKeyConstraint baseColumnNames="author_id" baseTableName="routes" constraintName="FKfdermq8lkpd7ct4uaxfxj08l4" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="accounts"/>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-84">
+    <changeSet author="User (generated)" id="1559043402760-90">
         <addForeignKeyConstraint baseColumnNames="account_id" baseTableName="users" constraintName="FKfm8rm8ks0kgj4fhlmmljkj17x" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="accounts"/>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-85">
+    <changeSet author="User (generated)" id="1559043402760-91">
         <addForeignKeyConstraint baseColumnNames="post_id" baseTableName="comments" constraintName="FKh4c7lvsc298whoyd4w9ta25cr" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="posts"/>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-86">
+    <changeSet author="User (generated)" id="1559043402760-92">
         <addForeignKeyConstraint baseColumnNames="account_id" baseTableName="accounts_subscribers" constraintName="FKhdb3v0c0nicxanvxl8je63062" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="accounts"/>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-87">
+    <changeSet author="User (generated)" id="1559043402760-93">
         <addForeignKeyConstraint baseColumnNames="image_id" baseTableName="posts_images" constraintName="FKhyokhj94vfhxityhbeeb51pmb" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="images"/>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-88">
+    <changeSet author="User (generated)" id="1559043402760-94">
         <addForeignKeyConstraint baseColumnNames="route_id" baseTableName="posts" constraintName="FKiv38krdjqcox5qxowf7mmp2vd" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="routes"/>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-89">
+    <changeSet author="User (generated)" id="1559043402760-95">
         <addForeignKeyConstraint baseColumnNames="city_id" baseTableName="city_feedback" constraintName="FKk2xb37wdqvjyilf5uskxvgj0h" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="cities"/>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-90">
+    <changeSet author="User (generated)" id="1559043402760-96">
         <addForeignKeyConstraint baseColumnNames="route_id" baseTableName="trips" constraintName="FKm7ci3blm9wj2k0d94chu18y7s" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="routes"/>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-91">
+    <changeSet author="User (generated)" id="1559043402760-97">
         <addForeignKeyConstraint baseColumnNames="liked_by" baseTableName="likes" constraintName="FKmo8v5mbqcoo4xaxtb496v2ldj" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="accounts"/>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-92">
+    <changeSet author="User (generated)" id="1559043402760-98">
         <addForeignKeyConstraint baseColumnNames="route_id" baseTableName="routes_places" constraintName="FKn1q4ikk0ro1o6t1h3aw1tj0sf" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="routes"/>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-93">
+    <changeSet author="User (generated)" id="1559043402760-99">
         <addForeignKeyConstraint baseColumnNames="subscriber_id" baseTableName="subscriber_group" constraintName="FKn610r4xnyxqgsnaoecfwrg6bw" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="accounts"/>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-94">
+    <changeSet author="User (generated)" id="1559043402760-100">
         <addForeignKeyConstraint baseColumnNames="creator_id" baseTableName="sales" constraintName="FKoymoi02qb97svxsda6srb6q4u" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="accounts"/>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-95">
+    <changeSet author="User (generated)" id="1559043402760-101">
         <addForeignKeyConstraint baseColumnNames="image_id" baseTableName="trips" constraintName="FKq2788i1grxwxhamxblohgps3c" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="images"/>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-96">
+    <changeSet author="User (generated)" id="1559043402760-102">
         <addForeignKeyConstraint baseColumnNames="image_id" baseTableName="sales" constraintName="FKqsh2kexqio93kbhkkoloaev0l" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="images"/>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-97">
+    <changeSet author="User (generated)" id="1559043402760-103">
         <addForeignKeyConstraint baseColumnNames="post_id" baseTableName="posts_images" constraintName="FKr315ebcveolhvos3mj05cqmit" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="posts"/>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-98">
+    <changeSet author="User (generated)" id="1559043402760-104">
         <addForeignKeyConstraint baseColumnNames="post_id" baseTableName="likes" constraintName="FKry8tnr4x2vwemv2bb0h5hyl0x" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="posts"/>
     </changeSet>
-    <changeSet author="Dell (generated)" id="1557708078625-99">
+    <changeSet author="User (generated)" id="1559043402760-105">
         <addForeignKeyConstraint baseColumnNames="creator_id" baseTableName="trips" constraintName="FKt9p7k1j65aj1add9ufjtgx25b" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="accounts"/>
     </changeSet>
 </databaseChangeLog>
