@@ -23,7 +23,7 @@
               <div class="col-md-8 col-lg-6 main-content">
                 <img src="" alt="Image" class="img-fluid mb-5">
 
-                <app-image-upload-form [multiple]="true" [requestType]="'POST'" [setStorageURL]="url"
+                <app-image-upload-form [multiple]="false" [requestType]="'POST'" [setStorageURL]="url"
                                        [UploadStart]="uploadPhoto" (noAction)="navigate()"></app-image-upload-form>
                 <br>
                 <p>*File have to be less than 5 MB</p>

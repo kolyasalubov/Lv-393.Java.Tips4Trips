@@ -80,9 +80,8 @@ export class CreateTripComponent implements OnInit {
       this.trip.creationDate = new Date();
       this.tripService.createTrip(this.trip).subscribe(result => {
         this.trip = result;
-        this.url = this.url + this.trip.id + '/images';
+        this.url = this.url + this.trip.id + '/image';
         this.uploadPhoto = true;
-        //window.location.href = 'http://localhost:4200/trip/' + this.trip.id;
       });
     }
   }

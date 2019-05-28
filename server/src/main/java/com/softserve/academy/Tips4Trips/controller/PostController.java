@@ -91,7 +91,6 @@ public class PostController {
 
 
     @PostMapping("/{id}/images")
-    @PreAuthorize("hasRole('ROLE_USER')")
     public ResponseEntity<PostDetailsDTO> addImage(@PathVariable Long id,
                                                    @RequestParam("files") MultipartFile[] files)
             throws FileIOException {
@@ -114,7 +113,6 @@ public class PostController {
     }
 
     @DeleteMapping("/{id}/images")
-    @PreAuthorize("hasRole('ROLE_USER')")
     public void deleteImageById(@PathVariable Long id)
             throws FileIOException, DataNotFoundException {
         logger.info("delete photo by id method executing: ");
@@ -125,7 +123,6 @@ public class PostController {
     }
 
     @PutMapping("/{id}/image")
-    @PreAuthorize("hasRole('ROLE_USER')")
     public ResponseEntity<PostDetailsDTO> updateImageById(
             @PathVariable Long id, @RequestParam("file") MultipartFile[] file)
             throws FileIOException, DataNotFoundException {
