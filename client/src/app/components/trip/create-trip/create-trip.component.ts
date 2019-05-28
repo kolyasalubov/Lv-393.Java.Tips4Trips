@@ -87,6 +87,7 @@ export class CreateTripComponent implements OnInit {
   }
 
   navigate() {
+    console.log('tete');
     this.router.navigateByUrl('/trip/' + this.trip.id);
   }
 
@@ -97,10 +98,5 @@ export class CreateTripComponent implements OnInit {
       this.trip.startDate != null &&
       this.trip.creator.id != null;
   }
-
-  //
-  // removePlace(id: number): void {
-  //   this.route.places = this.route.places.filter(p => p.id != id);
-  // }
 
 }

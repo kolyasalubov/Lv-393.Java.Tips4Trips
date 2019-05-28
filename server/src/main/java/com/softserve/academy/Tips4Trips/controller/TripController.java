@@ -43,7 +43,8 @@ public class TripController {
     private AccountConverter accountConverter;
     private ModelMapper modelMapper;
     private ChatService chatService;
-@Autowired
+
+    @Autowired
     public TripController(TripService tripService, TripConverter tripConverter, AccountService accountService, AccountConverter accountConverter, ModelMapper modelMapper, ChatService chatService) {
         this.tripService = tripService;
         this.tripConverter = tripConverter;
@@ -105,7 +106,7 @@ public class TripController {
     public ResponseEntity<TripDetailsDTO> create(@RequestBody TripDetailsDTO tripDetailsDTO) {
         logger.info("trip create post method executing: ");
         return new ResponseEntity<>(modelMapper.map(
-                tripService.createTrip(tripConverter.convertToEntity(tripDetailsDTO)),TripDetailsDTO.class ), HttpStatus.CREATED);
+                tripService.createTrip(tripConverter.convertToEntity(tripDetailsDTO)), TripDetailsDTO.class), HttpStatus.CREATED);
 
     }
 
@@ -117,9 +118,9 @@ public class TripController {
         if (id < 1) {
             return null;
         }
-        return new ResponseEntity<>(tripConverter.convertToDTO(
-                tripService.createTripImage(file, id)
-        ), HttpStatus.CREATED);
+        return new ResponseEntity<>(modelMapper.map(
+                tripService.createTripImage(file, id), TripInfoDTO.class),
+                HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}/image")
