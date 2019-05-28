@@ -46,16 +46,16 @@ public class AccountController {
     private UserService userService;
     private ModelMapper modelMapper;
 
-    @Autowired
     private AccountRepository accountRepository;
 
 
     @Autowired
-    public AccountController(AccountService accountService, AccountConverter accountConverter, UserService userService, ModelMapper modelMapper) {
+    public AccountController(AccountService accountService, AccountConverter accountConverter, UserService userService, ModelMapper modelMapper, AccountRepository accountRepository) {
         this.accountService = accountService;
         this.accountConverter = accountConverter;
         this.userService = userService;
         this.modelMapper = modelMapper;
+        this.accountRepository = accountRepository;
     }
     @GetMapping("/count")
     public ResponseEntity<Long> getCount() {

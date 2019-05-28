@@ -35,7 +35,6 @@ public class PasswordResetController {
         PasswordResetToken token = tokenRepository.findByToken(form.getToken());
         Account account = token.getAccount();
         String updatedPassword = passwordEncoder.encode(form.getPassword());
-        System.out.println(form.getPassword());
         userService.updatePassword(updatedPassword, account.getUser().getId());
         tokenRepository.delete(token);
 
