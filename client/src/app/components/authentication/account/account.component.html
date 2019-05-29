@@ -1,0 +1,132 @@
+<app-under [str]="accountProfile.firstName+' '+accountProfile.lastName"></app-under>
+
+
+<section class="ftco-section ftco-no-pb contact-section">
+  <div class="container">
+    <div class=" size btn-group " role="group" style="margin-bottom: 30px;"
+         *ngIf="role === 'ADMIN' || role === 'MODERATOR'">
+      <a class="btn btn-info size" routerLink="/country">Create country</a>
+      <a class="btn btn-info size" routerLink="/city">Create city</a>
+      <a class="btn btn-info size" routerLink="/countries">Edit country</a>
+      <a class="btn btn-info size" routerLink="/cities">Edit city</a>
+      <a class="btn btn-info size" routerLink="/create_place">Create place</a>
+    </div>
+    <div class=" size btn-group " role="group" style="margin-left: -3px;margin-bottom: 30px;"
+         *ngIf="role === 'ADMIN'">
+      <a class="btn btn-info size" [routerLink]="['/list_of_users']">list_of_users</a>
+    </div>
+    <div class="btn-group" style="margin-left: -3px;margin-bottom: 30px;">
+      <a class="btn btn-info size" [routerLink]="['/create_trip']">Create Trip</a>
+      <a class="btn btn-info size" [routerLink]="['/create_post']">Create Post</a>
+      <a class="btn btn-info size" (click)="editAccount()">Edit profile</a>
+      <a class="btn btn-info size"  (click)="logout()">Logout</a>
+    </div>
+
+    <div class="row d-flex contact-info">
+      <div class="col-md-3 d-flex">
+        <div class="align-self-stretch box p-4 text-center">
+          <div class="icon d-flex align-items-center justify-content-center" class="vcard bio">
+              <span class="icon-map-signs"><app-image-details
+                [fileUpload]="getImageString()"></app-image-details></span>
+          </div>
+          <h3 class="mb-4">{{accountProfile.firstName}} {{accountProfile.lastName}}</h3>
+          <p>{{accountProfile.registrationDate}}</p>
+        </div>
+      </div>
+      <div class="col-md-3 d-flex">
+        <div class="align-self-stretch box p-4 text-center">
+          <div class="icon d-flex align-items-center justify-content-center">
+            <span class="icon-phone2"><img src="../../../../assets/images/round_phone_black_48dp.png"></span>
+          </div>
+          <h3 class="mb-4">Contact Number</h3>
+          <p><a href="tel://1234567920"> {{accountProfile.phoneNumber}}</a></p>
+        </div>
+      </div>
+      <div class="col-md-3 d-flex">
+        <div class="align-self-stretch box p-4 text-center">
+          <div class="icon d-flex align-items-center justify-content-center">
+            <span class="icon-paper-plane"><img
+              src="../../../../assets/images/round_alternate_email_black_48dp.png"> </span>
+          </div>
+          <h3 class="mb-4">Email Address</h3>
+          <p><a href="mailto:info@yoursite.com"> {{accountProfile.email}}</a></p>
+        </div>
+      </div>
+      <div class="col-md-3 d-flex">
+        <div class="align-self-stretch box p-4 text-center">
+          <div class="icon d-flex align-items-center justify-content-center">
+        <span class="icon-globe"> <img
+          src="../../../../assets/images/round_supervised_user_circle_black_48dp.png"></span>
+          </div>
+          <h3 class="mb-4">Role</h3>
+          <p><a>{{accountProfile.role}}</a></p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="ftco-section contact-section" style="margin-bottom: 90px;">
+  <div class="container">
+    <div class="row block-9">
+      <section class="container">
+        <div class="row blog-entries element-animate">
+          <div class="col-md-4 col-lg-3 main-content" style="padding-left: 0px;">
+            <h1 class="mb-4">About</h1>
+            <h2> {{accountProfile.about}} </h2>
+            <br><br>
+
+
+          </div>
+          <div class="col-md-4 col-lg-3 main-content" style="padding-left: 0px;">
+            <h2>Your Likes</h2>
+            <div style="border: 2px solid #999999;border-radius: 6px;">
+              <div *ngIf="arelikes">
+                <h3 style="margin-left: 7%;">{{massage}}</h3>
+              </div>
+              <div *ngIf="!arelikes">
+                <div *ngFor="let like of likes.content">
+                  <app-like-account [like]="like"></app-like-account>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 col-lg-3 main-content" style="padding-left: 0px;">
+            <h2>Your comments</h2>
+            <div style="border: 2px solid #999999;border-radius: 6px;">
+              <div *ngIf="arecomments">
+                <h3 style="margin-left: 7%;">{{massage}}</h3>
+              </div>
+              <div *ngIf="!arecomments">
+                <div *ngFor="let comment of comments.content">
+                  <app-comment-account [comment]="comment"></app-comment-account>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 col-lg-3 main-content" style="padding-left: 0px;">
+            <h2>Active Trips</h2>
+            <div style="border: 2px solid #999999;border-radius: 6px;">
+              <div *ngIf="areTrips">
+                <h3 style="margin-left: 7%;">{{massage}}</h3>
+              </div>
+              <div *ngIf="!areTrips">
+                <div *ngFor="let trip of trip.content">
+                  <app-active-trip [trip]="trip"></app-active-trip>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </section>
+    </div>
+  </div>
+</section>
+
+
+<br>
+
+

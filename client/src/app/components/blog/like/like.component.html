@@ -1,0 +1,25 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
+
+<p>
+
+
+</p>
+<p  class="pointer" style="font-size:25px;   ">
+  <a >
+
+    <span [style.color]="isAdded==true?'red':'grey'" disabled="isButtonDisabled"  (click)="changeLike()" style="font-size:25px; color: red"><i class="material-icons">favorite</i></span>
+    <a class="popup" (click)="showAccounts()">    {{counter}}
+      <span class="popuptext" id="myPopup" style="text-align: left"><ul *ngFor="let account of allAccounts "  >
+  <div class="comment" style="font-size: 14px; text-align: left">  {{account.firstName}} {{account.lastName}}
+  </div>
+</ul></span>
+    </a>
+  </a>
+
+</p>
+
+
+

@@ -1,0 +1,127 @@
+
+
+<section class="hero-wrap hero-wrap-2 js-fullheight"
+         style="background-image: url('../../../../assets/images/bg_1.jpg'); padding-bottom: 5%;"
+         data-stellar-background-ratio="0.5">
+  <div class="container">
+    <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-center">
+      <div class="col-md-9 ftco-animate pb-5 text-center">
+        <h1 class="mb-3 bread" style="margin-top: 15%;color:white;">{{accountProfile?.firstName}}    {{accountProfile?.lastName}}</h1>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section id="about" class="about-mf sect-pt4 route" *ngIf="accountProfile">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="box-shadow-full">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="row">
+                <div class="col-sm-6 col-md-5">
+                  <div class="about-img">
+                    <app-image-details  class="img-fluid rounded b-shadow-a" [fileUpload]="getImageString()"></app-image-details>
+                    <!--<img src="../../../../assets/images/hotel-resto-1.jpg" class="img-fluid rounded b-shadow-a" alt="">-->
+                  </div>
+                </div>
+                <div class="col-sm-6 col-md-7">
+                  <div class="about-info">
+
+                    <p><span class="title-s">Name: </span> <span>{{accountProfile?.firstName}}  {{accountProfile?.lastName}}</span></p>
+                    <p><span class="title-s">Role: </span> <span>{{accountProfile.role}}</span></p>
+                    <p><span class="title-s">Email: </span> <span>{{accountProfile.email}}</span></p>
+                    <p><span class="title-s">Phone: </span> <span>{{accountProfile.phoneNumber}}</span></p>
+                    <!--<span [style.color]="isAdded==true?'red':'grey'" disabled="isButtonDisabled"  (click)="changeLike()" style="font-size:25px; color: red"><i class="material-icons">favorite</i></span>-->
+
+                    <button  *ngIf="isFollowing" (click)="toggleStatus()"  class="btn btn-primary" >Following</button>
+                    <button *ngIf="isFollowing==false" (click)="toggleStatus()"  class="btn btn-info">Follow</button>
+                    <!--<button type="submit" (click)="unSubscribe()" class="btn btn-primary">UnSubscribe</button>-->
+                  </div>
+                </div>
+              </div>
+              <!--<div class="skill-mf">-->
+                <!--<p class="title-s">Skill</p>-->
+                <!--<span>HTML</span>-->
+                <!--<div class="progress">-->
+                  <!--<div class="progress-bar" role="progressbar" style="width: 95%;" aria-valuenow="95" aria-valuemin="0"-->
+                       <!--aria-valuemax="100"></div>-->
+                <!--</div>-->
+                <!--<span>CSS3</span>-->
+                <!--<div class="progress">-->
+                  <!--<div class="progress-bar" role="progressbar" style="width: 15%" aria-valuenow="75" aria-valuemin="0"-->
+                       <!--aria-valuemax="100"></div>-->
+                <!--</div>-->
+                <!--<span>PHP</span>-->
+                <!--<div class="progress">-->
+                  <!--<div class="progress-bar" role="progressbar" style="width: 20%" aria-valuenow="50" aria-valuemin="0"-->
+                       <!--aria-valuemax="100"></div>-->
+                <!--</div>-->
+                <!--<span>JAVA</span>-->
+                <!--<div class="progress">-->
+                  <!--<div class="progress-bar" role="progressbar" style="width: 5%" aria-valuenow="90" aria-valuemin="0"-->
+                       <!--aria-valuemax="100"></div>-->
+                <!--</div>-->
+              <!--</div>-->
+            </div>
+            <div class="col-md-6">
+              <div class="about-me pt-4 pt-md-0">
+                <div class="title-box-2">
+                  <h5 class="title-left">
+                    About me
+                  </h5>
+                </div>
+                <p class="lead">
+                {{accountProfile.about}}
+                </p>
+
+              </div>
+            </div>
+          </div>
+
+
+
+      <div class="container">
+        <h1 class="mb-4">Trips</h1>
+        <div class="row d-flex">
+
+
+          <div class="col-md-4 d-flex ftco-animate" *ngFor="let trip of trips">
+            <div class="blog-entry justify-content-end" style="width: 100%;">
+
+              <a routerLink="/trip/{{trip.id}}" class="block-20"
+                 [ngStyle]="{'background-image': 'url(http://localhost:8080/trips/' +trip.id +'/image)'}"
+              >
+              </a>
+              <div class="text mt-3 float-right d-block">
+                <div class="d-flex align-items-center pt-2 mb-4 topp">
+                  <div class="one">
+                    <span class="day">{{trip.id}}</span>
+                  </div>
+                  <div class="two">
+                    <span class="yr"></span>
+                    <span class="mos">{{trip.creationDate}}</span>
+                  </div>
+                </div>
+                <h3 class="heading"><a href="trip/{{trip.id}}">{{trip.name}}</a></h3>
+                <p>{{trip.description}}</p>
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+<br>
+<br>
+<br>
+

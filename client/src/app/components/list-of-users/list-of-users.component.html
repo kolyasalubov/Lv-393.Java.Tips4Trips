@@ -1,0 +1,77 @@
+<div class="hero-wrap js-fullheight"
+     style="height:30%;background-image: url('../../../assets/images/bg_2.jpg'); "
+     data-stellar-background-ratio="0.5">
+  <div class="container">
+    <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-end"
+         data-scrollax-parent="true">
+      <div class="col-md-7 ftco-animate mt-5" data-scrollax=" properties: { translateY: '70%' }">
+        <h1 class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }" style="margin-top: 10%;">
+          Users
+        </h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="ftco-section contact-section" style="margin-bottom: 90px;">
+  <div class="container">
+    <div class="row block-9">
+      <section class="container">
+        <div class="row blog-entries element-animate">
+          <form action="" method="post" style="border: red;border-bottom-width: 2px;
+            border-bottom-style: solid;border-top-width: 2px;border-top-style: solid;border-right-width: 2px;
+            border-right-style: solid;border-left-width: 2px;border-left-style: solid;margin-bottom: 20px;padding: 2%; width: 100%">
+            <b>Email of account to change role</b>
+            <input type="text" [(ngModel)]="accForUpdate.email" placeholder="Enter Email" name="email" required>
+            <select [(ngModel)]="accForUpdate.role" style="height: 34px;" name="role" >
+              <option >USER</option>
+              <option>MODERATOR</option>
+              <option>ADMIN</option>
+            </select>
+            <button type="submit" class="registerbtn" (click)="update()">Change role</button>
+          </form>
+          <form action="" method="post" style="border: red;border-bottom-width: 2px;
+            border-bottom-style: solid;border-top-width: 2px;border-top-style: solid;border-right-width: 2px;
+            border-right-style: solid;border-left-width: 2px;border-left-style: solid;margin-bottom: 20px;padding: 2%; width: 100%">
+            <b>Email of account to delete</b>
+            <input type="text" placeholder="Enter Email" name="email" required>
+            <button type="submit" class="registerbtn">DELETE</button>
+          </form>
+          <table border="1" style="width: 100%;" style="width: 100%">
+            <tr>
+              <th>login</th>
+              <th>lastname</th>
+              <th>date_of_reg</th>
+              <th>way_to_photo</th>
+              <th>role</th>
+            </tr>
+
+            <tr *ngFor="let post of postP">
+              <td>
+                {{post.email}}
+              </td>
+              <td>
+                {{post.firstName}}
+              </td>
+              <td>
+                {{post.lastName}}
+              </td>
+              <td>
+                {{post.registrationDate}}
+              </td>
+              <td>
+                {{post.role}}
+              </td>
+            </tr>
+
+          </table>
+          <div class="blog-entry justify-content-end" style="width: 100%;">
+<app-pagination [number]="num" [total]="max" [link]="'http://localhost:4200/list_of_users/'" ></app-pagination>
+          </div>
+        </div>
+
+      </section>
+    </div>
+  </div>
+</section>
+

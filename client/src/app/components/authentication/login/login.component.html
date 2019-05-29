@@ -1,0 +1,92 @@
+
+<section class="hero-wrap hero-wrap-2 js-fullheight"
+  style="background-image: url('../../../../assets/images/bg_2.jpg'); padding-bottom: 40%;"
+  data-stellar-background-ratio="0.5">
+</section>
+
+<section class="ftco-section contact-section" style="margin-bottom: 90px;">
+    <div class="limiter">
+      <div class="container-login100">
+        <div class="p-l-110 p-r-110 p-t-62 p-b-33">
+          <span class="login100-form-title p-b-53">
+            Sign In With
+          </span>
+          
+          <button style='display: inline-block; margin-right: 20px' class="btn-face m-b-20" (click)='facebookSignIn()'>
+            <i class="fa fa-facebook-official"></i>
+            Facebook
+          </button>
+
+          <button style='display: inline-block;' class="btn-google m-b-20" (click)='googleSignIn()'>
+            <img src="../../../../assets/images/icons/icon-google.png" alt="GOOGLE">
+            Google
+          </button>
+
+          <form class='wrap-login100 login100-form validate-form flex-sb flex-w' form="loginForm" (ngSubmit)="onSubmit()">
+            <div class="p-t-31 p-b-9">
+              <span class="txt1">
+                Username
+              </span>
+            </div>
+            <div class="wrap-input100 validate-input" data-validate="Username is required">
+              <input class="input100" type="text" name="login" [(ngModel)]="loginForm.login" placeholder="Username">
+              <span class="focus-input100"></span>
+            </div>
+
+            <div class="p-t-13 p-b-9">
+              <span class="txt1">
+                Password
+              </span>
+
+              <a routerLink="/forgot-password" class="txt2 bo1 m-l-5">
+                Forgot?
+              </a>
+            </div>
+            <div class="wrap-input100 validate-input" data-validate="Password is required">
+              <input class="input100" type="password" name="password" [(ngModel)]="loginForm.password"
+                placeholder="Password">
+              <span class="focus-input100"></span>
+            </div>
+
+            <div class="container-login100-form-btn m-t-17">
+              <button mdbBtn class="login100-form-btn" type="submit">
+                Sign In
+              </button>
+            </div>
+
+            <div class="w-full text-center p-t-55">
+              <span class="txt2">
+                Not a member?
+              </span>
+
+              <a class="txt2 bo1"  routerLink="/sing_up">
+                Sign up now
+              </a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+</section>
+
+<div id="dropDownSelect1"></div>
+
+<!--===============================================================================================-->
+<script src="../../../../assets/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+<script src="../../../../assets/vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+<script src="../../../../assets/vendor/bootstrap/js/popper.js"></script>
+<script src="../../../../assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+<script src="../../../../assets/vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+<script src="../../../../assets/vendor/daterangepicker/moment.min.js"></script>
+<script src="../../../../assets/vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+<script src="../../../../assets/vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+<script src="../../../../assets/js/login.js"></script>
+
+
+<script src="../../../../assets/js/main.js"></script>

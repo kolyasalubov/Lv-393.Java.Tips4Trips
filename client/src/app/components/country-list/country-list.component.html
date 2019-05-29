@@ -1,0 +1,30 @@
+<section class="ftco-section contact-section" style="margin-bottom: 90px;">
+  <div class="container">
+    <a routerLink="/country">Create</a>
+    <p>
+    </p>
+    <div class="row block-9">
+      <section class="container">
+        <div class="row blog-entries element-animate">
+          <table class="table">
+            <tr>
+              <th width="80%">Country Name</th>
+              <th width="10%">Edit</th>
+              <th width="10%">Delete</th>
+            </tr>
+            <tr *ngFor="let c of countries">
+              <td>{{c.name}}</td>
+              <td>
+                <button [routerLink]="['/country/',c.id]" type="button" class="btn btn-success btn-block">Edit</button>
+              </td>
+              <td>
+                <button (click)="openConfirmationDialog(c)" type="button" class="btn btn-danger btn-block">Delete</button>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </section>
+    </div>
+  </div>
+</section>
+<script src="../../../../assets/js/main.js"></script>

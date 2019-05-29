@@ -1,10 +1,133 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { HomeComponent } from './components/home/home.component';
+import { LoginComponent } from './components/authentication/login/login.component';
+import { AccountComponent } from './components/authentication/account/account.component';
+import { ProfileComponent } from './components/authentication/profile/profile.component';
+import { RouteComponent } from './components/routes/route/route.component';
+import { CreatePostComponent } from "./components/blog/create-post/create-post.component";
+import { CreatePostPlaceComponent } from "./components/create-post-place/create-post-place.component";
+import { LikeComponent } from "./components/blog/like/like.component";
+import { CreateRouteComponent } from "./components/routes/create-route/create-route.component";
+import { SignupComponent } from "./components/authentication/signup/signup.component";
+import { ListOfUsersComponent } from "./components/list-of-users/list-of-users.component";
+import { BlogComponent } from "./components/blog/blog/blog.component";
+import { AboutePageComponent } from "./components/aboute-page/aboute-page.component";
+import { CreateRestaurantComponent } from "./components/create-post-place/create-restaurant/create-restaurant.component";
+import { CreateHotelComponent } from "./components/create-post-place/create-hotel/create-hotel.component";
+import { BigPostComponent } from "./components/blog/big-post/big-post.component";
+import { AccountEditComponent } from "./components/authentication/account-edit/account-edit.component"
+import { CommentComponent } from './components/blog/comment/comment.component';
+import { RoutesPageComponent } from './components/routes/routes-page/routes-page.component';
+import { RestaurantDetailsComponent } from "./components/restaurant-details/restaurant-details.component";
+import { CreateMonumentComponent } from "./components/create-post-place/create-monument/create-monument.component";
+import { MonumentDetailsComponent } from "./components/monument-details/monument-details.component";
+import { TripComponent } from './components/trip/trip/trip.component';
+import { TripInfoComponent } from './components/trip/trip-info/trip-info.component';
+import { AuthGuard } from './components/authentication/guards/auth.guard';
+import { HotelDetailsComponent } from "./components/hotel-details/hotel-details.component";
+import { CityPlacesComponent } from "./components/city-places/city-places.component";
+import { CityComponent } from './components/city/city.component';
+import { CountryComponent } from './components/country/country.component';
+import { CreateTripComponent } from './components/trip/create-trip/create-trip.component';
+import { ChangeComponent } from "./components/trip/change/change.component";
+import { ErrorComponent } from "./components/error/error.component";
+import { EditRouteComponent } from './components/routes/edit-route/edit-route.component';
+import { NotVerifiedRoutesPageComponent } from './components/routes/not-verified-routes-page/not-verified-routes-page.component';
+import { SearchComponent } from './components/search/search/search.component';
+import { NewsComponent } from "./components/news/news.component";
+import { EditRestaurantComponent } from "./components/create-post-place/edit-restaurant/edit-restaurant.component";
+import { EditHotelComponent } from "./components/create-post-place/edit-hotel/edit-hotel.component";
+import { EditMonumentComponent } from "./components/create-post-place/edit-monument/edit-monument.component";
+import { ImagetestComponent } from './components/imagetest/imagetest.component';
+import { MaptestComponent } from './components/maptest/maptest.component';
+import { MapPickerComponent } from './components/map/map-picker/map-picker.component';
+import { ChatComponent } from "./components/chat/chat.component";
+import { CountryListComponent } from './components/country-list/country-list.component';
+import { CountryEditComponent } from './components/country-edit/country-edit.component';
+import { CityListComponent } from './components/city-list/city-list.component';
+import { CityEditComponent } from './components/city-edit/city-edit.component';
+import { CityRatingComponent } from './components/city-rating/city-rating.component';
+import { CityRatingPageComponent } from './components/city-rating-page/city-rating-page.component';
+import { SocialHandlerComponent } from './components/authentication/social-handler/social-handler.component';
+import { ForgotPasswordComponent } from './components/authentication/forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './components/authentication/reset-password/reset-password.component';
+import {AuthAdminGuard} from "./components/authentication/guards/auth.admin.guard";
+import {ErrorMessageComponent} from "./components/error/error-message/error-message.component";
 
-const routes: Routes = [];
+const routes: Routes = [
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'sing_up', component: SignupComponent },
+  { path: 'like', component: LikeComponent },
+  { path: 'comment', component: CommentComponent },
+  { path: 'account', component: AccountComponent, canActivate: [AuthGuard] },
+  { path: 'forgot-password', component: ForgotPasswordComponent },
+  { path: 'reset-password', component: ResetPasswordComponent },
+  { path: 'oauth2/redirect', component: SocialHandlerComponent},
+  { path: 'account_edit', component: AccountEditComponent },
+  { path: 'city', component: CityComponent, canActivate: [AuthAdminGuard] },
+  { path: 'country', component: CountryComponent, canActivate: [AuthAdminGuard] },
+  { path: 'create_place', component: CreatePostPlaceComponent, canActivate: [AuthAdminGuard] },
+  { path: 'create_place/restaurant', component: CreateRestaurantComponent, canActivate: [AuthAdminGuard] },
+  { path: 'restaurants/:id', component: RestaurantDetailsComponent },
+  { path: 'create_place/hotel', component: CreateHotelComponent, canActivate: [AuthAdminGuard] },
+  { path: 'hotels/:id', component: HotelDetailsComponent },
+  { path: 'create_place/monument', component: CreateMonumentComponent, canActivate: [AuthAdminGuard] },
+  { path: 'monuments/:id', component: MonumentDetailsComponent },
+  { path: 'city_places/:id', component: CityPlacesComponent },
+  { path: 'create_post', component: CreatePostComponent, canActivate: [AuthGuard]},
+  { path: 'create_route', component: CreateRouteComponent },
+  // { path: 'trips/create', component: CreateRouteComponent },
+  { path: 'list_of_users', component: ListOfUsersComponent , canActivate: [AuthAdminGuard]},
+  { path: 'list_of_users/:id', component: ListOfUsersComponent , canActivate: [AuthAdminGuard]},
+  { path: 'blog', component: BlogComponent },
+  { path: 'blog/:id', component: BlogComponent },
+  { path: 'about', component: AboutePageComponent },
+  { path: 'create_place/restaurant', component: CreateRestaurantComponent },
+  { path: 'restaurants/:id', component: RestaurantDetailsComponent },
+  { path: 'create_place/hotel', component: CreateHotelComponent },
+  { path: 'hotels/:id', component: HotelDetailsComponent },
+  { path: 'create_place/monument', component: CreateMonumentComponent },
+  { path: 'monuments/:id', component: MonumentDetailsComponent },
+  { path: 'routes', component: RoutesPageComponent },
+  { path: 'routes/page/:page', component: RoutesPageComponent },
+  { path: 'routes/create', component: CreateRouteComponent },
+  { path: 'routes/notverified', component: NotVerifiedRoutesPageComponent },
+  { path: 'routes/notverified/page/:page', component: NotVerifiedRoutesPageComponent },
+  { path: 'routes/:id', component: RouteComponent },
+  { path: 'routes/:id/edit', component: EditRouteComponent },
+  { path: 'post', component: BigPostComponent },
+  { path: 'post/:id', component: BigPostComponent },
+  { path: 'trip/page', component: TripComponent },
+  { path: 'trip/page/:page', component: TripComponent },
+  { path: 'trip/:id', component: TripInfoComponent },
+  { path: 'create_trip', component: CreateTripComponent , canActivate: [AuthGuard]},
+  { path: 'edit_trip/:id', component: ChangeComponent },
+  { path: 'profile/:id', component: ProfileComponent },
+  { path: 'search', component: SearchComponent },
+  { path: 'search/page/:page', component: SearchComponent },
+  { path: 'news', component: NewsComponent },
+  { path: 'restaurants/edit/:id', component: EditRestaurantComponent, canActivate: [AuthAdminGuard] },
+  { path: 'monuments/edit/:id', component: EditMonumentComponent, canActivate: [AuthAdminGuard] },
+  { path: 'hotels/edit/:id', component: EditHotelComponent, canActivate: [AuthAdminGuard] },
+  { path: 'maptest', component: MapPickerComponent },
+  { path: 'countries', component: CountryListComponent, canActivate: [AuthAdminGuard] },
+  { path: 'country/:id', component: CountryEditComponent, canActivate: [AuthAdminGuard] },
+  { path: 'cities', component: CityListComponent, canActivate: [AuthAdminGuard] },
+  { path: 'city/:id', component: CityEditComponent, canActivate: [AuthAdminGuard] },
+  { path: 'city-rating/:page', component: CityRatingComponent },
+  { path: 'city-rating-view/:id', component: CityRatingPageComponent },
+  { path: '404', component: ErrorComponent },
+  { path: 'error/:string', component: ErrorMessageComponent },
+  { path: 'chat', component: ChatComponent },
+  { path: '**', redirectTo: '/404' }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

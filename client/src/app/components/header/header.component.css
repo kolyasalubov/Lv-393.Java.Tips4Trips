@@ -1,0 +1,39 @@
+.active-cyan-2 input[type=text]:focus:not([readonly]) {
+  border-bottom: 1px solid #4dd0e1;
+
+}
+
+#hov:hover {
+  color: black;
+}
+
+#circle {
+  width: 15px;
+  height: 15px;
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+  border-radius: 25px;
+  background: red;
+  display: table;
+  margin-left: -10px;
+  margin-right: 10px;
+}
+
+.active-cyan input[type=text] {
+  border-bottom: 1px solid #4dd0e1;
+
+}
+
+.active-cyan .fa, .active-cyan-2 .fa {
+  color: #4dd0e1;
+}
+
+.form-control {
+  height: 0px;
+  margin-top: 10px;
+}
+
+.ftco-navbar-light .navbar-nav > .nav-item > .nav-link:hover, .ftco-navbar-light .navbar-nav > .nav-item > .chosen {
+  color: #ffb400;
+}
+

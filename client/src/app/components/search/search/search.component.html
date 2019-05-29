@@ -1,0 +1,44 @@
+
+<div class="hero-wrap js-fullheight"
+  style="background-image: url('../../../assets/images/bg_1.jpg'); max-height: 20em;"
+  data-stellar-background-ratio="0.5">
+  <div class="container">
+    <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-end"
+      data-scrollax-parent="true">
+      <div class="col-md-7 ftco-animate mt-5" data-scrollax=" properties: { translateY: '70%' }">
+        <h1 class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }" style="margin-top: 10%;">Be a
+          Traveler not a Tourist
+        </h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <section class="hero-wrap hero-wrap-2 js-fullheight"
+         style="height: 30%;background-image: url('../../../../assets/images/bg_1.jpg'); padding-bottom: 5%;"
+         data-stellar-background-ratio="0.5">
+  <div class="container">
+    <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-center">
+      <div class="col-md-9 ftco-animate pb-5 text-center">
+        <h1 class="mb-3 bread" style="margin-top: 15%;">{{accountProfile.firstName}} {{accountProfile.lastName}}</h1>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+<section class="ftco-section bg-light mt-0" style="padding-top:20px;">
+  <div class="navbar-collapse container collapse show mt-4">
+    <app-search-navbar [category]="currCategory" (navigate)="navigate($event)">
+      <form class="form-inline my-2 my-lg-0" (ngSubmit)="navigate(currCategory) ">
+        <input class="form-control mr-sm-2" type="search" 
+        [(ngModel)]="seek" name="seek" value="{{seek}}" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </app-search-navbar>
+  </div>
+  <app-search-route [hidden]="currCategory != 'ROUTE'"></app-search-route>
+  <app-search-post [hidden]="currCategory != 'POST'"></app-search-post>
+  <app-search-trip [hidden]="currCategory != 'TRIP'"></app-search-trip>
+</section>
+
+

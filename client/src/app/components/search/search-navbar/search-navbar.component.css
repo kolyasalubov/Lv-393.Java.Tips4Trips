@@ -1,0 +1,12 @@
+a {
+    cursor: pointer;   
+    color: #007bff;
+}
+a:not([href]) {
+    color: #007bff;
+}
+.nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
+    color: #495057;
+    background-color: inherit;
+    border-color: #dee2e6 #dee2e6 #fff;
+}

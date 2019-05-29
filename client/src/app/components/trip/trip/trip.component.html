@@ -1,0 +1,59 @@
+
+<div class="hero-wrap js-fullheight"
+     style="background-image: url('../../../../assets/images/bg_1.jpg'); padding-bottom: 5%;"
+     data-stellar-background-ratio="0.5">
+  <div class="container">
+    <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-end"
+         data-scrollax-parent="true">
+      <div class="col-md-7 ftco-animate mt-5" data-scrollax=" properties: { translateY: '70%' }">
+        <h1 class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }" style="margin-top: 10%;">Be a
+          Traveler not a Tourist
+        </h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="ftco-section bg-light">
+  <div class="container">
+    <div class="row d-flex">
+      <div class="col-md-4 d-flex ftco-animate" *ngFor="let trip of postP">
+        <div class="blog-entry justify-content-end" style="width: 100%;">
+
+          <a routerLink="/trip/{{trip.id}}" class="block-20"
+             [ngStyle]="{'background-image': 'url(http://localhost:8080/trips/' +trip.id +'/image)'}"
+          >
+          </a>
+
+
+
+          <div class="text mt-3 float-right d-block">
+            <div class="d-flex align-items-center pt-2 mb-4 topp">
+              <div class="one">
+                <span class="day">{{trip.id}}</span>
+              </div>
+              <div class="two">
+                <span class="yr"></span>
+                <span class="mos">{{trip.creationDate}}</span>
+              </div>
+            </div>
+            <h3 class="heading"><a  routerLink="/trip/{{trip.id}}">{{trip.name}}</a></h3>
+            <p>{{trip.description}}</p>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+
+    <app-pagination [number]="pagePost.number" [total]="pagePost.totalPages"
+                    [link]="'/trip/page/'"></app-pagination>
+  </div>
+</section>
+
+
+<section class="ftco-subscribe" style="background-image: url(../../../../assets/images/bg_1.jpg);">
+
+
+</section>
+

@@ -1,0 +1,42 @@
+<section class="ftco-section contact-section" style="margin-bottom: 90px;">
+  <div class="container">
+    <div class="row">
+      <h1>Create a new country</h1>
+      <form (ngSubmit)="create()" method="post" enctype="multipart/form-data">
+        <table style="width: 100%;margin-top: 5%;">
+          <tr>
+            <td width="20%">
+              <h4>
+                Name
+              </h4>
+            </td>
+            <td>
+              <input class="form-control" style="width: 100%;" type="text" placeholder="Name" name="name" maxlength="35"
+                [(ngModel)]="country.name">
+            </td>
+          </tr>
+          <tr>
+            <td width="20%">
+              <h4 style="margin-top: -20px;">
+                Position
+              </h4>
+            </td>
+            <td>
+              <app-map-picker [locationUpdate]="setCoordinates" [countrySearch]="true"
+                style="width: 600px; height: 400px;"></app-map-picker>
+              <div class="form-group d-flex">
+                <input class="form-control" style="width:45%;border-radius: 5px; margin-top: 15px;" type="number"
+                  placeholder="X" name="Coordinatex" maxlength="26" [(ngModel)]="position.coordinateX">
+                <input class="form-control" style="width: 45%;border-radius: 5px;margin-left: 10%; margin-top: 15px"
+                  type="number" placeholder="Y" name="Coordinatey" maxlength="26" [(ngModel)]="position.coordinateY">
+              </div>
+            </td>
+          </tr>
+        </table>
+        <input class="btn btn-primary btn-lg" type="submit" value="Create a new country"><br>
+      </form>
+    </div>
+    {{ resultText }}
+  </div>
+</section>
+<script src="../../../../assets/js/main.js"></script>

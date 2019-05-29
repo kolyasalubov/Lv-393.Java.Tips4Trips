@@ -1,5 +1,7 @@
 package com.softserve.academy.Tips4Trips.entity;
 
+import com.softserve.academy.Tips4Trips.entity.city.City;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -24,28 +26,29 @@ public class Country implements Serializable {
     @Column(nullable = false)
     private Position position;
 
-    @ManyToOne
-    @JoinColumn(name="planet_id", referencedColumnName = "id",
-            nullable=false)
-    private Planet planet;
-
-    @OneToMany(mappedBy="country", cascade = CascadeType.ALL,
-            orphanRemoval = true)
+    @OneToMany(mappedBy="country", cascade = CascadeType.ALL)
     private List<City> listOfCities;
 
     public Country() {}
 
+    public Country(Long id) {
+        this.id = id;
+    }
+
     public Country(@Size(max = 35) @NotBlank String name,
-                   @NotNull Position position, Planet planet,
+                   @NotNull Position position,
                    List<City> listOfCities) {
         this.name = name;
         this.position = position;
-        this.planet = planet;
         this.listOfCities = listOfCities;
     }
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -62,14 +65,6 @@ public class Country implements Serializable {
 
     public void setPosition(Position position) {
         this.position = position;
-    }
-
-    public Planet getPlanet() {
-        return planet;
-    }
-
-    public void setPlanet(Planet planet) {
-        this.planet = planet;
     }
 
     public List<City> getListOfCities() {

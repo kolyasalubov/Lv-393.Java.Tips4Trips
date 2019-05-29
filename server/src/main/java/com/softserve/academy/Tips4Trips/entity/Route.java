@@ -1,10 +1,11 @@
 package com.softserve.academy.Tips4Trips.entity;
 
+import com.softserve.academy.Tips4Trips.entity.administration.Account;
+import com.softserve.academy.Tips4Trips.entity.file.Image;
 import com.softserve.academy.Tips4Trips.entity.place.Place;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -20,8 +21,8 @@ public class Route {
     @Column(name = "name", length = 100, nullable = false)
     private String name;
 
-    @Column(name = "photo_path", length = 500, nullable = false)
-    private String photoPath;
+    @Column(name = "is_verified")
+    private Boolean verified = false;
 
     @ManyToOne
     @JoinColumn(name = "author_id", referencedColumnName = "id", nullable = false)
@@ -32,8 +33,10 @@ public class Route {
     @Temporal(value = TemporalType.DATE)
     private Date creationDate;
 
-    @OneToMany
-    @JoinColumn(name = "place_id", referencedColumnName = "id", nullable = false)
+    @ManyToMany
+    @JoinTable(name = "routes_places",
+            joinColumns = {@JoinColumn(name = "route_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "place_id", referencedColumnName = "id")})
     private List<Place> listOfPlaces;
 
     public Route() {
@@ -55,12 +58,12 @@ public class Route {
         this.name = name;
     }
 
-    public String getPhotoPath() {
-        return photoPath;
+    public boolean isVerified() {
+        return verified;
     }
 
-    public void setPhotoPath(String photoPath) {
-        this.photoPath = photoPath;
+    public void setVerified(boolean verified) {
+        this.verified = verified;
     }
 
     public Account getAuthor() {

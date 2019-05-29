@@ -1,0 +1,18 @@
+<div class="row mt-5">
+  <div class="col text-center">
+    <div class="block-27">
+      <ul>
+        <li *ngIf="back">
+          <a [routerLink]="[link + number]" [queryParams]="queryParams">&lt;</a>
+        </li>
+        <li *ngIf="back">
+          <a [routerLink]="[link + number]" [queryParams]="queryParams">{{number}}</a>
+        </li>
+        <li class="active"><span>{{number +1}}</span></li>
+        <li *ngFor="let item of page"><a [routerLink]="[link + item]" [queryParams]="queryParams">{{item}}</a></li>
+        <li *ngIf="front"><a [routerLink]="[link + total]" [queryParams]="queryParams">{{total}}</a></li>
+        <li *ngIf="front"><a [routerLink]="[link + (number + 2)]" [queryParams]="queryParams">&gt;</a></li>
+      </ul>
+    </div>
+  </div>
+</div>

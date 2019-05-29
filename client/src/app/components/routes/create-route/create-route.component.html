@@ -1,0 +1,113 @@
+<!-- <section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('../../../assets/images/bg_2.jpg');"
+    data-stellar-background-ratio="0.5">
+    <div class="overlay" style="background:white;"></div>
+</section> -->
+<div class="hero-wrap js-fullheight"
+  style="background-image: url('../../../assets/images/bg_2.jpg'); "
+  data-stellar-background-ratio="0.5">
+  <div class="container">
+    <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-end"
+      data-scrollax-parent="true">
+      <div class="col-md-7 ftco-animate mt-5" data-scrollax=" properties: { translateY: '70%' }">
+        <h1 class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }" style="margin-top: 10%;">Be a
+          Traveler not a Tourist
+        </h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="ftco-section contact-section mt-0" style="margin-bottom: 90px;">
+    <div class="container">
+        <div class="row block-9">
+            <section class="container">
+                <div class="row blog-entries element-animate">
+                    <div class="col-md-12 col-lg-8 main-content" style="padding-left: 0px;">
+                        <form enctype="multipart/form-data" [formGroup]="formGroup">
+                            <h1 class="mb-4">Create a new route</h1>
+                            <table style="width: 100%;margin-top: 5%;">
+                                <tr>
+                                    <td>
+                                        <h4>
+                                            Name
+                                        </h4>
+                                    </td>
+                                    <td>
+                                        <input class="form-control" style="width: 100%;" type="text"
+                                            [(ngModel)]="route.name" formControlName="name" placeholder="Name"
+                                            value="{{route.name}}"
+                                            [ngClass]="formGroup.get('name').invalid ? 'invalid-input' : 'valid-input'"
+                                            name="name" maxlength="35"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h4 style="margin-top: -20px;">
+                                            Places
+                                        </h4>
+                                    </td>
+                                    <td>
+                                        <div class="form-group d-flex">
+                                            <input type="text" aria-label="Number" class="form-control" name="place"
+                                                placeholder="Enter place" matInput [formControl]="myControl"
+                                                [matAutocomplete]="auto">
+                                            <mat-autocomplete #auto="matAutocomplete">
+                                                <mat-option *ngFor="let option of filteredOptions" [value]="option">
+                                                    {{option}}
+                                                </mat-option>
+                                            </mat-autocomplete>
+                                            <button (click)="addPlace()" class="submit px-3">Add Place</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        <p *ngFor="let alert of alerts">
+                                            <ngb-alert type='danger' (close)="close(alert)">{{ alert }}</ngb-alert>
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                      <button style="margin: 1em;"
+                                              class="submit" (click)="optimize()">
+                                        Optimize</button>
+                                        <div style="margin:auto; height: 30em;
+                                         width: 100%;">
+                                          <app-route-map>
+                                            </app-route-map>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr *ngIf="route.places.length != 0">
+                                    <td></td>
+                                    <td>
+                                        <div class="card-deck">
+                                            <div class="card" *ngFor="let place of route.places"
+                                                style="max-width: 18rem; min-width: 18rem; display: inline-block; border: none;">
+                                                <app-place-info [place]="place" [displayRemoveButton]="true"
+                                                    (remove)="removePlace(place.id)"></app-place-info>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                            <input class="category submit" style="padding: 3%;
+                                   margin-top: 5%;
+                                   font-size: 90%;
+                                   border-radius:5px;
+                                   margin-bottom: 30px;" type="submit" (click)="save();" value="Create"><br>
+                        </form>
+                    </div>
+                    <div class="col-md-12 col-lg-4 sidebar">
+                    </div>
+
+                </div>
+            </section>
+        </div>
+    </div>
+</section>
+
+
+<script src="../../../../assets/js/main.js"></script>

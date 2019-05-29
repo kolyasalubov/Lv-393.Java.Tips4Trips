@@ -1,0 +1,13 @@
+    .form-control {
+      color: rgba(0, 0, 0, 0.7) !important;
+      font-size: 20px;
+      background: rgba(247, 218, 218, 0.05) !important;
+      border-radius: 5px 0px 0px 5px;
+    }
+
+    .submit {
+      color: #fff !important;
+      background: #ffb400 !important;
+      border-radius: 0px 5px 5px 0px;
+      font-size: 16px;
+    }

@@ -1,0 +1,136 @@
+<section class="hero-wrap hero-wrap-2 js-fullheight"
+         style="background-image: url('../../../../assets/images/bg_1.jpg');  max-height: 20em; padding-bottom: 5%;"
+         data-stellar-background-ratio="0.5">
+  <div class="container">
+    <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-center">
+      <div class="col-md-9 ftco-animate pb-5 text-center">
+        <h1 class="mb-3 bread" style="margin-top: 15%;">{{accountProfile.firstName}} {{accountProfile.lastName}}</h1>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="ftco-section contact-section" style="margin-bottom: 90px;">
+  <div class="container">
+    <div class="row block-9">
+      <section class="container">
+        <div class="row blog-entries element-animate">
+          <div class="col-md-12 col-lg-8 main-content" style="padding-left: 0px;">
+            <h1 class="mb-4">Edit your account</h1>
+
+            <form (ngSubmit)="update()" method="post" enctype="multipart/form-data" [formGroup]="myAccountFormGroup">
+
+
+              <table style="width: 100%;margin-top: 5%;">
+                <tr>
+                  <td><h4>
+                    Edit First Name
+                  </h4></td>
+                  <td>
+                    <input class="form-control" style="width: 100%;" type="text"
+                           placeholder="Name"
+                           name="firstName"
+                           maxlength="35" [(ngModel)]="accountProfile.firstName" formControlName="firstName"
+                           [ngClass]="myAccountFormGroup.get('firstName').invalid ? 'invalid-input' : 'valid-input'">
+
+
+                  </td>
+                </tr>
+
+                <tr>
+                  <td><h4>
+                    Edit Last Name
+                  </h4></td>
+                  <td>
+                    <input class="form-control" style="width: 100%;" type="text" placeholder="Enter Last Name"
+                           name="lastName"
+                           maxlength="26"
+                           [(ngModel)]="accountProfile.lastName" formControlName="lastName"
+                           [ngClass]="myAccountFormGroup.get('lastName').invalid ? 'invalid-input' : 'valid-input'"
+                    ></td>
+                </tr>
+                <tr>
+                  <td><h4>
+                    Edit telephone
+                  </h4></td>
+                  <td>
+                    <input class="form-control" style="width: 100%;" type="text" placeholder="Enter Telephone"
+                           name="phoneNumber"
+                           [(ngModel)]="accountProfile.phoneNumber"  formControlName="phoneNumber"
+                           [ngClass]="myAccountFormGroup.get('phoneNumber').invalid ? 'invalid-input' : 'valid-input'"
+                    >
+                    <div *ngIf="myAccountFormGroup.get('phoneNumber').invalid">Eg: +380111111111</div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><h4>
+                    Edit Email
+                  </h4></td>
+                  <td>
+                    <input class="form-control" style="width: 100%;" type="email" placeholder="Email"
+                           name="email"
+
+                           [(ngModel)]="accountProfile.email" formControlName="email"
+                           [ngClass]="myAccountFormGroup.get('email').invalid ? 'invalid-input' : 'valid-input'"
+                    >
+                    <div *ngIf="myAccountFormGroup.get('email').invalid">Eg: ineedthisjob@gmail.com</div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><h4>
+                    Edit About
+                  </h4></td>
+                  <td>
+                                      <textarea class="form-control" rows="10" style="width: 100%;" placeholder="About"
+                                                name="about"
+                                                [(ngModel)]="accountProfile.about" formControlName="about"
+                                                [ngClass]="myAccountFormGroup.get('about').invalid ? 'invalid-input' : 'valid-input'"
+                                      >{{accountProfile.about}}
+                                      </textarea>
+                  </td>
+                </tr>
+              </table>
+
+              <app-image-upload-form [multiple]="false" [requestType]="'PUT'" [setStorageURL]="photoUrl"
+                                     [setUploadedImages]="imageURLs" [UploadStart]="uploadPhoto"
+                                     (noAction)="navigateToAccount()"></app-image-upload-form>
+              <input *ngIf="myAccountFormGroup.valid" class="category submit"
+                     style="padding: 3%;
+                                   margin-top: 5%;
+                                   font-size: 90%;
+                                   border-radius:5px;
+                                   margin-bottom: 30px;"
+                     type="submit"
+                     value="Edit" [disabled]="!myAccountFormGroup.valid">
+            </form>
+
+          </div>
+
+
+          <!--<div class="col-md-12 col-lg-4 sidebar">-->
+            <!--<div class="sidebar-box search-form-wrap">-->
+              <!--<a class="nav-item cta" href="/logout" style="padding: 5%; font-size: 16px;-->
+                          <!--color: #fff;-->
+                          <!--border: 1px solid #ffb400;-->
+                          <!--padding-top: .8rem;-->
+                          <!--padding-bottom: .8rem;-->
+                          <!--padding-left: 18px;-->
+                          <!--padding-right: 18px;-->
+                          <!--background: #ffb400;-->
+                          <!--margin-top: .5rem;-->
+                          <!-- -webkit-border-radius: 2px;-->
+                          <!-- -moz-border-radius: 2px;-->
+                          <!-- -ms-border-radius: 2px;-->
+                          <!--border-radius: 2px;">-->
+                <!--LOGUOT</a>-->
+            <!--</div>-->
+          <!--</div>-->
+        </div>
+
+      </section>
+    </div>
+  </div>
+</section>
+
+

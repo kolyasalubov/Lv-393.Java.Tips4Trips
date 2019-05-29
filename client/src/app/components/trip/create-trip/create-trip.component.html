@@ -1,0 +1,94 @@
+<app-under [str]="'Create your best trip'"></app-under>
+<section class="ftco-section contact-section" style="margin-bottom: 90px;">
+  <div class="container">
+    <div class="row block-9">
+      <section class="container">
+        <div class="row blog-entries element-animate">
+          <div class="col-md-12 col-lg-8 main-content" style="padding-left: 0px;">
+            <form enctype="multipart/form-data">
+              <h1 class="mb-4">Create a new trip</h1>
+              <div class="col-md-8 col-lg-6 main-content">
+                <img src="" alt="Image" class="img-fluid mb-5">
+
+                <app-image-upload-form [multiple]="false" [requestType]="'POST'" [setStorageURL]="url"
+                                       [UploadStart]="uploadPhoto" (noAction)="navigate()"></app-image-upload-form>
+                <br>
+                <p>*File have to be less than 5 MB</p>
+              </div>
+              <table style="width: 100%;margin-top: 5%;">
+                <tr>
+                  <td>
+                    <h4>
+                      Name
+                    </h4>
+                  </td>
+                  <td>
+                    <input class="form-control" style="width: 100%;" type="text"
+                           [(ngModel)]="trip.name" placeholder="Name" value="{{trip.name}}"
+                           name="name" maxlength="26"></td>
+                </tr>
+                <tr>
+                  <td>
+                    <h4>
+                      Description
+                    </h4>
+                  </td>
+                  <td>
+                    <input class="form-control" style="width: 100%;" type="text"
+                           [(ngModel)]="trip.description" placeholder="Description" value="{{trip.description}}"
+                           name="description" minlength="10"></td>
+                </tr>
+                <tr>
+                  <td>
+                    <h4>
+                      Start date
+                    </h4>
+                  </td>
+                  <td>
+                    <input class="form-control" style="width: 100%;" type="date"
+                           [(ngModel)]="trip.startDate" value="{{trip.startDate}}"
+                           name="startDate"></td>
+                </tr>
+                <tr>
+                  <td>
+                    <h4 style="margin-top: -20px;">
+                      Route
+                    </h4>
+                  </td>
+                  <td>
+                    <div class="form-group d-flex">
+                      <input type="text" [(ngModel)]="routeName" class="form-control" name="place"
+                             placeholder="Enter route" required>
+                      <button (click)="addRoute()" class="submit px-3">Add Route</button>
+                    </div>
+                  </td>
+                </tr>
+                <tr *ngIf="trip.route != null">
+                  <td></td>
+                  <td style="display:grid; grid-gap:20px 10px;
+                                    grid-template-columns: auto auto auto;">
+                    <div class="blog-entry justify-content-end" style="width: 100%;">
+                      <app-little-route [route]="trip.route"></app-little-route>
+                    </div>
+                  </td>
+                </tr>
+
+              </table>
+              <input class="category submit" style="padding: 3%;
+                                   margin-top: 5%;
+                                   font-size: 90%;
+                                   border-radius:5px;
+                                   margin-bottom: 30px;" type="submit" (click)="save();" value="Create a  new Trip"><br>
+            </form>
+          </div>
+          <div class="col-md-12 col-lg-4 sidebar">
+          </div>
+
+        </div>
+      </section>
+    </div>
+  </div>
+</section>
+
+<section class="ftco-subscribe" style="background-image: url(../../../assets/images/bg_1.jpg);"></section>
+

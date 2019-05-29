@@ -1,0 +1,64 @@
+<section class="ftco-section contact-section" style="margin-bottom: 90px;">
+  <div class="container">
+    <div class="row">
+      <h1>{{city.name}}</h1>
+      <div class="stars">
+        <bar-rating theme="fontawesome-o" [(rate)]="cityRating" [max]="5"></bar-rating>
+      </div>
+      <h5 style="margin-top: 10px;">({{cityRating | number:'1.2-2'}})</h5>
+    </div>
+    <div style="height: 200px; width: 400px; margin-left:-15px;">
+      <app-map-display [latitude]="position.coordinateX" [longitude]="position.coordinateY" [zoom]="zoom">
+      </app-map-display>
+    </div>
+    <form>
+      <div class="row">
+        <bar-rating theme="fontawesome-o" [(rate)]="cityFeedback.weatherRating" [max]="5"></bar-rating>
+        <span style="margin-top: 12px">Weather</span>
+      </div>
+      <div class="row">
+        <bar-rating theme="fontawesome-o" [(rate)]="cityFeedback.safetyRating" [max]="5"></bar-rating>
+        <span style="margin-top: 12px">Safety</span>
+      </div>
+      <div class="row">
+        <bar-rating theme="fontawesome-o" [(rate)]="cityFeedback.transportRating" [max]="5"></bar-rating>
+        <span style="margin-top: 12px">Transport</span>
+      </div>
+      <div class="row">
+        <bar-rating theme="fontawesome-o" [(rate)]="cityFeedback.costOfLivingRating" [max]="5"></bar-rating>
+        <span style="margin-top: 12px">Cost of living</span>
+      </div>
+      <div class="row">
+        <bar-rating theme="fontawesome-o" [(rate)]="cityFeedback.entertainmentRating" [max]="5"></bar-rating>
+        <span style="margin-top: 12px">Entertainment</span>
+      </div>
+
+      <div class="row">
+        <label for="exampleFormControlTextarea1">Leave a comment</label>
+        <textarea [(ngModel)]="cityFeedback.content" name="content" class="form-control"
+          id="exampleFormControlTextarea1" rows="3"></textarea>
+      </div>
+      <button type="submit" (click)="saveFeedback()" style="float:right" class="btn btn-primary">Save</button>
+    </form>
+
+    <div class="col-md-8" *ngFor="let feedback of cityFeedbacks">
+      <div class="card">
+        <div class="card-header">
+          <div class="row">
+            <bar-rating style="margin-right: 210px" theme="fontawesome-o" [(rate)]="feedback.averageRating" [max]="5">
+            </bar-rating>
+            <h5 class="card-title">{{feedback.author}} </h5>
+            &nbsp;
+            <h5 class="card-title">{{feedback.creationDate}}</h5>
+          </div>
+        </div>
+        <div class="card-body">
+          <blockquote class="blockquote mb-0">
+            <p>{{feedback.content}}</p>
+          </blockquote>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script src="../../../../assets/js/main.js"></script>

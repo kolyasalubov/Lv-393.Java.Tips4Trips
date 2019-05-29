@@ -1,0 +1,5 @@
+<div class="card-deck">
+  <app-route-info *ngFor="let route of routes" class="mx-auto mb-4" [routeInfo]="route" [displayEditButtons]="displayEditButtons"
+    [displayVerifyButton]="displayVerifyButton" (delete)="deleteRoute(route.id)" (verify)="verifyRoute(route.id)">
+  </app-route-info>
+</div>

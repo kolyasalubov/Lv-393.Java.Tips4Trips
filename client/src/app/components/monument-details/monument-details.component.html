@@ -1,0 +1,68 @@
+<app-under [str]="monument.name"></app-under>
+
+<section class="ftco-section contact-section" style="margin-bottom: 90px;">
+  <div class="container">
+    <div class="row block-9">
+      <section class="container">
+        <div class="row blog-entries element-animate">
+          <div class="col-md-12 col-lg-8 main-content" style="padding-left: 0px;">
+            <h1 class="mb-4">Monument details</h1>
+            <div *ngIf="role === 'ADMIN' || role === 'MODERATOR'">
+              <button class="btn submit" routerLink="/monuments/edit/{{monument.id}}">Edit</button>
+              <button class="btn submit" (click)="deletePlace()">Delete</button>
+            </div>
+            <table style="width: 100%;margin-top: 5%;">
+              <tr>
+
+                <div style="width: 130%">
+                  <app-image-details [fileUpload]="imageURL"></app-image-details>
+                </div>
+              </tr>
+              <tr>
+                <td><h4>
+                  Name
+                </h4></td>
+                <td>
+                  <div class="text-info">{{monument.name}}</div></td>
+              </tr>
+              <tr>
+                <td><h4>
+                  Description
+                </h4></td>
+                <td>
+                  <div class="text-info">{{monument.description}}</div>
+                </td>
+              </tr>
+              <tr>
+                <td><h4>
+                  Address
+                </h4></td>
+                <td>
+                  <div class="text-info">{{monument.address}}</div></td>
+              </tr>
+              <tr>
+                <td><h4>
+                  City
+                </h4></td>
+                <td>
+                  <div>
+                    <div class="text-info">{{monument.cityDTO.name}}</div>
+                  </div>
+                </td>
+              </tr>
+              <div style="height: 350px; width: 100%"><app-map-display [latitude]="monument.position.coordinateX" [longitude]="monument.position.coordinateY" [zoom]="zoom"></app-map-display></div>
+            </table>
+          </div>
+          <div class="col-md-12 col-lg-4 sidebar" >
+            <app-list-place-feedback [id]="id"></app-list-place-feedback>
+            <app-feedback-place-create  [placeId]="id"></app-feedback-place-create>
+          </div>
+
+        </div>
+      </section>
+    </div>
+  </div>
+</section>
+
+
+<script src="../../../../assets/js/main.js"></script>

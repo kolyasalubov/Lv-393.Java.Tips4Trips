@@ -1,0 +1,60 @@
+
+
+<section class="hero-wrap hero-wrap-2 js-fullheight" style="height: 50%;background-image: url('../../../assets/images/bg_2.jpg');"
+         data-stellar-background-ratio="0.5">
+  <div class="container">
+    <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-center">
+      <div class="col-md-9 ftco-animate pb-5 text-center">
+        <h1 class="mb-3 bread" style="margin-top: 10%;">Our Stories</h1>
+        <span>Blog Single <i class="ion-ios-arrow-forward"></i></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ftco-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 order-md-last ftco-animate">
+        <h4><a style="color:#4d4d4d" href="/profile/{{post.authorId}}">{{post.authorFirstName}}
+          {{post.authorLastName}}</a></h4>
+        <br>
+
+        <h2 class="mb-3">{{post.name}}</h2>
+        <div *ngFor=" let img of post.images">
+          <app-image-details [fileUpload]="imageURL+img.id"></app-image-details>
+          <p>{{imageURL+img.id}}</p>
+        </div>
+        <p>{{post.content}}</p>
+        <app-like [postid]="post.id"></app-like>
+        <div class="pt-5 mt-5">
+          <app-comment [postid]="post.id"></app-comment>
+        </div>
+      </div> <!-- .col-md-8 -->
+      <!--<div class="col-lg-4 sidebar ftco-animate">-->
+
+      <!--<div class="sidebar-box ftco-animate">-->
+      <!--<div class="categories">-->
+      <!--<h3>Categories</h3>-->
+      <!--<li><a href="#">Travel <span>(12)</span></a></li>-->
+      <!--<li><a href="#">Tour <span>(22)</span></a></li>-->
+      <!--<li><a href="#">Destination <span>(37)</span></a></li>-->
+      <!--<li><a href="#">Drinks <span>(42)</span></a></li>-->
+      <!--<li><a href="#">Foods <span>(14)</span></a></li>-->
+      <!--<li><a href="#">Travel <span>(140)</span></a></li>-->
+      <!--</div>-->
+      <!--</div>-->
+
+      <!--<div class="sidebar-box ftco-animate">-->
+      <!--<h3>Recent Blog</h3>-->
+      <!--<app-less-post style="width: 100%"></app-less-post>-->
+      <!--<app-less-post style="width: 100%"></app-less-post>-->
+      <!--<app-less-post style="width: 100%"></app-less-post>-->
+      <!--<app-less-post style="width: 100%"></app-less-post>-->
+      <!--</div>-->
+      <!--</div>-->
+
+    </div>
+  </div>
+</section>
+

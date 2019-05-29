@@ -1,0 +1,48 @@
+select {
+    text-align: center;
+    text-align-last: center;
+    font-weight: bold;
+  }
+  
+  .clear-filter {
+    position: relative;
+    color: #FFB400;
+    font-style: italic;
+    font-size: medium;
+  }
+  
+  .clear-filter:hover {
+    color: #ffffff;
+  }
+  
+  .submit{
+    color: #fff !important;
+    margin-bottom: -20px;
+    background: #ffb400 !important;
+    border-radius: 0px 5px 5px 0px;
+    font-size: 16px;
+    border: 1px solid transparent;
+    height: 70px;
+    width: 150px;
+  }
+  
+  .custom-input {
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: #ffffff;
+    text-align: center;
+    height: 40px;
+  }
+  
+  h3 {
+    color: #ffb400;
+  }
+  
+  h3:hover {
+    cursor: pointer;
+  }
+
+  img {
+    cursor: pointer;
+  }

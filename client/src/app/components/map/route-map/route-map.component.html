@@ -1,0 +1,30 @@
+<p style="color: black;">You can select travel mode from the dropdown list below
+  .</p>
+<div style="width: 100%; height: 100%; position: relative;">
+  <div style="width: 100%;
+              height: 100%;
+              position: absolute;
+              top: 0;
+              left: 0;">
+    <agm-map [latitude]="lat" [longitude]="lng">
+      <agm-direction [origin]="origin" [destination]="destination"
+                     [renderOptions]="renderOptions"
+                     [markerOptions]="markerOptions"
+                     [waypoints]="waypoints"
+                     [travelMode]="travelMode">
+      </agm-direction>
+    </agm-map>
+  </div>
+  <div style="width: 100%;
+              height: 30%;
+              position: absolute;
+              top: 0;
+              left: 0;">
+    <select [(ngModel)]="travelMode">
+      <option value="DRIVING">Driving</option>
+      <option value="WALKING">Walking</option>
+      <option value="BICYCLING">Bicycling</option>
+      <option value="TRANSIT">Transit</option>
+    </select>
+  </div>
+</div>

@@ -1,0 +1,56 @@
+<section class="ftco-section contact-section" style="margin-bottom: 90px;">
+  <div class="container">
+    <div class="row">
+      <h1>Create a new city</h1>
+      <form (ngSubmit)="create()" method="post" enctype="multipart/form-data">
+        <table style="width: 100%;">
+          <tr>
+            <td width="20%">
+              <h4>
+                Name
+              </h4>
+            </td>
+            <td>
+              <input class="form-control" style="width: 100%;" type="text" placeholder="Name" name="name" maxlength="35"
+                [(ngModel)]="city.name">
+            </td>
+          </tr>
+          <tr>
+            <td width="20%">
+              <h4>
+                Position
+              </h4>
+            </td>
+            <td>
+              <app-map-picker [locationUpdate]="setCoordinates" [citySearch]="true"></app-map-picker>
+              <div class="form-group d-flex">
+                <input class="form-control" style="width:45%;border-radius: 5px; margin-top: 15px;" type="number"
+                  placeholder="X" name="coordinateX" maxlength="26" [(ngModel)]="position.coordinateX">
+                <input class="form-control" style="width: 45%;border-radius: 5px;margin-left: 10%; margin-top: 15px"
+                  type="number" placeholder="Y" name="coordinateY" maxlength="26" [(ngModel)]="position.coordinateY">
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td width="20%">
+              <h4>
+                Country
+              </h4>
+            </td>
+            <td>
+              <div>
+                <select style="width: 100%" (change)="setCountryId($event.target.value)">
+                  <option disabled>Select country</option>
+                  <option *ngFor="let c of countries" value={{c.id}}>{{c.name}}</option>
+                </select>
+              </div>
+            </td>
+          </tr>
+        </table>
+        <input class="btn btn-primary btn-lg" type="submit" value="Create a new city"><br>
+      </form>
+    </div>
+    {{ resultText }}
+  </div>
+</section>
+<script src="../../../../assets/js/main.js"></script>

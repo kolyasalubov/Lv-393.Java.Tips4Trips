@@ -1,0 +1,22 @@
+<app-under [str]="'Blog'"></app-under>
+
+<section class="ftco-section bg-light">
+  <div class="container">
+    <div class="row d-flex">
+
+      <div class="col-md-4 d-flex ftco-animate" *ngFor="let post of postP">
+        <div class="blog-entry justify-content-end" style="width: 100%;">
+          <app-little-post [post]="post"></app-little-post>
+        </div>
+      </div>
+    </div>
+
+    <app-pagination [number]="pagePost.number" [total]="pagePost.totalPages" [link]="'/blog/'"></app-pagination>
+  </div>
+</section>
+
+<section class="ftco-subscribe" style="background-image: url(../../../assets/images/bg_1.jpg);">
+
+
+</section>
+

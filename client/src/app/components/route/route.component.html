@@ -1,0 +1,37 @@
+<app-header></app-header>
+<div class="hero-wrap js-fullheight"
+  style="background-image: url('../../../assets/images/bg_1.jpg'); padding-bottom: 5%;"
+  data-stellar-background-ratio="0.5">
+  <div class="container">
+    <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-end"
+      data-scrollax-parent="true">
+      <div class="col-md-7 ftco-animate mt-5" data-scrollax=" properties: { translateY: '70%' }">
+        <h1 class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }" style="margin-top: 10%;">Be a
+          Traveler not a Tourist
+        </h1>
+      </div>
+    </div>
+  </div>
+</div>
+<section class="ftco-section bg-light">
+  <div style="text-align:center; width:70%; margin: auto;">
+    <h1 style="text-align: center;">{{route.name}}</h1>
+    <div style="display: inline-block; margin:auto;">
+      <h4>Creation Date: {{route.creationDate}}</h4>
+
+      <h4 style="text-align: left;">Places: </h4>
+      <div style="display:grid; grid-gap:20px 10px;
+                                    grid-template-columns: auto auto auto;">
+        <div style="border: 1px solid black; padding: 20px 5px; max-width: 250px;" *ngFor="let place of route.places">
+          <h4><a [href]="getSelfLink(place)">{{place.name}}</a></h4>
+          <p>{{place.description}}</p>
+        </div>
+      </div>
+      <div style="text-align: left;"><button (click)="goBack()" style="margin-top:20px;">Back</button></div>
+    </div>
+  </div>
+</section>
+
+<section class="ftco-subscribe" style="background-image: url(../../../assets/images/bg_1.jpg);">
+</section>
+<app-footer></app-footer>

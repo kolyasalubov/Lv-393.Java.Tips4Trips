@@ -1,0 +1,95 @@
+<app-under str="Create post"></app-under>
+<section class="ftco-section contact-section" style="margin-bottom: 90px;">
+  <div class="container">
+    <div class="row block-9">
+      <section class="container">
+        <div class="row blog-entries element-animate">
+          <div class="col-md-12 col-lg-8 main-content" style="padding-left: 0px;">
+            <form action="#" method="post" enctype="multipart/form-data" [formGroup]="formGroup">
+              <h1 class="mb-4">Create a new post</h1>
+              <div class="col-md-8 col-lg-6 main-content">
+                <app-image-upload-form [multiple]="true" [requestType]="'POST'" [setStorageURL]="url"
+                                       [UploadStart]="uploadPhoto" (noAction)="navigate()"></app-image-upload-form>
+                <p>*File have to be less than 5 MB</p>
+              </div>
+              <table style="width: 100%;margin-top: 5%;">
+                <tr>
+                  <td><h4>
+                    Topic
+                  </h4></td>
+                  <td>
+                    <input [(ngModel)]="post.name" class="form-control invalid-input ng-pristine ng-invalid ng-touched" style="width: 100%;" type="text"
+                           value="{{post.name}}"
+                           placeholder="Topic of post"
+                           name="topic"
+                           minlength="4"
+                           maxlength="26"
+                           formControlName="name"
+                           [ngClass]="formGroup.get('name').invalid ? 'invalid-input' : 'valid-input'"
+                    ></td>
+                </tr>
+                <tr>
+                  <td><h4>
+                    About
+                  </h4></td>
+                  <td>
+                   <textarea [(ngModel)]="post.content" class="form-control" rows="13" style="
+                                        padding-top: 10px;
+                                        width: 100%;"
+                             value="{{post.content}}"
+                             placeholder="Something about it"
+                             name="about"
+                             formControlName="content"
+                             [ngClass]="formGroup.get('content').invalid ? 'invalid-input' : 'valid-input'"
+                   ></textarea>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <h4 style="margin-top: -20px;">
+                      Add Route
+                    </h4>
+                  </td>
+                  <td>
+                    <div class="form-group d-flex">
+                      <input formControlName="route" type="text" [(ngModel)]="this.routeName"
+                             value="{{routeName}}"
+                             class="form-control"
+                             name="place"
+                             placeholder="Enter route" required>
+                      <button (click)="addRoute()" class="submit px-3">Add Route</button>
+                    </div>
+                  </td>
+                </tr>
+                <tr *ngIf="post.routeInfo != null">
+                  <td></td>
+                  <td style="display:grid; grid-gap:20px 10px;
+                                    grid-template-columns: auto auto auto;">
+                    <div class="blog-entry justify-content-end" style="width: 100%;">
+                      {{post.routeInfo.name}} add
+                    </div>
+                  </td>
+                </tr>
+
+              </table>
+              <input class="category submit"
+                     style="padding: 3%;
+                                   margin-top: 5%;
+                                   font-size: 90%;
+                                   border-radius:5px;
+                                   margin-bottom: 30px;"
+                     type="submit"
+                     value="Create a new post" (click)="save();"><br>
+            </form>
+          </div>
+          <div class="col-md-12 col-lg-4 sidebar">
+          </div>
+        </div>
+
+      </section>
+    </div>
+  </div>
+</section>
+
+
+<script src="../../../../assets/js/main.js"></script>

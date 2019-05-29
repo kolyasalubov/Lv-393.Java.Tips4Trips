@@ -24,11 +24,7 @@ HELP.md
 /nbdist/
 /.nb-gradle/
 /build/
-
-### VS Code ###
-.vscode/
-#resources
-resources
+/node_modules/
 
 */target/
 *.properties

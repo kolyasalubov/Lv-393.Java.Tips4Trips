@@ -1,0 +1,156 @@
+
+<div class="hero-wrap js-fullheight"
+     style="background-image: url('../../../assets/images/bg_1.jpg'); padding-bottom: 5%;"
+     data-stellar-background-ratio="0.5">
+  <div class="container">
+    <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-end"
+         data-scrollax-parent="true">
+      <div class="col-md-7 ftco-animate mt-5" data-scrollax=" properties: { translateY: '70%' }">
+        <h1 class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }" style="margin-top: 10%;">Be a
+          Traveler not a Tourist
+        </h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="ftco-section ftco-no-pb ftco-no-pt">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="search-wrap-1 ftco-animate p-4">
+          <div class="col-lg align-items-end">
+            <div class="form-group">
+              <label for="#">Category</label>
+              <div class="form-field">
+                <div class="icon"><span class="ion-ios-search"></span></div>
+                <select class="form-control" (change)="selectCategory($event.target.value)">
+                  <option selected value="all">All</option>
+                  <option value="restaurants">Restaurants</option>
+                  <option value="hotels">Hotels</option>
+                  <option value="monuments">Monuments</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <form (ngSubmit)="filterRestaurants()" *ngIf="selectedCategory === 'restaurants'" class="search-property-1">
+            <div class="row">
+              <div class="col-lg align-items-end">
+                <div class="form-group">
+                  <label for="#">Works at</label>
+                  <div class="form-field">
+                    <div class="icon"><span class="ion-ios-search"></span></div>
+                    <input type="time" name="works_at" class="custom-input" [(ngModel)]="restaurantFilter.worksAt">
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg align-items-end">
+                <div class="form-group">
+                  <label for="#">Average Bill</label>
+                  <div class="form-field">
+                    <div class="icon"><span class="ion-ios-calendar"></span></div>
+                    <input class="custom-input" style="width: 100%;" type="number"
+                           placeholder="Average bill" name="avg_bill" [(ngModel)]="restaurantFilter.averageBill">
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg align-items-end">
+                <div class="form-group">
+                  <label for="#">Has Vegan Food</label>
+                  <div class="form-field">
+                    <div class="icon"><span class="ion-ios-calendar"></span></div>
+                    <select class="custom-input" [value]="restaurantFilter.hasVeganFood" (change)="restaurantFilter.hasVeganFood = $event.target.value">
+                      <option selected value="null">---</option>
+                      <option value="true">yes</option>
+                      <option value="false">no</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg align-self-end">
+                <div class="form-group">
+                  <div class="form-field">
+                    <input class="btn submit"
+                           style="padding: 3%;
+                                   margin-top: 5%;
+                                   font-size: 90%;
+                                   border-radius:5px;
+                                   margin-bottom: -5px;"
+                           type="submit"
+                           value="Filter">
+                  </div>
+                  <span class="clear-filter btn" (click)="clearRestaurantFilter()">Clear</span>
+                </div>
+              </div>
+            </div>
+          </form>
+
+          <form (ngSubmit)="filterHotels()" *ngIf="selectedCategory === 'hotels'" class="search-property-1">
+            <div class="row">
+              <div class="col-lg align-items-end">
+                <div class="form-group">
+                  <label for="#">Works at</label>
+                  <div class="form-field">
+                    <div class="icon"><span class="ion-ios-search"></span></div>
+                    <input type="time" name="works_at" class="custom-input" [(ngModel)]="hotelFilter.worksAt">
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg align-items-end">
+                <div class="form-group">
+                  <label for="#">Price per night</label>
+                  <div class="form-field">
+                    <div class="icon"><span class="ion-ios-calendar"></span></div>
+                    <input class="custom-input" style="width: 100%;" type="number"
+                           placeholder="Price" name="price_in" [(ngModel)]="hotelFilter.priceIn">
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg align-self-end">
+                <div class="form-group">
+                  <div class="form-field">
+                    <input class="btn submit"
+                           style="padding: 3%;
+                                   margin-top: 5%;
+                                   font-size: 90%;
+                                   border-radius:5px;
+                                   margin-bottom: -5px;"
+                           type="submit"
+                           value="Filter">
+                  </div>
+                  <span class="clear-filter btn" (click)="clearHotelFilter()">Clear</span>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ftco-section" *ngIf="selectedCategory === 'all'">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-lg-3 ftco-animate" *ngFor="let place of places">
+        <app-place-info [place]="place"></app-place-info>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ftco-section" *ngIf="selectedCategory !== 'all'">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-lg-3 ftco-animate" *ngFor="let place of categorizedPlaces">
+        <app-place-info [place]="place"></app-place-info>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ftco-subscribe" style="background-image: url(../../../assets/images/bg_1.jpg);">
+
+
+</section>
+

@@ -1,0 +1,29 @@
+<div class="card" style="width: 18rem;">
+  <div  class="card-body">
+    <h3 class="card-title"><a [routerLink]="['/routes/' + routeInfo.id]" class="card-link">{{routeInfo.name}}</a></h3>
+    <h5>
+      <table>
+        <tr>
+          <td>{{routeInfo.begin.name}}</td>
+          <td rowspan="2">-</td>
+          <td>{{routeInfo.end.name}}</td>
+        </tr>
+        <tr>
+            <td><small class="text-muted">({{routeInfo.begin.cityName}})</small></td>
+            <td><small class="text-muted">({{routeInfo.end.cityName}})</small></td>
+        </tr>
+      </table>
+    </h5>
+    <p class="card-text"></p>
+    <h6  class="card-subtitle mb-2 text-muted">{{routeInfo.creationDate}}</h6>
+    <p>Created by <a [routerLink]="['/profile/' + routeInfo.authorInfo.id]" class="card-link">
+        {{routeInfo.authorInfo.firstName}} {{routeInfo.authorInfo.lastName}}</a>
+    </p>
+    <ng-container *ngIf="displayEditButtons">
+      <button type="button" class="btn btn-warning mr-3" (click)="edit()">Edit</button>
+      <button type="button" class="btn btn-danger mr-3" (click)="delete.emit()">Delete</button>
+    </ng-container>
+    <button type="button" *ngIf="displayVerifyButton" class="btn btn-success mr-3" (click)="verify.emit(routeInfo.id)"
+      class="btn btn-success">Verify</button>
+  </div>
+</div>

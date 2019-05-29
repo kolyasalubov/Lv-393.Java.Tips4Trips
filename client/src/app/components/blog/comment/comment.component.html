@@ -1,0 +1,40 @@
+
+<ul *ngFor="let comment of allComments "  class="comment-list">
+  <li class="comment">
+    <div class="vcard bio" style="width: 8%">
+      <app-image-details [fileUpload]="getImageString(comment.accountInfo.id)"></app-image-details>
+    </div>
+    <div class="comment-body">
+      <h3>{{comment.accountInfo.firstName}} {{comment.accountInfo.lastName}}</h3>
+
+      <div class="meta">{{comment.creationDate}}</div>
+
+      <p style="font-size: 16px; text-align: justify ">{{comment.text}}</p>
+      <p class="pointer">
+        <a *ngIf="account.id==comment.accountInfo.id" [hidden]="isHidden" (click)="deleteComment(comment.id,comment)" class="reply" >Delete</a>
+
+      </p>
+    </div>
+  </li>
+</ul>
+
+
+<div class="comment-form-wrap pt-5">
+  <div *ngIf="!noComment">
+    <h3 class="mb-5">Leave a comment</h3>
+  </div>
+  <form #f="ngForm"  (ngSubmit)="onSubmit(f)" [formGroup]="formGroup" class="p-5 bg-light">
+
+    <div class="form-group">
+      <label for="message">Message</label>
+      <textarea style="font-size: 18px; font-family: 'Times New Roman'" name="name" id="message" cols="30" rows="10" class="form-control"
+                formControlName="description"    [(ngModel)]=commentProfile.text ></textarea>
+    </div>
+    <div class="form-group">
+      <input [disabled]="isButtonDisabled" [disabled]="!formGroup.valid" type="submit" value="Post Comment" class="btn py-3 px-4 btn-primary">
+    </div>
+
+  </form>
+</div>
+
+

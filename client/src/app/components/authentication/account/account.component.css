@@ -1,0 +1,30 @@
+.round {
+  border-radius: 100px; /* Радиус скругления */
+  border: 3px solid green; /* Параметры рамки */
+  box-shadow: 0 0 7px #666; /* Параметры тени */
+}
+
+.form-control {
+  height: 70px !important;
+  border: 1px solid transparent;
+  color: rgba(0, 0, 0, 0.7) !important;
+  font-size: 20px;
+  background: rgba(0, 0, 0, 0.05) !important;
+  border-radius: 5px 0px 0px 5px;
+  padding: 0 20px;
+  margin-bottom: 20px;
+}
+
+.submit {
+  color: #fff !important;
+  margin-bottom: -20px;
+  background: #ffb400 !important;
+  border-radius: 0px 5px 5px 0px;
+  font-size: 16px;
+  border: 1px solid transparent;
+  height: 70px;
+}
+
+.size {
+  font-size: 20px;
+}

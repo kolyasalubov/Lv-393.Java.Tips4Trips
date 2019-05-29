@@ -1,0 +1,15 @@
+<div class="project">
+  <div>
+    <h3 routerLink="/{{transferSelfUrl(place.self)}}">{{place.name}}</h3></div>
+  <div class="img">
+    <img src="{{place.imageUrl}}" class="img-fluid" alt="Colorlib Template" routerLink="/{{transferSelfUrl(place.self)}}">
+  </div>
+  <div style="color: #6c661c">
+    <span>{{place.description}}</span>
+  </div>
+  <button *ngIf="displayRemoveButton" type="button" class="btn btn-danger mr-3" (click)="remove.emit()">Remove</button>
+  <a href="{{place.imageUrl}}"
+     class="icon image-popup d-flex justify-content-center align-items-center">
+    <span class="icon-expand"></span>
+  </a>
+</div>
