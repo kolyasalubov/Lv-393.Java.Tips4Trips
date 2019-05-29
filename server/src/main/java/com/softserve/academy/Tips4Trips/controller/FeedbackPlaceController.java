@@ -32,7 +32,6 @@ public class FeedbackPlaceController {
     }
 
     @PostMapping("/create")
-    @PreAuthorize("hasRole('ROLE_USER')")
     public ResponseEntity<FeedbackPlaceDTO> create(@RequestBody FeedbackPlaceDTO feedbackPlaceDTO) {
         logger.info("create feedback method executing: ");
         return new ResponseEntity<>(modelMapper.map(service.createFeedbackPlace(feedbackPlaceConverter.convertToEntity(feedbackPlaceDTO)),
