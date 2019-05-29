@@ -8,6 +8,7 @@ import { CustomAuthService } from '../../authentication/custom-auth.service';
 import { startWith, map } from 'rxjs/operators';
 import {RouteMapComponent} from "../../map/route-map/route-map.component";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {PlaceInfo} from "../../../model/place-info.model";
 
 @Component({
   selector: 'app-create-post-route',
@@ -30,6 +31,12 @@ export class CreateRouteComponent implements OnInit {
       Validators.maxLength(35)
     ])
   });
+
+  setPlaces: Function = (places: PlaceInfo[]) => {
+    this.route.places = places;
+    this.child.getDirection();
+  }
+
   constructor(
     private routeService: RouteService,
     private placeService: PlaceService,
@@ -110,6 +117,13 @@ export class CreateRouteComponent implements OnInit {
 
   resetAlerts() {
     this.alerts = [];
+  }
+
+  optimize() {
+    this.child.optimize();
+    this.route.places = this.child.newPlaceList;
+    this.child.places = this.route.places;
+    this.child.getDirection();
   }
 
 }
