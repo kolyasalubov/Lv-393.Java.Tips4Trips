@@ -134,21 +134,25 @@ export class RouteMapComponent implements OnInit {
         this.placeList[i]);
     }
 
+    console.log(map);
     let mapkeys = [];
     map.forEach((value: PlaceInfo,key: number) => {
       mapkeys.push(key);
     });
 
+    console.log(mapkeys);
     mapkeys.sort((n1,n2)=> {
       if (n1 > n2) return 1;
       else if (n1 == n2) return 0;
       else return -1;
     });
 
+    console.log(mapkeys);
     this.newPlaceList = [];
     for(let key of mapkeys) {
       this.newPlaceList.push(map.get(key));
     }
+    console.log(this.newPlaceList);
   }
 
   decartLength(destination: PlaceInfo, waypoint: PlaceInfo) {
@@ -157,8 +161,8 @@ export class RouteMapComponent implements OnInit {
 
     let lang = Math.pow(this.optimizationDestination.coordinateX -
         this.optimizationWaypoint.coordinateX, 2) +
-      Math.pow(this.optimizationDestination.coordinateX -
-        this.optimizationWaypoint.coordinateX, 2);
+      Math.pow(this.optimizationDestination.coordinateY -
+        this.optimizationWaypoint.coordinateY, 2);
     return Math.sqrt(lang);
   }
 }
