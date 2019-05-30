@@ -30,7 +30,9 @@ export class SocialHandlerComponent implements OnInit {
     this.fullHeight(5);
     this.activatedRoute.queryParams.subscribe(params => {
       localStorage.setItem(ACCESS_TOKEN, params['token']);
+      this.tokenStorage.saveToken(params['token']);
       this.authService.getCurrentUser().subscribe(data => {
+        console.log(data.phoneNumber);
         if(data.phoneNumber!='tmpnull'){
           this.route.navigate(['account']);
         }

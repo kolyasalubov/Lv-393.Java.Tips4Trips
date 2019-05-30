@@ -28,7 +28,7 @@ export class SignupComponent implements OnInit {
 
   onSubmit() {
 
-    alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.model));
+
     this.signupInfo = new SignUpForm(this.model.login, this.model.firstName,
       this.model.lastName, this.model.phoneNumber,
       this.model.email, this.model.password, this.model.about);
